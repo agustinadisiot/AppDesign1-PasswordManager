@@ -4,9 +4,9 @@ namespace Obligatorio
 {
     public class Sistema
     {
-        public void noHayUsuarios()
+        public bool noHayUsuarios()
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }
