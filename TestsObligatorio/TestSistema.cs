@@ -1,0 +1,20 @@
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Obligatorio;
+using System;
+
+namespace TestsObligatorio
+{
+    [TestClass]
+    public class TestSistema
+    {
+        [TestMethod]
+        public void testNoHayUsuario()
+        {
+            Sistema sistema = new Sistema();
+            //Prueba si al comenzar el sistema esta vacío.
+            Assert.AreEqual(true, sistema.noHayUsuarios());
+
+
+        }
+    }
+}
