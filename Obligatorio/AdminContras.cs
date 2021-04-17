@@ -4,14 +4,20 @@ namespace Obligatorio
 {
     public class AdminContras
     {
+        private bool noAgregoUsuarios;
+
+        public AdminContras() {
+            this.noAgregoUsuarios = true;
+        }
+
         public bool noHayUsuarios()
         {
-            return true;
+            return this.noAgregoUsuarios;
         }
 
         public void agregarUsuario(Usuario u1)
         {
-            throw new NotImplementedException();
+            this.noAgregoUsuarios = false;
         }
     }
 }
