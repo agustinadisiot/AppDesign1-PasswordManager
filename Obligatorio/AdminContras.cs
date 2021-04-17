@@ -19,5 +19,10 @@ namespace Obligatorio
         {
             this.noAgregoUsuarios = false;
         }
+
+        public Usuario getUsuario()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
