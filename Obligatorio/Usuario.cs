@@ -14,29 +14,23 @@ namespace Obligatorio
 
         public string Nombre 
         {   get { return nombre;}
-            set 
-            {
-                if (value.Length < 5 || value.Length > 25)
-                {
-                    throw new LargoIncorrectoException();
-                } else {
-                    this.nombre = value;
-                }
-            }
+            set { this.nombre = verificarLargo5a25(value);}
         }
 
         public string ContraMaestra {
             get { return this.contraMaestra;}
-            set
+            set { this.contraMaestra = verificarLargo5a25(value);}
+        }
+
+        private string verificarLargo5a25(string dato) 
+        {
+            if (dato.Length < 5 || dato.Length > 25)
             {
-                if (value.Length < 5 || value.Length > 25)
-                {
-                    throw new LargoIncorrectoException();
-                }
-                else
-                {
-                    this.contraMaestra = value;
-                }
+                throw new LargoIncorrectoException();
+            }
+            else
+            {
+                return dato;
             }
         }
 
