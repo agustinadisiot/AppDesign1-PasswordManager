@@ -109,7 +109,7 @@ namespace TestsObligatorio
         {
             Usuario u1 = new Usuario();
             u1.ContraMaestra = "Hola12345";
-            Assert.AreEqual(true, u1.validarContraMestra());
+            Assert.AreEqual(true, u1.validarContraMaestra("Hola12345"));
         }
     }
 }

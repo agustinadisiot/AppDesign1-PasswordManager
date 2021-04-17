@@ -23,7 +23,7 @@ namespace Obligatorio
 
         public string ContraMaestra { get; set; }
 
-        public bool validarContraMestra()
+        public bool validarContraMaestra(string v)
         {
             return true;
         }
