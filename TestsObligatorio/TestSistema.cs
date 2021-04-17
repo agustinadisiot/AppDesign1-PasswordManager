@@ -5,23 +5,24 @@ using System;
 namespace TestsObligatorio
 {
     [TestClass]
-    public class TestSistema
+    public class TestAdministrador
     {
         [TestMethod]
         public void testNoHayUsuario()
         {
-            Sistema sistema = new Sistema();
-            //Prueba si al comenzar el sistema esta vacío.
-            Assert.AreEqual(true, sistema.noHayUsuarios());
+            AdminContras administrador = new AdminContras();
+            //Prueba si al comenzar el administrador esta vacío.
+            Assert.AreEqual(true, administrador.noHayUsuarios());
         }
 
         [TestMethod]
-        public void testSistemaConUsuarios()
+        public void testAdministradorConUsuarios()
         {
-            Sistema sistema = new Sistema();
-            Sistema
-            //Prueba si al comenzar el sistema esta vacío.
-            Assert.AreEqual(true, sistema.noHayUsuarios());
+            AdminContras administrador = new AdminContras();
+            Usuario u1 = new Usuario();
+            administrador.agregarUsuario(u1);
+            //Prueba si al comenzar el administrador esta vacío.
+            Assert.AreEqual(false, administrador.noHayUsuarios());
         }
 
     }
