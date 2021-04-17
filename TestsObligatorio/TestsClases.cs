@@ -13,34 +13,34 @@ namespace TestsObligatorio
 
         //Prueba si al comenzar el administrador esta vacío.
         [TestMethod]
-        public void testNoHayUsuario()
+        public void testEsListaUsuariosVaciaAlPrincipio()
         {
             AdminContras administrador = new AdminContras();
-            Assert.AreEqual(true, administrador.noHayUsuarios());
+            Assert.AreEqual(true, administrador.esListaUsuariosVacia());
         }
 
-        //Prueba si al agregar un usuario, noHayUsuarios da false
+        //Prueba si al agregar un usuario, esListaUsuariosVacia da false
         [TestMethod]
         public void testAdministradorConUsuarios()
         {
             AdminContras administrador = new AdminContras();
             Usuario u1 = new Usuario();
             administrador.agregarUsuario(u1);
-            Assert.AreEqual(false, administrador.noHayUsuarios());
+            Assert.AreEqual(false, administrador.esListaUsuariosVacia());
         }
 
 
-        //Prueba si al agregar dos usuarios, noHayUsuarios sigue dando false
+        //Prueba si al agregar dos usuarios, esListaUsuariosVacia sigue dando false
         [TestMethod]
         public void testAdministradorHayUsuariosCon2Usuarios()
         {
             AdminContras administrador = new AdminContras();
             Usuario u1 = new Usuario();
             administrador.agregarUsuario(u1);
-            Assert.AreEqual(false, administrador.noHayUsuarios());
+            Assert.AreEqual(false, administrador.esListaUsuariosVacia());
             Usuario u2 = new Usuario();
             administrador.agregarUsuario(u2);
-            Assert.AreEqual(false, administrador.noHayUsuarios());
+            Assert.AreEqual(false, administrador.esListaUsuariosVacia());
         }
 
         //Prueba si al pedir el usuario, devuelve el mismo.
@@ -157,10 +157,10 @@ namespace TestsObligatorio
 
         //Prueba si al comenzar el Usuario tiene una lista vacía de contraseñas guardadas. 
         [TestMethod]
-        public void testUsuarioNoHayContrasGuardadas()
+        public void testUsuarioEsListaContrasVacia()
         {
             Usuario u1 = new Usuario();
-            Assert.AreEqual(true, u1.noHayContrasGuardadas());
+            Assert.AreEqual(true, u1.esListaContrasVacia());
         }
     }
 }

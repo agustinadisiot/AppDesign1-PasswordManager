@@ -39,7 +39,7 @@ namespace Obligatorio
             return v == this.contraMaestra;
         }
 
-        public bool noHayContrasGuardadas()
+        public bool esListaContrasVacia()
         {
             return true;
         }

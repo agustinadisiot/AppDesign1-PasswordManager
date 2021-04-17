@@ -12,7 +12,7 @@ namespace Obligatorio
             this.u1 = null;
         }
 
-        public bool noHayUsuarios()
+        public bool esListaUsuariosVacia()
         {
             return this.noAgregoUsuarios;
         }
