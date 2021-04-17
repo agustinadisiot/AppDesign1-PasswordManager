@@ -109,7 +109,7 @@ namespace TestsObligatorio
         {
             Usuario u1 = new Usuario();
             u1.ContraMaestra = "Hola12345";
-            Assert.AreEqual(true, u1.validarContraMaestra("Hola12345"));
+            Assert.AreEqual(true, u1.validarIgualContraMaestra("Hola12345"));
         }
 
 
@@ -120,7 +120,7 @@ namespace TestsObligatorio
         {
             Usuario u1 = new Usuario();
             u1.ContraMaestra = "Hola12345";
-            Assert.AreEqual(false, u1.validarContraMaestra("Diferente"));
+            Assert.AreEqual(false, u1.validarIgualContraMaestra("Diferente"));
         }
 
 
@@ -130,11 +130,21 @@ namespace TestsObligatorio
         {
             Usuario u1 = new Usuario();
             u1.ContraMaestra = "Hola12345";
-            Assert.AreEqual(true, u1.validarContraMaestra("Hola12345"));
+            Assert.AreEqual(true, u1.validarIgualContraMaestra("Hola12345"));
 
             u1.ContraMaestra = "Chau109876";
-            Assert.AreEqual(false, u1.validarContraMaestra("Hola12345"));
-            Assert.AreEqual(true, u1.validarContraMaestra("Chau109876"));
+            Assert.AreEqual(false, u1.validarIgualContraMaestra("Hola12345"));
+            Assert.AreEqual(true, u1.validarIgualContraMaestra("Chau109876"));
+        }
+
+
+
+        //Prueba si al ingresar un nombre con largo menor a 5, devuelve un error.
+        [TestMethod]
+        public void testUsuarioLargoContraMaestraMenorA5()
+        {
+            Usuario u1 = new Usuario();
+            Assert.ThrowsException<LargoIncorrectoException>(() => u1.ContraMaestra = "A");
         }
     }
 }

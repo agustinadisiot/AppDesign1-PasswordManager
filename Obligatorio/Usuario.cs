@@ -14,7 +14,8 @@ namespace Obligatorio
 
         public string Nombre 
         {   get { return nombre;}
-            set {
+            set 
+            {
                 if (value.Length < 5 || value.Length > 25)
                 {
                     throw new LargoIncorrectoException();
@@ -26,10 +27,20 @@ namespace Obligatorio
 
         public string ContraMaestra {
             get { return this.contraMaestra;}
-            set { this.contraMaestra = value;}
+            set
+            {
+                if (value.Length < 5 || value.Length > 25)
+                {
+                    throw new LargoIncorrectoException();
+                }
+                else
+                {
+                    this.contraMaestra = value;
+                }
+            }
         }
 
-        public bool validarContraMaestra(string v)
+        public bool validarIgualContraMaestra(string v)
         {
             return v == this.contraMaestra;
         }
