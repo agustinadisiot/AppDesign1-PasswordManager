@@ -85,5 +85,23 @@ namespace TestsObligatorio
         }
 
 
+        //Prueba si al ingresar un nombre con largo menor a 5, devuelve un error.
+        [TestMethod]
+        public void testUsuarioLargoNombreMenorA5()
+        {
+            Usuario u1 = new Usuario();
+            Assert.ThrowsException<LargoIncorrectoException>(() => u1.Nombre = "A");
+        }
+
+
+        //Prueba si al ingresar un nombre con largo mayor a 25, devuelve un error.
+        [TestMethod]
+        public void testUsuarioLargoNombreMayorA25()
+        {
+            Usuario u1 = new Usuario();
+            Assert.ThrowsException<LargoIncorrectoException>(() => u1.Nombre = "12345678901234567890123456");
+        }
+
+
     }
 }
