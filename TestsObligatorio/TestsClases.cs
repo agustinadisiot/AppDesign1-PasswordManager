@@ -153,5 +153,14 @@ namespace TestsObligatorio
             Usuario u1 = new Usuario();
             Assert.ThrowsException<LargoIncorrectoException>(() => u1.ContraMaestra = "12345678901234567890123456");
         }
+
+
+        //Prueba si al comenzar el Usuario tiene una lista vacía de contraseñas guardadas. 
+        [TestMethod]
+        public void testUsuarioNoHayContrasGuardadas()
+        {
+            Usuario u1 = new Usuario();
+            Assert.AreEqual(true, u1.noHayContrasGuardadas());
+        }
     }
 }
