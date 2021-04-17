@@ -1,6 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Obligatorio;
-using System;
+
+
+//Confirmar separacion de tests, y nombre de TestsClases.cs
+
 
 namespace TestsObligatorio
 {
@@ -47,6 +50,38 @@ namespace TestsObligatorio
             Usuario u1 = new Usuario();
             administrador.agregarUsuario(u1);
             Assert.AreEqual(u1, administrador.getUsuario());
+        }
+
+
+    }
+
+    [TestClass]
+    public class TestUsuario 
+    {
+
+        //Prueba si devuelve el nombre correcto.
+        [TestMethod]
+        public void testUsuarioGetNombreRoberto()
+        {
+            Usuario u1 = new Usuario
+            {
+                Nombre = "Roberto"
+            };
+            Assert.AreEqual("Roberto", u1.Nombre);
+        }
+
+
+        //Prueba si al cambiar el nombre, cambia lo que devuelve.
+        [TestMethod]
+        public void testUsuarioGetNombreCambio()
+        {
+            Usuario u1 = new Usuario
+            {
+                Nombre = "Roberto"
+            };
+            Assert.AreEqual("Roberto", u1.Nombre);
+            u1.Nombre = "Hernesto";
+            Assert.AreEqual("Hernesto", u1.Nombre);
         }
 
 
