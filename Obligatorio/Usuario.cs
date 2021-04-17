@@ -5,6 +5,9 @@ namespace Obligatorio
     public class Usuario
     {
         private string nombre;
+        private string contraMaestra;
+
+
         public Usuario()
         {
         }
@@ -21,11 +24,14 @@ namespace Obligatorio
             }
         }
 
-        public string ContraMaestra { get; set; }
+        public string ContraMaestra {
+            get { return this.contraMaestra;}
+            set { this.contraMaestra = value;}
+        }
 
         public bool validarContraMaestra(string v)
         {
-            return true;
+            return v == this.contraMaestra;
         }
     }
 }

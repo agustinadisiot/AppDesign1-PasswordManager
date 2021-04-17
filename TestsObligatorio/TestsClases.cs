@@ -111,5 +111,30 @@ namespace TestsObligatorio
             u1.ContraMaestra = "Hola12345";
             Assert.AreEqual(true, u1.validarContraMaestra("Hola12345"));
         }
+
+
+
+        //Prueba de darle una constraseña maestra y luego validar que una distinta de false.
+        [TestMethod]
+        public void testUsuarioValidarContraMaestraDiferente()
+        {
+            Usuario u1 = new Usuario();
+            u1.ContraMaestra = "Hola12345";
+            Assert.AreEqual(false, u1.validarContraMaestra("Diferente"));
+        }
+
+
+        //Prueba de validar una contraseña maestra, validarla, luego cambiarla y validarla de nuevo con la vieja y nueva contraseña. 
+        [TestMethod]
+        public void testUsuarioValidarContraMaestraCambiada()
+        {
+            Usuario u1 = new Usuario();
+            u1.ContraMaestra = "Hola12345";
+            Assert.AreEqual(true, u1.validarContraMaestra("Hola12345"));
+
+            u1.ContraMaestra = "Chau109876";
+            Assert.AreEqual(false, u1.validarContraMaestra("Hola12345"));
+            Assert.AreEqual(true, u1.validarContraMaestra("Chau109876"));
+        }
     }
 }
