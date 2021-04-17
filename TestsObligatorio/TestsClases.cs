@@ -113,7 +113,6 @@ namespace TestsObligatorio
         }
 
 
-
         //Prueba de darle una constraseña maestra y luego validar que una distinta de false.
         [TestMethod]
         public void testUsuarioValidarContraMaestraDiferente()
@@ -138,13 +137,21 @@ namespace TestsObligatorio
         }
 
 
-
-        //Prueba si al ingresar un nombre con largo menor a 5, devuelve un error.
+        //Prueba si al ingresar una contraMaestra con largo menor a 5, devuelve un error.
         [TestMethod]
         public void testUsuarioLargoContraMaestraMenorA5()
         {
             Usuario u1 = new Usuario();
             Assert.ThrowsException<LargoIncorrectoException>(() => u1.ContraMaestra = "A");
+        }
+
+
+        //Prueba si al ingresar una contraMaestra con largo mayor a 25, devuelve un error.
+        [TestMethod]
+        public void testUsuarioLargoContraMaestraMayorA25()
+        {
+            Usuario u1 = new Usuario();
+            Assert.ThrowsException<LargoIncorrectoException>(() => u1.ContraMaestra = "12345678901234567890123456");
         }
     }
 }
