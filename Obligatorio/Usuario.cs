@@ -1,4 +1,6 @@
-﻿namespace Obligatorio
+﻿using System;
+
+namespace Obligatorio
 {
     public class Usuario
     {
@@ -19,7 +21,11 @@
             }
         }
 
+        public string ContraMaestra { get; set; }
 
-
+        public bool validarContraMestra()
+        {
+            return true;
+        }
     }
 }

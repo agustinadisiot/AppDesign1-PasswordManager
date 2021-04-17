@@ -103,5 +103,13 @@ namespace TestsObligatorio
         }
 
 
+        //Prueba de darle una constraseña maestra y luego valida con true si el usuario tiene la misma.
+        [TestMethod]
+        public void testUsuarioValidarContraMaestra()
+        {
+            Usuario u1 = new Usuario();
+            u1.ContraMaestra = "Hola12345";
+            Assert.AreEqual(true, u1.validarContraMestra());
+        }
     }
 }
