@@ -311,13 +311,13 @@ namespace TestsObligatorio
         }
 
 
-        //Prueba si al ingresar un nombre con largo mayor a 25, devuelve un error.
-        /*[TestMethod]
-        public void testUsuarioLargoNombreMayorA25()
+        //Prueba si al ingresar un usuario a una contraseña con largo mayor a 25, devuelve un error.
+        [TestMethod]
+        public void testContraLargoUsuarioMayorA25()
         {
-            Usuario u1 = new Usuario();
-            Assert.ThrowsException<LargoIncorrectoException>(() => u1.Nombre = "12345678901234567890123456");
-        }*/
+            Contra c1 = new Contra();
+            Assert.ThrowsException<LargoIncorrectoException>(() => c1.UsuarioContra = "12345678901234567890123456");
+        }
 
     }
 
