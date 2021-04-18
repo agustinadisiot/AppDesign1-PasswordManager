@@ -319,6 +319,18 @@ namespace TestsObligatorio
             Assert.ThrowsException<LargoIncorrectoException>(() => c1.UsuarioContra = "12345678901234567890123456");
         }
 
+
+        //Prueba si devuelve el clave correcta de la contraseña.
+        [TestMethod]
+        public void testContraGetClave123456()
+        {
+            Contra c1 = new Contra()
+            {
+                Clave = "123456"
+            };
+            Assert.AreEqual("123456", c1.Clave);
+        }
+
     }
 
 }
