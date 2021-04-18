@@ -431,7 +431,7 @@ namespace TestsObligatorio
             Assert.AreEqual("notaNueva", c1.Nota);
         }
 
-        //Prueba si al ingresar una clave a una contraseña con largo mayor a 25, devuelve un error.
+        //Prueba si al ingresar una nota a una contraseña con largo mayor a 250, devuelve un error.
         [TestMethod]
         public void testContraLargoNotaMayorA250()
         {
