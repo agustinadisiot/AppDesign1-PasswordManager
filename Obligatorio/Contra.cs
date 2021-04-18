@@ -5,6 +5,7 @@
         private string usuario;
         private string clave;
         private string sitio;
+        private string nota;
 
         public string UsuarioContra
         {
@@ -29,6 +30,22 @@
                 else
                 {
                     this.sitio = value;
+                }
+            }
+        }
+
+        public string Nota
+        {
+            get { return nota; }
+            set
+            {
+                if (value.Length > 250)
+                {
+                    throw new LargoIncorrectoException();
+                }
+                else
+                {
+                    this.nota = value;
                 }
             }
         }

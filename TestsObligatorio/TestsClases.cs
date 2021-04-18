@@ -406,6 +406,39 @@ namespace TestsObligatorio
             Assert.ThrowsException<LargoIncorrectoException>(() => c1.Sitio = "sitioconmasde25caracteres.com");
         }
 
+        //Prueba si devuelve la nota correcta de la contraseña.
+        [TestMethod]
+        public void testContraGetNotaHola()
+        {
+            Contra c1 = new Contra()
+            {
+                Nota = "Hola"
+            };
+            Assert.AreEqual("Hola", c1.Nota);
+        }
+
+
+        //Prueba si al cambiar la nota a la contraseña, cambia lo que devuelve.
+        [TestMethod]
+        public void testContraGetNotaCambio()
+        {
+            Contra c1 = new Contra()
+            {
+                Nota = "Hola"
+            };
+            Assert.AreEqual("Hola", c1.Nota);
+            c1.Nota = "notaNueva";
+            Assert.AreEqual("notaNueva", c1.Nota);
+        }
+
+        //Prueba si al ingresar una clave a una contraseña con largo mayor a 25, devuelve un error.
+        [TestMethod]
+        public void testContraLargoNotaMayorA250()
+        {
+            Contra c1 = new Contra();
+            string notaDemasiadoLarga = "esta es una nota con mas de 250 caracteres lo cual no deberia estar permitido, se podria hacer un string en otro lado y luego exportarlo para que visualmente no quede tan feo pero es literalmente lo mismo y no varia mas que en vez de tener esta linea larguisima aca la tendrias en otro archivo lo cual pienso yo que no necesario. -Santiago Diaz";
+            Assert.ThrowsException<LargoIncorrectoException>(() => c1.Nota = notaDemasiadoLarga);
+        }
     }
 
 }
