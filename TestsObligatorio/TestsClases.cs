@@ -226,6 +226,15 @@ namespace TestsObligatorio
             Assert.AreEqual("Facultad", c1.Nombre);
         }
 
+
+        //Prueba si al ingresar un nombre a la categoria con largo menor a 3, devuelve un error.
+        [TestMethod]
+        public void testCategoriaLargoNombreMenorA3()
+        {
+            Categoria c1 = new Categoria();
+            Assert.ThrowsException<LargoIncorrectoException>(() => c1.Nombre = "A");
+        }
+
     }
 
 

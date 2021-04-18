@@ -2,6 +2,22 @@
 {
     public class Categoria
     {
-        public string Nombre { get; set; }
+        private string nombre;
+
+        public string Nombre
+        {
+            get { return nombre; }
+            set
+            {
+                if (value.Length < 3)
+                {
+                    throw new LargoIncorrectoException();
+                }
+                else
+                {
+                    this.nombre = value;
+                }
+            }
+        }
     }
 }
