@@ -1,15 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Obligatorio
 {
     public class AdminContras
     {
-        private Usuario u1;
         private bool noAgregoUsuarios;
+        private List<Usuario> listaUsuarios;
 
         public AdminContras() {
             this.noAgregoUsuarios = true;
-            this.u1 = null;
+            this.listaUsuarios = new List<Usuario>();
         }
 
         public bool esListaUsuariosVacia()
@@ -22,15 +23,19 @@ namespace Obligatorio
             if (u1.Nombre == null) {
                 throw new ObjetoIncompletoException();
             }
-            else if(this.noAgregoUsuarios){
+            else {
                 this.noAgregoUsuarios = false;
-                this.u1 = u1;
+                this.listaUsuarios.Add(u1);
             }
         }
 
-        public Usuario getUsuario(string v)
+        public Usuario getUsuario(string nombre)
         {
-            return this.u1;
+            //Predicate se utiliza en conjunto con una clase, se le da una condicion que retorne true para ser buscado en una List con un List.Find
+            Predicate<Usuario> buscadorNombre = (Usuario u) => { return u.Nombre == nombre; };
+            
+            Usuario retorno = this.listaUsuarios.Find(buscadorNombre);
+            return retorno != null ? retorno : throw new ObjetoInexistenteException();
         }
     }
 }

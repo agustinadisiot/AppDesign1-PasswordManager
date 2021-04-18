@@ -92,6 +92,44 @@ namespace TestsObligatorio
             Assert.AreEqual(u1, administrador.getUsuario("Roberto"));
         }
 
+
+        //Prueba si al agregar dos usuarios, y pedir el segundo usuario agregado por nombre, devuelve el correcto.
+        [TestMethod]
+        public void testAdministradorPedirUsuarioSegundoConDosAgregados()
+        {
+            AdminContras administrador = new AdminContras();
+            Usuario u1 = new Usuario
+            {
+                Nombre = "Roberto"
+            };
+            administrador.agregarUsuario(u1);
+            Usuario u2 = new Usuario
+            {
+                Nombre = "Pedro"
+            };
+            administrador.agregarUsuario(u2);
+            Assert.AreEqual(u2, administrador.getUsuario("Pedro"));
+        }
+
+
+        //Prueba si al agregar dos usuarios, y pedir un usuario con un nombre no agregado, devuelve un error.
+        [TestMethod]
+        public void testAdministradorPedirUsuarioInexistente()
+        {
+            AdminContras administrador = new AdminContras();
+            Usuario u1 = new Usuario
+            {
+                Nombre = "Roberto"
+            };
+            administrador.agregarUsuario(u1);
+            Usuario u2 = new Usuario
+            {
+                Nombre = "Pedro"
+            };
+            administrador.agregarUsuario(u2);
+            Assert.ThrowsException<ObjetoInexistenteException>(() => administrador.getUsuario("Hernesto"));
+        }
+
     }
 
     [TestClass]
