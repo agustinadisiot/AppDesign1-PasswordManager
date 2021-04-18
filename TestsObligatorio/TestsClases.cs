@@ -32,7 +32,7 @@ namespace TestsObligatorio
 
         //Prueba si al agregar dos usuarios, esListaUsuariosVacia sigue dando false
         [TestMethod]
-        public void testAdministradorHayUsuariosCon2Usuarios()
+        public void testAdministradorEsListaUsuariosVaciaConDosUsuarios()
         {
             AdminContras administrador = new AdminContras();
             Usuario u1 = new Usuario();
@@ -180,6 +180,19 @@ namespace TestsObligatorio
             Usuario u1 = new Usuario();
             Categoria c1 = new Categoria();
             u1.agregarCategoria(c1);
+            Assert.AreEqual(false, u1.esListaCategoriasVacia());
+        }
+
+        //Prueba si al agregar dos categorias, esListaCategoriasVacia sigue dando false
+        [TestMethod]
+        public void testUsuarioEsListaCategoriasVaciaConDosCategorias()
+        {
+            Usuario u1 = new Usuario();
+            Categoria c1 = new Categoria();
+            u1.agregarCategoria(c1);
+            Assert.AreEqual(false, u1.esListaCategoriasVacia());
+            Categoria c2 = new Categoria();
+            u1.agregarCategoria(c2);
             Assert.AreEqual(false, u1.esListaCategoriasVacia());
         }
     }
