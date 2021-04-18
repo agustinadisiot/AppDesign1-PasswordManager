@@ -19,8 +19,13 @@ namespace Obligatorio
 
         public void agregarUsuario(Usuario u1)
         {
-            this.noAgregoUsuarios = false;
-            this.u1 = u1;
+            if (u1.Nombre == null) {
+                throw new ObjetoIncompletoException();
+            }
+            else {
+                this.noAgregoUsuarios = false;
+                this.u1 = u1;
+            }
         }
 
         public Usuario getUsuario()
