@@ -244,6 +244,32 @@ namespace TestsObligatorio
             Assert.AreEqual(true, c1.esListaContrasVacia());
         }
 
+
+        //Prueba si al agregar una contraseña, esListaContrasVacia da false
+        [TestMethod]
+        public void testCategoriaEsListaContrasConContras()
+        {
+            Categoria c1 = new Categoria();
+            Contra contra1 = new Contra();
+            c1.agregarContra(contra1);
+            Assert.AreEqual(false, c1.esListaContrasVacia());
+        }
+
+
+        //Prueba si al agregar dos contraseñas a una categoria, esListaContrasVacia sigue dando false
+        [TestMethod]
+        public void testAdministradorEsListaUsuariosVaciaConDosUsuarios()
+        {
+            Categoria c1 = new Categoria();
+            Contra contra1 = new Contra();
+            c1.agregarContra(contra1);
+            Assert.AreEqual(false, c1.esListaContrasVacia());
+            Usuario u2 = new Usuario();
+            Contra contra2 = new Contra();
+            c1.agregarContra(contra2);
+            Assert.AreEqual(false, c1.esListaContrasVacia());
+        }
+
     }
 
 

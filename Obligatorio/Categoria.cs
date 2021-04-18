@@ -5,6 +5,12 @@ namespace Obligatorio
     public class Categoria
     {
         private string nombre;
+        private bool noAgregoContra;
+
+        public Categoria()
+        {
+            noAgregoContra = true;
+        }
 
         public string Nombre
         {
@@ -24,7 +30,12 @@ namespace Obligatorio
 
         public bool esListaContrasVacia()
         {
-            return true;
+            return noAgregoContra;
+        }
+
+        public void agregarContra(Contra contra1)
+        {
+            this.noAgregoContra = false;
         }
     }
 }
