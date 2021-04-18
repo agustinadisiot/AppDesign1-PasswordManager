@@ -388,6 +388,15 @@ namespace TestsObligatorio
             Assert.AreEqual("youtube.com", c1.Sitio);
         }
 
+
+        //Prueba si al ingresar un sitio a una contraseña con largo menor a 3, devuelve un error.
+        [TestMethod]
+        public void testContraLargoSitioMenorA3()
+        {
+            Contra c1 = new Contra();
+            Assert.ThrowsException<LargoIncorrectoException>(() => c1.Sitio = "A");
+        }
+
     }
 
 }
