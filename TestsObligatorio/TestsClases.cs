@@ -235,6 +235,15 @@ namespace TestsObligatorio
             Assert.ThrowsException<LargoIncorrectoException>(() => c1.Nombre = "A");
         }
 
+
+        //Prueba si al ingresar un nombre con largo mayor a 15, devuelve un error.
+        [TestMethod]
+        public void testCategoriaLargoNombreMayorA15()
+        {
+            Categoria c1 = new Categoria();
+            Assert.ThrowsException<LargoIncorrectoException>(() => c1.Nombre = "1234567890123456");
+        }
+
     }
 
 
