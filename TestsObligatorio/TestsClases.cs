@@ -195,5 +195,38 @@ namespace TestsObligatorio
             u1.agregarCategoria(c2);
             Assert.AreEqual(false, u1.esListaCategoriasVacia());
         }
+
     }
+
+    [TestClass]
+    public class TestCategoria
+    {
+        //Prueba si devuelve el nombre correcto de la categoria.
+        [TestMethod]
+        public void testUsuarioGetNombreTrabajo()
+        {
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Assert.AreEqual("Trabajo", c1.Nombre);
+        }
+
+
+        //Prueba si al cambiar el nombre de categoria, cambia lo que devuelve.
+        [TestMethod]
+        public void testCategoriaGetNombreCambio()
+        {
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Assert.AreEqual("Trabajo", c1.Nombre);
+            c1.Nombre = "Facultad";
+            Assert.AreEqual("Facultad", c1.Nombre);
+        }
+
+    }
+
+
 }
