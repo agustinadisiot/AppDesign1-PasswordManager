@@ -15,16 +15,18 @@ namespace Obligatorio
         public string Nombre
         {
             get { return nombre; }
-            set
+            set { this.nombre = verificarLargo5a25(value); }
+        }
+
+        private string verificarLargo5a25(string dato)
+        {
+            if (dato.Length < 3 || dato.Length > 15)
             {
-                if (value.Length < 3 || value.Length > 15)
-                {
-                    throw new LargoIncorrectoException();
-                }
-                else
-                {
-                    this.nombre = value;
-                }
+                throw new LargoIncorrectoException();
+            }
+            else
+            {
+                return dato;
             }
         }
 

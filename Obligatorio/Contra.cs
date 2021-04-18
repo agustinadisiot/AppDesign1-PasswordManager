@@ -6,16 +6,20 @@
         public string UsuarioContra
         {
             get { return usuario; }
-            set {
-                if (value.Length < 5 || value.Length > 25)
-                {
-                    throw new LargoIncorrectoException();
-                }
-                else
-                {
-                    this.usuario = value;
-                }
+            set { this.usuario = verificarLargo5a25(value); }
+        }
+
+        private string verificarLargo5a25(string dato)
+        {
+            if (dato.Length < 5 || dato.Length > 25)
+            {
+                throw new LargoIncorrectoException();
+            }
+            else
+            {
+                return dato;
             }
         }
+
     }
 }
