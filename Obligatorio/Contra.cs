@@ -16,6 +16,8 @@
             set { this.clave = verificarLargo5a25(value); }
         }
 
+        public string Sitio { get; set; }
+
         private string verificarLargo5a25(string dato)
         {
             if (dato.Length < 5 || dato.Length > 25)

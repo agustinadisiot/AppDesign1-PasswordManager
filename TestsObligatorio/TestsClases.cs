@@ -320,7 +320,7 @@ namespace TestsObligatorio
         }
 
 
-        //Prueba si devuelve el clave correcta de la contraseña.
+        //Prueba si devuelve la clave correcta de la contraseña.
         [TestMethod]
         public void testContraGetClave123456()
         {
@@ -361,6 +361,17 @@ namespace TestsObligatorio
         {
             Contra c1 = new Contra();
             Assert.ThrowsException<LargoIncorrectoException>(() => c1.Clave = "12345678901234567890123456");
+        }
+
+        //Prueba si devuelve el sitio correcto de la contraseña.
+        [TestMethod]
+        public void testContraGetSitioNetflix()
+        {
+            Contra c1 = new Contra()
+            {
+                Sitio = "Netflix"
+            };
+            Assert.AreEqual("Netflix", c1.Sitio);
         }
 
     }
