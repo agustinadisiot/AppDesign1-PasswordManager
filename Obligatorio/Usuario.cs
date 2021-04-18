@@ -6,10 +6,11 @@ namespace Obligatorio
     {
         private string nombre;
         private string contraMaestra;
-
+        private bool noAgregoCategorias;
 
         public Usuario()
         {
+            noAgregoCategorias = true;
         }
 
         public string Nombre 
@@ -46,7 +47,12 @@ namespace Obligatorio
 
         public bool esListaCategoriasVacia()
         {
-            return true;
+            return this.noAgregoCategorias;
+        }
+
+        public void agregarCategoria(Categoria c1)
+        {
+            this.noAgregoCategorias=false;
         }
     }
 }

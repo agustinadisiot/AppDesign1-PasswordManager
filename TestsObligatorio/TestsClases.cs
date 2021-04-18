@@ -171,5 +171,16 @@ namespace TestsObligatorio
             Usuario u1 = new Usuario();
             Assert.AreEqual(true, u1.esListaCategoriasVacia());
         }
+
+
+        //Prueba si al agregar una categoria, esListaCategoriasVacia da false
+        [TestMethod]
+        public void testUsuarioEsListaConCategorias()
+        {
+            Usuario u1 = new Usuario();
+            Categoria c1 = new Categoria();
+            u1.agregarCategoria(c1);
+            Assert.AreEqual(false, u1.esListaCategoriasVacia());
+        }
     }
 }
