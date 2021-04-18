@@ -345,6 +345,24 @@ namespace TestsObligatorio
             Assert.AreEqual("claveNueva", c1.Clave);
         }
 
+
+        //Prueba si al ingresar una clave a una contraseña con largo menor a 5, devuelve un error.
+        [TestMethod]
+        public void testContraLargoClaveMenorA5()
+        {
+            Contra c1 = new Contra();
+            Assert.ThrowsException<LargoIncorrectoException>(() => c1.Clave = "A");
+        }
+
+
+        //Prueba si al ingresar una clave a una contraseña con largo mayor a 25, devuelve un error.
+        [TestMethod]
+        public void testContraLargoClaveMayorA25()
+        {
+            Contra c1 = new Contra();
+            Assert.ThrowsException<LargoIncorrectoException>(() => c1.Clave = "12345678901234567890123456");
+        }
+
     }
 
 }
