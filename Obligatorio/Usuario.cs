@@ -40,11 +40,6 @@ namespace Obligatorio
             return v == this.contraMaestra;
         }
 
-        public bool esListaContrasVacia()
-        {
-            return true;
-        }
-
         public bool esListaCategoriasVacia()
         {
             return this.noAgregoCategorias;

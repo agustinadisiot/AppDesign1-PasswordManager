@@ -1,4 +1,6 @@
-﻿namespace Obligatorio
+﻿using System;
+
+namespace Obligatorio
 {
     public class Categoria
     {
@@ -18,6 +20,11 @@
                     this.nombre = value;
                 }
             }
+        }
+
+        public bool esListaContrasVacia()
+        {
+            return true;
         }
     }
 }
