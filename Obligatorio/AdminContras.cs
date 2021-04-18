@@ -22,13 +22,13 @@ namespace Obligatorio
             if (u1.Nombre == null) {
                 throw new ObjetoIncompletoException();
             }
-            else {
+            else if(this.noAgregoUsuarios){
                 this.noAgregoUsuarios = false;
                 this.u1 = u1;
             }
         }
 
-        public Usuario getUsuario()
+        public Usuario getUsuario(string v)
         {
             return this.u1;
         }

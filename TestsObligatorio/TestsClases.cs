@@ -71,9 +71,26 @@ namespace TestsObligatorio
                 Nombre = "Roberto"
             };
             administrador.agregarUsuario(u1);
-            Assert.AreEqual(u1, administrador.getUsuario());
+            Assert.AreEqual(u1, administrador.getUsuario("Roberto"));
         }
 
+        //Prueba si al agregar dos usuarios, y pedir el primer usuario agregado por nombre, devuelve el correcto.
+        [TestMethod]
+        public void testAdministradorPedirUsuarioPrimeroConDosAgregados()
+        {
+            AdminContras administrador = new AdminContras();
+            Usuario u1 = new Usuario
+            {
+                Nombre = "Roberto"
+            };
+            administrador.agregarUsuario(u1);
+            Usuario u2 = new Usuario
+            {
+                Nombre = "Pedro"
+            };
+            administrador.agregarUsuario(u2);
+            Assert.AreEqual(u1, administrador.getUsuario("Roberto"));
+        }
 
     }
 
