@@ -287,6 +287,20 @@ namespace TestsObligatorio
             Assert.AreEqual("juan@gmail.com", c1.UsuarioContra);
         }
 
+
+        //Prueba si al cambiar el usuario a la contraseña, cambia lo que devuelve.
+        [TestMethod]
+        public void testUsuarioGetNombreCambio()
+        {
+            Contra c1 = new Contra()
+            {
+                UsuarioContra = "juan@gmail.com"
+            };
+            Assert.AreEqual("juan@gmail.com", c1.UsuarioContra);
+            c1.UsuarioContra = "pedro@gmail.com";
+            Assert.AreEqual("pedro@gmail.com", c1.UsuarioContra);
+        }
+
     }
 
 }
