@@ -45,7 +45,8 @@ namespace TestsObligatorio
 
         //Prueba si al pedir el usuario, devuelve el mismo.
         [TestMethod]
-        public void testAdministradorPedirUsuario() {
+        public void testAdministradorPedirUsuario()
+        {
             AdminContras administrador = new AdminContras();
             Usuario u1 = new Usuario();
             administrador.agregarUsuario(u1);
@@ -56,7 +57,7 @@ namespace TestsObligatorio
     }
 
     [TestClass]
-    public class TestUsuario 
+    public class TestUsuario
     {
 
         //Prueba si devuelve el nombre correcto.
@@ -272,5 +273,20 @@ namespace TestsObligatorio
 
     }
 
+    [TestClass]
+    public class TestCotra
+    {
+        //Prueba si devuelve el usuario correcto de la contraseña.
+        [TestMethod]
+        public void testContraGetUsuarioDeJuan()
+        {
+            Contra c1 = new Contra()
+            {
+                UsuarioContra = "juan@gmail.com"
+            };
+            Assert.AreEqual("juan@gmail.com", c1.UsuarioContra);
+        }
+
+    }
 
 }
