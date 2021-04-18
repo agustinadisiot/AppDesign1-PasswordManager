@@ -22,7 +22,7 @@
         {
             get { return sitio; }
             set {
-                if (value.Length < 3)
+                if (value.Length < 3 || value.Length > 25)
                 {
                     throw new LargoIncorrectoException();
                 }

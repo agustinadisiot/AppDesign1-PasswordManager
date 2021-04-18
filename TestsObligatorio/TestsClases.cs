@@ -397,6 +397,15 @@ namespace TestsObligatorio
             Assert.ThrowsException<LargoIncorrectoException>(() => c1.Sitio = "A");
         }
 
+
+        //Prueba si al ingresar un sitio a una contraseña con largo mayor a 25, devuelve un error.
+        [TestMethod]
+        public void testContraLargoSitioMayorA25()
+        {
+            Contra c1 = new Contra();
+            Assert.ThrowsException<LargoIncorrectoException>(() => c1.Sitio = "sitioconmasde25caracteres.com");
+        }
+
     }
 
 }
