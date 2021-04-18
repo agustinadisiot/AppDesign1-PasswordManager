@@ -369,9 +369,23 @@ namespace TestsObligatorio
         {
             Contra c1 = new Contra()
             {
-                Sitio = "Netflix"
+                Sitio = "Netflix.com"
             };
-            Assert.AreEqual("Netflix", c1.Sitio);
+            Assert.AreEqual("Netflix.com", c1.Sitio);
+        }
+        
+        
+        //Prueba si al cambiar el sitio a la contraseña, cambia lo que devuelve.
+        [TestMethod]
+        public void testContraGetSitioCambio()
+        {
+            Contra c1 = new Contra()
+            {
+                Sitio = "Netflix.com"
+            };
+            Assert.AreEqual("Netflix.com", c1.Sitio);
+            c1.Sitio = "youtube.com";
+            Assert.AreEqual("youtube.com", c1.Sitio);
         }
 
     }
