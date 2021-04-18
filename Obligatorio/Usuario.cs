@@ -15,25 +15,14 @@ namespace Obligatorio
 
         public string Nombre 
         {   get { return nombre;}
-            set { this.nombre = verificarLargo5a25(value);}
+            set { this.nombre = VerificadoraString.verificarLargoXaY(value, 5, 25); }
         }
 
         public string ContraMaestra {
             get { return this.contraMaestra;}
-            set { this.contraMaestra = verificarLargo5a25(value);}
+            set { this.contraMaestra = VerificadoraString.verificarLargoXaY(value,5,25);}
         }
 
-        private string verificarLargo5a25(string dato) 
-        {
-            if (dato.Length < 5 || dato.Length > 25)
-            {
-                throw new LargoIncorrectoException();
-            }
-            else
-            {
-                return dato;
-            }
-        }
 
         public bool validarIgualContraMaestra(string v)
         {

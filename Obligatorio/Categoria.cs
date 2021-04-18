@@ -15,20 +15,9 @@ namespace Obligatorio
         public string Nombre
         {
             get { return nombre; }
-            set { this.nombre = verificarLargo5a25(value); }
+            set { this.nombre = VerificadoraString.verificarLargoXaY(value, 3, 15); }
         }
 
-        private string verificarLargo5a25(string dato)
-        {
-            if (dato.Length < 3 || dato.Length > 15)
-            {
-                throw new LargoIncorrectoException();
-            }
-            else
-            {
-                return dato;
-            }
-        }
 
         public bool esListaContrasVacia()
         {

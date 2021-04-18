@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace Obligatorio
 {
-    class VerificadoraString
+    public static class VerificadoraString
     {
+        public static string verificarLargoXaY(string dato, int x, int y)
+        {
+            if (dato.Length < x || dato.Length > y)
+            {
+                throw new LargoIncorrectoException();
+            }
+            else
+            {
+                return dato;
+            }
+        }
+
     }
 }
