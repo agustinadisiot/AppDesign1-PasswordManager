@@ -274,7 +274,7 @@ namespace TestsObligatorio
     }
 
     [TestClass]
-    public class TestCotra
+    public class TestContra
     {
         //Prueba si devuelve el usuario correcto de la contraseña.
         [TestMethod]
