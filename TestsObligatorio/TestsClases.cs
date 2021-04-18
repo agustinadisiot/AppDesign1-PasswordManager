@@ -290,7 +290,7 @@ namespace TestsObligatorio
 
         //Prueba si al cambiar el usuario a la contraseña, cambia lo que devuelve.
         [TestMethod]
-        public void testUsuarioGetNombreCambio()
+        public void testContraGetUsuarioCambio()
         {
             Contra c1 = new Contra()
             {
@@ -300,6 +300,24 @@ namespace TestsObligatorio
             c1.UsuarioContra = "pedro@gmail.com";
             Assert.AreEqual("pedro@gmail.com", c1.UsuarioContra);
         }
+
+
+        //Prueba si al ingresar un usuario a una contraseña con largo menor a 5, devuelve un error.
+        [TestMethod]
+        public void testContraLargoUsuarioMenorA5()
+        {
+            Contra c1 = new Contra();
+            Assert.ThrowsException<LargoIncorrectoException>(() => c1.UsuarioContra = "A");
+        }
+
+
+        //Prueba si al ingresar un nombre con largo mayor a 25, devuelve un error.
+        /*[TestMethod]
+        public void testUsuarioLargoNombreMayorA25()
+        {
+            Usuario u1 = new Usuario();
+            Assert.ThrowsException<LargoIncorrectoException>(() => u1.Nombre = "12345678901234567890123456");
+        }*/
 
     }
 
