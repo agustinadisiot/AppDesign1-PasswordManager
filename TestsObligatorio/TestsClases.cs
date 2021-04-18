@@ -29,6 +29,15 @@ namespace TestsObligatorio
             Assert.AreEqual(false, administrador.esListaUsuariosVacia());
         }
 
+        //Prueba si al agregar un usuario sin nombre, de una exception.
+        [TestMethod]
+        public void testAdministradorAgregarUsuarioSinNombre()
+        {
+            AdminContras administrador = new AdminContras();
+            Usuario u1 = new Usuario();
+            Assert.ThrowsException<ObjetoIncompletoException>(() => administrador.agregarUsuario(u1));
+        }
+
 
         //Prueba si al agregar dos usuarios, esListaUsuariosVacia sigue dando false
         [TestMethod]

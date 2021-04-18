@@ -46,6 +46,7 @@
     <Compile Include="Categoria.cs" />
     <Compile Include="Contra.cs" />
     <Compile Include="Exceptions\LargoIncorrectoException.cs" />
+    <Compile Include="Exceptions\ObjetoIncompletoException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AdminContras.cs" />
