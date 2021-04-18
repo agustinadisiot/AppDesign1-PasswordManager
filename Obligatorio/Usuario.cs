@@ -43,5 +43,10 @@ namespace Obligatorio
         {
             return true;
         }
+
+        public bool esListaCategoriasVacia()
+        {
+            return true;
+        }
     }
 }

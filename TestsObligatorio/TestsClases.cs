@@ -162,5 +162,14 @@ namespace TestsObligatorio
             Usuario u1 = new Usuario();
             Assert.AreEqual(true, u1.esListaContrasVacia());
         }
+
+
+        //Prueba si al comenzar el Usuario tiene una lista vacía de categorias guardadas. 
+        [TestMethod]
+        public void testUsuarioEsListaCategoriasVacia()
+        {
+            Usuario u1 = new Usuario();
+            Assert.AreEqual(true, u1.esListaCategoriasVacia());
+        }
     }
 }
