@@ -24,7 +24,10 @@ namespace TestsObligatorio
         public void testAdministradorConUsuarios()
         {
             AdminContras administrador = new AdminContras();
-            Usuario u1 = new Usuario();
+            Usuario u1 = new Usuario
+            {
+                Nombre = "Roberto"
+            };
             administrador.agregarUsuario(u1);
             Assert.AreEqual(false, administrador.esListaUsuariosVacia());
         }
@@ -44,10 +47,16 @@ namespace TestsObligatorio
         public void testAdministradorEsListaUsuariosVaciaConDosUsuarios()
         {
             AdminContras administrador = new AdminContras();
-            Usuario u1 = new Usuario();
+            Usuario u1 = new Usuario
+            {
+                Nombre = "Roberto"
+            };
             administrador.agregarUsuario(u1);
             Assert.AreEqual(false, administrador.esListaUsuariosVacia());
-            Usuario u2 = new Usuario();
+            Usuario u2 = new Usuario
+            {
+                Nombre = "Pedro"
+            };
             administrador.agregarUsuario(u2);
             Assert.AreEqual(false, administrador.esListaUsuariosVacia());
         }
@@ -57,7 +66,10 @@ namespace TestsObligatorio
         public void testAdministradorPedirUsuario()
         {
             AdminContras administrador = new AdminContras();
-            Usuario u1 = new Usuario();
+            Usuario u1 = new Usuario
+            {
+                Nombre = "Roberto"
+            };
             administrador.agregarUsuario(u1);
             Assert.AreEqual(u1, administrador.getUsuario());
         }
