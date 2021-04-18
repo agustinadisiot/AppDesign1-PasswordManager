@@ -331,6 +331,20 @@ namespace TestsObligatorio
             Assert.AreEqual("123456", c1.Clave);
         }
 
+
+        //Prueba si al cambiar la clave a la contraseña, cambia lo que devuelve.
+        [TestMethod]
+        public void testContraGetClaveCambio()
+        {
+            Contra c1 = new Contra()
+            {
+                Clave = "123456"
+            };
+            Assert.AreEqual("123456", c1.Clave);
+            c1.Clave = "claveNueva";
+            Assert.AreEqual("claveNueva", c1.Clave);
+        }
+
     }
 
 }
