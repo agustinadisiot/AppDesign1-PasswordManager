@@ -518,11 +518,20 @@ namespace TestsObligatorio
 
         //Prueba de nivel de seguridad para una Contra color rojo (menor a 8 caracteres)
         [TestMethod]
-        public void testContraNivelSeguridadRojo()
+        public void testContraNivelSeguridadMenorOchoChars()
         {
             Contra c1 = new Contra();
             c1.Clave = "clave1";
             Assert.AreEqual("rojo", c1.getNivelSeguridad());
+        }
+
+        //Prueba de nivel de seguridad para una Contra color naranja (largo entre 8 y 14)
+        [TestMethod]
+        public void testContraNivelSeguridadEntreOchoYCatorceChars()
+        {
+            Contra c1 = new Contra();
+            c1.Clave = "clave212345";
+            Assert.AreEqual("naranja", c1.getNivelSeguridad());
         }
     }
 

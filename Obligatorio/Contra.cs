@@ -35,7 +35,11 @@ namespace Obligatorio
 
         public string getNivelSeguridad()
         {
-            return "rojo";
+            if(this.clave.Length < 8)
+            {
+                return "rojo";
+            }
+            return "naranja";
         }
     }
 }
