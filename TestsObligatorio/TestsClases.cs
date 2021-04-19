@@ -606,5 +606,13 @@ namespace TestsObligatorio
             Tarjeta t1 = new Tarjeta();
             Assert.ThrowsException<LargoIncorrectoException>(() => t1.Nombre = "A");
         }
+
+        //Prueba si al ingresar un nombre a una tarjeta con largo meyor a 25, devuelve un error.
+        [TestMethod]
+        public void testTarjetaLargoNombreMayorA25()
+        {
+            Tarjeta t1 = new Tarjeta();
+            Assert.ThrowsException<LargoIncorrectoException>(() => t1.Nombre = "NombreDeTarjetaDemasiadoLargo");
+        }
     }
 }
