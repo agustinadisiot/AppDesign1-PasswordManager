@@ -576,7 +576,7 @@ namespace TestsObligatorio
     {
         //Prueba si devuelve el nombre correcto de la tarjeta.
         [TestMethod]
-        public void testTarjetaGetNombreVisa()
+        public void testTarjetaGetNombreVisaGold()
         {
             Tarjeta t1 = new Tarjeta() 
             {
@@ -599,6 +599,7 @@ namespace TestsObligatorio
             Assert.AreEqual("American", t1.Nombre);
         }
 
+
         //Prueba si al ingresar un nombre a una tarjeta con largo menor a 3, devuelve un error.
         [TestMethod]
         public void testTarjetaLargoNombreMenorA3()
@@ -607,12 +608,25 @@ namespace TestsObligatorio
             Assert.ThrowsException<LargoIncorrectoException>(() => t1.Nombre = "A");
         }
 
+
         //Prueba si al ingresar un nombre a una tarjeta con largo meyor a 25, devuelve un error.
         [TestMethod]
         public void testTarjetaLargoNombreMayorA25()
         {
             Tarjeta t1 = new Tarjeta();
             Assert.ThrowsException<LargoIncorrectoException>(() => t1.Nombre = "NombreDeTarjetaDemasiadoLargo");
+        }
+
+
+        //Prueba si devuelve el tipo correcto de la tarjeta.
+        [TestMethod]
+        public void testTarjetaGettipoVisa()
+        {
+            Tarjeta t1 = new Tarjeta()
+            {
+                Tipo = "Visa"
+            };
+            Assert.AreEqual("Visa", t1.Tipo);
         }
     }
 }
