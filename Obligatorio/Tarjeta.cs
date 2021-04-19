@@ -6,17 +6,7 @@
         public string Nombre 
         {
             get { return nombre; }
-            set 
-            {
-                if (value.Length < 3 || value.Length > 25)
-                {
-                    throw new LargoIncorrectoException();
-                }
-                else
-                {
-                    this.nombre = value;
-                }
-            } 
+            set { this.nombre = VerificadoraString.verificarLargoXaY(value, 3, 25); } 
         }
     }
 }
