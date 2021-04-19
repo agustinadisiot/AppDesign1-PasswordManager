@@ -620,13 +620,27 @@ namespace TestsObligatorio
 
         //Prueba si devuelve el tipo correcto de la tarjeta.
         [TestMethod]
-        public void testTarjetaGettipoVisa()
+        public void testTarjetaGetTipoVisa()
         {
             Tarjeta t1 = new Tarjeta()
             {
                 Tipo = "Visa"
             };
             Assert.AreEqual("Visa", t1.Tipo);
+        }
+
+
+        //Prueba si al cambiar el tipo a la tarjeta, cambia lo que devuelve.
+        [TestMethod]
+        public void testTarjetaGetTipoCambio()
+        {
+            Tarjeta t1 = new Tarjeta()
+            {
+                Tipo = "Visa"
+            };
+            Assert.AreEqual("Visa", t1.Tipo);
+            t1.Tipo = "MasterCard";
+            Assert.AreEqual("MasterCard", t1.Tipo);
         }
     }
 }
