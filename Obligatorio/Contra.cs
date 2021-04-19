@@ -39,7 +39,11 @@ namespace Obligatorio
             {
                 return "rojo";
             }
-            return "naranja";
+            else if(this.clave.Length < 14)
+            {
+                return "naranja";
+            }
+            return "amarillo";
         }
     }
 }
