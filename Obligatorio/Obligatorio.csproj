@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Categoria.cs" />
     <Compile Include="Contra.cs" />
+    <Compile Include="Exceptions\CaracterInesperadoException.cs" />
     <Compile Include="Exceptions\LargoIncorrectoException.cs" />
     <Compile Include="Exceptions\ObjetoIncompletoException.cs" />
     <Compile Include="Exceptions\ObjetoInexistenteException.cs" />

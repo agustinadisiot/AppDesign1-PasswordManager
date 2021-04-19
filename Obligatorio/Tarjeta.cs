@@ -5,6 +5,7 @@
         private string nombre;
         private string tipo;
         private string numero;
+
         public string Nombre 
         {
             get { return nombre; }
@@ -19,17 +20,21 @@
 
         public string Numero 
         {
-            get { return numero; }
+            get { return this.numero; }
             set
             {
-                if (value.Length == 16)
+                if (value.Length != 16)
                 {
                     throw new LargoIncorrectoException();
                 }
                 else
                 {
-                    this.numero = value;
+                    foreach (int c in value)
+                    {
+                        if (c <= 48 || c >= 57) throw new CaracterInesperadoException();
+                    }
                 }
+                this.numero = value;
             }
         }
     }
