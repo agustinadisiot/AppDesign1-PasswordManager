@@ -38,8 +38,12 @@ namespace Obligatorio
         public void agregarCategoria(Categoria c1)
         {
             if (c1.Nombre == null) throw new ObjetoIncompletoException();
-            this.noAgregoCategorias=false;
-            this.categoria = c1;
+            if (this.noAgregoCategorias)
+            {
+                this.noAgregoCategorias = false;
+                this.categoria = c1;
+            }
+           
         }
 
         public Categoria getCategoria(string v)

@@ -295,6 +295,24 @@ namespace TestsObligatorio
             Assert.AreEqual(c1, u1.getCategoria("Personal"));
         }
 
+        //Prueba si al agregar dos categorias y despues pedirle la primera devuelve la misma
+        [TestMethod]
+        public void testUsuarioGetCategoriaPrimeraConDos()
+        {
+            Usuario u1 = new Usuario();
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            u1.agregarCategoria(c1);
+            Categoria c2 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            u1.agregarCategoria(c2);
+            Assert.AreEqual(c1, u1.getCategoria("Personal"));
+        }
+
     }
 
     [TestClass]
