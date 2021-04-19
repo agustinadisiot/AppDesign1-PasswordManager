@@ -449,8 +449,8 @@ namespace TestsObligatorio
             };
             Assert.AreEqual("Netflix.com", c1.Sitio);
         }
-        
-        
+
+
         //Prueba si al cambiar el sitio a la contraseña, cambia lo que devuelve.
         [TestMethod]
         public void testContraGetSitioCambio()
@@ -571,4 +571,32 @@ namespace TestsObligatorio
         }
     }
 
+    [TestClass]
+    public class TestTarjeta
+    {
+        //Prueba si devuelve el nombre correcto de la tarjeta.
+        [TestMethod]
+        public void testTarjetaGetNombreVisa()
+        {
+            Tarjeta t1 = new Tarjeta() 
+            {
+                Nombre = "Visa Gold"
+            };
+            Assert.AreEqual("Visa Gold", t1.Nombre);
+        }
+
+
+        //Prueba si al cambiar el nombre a la tarjeta, cambia lo que devuelve.
+        [TestMethod]
+        public void testTarjetaGetNombreCambio()
+        {
+            Tarjeta t1 = new Tarjeta()
+            {
+                Nombre = "Visa Gold"
+            };
+            Assert.AreEqual("Visa Gold", t1.Nombre);
+            t1.Nombre = "American";
+            Assert.AreEqual("American", t1.Nombre);
+        }
+    }
 }
