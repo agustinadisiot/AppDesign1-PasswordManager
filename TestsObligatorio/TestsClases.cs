@@ -282,6 +282,19 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoIncompletoException>(() => u1.agregarCategoria(c1));
         }
 
+        //Prueba si al agregar una categoria y despues pedirla devuelve la misma
+        [TestMethod]
+        public void testUsuarioGetCategoria()
+        {
+            Usuario u1 = new Usuario();
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            u1.agregarCategoria(c1);
+            Assert.AreEqual(c1, u1.getCategoria("Personal"));
+        }
+
     }
 
     [TestClass]

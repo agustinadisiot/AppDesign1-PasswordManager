@@ -7,6 +7,7 @@ namespace Obligatorio
         private string nombre;
         private string contraMaestra;
         private bool noAgregoCategorias;
+        private Categoria categoria;
 
         public Usuario()
         {
@@ -38,6 +39,12 @@ namespace Obligatorio
         {
             if (c1.Nombre == null) throw new ObjetoIncompletoException();
             this.noAgregoCategorias=false;
+            this.categoria = c1;
+        }
+
+        public Categoria getCategoria(string v)
+        {
+            return this.categoria;
         }
     }
 }
