@@ -22,7 +22,7 @@
             get { return numero; }
             set
             {
-                if (value.Length < 16)
+                if (value.Length < 16 || value.Length > 16)
                 {
                     throw new LargoIncorrectoException();
                 }

@@ -696,5 +696,14 @@ namespace TestsObligatorio
             Tarjeta t1 = new Tarjeta();
             Assert.ThrowsException<LargoIncorrectoException>(() => t1.Numero = "1215412");
         }
+
+
+        //Prueba si al ingresar un numero a una tarjeta con largo menor a 16, devuelve un error.
+        [TestMethod]
+        public void testTarjetaLargonumeroMayorA16()
+        {
+            Tarjeta t1 = new Tarjeta();
+            Assert.ThrowsException<LargoIncorrectoException>(() => t1.Numero = "123456781223456781234");
+        }
     }
 }
