@@ -642,5 +642,23 @@ namespace TestsObligatorio
             t1.Tipo = "MasterCard";
             Assert.AreEqual("MasterCard", t1.Tipo);
         }
+
+
+        //Prueba si al ingresar un tipo a una tarjeta con largo menor a 3, devuelve un error.
+        [TestMethod]
+        public void testTarjetaLargoTipoMenorA3()
+        {
+            Tarjeta t1 = new Tarjeta();
+            Assert.ThrowsException<LargoIncorrectoException>(() => t1.Tipo = "A");
+        }
+
+
+        //Prueba si al ingresar un tipo a una tarjeta con largo mayor a 25, devuelve un error.
+        [TestMethod]
+        public void testTarjetaLargoTipoMayorA25()
+        {
+            Tarjeta t1 = new Tarjeta();
+            Assert.ThrowsException<LargoIncorrectoException>(() => t1.Tipo = "TipoDemasiadoLargoNoPermitido");
+        }
     }
 }
