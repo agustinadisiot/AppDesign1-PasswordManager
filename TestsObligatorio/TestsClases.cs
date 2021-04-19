@@ -598,5 +598,13 @@ namespace TestsObligatorio
             t1.Nombre = "American";
             Assert.AreEqual("American", t1.Nombre);
         }
+
+        //Prueba si al ingresar un nombre a una tarjeta con largo menor a 3, devuelve un error.
+        [TestMethod]
+        public void testTarjetaLargoNombreMenorA3()
+        {
+            Tarjeta t1 = new Tarjeta();
+            Assert.ThrowsException<LargoIncorrectoException>(() => t1.Nombre = "A");
+        }
     }
 }
