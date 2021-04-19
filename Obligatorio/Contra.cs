@@ -1,4 +1,6 @@
-﻿namespace Obligatorio
+﻿using System;
+
+namespace Obligatorio
 {
     public class Contra
     {
@@ -31,5 +33,9 @@
             set { this.nota = VerificadoraString.verificarLargoXaY(value, 0, 250); }
         }
 
+        public string getNivelSeguridad()
+        {
+            return "rojo";
+        }
     }
 }
