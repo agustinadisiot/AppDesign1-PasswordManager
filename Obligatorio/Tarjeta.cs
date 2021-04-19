@@ -15,5 +15,7 @@
             get { return tipo; }
             set { this.tipo = VerificadoraString.verificarLargoXaY(value, 3, 25); }
         }
+
+        public string Numero { get; set; }
     }
 }

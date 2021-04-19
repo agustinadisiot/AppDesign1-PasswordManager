@@ -660,5 +660,31 @@ namespace TestsObligatorio
             Tarjeta t1 = new Tarjeta();
             Assert.ThrowsException<LargoIncorrectoException>(() => t1.Tipo = "TipoDemasiadoLargoNoPermitido");
         }
+
+        //Prueba si devuelve el numero correcto de la tarjeta.
+        [TestMethod]
+        public void testTarjetaGetNumeroTarjeta()
+        {
+            Tarjeta t1 = new Tarjeta()
+            {
+                Numero = "1234567812345678"
+            };
+            Assert.AreEqual("1234567812345678", t1.Numero);
+        }
+
+
+
+        //Prueba si al cambiar el numero a la tarjeta, cambia lo que devuelve.
+        [TestMethod]
+        public void testTarjetaGetNumeroCambio()
+        {
+            Tarjeta t1 = new Tarjeta()
+            {
+                Numero = "1234567812345678"
+            };
+            Assert.AreEqual("1234567812345678", t1.Numero);
+            t1.Numero = "8765432187654321";
+            Assert.AreEqual("8765432187654321", t1.Numero);
+        }
     }
 }
