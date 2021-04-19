@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Obligatorio
 {
@@ -7,11 +8,13 @@ namespace Obligatorio
         private string nombre;
         private string contraMaestra;
         private bool noAgregoCategorias;
-        private Categoria categoria;
+        private List<Categoria> listaCategorias;
+
 
         public Usuario()
         {
             noAgregoCategorias = true;
+            this.listaCategorias = new List<Categoria>();
         }
 
         public string Nombre 
@@ -38,17 +41,21 @@ namespace Obligatorio
         public void agregarCategoria(Categoria c1)
         {
             if (c1.Nombre == null) throw new ObjetoIncompletoException();
-            if (this.noAgregoCategorias)
+            else 
             {
                 this.noAgregoCategorias = false;
-                this.categoria = c1;
+                this.listaCategorias.Add(c1);
             }
            
         }
 
-        public Categoria getCategoria(string v)
+        public Categoria getCategoria(string nombreCat)
         {
-            return this.categoria;
+            //Predicate se utiliza en conjunto con una clase, se le da una condicion que retorne true para ser buscado en una List con un List.Find
+            Predicate<Categoria> buscadorCategoria = (Categoria c) => { return c.Nombre == nombreCat; };
+
+            Categoria retorno = this.listaCategorias.Find(buscadorCategoria);
+            return retorno != null ? retorno : throw new ObjetoInexistenteException();
         }
     }
 }
