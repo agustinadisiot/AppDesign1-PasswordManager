@@ -246,7 +246,10 @@ namespace TestsObligatorio
         public void testUsuarioEsListaConCategorias()
         {
             Usuario u1 = new Usuario();
-            Categoria c1 = new Categoria();
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
             u1.agregarCategoria(c1);
             Assert.AreEqual(false, u1.esListaCategoriasVacia());
         }
@@ -256,12 +259,27 @@ namespace TestsObligatorio
         public void testUsuarioEsListaCategoriasVaciaConDosCategorias()
         {
             Usuario u1 = new Usuario();
-            Categoria c1 = new Categoria();
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
             u1.agregarCategoria(c1);
             Assert.AreEqual(false, u1.esListaCategoriasVacia());
-            Categoria c2 = new Categoria();
+            Categoria c2 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
             u1.agregarCategoria(c2);
             Assert.AreEqual(false, u1.esListaCategoriasVacia());
+        }
+
+        //Prueba si al ingresar una categoria vacia tire una excepcion
+        [TestMethod]
+        public void testUsuarioAgregarCategoriaVacia()
+        {
+            Usuario u1 = new Usuario();
+            Categoria c1 = new Categoria();
+            Assert.ThrowsException<ObjetoIncompletoException>(() => u1.agregarCategoria(c1));
         }
 
     }

@@ -36,6 +36,7 @@ namespace Obligatorio
 
         public void agregarCategoria(Categoria c1)
         {
+            if (c1.Nombre == null) throw new ObjetoIncompletoException();
             this.noAgregoCategorias=false;
         }
     }
