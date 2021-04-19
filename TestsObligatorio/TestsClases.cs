@@ -246,7 +246,10 @@ namespace TestsObligatorio
         public void testUsuarioEsListaConCategorias()
         {
             Usuario u1 = new Usuario();
-            Categoria c1 = new Categoria();
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
             u1.agregarCategoria(c1);
             Assert.AreEqual(false, u1.esListaCategoriasVacia());
         }
@@ -256,12 +259,76 @@ namespace TestsObligatorio
         public void testUsuarioEsListaCategoriasVaciaConDosCategorias()
         {
             Usuario u1 = new Usuario();
-            Categoria c1 = new Categoria();
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
             u1.agregarCategoria(c1);
             Assert.AreEqual(false, u1.esListaCategoriasVacia());
-            Categoria c2 = new Categoria();
+            Categoria c2 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
             u1.agregarCategoria(c2);
             Assert.AreEqual(false, u1.esListaCategoriasVacia());
+        }
+
+        //Prueba si al ingresar una categoria vacia tire una excepcion
+        [TestMethod]
+        public void testUsuarioAgregarCategoriaVacia()
+        {
+            Usuario u1 = new Usuario();
+            Categoria c1 = new Categoria();
+            Assert.ThrowsException<ObjetoIncompletoException>(() => u1.agregarCategoria(c1));
+        }
+
+        //Prueba si al agregar una categoria y despues pedirla devuelve la misma
+        [TestMethod]
+        public void testUsuarioGetCategoria()
+        {
+            Usuario u1 = new Usuario();
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            u1.agregarCategoria(c1);
+            Assert.AreEqual(c1, u1.getCategoria("Personal"));
+        }
+
+        //Prueba si al agregar dos categorias y despues pedirle la primera devuelve la misma
+        [TestMethod]
+        public void testUsuarioGetCategoriaPrimeraConDos()
+        {
+            Usuario u1 = new Usuario();
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            u1.agregarCategoria(c1);
+            Categoria c2 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            u1.agregarCategoria(c2);
+            Assert.AreEqual(c1, u1.getCategoria("Personal"));
+        }
+
+        //Prueba si al agregar dos categorias y despues pedirle la segunda devuelve la correcta
+        [TestMethod]
+        public void testUsuarioGetCategoriaSegundaConDos()
+        {
+            Usuario u1 = new Usuario();
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            u1.agregarCategoria(c1);
+            Categoria c2 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            u1.agregarCategoria(c2);
+            Assert.AreEqual(c2, u1.getCategoria("Trabajo"));
         }
 
     }
