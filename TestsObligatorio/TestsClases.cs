@@ -551,6 +551,15 @@ namespace TestsObligatorio
             c1.Clave = "clavesolominusculas";
             Assert.AreEqual("amarillo", c1.getNivelSeguridad());
         }
+
+        //Prueba de nivel de seguridad para una Contra color verde claro (mayor a 14 con mayusculas y minusculas)
+        [TestMethod]
+        public void testContraNivelSeguridadMayorACatorceConMayYMin()
+        {
+            Contra c1 = new Contra();
+            c1.Clave = "ClaveConMayYMin";
+            Assert.AreEqual("verde claro", c1.getNivelSeguridad());
+        }
     }
 
 }

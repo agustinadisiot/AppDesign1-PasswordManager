@@ -43,7 +43,24 @@ namespace Obligatorio
             {
                 return "naranja";
             }
-            return "amarillo";
+            else
+            {
+                bool tieneMin = false;
+                bool tieneMay = false;
+                foreach (int c in this.clave)
+                {
+                    if(!tieneMay || !tieneMin)
+                    {
+                        tieneMin = tieneMin || (c >= 97 && c <= 122);
+                        tieneMay = tieneMay || (c >= 65 && c <= 90);
+                    }
+                    else
+                    {
+                        return "verde claro";
+                    }
+                }
+                return (tieneMay && tieneMin) ? "verde claro" : "amarillo";
+            }
         }
     }
 }
