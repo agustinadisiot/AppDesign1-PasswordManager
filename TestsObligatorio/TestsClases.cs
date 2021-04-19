@@ -661,6 +661,7 @@ namespace TestsObligatorio
             Assert.ThrowsException<LargoIncorrectoException>(() => t1.Tipo = "TipoDemasiadoLargoNoPermitido");
         }
 
+
         //Prueba si devuelve el numero correcto de la tarjeta.
         [TestMethod]
         public void testTarjetaGetNumeroTarjeta()
@@ -685,6 +686,15 @@ namespace TestsObligatorio
             Assert.AreEqual("1234567812345678", t1.Numero);
             t1.Numero = "8765432187654321";
             Assert.AreEqual("8765432187654321", t1.Numero);
+        }
+
+
+        //Prueba si al ingresar un numero a una tarjeta con largo menor a 16, devuelve un error.
+        [TestMethod]
+        public void testTarjetaLargonumeroMenorA16()
+        {
+            Tarjeta t1 = new Tarjeta();
+            Assert.ThrowsException<LargoIncorrectoException>(() => t1.Numero = "1215412");
         }
     }
 }
