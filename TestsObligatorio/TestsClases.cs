@@ -501,7 +501,7 @@ namespace TestsObligatorio
             {
                 Sitio = "web.whatsapp.com",
                 Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Juan"
+                UsuarioContra = "Luis88"
             };
             categoria1.agregarContra(contra2);
 
