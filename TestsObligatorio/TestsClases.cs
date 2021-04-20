@@ -395,7 +395,12 @@ namespace TestsObligatorio
         public void testCategoriaEsListaContrasConContras()
         {
             Categoria c1 = new Categoria();
-            Contra contra1 = new Contra();
+            Contra contra1 = new Contra()
+            {
+                Sitio = "youtube.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
             c1.agregarContra(contra1);
             Assert.AreEqual(false, c1.esListaContrasVacia());
         }
@@ -403,16 +408,156 @@ namespace TestsObligatorio
 
         //Prueba si al agregar dos contraseñas a una categoria, esListaContrasVacia sigue dando false
         [TestMethod]
-        public void testAdministradorEsListaUsuariosVaciaConDosUsuarios()
+        public void testCategoriaEsListaUsuariosContrasVaciaConDosContras()
         {
             Categoria c1 = new Categoria();
-            Contra contra1 = new Contra();
+            Contra contra1 = new Contra() 
+            { 
+                Sitio = "youtube.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Juan Perez"
+
+            };
             c1.agregarContra(contra1);
             Assert.AreEqual(false, c1.esListaContrasVacia());
             Usuario u2 = new Usuario();
-            Contra contra2 = new Contra();
+            Contra contra2 = new Contra() 
+            { 
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
             c1.agregarContra(contra2);
             Assert.AreEqual(false, c1.esListaContrasVacia());
+        }
+
+
+        //Prueba si al ingresar una Contra a la categoria sin sitio o aplicacion, devuelve un error.
+        [TestMethod]
+        public void testCategoriaAgregarContraSinSitioOAplicacion()
+        {
+            Categoria c1 = new Categoria();
+            Contra contra1 = new Contra() 
+            {
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarContra(contra1));
+        }
+
+        //Prueba si al ingresar una Contra a la categoria sin clave, devuelve un error.
+        [TestMethod]
+        public void testCategoriaAgregarContraSinClave()
+        {
+            Categoria c1 = new Categoria();
+            Contra contra1 = new Contra()
+            {
+                Sitio = "youtube.com",
+                UsuarioContra = "Roberto"
+            };
+            Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarContra(contra1));
+        }
+
+        //Prueba si al ingresar una Contra a la categoria sin usuario, devuelve un error.
+        [TestMethod]
+        public void testCategoriaAgregarContraSinUsuario()
+        {
+            Categoria c1 = new Categoria();
+            Contra contra1 = new Contra()
+            {
+                Sitio = "youtube.com",
+                Clave = "EstaEsUnaClave1"
+            };
+            Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarContra(contra1));
+        }
+
+        //Prueba si al ingresar una Contra a la categoria devuelve la correcta al usar el get.
+        [TestMethod]
+        public void testCategoriaGetContra()
+        {
+            Categoria categoria1 = new Categoria();
+            Contra contra1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.agregarContra(contra1);
+            Assert.AreEqual(contra1, categoria1.getContra("web.whatsapp.com", "Roberto")); ;
+        }
+
+        //Prueba si al ingresar dos Contras a la categoria devuelve la correcta al usar el get para la primera.
+        [TestMethod]
+        public void testCategoriaGetContraPrimeraConDos()
+        {
+            Categoria categoria1 = new Categoria();
+            Contra contra1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.agregarContra(contra1);
+            Contra contra2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Luis88"
+            };
+            categoria1.agregarContra(contra2);
+
+            Assert.AreEqual(contra1, categoria1.getContra("web.whatsapp.com", "Roberto")); ;
+        }
+
+
+        //Prueba si al ingresar dos Contras a la categoria devuelve la correcta al usar el get para la segunda.
+        [TestMethod]
+        public void testCategoriaGetContraSegundaConDos()
+        {
+            Categoria categoria1 = new Categoria();
+            Contra contra1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.agregarContra(contra1);
+            Contra contra2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Luis88"
+            };
+            categoria1.agregarContra(contra2);
+
+            Assert.AreEqual(contra2, categoria1.getContra("web.whatsapp.com", "Luis88")); ;
+        }
+
+        //Prueba si al ingresar dos Contras a la categoria devuelve una lista de las contras agregadas.
+        [TestMethod]
+        public void testCategoriaGetListaContras()
+        {
+            Categoria categoria1 = new Categoria();
+            Contra contra1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.agregarContra(contra1);
+            Contra contra2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Luis88"
+            };
+            categoria1.agregarContra(contra2);
+
+            List<Contra> contras = new List<Contra>();
+            contras.Add(contra1);
+            contras.Add(contra2);
+
+            Assert.AreEqual(true, contras.SequenceEqual(categoria1.getListaContras())); ;
         }
 
     }
