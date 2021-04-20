@@ -2,6 +2,7 @@
 using Obligatorio;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 
@@ -1007,7 +1008,7 @@ namespace TestsObligatorio
             Tarjeta t1 = new Tarjeta();
             DateTime date1 = new DateTime(2025, 7, 1);
             t1.Vencimiento = date1;
-            Assert.AreEqual("07/2025", t1.Vencimiento.ToString("MM/yyyy"));
+            Assert.AreEqual("07/2025", t1.Vencimiento.ToString("MM/yyyy", CultureInfo.InvariantCulture));
         }
 
 
@@ -1018,10 +1019,10 @@ namespace TestsObligatorio
             Tarjeta t1 = new Tarjeta();
             DateTime date1 = new DateTime(2025, 7, 1);
             t1.Vencimiento = date1;
-            Assert.AreEqual("07/2025", t1.Vencimiento.ToString("MM/yyyy"));
+            Assert.AreEqual("07/2025", t1.Vencimiento.ToString("MM/yyyy", CultureInfo.InvariantCulture));
             DateTime date2 = new DateTime(2023, 8, 1);
             t1.Vencimiento = date2;
-            Assert.AreEqual("08/2023", t1.Vencimiento.ToString("MM/yyyy"));
+            Assert.AreEqual("08/2023", t1.Vencimiento.ToString("MM/yyyy", CultureInfo.InvariantCulture));
         }
 
 
