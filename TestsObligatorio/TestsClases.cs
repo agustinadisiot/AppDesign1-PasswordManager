@@ -794,5 +794,19 @@ namespace TestsObligatorio
             t1.Vencimiento = date1;
             Assert.AreEqual("07/2025", t1.Vencimiento.ToString("MM/yyyy"));
         }
+
+
+        //Prueba si devuelve la fecha de vencimiento correcto de la tarjeta.
+        [TestMethod]
+        public void testTarjetaGetVencimientoCambio()
+        {
+            Tarjeta t1 = new Tarjeta();
+            DateTime date1 = new DateTime(2025, 7, 1);
+            t1.Vencimiento = date1;
+            Assert.AreEqual("07/2025", t1.Vencimiento.ToString("MM/yyyy"));
+            DateTime date2 = new DateTime(2023, 8, 1);
+            t1.Vencimiento = date2;
+            Assert.AreEqual("08/2023", t1.Vencimiento.ToString("MM/yyyy"));
+        }
     }
 }
