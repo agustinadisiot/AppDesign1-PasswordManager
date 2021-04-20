@@ -723,5 +723,17 @@ namespace TestsObligatorio
             Tarjeta t1 = new Tarjeta();
             Assert.ThrowsException<CaracterInesperadoException>(() => t1.Numero = "12345#$%@2345678");
         }
+
+
+        //Prueba si devuelve el codigo correcto de la tarjeta.
+        [TestMethod]
+        public void testTarjetaGetCodigoTarjeta()
+        {
+            Tarjeta t1 = new Tarjeta()
+            {
+                Codigo = "123"
+            };
+            Assert.AreEqual("123", t1.Codigo);
+        }
     }
 }
