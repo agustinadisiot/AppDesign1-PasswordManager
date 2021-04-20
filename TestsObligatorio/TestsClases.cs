@@ -397,7 +397,8 @@ namespace TestsObligatorio
             Contra contra1 = new Contra()
             {
                 Sitio = "youtube.com",
-                Clave = "EstaEsUnaClave1"
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
             };
             c1.agregarContra(contra1);
             Assert.AreEqual(false, c1.esListaContrasVacia());
@@ -412,7 +413,8 @@ namespace TestsObligatorio
             Contra contra1 = new Contra() 
             { 
                 Sitio = "youtube.com",
-                Clave = "EstaEsUnaClave1"
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Juan Perez"
 
             };
             c1.agregarContra(contra1);
@@ -421,7 +423,8 @@ namespace TestsObligatorio
             Contra contra2 = new Contra() 
             { 
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1"
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
             };
             c1.agregarContra(contra2);
             Assert.AreEqual(false, c1.esListaContrasVacia());
@@ -435,7 +438,8 @@ namespace TestsObligatorio
             Categoria c1 = new Categoria();
             Contra contra1 = new Contra() 
             {
-                Clave = "EstaEsUnaClave1"
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
             };
             Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarContra(contra1));
         }
@@ -447,9 +451,38 @@ namespace TestsObligatorio
             Categoria c1 = new Categoria();
             Contra contra1 = new Contra()
             {
-                Sitio = "youtube.com"
+                Sitio = "youtube.com",
+                UsuarioContra = "Roberto"
             };
             Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarContra(contra1));
+        }
+
+        //Prueba si al ingresar una Contra a la categoria sin usuario, devuelve un error.
+        [TestMethod]
+        public void testCategoriaAgregarContraSinUsuario()
+        {
+            Categoria c1 = new Categoria();
+            Contra contra1 = new Contra()
+            {
+                Sitio = "youtube.com",
+                Clave = "EstaEsUnaClave1"
+            };
+            Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarContra(contra1));
+        }
+
+        //Prueba si al ingresar una Contra a la categoria devuelve la correcta al usar el get.
+        [TestMethod]
+        public void testCategoriaGetContra()
+        {
+            Categoria categoria1 = new Categoria();
+            Contra contra1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.agregarContra(contra1);
+            Assert.AreEqual(contra1, categoria1.getContra("web.whatsapp.com", "Roberto")); ;
         }
 
 

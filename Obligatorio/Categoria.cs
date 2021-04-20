@@ -6,10 +6,12 @@ namespace Obligatorio
     {
         private string nombre;
         private bool noAgregoContra;
+        private Contra contraAgregada;
 
         public Categoria()
         {
             noAgregoContra = true;
+            contraAgregada = null;
         }
 
         public string Nombre
@@ -24,11 +26,22 @@ namespace Obligatorio
             return noAgregoContra;
         }
 
-        public void agregarContra(Contra contra1)
+        public void agregarContra(Contra contraIngresada)
         {
-            if (contra1.Sitio == null || contra1.Clave == null) throw new ObjetoIncompletoException();
+            bool noTieneSitio = (contraIngresada.Sitio == null),
+                 noTieneClave = (contraIngresada.Clave == null),
+                 noTieneUsuario = (contraIngresada.UsuarioContra == null);
+
+
+            if (noTieneSitio || noTieneClave || noTieneUsuario ) throw new ObjetoIncompletoException();
 
             this.noAgregoContra = false;
+            this.contraAgregada = contraIngresada;
+        }
+
+        public Contra getContra(string sitioABuscar, string usuarioABuscar)
+        {
+            return this.contraAgregada;
         }
     }
 }
