@@ -35,8 +35,10 @@ namespace Obligatorio
 
             if (noTieneSitio || noTieneClave || noTieneUsuario ) throw new ObjetoIncompletoException();
 
-            this.noAgregoContra = false;
-            this.contraAgregada = contraIngresada;
+            if (this.noAgregoContra) {
+                this.noAgregoContra = false;
+                this.contraAgregada = contraIngresada;
+            }
         }
 
         public Contra getContra(string sitioABuscar, string usuarioABuscar)
