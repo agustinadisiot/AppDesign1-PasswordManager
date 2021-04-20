@@ -26,7 +26,8 @@ namespace Obligatorio
 
         public void agregarContra(Contra contra1)
         {
-            if (contra1.Sitio == null) throw new ObjetoIncompletoException();
+            if (contra1.Sitio == null || contra1.Clave == null) throw new ObjetoIncompletoException();
+
             this.noAgregoContra = false;
         }
     }

@@ -396,7 +396,8 @@ namespace TestsObligatorio
             Categoria c1 = new Categoria();
             Contra contra1 = new Contra()
             {
-                Sitio = "youtube.com"
+                Sitio = "youtube.com",
+                Clave = "EstaEsUnaClave1"
             };
             c1.agregarContra(contra1);
             Assert.AreEqual(false, c1.esListaContrasVacia());
@@ -410,14 +411,17 @@ namespace TestsObligatorio
             Categoria c1 = new Categoria();
             Contra contra1 = new Contra() 
             { 
-                Sitio = "youtube.com"
+                Sitio = "youtube.com",
+                Clave = "EstaEsUnaClave1"
+
             };
             c1.agregarContra(contra1);
             Assert.AreEqual(false, c1.esListaContrasVacia());
             Usuario u2 = new Usuario();
             Contra contra2 = new Contra() 
             { 
-                Sitio = "web.whatsapp.com"
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1"
             };
             c1.agregarContra(contra2);
             Assert.AreEqual(false, c1.esListaContrasVacia());
@@ -429,11 +433,24 @@ namespace TestsObligatorio
         public void testCategoriaAgregarContraSinSitioOAplicacion()
         {
             Categoria c1 = new Categoria();
-            Contra contra1 = new Contra();
+            Contra contra1 = new Contra() 
+            {
+                Clave = "EstaEsUnaClave1"
+            };
             Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarContra(contra1));
         }
 
-
+        //Prueba si al ingresar una Contra a la categoria sin clave, devuelve un error.
+        [TestMethod]
+        public void testCategoriaAgregarContraSinClave()
+        {
+            Categoria c1 = new Categoria();
+            Contra contra1 = new Contra()
+            {
+                Sitio = "youtube.com"
+            };
+            Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarContra(contra1));
+        }
 
 
     }
