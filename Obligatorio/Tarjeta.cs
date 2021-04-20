@@ -48,6 +48,13 @@
                 {
                     throw new LargoIncorrectoException();
                 }
+                else
+                {
+                    foreach (int c in value)
+                    {
+                        if (c >= 65 && c <= 90) throw new CaracterInesperadoException();
+                    }
+                }
                 this.codigo = value;
             }
         }

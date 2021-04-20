@@ -764,5 +764,14 @@ namespace TestsObligatorio
             Tarjeta t1 = new Tarjeta();
             Assert.ThrowsException<LargoIncorrectoException>(() => t1.Codigo = "12345");
         }
+
+
+        //Prueba si al ingresar un numero a una tarjeta con letras, devuelve un error.
+        [TestMethod]
+        public void testTarjetaLargoCodigoConLetras()
+        {
+            Tarjeta t1 = new Tarjeta();
+            Assert.ThrowsException<CaracterInesperadoException>(() => t1.Codigo = "12B");
+        }
     }
 }
