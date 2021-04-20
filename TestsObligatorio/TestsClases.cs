@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Obligatorio;
+using System;
 
 
 //Confirmar separacion de tests, y nombre de TestsClases.cs
@@ -781,6 +782,17 @@ namespace TestsObligatorio
         {
             Tarjeta t1 = new Tarjeta();
             Assert.ThrowsException<CaracterInesperadoException>(() => t1.Codigo = "12**");
+        }
+
+
+        //Prueba si devuelve la fecha de vencimiento correcto de la tarjeta.
+        [TestMethod]
+        public void testTarjetaGetVencimientoTarjeta()
+        {
+            Tarjeta t1 = new Tarjeta();
+            DateTime date1 = new DateTime(2025, 7, 1);
+            t1.Vencimiento = date1;
+            Assert.AreEqual("07/2025", t1.Vencimiento.ToString("MM/yyyy"));
         }
     }
 }

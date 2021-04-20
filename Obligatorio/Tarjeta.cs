@@ -1,4 +1,6 @@
-﻿namespace Obligatorio
+﻿using System;
+
+namespace Obligatorio
 {
     public class Tarjeta
     {
@@ -30,6 +32,8 @@
             get { return this.codigo; }
             set { this.codigo = verificarStringDeNumerosYSuLargoDeXaY(value, 3, 4); }
         }
+
+        public DateTime Vencimiento { get; set; }
 
         public static string verificarStringDeNumerosYSuLargoDeXaY(string dato, int x, int y)
         {
