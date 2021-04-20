@@ -509,8 +509,30 @@ namespace TestsObligatorio
         }
 
 
-        
+        //Prueba si al ingresar dos Contras a la categoria devuelve la correcta al usar el get para la segunda.
+        [TestMethod]
+        public void testCategoriaGetContraSegundaConDos()
+        {
+            Categoria categoria1 = new Categoria();
+            Contra contra1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.agregarContra(contra1);
+            Contra contra2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Luis88"
+            };
+            categoria1.agregarContra(contra2);
 
+            Assert.AreEqual(contra2, categoria1.getContra("web.whatsapp.com", "Luis88")); ;
+        }
+
+        
 
     }
 

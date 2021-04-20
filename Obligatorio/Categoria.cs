@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Obligatorio
 {
@@ -6,12 +8,12 @@ namespace Obligatorio
     {
         private string nombre;
         private bool noAgregoContra;
-        private Contra contraAgregada;
+        private List<Contra> contras;
 
         public Categoria()
         {
             noAgregoContra = true;
-            contraAgregada = null;
+            contras = new List<Contra>();
         }
 
         public string Nombre
@@ -35,15 +37,21 @@ namespace Obligatorio
 
             if (noTieneSitio || noTieneClave || noTieneUsuario ) throw new ObjetoIncompletoException();
 
-            if (this.noAgregoContra) {
-                this.noAgregoContra = false;
-                this.contraAgregada = contraIngresada;
-            }
+            this.noAgregoContra = false;
+            this.contras.Add(contraIngresada);
         }
 
         public Contra getContra(string sitioABuscar, string usuarioABuscar)
         {
-            return this.contraAgregada;
+
+            //Predicate se utiliza en conjunto con una clase, se le da una condicion que retorne true para ser buscado en una List con un List.Find
+            Predicate<Contra> buscadorContra = (Contra contra) => 
+            { return contra.Sitio == sitioABuscar &&
+              contra.UsuarioContra == usuarioABuscar;
+            };
+
+            Contra retorno = this.contras.Find(buscadorContra);
+            return retorno != null ? retorno : throw new ObjetoInexistenteException();
         }
     }
 }
