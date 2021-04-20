@@ -808,5 +808,31 @@ namespace TestsObligatorio
             t1.Vencimiento = date2;
             Assert.AreEqual("08/2023", t1.Vencimiento.ToString("MM/yyyy"));
         }
+
+
+        //Prueba si devuelve la nota correcta de la tarjeta.
+        [TestMethod]
+        public void testTarjetaGetNotaTarjeta()
+        {
+            Tarjeta t1 = new Tarjeta()
+            {
+                Nota = "Limite 400k UYU"
+            };
+            Assert.AreEqual("Limite 400k UYU", t1.Nota);
+        }
+
+
+        //Prueba si al cambiar la nota a la tarjeta, cambia lo que devuelve.
+        [TestMethod]
+        public void testTarjetaGetNotaCambio()
+        {
+            Tarjeta t1 = new Tarjeta()
+            {
+                Nota = "Limite 400k UYU"
+            };
+            Assert.AreEqual("Limite 400k UYU", t1.Nota);
+            t1.Nota = "Nota nueva";
+            Assert.AreEqual("Nota nueva", t1.Nota);
+        }
     }
 }

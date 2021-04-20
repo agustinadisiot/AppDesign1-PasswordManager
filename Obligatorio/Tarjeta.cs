@@ -35,6 +35,8 @@ namespace Obligatorio
 
         public DateTime Vencimiento { get; set; }
 
+        public string Nota { get; set; }
+
         public static string verificarStringDeNumerosYSuLargoDeXaY(string dato, int x, int y)
         {
             if (dato.Length < x || dato.Length > y) throw new LargoIncorrectoException();
