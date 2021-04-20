@@ -501,12 +501,15 @@ namespace TestsObligatorio
             {
                 Sitio = "web.whatsapp.com",
                 Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                UsuarioContra = "Juan"
             };
             categoria1.agregarContra(contra2);
 
             Assert.AreEqual(contra1, categoria1.getContra("web.whatsapp.com", "Roberto")); ;
         }
+
+
+        
 
 
     }
