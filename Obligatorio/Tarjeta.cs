@@ -52,7 +52,7 @@
                 {
                     foreach (int c in value)
                     {
-                        if (c >= 65 && c <= 90) throw new CaracterInesperadoException();
+                        if (c <= 48 || c >= 57) throw new CaracterInesperadoException();
                     }
                 }
                 this.codigo = value;

@@ -773,5 +773,14 @@ namespace TestsObligatorio
             Tarjeta t1 = new Tarjeta();
             Assert.ThrowsException<CaracterInesperadoException>(() => t1.Codigo = "12B");
         }
+
+
+        //Prueba si al ingresar un numero a una tarjeta con simbolos, devuelve un error.
+        [TestMethod]
+        public void testTarjetaLargoCodigoConSimbolos()
+        {
+            Tarjeta t1 = new Tarjeta();
+            Assert.ThrowsException<CaracterInesperadoException>(() => t1.Codigo = "12**");
+        }
     }
 }
