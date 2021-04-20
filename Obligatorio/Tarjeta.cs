@@ -22,41 +22,20 @@
         public string Numero 
         {
             get { return this.numero; }
-            set
-            {
-                if (value.Length != 16)
-                {
-                    throw new LargoIncorrectoException();
-                }
-                else
-                {
-                    foreach (int c in value)
-                    {
-                        if (c <= 48 || c >= 57) throw new CaracterInesperadoException();
-                    }
-                }
-                this.numero = value;
-            }
+            set { this.numero = verificarStringDeNumerosYSuLargoDeXaY(value, 16, 16); }
         }
 
         public string Codigo
         {
             get { return this.codigo; }
-            set
-            {
-                if (value.Length < 3 || value.Length > 4)
-                {
-                    throw new LargoIncorrectoException();
-                }
-                else
-                {
-                    foreach (int c in value)
-                    {
-                        if (c <= 48 || c >= 57) throw new CaracterInesperadoException();
-                    }
-                }
-                this.codigo = value;
-            }
+            set { this.codigo = verificarStringDeNumerosYSuLargoDeXaY(value, 3, 4); }
+        }
+
+        public static string verificarStringDeNumerosYSuLargoDeXaY(string dato, int x, int y)
+        {
+            if (dato.Length < x || dato.Length > y) throw new LargoIncorrectoException();
+            foreach (int c in dato) if (c <= 48 || c >= 57) throw new CaracterInesperadoException();
+            return dato;
         }
     }
 }
