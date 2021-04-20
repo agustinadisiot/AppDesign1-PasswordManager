@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Obligatorio;
+using System;
 
 
 //Confirmar separacion de tests, y nombre de TestsClases.cs
@@ -579,7 +580,8 @@ namespace TestsObligatorio
         public void testContraLargoNotaMayorA250()
         {
             Contra c1 = new Contra();
-            string notaDemasiadoLarga = "esta es una nota con mas de 250 caracteres lo cual no deberia estar permitido, se podria hacer un string en otro lado y luego exportarlo para que visualmente no quede tan feo pero es literalmente lo mismo y no varia mas que en vez de tener esta linea larguisima aca la tendrias en otro archivo lo cual pienso yo que no necesario. -Santiago Diaz";
+            string notaDemasiadoLarga = "";
+            for (int i = 0; i < 251; i++) notaDemasiadoLarga += "C";
             Assert.ThrowsException<LargoIncorrectoException>(() => c1.Nota = notaDemasiadoLarga);
         }
 
@@ -741,7 +743,6 @@ namespace TestsObligatorio
         }
 
 
-
         //Prueba si al cambiar el numero a la tarjeta, cambia lo que devuelve.
         [TestMethod]
         public void testTarjetaGetNumeroCambio()
@@ -765,7 +766,7 @@ namespace TestsObligatorio
         }
 
 
-        //Prueba si al ingresar un numero a una tarjeta con largo menor a 16, devuelve un error.
+        //Prueba si al ingresar un numero a una tarjeta con largo mayor a 16, devuelve un error.
         [TestMethod]
         public void testTarjetaLargoNumeroMayorA16()
         {
@@ -789,6 +790,127 @@ namespace TestsObligatorio
         {
             Tarjeta t1 = new Tarjeta();
             Assert.ThrowsException<CaracterInesperadoException>(() => t1.Numero = "12345#$%@2345678");
+        }
+
+
+        //Prueba si devuelve el codigo correcto de la tarjeta.
+        [TestMethod]
+        public void testTarjetaGetCodigoTarjeta()
+        {
+            Tarjeta t1 = new Tarjeta()
+            {
+                Codigo = "123"
+            };
+            Assert.AreEqual("123", t1.Codigo);
+        }
+
+
+        //Prueba si al cambiar el codigo a la tarjeta, cambia lo que devuelve.
+        [TestMethod]
+        public void testTarjetaGetCodigoCambio()
+        {
+            Tarjeta t1 = new Tarjeta()
+            {
+                Codigo = "123"
+            };
+            Assert.AreEqual("123", t1.Codigo);
+            t1.Codigo = "3241";
+            Assert.AreEqual("3241", t1.Codigo);
+        }
+
+        //Prueba si al ingresar un codigo a una tarjeta con largo menor a 3, devuelve un error.
+        [TestMethod]
+        public void testTarjetaLargoCodigoMenorA3()
+        {
+            Tarjeta t1 = new Tarjeta();
+            Assert.ThrowsException<LargoIncorrectoException>(() => t1.Codigo = "12");
+        }
+
+        //Prueba si al ingresar un codigo a una tarjeta con largo mayor a 4, devuelve un error.
+        [TestMethod]
+        public void testTarjetaLargoCodigoMayorA4()
+        {
+            Tarjeta t1 = new Tarjeta();
+            Assert.ThrowsException<LargoIncorrectoException>(() => t1.Codigo = "12345");
+        }
+
+
+        //Prueba si al ingresar un numero a una tarjeta con letras, devuelve un error.
+        [TestMethod]
+        public void testTarjetaLargoCodigoConLetras()
+        {
+            Tarjeta t1 = new Tarjeta();
+            Assert.ThrowsException<CaracterInesperadoException>(() => t1.Codigo = "12B");
+        }
+
+
+        //Prueba si al ingresar un numero a una tarjeta con simbolos, devuelve un error.
+        [TestMethod]
+        public void testTarjetaLargoCodigoConSimbolos()
+        {
+            Tarjeta t1 = new Tarjeta();
+            Assert.ThrowsException<CaracterInesperadoException>(() => t1.Codigo = "12**");
+        }
+
+
+        //Prueba si devuelve la fecha de vencimiento correcto de la tarjeta.
+        [TestMethod]
+        public void testTarjetaGetVencimientoTarjeta()
+        {
+            Tarjeta t1 = new Tarjeta();
+            DateTime date1 = new DateTime(2025, 7, 1);
+            t1.Vencimiento = date1;
+            Assert.AreEqual("07/2025", t1.Vencimiento.ToString("MM/yyyy"));
+        }
+
+
+        //Prueba si devuelve la fecha de vencimiento correcto de la tarjeta.
+        [TestMethod]
+        public void testTarjetaGetVencimientoCambio()
+        {
+            Tarjeta t1 = new Tarjeta();
+            DateTime date1 = new DateTime(2025, 7, 1);
+            t1.Vencimiento = date1;
+            Assert.AreEqual("07/2025", t1.Vencimiento.ToString("MM/yyyy"));
+            DateTime date2 = new DateTime(2023, 8, 1);
+            t1.Vencimiento = date2;
+            Assert.AreEqual("08/2023", t1.Vencimiento.ToString("MM/yyyy"));
+        }
+
+
+        //Prueba si devuelve la nota correcta de la tarjeta.
+        [TestMethod]
+        public void testTarjetaGetNotaTarjeta()
+        {
+            Tarjeta t1 = new Tarjeta()
+            {
+                Nota = "Limite 400k UYU"
+            };
+            Assert.AreEqual("Limite 400k UYU", t1.Nota);
+        }
+
+
+        //Prueba si al cambiar la nota a la tarjeta, cambia lo que devuelve.
+        [TestMethod]
+        public void testTarjetaGetNotaCambio()
+        {
+            Tarjeta t1 = new Tarjeta()
+            {
+                Nota = "Limite 400k UYU"
+            };
+            Assert.AreEqual("Limite 400k UYU", t1.Nota);
+            t1.Nota = "Nota nueva";
+            Assert.AreEqual("Nota nueva", t1.Nota);
+        }
+
+        //Prueba si al ingresar una nota a una tarjeta con largo mayor a 250, devuelve un error.
+        [TestMethod]
+        public void testContraLargoNotaMayorA250()
+        {
+            Tarjeta t1 = new Tarjeta();
+            string notaDemasiadoLarga="";
+            for (int i = 0; i < 251; i++) notaDemasiadoLarga += "T";
+            Assert.ThrowsException<LargoIncorrectoException>(() => t1.Nota = notaDemasiadoLarga);
         }
     }
 }
