@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Obligatorio;
+using System.Collections.Generic;
+using System.Linq;
 
 
 //Confirmar separacion de tests, y nombre de TestsClases.cs
@@ -532,7 +534,32 @@ namespace TestsObligatorio
             Assert.AreEqual(contra2, categoria1.getContra("web.whatsapp.com", "Luis88")); ;
         }
 
-        
+        //Prueba si al ingresar dos Contras a la categoria devuelve una lista de las contras agregadas.
+        [TestMethod]
+        public void testCategoriaGetListaContras()
+        {
+            Categoria categoria1 = new Categoria();
+            Contra contra1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.agregarContra(contra1);
+            Contra contra2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Luis88"
+            };
+            categoria1.agregarContra(contra2);
+
+            List<Contra> contras = new List<Contra>();
+            contras.Add(contra1);
+            contras.Add(contra2);
+
+            Assert.AreEqual(true, contras.SequenceEqual(categoria1.getListaContras())); ;
+        }
 
     }
 

@@ -53,5 +53,10 @@ namespace Obligatorio
             Contra retorno = this.contras.Find(buscadorContra);
             return retorno != null ? retorno : throw new ObjetoInexistenteException();
         }
+
+        public List<Contra> getListaContras()
+        {
+            return this.contras;
+        }
     }
 }
