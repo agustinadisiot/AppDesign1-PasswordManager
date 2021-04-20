@@ -5,6 +5,7 @@
         private string nombre;
         private string tipo;
         private string numero;
+        private string codigo;
 
         public string Nombre 
         {
@@ -35,6 +36,19 @@
                     }
                 }
                 this.numero = value;
+            }
+        }
+
+        public string Codigo
+        {
+            get { return this.codigo; }
+            set
+            {
+                if (value.Length < 3)
+                {
+                    throw new LargoIncorrectoException();
+                }
+                this.codigo = value;
             }
         }
     }

@@ -674,7 +674,6 @@ namespace TestsObligatorio
         }
 
 
-
         //Prueba si al cambiar el numero a la tarjeta, cambia lo que devuelve.
         [TestMethod]
         public void testTarjetaGetNumeroCambio()
@@ -698,7 +697,7 @@ namespace TestsObligatorio
         }
 
 
-        //Prueba si al ingresar un numero a una tarjeta con largo menor a 16, devuelve un error.
+        //Prueba si al ingresar un numero a una tarjeta con largo mayor a 16, devuelve un error.
         [TestMethod]
         public void testTarjetaLargoNumeroMayorA16()
         {
@@ -734,6 +733,28 @@ namespace TestsObligatorio
                 Codigo = "123"
             };
             Assert.AreEqual("123", t1.Codigo);
+        }
+
+
+        //Prueba si al cambiar el codigo a la tarjeta, cambia lo que devuelve.
+        [TestMethod]
+        public void testTarjetaGetCodigoCambio()
+        {
+            Tarjeta t1 = new Tarjeta()
+            {
+                Codigo = "123"
+            };
+            Assert.AreEqual("123", t1.Codigo);
+            t1.Codigo = "3241";
+            Assert.AreEqual("3241", t1.Codigo);
+        }
+
+        //Prueba si al ingresar un codigo a una tarjeta con largo menor a 3, devuelve un error.
+        [TestMethod]
+        public void testTarjetaLargoCodigoMenorA3()
+        {
+            Tarjeta t1 = new Tarjeta();
+            Assert.ThrowsException<LargoIncorrectoException>(() => t1.Codigo = "12");
         }
     }
 }
