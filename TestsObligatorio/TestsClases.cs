@@ -834,5 +834,14 @@ namespace TestsObligatorio
             t1.Nota = "Nota nueva";
             Assert.AreEqual("Nota nueva", t1.Nota);
         }
+
+        //Prueba si al ingresar una nota a una tarjeta con largo mayor a 250, devuelve un error.
+        [TestMethod]
+        public void testContraLargoNotaMayorA250()
+        {
+            Tarjeta t1 = new Tarjeta();
+            string notaDemasiadoLarga = "esta es una nota con mas de 250 caracteres lo cual no deberia estar permitido, se podria hacer un string en otro lado y luego exportarlo para que visualmente no quede tan feo pero es literalmente lo mismo y no varia mas que en vez de tener esta linea larguisima aca la tendrias en otro archivo lo cual pienso yo que no necesario. -Santiago Diaz";
+            Assert.ThrowsException<LargoIncorrectoException>(() => t1.Nota = notaDemasiadoLarga);
+        }
     }
 }

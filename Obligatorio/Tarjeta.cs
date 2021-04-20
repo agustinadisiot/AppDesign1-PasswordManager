@@ -8,6 +8,7 @@ namespace Obligatorio
         private string tipo;
         private string numero;
         private string codigo;
+        private string nota;
 
         public string Nombre 
         {
@@ -35,7 +36,11 @@ namespace Obligatorio
 
         public DateTime Vencimiento { get; set; }
 
-        public string Nota { get; set; }
+        public string Nota 
+        {
+            get { return this.nota; }
+            set { this.nota = VerificadoraString.verificarLargoXaY(value, 0, 250); }
+        }
 
         public static string verificarStringDeNumerosYSuLargoDeXaY(string dato, int x, int y)
         {
