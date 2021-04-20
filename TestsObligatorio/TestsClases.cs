@@ -394,7 +394,10 @@ namespace TestsObligatorio
         public void testCategoriaEsListaContrasConContras()
         {
             Categoria c1 = new Categoria();
-            Contra contra1 = new Contra();
+            Contra contra1 = new Contra()
+            {
+                Sitio = "youtube.com"
+            };
             c1.agregarContra(contra1);
             Assert.AreEqual(false, c1.esListaContrasVacia());
         }
@@ -405,14 +408,33 @@ namespace TestsObligatorio
         public void testCategoriaEsListaUsuariosContrasVaciaConDosContras()
         {
             Categoria c1 = new Categoria();
-            Contra contra1 = new Contra();
+            Contra contra1 = new Contra() 
+            { 
+                Sitio = "youtube.com"
+            };
             c1.agregarContra(contra1);
             Assert.AreEqual(false, c1.esListaContrasVacia());
             Usuario u2 = new Usuario();
-            Contra contra2 = new Contra();
+            Contra contra2 = new Contra() 
+            { 
+                Sitio = "web.whatsapp.com"
+            };
             c1.agregarContra(contra2);
             Assert.AreEqual(false, c1.esListaContrasVacia());
         }
+
+
+        //Prueba si al ingresar una Contra a la categoria sin sitio o aplicacion, devuelve un error.
+        [TestMethod]
+        public void testCategoriaAgregarContraSinSitioOAplicacion()
+        {
+            Categoria c1 = new Categoria();
+            Contra contra1 = new Contra();
+            Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarContra(contra1));
+        }
+
+
+
 
     }
 
