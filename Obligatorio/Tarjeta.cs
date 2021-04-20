@@ -44,7 +44,7 @@
             get { return this.codigo; }
             set
             {
-                if (value.Length < 3)
+                if (value.Length < 3 || value.Length > 4)
                 {
                     throw new LargoIncorrectoException();
                 }

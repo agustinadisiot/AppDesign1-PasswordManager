@@ -756,5 +756,13 @@ namespace TestsObligatorio
             Tarjeta t1 = new Tarjeta();
             Assert.ThrowsException<LargoIncorrectoException>(() => t1.Codigo = "12");
         }
+
+        //Prueba si al ingresar un codigo a una tarjeta con largo mayor a 4, devuelve un error.
+        [TestMethod]
+        public void testTarjetaLargoCodigoMayorA4()
+        {
+            Tarjeta t1 = new Tarjeta();
+            Assert.ThrowsException<LargoIncorrectoException>(() => t1.Codigo = "12345");
+        }
     }
 }
