@@ -402,7 +402,7 @@ namespace TestsObligatorio
 
         //Prueba si al agregar dos contraseñas a una categoria, esListaContrasVacia sigue dando false
         [TestMethod]
-        public void testAdministradorEsListaUsuariosVaciaConDosUsuarios()
+        public void testCategoriaEsListaUsuariosContrasVaciaConDosContras()
         {
             Categoria c1 = new Categoria();
             Contra contra1 = new Contra();
