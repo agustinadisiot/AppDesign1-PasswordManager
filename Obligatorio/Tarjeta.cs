@@ -51,7 +51,8 @@ namespace Obligatorio
 
         public override bool Equals(object obj)
         {
-            return true;
+            Tarjeta aIgualar = (Tarjeta)obj;
+            return aIgualar.Numero == this.numero;
         }
     }
 }

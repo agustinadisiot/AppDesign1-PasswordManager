@@ -297,5 +297,20 @@ namespace TestsObligatorio
             Assert.AreEqual(t1, t2);
         }
 
+        //Prueba de comparar dos Tarjetas con mismo numero el equals da true 
+        [TestMethod]
+        public void testTarjetaNotEqualsDiferenteNumero()
+        {
+            Tarjeta t1 = new Tarjeta
+            {
+                Numero = "1234567890123456"
+            };
+            Tarjeta t2 = new Tarjeta
+            {
+                Numero = "6543210987654321"
+            };
+            Assert.AreNotEqual(t1, t2);
+        }
+
     }
 }
