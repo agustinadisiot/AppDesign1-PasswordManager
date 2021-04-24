@@ -289,6 +289,18 @@ namespace TestsObligatorio
             Categoria c2 = null;
             Assert.ThrowsException<ObjetoIncompletoException>(() => c1.Equals(c2));
         }
+
+        //Prueba de comparar dos Categorias donde una es de tipo incorrecto
+        [TestMethod]
+        public void testCategoriaEqualsConString()
+        {
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            String falsaCategoria = "Personal";
+            Assert.ThrowsException<ObjetoIncorrectoException>(() => c1.Equals(falsaCategoria));
+        }
     }
 
 }

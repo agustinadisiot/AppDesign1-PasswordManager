@@ -62,6 +62,7 @@ namespace Obligatorio
         public override bool Equals(object obj)
         {
             if (obj == null) throw new ObjetoIncompletoException();
+            if (obj.GetType() != this.GetType()) throw new ObjetoIncorrectoException();
             Categoria aIgualar = (Categoria)obj;
             return aIgualar.Nombre.ToUpper() == this.Nombre.ToUpper();
         }
