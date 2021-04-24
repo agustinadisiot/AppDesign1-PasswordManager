@@ -233,6 +233,20 @@ namespace TestsObligatorio
             Assert.AreEqual(true, contras.SequenceEqual(categoria1.getListaContras())); ;
         }
 
+        //Prueba de comparar dos Categorias con el mismo nombre da true el equals
+        [TestMethod]
+        public void testCategoriaEqualsMismoNombre()
+        {
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            Categoria c2 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            Assert.AreEqual(c1, c2);
+        }
     }
 
 }

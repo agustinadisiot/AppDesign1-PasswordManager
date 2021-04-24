@@ -58,5 +58,10 @@ namespace Obligatorio
         {
             return this.contras;
         }
+
+        public override bool Equals(object obj)
+        {
+            return true;
+        }
     }
 }
