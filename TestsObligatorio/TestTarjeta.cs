@@ -273,12 +273,29 @@ namespace TestsObligatorio
 
         //Prueba si al ingresar una nota a una tarjeta con largo mayor a 250, devuelve un error.
         [TestMethod]
-        public void testContraLargoNotaMayorA250()
+        public void testTarjetaLargoNotaMayorA250()
         {
             Tarjeta t1 = new Tarjeta();
             string notaDemasiadoLarga = "";
             for (int i = 0; i < 251; i++) notaDemasiadoLarga += "T";
             Assert.ThrowsException<LargoIncorrectoException>(() => t1.Nota = notaDemasiadoLarga);
         }
+
+
+        //Prueba de comparar dos Tarjetas con mismo numero el equals da true 
+        [TestMethod]
+        public void testTarjetaEqualsMismoNumero()
+        {
+            Tarjeta t1 = new Tarjeta
+            {
+                Numero = "1234567890123456"
+            };
+            Tarjeta t2 = new Tarjeta
+            {
+                Numero = "1234567890123456"
+            };
+            Assert.AreEqual(t1, t2);
+        }
+
     }
 }
