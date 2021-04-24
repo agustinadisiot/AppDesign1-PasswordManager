@@ -280,7 +280,7 @@ namespace TestsObligatorio
             Assert.AreNotEqual(c1, c2);
         }
 
-        //Prueba de comparar dos Contras 
+        //Prueba de comparar dos Contras donde una es null
         [TestMethod]
         public void testContraEqualsConNull()
         {
@@ -291,6 +291,19 @@ namespace TestsObligatorio
             };
             Contra c2 = null;
             Assert.ThrowsException<ObjetoIncompletoException>(() => c1.Equals(c2)) ;
+        }
+
+        //Prueba de comparar dos Contras
+        [TestMethod]
+        public void testContraEqualsConString()
+        {
+            Contra c1 = new Contra()
+            {
+                Sitio = "ort.edu.uy",
+                UsuarioContra = "Usuario123"
+            };
+            String falsaContra = "falsaContra"; 
+            Assert.ThrowsException<ObjetoIncorrectoException>(() => c1.Equals(falsaContra));
         }
     }
 

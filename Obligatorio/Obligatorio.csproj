@@ -48,6 +48,7 @@
     <Compile Include="Exceptions\CaracterInesperadoException.cs" />
     <Compile Include="Exceptions\LargoIncorrectoException.cs" />
     <Compile Include="Exceptions\ObjetoIncompletoException.cs" />
+    <Compile Include="Exceptions\ObjetoIncorrectoException.cs" />
     <Compile Include="Exceptions\ObjetoInexistenteException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
