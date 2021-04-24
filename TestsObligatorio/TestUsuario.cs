@@ -206,6 +206,60 @@ namespace TestsObligatorio
             Assert.AreEqual(c2, u1.getCategoria("Trabajo"));
         }
 
+
+        //Prueba de comparar dos Usuarios con mismo Nombre  da true el equals
+        [TestMethod]
+        public void testUsuarioEqualsMismoNombreYContra()
+        {
+            Usuario u1 = new Usuario()
+            {
+                Nombre = "Usuario12"
+            };
+            Usuario u2 = new Usuario()
+            {
+                Nombre = "Usuario12" 
+            };
+            Assert.AreEqual(u1, u2);
+        }
+
+        //Prueba de comparar dos Usuarios con diferente Nombre da flase el equals
+        [TestMethod]
+        public void testUsuarioEqualsDiferenteNombreYMismaContra()
+        {
+            Usuario u1 = new Usuario()
+            {
+                Nombre = "Usuario123"
+            };
+            Usuario u2 = new Usuario()
+            {
+                Nombre = "Usuario789"
+            };
+            Assert.AreNotEqual(u1, u2);
+        }
+
+        //Prueba de comparar dos Usuarios donde uno es null
+        [TestMethod]
+        public void testUsuarioEqualsConNull()
+        {
+            Usuario u1 = new Usuario()
+            {
+                Nombre = "Usuario123"
+            };
+            Usuario u2 = null;
+            Assert.ThrowsException<ObjetoIncompletoException>(() => u1.Equals(u2));
+        }
+
+        //Prueba de comparar dos Usuarios donde uno es de tipo incorrecto
+        [TestMethod]
+        public void testUsuarioEqualsConString()
+        {
+            Usuario u1 = new Usuario()
+            {
+                Nombre = "Usuario123"
+            };
+            String falsoUsuario = "Usuario123";
+            Assert.ThrowsException<ObjetoIncorrectoException>(() => u1.Equals(falsoUsuario));
+        }
     }
 
 }
