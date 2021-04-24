@@ -58,6 +58,7 @@ namespace Obligatorio
 
         public override bool Equals(object obj)
         {
+            if (obj == null) throw new ObjetoIncompletoException(); 
             Contra aIgualar = (Contra)obj;
             bool mismoSitio = aIgualar.Sitio == this.Sitio;
             bool mismoUsuario = aIgualar.UsuarioContra == this.UsuarioContra;
