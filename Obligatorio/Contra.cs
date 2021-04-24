@@ -61,7 +61,7 @@ namespace Obligatorio
             if (obj == null) throw new ObjetoIncompletoException();
             if (this.GetType() != obj.GetType()) throw new ObjetoIncorrectoException();
             Contra aIgualar = (Contra)obj;
-            bool mismoSitio = aIgualar.Sitio == this.Sitio;
+            bool mismoSitio = aIgualar.Sitio.ToUpper() == this.Sitio.ToUpper();
             bool mismoUsuario = aIgualar.UsuarioContra == this.UsuarioContra;
             return mismoSitio && mismoUsuario;
         }

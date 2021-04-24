@@ -293,7 +293,7 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoIncompletoException>(() => c1.Equals(c2)) ;
         }
 
-        //Prueba de comparar dos Contras
+        //Prueba de comparar dos Contras donde una es de tipo incorrecto
         [TestMethod]
         public void testContraEqualsConString()
         {
@@ -304,6 +304,23 @@ namespace TestsObligatorio
             };
             String falsaContra = "falsaContra"; 
             Assert.ThrowsException<ObjetoIncorrectoException>(() => c1.Equals(falsaContra));
+        }
+
+        //Prueba de comparar dos Contras con mismo Sitio y Usuario con mayusculas y minusculas 
+        [TestMethod]
+        public void testContraEqualsConMayYMin()
+        {
+            Contra c1 = new Contra()
+            {
+                Sitio = "Ort.Edu.Uy",
+                UsuarioContra = "UsuarioORT"
+            };
+            Contra c2 = new Contra()
+            {
+                Sitio = "oRt.eDu.uY",
+                UsuarioContra = "UsuarioORT"
+            };
+            Assert.AreEqual(c1, c2);
         }
     }
 
