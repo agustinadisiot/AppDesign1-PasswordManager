@@ -233,6 +233,74 @@ namespace TestsObligatorio
             Assert.AreEqual(true, contras.SequenceEqual(categoria1.getListaContras())); ;
         }
 
+        //Prueba de comparar dos Categorias con el mismo nombre da true el equals
+        [TestMethod]
+        public void testCategoriaEqualsMismoNombre()
+        {
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            Categoria c2 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            Assert.AreEqual(c1, c2);
+        }
+
+        //Prueba de comparar dos Categorias con diferente nombre da true el equals
+        [TestMethod]
+        public void testCategoriaEqualsDiferenteNombre()
+        {
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            Categoria c2 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Assert.AreNotEqual(c1, c2);
+        }
+
+        //Prueba de comparar dos Categorias con mismo nombre con mayusculas y minusculas
+        [TestMethod]
+        public void testCategoriaEqualsMismoNombreConMayYMin()
+        {
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            Categoria c2 = new Categoria()
+            {
+                Nombre = "personal"
+            };
+            Assert.AreEqual(c1, c2);
+        }
+
+        //Prueba de comparar dos Categorias donde una es null
+        [TestMethod]
+        public void testCategoriaEqualsConNull()
+        {
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            Categoria c2 = null;
+            Assert.ThrowsException<ObjetoIncompletoException>(() => c1.Equals(c2));
+        }
+
+        //Prueba de comparar dos Categorias donde una es de tipo incorrecto
+        [TestMethod]
+        public void testCategoriaEqualsConString()
+        {
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            String falsaCategoria = "Personal";
+            Assert.ThrowsException<ObjetoIncorrectoException>(() => c1.Equals(falsaCategoria));
+        }
     }
 
 }
