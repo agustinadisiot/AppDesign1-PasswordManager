@@ -59,7 +59,9 @@ namespace Obligatorio
         public override bool Equals(object obj)
         {
             Contra aIgualar = (Contra)obj;
-            return aIgualar.Sitio == this.Sitio;
+            bool mismoSitio = aIgualar.Sitio == this.Sitio;
+            bool mismoUsuario = aIgualar.UsuarioContra == this.UsuarioContra;
+            return mismoSitio && mismoUsuario;
         }
     }
 }
