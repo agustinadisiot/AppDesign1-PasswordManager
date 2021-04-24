@@ -57,5 +57,10 @@ namespace Obligatorio
             Categoria retorno = this.listaCategorias.Find(buscadorCategoria);
             return retorno != null ? retorno : throw new ObjetoInexistenteException();
         }
+
+        public override bool Equals(object obj)
+        {
+            return true;
+        }
     }
 }

@@ -206,6 +206,23 @@ namespace TestsObligatorio
             Assert.AreEqual(c2, u1.getCategoria("Trabajo"));
         }
 
+
+        //Prueba de comparar dos Usuarios con mismo Nombre y ContraMaestra da true el equals
+        [TestMethod]
+        public void testUsuarioEqualsMismoNombreYContra()
+        {
+            Usuario u1 = new Usuario()
+            {
+                Nombre = "Usuario12",
+                ContraMaestra = "UsuarioORT"
+            };
+            Usuario u2 = new Usuario()
+            {
+                Nombre = "Usuario12",
+                ContraMaestra = "UsuarioORT"   
+            };
+            Assert.AreEqual(u1, u2);
+        }
     }
 
 }
