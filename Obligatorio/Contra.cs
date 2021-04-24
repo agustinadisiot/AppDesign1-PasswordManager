@@ -55,5 +55,10 @@ namespace Obligatorio
 
             return amarillo;   
         }
+
+        public override bool Equals(object obj)
+        {
+            return true;
+        }
     }
 }

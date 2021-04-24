@@ -228,6 +228,23 @@ namespace TestsObligatorio
             c1.Clave = "ClaveConMayYMin14@#";
             Assert.AreEqual("verde oscuro", c1.getNivelSeguridad());
         }
+
+        //Prueba de comparar dos Contras con mismo Sitio y Usuario da true el equals
+        [TestMethod]
+        public void testContraEqualsMismoSitioYUsuario()
+        {
+            Contra c1 = new Contra()
+            {
+                Sitio = "ort.edu.uy",
+                UsuarioContra = "UsuarioORT"
+            };
+            Contra c2 = new Contra()
+            {
+                Sitio = "ort.edu.uy",
+                UsuarioContra = "UsuarioORT"
+            };
+            Assert.AreEqual(c1, c2);
+        }
     }
 
 }
