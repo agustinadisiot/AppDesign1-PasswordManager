@@ -60,6 +60,7 @@ namespace Obligatorio
 
         public override bool Equals(object obj)
         {
+            if (obj == null) throw new ObjetoIncompletoException();
             Usuario aIgualar = (Usuario)obj;
             return aIgualar.Nombre == this.Nombre;
         }
