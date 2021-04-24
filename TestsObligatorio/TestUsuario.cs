@@ -223,6 +223,23 @@ namespace TestsObligatorio
             };
             Assert.AreEqual(u1, u2);
         }
+
+        //Prueba de comparar dos Usuarios con diferente Nombre y mismaContraMaestra da flase el equals
+        [TestMethod]
+        public void testUsuarioEqualsMismoNombreYDiferenteContra()
+        {
+            Usuario u1 = new Usuario()
+            {
+                Nombre = "Usuario123",
+                ContraMaestra = "UsuarioORT"
+            };
+            Usuario u2 = new Usuario()
+            {
+                Nombre = "Usuario789",
+                ContraMaestra = "UsuarioORT"
+            };
+            Assert.AreNotEqual(u1, u2);
+        }
     }
 
 }

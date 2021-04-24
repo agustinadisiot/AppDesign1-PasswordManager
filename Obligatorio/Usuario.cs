@@ -60,7 +60,8 @@ namespace Obligatorio
 
         public override bool Equals(object obj)
         {
-            return true;
+            Usuario aIgualar = (Usuario)obj;
+            return aIgualar.Nombre == this.Nombre;
         }
     }
 }
