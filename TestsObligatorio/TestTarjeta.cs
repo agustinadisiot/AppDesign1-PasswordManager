@@ -324,5 +324,17 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoIncompletoException>(() => t1.Equals(t2));
         }
 
+        //Prueba de comparar una Tarjeta con un string, para verificar que se controle el tipo recibido en el equals.
+        [TestMethod]
+        public void testTarjetaEqualsConString()
+        {
+            Tarjeta t1 = new Tarjeta
+            {
+                Numero = "1234567890123456"
+            };
+            String noEsTarjeta = "1234567890123456";
+            Assert.ThrowsException<ObjetoIncorrectoException>(() => t1.Equals(noEsTarjeta));
+        }
+
     }
 }
