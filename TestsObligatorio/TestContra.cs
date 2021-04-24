@@ -229,6 +229,15 @@ namespace TestsObligatorio
             Assert.AreEqual("verde oscuro", c1.getNivelSeguridad());
         }
 
+        //Prueba de nivel de seguridad para una Contra color verde oscuro en su ultimo caracter. (mayor a 14 con mayusculas, minusculas, numeros y simbolos)
+        [TestMethod]
+        public void testContraNivelSeguridadMayorACatorceConMayYSimEnUltimoChar()
+        {
+            Contra c1 = new Contra();
+            c1.Clave = "claveconmayymiN14@";
+            Assert.AreEqual("verde oscuro", c1.getNivelSeguridad());
+        }
+
         //Prueba de comparar dos Contras con mismo Sitio y Usuario da true el equals
         [TestMethod]
         public void testContraEqualsMismoSitioYUsuario()
