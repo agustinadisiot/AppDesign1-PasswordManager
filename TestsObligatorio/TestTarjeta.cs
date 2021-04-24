@@ -297,7 +297,7 @@ namespace TestsObligatorio
             Assert.AreEqual(t1, t2);
         }
 
-        //Prueba de comparar dos Tarjetas con mismo numero el equals da true 
+        //Prueba de comparar dos Tarjetas con diferente numero el equals da false 
         [TestMethod]
         public void testTarjetaNotEqualsDiferenteNumero()
         {
@@ -310,6 +310,18 @@ namespace TestsObligatorio
                 Numero = "6543210987654321"
             };
             Assert.AreNotEqual(t1, t2);
+        }
+
+        //Prueba de comparar una Tarjeta con un null
+        [TestMethod]
+        public void testTarjetaEqualsNull()
+        {
+            Tarjeta t1 = new Tarjeta
+            {
+                Numero = "1234567890123456"
+            };
+            Tarjeta t2 = null;
+            Assert.ThrowsException<ObjetoIncompletoException>(() => t1.Equals(t2));
         }
 
     }
