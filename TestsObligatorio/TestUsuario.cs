@@ -248,6 +248,18 @@ namespace TestsObligatorio
             Usuario u2 = null;
             Assert.ThrowsException<ObjetoIncompletoException>(() => u1.Equals(u2));
         }
+
+        //Prueba de comparar dos Usuarios donde uno es de tipo incorrecto
+        [TestMethod]
+        public void testUsuarioEqualsConString()
+        {
+            Usuario u1 = new Usuario()
+            {
+                Nombre = "Usuario123"
+            };
+            String falsoUsuario = "Usuario123";
+            Assert.ThrowsException<ObjetoIncorrectoException>(() => u1.Equals(falsoUsuario));
+        }
     }
 
 }

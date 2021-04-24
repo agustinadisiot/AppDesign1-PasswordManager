@@ -61,6 +61,7 @@ namespace Obligatorio
         public override bool Equals(object obj)
         {
             if (obj == null) throw new ObjetoIncompletoException();
+            if (obj.GetType() != this.GetType()) throw new ObjetoIncorrectoException();
             Usuario aIgualar = (Usuario)obj;
             return aIgualar.Nombre == this.Nombre;
         }
