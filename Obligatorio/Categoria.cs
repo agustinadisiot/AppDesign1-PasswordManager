@@ -62,7 +62,7 @@ namespace Obligatorio
         public override bool Equals(object obj)
         {
             Categoria aIgualar = (Categoria)obj;
-            return aIgualar.Nombre == this.Nombre;
+            return aIgualar.Nombre.ToUpper() == this.Nombre.ToUpper();
         }
     }
 }

@@ -262,6 +262,21 @@ namespace TestsObligatorio
             };
             Assert.AreNotEqual(c1, c2);
         }
+
+        //Prueba de comparar dos Categorias con mismo nombre con mayusculas y minusculas
+        [TestMethod]
+        public void testCategoriaEqualsMismoNombreConMayYMin()
+        {
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            Categoria c2 = new Categoria()
+            {
+                Nombre = "personal"
+            };
+            Assert.AreEqual(c1, c2);
+        }
     }
 
 }
