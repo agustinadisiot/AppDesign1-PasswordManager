@@ -58,7 +58,8 @@ namespace Obligatorio
 
         public override bool Equals(object obj)
         {
-            return true;
+            Contra aIgualar = (Contra)obj;
+            return aIgualar.Sitio == this.Sitio;
         }
     }
 }

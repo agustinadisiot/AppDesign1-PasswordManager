@@ -245,6 +245,23 @@ namespace TestsObligatorio
             };
             Assert.AreEqual(c1, c2);
         }
+
+        //Prueba de comparar dos Contras con diferente Sitio y mismo Usuario da false el equals
+        [TestMethod]
+        public void testContraEqualsDiferenteSitioYMismoUsuario()
+        {
+            Contra c1 = new Contra()
+            {
+                Sitio = "ort.edu.uy",
+                UsuarioContra = "UsuarioORT"
+            };
+            Contra c2 = new Contra()
+            {
+                Sitio = "aulas.edu.uy",
+                UsuarioContra = "UsuarioORT"
+            };
+            Assert.AreNotEqual(c1, c2);
+        }
     }
 
 }
