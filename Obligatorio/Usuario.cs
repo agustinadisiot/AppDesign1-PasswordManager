@@ -103,7 +103,7 @@ namespace Obligatorio
             }
         }
 
-        public void agregarContra(Contra contra)
+        public void agregarContra(Contra contra, string categoria)
         {
             bool noTieneSitio = (contra.Sitio == null),
                  noTieneClave = (contra.Clave == null),
@@ -111,6 +111,8 @@ namespace Obligatorio
 
 
             if (noTieneSitio || noTieneClave || noTieneUsuario) throw new ObjetoIncompletoException();
+            
+            if(this.yaExisteContra(contra)) throw new ObjetoYaExistenteException();
             this.contraAgregada = true;
         }
     }

@@ -156,7 +156,7 @@ namespace TestsObligatorio
                 UsuarioContra = "Roberto"
             };
             categoria1.agregarContra(contra1);
-            Assert.AreEqual(contra1, categoria1.getContra("web.whatsapp.com", "Roberto")); ;
+            Assert.AreEqual(contra1, categoria1.getContra("web.whatsapp.com", "Roberto"));
         }
 
         //Prueba si al ingresar dos Contras a la categoria devuelve la correcta al usar el get para la primera.

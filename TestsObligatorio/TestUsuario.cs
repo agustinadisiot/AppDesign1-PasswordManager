@@ -555,7 +555,7 @@ namespace TestsObligatorio
                 Clave = "12345678"
             };
             usuario.agregarCategoria(categoria);
-            usuario.agregarContra(contra);
+            usuario.agregarContra(contra, "Trabajo");
             Assert.AreEqual(true, usuario.yaExisteContra(contra));
         }
 
@@ -579,7 +579,7 @@ namespace TestsObligatorio
                 Clave = "12345678"
             };
             usuario.agregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarContra(contra));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarContra(contra, "Trabajo"));
         }
 
 
@@ -602,7 +602,7 @@ namespace TestsObligatorio
                 UsuarioContra = "111111"
             };
             usuario.agregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarContra(contra));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarContra(contra, "Trabajo"));
         }
 
 
@@ -625,7 +625,56 @@ namespace TestsObligatorio
                 Clave = "12345678"
             };
             usuario.agregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarContra(contra));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarContra(contra, "Trabajo"));
+        }
+
+        //Prueba si al ingresar una Contra repetida a una categoria en el usuario, devuelve un error 
+        [TestMethod]
+        public void testUsuarioAgregarContraRepetida()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Contra contra = new Contra()
+            {
+                Sitio = "www.ort.edu.uy",
+                UsuarioContra = "111111",
+                Clave = "12345678"
+            };
+            usuario.agregarCategoria(categoria);
+            usuario.agregarContra(contra, "Trabajo");
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.agregarContra(contra, "Trabajo"));
+        }
+
+
+        //Prueba si al ingresar una Contra a una categoria en el usuario, confirma que sa categoria tiene una contra. 
+        [TestMethod]
+        public void testUsuarioAgregarContraCategoriaConContra()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Contra contra = new Contra()
+            {
+                Sitio = "www.ort.edu.uy",
+                UsuarioContra = "111111",
+                Clave = "12345678"
+            };
+            usuario.agregarCategoria(categoria);
+            usuario.agregarContra(contra, "Trabajo");
+            Assert.AreEqual(true, usuario.getCategoria("Trabajo").yaExisteContra(contra));
         }
 
     }
