@@ -605,6 +605,29 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarContra(contra));
         }
 
+
+        //Prueba si al ingresar una Contra a la categoria en usuario sin UsuarioContra, devuelve un error.
+        [TestMethod]
+        public void testCategoriaAgregarContraSinUsuario()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Contra contra = new Contra()
+            {
+                Sitio = "www.ort.edu.uy",
+                Clave = "12345678"
+            };
+            usuario.agregarCategoria(categoria);
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarContra(contra));
+        }
+
     }
 }
 
