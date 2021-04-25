@@ -93,7 +93,6 @@ namespace TestsObligatorio
             };
             c1.agregarContra(contra1);
             Assert.AreEqual(false, c1.esListaContrasVacia());
-            Usuario u2 = new Usuario();
             Contra contra2 = new Contra()
             {
                 Sitio = "web.whatsapp.com",
@@ -386,4 +385,217 @@ namespace TestsObligatorio
         }
     }
 
+    [TestClass]
+    public class TestCategoriaTarjeta
+    {
+        //Prueba si al comenzar la Categoria tiene una lista vacía de tarjetas guardadas. 
+        [TestMethod]
+        public void testCategoriaEsListaTarjetasVacia()
+        {
+            Categoria c1 = new Categoria();
+            Assert.AreEqual(true, c1.esListaTarjetasVacia());
+        }
+
+
+        //Prueba si al agregar una tarjeta, esListaTarjetasVacia da false
+        [TestMethod]
+        public void testCategoriaEsListaContrasConContras()
+        {
+            Categoria c1 = new Categoria();
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = "1234567890876543",
+                Codigo = "567",
+                Nota = ""
+            };
+            c1.agregarTarjeta(tarjeta1);
+            Assert.AreEqual(false, c1.esListaTarjetasVacia());
+        }
+
+
+        //Prueba si al agregar dos tarjetas a una categoria, esListaTarjetasVacia sigue dando false
+        [TestMethod]
+        public void testCategoriaEsListaUsuariosTarjetasVaciaConDosTarjetas()
+        {
+            Categoria c1 = new Categoria();
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = "1234567890876543",
+                Codigo = "567",
+                Nota = ""
+
+            };
+            c1.agregarTarjeta(tarjeta1);
+            Assert.AreEqual(false, c1.esListaTarjetasVacia());
+            Tarjeta tarjeta2= new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321",
+                Nota = ""
+            };
+            c1.agregarTarjeta(tarjeta2);
+            Assert.AreEqual(false, c1.esListaTarjetasVacia());
+        }
+
+        //Prueba si al ingresar una Tarjeta a la categoria sin Nombre, devuelve un error.
+        [TestMethod]
+        public void testCategoriaAgregarTarjetaSinNombre()
+        {
+            Categoria c1 = new Categoria();
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321",
+                Nota = ""
+            };
+            Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarTarjeta(tarjeta1));
+        }
+
+        //Prueba si al ingresar una Tarjeta a la categoria sin Tipo, devuelve un error.
+        [TestMethod]
+        public void testCategoriaAgregarTarjetaSinTipo()
+        {
+            Categoria c1 = new Categoria();
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Numero = "3456567890876543",
+                Codigo = "321",
+                Nota = ""
+            };
+            Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarTarjeta(tarjeta1));
+        }
+
+        //Prueba si al ingresar una Tarjeta a la categoria sin Numero, devuelve un error.
+        [TestMethod]
+        public void testCategoriaAgregarTarjetaSinNumero()
+        {
+            Categoria c1 = new Categoria();
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Codigo = "321",
+                Nota = ""
+            };
+            Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarTarjeta(tarjeta1));
+        }
+
+        //Prueba si al ingresar una Tarjeta a la categoria sin Codigo, devuelve un error.
+        [TestMethod]
+        public void testCategoriaAgregarTarjetaSinCodigo()
+        {
+            Categoria c1 = new Categoria();
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = "1234567890876543",
+                Nota = ""
+            };
+            Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarTarjeta(tarjeta1));
+        }
+
+        //Prueba si al ingresar una Tarjeta a la categoria devuelve la correcta al usar el get.
+        [TestMethod]
+        public void testCategoriaGetTarjeta()
+        {
+            Categoria categoria1 = new Categoria();
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321"
+            };
+            categoria1.agregarTarjeta(tarjeta1);
+            Assert.AreEqual(tarjeta1, categoria1.getTarjeta("3456567890876543")); 
+        }
+
+        //Prueba si al ingresar dos Tarjetas a la categoria devuelve la correcta al usar el get para la primera.
+        [TestMethod]
+        public void testCategoriaGetTarjetaPrimeraConDos()
+        {
+            Categoria categoria1 = new Categoria();
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321"
+            };
+            categoria1.agregarTarjeta(tarjeta1);
+            Tarjeta tarjeta2 = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = "1234567890876553",
+                Codigo = "789"
+            };
+            categoria1.agregarTarjeta(tarjeta2);
+
+            Assert.AreEqual(tarjeta1, categoria1.getTarjeta("3456567890876543")); 
+        }
+
+        //Prueba si al ingresar dos Tarjetas a la categoria devuelve la correcta al usar el get para la segunda.
+        [TestMethod]
+        public void testCategoriaGetTarjetaSegundaConDos()
+        {
+            Categoria categoria1 = new Categoria();
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321"
+            };
+            categoria1.agregarTarjeta(tarjeta1);
+            Tarjeta tarjeta2 = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = "1234567890876553",
+                Codigo = "789"
+            };
+            categoria1.agregarTarjeta(tarjeta2);
+
+            Assert.AreEqual(tarjeta2, categoria1.getTarjeta("1234567890876553"));
+        }
+
+        //Prueba si al ingresar dos Tarjetas a la categoria devuelve una lista de las tarjetas agregadas.
+        [TestMethod]
+        public void testCategoriaGetListaTarjetas()
+        {
+            Categoria categoria1 = new Categoria();
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321"
+            };
+            categoria1.agregarTarjeta(tarjeta1);
+            Tarjeta tarjeta2 = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = "1234567890876553",
+                Codigo = "789"
+            };
+            categoria1.agregarTarjeta(tarjeta2);
+
+            List<Tarjeta> tarjetas = new List<Tarjeta>();
+            tarjetas.Add(tarjeta1);
+            tarjetas.Add(tarjeta2);
+
+            Assert.AreEqual(true, tarjetas.SequenceEqual(categoria1.getListaTarjetas())); ;
+        }
+    }
 }
