@@ -45,7 +45,7 @@ namespace Obligatorio
             else 
             {
                 this.noAgregoCategorias = false;
-                if (this.listaCategorias.Any(buscadora => buscadora.Equals(c1))) {
+                if (this.yaExisteCategoria(c1)) {
                     throw new ObjetoYaExistenteException();
                 }
                 this.listaCategorias.Add(c1);
