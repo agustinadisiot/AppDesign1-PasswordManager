@@ -849,7 +849,7 @@ namespace TestsObligatorio
 
         //Prueba que agrega una Tarjeta en una categoria y despues pregunta si ya existe en el usuario en otra categoria, devuelve true.
         [TestMethod]
-        public void testUsuarioYaExisteContraDosCategoriasSiExistente()
+        public void testUsuarioYaExisteTarjetaDosCategoriasSiExistente()
         {
             Usuario usuario = new Usuario()
             {
