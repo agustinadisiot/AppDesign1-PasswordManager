@@ -243,7 +243,22 @@ namespace TestsObligatorio
             Assert.AreEqual(true, u1.yaExisteCategoria(c2));
         }
 
-
+        //Prueba si al agregar una categoria y despues pregunta si ya existe, devuelve true.
+        [TestMethod]
+        public void testUsuarioYaExisteCategoriaNoExistente()
+        {
+            Usuario u1 = new Usuario();
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            u1.agregarCategoria(c1);
+            Categoria c2 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Assert.AreEqual(false, u1.yaExisteCategoria(c2));
+        }
 
         //Prueba de comparar dos Usuarios con mismo Nombre  da true el equals
         [TestMethod]

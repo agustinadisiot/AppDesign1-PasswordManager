@@ -76,9 +76,9 @@ namespace Obligatorio
             aBuscar.Nombre = nombreNuevo;
         }
 
-        public bool yaExisteCategoria(Categoria c2)
+        public bool yaExisteCategoria(Categoria aBuscar)
         {
-            return true;
+            return this.listaCategorias.Any(buscadora => buscadora.Equals(aBuscar));
         }
     }
 }
