@@ -678,4 +678,41 @@ namespace TestsObligatorio
         }
 
     }
+   
+    [TestClass]
+    public class TestUsuarioTarjeta
+    {
+        //Prueba que agrega una Tarjeta a una categoria en el usurio y despues pregunta si ya existe, devuelve true.
+        [TestMethod]
+        public void testUsuarioYaExisteContraUnaCategoriaSiExistente()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321"
+            };
+            categoria.agregarTarjeta(tarjeta);
+            usuario.agregarCategoria(categoria);
+            Tarjeta tarjetaIgual = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321"
+            };
+            Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjetaIgual));
+        }
+
+    }
 }

@@ -110,5 +110,10 @@ namespace Obligatorio
 
             this.getCategoria(categoria).agregarContra(contra);
         }
+
+        public bool yaExisteTarjeta(Tarjeta tarjetaIgual)
+        {
+            return true;
+        }
     }
 }
