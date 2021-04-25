@@ -847,5 +847,51 @@ namespace TestsObligatorio
         }
 
 
+        //Prueba que agrega una Tarjeta en una categoria y despues pregunta si ya existe en el usuario en otra categoria, devuelve true.
+        [TestMethod]
+        public void testUsuarioYaExisteContraDosCategoriasSiExistente()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321"
+            };
+            categoria.agregarTarjeta(tarjeta);
+            usuario.agregarCategoria(categoria);
+            Categoria categoria2 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            Tarjeta tarjeta2 = new Tarjeta()
+            {
+                Nombre = "Visa",
+                Tipo = "Visa Gold",
+                Numero = "7894561234567895",
+                Codigo = "321"
+            };
+            categoria.agregarTarjeta(tarjeta2);
+            usuario.agregarCategoria(categoria2);
+            Tarjeta tarjetaIgual = new Tarjeta()
+            {
+                Nombre = "Visa",
+                Tipo = "Visa Gold",
+                Numero = "7894561234567895",
+                Codigo = "321"
+            };
+            Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjetaIgual));
+        }
+
+
     }
 }
