@@ -228,7 +228,7 @@ namespace TestsObligatorio
 
         //Prueba si al agregar una categoria y despues pregunta si ya existe, devuelve true.
         [TestMethod]
-        public void testUsuarioYaExisteCategoriaNoExistente()
+        public void testUsuarioYaExisteCategoriaSiExistente()
         {
             Usuario u1 = new Usuario();
             Categoria c1 = new Categoria()
