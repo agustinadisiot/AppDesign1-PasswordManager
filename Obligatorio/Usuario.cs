@@ -91,5 +91,10 @@ namespace Obligatorio
         {
             return this.listaCategorias.Any(buscadora => buscadora.Equals(aBuscar));
         }
+
+        public bool yaExisteContra(Contra contraIgual)
+        {
+            return this.listaCategorias.Any(catBuscadora => catBuscadora.yaExisteContra(contraIgual));
+        }
     }
 }

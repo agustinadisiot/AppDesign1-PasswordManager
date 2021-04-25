@@ -365,4 +365,179 @@ namespace TestsObligatorio
         }
     }
 
+
+    [TestClass]
+    public class TestUsuarioContra
+    {
+
+        //Prueba que agrega una Contra y despues pregunta si ya existe, devuelve true.
+        [TestMethod]
+        public void testUsuarioYaExisteContraUnaCategoriaSiExistente()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            { 
+                Nombre = "Trabajo"
+            };
+            Contra contra = new Contra()
+            {
+                Sitio = "www.ort.edu.uy",
+                UsuarioContra = "111111",
+                Clave = "12345678"
+            };
+            categoria.agregarContra(contra);
+            usuario.agregarCategoria(categoria);
+            Contra contraIgual = new Contra()
+            {
+                Sitio = "www.ort.edu.uy",
+                UsuarioContra = "111111",
+                Clave = "12345678"
+            };
+            Assert.AreEqual(true, usuario.yaExisteContra(contraIgual));
+        }
+
+        //Prueba que agrega una Contra y despues pregunta si ya existe una con diferente sitio, devuelve false.
+        [TestMethod]
+        public void testUsuarioYaExisteContraMismoUsuarioDiferenteSitio()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Contra contra = new Contra()
+            {
+                Sitio = "www.ort.edu.uy",
+                UsuarioContra = "111111",
+                Clave = "12345678"
+            };
+            categoria.agregarContra(contra);
+            usuario.agregarCategoria(categoria);
+            Contra contraIgual = new Contra()
+            {
+                Sitio = "www.youtube.com",
+                UsuarioContra = "111111",
+                Clave = "12345678"
+            };
+            Assert.AreEqual(false, usuario.yaExisteContra(contraIgual));
+        }
+
+        //Prueba que agrega una Contra y despues pregunta si ya existe una con mismo sitio y diferente usuario, devuelve false.
+        [TestMethod]
+        public void testUsuarioYaExisteContraMismoSitioDiferenteUsuario()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Contra contra = new Contra()
+            {
+                Sitio = "www.ort.edu.uy",
+                UsuarioContra = "111111",
+                Clave = "12345678"
+            };
+            categoria.agregarContra(contra);
+            usuario.agregarCategoria(categoria);
+            Contra contraIgual = new Contra()
+            {
+                Sitio = "www.ort.edu.uy",
+                UsuarioContra = "222222",
+                Clave = "12345678"
+            };
+            Assert.AreEqual(false, usuario.yaExisteContra(contraIgual));
+        }
+
+        //Prueba que agrega una Contra y despues pregunta si ya existe una con mismo sitio y usuario, devuelve true a pesar de tener diferentes claves.
+        [TestMethod]
+        public void testUsuarioYaExisteContraDiferentesClaves()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Contra contra = new Contra()
+            {
+                Sitio = "www.ort.edu.uy",
+                UsuarioContra = "111111",
+                Clave = "12345678"
+            };
+            categoria.agregarContra(contra);
+            usuario.agregarCategoria(categoria);
+            Contra contraIgual = new Contra()
+            {
+                Sitio = "www.ort.edu.uy",
+                UsuarioContra = "111111",
+                Clave = "12345678"
+            };
+            Assert.AreEqual(true, usuario.yaExisteContra(contraIgual));
+        }
+
+
+        //Prueba que agrega una Contra en una categoria y despues pregunta si ya existe en el usuario en otra categoria, devuelve true.
+        [TestMethod]
+        public void testUsuarioYaExisteContraDosCategoriasSiExistente()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Contra contra1 = new Contra()
+            {
+                Sitio = "www.ort.edu.uy",
+                UsuarioContra = "111111",
+                Clave = "12345678"
+            };
+            categoria1.agregarContra(contra1);
+            usuario.agregarCategoria(categoria1);
+            Categoria categoria2 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            Contra contra2 = new Contra()
+            {
+                Sitio = "www.youtube.com",
+                UsuarioContra = "usuarioYoutube",
+                Clave = "contra1234"
+            };
+            categoria2.agregarContra(contra2);
+            usuario.agregarCategoria(categoria2);
+
+            Contra contraIgual = new Contra()
+            {
+                Sitio = "www.youtube.com",
+                UsuarioContra = "usuarioYoutube",
+                Clave = "contra1234"
+            };
+            Assert.AreEqual(true, usuario.yaExisteContra(contraIgual));
+        }
+
+    }
 }
+
+
+
+
+
