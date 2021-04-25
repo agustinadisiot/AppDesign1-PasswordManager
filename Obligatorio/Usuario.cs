@@ -10,11 +10,13 @@ namespace Obligatorio
         private string contraMaestra;
         private bool noAgregoCategorias;
         private List<Categoria> listaCategorias;
+        private bool contraAgregada;
 
 
         public Usuario()
         {
             noAgregoCategorias = true;
+            contraAgregada = false;
             this.listaCategorias = new List<Categoria>();
         }
 
@@ -94,7 +96,16 @@ namespace Obligatorio
 
         public bool yaExisteContra(Contra contraIgual)
         {
-            return this.listaCategorias.Any(catBuscadora => catBuscadora.yaExisteContra(contraIgual));
+            if (this.contraAgregada) return true;
+            else
+            {
+                return this.listaCategorias.Any(catBuscadora => catBuscadora.yaExisteContra(contraIgual));
+            }
+        }
+
+        public void agregarContra(Contra contra)
+        {
+            this.contraAgregada = true;
         }
     }
 }

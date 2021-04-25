@@ -534,6 +534,31 @@ namespace TestsObligatorio
             Assert.AreEqual(true, usuario.yaExisteContra(contraIgual));
         }
 
+
+        //Prueba si al agregar una contraseña a una categoria en usuario, yaExisteContra da true
+        [TestMethod]
+        public void testUsuarioAgregarContra()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Contra contra = new Contra()
+            {
+                Sitio = "www.ort.edu.uy",
+                UsuarioContra = "111111",
+                Clave = "12345678"
+            };
+            usuario.agregarCategoria(categoria);
+            usuario.agregarContra(contra);
+            Assert.AreEqual(true, usuario.yaExisteContra(contra));
+        }
+
     }
 }
 
