@@ -71,11 +71,6 @@ namespace Obligatorio
             return aIgualar.Nombre.ToUpper() == this.Nombre.ToUpper();
         }
 
-<<<<<<< HEAD
-        public bool yaExisteContra(Contra aBuscar)
-        {
-            return this.contras.Any(buscadora => buscadora.Equals(aBuscar));
-=======
         public bool esListaTarjetasVacia()
         {
             return this.noAgregoTarjeta;
@@ -107,7 +102,11 @@ namespace Obligatorio
         public List<Tarjeta> getListaTarjetas()
         {
             return this.tarjetas;
->>>>>>> categoriaAgregarTarjeta
+        }
+
+        public bool yaExisteContra(Contra aBuscar)
+        {
+            return this.contras.Any(buscadora => buscadora.Equals(aBuscar));
         }
     }
 }
