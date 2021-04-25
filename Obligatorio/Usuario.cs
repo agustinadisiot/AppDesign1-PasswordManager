@@ -94,7 +94,7 @@ namespace Obligatorio
 
         public bool yaExisteContra(Contra contraIgual)
         {
-            return true;
+            return this.listaCategorias.Any(catBuscadora => catBuscadora.yaExisteContra(contraIgual));
         }
     }
 }
