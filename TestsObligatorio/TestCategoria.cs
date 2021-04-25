@@ -313,5 +313,24 @@ namespace TestsObligatorio
             Categoria c1 = new Categoria();
             Assert.AreEqual(true, c1.esListaTarjetasVacia());
         }
+
+
+        //Prueba si al agregar una tarjeta, esListaTarjetasVacia da false
+        [TestMethod]
+        public void testCategoriaEsListaContrasConContras()
+        {
+            Categoria c1 = new Categoria();
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = "1234567890876543",
+                Codigo = "567",
+                Nota = ""
+            };
+            c1.agregarTarjeta(tarjeta1);
+            Assert.AreEqual(false, c1.esListaTarjetasVacia());
+        }
+
     }
 }

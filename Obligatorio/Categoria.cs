@@ -9,11 +9,13 @@ namespace Obligatorio
         private string nombre;
         private bool noAgregoContra;
         private List<Contra> contras;
+        private bool noAgregoTarjeta;
 
         public Categoria()
         {
             noAgregoContra = true;
             contras = new List<Contra>();
+            noAgregoTarjeta = true;
         }
 
         public string Nombre
@@ -69,7 +71,12 @@ namespace Obligatorio
 
         public bool esListaTarjetasVacia()
         {
-            return true;
+            return this.noAgregoTarjeta;
+        }
+
+        public void agregarTarjeta(Tarjeta tarjeta)
+        {
+            this.noAgregoTarjeta = false; 
         }
     }
 }
