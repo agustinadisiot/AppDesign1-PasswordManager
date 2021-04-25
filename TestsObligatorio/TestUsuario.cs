@@ -347,22 +347,22 @@ namespace TestsObligatorio
         }
 
         //Prueba si al agregar una categoria y luego intentar modificar el nombre de otra categoria, que tire una excepcion.
-        //[TestMethod]
-        //public void testUsuarioModificarNombreCategoriaANombreExistente()
-        //{
-        //    Usuario u1 = new Usuario();
-        //    Categoria c1 = new Categoria()
-        //    {
-        //        Nombre = "Personal"
-        //    };
-        //    u1.agregarCategoria(c1);
-        //    Categoria c2 = new Categoria()
-        //    {
-        //        Nombre = "Trabajo"
-        //    };
-        //    u1.agregarCategoria(c2);
-        //    Assert.ThrowsException<ObjetoYaExistenteException>(() => u1.modificarNombreCategoria("Personal", "Trabajo"));
-        //}
+        [TestMethod]
+        public void testUsuarioModificarNombreCategoriaANombreExistente()
+        {
+            Usuario u1 = new Usuario();
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            u1.agregarCategoria(c1);
+            Categoria c2 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            u1.agregarCategoria(c2);
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => u1.modificarNombreCategoria("Personal", "Trabajo"));
+        }
     }
 
 }
