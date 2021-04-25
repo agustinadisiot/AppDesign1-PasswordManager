@@ -109,9 +109,9 @@ namespace Obligatorio
             return this.contras.Any(buscadora => buscadora.Equals(aBuscar));
         }
 
-        public bool yaExisteTarjeta(Tarjeta tarjetaIgual)
+        public bool yaExisteTarjeta(Tarjeta aBuscar)
         {
-            return true;
+            return this.tarjetas.Any(buscadora => buscadora.Equals(aBuscar));
         }
     }
 }
