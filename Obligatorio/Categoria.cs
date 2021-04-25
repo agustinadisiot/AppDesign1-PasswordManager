@@ -74,8 +74,10 @@ namespace Obligatorio
             return this.noAgregoTarjeta;
         }
 
-        public void agregarTarjeta(Tarjeta tarjeta)
+        public void agregarTarjeta(Tarjeta tarjetaIngresada)
         {
+            bool noTieneNombre = (tarjetaIngresada.Nombre == null);
+            if (noTieneNombre) throw new ObjetoIncompletoException();
             this.noAgregoTarjeta = false; 
         }
     }

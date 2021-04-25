@@ -359,5 +359,20 @@ namespace TestsObligatorio
             c1.agregarTarjeta(tarjeta2);
             Assert.AreEqual(false, c1.esListaTarjetasVacia());
         }
+
+        //Prueba si al ingresar una Tarjeta a la categoria sin Nombre, devuelve un error.
+        [TestMethod]
+        public void testCategoriaAgregarTarjetaSinNombre()
+        {
+            Categoria c1 = new Categoria();
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321",
+                Nota = ""
+            };
+            Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarTarjeta(tarjeta1));
+        }
     }
 }
