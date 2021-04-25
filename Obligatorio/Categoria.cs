@@ -108,5 +108,10 @@ namespace Obligatorio
         {
             return this.contras.Any(buscadora => buscadora.Equals(aBuscar));
         }
+
+        public bool yaExisteTarjeta(Tarjeta tarjetaIgual)
+        {
+            return true;
+        }
     }
 }

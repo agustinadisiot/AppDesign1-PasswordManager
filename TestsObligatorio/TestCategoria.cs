@@ -597,5 +597,30 @@ namespace TestsObligatorio
 
             Assert.AreEqual(true, tarjetas.SequenceEqual(categoria1.getListaTarjetas())); ;
         }
+
+
+        //Prueba que agregrega una tarjeta y despues pregunta si ya existe, devuelve true.
+        [TestMethod]
+        public void testCategoriaYaExisteTarjetaSiExistente()
+        {
+            Categoria categoria = new Categoria();
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321"
+            };
+            categoria.agregarTarjeta(tarjeta);
+            Tarjeta tarjetaIgual = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321"
+            };
+            Assert.AreEqual(true, categoria.yaExisteTarjeta(tarjetaIgual));
+        }
+
     }
 }
