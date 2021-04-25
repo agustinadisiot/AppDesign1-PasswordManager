@@ -321,6 +321,27 @@ namespace TestsObligatorio
             };
             Assert.AreEqual(true, categoria.yaExisteContra(contraIgual));
         }
+
+        //Prueba si al agregar una Contra y despues pregunta si ya existe una con diferente sitio, devuelve false.
+        [TestMethod]
+        public void testCategoriaYaExisteContraMismoUsuarioDiferenteSitio()
+        {
+            Categoria categoria = new Categoria();
+            Contra contra = new Contra()
+            {
+                Sitio = "www.ort.edu.uy",
+                UsuarioContra = "111111",
+                Clave = "12345678"
+            };
+            categoria.agregarContra(contra);
+            Contra contraIgual = new Contra()
+            {
+                Sitio = "www.youtube.com",
+                UsuarioContra = "111111",
+                Clave = "12345678"
+            };
+            Assert.AreEqual(false, categoria.yaExisteContra(contraIgual));
+        }
     }
 
 }

@@ -67,9 +67,9 @@ namespace Obligatorio
             return aIgualar.Nombre.ToUpper() == this.Nombre.ToUpper();
         }
 
-        public bool yaExisteContra(Contra contraIgual)
+        public bool yaExisteContra(Contra aBuscar)
         {
-            return true;
+            return this.contras.Any(buscadora => buscadora.Sitio == aBuscar.Sitio);
         }
     }
 }
