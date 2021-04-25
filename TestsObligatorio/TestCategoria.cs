@@ -389,5 +389,20 @@ namespace TestsObligatorio
             };
             Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarTarjeta(tarjeta1));
         }
+
+        //Prueba si al ingresar una Tarjeta a la categoria sin Numero, devuelve un error.
+        [TestMethod]
+        public void testCategoriaAgregarTarjetaSinNumero()
+        {
+            Categoria c1 = new Categoria();
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Codigo = "321",
+                Nota = ""
+            };
+            Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarTarjeta(tarjeta1));
+        }
     }
 }
