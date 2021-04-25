@@ -365,4 +365,45 @@ namespace TestsObligatorio
         }
     }
 
+
+    [TestClass]
+    public class TestUsuarioContra
+    {
+
+        //Prueba si al agregar una Contra y despues pregunta si ya existe, devuelve true.
+        [TestMethod]
+        public void testUsuarioYaExisteContraUnaCategoriaSiExistente()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            { 
+                Nombre = "Trabajo"
+            };
+            Contra contra = new Contra()
+            {
+                Sitio = "www.ort.edu.uy",
+                UsuarioContra = "111111",
+                Clave = "12345678"
+            };
+            categoria.agregarContra(contra);
+            usuario.agregarCategoria(categoria);
+            Contra contraIgual = new Contra()
+            {
+                Sitio = "www.ort.edu.uy",
+                UsuarioContra = "111111",
+                Clave = "12345678"
+            };
+            Assert.AreEqual(true, usuario.yaExisteContra(contraIgual));
+        }
+
+    }
 }
+
+
+
+
+
