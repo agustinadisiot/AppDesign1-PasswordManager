@@ -460,5 +460,30 @@ namespace TestsObligatorio
 
             Assert.AreEqual(tarjeta1, categoria1.getTarjeta("3456567890876543")); 
         }
+
+        //Prueba si al ingresar dos Tarjetas a la categoria devuelve la correcta al usar el get para la segunda.
+        [TestMethod]
+        public void testCategoriaGetTarjetaSegundaConDos()
+        {
+            Categoria categoria1 = new Categoria();
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321"
+            };
+            categoria1.agregarTarjeta(tarjeta1);
+            Tarjeta tarjeta2 = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = "1234567890876553",
+                Codigo = "789"
+            };
+            categoria1.agregarTarjeta(tarjeta2);
+
+            Assert.AreEqual(tarjeta2, categoria1.getTarjeta("1234567890876553"));
+        }
     }
 }
