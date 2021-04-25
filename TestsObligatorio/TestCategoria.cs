@@ -93,7 +93,6 @@ namespace TestsObligatorio
             };
             c1.agregarContra(contra1);
             Assert.AreEqual(false, c1.esListaContrasVacia());
-            Usuario u2 = new Usuario();
             Contra contra2 = new Contra()
             {
                 Sitio = "web.whatsapp.com",
@@ -332,5 +331,33 @@ namespace TestsObligatorio
             Assert.AreEqual(false, c1.esListaTarjetasVacia());
         }
 
+
+        //Prueba si al agregar dos tarjetas a una categoria, esListaTarjetasVacia sigue dando false
+        [TestMethod]
+        public void testCategoriaEsListaUsuariosTarjetasVaciaConDosTarjetas()
+        {
+            Categoria c1 = new Categoria();
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = "1234567890876543",
+                Codigo = "567",
+                Nota = ""
+
+            };
+            c1.agregarTarjeta(tarjeta1);
+            Assert.AreEqual(false, c1.esListaTarjetasVacia());
+            Tarjeta tarjeta2= new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321",
+                Nota = ""
+            };
+            c1.agregarTarjeta(tarjeta2);
+            Assert.AreEqual(false, c1.esListaTarjetasVacia());
+        }
     }
 }
