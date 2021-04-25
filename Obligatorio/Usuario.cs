@@ -96,5 +96,19 @@ namespace Obligatorio
         {
             return this.listaCategorias.Any(catBuscadora => catBuscadora.yaExisteContra(contraIgual));
         }
+
+        public void agregarContra(Contra contra, string categoria)
+        {
+            bool noTieneSitio = (contra.Sitio == null),
+                 noTieneClave = (contra.Clave == null),
+                 noTieneUsuario = (contra.UsuarioContra == null);
+
+
+            if (noTieneSitio || noTieneClave || noTieneUsuario) throw new ObjetoIncompletoException();
+            
+            if(this.yaExisteContra(contra)) throw new ObjetoYaExistenteException();
+
+            this.getCategoria(categoria).agregarContra(contra);
+        }
     }
 }
