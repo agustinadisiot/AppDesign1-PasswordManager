@@ -45,7 +45,10 @@ namespace Obligatorio
         public static string verificarStringDeNumerosYSuLargoDeXaY(string dato, int x, int y)
         {
             if (dato.Length < x || dato.Length > y) throw new LargoIncorrectoException();
-            foreach (int c in dato) if (c < 48 || c > 57) throw new CaracterInesperadoException();
+            foreach (char c in dato)
+            {
+                if (!VerificadoraString.esNumero(c)) throw new CaracterInesperadoException();
+            }
             return dato;
         }
 

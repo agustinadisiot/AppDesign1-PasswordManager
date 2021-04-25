@@ -40,14 +40,14 @@ namespace Obligatorio
             if(this.clave.Length < 14) return naranja;
 
             bool tieneMin = false, tieneMay = false, tieneNum = false, tieneSim = false;
-            foreach (int c in this.clave)
+            foreach (char c in this.clave)
             {
                 if (!tieneMay || !tieneMin || !tieneMin || !tieneSim)
                 {
-                    tieneMin = tieneMin || (c >= 97 && c <= 122);
-                    tieneMay = tieneMay || (c >= 65 && c <= 90);
-                    tieneNum = tieneNum || (c >= 48 && c <= 57);
-                    tieneSim = tieneSim || ((c >= 32 && c <= 47) || (c >= 58 && c <= 64) || (c >= 91 && c <= 96) || (c >= 123 && c <= 126));
+                    tieneMin = tieneMin || VerificadoraString.esMinuscula(c);
+                    tieneMay = tieneMay || VerificadoraString.esMayuscula(c);
+                    tieneNum = tieneNum || VerificadoraString.esNumero(c);
+                    tieneSim = tieneSim || VerificadoraString.esSimbolo(c);
                 }
                 else return verdeOscuro;
             }
