@@ -301,7 +301,7 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoIncorrectoException>(() => c1.Equals(falsaCategoria));
         }
 
-        //Prueba si al agregar una Contra y despues pregunta si ya existe, devuelve true.
+        //Prueba que agregrega una Contra y despues pregunta si ya existe, devuelve true.
         [TestMethod]
         public void testCategoriaYaExisteContraSiExistente()
         {
@@ -321,7 +321,7 @@ namespace TestsObligatorio
             Assert.AreEqual(true, categoria.yaExisteContra(contraIgual));
         }
 
-        //Prueba si al agregar una Contra y despues pregunta si ya existe una con diferente sitio, devuelve false.
+        //Prueba que agregrega una Contra y despues pregunta si ya existe una con diferente sitio, devuelve false.
         [TestMethod]
         public void testCategoriaYaExisteContraMismoUsuarioDiferenteSitio()
         {
@@ -333,16 +333,16 @@ namespace TestsObligatorio
                 Clave = "12345678"
             };
             categoria.agregarContra(contra);
-            Contra contraIgual = new Contra()
+            Contra contraDiferenteSitio = new Contra()
             {
                 Sitio = "www.youtube.com",
                 UsuarioContra = "111111",
                 Clave = "12345678"
             };
-            Assert.AreEqual(false, categoria.yaExisteContra(contraIgual));
+            Assert.AreEqual(false, categoria.yaExisteContra(contraDiferenteSitio));
         }
 
-        //Prueba si al agregar una Contra y despues pregunta si ya existe una con mismo sitio y diferente usuario, devuelve false.
+        //Prueba que agregrega una Contra y despues pregunta si ya existe una con mismo sitio y diferente usuario, devuelve false.
         [TestMethod]
         public void testCategoriaYaExisteContraMismoSitioDiferenteUsuario()
         {
@@ -354,16 +354,16 @@ namespace TestsObligatorio
                 Clave = "12345678"
             };
             categoria.agregarContra(contra);
-            Contra contraIgual = new Contra()
+            Contra contraDiferenteUsuario = new Contra()
             {
                 Sitio = "www.ort.edu.uy",
                 UsuarioContra = "222222",
                 Clave = "12345678"
             };
-            Assert.AreEqual(false, categoria.yaExisteContra(contraIgual));
+            Assert.AreEqual(false, categoria.yaExisteContra(contraDiferenteUsuario));
         }
 
-        //Prueba si al agregar una Contra y despues pregunta si ya existe una con mismo sitio y usuario, devuelve true a pesar de tener diferentes claves.
+        //Prueba que agregrega una Contra y despues pregunta si ya existe una con mismo sitio y usuario, devuelve true a pesar de tener diferentes claves.
         [TestMethod]
         public void testCategoriaYaExisteContraDiferentesClaves()
         {
@@ -375,13 +375,13 @@ namespace TestsObligatorio
                 Clave = "12345678"
             };
             categoria.agregarContra(contra);
-            Contra contraIgual = new Contra()
+            Contra contraDiferenteClave = new Contra()
             {
                 Sitio = "www.ort.edu.uy",
                 UsuarioContra = "111111",
-                Clave = "12345678"
+                Clave = "87654321"
             };
-            Assert.AreEqual(true, categoria.yaExisteContra(contraIgual));
+            Assert.AreEqual(true, categoria.yaExisteContra(contraDiferenteClave));
         }
     }
 
@@ -625,7 +625,7 @@ namespace TestsObligatorio
 
         //Prueba que agrega una Tarjeta y despues pregunta si ya existe una con diferente numero e igual nombre, tipo y codigo, devuelve false.
         [TestMethod]
-        public void testCategoriaYaExisteContraMismoUsuarioDiferenteSitio()
+        public void testCategoriaYaExisteTarjetaDiferenteNumero()
         {
 
             Categoria categoria = new Categoria();
@@ -645,6 +645,31 @@ namespace TestsObligatorio
                 Codigo = "321"
             };
             Assert.AreEqual(false, categoria.yaExisteTarjeta(tarjetaDistintoNumero));
+        }
+
+
+        //Prueba que agrega una Tarjeta y despues pregunta si ya existe una con diferente nombre e igual numero, tipo y codigo, devuelve false.
+        [TestMethod]
+        public void testCategoriaYaExisteTarjetaDiferenteNombre()
+        {
+
+            Categoria categoria = new Categoria();
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321"
+            };
+            categoria.agregarTarjeta(tarjeta);
+            Tarjeta tarjetaDistintoNombre = new Tarjeta()
+            {
+                Nombre = "Visa",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321"
+            };
+            Assert.AreEqual(true, categoria.yaExisteTarjeta(tarjetaDistintoNombre));
         }
 
     }
