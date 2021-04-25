@@ -579,7 +579,29 @@ namespace TestsObligatorio
                 Clave = "12345678"
             };
             usuario.agregarCategoria(categoria);
-            usuario.agregarContra(contra);
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarContra(contra));
+        }
+
+
+        //Prueba si al ingresar una Contra a la categoria en un usuario sin clave, devuelve un error.
+        [TestMethod]
+        public void testUsuarioAgregarContraSinClave()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Contra contra = new Contra()
+            {
+                Sitio = "www.ort.edu.uy",
+                UsuarioContra = "111111"
+            };
+            usuario.agregarCategoria(categoria);
             Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarContra(contra));
         }
 
