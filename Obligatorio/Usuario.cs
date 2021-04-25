@@ -105,6 +105,10 @@ namespace Obligatorio
 
         public void agregarContra(Contra contra)
         {
+            bool noTieneSitio = (contra.Sitio == null);
+
+
+            if (noTieneSitio) throw new ObjetoIncompletoException();
             this.contraAgregada = true;
         }
     }
