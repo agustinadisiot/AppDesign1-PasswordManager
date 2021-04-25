@@ -76,8 +76,8 @@ namespace Obligatorio
 
         public void agregarTarjeta(Tarjeta tarjetaIngresada)
         {
-            bool noTieneNombre = (tarjetaIngresada.Nombre == null);
-            if (noTieneNombre) throw new ObjetoIncompletoException();
+            bool noTieneNombre = (tarjetaIngresada.Nombre == null), noTieneSitio = (tarjetaIngresada.Tipo == null);
+            if (noTieneNombre || noTieneSitio) throw new ObjetoIncompletoException();
             this.noAgregoTarjeta = false; 
         }
     }
