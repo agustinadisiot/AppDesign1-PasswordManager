@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Obligatorio
 {
@@ -44,6 +45,9 @@ namespace Obligatorio
             else 
             {
                 this.noAgregoCategorias = false;
+                if (this.listaCategorias.Any(buscadora => buscadora.Equals(c1))) {
+                    throw new ObjetoYaExistenteException();
+                }
                 this.listaCategorias.Add(c1);
             }
            

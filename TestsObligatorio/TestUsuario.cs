@@ -207,6 +207,26 @@ namespace TestsObligatorio
         }
 
 
+        //Prueba si al agregar una categorias y despues intentar agregar otra categoria con el mismo nombre tire una excepcion.
+        [TestMethod]
+        public void testUsuarioAgregarCategoriaYaExistente()
+        {
+            Usuario u1 = new Usuario();
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            u1.agregarCategoria(c1);
+            Categoria c2 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => u1.agregarCategoria(c2));
+        }
+
+
+
         //Prueba de comparar dos Usuarios con mismo Nombre  da true el equals
         [TestMethod]
         public void testUsuarioEqualsMismoNombreYContra()
