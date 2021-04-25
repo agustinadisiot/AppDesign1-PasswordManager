@@ -10,7 +10,6 @@ namespace Obligatorio
         private string contraMaestra;
         private bool noAgregoCategorias;
         private List<Categoria> listaCategorias;
-        private bool contraAgregada;
 
 
         public Usuario()
@@ -113,7 +112,8 @@ namespace Obligatorio
             if (noTieneSitio || noTieneClave || noTieneUsuario) throw new ObjetoIncompletoException();
             
             if(this.yaExisteContra(contra)) throw new ObjetoYaExistenteException();
-            this.contraAgregada = true;
+
+            this.getCategoria(categoria).agregarContra(contra);
         }
     }
 }
