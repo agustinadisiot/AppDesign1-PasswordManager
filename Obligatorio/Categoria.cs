@@ -10,12 +10,14 @@ namespace Obligatorio
         private bool noAgregoContra;
         private List<Contra> contras;
         private bool noAgregoTarjeta;
+        private List<Tarjeta> tarjetas;
 
         public Categoria()
         {
             noAgregoContra = true;
             contras = new List<Contra>();
             noAgregoTarjeta = true;
+            tarjetas = new List<Tarjeta>();
         }
 
         public string Nombre
@@ -81,16 +83,25 @@ namespace Obligatorio
                 noTieneNumero = (tarjetaIngresada.Numero == null),
                 noTieneCodigo = (tarjetaIngresada.Codigo == null);
             if (noTieneNombre || noTieneSitio || noTieneNumero || noTieneCodigo) throw new ObjetoIncompletoException();
-            this.noAgregoTarjeta = false; 
+
+            this.noAgregoTarjeta = false;
+            this.tarjetas.Add(tarjetaIngresada);
         }
 
         public Tarjeta getTarjeta(string numeroABuscar)
         {
-            Tarjeta tarjeta1 = new Tarjeta()
+            Predicate<Tarjeta> buscadorTarjeta = (Tarjeta tarjeta) =>
             {
-                Numero = numeroABuscar
+                return tarjeta.Numero == numeroABuscar;
             };
-        return tarjeta1;
+
+            Tarjeta retorno = this.tarjetas.Find(buscadorTarjeta);
+            return retorno != null ? retorno : throw new ObjetoInexistenteException();
+        }
+
+        public List<Tarjeta> getListaTarjetas()
+        {
+            return this.tarjetas;
         }
     }
 }
