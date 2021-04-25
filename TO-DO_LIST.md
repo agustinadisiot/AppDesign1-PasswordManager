@@ -9,7 +9,7 @@
 ## AdminContras
 
 ### Agregar 
-- [ ] Usuario
+- [ ] Agregar Usuario
 
 
 ---
@@ -17,7 +17,7 @@
 
 ### Modificar
 - [ ] Modificar Contraseña
-- [ ] Modificar Categoria
+- [X] Modificar Categoria
 
 ### Eliminar
 - [ ] Eliminar Contraseña
@@ -32,7 +32,6 @@
 
 ### Modificar
 - [ ] Modificar Contraseña
-- [ ] Modificar Categoria
 
 ### Agregar 
 - [ ] Agregar Tarjeta
