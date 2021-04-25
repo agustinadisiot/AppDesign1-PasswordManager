@@ -303,4 +303,15 @@ namespace TestsObligatorio
         }
     }
 
+    [TestClass]
+    public class TestCategoriaTarjeta
+    {
+        //Prueba si al comenzar la Categoria tiene una lista vacía de tarjetas guardadas. 
+        [TestMethod]
+        public void testCategoriaEsListaTarjetasVacia()
+        {
+            Categoria c1 = new Categoria();
+            Assert.AreEqual(true, c1.esListaTarjetasVacia());
+        }
+    }
 }

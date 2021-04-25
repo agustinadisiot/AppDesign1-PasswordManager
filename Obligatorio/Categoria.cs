@@ -66,5 +66,10 @@ namespace Obligatorio
             Categoria aIgualar = (Categoria)obj;
             return aIgualar.Nombre.ToUpper() == this.Nombre.ToUpper();
         }
+
+        public bool esListaTarjetasVacia()
+        {
+            return true;
+        }
     }
 }
