@@ -260,6 +260,24 @@ namespace TestsObligatorio
             String falsoUsuario = "Usuario123";
             Assert.ThrowsException<ObjetoIncorrectoException>(() => u1.Equals(falsoUsuario));
         }
+
+
+        //Prueba si al agregar una categoria y luego modificar el nombre, efectivamente lo modifique.
+        [TestMethod]
+        public void testUsuarioModificarNombreCategoriaAgregada()
+        {
+            Usuario u1 = new Usuario();
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            u1.agregarCategoria(c1);
+
+            u1.modificarNombreCategoria("Personal", "Trabajo");
+
+
+            Assert.AreEqual("Trabajo", u1.getCategoria("Trabajo").Nombre);
+        }
     }
 
 }

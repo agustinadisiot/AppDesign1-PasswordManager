@@ -65,5 +65,11 @@ namespace Obligatorio
             Usuario aIgualar = (Usuario)obj;
             return aIgualar.Nombre == this.Nombre;
         }
+
+        public void modificarNombreCategoria(string nombreViejo, string nombreNuevo)
+        {
+            Categoria aBuscar = this.getCategoria(nombreViejo);
+            aBuscar.Nombre = nombreNuevo;
+        }
     }
 }
