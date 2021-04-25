@@ -15,7 +15,6 @@ namespace Obligatorio
         public Usuario()
         {
             noAgregoCategorias = true;
-            contraAgregada = false;
             this.listaCategorias = new List<Categoria>();
         }
 
@@ -95,11 +94,7 @@ namespace Obligatorio
 
         public bool yaExisteContra(Contra contraIgual)
         {
-            if (this.contraAgregada) return true;
-            else
-            {
-                return this.listaCategorias.Any(catBuscadora => catBuscadora.yaExisteContra(contraIgual));
-            }
+            return this.listaCategorias.Any(catBuscadora => catBuscadora.yaExisteContra(contraIgual));
         }
 
         public void agregarContra(Contra contra, string categoria)
