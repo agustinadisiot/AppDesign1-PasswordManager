@@ -92,9 +92,9 @@ namespace Obligatorio
             return this.listaCategorias.Any(buscadora => buscadora.Equals(aBuscar));
         }
 
-        public bool yaExisteContra(Contra contraIgual)
+        public bool yaExisteContra(Contra contra)
         {
-            return this.listaCategorias.Any(catBuscadora => catBuscadora.yaExisteContra(contraIgual));
+            return this.listaCategorias.Any(catBuscadora => catBuscadora.yaExisteContra(contra));
         }
 
         public void agregarContra(Contra contra, string categoria)
@@ -111,9 +111,9 @@ namespace Obligatorio
             this.getCategoria(categoria).agregarContra(contra);
         }
 
-        public bool yaExisteTarjeta(Tarjeta tarjetaIgual)
+        public bool yaExisteTarjeta(Tarjeta tarjeta)
         {
-            return true;
+            return this.listaCategorias.Any(catBuscadora => catBuscadora.yaExisteTarjeta(tarjeta));
         }
     }
 }
