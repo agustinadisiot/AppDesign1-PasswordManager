@@ -278,6 +278,20 @@ namespace TestsObligatorio
 
             Assert.AreEqual("Trabajo", u1.getCategoria("Trabajo").Nombre);
         }
+
+
+        //Prueba si al agregar una categoria y luego intentar modificar el nombre de otra categoria, que tire una excepcion.
+        [TestMethod]
+        public void testUsuarioModificarNombreCategoriaNoExistente()
+        {
+            Usuario u1 = new Usuario();
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            u1.agregarCategoria(c1);
+            Assert.ThrowsException<ObjetoInexistenteException>(() => u1.modificarNombreCategoria("Facultad", "Trabajo"));
+        }
     }
 
 }
