@@ -78,8 +78,9 @@ namespace Obligatorio
         {
             bool noTieneNombre = (tarjetaIngresada.Nombre == null),
                 noTieneSitio = (tarjetaIngresada.Tipo == null),
-                noTieneNumero = (tarjetaIngresada.Numero == null);
-            if (noTieneNombre || noTieneSitio || noTieneNumero) throw new ObjetoIncompletoException();
+                noTieneNumero = (tarjetaIngresada.Numero == null),
+                noTieneCodigo = (tarjetaIngresada.Codigo == null);
+            if (noTieneNombre || noTieneSitio || noTieneNumero || noTieneCodigo) throw new ObjetoIncompletoException();
             this.noAgregoTarjeta = false; 
         }
     }
