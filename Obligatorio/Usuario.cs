@@ -71,9 +71,20 @@ namespace Obligatorio
 
         public void modificarNombreCategoria(string nombreViejo, string nombreNuevo)
         {
-            //.getCategoria tira una Excepcion de OBjetoInexistenteException si no existe la categoria buscada.
-            Categoria aBuscar = this.getCategoria(nombreViejo);
-            aBuscar.Nombre = nombreNuevo;
+            Categoria buscadora = new Categoria(){ Nombre = nombreNuevo };
+
+            if (this.yaExisteCategoria(buscadora))
+            {
+                throw new ObjetoYaExistenteException();
+            }
+            else {
+                //.getCategoria tira una Excepcion de OBjetoInexistenteException si no existe la categoria buscada.
+                Categoria aBuscar = this.getCategoria(nombreViejo);
+                aBuscar.Nombre = nombreNuevo;
+            }
+
+
+            
         }
 
         public bool yaExisteCategoria(Categoria aBuscar)
