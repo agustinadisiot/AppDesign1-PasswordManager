@@ -69,7 +69,7 @@ namespace Obligatorio
 
         public bool yaExisteContra(Contra aBuscar)
         {
-            return this.contras.Any(buscadora => buscadora.Sitio == aBuscar.Sitio);
+            return this.contras.Any(buscadora => buscadora.Equals(aBuscar));
         }
     }
 }
