@@ -648,7 +648,7 @@ namespace TestsObligatorio
         }
 
 
-        //Prueba que agrega una Tarjeta y despues pregunta si ya existe una con diferente nombre e igual numero, tipo y codigo, devuelve false.
+        //Prueba que agrega una Tarjeta y despues pregunta si ya existe una con diferente nombre e igual numero, tipo y codigo, devuelve true.
         [TestMethod]
         public void testCategoriaYaExisteTarjetaDiferenteNombre()
         {
@@ -673,7 +673,7 @@ namespace TestsObligatorio
         }
 
 
-        //Prueba que agrega una Tarjeta y despues pregunta si ya existe una con diferente tipo e igual nombre, numero y codigo, devuelve false.
+        //Prueba que agrega una Tarjeta y despues pregunta si ya existe una con diferente tipo e igual nombre, numero y codigo, devuelve true.
         [TestMethod]
         public void testCategoriaYaExisteTarjetaDiferenteTipo()
         {
@@ -693,6 +693,31 @@ namespace TestsObligatorio
                 Tipo = "Mastercard Gold",
                 Numero = "3456567890876543",
                 Codigo = "321"
+            };
+            Assert.AreEqual(true, categoria.yaExisteTarjeta(tarjetaDistintoTipo));
+        }
+
+
+        //Prueba que agrega una Tarjeta y despues pregunta si ya existe una con diferente codigo e igual nombre, numero y tipo, devuelve true.
+        [TestMethod]
+        public void testCategoriaYaExisteTarjetaDiferenteCodigo()
+        {
+
+            Categoria categoria = new Categoria();
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321"
+            };
+            categoria.agregarTarjeta(tarjeta);
+            Tarjeta tarjetaDistintoTipo = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "123"
             };
             Assert.AreEqual(true, categoria.yaExisteTarjeta(tarjetaDistintoTipo));
         }
