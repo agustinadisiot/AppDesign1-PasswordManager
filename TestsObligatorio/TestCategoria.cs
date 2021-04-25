@@ -419,5 +419,21 @@ namespace TestsObligatorio
             };
             Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarTarjeta(tarjeta1));
         }
+
+        //Prueba si al ingresar una Tarjeta a la categoria devuelve la correcta al usar el get.
+        [TestMethod]
+        public void testCategoriaGetContra()
+        {
+            Categoria categoria1 = new Categoria();
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321"
+            };
+            categoria1.agregarTarjeta(tarjeta1);
+            Assert.AreEqual(tarjeta1, categoria1.getTarjeta("3456567890876543")); 
+        }
     }
 }

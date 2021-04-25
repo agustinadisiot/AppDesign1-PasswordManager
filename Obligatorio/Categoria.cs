@@ -83,5 +83,14 @@ namespace Obligatorio
             if (noTieneNombre || noTieneSitio || noTieneNumero || noTieneCodigo) throw new ObjetoIncompletoException();
             this.noAgregoTarjeta = false; 
         }
+
+        public Tarjeta getTarjeta(string numeroABuscar)
+        {
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Numero = numeroABuscar
+            };
+        return tarjeta1;
+        }
     }
 }
