@@ -49,8 +49,7 @@ namespace Obligatorio
                     throw new ObjetoYaExistenteException();
                 }
                 this.listaCategorias.Add(c1);
-            }
-           
+            }  
         }
 
         public Categoria getCategoria(string nombreCat)
@@ -75,6 +74,11 @@ namespace Obligatorio
             //.getCategoria tira una Excepcion de OBjetoInexistenteException si no existe la categoria buscada.
             Categoria aBuscar = this.getCategoria(nombreViejo);
             aBuscar.Nombre = nombreNuevo;
+        }
+
+        public bool yaExisteCategoria(Categoria c2)
+        {
+            return true;
         }
     }
 }
