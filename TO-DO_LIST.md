@@ -11,9 +11,15 @@
 ### Agregar 
 - [ ] Agregar Usuario
 
-
+### YaExiste
+- [ ] Usuario
 ---
 ## Usuario
+
+### Get
+- [ ] Get Contraseña
+- [ ] Get Tarjeta
+- [X] Get Categoria
 
 ### Modificar
 - [ ] Modificar Contraseña
@@ -27,8 +33,17 @@
 - [X] Agregar Contraseña
 - [ ] Agregar Tarjeta
 
+### YaExiste
+- [X] YaExiste Contraseña
+- [X] YaExiste Tarjeta
+- [X] YaExiste Categoria
+
 ---
 ## Categoria
+
+### Get
+- [X] Get Contraseña
+- [X] Get Tarjeta
 
 ### Modificar
 - [ ] Modificar Contraseña
@@ -39,3 +54,7 @@
 ### Eliminar 
 - [ ] Eliminar Contraseña
 - [ ] Eliminar Tarjeta
+
+### YaExiste
+- [X] YaExiste Contraseña
+- [X] YaExiste Tarjeta
