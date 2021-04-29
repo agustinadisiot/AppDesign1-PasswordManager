@@ -124,9 +124,12 @@ namespace Obligatorio
         {
             bool noTieneNombre = (tarjeta.Nombre == null),
             noTieneSitio = (tarjeta.Tipo == null),
-            noTieneNumero = (tarjeta.Numero == null);
+            noTieneNumero = (tarjeta.Numero == null),
+            noTieneCodigo = (tarjeta.Codigo == null);
 
-            if (noTieneNombre || noTieneSitio || noTieneNumero) throw new ObjetoIncompletoException();
+            if (noTieneNombre || noTieneSitio || noTieneNumero || noTieneCodigo) throw new ObjetoIncompletoException();
+
+            if (this.yaExisteTarjeta(tarjeta)) throw new ObjetoYaExistenteException();
             this.tarjetaAgregada = true;
         }
     }

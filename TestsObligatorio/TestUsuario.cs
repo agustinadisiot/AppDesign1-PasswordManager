@@ -990,5 +990,55 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
         }
 
+
+        //Prueba si al agregar una Tarjeta sin codigo a una categoria en usuario, devuelve un error.
+        [TestMethod]
+        public void testUsuarioAgregarTarjetaSinCodigo()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543"
+            };
+            usuario.agregarCategoria(categoria);
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
+        }
+
+
+        //Prueba si al agregar una Tarjeta repetida a una categoria en usuario, devuelve un error.
+        [TestMethod]
+        public void testUsuarioAgregarTarjetaRepetida()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321"
+            };
+            usuario.agregarCategoria(categoria);
+            usuario.agregarTarjeta(tarjeta, "Trabajo");
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
+        }
+
     }
 }
