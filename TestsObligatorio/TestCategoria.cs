@@ -383,6 +383,25 @@ namespace TestsObligatorio
             };
             Assert.AreEqual(true, categoria.yaExisteContra(contraDiferenteClave));
         }
+
+
+        //Prueba de borrar una Contra a una Categoria vacia, y deberia tirar una excepcion.
+        [TestMethod]
+        public void testCategoriaBorrarContraCategoriaVacia()
+        {
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            String usuarioContra = "222222";
+            String paginaContra = "www.ort.edu.uy";
+            
+
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.borrarContra(paginaContra, usuarioContra));
+        }
+
     }
 
     [TestClass]

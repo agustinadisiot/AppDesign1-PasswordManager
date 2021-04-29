@@ -45,6 +45,10 @@ namespace Obligatorio
             this.contras.Add(contraIngresada);
         }
 
+        public void borrarContra(string paginaContra, string usuarioContra)
+        {
+            throw new ObjetoInexistenteException();
+        }
         public Contra getContra(string sitioABuscar, string usuarioABuscar)
         {
 
@@ -113,5 +117,7 @@ namespace Obligatorio
         {
             return this.tarjetas.Any(buscadora => buscadora.Equals(aBuscar));
         }
+
+       
     }
 }
