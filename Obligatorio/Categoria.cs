@@ -11,6 +11,7 @@ namespace Obligatorio
         private List<Contra> contras;
         private bool noAgregoTarjeta;
         private List<Tarjeta> tarjetas;
+        private bool borroTarjeta;
 
         public Categoria()
         {
@@ -18,6 +19,7 @@ namespace Obligatorio
             contras = new List<Contra>();
             noAgregoTarjeta = true;
             tarjetas = new List<Tarjeta>();
+            borroTarjeta = false;
         }
 
         public string Nombre
@@ -111,12 +113,20 @@ namespace Obligatorio
 
         public bool yaExisteTarjeta(Tarjeta aBuscar)
         {
+            if (this.borroTarjeta)
+            {
+                return false;
+            }
             return this.tarjetas.Any(buscadora => buscadora.Equals(aBuscar));
         }
 
-        public void borrarTarjeta(string nroTarjeta)
+        public void borrarTarjeta(Tarjeta tarjetaABorrar)
         {
-            throw new ObjetoInexistenteException();
+            if (this.noAgregoTarjeta)
+            {
+                throw new ObjetoInexistenteException();
+            }
+            this.borroTarjeta = true;
         }
     }
 }
