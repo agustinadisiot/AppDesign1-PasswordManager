@@ -50,7 +50,7 @@
 - [ ] Modificar Tarjeta
 
 ### Agregar 
-- [ ] Agregar Tarjeta
+- [X] Agregar Tarjeta
 
 ### Eliminar 
 - [ ] Eliminar Contraseña
