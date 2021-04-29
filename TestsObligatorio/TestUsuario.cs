@@ -653,7 +653,7 @@ namespace TestsObligatorio
         }
 
 
-        //Prueba si al ingresar una Contra a una categoria en el usuario, confirma que sa categoria tiene una contra. 
+        //Prueba si al ingresar una Contra a una categoria en el usuario, confirma que esa categoria tiene una contra. 
         [TestMethod]
         public void testUsuarioAgregarContraCategoriaConContra()
         {
@@ -892,6 +892,179 @@ namespace TestsObligatorio
             Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjetaIgual));
         }
 
+
+        //Prueba si al agregar una Tarjeta a una categoria en usuario, yaExisteContra da true.
+        [TestMethod]
+        public void testUsuarioAgregarTarjeta()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321"
+            };
+            usuario.agregarCategoria(categoria);
+            usuario.agregarTarjeta(tarjeta, "Trabajo");
+            Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjeta));
+        }
+
+
+        //Prueba si al agregar una Tarjeta sin nombre a una categoria en usuario, devuelve un error.
+        [TestMethod]
+        public void testUsuarioAgregarTarjetaSinNombre()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321"
+            };
+            usuario.agregarCategoria(categoria);
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
+        }
+
+
+        //Prueba si al agregar una Tarjeta sin tipo a una categoria en usuario, devuelve un error.
+        [TestMethod]
+        public void testUsuarioAgregarTarjetaSinTipo()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Numero = "3456567890876543",
+                Codigo = "321"
+            };
+            usuario.agregarCategoria(categoria);
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
+        }
+
+
+        //Prueba si al agregar una Tarjeta sin numero a una categoria en usuario, devuelve un error.
+        [TestMethod]
+        public void testUsuarioAgregarTarjetaSinNumero()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Codigo = "321"
+            };
+            usuario.agregarCategoria(categoria);
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
+        }
+
+
+        //Prueba si al agregar una Tarjeta sin codigo a una categoria en usuario, devuelve un error.
+        [TestMethod]
+        public void testUsuarioAgregarTarjetaSinCodigo()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543"
+            };
+            usuario.agregarCategoria(categoria);
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
+        }
+
+
+        //Prueba si al agregar una Tarjeta repetida a una categoria en usuario, devuelve un error.
+        [TestMethod]
+        public void testUsuarioAgregarTarjetaRepetida()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321"
+            };
+            usuario.agregarCategoria(categoria);
+            usuario.agregarTarjeta(tarjeta, "Trabajo");
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
+        }
+
+
+        //Prueba si al ingresar una tarjeta a una categoria en el usuario, confirma que esa categoria tiene una tarjeta.
+        [TestMethod]
+        public void testUsuarioAgregarTarjetaCategoriaConTarjeta()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321"
+            };
+            usuario.agregarCategoria(categoria);
+            usuario.agregarTarjeta(tarjeta, "Trabajo");
+            Assert.AreEqual(true, usuario.getCategoria("Trabajo").yaExisteTarjeta(tarjeta));
+        }
 
     }
 }

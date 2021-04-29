@@ -9,6 +9,7 @@ namespace Obligatorio
         private string nombre;
         private string contraMaestra;
         private bool noAgregoCategorias;
+
         private List<Categoria> listaCategorias;
 
 
@@ -114,6 +115,20 @@ namespace Obligatorio
         public bool yaExisteTarjeta(Tarjeta tarjeta)
         {
             return this.listaCategorias.Any(catBuscadora => catBuscadora.yaExisteTarjeta(tarjeta));
+        }
+
+        public void agregarTarjeta(Tarjeta tarjeta, string categoria)
+        {
+            bool noTieneNombre = (tarjeta.Nombre == null),
+            noTieneSitio = (tarjeta.Tipo == null),
+            noTieneNumero = (tarjeta.Numero == null),
+            noTieneCodigo = (tarjeta.Codigo == null);
+
+            if (noTieneNombre || noTieneSitio || noTieneNumero || noTieneCodigo) throw new ObjetoIncompletoException();
+
+            if (this.yaExisteTarjeta(tarjeta)) throw new ObjetoYaExistenteException();
+
+            this.getCategoria(categoria).agregarTarjeta(tarjeta);
         }
     }
 }
