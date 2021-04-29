@@ -11,12 +11,14 @@ namespace Obligatorio
         private List<Contra> contras;
         private bool noAgregoTarjeta;
         private List<Tarjeta> tarjetas;
+        private bool borroContra;
 
         public Categoria()
         {
             noAgregoContra = true;
             contras = new List<Contra>();
             noAgregoTarjeta = true;
+            borroContra = false;
             tarjetas = new List<Tarjeta>();
         }
 
@@ -47,7 +49,10 @@ namespace Obligatorio
 
         public void borrarContra(string paginaContra, string usuarioContra)
         {
-            throw new ObjetoInexistenteException();
+            if (noAgregoContra) {
+                throw new ObjetoInexistenteException();
+            }
+            borroContra = true;
         }
         public Contra getContra(string sitioABuscar, string usuarioABuscar)
         {
@@ -110,6 +115,11 @@ namespace Obligatorio
 
         public bool yaExisteContra(Contra aBuscar)
         {
+            if (borroContra)
+            {
+                return false;
+            }
+
             return this.contras.Any(buscadora => buscadora.Equals(aBuscar));
         }
 
