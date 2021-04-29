@@ -808,7 +808,7 @@ namespace TestsObligatorio
             Assert.AreEqual(true, categoria.yaExisteTarjeta(tarjetaIgual));
         }
 
-        //Prueba que agrega una Tarjeta y despues pregunta si ya existe una con diferente numero e igual nombre, tipo y codigo, devuelve false.
+        //Prueba que agrega una Tarjeta y despues pregunta si ya existe una con diferente numero e igual nombre, tipo, vencimiento y codigo, devuelve false.
         [TestMethod]
         public void CategoriaYaExisteTarjetaDiferenteNumero()
         {
@@ -834,7 +834,7 @@ namespace TestsObligatorio
             Assert.AreEqual(false, categoria.yaExisteTarjeta(tarjetaDistintoNumero));
         }
 
-        //Prueba que agrega una Tarjeta y despues pregunta si ya existe una con diferente nombre e igual numero, tipo y codigo, devuelve true.
+        //Prueba que agrega una Tarjeta y despues pregunta si ya existe una con diferente nombre e igual numero, tipo, vencimiento y codigo, devuelve true.
         [TestMethod]
         public void CategoriaYaExisteTarjetaDiferenteNombre()
         {
@@ -860,7 +860,7 @@ namespace TestsObligatorio
             Assert.AreEqual(true, categoria.yaExisteTarjeta(tarjetaDistintoNombre));
         }
 
-        //Prueba que agrega una Tarjeta y despues pregunta si ya existe una con diferente tipo e igual nombre, numero y codigo, devuelve true.
+        //Prueba que agrega una Tarjeta y despues pregunta si ya existe una con diferente tipo e igual nombre, numero, vencimiento y codigo, devuelve true.
         [TestMethod]
         public void CategoriaYaExisteTarjetaDiferenteTipo()
         {
@@ -886,7 +886,7 @@ namespace TestsObligatorio
             Assert.AreEqual(true, categoria.yaExisteTarjeta(tarjetaDistintoTipo));
         }
 
-        //Prueba que agrega una Tarjeta y despues pregunta si ya existe una con diferente codigo e igual nombre, numero y tipo, devuelve true.
+        //Prueba que agrega una Tarjeta y despues pregunta si ya existe una con diferente codigo e igual nombre, numero, vencimiento y tipo, devuelve true.
         [TestMethod]
         public void CategoriaYaExisteTarjetaDiferenteCodigo()
         {
@@ -912,5 +912,30 @@ namespace TestsObligatorio
             Assert.AreEqual(true, categoria.yaExisteTarjeta(tarjetaDistintoTipo));
         }
 
+        //Prueba que agrega una Tarjeta y despues pregunta si ya existe una con diferente vencimiento e igual nombre, numero, codigo y tipo, devuelve true.
+        [TestMethod]
+        public void CategoriaYaExisteTarjetaDiferenteVencimiento()
+        {
+
+            Categoria categoria = new Categoria();
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            categoria.agregarTarjeta(tarjeta);
+            Tarjeta tarjetaDistintoTipo = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "123",
+                Vencimiento = new DateTime(2026, 9, 2)
+            };
+            Assert.AreEqual(true, categoria.yaExisteTarjeta(tarjetaDistintoTipo));
+        }
     }
 }
