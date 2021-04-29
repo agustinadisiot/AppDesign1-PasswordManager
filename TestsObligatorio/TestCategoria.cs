@@ -429,7 +429,29 @@ namespace TestsObligatorio
             Assert.IsFalse(categoria.yaExisteContra(contra));
         }
 
+        //Prueba de borrar una Contra a una Categoria y se fija si esListaContraVacia da true.
+        [TestMethod]
+        public void testCategoriaEsListaContrasVaciaDespuesDeBorrar()
+        {
 
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            String usuarioContra = "222222";
+            String paginaContra = "www.ort.edu.uy";
+            Contra contra = new Contra()
+            {
+                UsuarioContra = usuarioContra,
+                Sitio = paginaContra,
+                Clave = "1234AbC$"
+            };
+
+            categoria.agregarContra(contra);
+            categoria.borrarContra(paginaContra, usuarioContra);
+            Assert.IsTrue(categoria.esListaContrasVacia());
+        }
     }
 
     [TestClass]

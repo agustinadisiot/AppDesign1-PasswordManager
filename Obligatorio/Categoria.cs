@@ -31,7 +31,7 @@ namespace Obligatorio
 
         public bool esListaContrasVacia()
         {
-            return noAgregoContra;
+            return this.noAgregoContra || this.borroContra;
         }
 
         public void agregarContra(Contra contraIngresada)
