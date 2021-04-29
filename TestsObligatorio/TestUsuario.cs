@@ -893,5 +893,30 @@ namespace TestsObligatorio
         }
 
 
+        //Prueba si al agregar una Tarjeta a una categoria en usuario, yaExisteContra da true
+        [TestMethod]
+        public void testUsuarioAgregarTarjeta()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321"
+            };
+            usuario.agregarCategoria(categoria);
+            usuario.agregarTarjeta(tarjeta, "Trabajo");
+            Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjeta));
+        }
+
     }
 }

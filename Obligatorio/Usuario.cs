@@ -9,12 +9,15 @@ namespace Obligatorio
         private string nombre;
         private string contraMaestra;
         private bool noAgregoCategorias;
+        private bool tarjetaAgregada;
+
         private List<Categoria> listaCategorias;
 
 
         public Usuario()
         {
             noAgregoCategorias = true;
+            tarjetaAgregada = false;
             this.listaCategorias = new List<Categoria>();
         }
 
@@ -113,7 +116,13 @@ namespace Obligatorio
 
         public bool yaExisteTarjeta(Tarjeta tarjeta)
         {
+            if (tarjetaAgregada) return true;
             return this.listaCategorias.Any(catBuscadora => catBuscadora.yaExisteTarjeta(tarjeta));
+        }
+
+        public void agregarTarjeta(Tarjeta tarjeta, string v)
+        {
+            this.tarjetaAgregada = true;
         }
     }
 }
