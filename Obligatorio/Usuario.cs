@@ -83,9 +83,6 @@ namespace Obligatorio
                 Categoria aBuscar = this.getCategoria(nombreViejo);
                 aBuscar.Nombre = nombreNuevo;
             }
-
-
-            
         }
 
         public bool yaExisteCategoria(Categoria aBuscar)
