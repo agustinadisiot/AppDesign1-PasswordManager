@@ -722,6 +722,22 @@ namespace TestsObligatorio
             Assert.AreEqual(true, categoria.yaExisteTarjeta(tarjetaDistintoTipo));
         }
 
+        //Prueba si al ingresar una Tarjeta ya existente a la categoria tira una excepcion.
+        [TestMethod]
+        public void testCategoriaAgregarTarjetaYaExistente()
+        {
+            Categoria categoria = new Categoria();
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = "1234567890876543",
+                Codigo = "345"
+            };
+            categoria.agregarTarjeta(tarjeta);
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => categoria.agregarTarjeta(tarjeta));
+        }
+
         //Prueba de borrar una tarjeta de una Categoria vacia
         [TestMethod]
         public void testCategoriaBorrarTarjetaCategoriaVacia()

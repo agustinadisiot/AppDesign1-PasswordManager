@@ -85,7 +85,7 @@ namespace Obligatorio
                 noTieneNumero = (tarjetaIngresada.Numero == null),
                 noTieneCodigo = (tarjetaIngresada.Codigo == null);
             if (noTieneNombre || noTieneSitio || noTieneNumero || noTieneCodigo) throw new ObjetoIncompletoException();
-
+            if (this.yaExisteTarjeta(tarjetaIngresada)) throw new ObjetoYaExistenteException();
             this.noAgregoTarjeta = false;
             this.tarjetas.Add(tarjetaIngresada);
         }
