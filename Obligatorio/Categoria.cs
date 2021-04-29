@@ -40,7 +40,7 @@ namespace Obligatorio
 
 
             if (noTieneSitio || noTieneClave || noTieneUsuario ) throw new ObjetoIncompletoException();
-
+            if (this.yaExisteContra(contraIngresada)) throw new ObjetoYaExistenteException();
             this.noAgregoContra = false;
             this.contras.Add(contraIngresada);
         }

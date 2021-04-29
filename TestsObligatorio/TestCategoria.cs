@@ -143,6 +143,21 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarContra(contra1));
         }
 
+        //Prueba si al ingresar una Contra ya existente a la categoria tira una excepcion.
+        [TestMethod]
+        public void testCategoriaAgregarContraYaExistente()
+        {
+            Categoria categoria = new Categoria();
+            Contra contra1 = new Contra()
+            {
+                Sitio = "youtube.com",
+                UsuarioContra = "Roberto",
+                Clave = "EstaEsUnaClave1"
+            };
+            categoria.agregarContra(contra1);
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => categoria.agregarContra(contra1));
+        }
+
         //Prueba si al ingresar una Contra a la categoria devuelve la correcta al usar el get.
         [TestMethod]
         public void testCategoriaGetContra()
