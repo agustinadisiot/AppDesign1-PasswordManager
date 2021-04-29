@@ -811,7 +811,7 @@ namespace TestsObligatorio
             {
                 Nombre = "Visa Gold",
                 Tipo = "Visa",
-                Numero = "1234567890876543",
+                Numero = nroTarjeta,
                 Codigo = "123"
             };
 
@@ -821,5 +821,39 @@ namespace TestsObligatorio
         }
 
 
+        //Prueba de agregar dos tarjetas a una categoria, borrar una tarjeta y luego pedir la borrada.
+        [TestMethod]
+        public void CategoriaDosTarjetasGetTarjetaBorrada()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            string nroTarjeta = "1234567890876543";
+
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = nroTarjeta,
+                Codigo = "123"
+            };
+
+            Tarjeta tarjeta2 = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = "4254567490876549",
+                Codigo = "123"
+            };
+
+
+            categoria.agregarTarjeta(tarjeta1);
+            categoria.agregarTarjeta(tarjeta2);
+            categoria.borrarTarjeta(nroTarjeta);
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.getTarjeta(nroTarjeta));
+        }
     }
 }

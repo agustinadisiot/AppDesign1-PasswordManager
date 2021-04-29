@@ -132,6 +132,12 @@ namespace Obligatorio
             }
             this.borroTarjeta = true;
             this.cantTarjetas--;
+
+            Tarjeta aBorrar = new Tarjeta()
+            {
+                Numero = tarjetaABorrar
+            };
+            this.tarjetas.Remove(aBorrar);
         }
     }
 }
