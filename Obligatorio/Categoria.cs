@@ -9,19 +9,13 @@ namespace Obligatorio
         private string nombre;
         private bool noAgregoContra;
         private List<Contra> contras;
-        private bool noAgregoTarjeta;
         private List<Tarjeta> tarjetas;
-        private bool borroTarjeta;
-        private int cantTarjetas;
 
         public Categoria()
         {
             noAgregoContra = true;
             contras = new List<Contra>();
-            noAgregoTarjeta = true;
             tarjetas = new List<Tarjeta>();
-            borroTarjeta = false;
-            cantTarjetas = 0;
         }
 
         public string Nombre
@@ -77,7 +71,7 @@ namespace Obligatorio
 
         public bool esListaTarjetasVacia()
         {
-            return this.noAgregoTarjeta || this.borroTarjeta;
+            return this.tarjetas.Count == 0;
         }
 
         public void agregarTarjeta(Tarjeta tarjetaIngresada)
@@ -88,14 +82,13 @@ namespace Obligatorio
                 noTieneCodigo = (tarjetaIngresada.Codigo == null);
             if (noTieneNombre || noTieneSitio || noTieneNumero || noTieneCodigo) throw new ObjetoIncompletoException();
             if (this.yaExisteTarjeta(tarjetaIngresada)) throw new ObjetoYaExistenteException();
-            this.noAgregoTarjeta = false;
-            this.cantTarjetas++;
+           
             this.tarjetas.Add(tarjetaIngresada);
         }
 
         public Tarjeta getTarjeta(string numeroABuscar)
         {
-            if (this.cantTarjetas == 0) throw new ObjetoInexistenteException();
+            if (this.esListaTarjetasVacia()) throw new ObjetoInexistenteException();
             Predicate<Tarjeta> buscadorTarjeta = (Tarjeta tarjeta) =>
             {
                 return tarjeta.Numero == numeroABuscar;
@@ -117,26 +110,21 @@ namespace Obligatorio
 
         public bool yaExisteTarjeta(Tarjeta aBuscar)
         {
-            if (this.borroTarjeta)
-            {
-                return false;
-            }
-            return this.tarjetas.Any(buscadora => buscadora.Equals(aBuscar));
+            return (this.tarjetas.Contains(aBuscar));
+            
         }
 
         public void borrarTarjeta(string tarjetaABorrar)
         {
-            if (this.noAgregoTarjeta)
-            {
-                throw new ObjetoInexistenteException();
-            }
-            this.borroTarjeta = true;
-            this.cantTarjetas--;
-
             Tarjeta aBorrar = new Tarjeta()
             {
                 Numero = tarjetaABorrar
             };
+
+            if (this.esListaTarjetasVacia() || !this.yaExisteTarjeta(aBorrar))
+            {
+                throw new ObjetoInexistenteException();
+            }
             this.tarjetas.Remove(aBorrar);
         }
     }

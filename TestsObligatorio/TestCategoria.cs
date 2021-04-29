@@ -855,5 +855,29 @@ namespace TestsObligatorio
             categoria.borrarTarjeta(nroTarjeta);
             Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.getTarjeta(nroTarjeta));
         }
+
+
+        //Prueba de intentar borrar una Tarjeta que nunca fue agregada a la categoria
+        [TestMethod]
+        public void CategoriaBorrarTarjetaQueNoExiste()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = "4254567490876549",
+                Codigo = "123"
+            };
+            categoria.agregarTarjeta(tarjeta);
+            string nroTarjeta = "1234567890876543";
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.borrarTarjeta(nroTarjeta));
+        }
     }
 }
