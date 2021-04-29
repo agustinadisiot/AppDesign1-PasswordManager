@@ -547,6 +547,31 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.getContra(paginaContraBorrar, usuarioContraBorrar));
         }
 
+
+        //Prueba de agregar dos contras a una categoria, borrar una Contra y luego pedir la borrada.
+        [TestMethod]
+        public void CategoriaBorrarContraNoExistenteNoVacio()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            String usuarioContraBorrar = "222222";
+            String paginaContraBorrar = "www.ort.edu.uy";
+
+
+            Contra contraOtra = new Contra()
+            {
+                UsuarioContra = "OtraContra",
+                Sitio = "otroSitio.com",
+                Clave = "1234AbC$"
+            };
+
+            categoria.agregarContra(contraOtra);
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.borrarContra(paginaContraBorrar, usuarioContraBorrar));
+        }
     }
 
     [TestClass]
