@@ -407,7 +407,6 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.borrarContra(paginaContra, usuarioContra));
         }
 
-
         //Prueba de borrar una Contra a una Categoria que acaba de agregar, la primera vez que pregunta si existe deberia ser true y la segunda false.
         [TestMethod]
         public void CategoriaBorrarContraExistenteCategoria()
@@ -505,7 +504,6 @@ namespace TestsObligatorio
             categoria.borrarContra(paginaContraBorrar, usuarioContraBorrar);
             Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.getContra(paginaContraBorrar, usuarioContraBorrar));
         }
-
 
         //Prueba de agregar dos contras a una categoria, borrar una Contra y luego pedir la borrada.
         [TestMethod]
