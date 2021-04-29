@@ -120,8 +120,10 @@ namespace Obligatorio
             return this.listaCategorias.Any(catBuscadora => catBuscadora.yaExisteTarjeta(tarjeta));
         }
 
-        public void agregarTarjeta(Tarjeta tarjeta, string v)
+        public void agregarTarjeta(Tarjeta tarjeta, string categoria)
         {
+            bool noTieneNombre = (tarjeta.Nombre == null);
+            if (noTieneNombre) throw new ObjetoIncompletoException();
             this.tarjetaAgregada = true;
         }
     }

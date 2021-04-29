@@ -893,7 +893,7 @@ namespace TestsObligatorio
         }
 
 
-        //Prueba si al agregar una Tarjeta a una categoria en usuario, yaExisteContra da true
+        //Prueba si al agregar una Tarjeta a una categoria en usuario, yaExisteContra da true.
         [TestMethod]
         public void testUsuarioAgregarTarjeta()
         {
@@ -917,6 +917,31 @@ namespace TestsObligatorio
             usuario.agregarTarjeta(tarjeta, "Trabajo");
             Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjeta));
         }
+
+
+        //Prueba si al agregar una Tarjeta sin nombre a una categoria en usuario, devuelve un error.
+        [TestMethod]
+        public void testUsuarioAgregarTarjetaSinNombre()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321"
+            };
+            usuario.agregarCategoria(categoria);
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
+        }
+
 
     }
 }
