@@ -722,5 +722,18 @@ namespace TestsObligatorio
             Assert.AreEqual(true, categoria.yaExisteTarjeta(tarjetaDistintoTipo));
         }
 
+        //Prueba de borrar una tarjeta de una Categoria vacia
+        [TestMethod]
+        public void testCategoriaBorrarTarjetaCategoriaVacia()
+        {
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            String nroTarjeta = "1234567890876543";
+            Assert.ThrowsException<ObjetoInexistenteException>(() => c1.borrarTarjeta(nroTarjeta));
+        }
+
     }
 }

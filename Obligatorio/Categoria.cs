@@ -113,5 +113,10 @@ namespace Obligatorio
         {
             return this.tarjetas.Any(buscadora => buscadora.Equals(aBuscar));
         }
+
+        public void borrarTarjeta(string nroTarjeta)
+        {
+            throw new ObjetoInexistenteException();
+        }
     }
 }
