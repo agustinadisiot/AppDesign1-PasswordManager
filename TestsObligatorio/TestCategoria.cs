@@ -548,7 +548,7 @@ namespace TestsObligatorio
         }
 
 
-        //Prueba de agregar dos contras a una categoria, borrar una Contra y luego pedir la borrada.
+        //Prueba de agregar una contra y borrar otra que no existe en una categoria. Deberia tirar error.
         [TestMethod]
         public void CategoriaBorrarContraNoExistenteNoVacio()
         {
