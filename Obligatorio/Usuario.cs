@@ -16,7 +16,6 @@ namespace Obligatorio
         public Usuario()
         {
             noAgregoCategorias = true;
-            tarjetaAgregada = false;
             this.listaCategorias = new List<Categoria>();
         }
 
