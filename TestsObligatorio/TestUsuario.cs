@@ -22,7 +22,6 @@ namespace TestsObligatorio
             Assert.AreEqual("Roberto", usuario.Nombre);
         }
 
-
         //Prueba si al cambiar el nombre, cambia lo que devuelve.
         [TestMethod]
         public void UsuarioGetNombreCambio()
@@ -36,7 +35,6 @@ namespace TestsObligatorio
             Assert.AreEqual("Hernesto", usuario.Nombre);
         }
 
-
         //Prueba si al ingresar un nombre con largo menor a 5, devuelve un error.
         [TestMethod]
         public void UsuarioLargoNombreMenorA5()
@@ -45,7 +43,6 @@ namespace TestsObligatorio
             Assert.ThrowsException<LargoIncorrectoException>(() => usuario.Nombre = "A");
         }
 
-
         //Prueba si al ingresar un nombre con largo mayor a 25, devuelve un error.
         [TestMethod]
         public void UsuarioLargoNombreMayorA25()
@@ -53,7 +50,6 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario();
             Assert.ThrowsException<LargoIncorrectoException>(() => usuario.Nombre = "12345678901234567890123456");
         }
-
 
         //Prueba de darle una constraseña maestra y luego valida con true si el usuario tiene la misma.
         [TestMethod]
@@ -66,7 +62,6 @@ namespace TestsObligatorio
             Assert.AreEqual(true, usuario.validarIgualContraMaestra("Hola12345"));
         }
 
-
         //Prueba de darle una constraseña maestra y luego validar que una distinta de false.
         [TestMethod]
         public void UsuarioValidarContraMaestraDiferente()
@@ -77,7 +72,6 @@ namespace TestsObligatorio
             };
             Assert.AreEqual(false, u1.validarIgualContraMaestra("Diferente"));
         }
-
 
         //Prueba de validar una contraseña maestra, validarla, luego cambiarla y validarla de nuevo con la vieja y nueva contraseña. 
         [TestMethod]
@@ -94,7 +88,6 @@ namespace TestsObligatorio
             Assert.AreEqual(true, usuario.validarIgualContraMaestra("Chau109876"));
         }
 
-
         //Prueba si al ingresar una contraMaestra con largo menor a 5, devuelve un error.
         [TestMethod]
         public void UsuarioLargoContraMaestraMenorA5()
@@ -102,7 +95,6 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario();
             Assert.ThrowsException<LargoIncorrectoException>(() => usuario.ContraMaestra = "A");
         }
-
 
         //Prueba si al ingresar una contraMaestra con largo mayor a 25, devuelve un error.
         [TestMethod]
@@ -112,7 +104,6 @@ namespace TestsObligatorio
             Assert.ThrowsException<LargoIncorrectoException>(() => usuario.ContraMaestra = "12345678901234567890123456");
         }
 
-
         //Prueba si al comenzar el Usuario tiene una lista vacía de categorias guardadas. 
         [TestMethod]
         public void UsuarioEsListaCategoriasVacia()
@@ -120,7 +111,6 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario();
             Assert.AreEqual(true, usuario.esListaCategoriasVacia());
         }
-
 
         //Prueba si al agregar una categoria, esListaCategoriasVacia da false.
         [TestMethod]
@@ -212,7 +202,6 @@ namespace TestsObligatorio
             Assert.AreEqual(categoria2, usuario.getCategoria("Trabajo"));
         }
 
-
         //Prueba si al agregar una categoria y despues intenta agregar otra categoria con el mismo nombre tira una excepcion.
         [TestMethod]
         public void UsuarioAgregarCategoriaYaExistente()
@@ -230,7 +219,6 @@ namespace TestsObligatorio
             
             Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.agregarCategoria(categoria2));
         }
-
 
         //Prueba si al agregar una categoria y despues pregunta si ya existe, devuelve true.
         [TestMethod]
@@ -320,7 +308,6 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoIncorrectoException>(() => usuario.Equals(falsoUsuario));
         }
 
-
         //Prueba si al agregar una categoria y luego modificar el nombre, efectivamente lo modifique.
         [TestMethod]
         public void UsuarioModificarNombreCategoriaAgregada()
@@ -337,7 +324,6 @@ namespace TestsObligatorio
 
             Assert.AreEqual("Trabajo", usuario.getCategoria("Trabajo").Nombre);
         }
-
 
         //Prueba si al agregar una categoria y luego intentar modificar el nombre de otra categoria, que tire una excepcion.
         [TestMethod]
@@ -496,7 +482,6 @@ namespace TestsObligatorio
             Assert.AreEqual(true, usuario.yaExisteContra(contraIgual));
         }
 
-
         //Prueba que agrega una Contra en una categoria y despues pregunta si ya existe en el usuario en otra categoria, devuelve true.
         [TestMethod]
         public void UsuarioYaExisteContraDosCategoriasSiExistente()
@@ -540,7 +525,6 @@ namespace TestsObligatorio
             Assert.AreEqual(true, usuario.yaExisteContra(contraIgual));
         }
 
-
         //Prueba si al agregar una contraseña a una categoria en usuario, yaExisteContra da true
         [TestMethod]
         public void UsuarioAgregarContra()
@@ -565,7 +549,6 @@ namespace TestsObligatorio
             Assert.AreEqual(true, usuario.yaExisteContra(contra));
         }
 
-
         //Prueba si al ingresar una Contra a la categoria en usuario sin sitio o aplicacion, devuelve un error.
         [TestMethod]
         public void UsuarioAgregarContraSinSitioOAplicacion()
@@ -588,7 +571,6 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarContra(contra, "Trabajo"));
         }
 
-
         //Prueba si al ingresar una Contra a la categoria en un usuario sin clave, devuelve un error.
         [TestMethod]
         public void UsuarioAgregarContraSinClave()
@@ -610,7 +592,6 @@ namespace TestsObligatorio
             usuario.agregarCategoria(categoria);
             Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarContra(contra, "Trabajo"));
         }
-
 
         //Prueba si al ingresar una Contra a la categoria en usuario sin UsuarioContra, devuelve un error.
         [TestMethod]
@@ -657,7 +638,6 @@ namespace TestsObligatorio
             usuario.agregarContra(contra, "Trabajo");
             Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.agregarContra(contra, "Trabajo"));
         }
-
 
         //Prueba si al ingresar una Contra a una categoria en el usuario, confirma que esa categoria tiene una contra. 
         [TestMethod]
@@ -720,7 +700,6 @@ namespace TestsObligatorio
             Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjetaIgual));
         }
 
-
         //Prueba que agrega una Tarjeta a una categoria en el usuario y despues pregunta si ya existe una con diferente numero e igual nombre, tipo y codigo, devuelve false.
         [TestMethod]
         public void UsuarioYaExisteTarjetaDistintoNumero()
@@ -752,7 +731,6 @@ namespace TestsObligatorio
             };
             Assert.AreEqual(false, usuario.yaExisteTarjeta(tarjetaDistintoNumero));
         }
-
 
         //Prueba que agrega una Tarjeta a una categoria en el usuario y despues pregunta si ya existe una con diferente nombre e igual numero, tipo y codigo, devuelve true.
         [TestMethod]
@@ -786,7 +764,6 @@ namespace TestsObligatorio
             Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjetaDistintoNombre));
         }
 
-
         //Prueba que agrega una Tarjeta a una categoria en el usuario y despues pregunta si ya existe una con diferente tipo e igual nombre, numero y codigo, devuelve true.
         [TestMethod]
         public void UsuarioYaExisteTarjetaDistintoTipo()
@@ -819,7 +796,6 @@ namespace TestsObligatorio
             Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjetaDistintoTipo));
         }
 
-
         //Prueba que agrega una Tarjeta a una categoria en el usuario y despues pregunta si ya existe una con diferente codigo e igual nombre, numero y tipo, devuelve true.
         [TestMethod]
         public void UsuarioYaExisteTarjetaDistintoCodigo()
@@ -851,7 +827,6 @@ namespace TestsObligatorio
             };
             Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjetaDistintoTipo));
         }
-
 
         //Prueba que agrega una Tarjeta en una categoria y despues pregunta si ya existe en el usuario en otra categoria, devuelve true.
         [TestMethod]
@@ -898,7 +873,6 @@ namespace TestsObligatorio
             Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjetaIgual));
         }
 
-
         //Prueba si al agregar una Tarjeta a una categoria en usuario, yaExisteContra da true.
         [TestMethod]
         public void UsuarioAgregarTarjeta()
@@ -924,7 +898,6 @@ namespace TestsObligatorio
             Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjeta));
         }
 
-
         //Prueba si al agregar una Tarjeta sin nombre a una categoria en usuario, devuelve un error.
         [TestMethod]
         public void UsuarioAgregarTarjetaSinNombre()
@@ -947,7 +920,6 @@ namespace TestsObligatorio
             usuario.agregarCategoria(categoria);
             Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
         }
-
 
         //Prueba si al agregar una Tarjeta sin tipo a una categoria en usuario, devuelve un error.
         [TestMethod]
@@ -972,7 +944,6 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
         }
 
-
         //Prueba si al agregar una Tarjeta sin numero a una categoria en usuario, devuelve un error.
         [TestMethod]
         public void UsuarioAgregarTarjetaSinNumero()
@@ -996,7 +967,6 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
         }
 
-
         //Prueba si al agregar una Tarjeta sin codigo a una categoria en usuario, devuelve un error.
         [TestMethod]
         public void UsuarioAgregarTarjetaSinCodigo()
@@ -1019,7 +989,6 @@ namespace TestsObligatorio
             usuario.agregarCategoria(categoria);
             Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
         }
-
 
         //Prueba si al agregar una Tarjeta repetida a una categoria en usuario, devuelve un error.
         [TestMethod]
@@ -1045,7 +1014,6 @@ namespace TestsObligatorio
             usuario.agregarTarjeta(tarjeta, "Trabajo");
             Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
         }
-
 
         //Prueba si al ingresar una tarjeta a una categoria en el usuario, confirma que esa categoria tiene una tarjeta.
         [TestMethod]

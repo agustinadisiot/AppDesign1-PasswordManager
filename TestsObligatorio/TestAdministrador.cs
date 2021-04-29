@@ -43,7 +43,6 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoIncompletoException>(() => administrador.agregarUsuario(usuario));
         }
 
-
         //Prueba si al agregar dos usuarios, esListaUsuariosVacia sigue dando false
         [TestMethod]
         public void AdministradorEsListaUsuariosVaciaConDosUsuarios()
@@ -94,7 +93,6 @@ namespace TestsObligatorio
             Assert.AreEqual(usuario, administrador.getUsuario("Roberto"));
         }
 
-
         //Prueba si al agregar dos usuarios, y pedir el segundo usuario agregado por nombre, devuelve el correcto.
         [TestMethod]
         public void AdministradorPedirUsuarioSegundoConDosAgregados()
@@ -112,7 +110,6 @@ namespace TestsObligatorio
             administrador.agregarUsuario(usuario2);
             Assert.AreEqual(usuario2, administrador.getUsuario("Pedro"));
         }
-
 
         //Prueba si al agregar dos usuarios, y pedir un usuario con un nombre no agregado, devuelve un error.
         [TestMethod]
