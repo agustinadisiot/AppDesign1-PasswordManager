@@ -966,5 +966,29 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
         }
 
+
+        //Prueba si al agregar una Tarjeta sin numero a una categoria en usuario, devuelve un error.
+        [TestMethod]
+        public void testUsuarioAgregarTarjetaSinNumero()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Codigo = "321"
+            };
+            usuario.agregarCategoria(categoria);
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
+        }
+
     }
 }
