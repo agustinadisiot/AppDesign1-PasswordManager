@@ -12,78 +12,72 @@ namespace TestsObligatorio
     {
         //Prueba si devuelve el nombre correcto de la categoria.
         [TestMethod]
-        public void testUsuarioGetNombreTrabajo()
+        public void UsuarioGetNombreTrabajo()
         {
-            Categoria c1 = new Categoria()
+            Categoria categoria = new Categoria()
             {
                 Nombre = "Trabajo"
             };
-            Assert.AreEqual("Trabajo", c1.Nombre);
+            Assert.AreEqual("Trabajo", categoria.Nombre);
         }
-
 
         //Prueba si al cambiar el nombre de categoria, cambia lo que devuelve.
         [TestMethod]
-        public void testCategoriaGetNombreCambio()
+        public void CategoriaGetNombreCambio()
         {
-            Categoria c1 = new Categoria()
+            Categoria categoria = new Categoria()
             {
                 Nombre = "Trabajo"
             };
-            Assert.AreEqual("Trabajo", c1.Nombre);
-            c1.Nombre = "Facultad";
-            Assert.AreEqual("Facultad", c1.Nombre);
+            Assert.AreEqual("Trabajo", categoria.Nombre);
+            categoria.Nombre = "Facultad";
+            Assert.AreEqual("Facultad", categoria.Nombre);
         }
-
 
         //Prueba si al ingresar un nombre a la categoria con largo menor a 3, devuelve un error.
         [TestMethod]
-        public void testCategoriaLargoNombreMenorA3()
+        public void CategoriaLargoNombreMenorA3()
         {
-            Categoria c1 = new Categoria();
-            Assert.ThrowsException<LargoIncorrectoException>(() => c1.Nombre = "A");
+            Categoria categoria = new Categoria();
+            Assert.ThrowsException<LargoIncorrectoException>(() => categoria.Nombre = "A");
         }
-
 
         //Prueba si al ingresar un nombre con largo mayor a 15, devuelve un error.
         [TestMethod]
-        public void testCategoriaLargoNombreMayorA15()
+        public void CategoriaLargoNombreMayorA15()
         {
-            Categoria c1 = new Categoria();
-            Assert.ThrowsException<LargoIncorrectoException>(() => c1.Nombre = "1234567890123456");
+            Categoria categoria = new Categoria();
+            Assert.ThrowsException<LargoIncorrectoException>(() => categoria.Nombre = "1234567890123456");
         }
-
 
         //Prueba si al comenzar la Categoria tiene una lista vacía de contraseñas guardadas. 
         [TestMethod]
-        public void testCategoriaEsListaContrasVacia()
+        public void CategoriaEsListaContrasVacia()
         {
-            Categoria c1 = new Categoria();
-            Assert.AreEqual(true, c1.esListaContrasVacia());
+            Categoria categoria = new Categoria();
+            Assert.AreEqual(true, categoria.esListaContrasVacia());
         }
-
 
         //Prueba si al agregar una contraseña, esListaContrasVacia da false
         [TestMethod]
-        public void testCategoriaEsListaContrasConContras()
+        public void CategoriaEsListaContrasConContras()
         {
-            Categoria c1 = new Categoria();
-            Contra contra1 = new Contra()
+            Categoria categoria = new Categoria();
+            Contra contra = new Contra()
             {
                 Sitio = "youtube.com",
                 Clave = "EstaEsUnaClave1",
                 UsuarioContra = "Roberto"
             };
-            c1.agregarContra(contra1);
-            Assert.AreEqual(false, c1.esListaContrasVacia());
+            categoria.agregarContra(contra);
+            Assert.AreEqual(false, categoria.esListaContrasVacia());
         }
-
 
         //Prueba si al agregar dos contraseñas a una categoria, esListaContrasVacia sigue dando false
         [TestMethod]
-        public void testCategoriaEsListaUsuariosContrasVaciaConDosContras()
+        public void CategoriaEsListaUsuariosContrasVaciaConDosContras()
         {
-            Categoria c1 = new Categoria();
+            Categoria categoria = new Categoria();
             Contra contra1 = new Contra()
             {
                 Sitio = "youtube.com",
@@ -91,56 +85,55 @@ namespace TestsObligatorio
                 UsuarioContra = "Juan Perez"
 
             };
-            c1.agregarContra(contra1);
-            Assert.AreEqual(false, c1.esListaContrasVacia());
+            categoria.agregarContra(contra1);
+            Assert.AreEqual(false, categoria.esListaContrasVacia());
             Contra contra2 = new Contra()
             {
                 Sitio = "web.whatsapp.com",
                 Clave = "EstaEsUnaClave1",
                 UsuarioContra = "Roberto"
             };
-            c1.agregarContra(contra2);
-            Assert.AreEqual(false, c1.esListaContrasVacia());
+            categoria.agregarContra(contra2);
+            Assert.AreEqual(false, categoria.esListaContrasVacia());
         }
-
 
         //Prueba si al ingresar una Contra a la categoria sin sitio o aplicacion, devuelve un error.
         [TestMethod]
-        public void testCategoriaAgregarContraSinSitioOAplicacion()
+        public void CategoriaAgregarContraSinSitioOAplicacion()
         {
-            Categoria c1 = new Categoria();
+            Categoria categoria = new Categoria();
             Contra contra1 = new Contra()
             {
                 Clave = "EstaEsUnaClave1",
                 UsuarioContra = "Roberto"
             };
-            Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarContra(contra1));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => categoria.agregarContra(contra1));
         }
 
         //Prueba si al ingresar una Contra a la categoria sin clave, devuelve un error.
         [TestMethod]
-        public void testCategoriaAgregarContraSinClave()
+        public void CategoriaAgregarContraSinClave()
         {
-            Categoria c1 = new Categoria();
+            Categoria categoria = new Categoria();
             Contra contra1 = new Contra()
             {
                 Sitio = "youtube.com",
                 UsuarioContra = "Roberto"
             };
-            Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarContra(contra1));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => categoria.agregarContra(contra1));
         }
 
         //Prueba si al ingresar una Contra a la categoria sin usuario, devuelve un error.
         [TestMethod]
-        public void testCategoriaAgregarContraSinUsuario()
+        public void CategoriaAgregarContraSinUsuario()
         {
-            Categoria c1 = new Categoria();
+            Categoria categoria = new Categoria();
             Contra contra1 = new Contra()
             {
                 Sitio = "youtube.com",
                 Clave = "EstaEsUnaClave1"
             };
-            Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarContra(contra1));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => categoria.agregarContra(contra1));
         }
 
         //Prueba si al ingresar una Contra ya existente a la categoria tira una excepcion.
@@ -160,7 +153,7 @@ namespace TestsObligatorio
 
         //Prueba si al ingresar una Contra a la categoria devuelve la correcta al usar el get.
         [TestMethod]
-        public void testCategoriaGetContra()
+        public void CategoriaGetContra()
         {
             Categoria categoria1 = new Categoria();
             Contra contra1 = new Contra()
@@ -175,7 +168,7 @@ namespace TestsObligatorio
 
         //Prueba si al ingresar dos Contras a la categoria devuelve la correcta al usar el get para la primera.
         [TestMethod]
-        public void testCategoriaGetContraPrimeraConDos()
+        public void CategoriaGetContraPrimeraConDos()
         {
             Categoria categoria1 = new Categoria();
             Contra contra1 = new Contra()
@@ -196,10 +189,9 @@ namespace TestsObligatorio
             Assert.AreEqual(contra1, categoria1.getContra("web.whatsapp.com", "Roberto")); ;
         }
 
-
         //Prueba si al ingresar dos Contras a la categoria devuelve la correcta al usar el get para la segunda.
         [TestMethod]
-        public void testCategoriaGetContraSegundaConDos()
+        public void CategoriaGetContraSegundaConDos()
         {
             Categoria categoria1 = new Categoria();
             Contra contra1 = new Contra()
@@ -222,7 +214,7 @@ namespace TestsObligatorio
 
         //Prueba si al ingresar dos Contras a la categoria devuelve una lista de las contras agregadas.
         [TestMethod]
-        public void testCategoriaGetListaContras()
+        public void CategoriaGetListaContras()
         {
             Categoria categoria1 = new Categoria();
             Contra contra1 = new Contra()
@@ -240,85 +232,87 @@ namespace TestsObligatorio
             };
             categoria1.agregarContra(contra2);
 
-            List<Contra> contras = new List<Contra>();
-            contras.Add(contra1);
-            contras.Add(contra2);
+            List<Contra> contras = new List<Contra>
+            {
+                contra1,
+                contra2
+            };
 
             Assert.AreEqual(true, contras.SequenceEqual(categoria1.getListaContras())); ;
         }
 
-        //Prueba de comparar dos Categorias con el mismo nombre da true el equals
+        //Prueba de comparar dos Categorias con el mismo nombre da true el equals.
         [TestMethod]
-        public void testCategoriaEqualsMismoNombre()
+        public void CategoriaEqualsMismoNombre()
         {
-            Categoria c1 = new Categoria()
+            Categoria categoria1 = new Categoria()
             {
                 Nombre = "Personal"
             };
-            Categoria c2 = new Categoria()
+            Categoria categoria2 = new Categoria()
             {
                 Nombre = "Personal"
             };
-            Assert.AreEqual(c1, c2);
+            Assert.AreEqual(categoria1, categoria2);
         }
 
-        //Prueba de comparar dos Categorias con diferente nombre da true el equals
+        //Prueba de comparar dos Categorias con diferente nombre da true el equals.
         [TestMethod]
-        public void testCategoriaEqualsDiferenteNombre()
+        public void CategoriaEqualsDiferenteNombre()
         {
-            Categoria c1 = new Categoria()
+            Categoria categoria1 = new Categoria()
             {
                 Nombre = "Personal"
             };
-            Categoria c2 = new Categoria()
+            Categoria categoria2 = new Categoria()
             {
                 Nombre = "Trabajo"
             };
-            Assert.AreNotEqual(c1, c2);
+            Assert.AreNotEqual(categoria1, categoria2);
         }
 
-        //Prueba de comparar dos Categorias con mismo nombre con mayusculas y minusculas
+        //Prueba de comparar dos Categorias con mismo nombre con mayusculas y minusculas.
         [TestMethod]
-        public void testCategoriaEqualsMismoNombreConMayYMin()
+        public void CategoriaEqualsMismoNombreConMayYMin()
         {
-            Categoria c1 = new Categoria()
+            Categoria categoria1 = new Categoria()
             {
                 Nombre = "Personal"
             };
-            Categoria c2 = new Categoria()
+            Categoria categoria2 = new Categoria()
             {
                 Nombre = "personal"
             };
-            Assert.AreEqual(c1, c2);
+            Assert.AreEqual(categoria1, categoria2);
         }
 
-        //Prueba de comparar dos Categorias donde una es null
+        //Prueba de comparar dos Categorias donde una es null.
         [TestMethod]
-        public void testCategoriaEqualsConNull()
+        public void CategoriaEqualsConNull()
         {
-            Categoria c1 = new Categoria()
+            Categoria categoria1 = new Categoria()
             {
                 Nombre = "Personal"
             };
-            Categoria c2 = null;
-            Assert.ThrowsException<ObjetoIncompletoException>(() => c1.Equals(c2));
+            Categoria categoria2 = null;
+            Assert.ThrowsException<ObjetoIncompletoException>(() => categoria1.Equals(categoria2));
         }
 
-        //Prueba de comparar dos Categorias donde una es de tipo incorrecto
+        //Prueba de comparar dos Categorias donde una es de tipo incorrecto.
         [TestMethod]
-        public void testCategoriaEqualsConString()
+        public void CategoriaEqualsConString()
         {
-            Categoria c1 = new Categoria()
+            Categoria categoria = new Categoria()
             {
                 Nombre = "Personal"
             };
             String falsaCategoria = "Personal";
-            Assert.ThrowsException<ObjetoIncorrectoException>(() => c1.Equals(falsaCategoria));
+            Assert.ThrowsException<ObjetoIncorrectoException>(() => categoria.Equals(falsaCategoria));
         }
 
         //Prueba que agregrega una Contra y despues pregunta si ya existe, devuelve true.
         [TestMethod]
-        public void testCategoriaYaExisteContraSiExistente()
+        public void CategoriaYaExisteContraSiExistente()
         {
             Categoria categoria = new Categoria();
             Contra contra = new Contra() {
@@ -338,7 +332,7 @@ namespace TestsObligatorio
 
         //Prueba que agregrega una Contra y despues pregunta si ya existe una con diferente sitio, devuelve false.
         [TestMethod]
-        public void testCategoriaYaExisteContraMismoUsuarioDiferenteSitio()
+        public void CategoriaYaExisteContraMismoUsuarioDiferenteSitio()
         {
             Categoria categoria = new Categoria();
             Contra contra = new Contra()
@@ -359,7 +353,7 @@ namespace TestsObligatorio
 
         //Prueba que agregrega una Contra y despues pregunta si ya existe una con mismo sitio y diferente usuario, devuelve false.
         [TestMethod]
-        public void testCategoriaYaExisteContraMismoSitioDiferenteUsuario()
+        public void CategoriaYaExisteContraMismoSitioDiferenteUsuario()
         {
             Categoria categoria = new Categoria();
             Contra contra = new Contra()
@@ -380,7 +374,7 @@ namespace TestsObligatorio
 
         //Prueba que agregrega una Contra y despues pregunta si ya existe una con mismo sitio y usuario, devuelve true a pesar de tener diferentes claves.
         [TestMethod]
-        public void testCategoriaYaExisteContraDiferentesClaves()
+        public void CategoriaYaExisteContraDiferentesClaves()
         {
             Categoria categoria = new Categoria();
             Contra contra = new Contra()
@@ -554,18 +548,17 @@ namespace TestsObligatorio
     {
         //Prueba si al comenzar la Categoria tiene una lista vacía de tarjetas guardadas. 
         [TestMethod]
-        public void testCategoriaEsListaTarjetasVacia()
+        public void CategoriaEsListaTarjetasVacia()
         {
-            Categoria c1 = new Categoria();
-            Assert.AreEqual(true, c1.esListaTarjetasVacia());
+            Categoria categoria = new Categoria();
+            Assert.AreEqual(true, categoria.esListaTarjetasVacia());
         }
 
-
-        //Prueba si al agregar una tarjeta, esListaTarjetasVacia da false
+        //Prueba si al agregar una tarjeta, esListaTarjetasVacia da false.
         [TestMethod]
-        public void testCategoriaEsListaContrasConContras()
+        public void CategoriaEsListaTarjetasConTarjetas()
         {
-            Categoria c1 = new Categoria();
+            Categoria categoria = new Categoria();
             Tarjeta tarjeta1 = new Tarjeta()
             {
                 Nombre = "Visa Gold",
@@ -574,16 +567,15 @@ namespace TestsObligatorio
                 Codigo = "567",
                 Nota = ""
             };
-            c1.agregarTarjeta(tarjeta1);
-            Assert.AreEqual(false, c1.esListaTarjetasVacia());
+            categoria.agregarTarjeta(tarjeta1);
+            Assert.AreEqual(false, categoria.esListaTarjetasVacia());
         }
 
-
-        //Prueba si al agregar dos tarjetas a una categoria, esListaTarjetasVacia sigue dando false
+        //Prueba si al agregar dos tarjetas a una categoria, esListaTarjetasVacia sigue dando false.
         [TestMethod]
-        public void testCategoriaEsListaUsuariosTarjetasVaciaConDosTarjetas()
+        public void CategoriaEsListaUsuariosTarjetasVaciaConDosTarjetas()
         {
-            Categoria c1 = new Categoria();
+            Categoria categoria = new Categoria();
             Tarjeta tarjeta1 = new Tarjeta()
             {
                 Nombre = "Visa Gold",
@@ -593,8 +585,8 @@ namespace TestsObligatorio
                 Nota = ""
 
             };
-            c1.agregarTarjeta(tarjeta1);
-            Assert.AreEqual(false, c1.esListaTarjetasVacia());
+            categoria.agregarTarjeta(tarjeta1);
+            Assert.AreEqual(false, categoria.esListaTarjetasVacia());
             Tarjeta tarjeta2= new Tarjeta()
             {
                 Nombre = "Prex",
@@ -603,15 +595,15 @@ namespace TestsObligatorio
                 Codigo = "321",
                 Nota = ""
             };
-            c1.agregarTarjeta(tarjeta2);
-            Assert.AreEqual(false, c1.esListaTarjetasVacia());
+            categoria.agregarTarjeta(tarjeta2);
+            Assert.AreEqual(false, categoria.esListaTarjetasVacia());
         }
 
         //Prueba si al ingresar una Tarjeta a la categoria sin Nombre, devuelve un error.
         [TestMethod]
-        public void testCategoriaAgregarTarjetaSinNombre()
+        public void CategoriaAgregarTarjetaSinNombre()
         {
-            Categoria c1 = new Categoria();
+            Categoria categoria = new Categoria();
             Tarjeta tarjeta1 = new Tarjeta()
             {
                 Tipo = "Mastercard",
@@ -619,14 +611,14 @@ namespace TestsObligatorio
                 Codigo = "321",
                 Nota = ""
             };
-            Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarTarjeta(tarjeta1));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => categoria.agregarTarjeta(tarjeta1));
         }
 
         //Prueba si al ingresar una Tarjeta a la categoria sin Tipo, devuelve un error.
         [TestMethod]
-        public void testCategoriaAgregarTarjetaSinTipo()
+        public void CategoriaAgregarTarjetaSinTipo()
         {
-            Categoria c1 = new Categoria();
+            Categoria categoria = new Categoria();
             Tarjeta tarjeta1 = new Tarjeta()
             {
                 Nombre = "Visa Gold",
@@ -634,14 +626,14 @@ namespace TestsObligatorio
                 Codigo = "321",
                 Nota = ""
             };
-            Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarTarjeta(tarjeta1));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => categoria.agregarTarjeta(tarjeta1));
         }
 
         //Prueba si al ingresar una Tarjeta a la categoria sin Numero, devuelve un error.
         [TestMethod]
-        public void testCategoriaAgregarTarjetaSinNumero()
+        public void CategoriaAgregarTarjetaSinNumero()
         {
-            Categoria c1 = new Categoria();
+            Categoria categoria = new Categoria();
             Tarjeta tarjeta1 = new Tarjeta()
             {
                 Nombre = "Visa Gold",
@@ -649,14 +641,14 @@ namespace TestsObligatorio
                 Codigo = "321",
                 Nota = ""
             };
-            Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarTarjeta(tarjeta1));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => categoria.agregarTarjeta(tarjeta1));
         }
 
         //Prueba si al ingresar una Tarjeta a la categoria sin Codigo, devuelve un error.
         [TestMethod]
-        public void testCategoriaAgregarTarjetaSinCodigo()
+        public void CategoriaAgregarTarjetaSinCodigo()
         {
-            Categoria c1 = new Categoria();
+            Categoria categoria = new Categoria();
             Tarjeta tarjeta1 = new Tarjeta()
             {
                 Nombre = "Visa Gold",
@@ -664,12 +656,12 @@ namespace TestsObligatorio
                 Numero = "1234567890876543",
                 Nota = ""
             };
-            Assert.ThrowsException<ObjetoIncompletoException>(() => c1.agregarTarjeta(tarjeta1));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => categoria.agregarTarjeta(tarjeta1));
         }
 
         //Prueba si al ingresar una Tarjeta a la categoria devuelve la correcta al usar el get.
         [TestMethod]
-        public void testCategoriaGetTarjeta()
+        public void CategoriaGetTarjeta()
         {
             Categoria categoria1 = new Categoria();
             Tarjeta tarjeta1 = new Tarjeta()
@@ -685,7 +677,7 @@ namespace TestsObligatorio
 
         //Prueba si al ingresar dos Tarjetas a la categoria devuelve la correcta al usar el get para la primera.
         [TestMethod]
-        public void testCategoriaGetTarjetaPrimeraConDos()
+        public void CategoriaGetTarjetaPrimeraConDos()
         {
             Categoria categoria1 = new Categoria();
             Tarjeta tarjeta1 = new Tarjeta()
@@ -710,7 +702,7 @@ namespace TestsObligatorio
 
         //Prueba si al ingresar dos Tarjetas a la categoria devuelve la correcta al usar el get para la segunda.
         [TestMethod]
-        public void testCategoriaGetTarjetaSegundaConDos()
+        public void CategoriaGetTarjetaSegundaConDos()
         {
             Categoria categoria1 = new Categoria();
             Tarjeta tarjeta1 = new Tarjeta()
@@ -735,7 +727,7 @@ namespace TestsObligatorio
 
         //Prueba si al ingresar dos Tarjetas a la categoria devuelve una lista de las tarjetas agregadas.
         [TestMethod]
-        public void testCategoriaGetListaTarjetas()
+        public void CategoriaGetListaTarjetas()
         {
             Categoria categoria1 = new Categoria();
             Tarjeta tarjeta1 = new Tarjeta()
@@ -755,17 +747,18 @@ namespace TestsObligatorio
             };
             categoria1.agregarTarjeta(tarjeta2);
 
-            List<Tarjeta> tarjetas = new List<Tarjeta>();
-            tarjetas.Add(tarjeta1);
-            tarjetas.Add(tarjeta2);
+            List<Tarjeta> tarjetas = new List<Tarjeta>
+            {
+                tarjeta1,
+                tarjeta2
+            };
 
-            Assert.AreEqual(true, tarjetas.SequenceEqual(categoria1.getListaTarjetas())); ;
+            Assert.AreEqual(true, tarjetas.SequenceEqual(categoria1.getListaTarjetas()));
         }
-
 
         //Prueba que agregrega una tarjeta y despues pregunta si ya existe, devuelve true.
         [TestMethod]
-        public void testCategoriaYaExisteTarjetaSiExistente()
+        public void CategoriaYaExisteTarjetaSiExistente()
         {
             Categoria categoria = new Categoria();
             Tarjeta tarjeta = new Tarjeta()
@@ -786,10 +779,9 @@ namespace TestsObligatorio
             Assert.AreEqual(true, categoria.yaExisteTarjeta(tarjetaIgual));
         }
 
-
         //Prueba que agrega una Tarjeta y despues pregunta si ya existe una con diferente numero e igual nombre, tipo y codigo, devuelve false.
         [TestMethod]
-        public void testCategoriaYaExisteTarjetaDiferenteNumero()
+        public void CategoriaYaExisteTarjetaDiferenteNumero()
         {
 
             Categoria categoria = new Categoria();
@@ -811,10 +803,9 @@ namespace TestsObligatorio
             Assert.AreEqual(false, categoria.yaExisteTarjeta(tarjetaDistintoNumero));
         }
 
-
         //Prueba que agrega una Tarjeta y despues pregunta si ya existe una con diferente nombre e igual numero, tipo y codigo, devuelve true.
         [TestMethod]
-        public void testCategoriaYaExisteTarjetaDiferenteNombre()
+        public void CategoriaYaExisteTarjetaDiferenteNombre()
         {
 
             Categoria categoria = new Categoria();
@@ -836,10 +827,9 @@ namespace TestsObligatorio
             Assert.AreEqual(true, categoria.yaExisteTarjeta(tarjetaDistintoNombre));
         }
 
-
         //Prueba que agrega una Tarjeta y despues pregunta si ya existe una con diferente tipo e igual nombre, numero y codigo, devuelve true.
         [TestMethod]
-        public void testCategoriaYaExisteTarjetaDiferenteTipo()
+        public void CategoriaYaExisteTarjetaDiferenteTipo()
         {
 
             Categoria categoria = new Categoria();
@@ -861,10 +851,9 @@ namespace TestsObligatorio
             Assert.AreEqual(true, categoria.yaExisteTarjeta(tarjetaDistintoTipo));
         }
 
-
         //Prueba que agrega una Tarjeta y despues pregunta si ya existe una con diferente codigo e igual nombre, numero y tipo, devuelve true.
         [TestMethod]
-        public void testCategoriaYaExisteTarjetaDiferenteCodigo()
+        public void CategoriaYaExisteTarjetaDiferenteCodigo()
         {
 
             Categoria categoria = new Categoria();
