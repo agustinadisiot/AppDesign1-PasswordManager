@@ -31,7 +31,7 @@
 
 ### Agregar
 - [X] Agregar Contraseña
-- [ ] Agregar Tarjeta
+- [X] Agregar Tarjeta
 
 ### YaExiste
 - [X] YaExiste Contraseña
