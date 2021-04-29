@@ -8,13 +8,11 @@ namespace Obligatorio
     {
         private string nombre;
         private List<Contra> contras;
-        private bool noAgregoTarjeta;
         private List<Tarjeta> tarjetas;
 
         public Categoria()
         {
             contras = new List<Contra>();
-            noAgregoTarjeta = true;
             tarjetas = new List<Tarjeta>();
         }
 
@@ -86,7 +84,7 @@ namespace Obligatorio
 
         public bool esListaTarjetasVacia()
         {
-            return this.noAgregoTarjeta;
+            return this.tarjetas.Count == 0;
         }
 
         public void agregarTarjeta(Tarjeta tarjetaIngresada)
@@ -96,13 +94,14 @@ namespace Obligatorio
                 noTieneNumero = (tarjetaIngresada.Numero == null),
                 noTieneCodigo = (tarjetaIngresada.Codigo == null);
             if (noTieneNombre || noTieneSitio || noTieneNumero || noTieneCodigo) throw new ObjetoIncompletoException();
-
-            this.noAgregoTarjeta = false;
+            if (this.yaExisteTarjeta(tarjetaIngresada)) throw new ObjetoYaExistenteException();
+           
             this.tarjetas.Add(tarjetaIngresada);
         }
 
         public Tarjeta getTarjeta(string numeroABuscar)
         {
+            if (this.esListaTarjetasVacia()) throw new ObjetoInexistenteException();
             Predicate<Tarjeta> buscadorTarjeta = (Tarjeta tarjeta) =>
             {
                 return tarjeta.Numero == numeroABuscar;
@@ -124,7 +123,22 @@ namespace Obligatorio
 
         public bool yaExisteTarjeta(Tarjeta aBuscar)
         {
-            return this.tarjetas.Any(buscadora => buscadora.Equals(aBuscar));
+            return (this.tarjetas.Contains(aBuscar));
+            
+        }
+
+        public void borrarTarjeta(string tarjetaABorrar)
+        {
+            Tarjeta aBorrar = new Tarjeta()
+            {
+                Numero = tarjetaABorrar
+            };
+
+            if (this.esListaTarjetasVacia() || !this.yaExisteTarjeta(aBorrar))
+            {
+                throw new ObjetoInexistenteException();
+            }
+            this.tarjetas.Remove(aBorrar);
         }
 
        

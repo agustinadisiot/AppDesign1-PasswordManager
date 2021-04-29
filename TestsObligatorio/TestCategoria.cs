@@ -873,5 +873,162 @@ namespace TestsObligatorio
             Assert.AreEqual(true, categoria.yaExisteTarjeta(tarjetaDistintoTipo));
         }
 
+        //Prueba si al ingresar una Tarjeta ya existente a la categoria tira una excepcion.
+        [TestMethod]
+        public void testCategoriaAgregarTarjetaYaExistente()
+        {
+            Categoria categoria = new Categoria();
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = "1234567890876543",
+                Codigo = "345"
+            };
+            categoria.agregarTarjeta(tarjeta);
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => categoria.agregarTarjeta(tarjeta));
+        }
+
+        //Prueba de borrar una tarjeta de una Categoria vacia
+        [TestMethod]
+        public void CategoriaBorrarTarjetaCategoriaVacia()
+        {
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            string nroTarjeta = "1234567890876543";
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.borrarTarjeta(nroTarjeta));
+        }
+
+
+        //Prueba de borrar una tarjeta de una Categoria con una tarjeta
+        [TestMethod]
+        public void CategoriaBorrarTarjetaCategoriaConUnaTarjeta()
+        {
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            string nroTarjeta = "1234567890876543";
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = nroTarjeta,
+                Codigo = "123"
+            };
+            categoria.agregarTarjeta(tarjeta);
+            Assert.IsTrue(categoria.yaExisteTarjeta(tarjeta));
+            categoria.borrarTarjeta(nroTarjeta);
+            Assert.IsFalse(categoria.yaExisteTarjeta(tarjeta));
+        }
+
+        //Prueba de borrar una tarjeta haya quedado vacia la lista de tarjetas
+        [TestMethod]
+        public void CategoriaEsListaTarjetasVaciaDespuesDeBorrar()
+        {
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            string nroTarjeta = "1234567890876543";
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = nroTarjeta,
+                Codigo = "123"
+            };
+            categoria.agregarTarjeta(tarjeta);
+            Assert.IsTrue(categoria.yaExisteTarjeta(tarjeta));
+            categoria.borrarTarjeta(nroTarjeta);
+            Assert.IsTrue(categoria.esListaTarjetasVacia());
+        }
+
+        //Prueba de borrar una Tarjeta a una Categoria y luego pedirla. Deberia tirar exception.
+        [TestMethod]
+        public void CategoriaGetTarjetaBorrada()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            string nroTarjeta = "1234567890876543";
+
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = nroTarjeta,
+                Codigo = "123"
+            };
+
+            categoria.agregarTarjeta(tarjeta);
+            categoria.borrarTarjeta(nroTarjeta);
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.getTarjeta(nroTarjeta));
+        }
+
+
+        //Prueba de agregar dos tarjetas a una categoria, borrar una tarjeta y luego pedir la borrada.
+        [TestMethod]
+        public void CategoriaDosTarjetasGetTarjetaBorrada()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            string nroTarjeta = "1234567890876543";
+
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = nroTarjeta,
+                Codigo = "123"
+            };
+
+            Tarjeta tarjeta2 = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = "4254567490876549",
+                Codigo = "123"
+            };
+
+
+            categoria.agregarTarjeta(tarjeta1);
+            categoria.agregarTarjeta(tarjeta2);
+            categoria.borrarTarjeta(nroTarjeta);
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.getTarjeta(nroTarjeta));
+        }
+
+
+        //Prueba de intentar borrar una Tarjeta que nunca fue agregada a la categoria
+        [TestMethod]
+        public void CategoriaBorrarTarjetaQueNoExiste()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = "4254567490876549",
+                Codigo = "123"
+            };
+            categoria.agregarTarjeta(tarjeta);
+            string nroTarjeta = "1234567890876543";
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.borrarTarjeta(nroTarjeta));
+        }
     }
 }
