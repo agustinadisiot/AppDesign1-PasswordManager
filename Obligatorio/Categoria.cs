@@ -7,18 +7,16 @@ namespace Obligatorio
     public class Categoria
     {
         private string nombre;
-        private bool noAgregoContra;
         private List<Contra> contras;
         private bool noAgregoTarjeta;
         private List<Tarjeta> tarjetas;
-        private bool borroContra;
+        private int cantContras;
 
         public Categoria()
         {
-            noAgregoContra = true;
             contras = new List<Contra>();
             noAgregoTarjeta = true;
-            borroContra = false;
+            cantContras = 0;
             tarjetas = new List<Tarjeta>();
         }
 
@@ -31,7 +29,7 @@ namespace Obligatorio
 
         public bool esListaContrasVacia()
         {
-            return this.noAgregoContra || this.borroContra;
+            return this.cantContras == 0;
         }
 
         public void agregarContra(Contra contraIngresada)
@@ -43,16 +41,16 @@ namespace Obligatorio
 
             if (noTieneSitio || noTieneClave || noTieneUsuario ) throw new ObjetoIncompletoException();
 
-            this.noAgregoContra = false;
+            this.cantContras++;
             this.contras.Add(contraIngresada);
         }
 
         public void borrarContra(string paginaContra, string usuarioContra)
         {
-            if (noAgregoContra) {
+            if (this.esListaContrasVacia()) {
                 throw new ObjetoInexistenteException();
             }
-            borroContra = true;
+            this.cantContras--;
         }
         public Contra getContra(string sitioABuscar, string usuarioABuscar)
         {
@@ -115,7 +113,7 @@ namespace Obligatorio
 
         public bool yaExisteContra(Contra aBuscar)
         {
-            if (borroContra)
+            if (this.esListaContrasVacia())
             {
                 return false;
             }

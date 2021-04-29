@@ -452,6 +452,31 @@ namespace TestsObligatorio
             categoria.borrarContra(paginaContra, usuarioContra);
             Assert.IsTrue(categoria.esListaContrasVacia());
         }
+
+        //Prueba de borrar una Contra a una Categoria, luego agregar otra, y que deje de estar vacia la lista de Contras.
+        [TestMethod]
+        public void testCategoriaEsListaContrasVaciaDespuesDeBorrarAgregar()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            String usuarioContra = "222222";
+            String paginaContra = "www.ort.edu.uy";
+            Contra contra = new Contra()
+            {
+                UsuarioContra = usuarioContra,
+                Sitio = paginaContra,
+                Clave = "1234AbC$"
+            };
+
+            categoria.agregarContra(contra);
+            categoria.borrarContra(paginaContra, usuarioContra);
+            categoria.agregarContra(contra);
+            Assert.IsFalse(categoria.esListaContrasVacia());
+        }
     }
 
     [TestClass]
