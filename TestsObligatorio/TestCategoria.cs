@@ -399,10 +399,9 @@ namespace TestsObligatorio
             Assert.AreEqual(true, categoria.yaExisteContra(contraDiferenteClave));
         }
 
-
         //Prueba de borrar una Contra a una Categoria vacia, y deberia tirar una excepcion.
         [TestMethod]
-        public void testCategoriaBorrarContraCategoriaVacia()
+        public void CategoriaBorrarContraCategoriaVacia()
         {
             Categoria categoria = new Categoria()
             {
@@ -411,19 +410,14 @@ namespace TestsObligatorio
 
             String usuarioContra = "222222";
             String paginaContra = "www.ort.edu.uy";
-            
-
-
             Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.borrarContra(paginaContra, usuarioContra));
         }
 
 
         //Prueba de borrar una Contra a una Categoria que acaba de agregar, la primera vez que pregunta si existe deberia ser true y la segunda false.
         [TestMethod]
-        public void testCategoriaBorrarContraExistenteCategoria()
+        public void CategoriaBorrarContraExistenteCategoria()
         {
-
-            
             Categoria categoria = new Categoria()
             {
                 Nombre = "Personal"
@@ -446,7 +440,7 @@ namespace TestsObligatorio
 
         //Prueba de borrar una Contra a una Categoria y se fija si esListaContraVacia da true.
         [TestMethod]
-        public void testCategoriaEsListaContrasVaciaDespuesDeBorrar()
+        public void CategoriaEsListaContrasVaciaDespuesDeBorrar()
         {
 
             Categoria categoria = new Categoria()
@@ -470,7 +464,7 @@ namespace TestsObligatorio
 
         //Prueba de borrar una Contra a una Categoria, luego agregar otra, y que deje de estar vacia la lista de Contras.
         [TestMethod]
-        public void testCategoriaEsListaContrasVaciaDespuesDeBorrarAgregar()
+        public void CategoriaEsListaContrasVaciaDespuesDeBorrarAgregar()
         {
 
             Categoria categoria = new Categoria()
@@ -506,14 +500,49 @@ namespace TestsObligatorio
             String usuarioContraBorrar = "222222";
             String paginaContraBorrar = "www.ort.edu.uy";
 
-            Contra contra1 = new Contra()
+            Contra contraBorrar = new Contra()
             {
                 UsuarioContra = usuarioContraBorrar,
                 Sitio = paginaContraBorrar,
                 Clave = "1234AbC$"
             };
 
-            categoria.agregarContra(contra1);
+            categoria.agregarContra(contraBorrar);
+            categoria.borrarContra(paginaContraBorrar, usuarioContraBorrar);
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.getContra(paginaContraBorrar, usuarioContraBorrar));
+        }
+
+
+        //Prueba de agregar dos contras a una categoria, borrar una Contra y luego pedir la borrada.
+        [TestMethod]
+        public void CategoriaDosContrasGetContraBorrada()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            String usuarioContraBorrar = "222222";
+            String paginaContraBorrar = "www.ort.edu.uy";
+
+            Contra contraBorrar = new Contra()
+            {
+                UsuarioContra = usuarioContraBorrar,
+                Sitio = paginaContraBorrar,
+                Clave = "1234AbC$"
+            };
+
+            Contra contraOtra = new Contra()
+            {
+                UsuarioContra = "OtraContra",
+                Sitio = "otroSitio.com",
+                Clave = "1234AbC$"
+            };
+
+
+            categoria.agregarContra(contraBorrar);
+            categoria.agregarContra(contraOtra);
             categoria.borrarContra(paginaContraBorrar, usuarioContraBorrar);
             Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.getContra(paginaContraBorrar, usuarioContraBorrar));
         }
