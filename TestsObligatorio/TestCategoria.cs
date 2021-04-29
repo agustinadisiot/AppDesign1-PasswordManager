@@ -492,6 +492,32 @@ namespace TestsObligatorio
             categoria.agregarContra(contra);
             Assert.IsFalse(categoria.esListaContrasVacia());
         }
+
+        //Prueba de borrar una Contra a una Categoria y luego pedirla. Deberia tirar exception.
+        [TestMethod]
+        public void CategoriaGetContraBorrada()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            String usuarioContraBorrar = "222222";
+            String paginaContraBorrar = "www.ort.edu.uy";
+
+            Contra contra1 = new Contra()
+            {
+                UsuarioContra = usuarioContraBorrar,
+                Sitio = paginaContraBorrar,
+                Clave = "1234AbC$"
+            };
+
+            categoria.agregarContra(contra1);
+            categoria.borrarContra(paginaContraBorrar, usuarioContraBorrar);
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.getContra(paginaContraBorrar, usuarioContraBorrar));
+        }
+
     }
 
     [TestClass]

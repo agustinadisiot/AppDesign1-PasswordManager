@@ -54,6 +54,9 @@ namespace Obligatorio
         }
         public Contra getContra(string sitioABuscar, string usuarioABuscar)
         {
+            if (this.esListaContrasVacia()) {
+                throw new ObjetoInexistenteException();
+            }
 
             //Predicate se utiliza en conjunto con una clase, se le da una condicion que retorne true para ser buscado en una List con un List.Find
             Predicate<Contra> buscadorContra = (Contra contra) => 
