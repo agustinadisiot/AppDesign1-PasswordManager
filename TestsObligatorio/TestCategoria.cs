@@ -726,14 +726,15 @@ namespace TestsObligatorio
         [TestMethod]
         public void testCategoriaBorrarTarjetaCategoriaVacia()
         {
-            Categoria c1 = new Categoria()
+            Categoria categoria = new Categoria()
             {
                 Nombre = "Personal"
             };
+            string nroTarjeta = "1234567890876543";
 
-            String nroTarjeta = "1234567890876543";
-            Assert.ThrowsException<ObjetoInexistenteException>(() => c1.borrarTarjeta(nroTarjeta));
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.borrarTarjeta(nroTarjeta));
         }
+
 
     }
 }
