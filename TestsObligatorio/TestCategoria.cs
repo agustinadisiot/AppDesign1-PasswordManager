@@ -392,7 +392,7 @@ namespace TestsObligatorio
 
         //Prueba si al agregar una tarjeta, esListaTarjetasVacia da false.
         [TestMethod]
-        public void CategoriaEsListaContrasConContras()
+        public void CategoriaEsListaTarjetasConTarjetas()
         {
             Categoria categoria = new Categoria();
             Tarjeta tarjeta1 = new Tarjeta()
