@@ -122,8 +122,9 @@ namespace Obligatorio
 
         public void agregarTarjeta(Tarjeta tarjeta, string categoria)
         {
-            bool noTieneNombre = (tarjeta.Nombre == null);
-            if (noTieneNombre) throw new ObjetoIncompletoException();
+            bool noTieneNombre = (tarjeta.Nombre == null),
+            noTieneSitio = (tarjeta.Tipo == null);
+            if (noTieneNombre || noTieneSitio) throw new ObjetoIncompletoException();
             this.tarjetaAgregada = true;
         }
     }
