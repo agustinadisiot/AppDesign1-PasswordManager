@@ -75,7 +75,7 @@ namespace Obligatorio
 
         public bool esListaTarjetasVacia()
         {
-            return this.noAgregoTarjeta;
+            return this.noAgregoTarjeta || this.borroTarjeta;
         }
 
         public void agregarTarjeta(Tarjeta tarjetaIngresada)

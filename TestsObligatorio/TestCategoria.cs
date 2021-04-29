@@ -760,5 +760,28 @@ namespace TestsObligatorio
             Assert.IsFalse(categoria.yaExisteTarjeta(tarjeta));
         }
 
+        //Prueba de borrar una tarjeta haya quedado vacia la lista de tarjetas
+        [TestMethod]
+        public void testCategoriaEsListaTarjetasVaciaDespuesDeBorrar()
+        {
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = "1234567890876543",
+                Codigo = "123"
+            };
+            categoria.agregarTarjeta(tarjeta);
+            Assert.IsTrue(categoria.yaExisteTarjeta(tarjeta));
+            categoria.borrarTarjeta(tarjeta);
+            Assert.IsTrue(categoria.esListaTarjetasVacia());
+        }
+
+
+
     }
 }
