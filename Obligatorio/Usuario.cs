@@ -130,6 +130,8 @@ namespace Obligatorio
             if (noTieneNombre || noTieneSitio || noTieneNumero || noTieneCodigo) throw new ObjetoIncompletoException();
 
             if (this.yaExisteTarjeta(tarjeta)) throw new ObjetoYaExistenteException();
+
+            this.getCategoria(categoria).agregarTarjeta(tarjeta);
             this.tarjetaAgregada = true;
         }
     }

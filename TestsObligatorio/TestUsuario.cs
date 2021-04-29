@@ -653,7 +653,7 @@ namespace TestsObligatorio
         }
 
 
-        //Prueba si al ingresar una Contra a una categoria en el usuario, confirma que sa categoria tiene una contra. 
+        //Prueba si al ingresar una Contra a una categoria en el usuario, confirma que esa categoria tiene una contra. 
         [TestMethod]
         public void testUsuarioAgregarContraCategoriaConContra()
         {
@@ -1038,6 +1038,32 @@ namespace TestsObligatorio
             usuario.agregarCategoria(categoria);
             usuario.agregarTarjeta(tarjeta, "Trabajo");
             Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
+        }
+
+
+        //Prueba si al ingresar una tarjeta a una categoria en el usuario, confirma que esa categoria tiene una tarjeta.
+        [TestMethod]
+        public void testUsuarioAgregarTarjetaCategoriaConTarjeta()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321"
+            };
+            usuario.agregarCategoria(categoria);
+            usuario.agregarTarjeta(tarjeta, "Trabajo");
+            Assert.AreEqual(true, usuario.getCategoria("Trabajo").yaExisteTarjeta(tarjeta));
         }
 
     }
