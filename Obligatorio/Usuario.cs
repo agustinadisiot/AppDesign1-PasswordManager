@@ -133,7 +133,10 @@ namespace Obligatorio
 
         public void borrarContra(string paginaContra, string usuarioContra)
         {
-            throw new CategoriaInexistenteException();
+            if (this.noAgregoCategorias) {
+                throw new CategoriaInexistenteException();
+            }
+            throw new ObjetoInexistenteException();
         }
     }
 }
