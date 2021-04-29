@@ -12,6 +12,7 @@ namespace Obligatorio
         private bool noAgregoTarjeta;
         private List<Tarjeta> tarjetas;
         private bool borroTarjeta;
+        private int cantTarjetas;
 
         public Categoria()
         {
@@ -20,6 +21,7 @@ namespace Obligatorio
             noAgregoTarjeta = true;
             tarjetas = new List<Tarjeta>();
             borroTarjeta = false;
+            cantTarjetas = 0;
         }
 
         public string Nombre
@@ -87,11 +89,13 @@ namespace Obligatorio
             if (noTieneNombre || noTieneSitio || noTieneNumero || noTieneCodigo) throw new ObjetoIncompletoException();
             if (this.yaExisteTarjeta(tarjetaIngresada)) throw new ObjetoYaExistenteException();
             this.noAgregoTarjeta = false;
+            this.cantTarjetas++;
             this.tarjetas.Add(tarjetaIngresada);
         }
 
         public Tarjeta getTarjeta(string numeroABuscar)
         {
+            if (this.cantTarjetas == 0) throw new ObjetoInexistenteException();
             Predicate<Tarjeta> buscadorTarjeta = (Tarjeta tarjeta) =>
             {
                 return tarjeta.Numero == numeroABuscar;
@@ -120,13 +124,14 @@ namespace Obligatorio
             return this.tarjetas.Any(buscadora => buscadora.Equals(aBuscar));
         }
 
-        public void borrarTarjeta(Tarjeta tarjetaABorrar)
+        public void borrarTarjeta(string tarjetaABorrar)
         {
             if (this.noAgregoTarjeta)
             {
                 throw new ObjetoInexistenteException();
             }
             this.borroTarjeta = true;
+            this.cantTarjetas--;
         }
     }
 }
