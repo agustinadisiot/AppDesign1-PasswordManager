@@ -363,6 +363,38 @@ namespace TestsObligatorio
             u1.agregarCategoria(c2);
             Assert.ThrowsException<ObjetoYaExistenteException>(() => u1.modificarNombreCategoria("Personal", "Trabajo"));
         }
+
+        //Prueba si al agregar una categoria y luego intentar modificar el nombre de otra categoria, que tire una excepcion.
+        [TestMethod]
+        public void UsuarioModificarNombreCategoriaANombreExistente()
+        {
+            Usuario u1 = new Usuario();
+            Categoria c1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            u1.agregarCategoria(c1);
+            Categoria c2 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            u1.agregarCategoria(c2);
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => u1.modificarNombreCategoria("Personal", "Trabajo"));
+        }
+
+        //Prueba de borrar una Contra a un usuario sin categoria, y deberia tirar una excepcion.
+        [TestMethod]
+        public void UsuarioBorrarContraSinCategorias()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            String usuarioContra = "222222";
+            String paginaContra = "www.ort.edu.uy";
+            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.borrarContra(paginaContra, usuarioContra));
+        }
     }
 
 

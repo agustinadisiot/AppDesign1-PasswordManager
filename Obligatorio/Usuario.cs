@@ -130,5 +130,10 @@ namespace Obligatorio
 
             this.getCategoria(categoria).agregarTarjeta(tarjeta);
         }
+
+        public void borrarContra(string paginaContra, string usuarioContra)
+        {
+            throw new CategoriaInexistenteException();
+        }
     }
 }
