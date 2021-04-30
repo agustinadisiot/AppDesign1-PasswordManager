@@ -21,23 +21,46 @@ namespace Obligatorio
         }
 
         public static bool EsSimbolo(char ingreso) {
-            int caracterASCII = (int)ingreso;
-            return ((caracterASCII >= 32 && caracterASCII <= 47) || (caracterASCII >= 58 && caracterASCII <= 64) || (caracterASCII >= 91 && caracterASCII <= 96) || (caracterASCII >= 123 && caracterASCII <= 126));
+            int asciiIngresado = (int)ingreso;
+            const int asciiMinusculaMinimo = 97;
+            const int asciiMinusculaMaximo = 122;
+            const int asciiMayusculaMinimo = 65;
+            const int asciiMayusculaMaximo = 90;
+            const int asciiDigitoMinimo = 48;
+            const int asciiDigitoMaximo = 57;
+            const int asciiEspecialesMinimo = 32;
+            const int asciiEspecialesMaximo = 126;
+
+            bool retorno = ( (asciiIngresado >= asciiEspecialesMinimo && asciiIngresado < asciiDigitoMinimo)
+                    || (asciiIngresado > asciiDigitoMaximo && asciiIngresado < asciiMayusculaMinimo)
+                    || (asciiIngresado > asciiMayusculaMaximo && asciiIngresado < asciiMinusculaMinimo)
+                    || (asciiIngresado > asciiMinusculaMaximo && asciiIngresado <= asciiEspecialesMaximo));
+
+            return retorno;
         }
 
         public static bool EsMayuscula(char ingreso) {
-            int caracterASCII = (int)ingreso;
-            return (caracterASCII >= 65 && caracterASCII <= 90);
+            int asciiIngresado = (int)ingreso;
+            const int asciiMayusculaMinimo = 65;
+            const int asciiMayusculaMaximo = 90;
+
+            return (asciiIngresado >= asciiMayusculaMinimo && asciiIngresado <= asciiMayusculaMaximo);
         }
 
         public static bool EsMinuscula(char ingreso) {
-            int caracterASCII = (int)ingreso;
-            return (caracterASCII >= 97 && caracterASCII <= 122);
+            int asciiIngresado = (int)ingreso;
+            const int asciiMinusculaMinimo = 97;
+            const int asciiMinusculaMaximo = 122;
+
+            return (asciiIngresado >= asciiMinusculaMinimo && asciiIngresado <= asciiMinusculaMaximo);
         }
 
         public static bool EsNumero(char ingreso) {
-            int caracterASCII = (int)ingreso;
-            return (caracterASCII >= 48 && caracterASCII <= 57);
+            int asciiIngresado = (int)ingreso;
+            const int asciiDigitoMinimo = 48;
+            const int asciiDigitoMaximo = 57;
+
+            return (asciiIngresado >= asciiDigitoMinimo && asciiIngresado <= asciiDigitoMaximo);
         }
 
     }
