@@ -8,6 +8,7 @@ namespace Obligatorio
     {
         private List<Contra> contras;
         private List<Tarjeta> tarjetas;
+        private string _nombre;
 
         public Categoria()
         {
@@ -17,8 +18,8 @@ namespace Obligatorio
 
         public string Nombre
         {
-            get { return Nombre; }
-            set { this.Nombre = VerificadoraString.VerificarLargoXaY(value, 3, 15); }
+            get { return _nombre; }
+            set { this._nombre = VerificadoraString.VerificarLargoXaY(value, 3, 15); }
         }
 
 

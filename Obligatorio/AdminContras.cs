@@ -18,14 +18,14 @@ namespace Obligatorio
             return this.noAgregoUsuarios;
         }
 
-        public void AgregarUsuario(Usuario u1)
+        public void AgregarUsuario(Usuario usuario)
         {
-            if (u1.Nombre == null) {
+            if (usuario.Nombre == null) {
                 throw new ObjetoIncompletoException();
             }
             else {
                 this.noAgregoUsuarios = false;
-                this.listaUsuarios.Add(u1);
+                this.listaUsuarios.Add(usuario);
             }
         }
 

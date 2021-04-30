@@ -4,28 +4,33 @@ namespace Obligatorio
 {
     public class Contra
     {
+        private string _usuario;
+        private string _clave;
+        private string _sitio;
+        private string _nota;
+
         public string UsuarioContra
         {
-            get { return UsuarioContra; }
-            set { this.UsuarioContra = VerificadoraString.VerificarLargoXaY(value, 5, 25); }
+            get { return _usuario; }
+            set { this._usuario = VerificadoraString.VerificarLargoXaY(value, 5, 25); }
         }
 
         public string Clave
         {
-            get { return Clave; }
-            set { this.Clave = VerificadoraString.VerificarLargoXaY(value, 5, 25); }
+            get { return _clave; }
+            set { this._clave = VerificadoraString.VerificarLargoXaY(value, 5, 25); }
         }
 
         public string Sitio
         {
-            get { return Sitio; }
-            set { this.Sitio = VerificadoraString.VerificarLargoXaY(value, 3, 25); }
+            get { return _sitio; }
+            set { this._sitio = VerificadoraString.VerificarLargoXaY(value, 3, 25); }
         }
 
         public string Nota
         {
-            get { return Nota; }
-            set { this.Nota = VerificadoraString.VerificarLargoXaY(value, 0, 250); }
+            get { return _nota; }
+            set { this._nota = VerificadoraString.VerificarLargoXaY(value, 0, 250); }
         }
 
         public string GetNivelSeguridad()

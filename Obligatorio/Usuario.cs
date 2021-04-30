@@ -9,6 +9,8 @@ namespace Obligatorio
         private bool noAgregoCategorias;
         private bool noAgregoContras;
         private List<Categoria> listaCategorias;
+        private string _nombre;
+        private string _contraMaestra;
 
         public Usuario()
         {
@@ -18,13 +20,13 @@ namespace Obligatorio
         }
 
         public string Nombre 
-        {   get { return Nombre;}
-            set { this.Nombre = VerificadoraString.VerificarLargoXaY(value, 5, 25); }
+        {   get { return _nombre; }
+            set { this._nombre = VerificadoraString.VerificarLargoXaY(value, 5, 25); }
         }
 
         public string ContraMaestra {
-            get { return this.ContraMaestra;}
-            set { this.ContraMaestra = VerificadoraString.VerificarLargoXaY(value,5,25);}
+            get { return this._contraMaestra; }
+            set { this._contraMaestra = VerificadoraString.VerificarLargoXaY(value,5,25);}
         }
 
 
