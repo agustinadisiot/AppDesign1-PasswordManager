@@ -382,42 +382,8 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoYaExistenteException>(() => u1.modificarNombreCategoria("Personal", "Trabajo"));
         }
 
-        //Prueba de borrar una Contra a un usuario sin categoria, y deberia tirar una excepcion.
-        [TestMethod]
-        public void UsuarioBorrarContraSinCategorias()
-        {
-            Usuario usuario = new Usuario()
-            {
-                Nombre = "Usuario1"
-            };
-
-            String usuarioContra = "222222";
-            String paginaContra = "www.ort.edu.uy";
-            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.borrarContra(paginaContra, usuarioContra));
-        }
-
-        //Prueba de borrar una Contra a un usuario sin contras, y deberia tirar una excepcion.
-        [TestMethod]
-        public void UsuarioBorrarContraSinContras()
-        {
-            Usuario usuario = new Usuario()
-            {
-                Nombre = "Usuario1"
-            };
-
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Categoria1"
-            };
-
-            usuario.agregarCategoria(categoria);
-
-            String usuarioContra = "222222";
-            String paginaContra = "www.ort.edu.uy";
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.borrarContra(paginaContra, usuarioContra));
-        }
+       
     }
-
 
     [TestClass]
     public class TestUsuarioContra
@@ -728,6 +694,41 @@ namespace TestsObligatorio
             usuario.agregarCategoria(categoria);
             usuario.agregarContra(contra, "Trabajo");
             Assert.AreEqual(true, usuario.getCategoria("Trabajo").yaExisteContra(contra));
+        }
+
+        //Prueba de borrar una Contra a un usuario sin categoria, y deberia tirar una excepcion.
+        [TestMethod]
+        public void UsuarioBorrarContraSinCategorias()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            String usuarioContra = "222222";
+            String paginaContra = "www.ort.edu.uy";
+            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.borrarContra(paginaContra, usuarioContra));
+        }
+
+        //Prueba de borrar una Contra a un usuario sin contras, y deberia tirar una excepcion.
+        [TestMethod]
+        public void UsuarioBorrarContraSinContras()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Categoria1"
+            };
+
+            usuario.agregarCategoria(categoria);
+
+            String usuarioContra = "222222";
+            String paginaContra = "www.ort.edu.uy";
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.borrarContra(paginaContra, usuarioContra));
         }
 
     }
