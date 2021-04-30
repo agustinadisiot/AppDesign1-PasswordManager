@@ -686,7 +686,8 @@ namespace TestsObligatorio
                 Nombre = "Prex",
                 Tipo = "Mastercard",
                 Numero = "3456567890876543",
-                Codigo = "321"
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria.agregarTarjeta(tarjeta);
             usuario.agregarCategoria(categoria);
@@ -695,12 +696,13 @@ namespace TestsObligatorio
                 Nombre = "Prex",
                 Tipo = "Mastercard",
                 Numero = "3456567890876543",
-                Codigo = "321"
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
             };
             Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjetaIgual));
         }
 
-        //Prueba que agrega una Tarjeta a una categoria en el usuario y despues pregunta si ya existe una con diferente numero e igual nombre, tipo y codigo, devuelve false.
+        //Prueba que agrega una Tarjeta a una categoria en el usuario y despues pregunta si ya existe una con diferente numero e igual nombre, vencimiento, tipo y codigo, devuelve false.
         [TestMethod]
         public void UsuarioYaExisteTarjetaDistintoNumero()
         {
@@ -718,7 +720,8 @@ namespace TestsObligatorio
                 Nombre = "Prex",
                 Tipo = "Mastercard",
                 Numero = "3456567890876543",
-                Codigo = "321"
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria.agregarTarjeta(tarjeta);
             usuario.agregarCategoria(categoria);
@@ -727,12 +730,13 @@ namespace TestsObligatorio
                 Nombre = "Prex",
                 Tipo = "Mastercard",
                 Numero = "1234567812345678",
-                Codigo = "321"
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
             };
             Assert.AreEqual(false, usuario.yaExisteTarjeta(tarjetaDistintoNumero));
         }
 
-        //Prueba que agrega una Tarjeta a una categoria en el usuario y despues pregunta si ya existe una con diferente nombre e igual numero, tipo y codigo, devuelve true.
+        //Prueba que agrega una Tarjeta a una categoria en el usuario y despues pregunta si ya existe una con diferente nombre e igual numero, vencimiento, tipo y codigo, devuelve true.
         [TestMethod]
         public void UsuarioYaExisteTarjetaDistintoNombre()
         {
@@ -750,7 +754,8 @@ namespace TestsObligatorio
                 Nombre = "Prex",
                 Tipo = "Mastercard",
                 Numero = "3456567890876543",
-                Codigo = "321"
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria.agregarTarjeta(tarjeta);
             usuario.agregarCategoria(categoria);
@@ -759,12 +764,13 @@ namespace TestsObligatorio
                 Nombre = "Visa",
                 Tipo = "Mastercard",
                 Numero = "3456567890876543",
-                Codigo = "321"
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
             };
             Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjetaDistintoNombre));
         }
 
-        //Prueba que agrega una Tarjeta a una categoria en el usuario y despues pregunta si ya existe una con diferente tipo e igual nombre, numero y codigo, devuelve true.
+        //Prueba que agrega una Tarjeta a una categoria en el usuario y despues pregunta si ya existe una con diferente tipo e igual nombre, vencimiento, numero y codigo, devuelve true.
         [TestMethod]
         public void UsuarioYaExisteTarjetaDistintoTipo()
         {
@@ -782,7 +788,8 @@ namespace TestsObligatorio
                 Nombre = "Prex",
                 Tipo = "Mastercard",
                 Numero = "3456567890876543",
-                Codigo = "321"
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria.agregarTarjeta(tarjeta);
             usuario.agregarCategoria(categoria);
@@ -791,12 +798,13 @@ namespace TestsObligatorio
                 Nombre = "Prex",
                 Tipo = "Mastercard Gold",
                 Numero = "3456567890876543",
-                Codigo = "321"
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
             };
             Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjetaDistintoTipo));
         }
 
-        //Prueba que agrega una Tarjeta a una categoria en el usuario y despues pregunta si ya existe una con diferente codigo e igual nombre, numero y tipo, devuelve true.
+        //Prueba que agrega una Tarjeta a una categoria en el usuario y despues pregunta si ya existe una con diferente codigo e igual nombre, vencimiento, numero y tipo, devuelve true.
         [TestMethod]
         public void UsuarioYaExisteTarjetaDistintoCodigo()
         {
@@ -814,7 +822,8 @@ namespace TestsObligatorio
                 Nombre = "Prex",
                 Tipo = "Mastercard",
                 Numero = "3456567890876543",
-                Codigo = "321"
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria.agregarTarjeta(tarjeta);
             usuario.agregarCategoria(categoria);
@@ -823,7 +832,43 @@ namespace TestsObligatorio
                 Nombre = "Prex",
                 Tipo = "Mastercard",
                 Numero = "3456567890876543",
-                Codigo = "123"
+                Codigo = "123",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjetaDistintoTipo));
+        }
+
+        //Prueba que agrega una Tarjeta y despues pregunta si ya existe una con diferente vencimiento e igual nombre, numero, codigo y tipo, devuelve true.
+        [TestMethod]
+        public void CategoriaYaExisteTarjetaDiferenteVencimiento()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            categoria.agregarTarjeta(tarjeta);
+            usuario.agregarCategoria(categoria);
+            Tarjeta tarjetaDistintoTipo = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "123",
+                Vencimiento = new DateTime(2026, 9, 2)
             };
             Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjetaDistintoTipo));
         }
@@ -846,7 +891,8 @@ namespace TestsObligatorio
                 Nombre = "Prex",
                 Tipo = "Mastercard",
                 Numero = "3456567890876543",
-                Codigo = "321"
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria.agregarTarjeta(tarjeta);
             usuario.agregarCategoria(categoria);
@@ -859,7 +905,8 @@ namespace TestsObligatorio
                 Nombre = "Visa",
                 Tipo = "Visa Gold",
                 Numero = "7894561234567895",
-                Codigo = "321"
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria.agregarTarjeta(tarjeta2);
             usuario.agregarCategoria(categoria2);
@@ -868,7 +915,8 @@ namespace TestsObligatorio
                 Nombre = "Visa",
                 Tipo = "Visa Gold",
                 Numero = "7894561234567895",
-                Codigo = "321"
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
             };
             Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjetaIgual));
         }
@@ -891,7 +939,8 @@ namespace TestsObligatorio
                 Nombre = "Prex",
                 Tipo = "Mastercard",
                 Numero = "3456567890876543",
-                Codigo = "321"
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
             };
             usuario.agregarCategoria(categoria);
             usuario.agregarTarjeta(tarjeta, "Trabajo");
@@ -1008,7 +1057,8 @@ namespace TestsObligatorio
                 Nombre = "Prex",
                 Tipo = "Mastercard",
                 Numero = "3456567890876543",
-                Codigo = "321"
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
             };
             usuario.agregarCategoria(categoria);
             usuario.agregarTarjeta(tarjeta, "Trabajo");
@@ -1033,7 +1083,8 @@ namespace TestsObligatorio
                 Nombre = "Prex",
                 Tipo = "Mastercard",
                 Numero = "3456567890876543",
-                Codigo = "321"
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
             };
             usuario.agregarCategoria(categoria);
             usuario.agregarTarjeta(tarjeta, "Trabajo");

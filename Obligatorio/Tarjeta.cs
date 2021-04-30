@@ -9,6 +9,7 @@ namespace Obligatorio
         private string numero;
         private string codigo;
         private string nota;
+        //private DateTime
 
         public string Nombre 
         {

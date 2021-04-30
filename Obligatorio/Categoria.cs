@@ -92,8 +92,11 @@ namespace Obligatorio
             bool noTieneNombre = (tarjetaIngresada.Nombre == null),
                 noTieneSitio = (tarjetaIngresada.Tipo == null),
                 noTieneNumero = (tarjetaIngresada.Numero == null),
-                noTieneCodigo = (tarjetaIngresada.Codigo == null);
-            if (noTieneNombre || noTieneSitio || noTieneNumero || noTieneCodigo) throw new ObjetoIncompletoException();
+                noTieneCodigo = (tarjetaIngresada.Codigo == null),
+                noTieneVencimiento = (tarjetaIngresada.Vencimiento.Equals(DateTime.MinValue));
+
+            if (noTieneNombre || noTieneSitio || noTieneNumero || noTieneCodigo || noTieneVencimiento) throw new ObjetoIncompletoException();
+
             if (this.yaExisteTarjeta(tarjetaIngresada)) throw new ObjetoYaExistenteException();
            
             this.tarjetas.Add(tarjetaIngresada);
