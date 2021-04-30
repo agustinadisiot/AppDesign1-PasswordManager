@@ -7,25 +7,25 @@ namespace Obligatorio
         public string UsuarioContra
         {
             get { return UsuarioContra; }
-            set { this.UsuarioContra = VerificadoraString.verificarLargoXaY(value, 5, 25); }
+            set { this.UsuarioContra = VerificadoraString.VerificarLargoXaY(value, 5, 25); }
         }
 
         public string Clave
         {
             get { return Clave; }
-            set { this.Clave = VerificadoraString.verificarLargoXaY(value, 5, 25); }
+            set { this.Clave = VerificadoraString.VerificarLargoXaY(value, 5, 25); }
         }
 
         public string Sitio
         {
             get { return Sitio; }
-            set { this.Sitio = VerificadoraString.verificarLargoXaY(value, 3, 25); }
+            set { this.Sitio = VerificadoraString.VerificarLargoXaY(value, 3, 25); }
         }
 
         public string Nota
         {
             get { return Nota; }
-            set { this.Nota = VerificadoraString.verificarLargoXaY(value, 0, 250); }
+            set { this.Nota = VerificadoraString.VerificarLargoXaY(value, 0, 250); }
         }
 
         public string GetNivelSeguridad()
@@ -39,10 +39,10 @@ namespace Obligatorio
             {
                 if (!tieneMay || !tieneMin || !tieneMin || !tieneSim)
                 {
-                    tieneMin = tieneMin || VerificadoraString.esMinuscula(c);
-                    tieneMay = tieneMay || VerificadoraString.esMayuscula(c);
-                    tieneNum = tieneNum || VerificadoraString.esNumero(c);
-                    tieneSim = tieneSim || VerificadoraString.esSimbolo(c);
+                    tieneMin = tieneMin || VerificadoraString.EsMinuscula(c);
+                    tieneMay = tieneMay || VerificadoraString.EsMayuscula(c);
+                    tieneNum = tieneNum || VerificadoraString.EsNumero(c);
+                    tieneSim = tieneSim || VerificadoraString.EsSimbolo(c);
                 }
                 else return verdeOscuro;
             }

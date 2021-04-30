@@ -8,7 +8,7 @@ namespace Obligatorio
 {
     public static class VerificadoraString
     {
-        public static string verificarLargoXaY(string dato, int x, int y)
+        public static string VerificarLargoXaY(string dato, int x, int y)
         {
             if (dato.Length < x || dato.Length > y)
             {
@@ -20,26 +20,22 @@ namespace Obligatorio
             }
         }
 
-        //Verifica si el caracter ingreso es un simbolo al fijarse su numero en ASCII
-        public static bool esSimbolo(char ingreso) {
+        public static bool EsSimbolo(char ingreso) {
             int caracterASCII = (int)ingreso;
             return ((caracterASCII >= 32 && caracterASCII <= 47) || (caracterASCII >= 58 && caracterASCII <= 64) || (caracterASCII >= 91 && caracterASCII <= 96) || (caracterASCII >= 123 && caracterASCII <= 126));
         }
 
-        //Verifica si el caracter ingreso es una mayuscula al fijarse su numero en ASCII
-        public static bool esMayuscula(char ingreso) {
+        public static bool EsMayuscula(char ingreso) {
             int caracterASCII = (int)ingreso;
             return (caracterASCII >= 65 && caracterASCII <= 90);
         }
 
-        //Verifica si el caracter ingreso es una minuscula al fijarse su numero en ASCII
-        public static bool esMinuscula(char ingreso) {
+        public static bool EsMinuscula(char ingreso) {
             int caracterASCII = (int)ingreso;
             return (caracterASCII >= 97 && caracterASCII <= 122);
         }
 
-        //Verifica si el caracter ingreso es un numero al fijarse su numero en ASCII
-        public static bool esNumero(char ingreso) {
+        public static bool EsNumero(char ingreso) {
             int caracterASCII = (int)ingreso;
             return (caracterASCII >= 48 && caracterASCII <= 57);
         }

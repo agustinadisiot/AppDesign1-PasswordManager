@@ -19,12 +19,12 @@ namespace Obligatorio
 
         public string Nombre 
         {   get { return Nombre;}
-            set { this.Nombre = VerificadoraString.verificarLargoXaY(value, 5, 25); }
+            set { this.Nombre = VerificadoraString.VerificarLargoXaY(value, 5, 25); }
         }
 
         public string ContraMaestra {
             get { return this.ContraMaestra;}
-            set { this.ContraMaestra = VerificadoraString.verificarLargoXaY(value,5,25);}
+            set { this.ContraMaestra = VerificadoraString.VerificarLargoXaY(value,5,25);}
         }
 
 

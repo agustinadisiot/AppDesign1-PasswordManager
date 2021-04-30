@@ -7,13 +7,13 @@ namespace Obligatorio
         public string Nombre 
         {
             get { return Nombre; }
-            set { this.Nombre = VerificadoraString.verificarLargoXaY(value, 3, 25); } 
+            set { this.Nombre = VerificadoraString.VerificarLargoXaY(value, 3, 25); } 
         }
 
         public string Tipo
         {
             get { return Tipo; }
-            set { this.Tipo = VerificadoraString.verificarLargoXaY(value, 3, 25); }
+            set { this.Tipo = VerificadoraString.VerificarLargoXaY(value, 3, 25); }
         }
 
         public string Numero 
@@ -33,7 +33,7 @@ namespace Obligatorio
         public string Nota 
         {
             get { return this.Nota; }
-            set { this.Nota = VerificadoraString.verificarLargoXaY(value, 0, 250); }
+            set { this.Nota = VerificadoraString.VerificarLargoXaY(value, 0, 250); }
         }
 
         public static string VerificarStringDeNumerosYSuLargoDeXaY(string dato, int x, int y)
@@ -41,7 +41,7 @@ namespace Obligatorio
             if (dato.Length < x || dato.Length > y) throw new LargoIncorrectoException();
             foreach (char c in dato)
             {
-                if (!VerificadoraString.esNumero(c)) throw new CaracterInesperadoException();
+                if (!VerificadoraString.EsNumero(c)) throw new CaracterInesperadoException();
             }
             return dato;
         }

@@ -18,7 +18,7 @@ namespace Obligatorio
         public string Nombre
         {
             get { return Nombre; }
-            set { this.Nombre = VerificadoraString.verificarLargoXaY(value, 3, 15); }
+            set { this.Nombre = VerificadoraString.VerificarLargoXaY(value, 3, 15); }
         }
 
 
