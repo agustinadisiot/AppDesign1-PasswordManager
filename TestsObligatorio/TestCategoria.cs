@@ -719,27 +719,37 @@ namespace TestsObligatorio
         public void CategoriaGetTarjetaCorrecta()
         {
             Categoria categoria1 = new Categoria();
+            string numeroTarjeta = "3456567890876543";
+
             Tarjeta tarjeta1 = new Tarjeta()
             {
                 Nombre = "Prex",
                 Tipo = "Mastercard",
-                Numero = "3456567890876543",
+                Numero = numeroTarjeta,
                 Codigo = "321",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria1.agregarTarjeta(tarjeta1);
-            Assert.AreEqual(tarjeta1, categoria1.getTarjeta("3456567890876543")); 
+
+            Tarjeta buscadora = new Tarjeta() 
+            { 
+                Numero = numeroTarjeta
+            };
+
+            Assert.AreEqual(tarjeta1, categoria1.getTarjeta(buscadora)); 
         }
 
         [TestMethod]
         public void CategoriaGetTarjetaPrimeraConDos()
         {
             Categoria categoria1 = new Categoria();
+
+            string numeroTarjetaPrimera = "3456567890876543";
             Tarjeta tarjeta1 = new Tarjeta()
             {
                 Nombre = "Prex",
                 Tipo = "Mastercard",
-                Numero = "3456567890876543",
+                Numero = numeroTarjetaPrimera,
                 Codigo = "321",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
@@ -754,7 +764,12 @@ namespace TestsObligatorio
             };
             categoria1.agregarTarjeta(tarjeta2);
 
-            Assert.AreEqual(tarjeta1, categoria1.getTarjeta("3456567890876543")); 
+            Tarjeta buscadora = new Tarjeta()
+            {
+                Numero = numeroTarjetaPrimera
+            };
+
+            Assert.AreEqual(tarjeta1, categoria1.getTarjeta(buscadora)); 
         }
 
         [TestMethod]
@@ -770,17 +785,25 @@ namespace TestsObligatorio
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria1.agregarTarjeta(tarjeta1);
+
+            string numeroSegundaTarjeta = "1234567890876553";
+
             Tarjeta tarjeta2 = new Tarjeta()
             {
                 Nombre = "Visa Gold",
                 Tipo = "Visa",
-                Numero = "1234567890876553",
+                Numero = numeroSegundaTarjeta,
                 Codigo = "789",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria1.agregarTarjeta(tarjeta2);
 
-            Assert.AreEqual(tarjeta2, categoria1.getTarjeta("1234567890876553"));
+            Tarjeta buscadora = new Tarjeta()
+            {
+                Numero = numeroSegundaTarjeta
+            };
+
+            Assert.AreEqual(tarjeta2, categoria1.getTarjeta(buscadora));
         }
 
         [TestMethod]
@@ -1019,20 +1042,26 @@ namespace TestsObligatorio
                 Nombre = "Personal"
             };
 
-            string nroTarjeta = "1234567890876543";
+            string numeroTarjeta = "1234567890876543";
 
             Tarjeta tarjeta = new Tarjeta()
             {
                 Nombre = "Visa Gold",
                 Tipo = "Visa",
-                Numero = nroTarjeta,
+                Numero = numeroTarjeta,
                 Codigo = "123",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
 
             categoria.agregarTarjeta(tarjeta);
-            categoria.borrarTarjeta(nroTarjeta);
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.getTarjeta(nroTarjeta));
+            categoria.borrarTarjeta(numeroTarjeta);
+
+            Tarjeta buscadora = new Tarjeta()
+            {
+                Numero = numeroTarjeta
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.getTarjeta(buscadora));
         }
 
         [TestMethod]
@@ -1044,13 +1073,13 @@ namespace TestsObligatorio
                 Nombre = "Personal"
             };
 
-            string nroTarjeta = "1234567890876543";
+            string numeroTarjeta = "1234567890876543";
 
             Tarjeta tarjeta1 = new Tarjeta()
             {
                 Nombre = "Visa Gold",
                 Tipo = "Visa",
-                Numero = nroTarjeta,
+                Numero = numeroTarjeta,
                 Codigo = "123",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
@@ -1064,11 +1093,16 @@ namespace TestsObligatorio
                 Vencimiento = new DateTime(2025, 7, 1)
             };
 
+            Tarjeta buscadora = new Tarjeta()
+            {
+                Numero = numeroTarjeta
+            };
+
 
             categoria.agregarTarjeta(tarjeta1);
             categoria.agregarTarjeta(tarjeta2);
-            categoria.borrarTarjeta(nroTarjeta);
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.getTarjeta(nroTarjeta));
+            categoria.borrarTarjeta(numeroTarjeta);
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.getTarjeta(buscadora));
         }
 
         [TestMethod]

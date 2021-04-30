@@ -99,12 +99,12 @@ namespace Obligatorio
             this.tarjetas.Add(tarjetaIngresada);
         }
 
-        public Tarjeta getTarjeta(string numeroABuscar)
+        public Tarjeta getTarjeta(Tarjeta aBuscar)
         {
             if (this.esListaTarjetasVacia()) throw new ObjetoInexistenteException();
             Predicate<Tarjeta> buscadorTarjeta = (Tarjeta tarjeta) =>
             {
-                return tarjeta.Numero == numeroABuscar;
+                return tarjeta.Equals(aBuscar);
             };
 
             Tarjeta retorno = this.tarjetas.Find(buscadorTarjeta);
