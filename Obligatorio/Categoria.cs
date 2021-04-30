@@ -51,6 +51,10 @@ namespace Obligatorio
                 Sitio = paginaContra,
                 UsuarioContra = usuarioContra
             };
+
+            if (!this.yaExisteContra(contraABorrar)) {
+                throw new ObjetoInexistenteException();
+            }
             this.contras.Remove(contraABorrar);
         }
         public Contra getContra(string sitioABuscar, string usuarioABuscar)
