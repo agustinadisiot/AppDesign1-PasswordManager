@@ -1031,7 +1031,7 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.borrarTarjeta(nroTarjeta));
         }
 
-        //Prueba si al agregar una tarjeta y luego modificar el nombre, efectivamente lo modifique.
+
         [TestMethod]
         public void CategoriaAlModificarTarjetaAgregadaLaTarjetaViejaDejaDeExistir()
         {
@@ -1066,6 +1066,32 @@ namespace TestsObligatorio
 
             categoria.modificarTarjeta(tarjetaVieja, tarjetaNueva);
             Assert.IsFalse(categoria.yaExisteTarjeta(tarjetaVieja));
+        }
+
+        [TestMethod]
+        public void CategoriaModificarTarjetaNoExistente()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            string nroTarjeta = "4254567490876549";
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = nroTarjeta,
+                Codigo = "123",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            categoria.agregarTarjeta(tarjeta);
+
+            string nroTarjetaInexistente = "1234567890876543";
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.modificarTarjeta(categoria.getTarjeta(nroTarjetaInexistente), tarjeta));
         }
     }
 }
