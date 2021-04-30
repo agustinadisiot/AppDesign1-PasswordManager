@@ -13,17 +13,15 @@ namespace TestsObligatorio
     public class TestAdministrador
     {
 
-        //Prueba si al comenzar el administrador la lista de usuarios esta vacía.
         [TestMethod]
-        public void EsListaUsuariosVaciaAlPrincipio()
+        public void AdministradorEsListaUsuariosVaciaAlPrincipio()
         {
             AdminContras administrador = new AdminContras();
             Assert.AreEqual(true, administrador.esListaUsuariosVacia());
         }
 
-        //Prueba si al agregar un usuario, esListaUsuariosVacia da false
         [TestMethod]
-        public void AdministradorConUsuarios()
+        public void AdministradorEsListaUsuariosVaciaConUsuarios()
         {
             AdminContras administrador = new AdminContras();
             Usuario usuario = new Usuario
@@ -34,7 +32,6 @@ namespace TestsObligatorio
             Assert.AreEqual(false, administrador.esListaUsuariosVacia());
         }
 
-        //Prueba si al agregar un usuario sin nombre, de una exception.
         [TestMethod]
         public void AdministradorAgregarUsuarioSinNombre()
         {
@@ -43,7 +40,6 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoIncompletoException>(() => administrador.agregarUsuario(usuario));
         }
 
-        //Prueba si al agregar dos usuarios, esListaUsuariosVacia sigue dando false
         [TestMethod]
         public void AdministradorEsListaUsuariosVaciaConDosUsuarios()
         {
@@ -62,9 +58,8 @@ namespace TestsObligatorio
             Assert.AreEqual(false, administrador.esListaUsuariosVacia());
         }
 
-        //Prueba si al pedir el usuario, devuelve el mismo.
         [TestMethod]
-        public void AdministradorPedirUsuario()
+        public void AdministradorPedirNombreUsuarioCorrecto()
         {
             AdminContras administrador = new AdminContras();
             Usuario usuario = new Usuario
@@ -75,7 +70,6 @@ namespace TestsObligatorio
             Assert.AreEqual(usuario, administrador.getUsuario("Roberto"));
         }
 
-        //Prueba si al agregar dos usuarios, y pedir el primer usuario agregado, por nombre, devuelve el correcto.
         [TestMethod]
         public void AdministradorPedirUsuarioPrimeroConDosAgregados()
         {
@@ -93,7 +87,6 @@ namespace TestsObligatorio
             Assert.AreEqual(usuario, administrador.getUsuario("Roberto"));
         }
 
-        //Prueba si al agregar dos usuarios, y pedir el segundo usuario agregado por nombre, devuelve el correcto.
         [TestMethod]
         public void AdministradorPedirUsuarioSegundoConDosAgregados()
         {
@@ -111,7 +104,6 @@ namespace TestsObligatorio
             Assert.AreEqual(usuario2, administrador.getUsuario("Pedro"));
         }
 
-        //Prueba si al agregar dos usuarios, y pedir un usuario con un nombre no agregado, devuelve un error.
         [TestMethod]
         public void AdministradorPedirUsuarioInexistente()
         {
