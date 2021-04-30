@@ -152,7 +152,12 @@ namespace TestsObligatorio
                 Nombre = "Personal"
             };
             usuario.agregarCategoria(categoria);
-            Assert.AreEqual(categoria, usuario.getCategoria("Personal"));
+
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            Assert.AreEqual(categoria, usuario.getCategoria(buscadora));
         }
 
         [TestMethod]
@@ -169,7 +174,13 @@ namespace TestsObligatorio
                 Nombre = "Trabajo"
             };
             usuario.agregarCategoria(categoria2);
-            Assert.AreEqual(categoria, usuario.getCategoria("Personal"));
+
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            Assert.AreEqual(categoria, usuario.getCategoria(buscadora));
         }
 
         [TestMethod]
@@ -186,7 +197,13 @@ namespace TestsObligatorio
                 Nombre = "Trabajo"
             };
             usuario.agregarCategoria(categoria2);
-            Assert.AreEqual(categoria2, usuario.getCategoria("Trabajo"));
+
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            Assert.AreEqual(categoria2, usuario.getCategoria(buscadora));
         }
 
         [TestMethod]
@@ -300,8 +317,12 @@ namespace TestsObligatorio
 
             usuario.modificarNombreCategoria("Personal", "Trabajo");
 
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
 
-            Assert.AreEqual("Trabajo", usuario.getCategoria("Trabajo").Nombre);
+            Assert.AreEqual("Trabajo", usuario.getCategoria(buscadora).Nombre);
         }
 
         [TestMethod]
@@ -627,7 +648,12 @@ namespace TestsObligatorio
             };
             usuario.agregarCategoria(categoria);
             usuario.agregarContra(contra, "Trabajo");
-            Assert.AreEqual(true, usuario.getCategoria("Trabajo").yaExisteContra(contra));
+
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Assert.AreEqual(true, usuario.getCategoria(buscadora).yaExisteContra(contra));
         }
 
         [TestMethod]
@@ -1142,7 +1168,13 @@ namespace TestsObligatorio
             };
             usuario.agregarCategoria(categoria);
             usuario.agregarTarjeta(tarjeta, "Trabajo");
-            Assert.AreEqual(true, usuario.getCategoria("Trabajo").yaExisteTarjeta(tarjeta));
+
+
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Assert.AreEqual(true, usuario.getCategoria(buscadora).yaExisteTarjeta(tarjeta));
         }
 
     }

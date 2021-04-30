@@ -30,7 +30,6 @@ namespace Obligatorio
             set { this.contraMaestra = VerificadoraString.verificarLargoXaY(value,5,25);}
         }
 
-
         public bool validarIgualContraMaestra(string v)
         {
             return v == this.contraMaestra;
@@ -54,10 +53,11 @@ namespace Obligatorio
             }  
         }
 
-        public Categoria getCategoria(string nombreCat)
+        public Categoria getCategoria(Categoria aBuscar)
         {
             //Predicate se utiliza en conjunto con una clase, se le da una condicion que retorne true para ser buscado en una List con un List.Find
-            Predicate<Categoria> buscadorCategoria = (Categoria c) => { return c.Nombre == nombreCat; };
+            Predicate<Categoria> buscadorCategoria = (Categoria categoria) =>
+            { return categoria.Equals(aBuscar); };
 
             Categoria retorno = this.listaCategorias.Find(buscadorCategoria);
             return retorno != null ? retorno : throw new ObjetoInexistenteException();
@@ -73,15 +73,24 @@ namespace Obligatorio
 
         public void modificarNombreCategoria(string nombreViejo, string nombreNuevo)
         {
-            Categoria buscadora = new Categoria(){ Nombre = nombreNuevo };
 
-            if (this.yaExisteCategoria(buscadora))
+            Categoria buscadoraNueva = new Categoria()
+            {
+                Nombre = nombreNuevo
+            };
+
+
+            if (this.yaExisteCategoria(buscadoraNueva))
             {
                 throw new ObjetoYaExistenteException();
             }
             else {
                 //.getCategoria tira una Excepcion de OBjetoInexistenteException si no existe la categoria buscada.
-                Categoria aBuscar = this.getCategoria(nombreViejo);
+                Categoria aModificar = new Categoria()
+                {
+                    Nombre=nombreViejo
+                };
+                Categoria aBuscar = this.getCategoria(aModificar);
                 aBuscar.Nombre = nombreNuevo;
             }
         }
@@ -109,7 +118,12 @@ namespace Obligatorio
 
             this.noAgregoContras = false;
 
-            this.getCategoria(categoria).agregarContra(contra);
+            Categoria buscadora = new Categoria()
+            {
+                Nombre= categoria
+            };
+
+            this.getCategoria(buscadora).agregarContra(contra);
         }
 
         public bool yaExisteTarjeta(Tarjeta tarjeta)
@@ -128,7 +142,12 @@ namespace Obligatorio
 
             if (this.yaExisteTarjeta(tarjeta)) throw new ObjetoYaExistenteException();
 
-            this.getCategoria(categoria).agregarTarjeta(tarjeta);
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = categoria
+            };
+
+            this.getCategoria(buscadora).agregarTarjeta(tarjeta);
         }
 
         public void borrarContra(string paginaContra, string usuarioContra)
