@@ -666,7 +666,14 @@ namespace TestsObligatorio
 
             String usuarioContra = "222222";
             String paginaContra = "www.ort.edu.uy";
-            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.borrarContra(paginaContra, usuarioContra));
+
+            Contra aBorrar = new Contra()
+            {
+                UsuarioContra = usuarioContra,
+                Sitio = paginaContra
+            };
+
+            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.borrarContra(aBorrar));
         }
 
         [TestMethod]
@@ -686,7 +693,14 @@ namespace TestsObligatorio
 
             String usuarioContra = "222222";
             String paginaContra = "www.ort.edu.uy";
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.borrarContra(paginaContra, usuarioContra));
+
+            Contra aBorrar = new Contra()
+            {
+                UsuarioContra = usuarioContra,
+                Sitio =paginaContra
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.borrarContra(aBorrar));
         }
 
         [TestMethod]
@@ -715,7 +729,14 @@ namespace TestsObligatorio
             };
 
             usuario.agregarContra(contraABorrar, "Categoria1");
-            usuario.borrarContra(paginaContra, usuarioContra);
+
+            Contra aBorrar = new Contra()
+            {
+                UsuarioContra = usuarioContra,
+                Sitio = paginaContra
+            };
+
+            usuario.borrarContra(aBorrar);
             Assert.IsFalse(usuario.yaExisteContra(contraABorrar));
         }
 
@@ -754,7 +775,13 @@ namespace TestsObligatorio
 
             usuario.agregarContra(contraABorrar, "Categoria1");
             usuario.agregarContra(contraADejar, "Categoria1");
-            usuario.borrarContra(paginaContra, usuarioContra);
+
+            Contra aBorrar = new Contra()
+            {
+                UsuarioContra = usuarioContra,
+                Sitio = paginaContra
+            };
+            usuario.borrarContra(aBorrar);
             Assert.IsTrue(usuario.yaExisteContra(contraADejar));
         }
     }

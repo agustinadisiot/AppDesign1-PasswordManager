@@ -150,14 +150,8 @@ namespace Obligatorio
             this.getCategoria(buscadora).agregarTarjeta(tarjeta);
         }
 
-        public void borrarContra(string paginaContra, string usuarioContra)
+        public void borrarContra(Contra aBorrar)
         {
-            Contra aBorrar = new Contra() 
-            {
-                Sitio = paginaContra,
-                UsuarioContra = usuarioContra
-            };
-
             if (this.noAgregoCategorias) {
                 throw new CategoriaInexistenteException();
             }
