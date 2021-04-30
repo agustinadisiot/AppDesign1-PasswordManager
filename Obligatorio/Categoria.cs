@@ -148,6 +148,12 @@ namespace Obligatorio
         {
             if (this.yaExisteTarjeta(tarjetaNueva)) throw new ObjetoYaExistenteException();
             this._noModificoTarjeta = false;
+            Tarjeta aModificar = this.getTarjeta(tarjetaVieja.Numero);
+            aModificar.Nombre = tarjetaNueva.Nombre;
+            aModificar.Numero = tarjetaNueva.Numero;
+            aModificar.Tipo = tarjetaNueva.Tipo;
+            aModificar.Nota = tarjetaNueva.Nota;
+            aModificar.Vencimiento = tarjetaNueva.Vencimiento;
         }
     }
 }

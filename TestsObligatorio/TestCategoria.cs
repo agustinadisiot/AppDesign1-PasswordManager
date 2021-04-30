@@ -1139,5 +1139,41 @@ namespace TestsObligatorio
 
             Assert.ThrowsException<ObjetoYaExistenteException>(() => categoria.modificarTarjeta(tarjeta1, duplicada));
         }
+
+        [TestMethod]
+        public void CategoriaModificarTarjetaAgregada()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            string nroTarjetaVieja = "4254567490876549";
+            Tarjeta tarjetaVieja = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = nroTarjetaVieja,
+                Codigo = "123",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            categoria.agregarTarjeta(tarjetaVieja);
+
+            string nroTarjetaNueva = "1234567890876543";
+            Tarjeta tarjetaNueva = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = nroTarjetaNueva,
+                Nota = "",
+                Codigo = "123",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+
+            categoria.modificarTarjeta(tarjetaVieja, tarjetaNueva);
+            Assert.AreEqual(tarjetaNueva, categoria.getTarjeta(nroTarjetaNueva));
+        }
     }
 }
