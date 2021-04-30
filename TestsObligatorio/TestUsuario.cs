@@ -630,7 +630,6 @@ namespace TestsObligatorio
             Assert.AreEqual(true, usuario.getCategoria("Trabajo").yaExisteContra(contra));
         }
 
-        //Prueba de borrar una Contra a un usuario sin categoria, y deberia tirar una excepcion.
         [TestMethod]
         public void UsuarioBorrarContraSinCategorias()
         {
@@ -644,7 +643,6 @@ namespace TestsObligatorio
             Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.borrarContra(paginaContra, usuarioContra));
         }
 
-        //Prueba de borrar una Contra a un usuario sin contras, y deberia tirar una excepcion.
         [TestMethod]
         public void UsuarioBorrarContraSinContras()
         {
