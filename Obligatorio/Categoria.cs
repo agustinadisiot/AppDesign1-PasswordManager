@@ -9,11 +9,13 @@ namespace Obligatorio
         private string nombre;
         private List<Contra> contras;
         private List<Tarjeta> tarjetas;
+        private bool _noModificoTarjeta;
 
         public Categoria()
         {
             contras = new List<Contra>();
             tarjetas = new List<Tarjeta>();
+            _noModificoTarjeta = true;
         }
 
         public string Nombre
@@ -123,6 +125,7 @@ namespace Obligatorio
 
         public bool yaExisteTarjeta(Tarjeta aBuscar)
         {
+            if (!_noModificoTarjeta) return false;
             return (this.tarjetas.Contains(aBuscar));
             
         }
@@ -141,6 +144,9 @@ namespace Obligatorio
             this.tarjetas.Remove(aBorrar);
         }
 
-       
+        public void modificarTarjeta(Tarjeta tarjetaVieja, Tarjeta tarjetaNueva)
+        {
+            this._noModificoTarjeta = false;
+        }
     }
 }
