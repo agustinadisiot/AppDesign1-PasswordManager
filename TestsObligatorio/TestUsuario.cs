@@ -10,7 +10,6 @@ namespace TestsObligatorio
     [TestClass]
     public class TestUsuario
     {
-
         [TestMethod]
         public void UsuarioGetNombreCorrecto()
         {
@@ -94,7 +93,11 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario();
             Assert.ThrowsException<LargoIncorrectoException>(() => usuario.ContraMaestra = "12345678901234567890123456");
         }
+    }
 
+    [TestClass]
+    public class TestUsuarioCategoria
+    {
         [TestMethod]
         public void UsuarioEsListaCategoriasVaciaSinCategorias()
         {
