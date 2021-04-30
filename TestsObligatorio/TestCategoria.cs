@@ -585,7 +585,7 @@ namespace TestsObligatorio
             };
             categoria.agregarTarjeta(tarjeta1);
             Assert.AreEqual(false, categoria.esListaTarjetasVacia());
-            Tarjeta tarjeta2= new Tarjeta()
+            Tarjeta tarjeta2 = new Tarjeta()
             {
                 Nombre = "Prex",
                 Tipo = "Mastercard",
@@ -670,7 +670,7 @@ namespace TestsObligatorio
                 Codigo = "321"
             };
             categoria1.agregarTarjeta(tarjeta1);
-            Assert.AreEqual(tarjeta1, categoria1.getTarjeta("3456567890876543")); 
+            Assert.AreEqual(tarjeta1, categoria1.getTarjeta("3456567890876543"));
         }
 
         //Prueba si al ingresar dos Tarjetas a la categoria devuelve la correcta al usar el get para la primera.
@@ -695,7 +695,7 @@ namespace TestsObligatorio
             };
             categoria1.agregarTarjeta(tarjeta2);
 
-            Assert.AreEqual(tarjeta1, categoria1.getTarjeta("3456567890876543")); 
+            Assert.AreEqual(tarjeta1, categoria1.getTarjeta("3456567890876543"));
         }
 
         //Prueba si al ingresar dos Tarjetas a la categoria devuelve la correcta al usar el get para la segunda.
@@ -1092,6 +1092,52 @@ namespace TestsObligatorio
             string nroTarjetaInexistente = "1234567890876543";
 
             Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.modificarTarjeta(categoria.getTarjeta(nroTarjetaInexistente), tarjeta));
+        }
+
+        [TestMethod]
+        public void CategoriaModificarTarjetaYaExistente()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            string nroTarjeta = "4254567490876549";
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = nroTarjeta,
+                Codigo = "123",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            categoria.agregarTarjeta(tarjeta1);
+
+            string nroTarjeta2 = "1234567890876543";
+            Tarjeta tarjeta2 = new Tarjeta()
+            {
+                Nombre = "Master",
+                Tipo = "Mastercard",
+                Numero = nroTarjeta2,
+                Codigo = "123",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 4, 1)
+            };
+            categoria.agregarTarjeta(tarjeta2);
+
+            Tarjeta duplicada = new Tarjeta()
+            {
+                Nombre = "Master",
+                Tipo = "Mastercard",
+                Numero = nroTarjeta2,
+                Codigo = "123",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 4, 1)
+            };
+
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => categoria.modificarTarjeta(tarjeta1, duplicada));
         }
     }
 }

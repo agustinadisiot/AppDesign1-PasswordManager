@@ -146,6 +146,7 @@ namespace Obligatorio
 
         public void modificarTarjeta(Tarjeta tarjetaVieja, Tarjeta tarjetaNueva)
         {
+            if (this.yaExisteTarjeta(tarjetaNueva)) throw new ObjetoYaExistenteException();
             this._noModificoTarjeta = false;
         }
     }
