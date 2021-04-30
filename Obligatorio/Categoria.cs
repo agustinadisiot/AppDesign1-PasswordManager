@@ -147,6 +147,15 @@ namespace Obligatorio
             this.tarjetas.Remove(aBorrar);
         }
 
-       
+        public void ModificarTarjeta(Tarjeta tarjetaVieja, Tarjeta tarjetaNueva)
+        {
+            if (this.YaExisteTarjeta(tarjetaNueva)) throw new ObjetoYaExistenteException();
+            Tarjeta aModificar = this.GetTarjeta(tarjetaVieja.Numero);
+            aModificar.Nombre = tarjetaNueva.Nombre;
+            aModificar.Numero = tarjetaNueva.Numero;
+            aModificar.Tipo = tarjetaNueva.Tipo;
+            aModificar.Nota = tarjetaNueva.Nota;
+            aModificar.Vencimiento = tarjetaNueva.Vencimiento;
+        }
     }
 }

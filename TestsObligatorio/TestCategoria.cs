@@ -1074,5 +1074,154 @@ namespace TestsObligatorio
             };
             Assert.AreEqual(true, categoria.YaExisteTarjeta(tarjetaDistintoTipo));
         }
+
+
+        [TestMethod]
+        public void CategoriaAlModificarTarjetaAgregadaLaTarjetaViejaDejaDeExistir()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            string numeroTarjetaVieja = "4254567490876549";
+            Tarjeta tarjetaVieja = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = numeroTarjetaVieja,
+                Codigo = "123",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            categoria.AgregarTarjeta(tarjetaVieja);
+
+            string numeroTarjetaNueva = "1234567890876543";
+            Tarjeta tarjetaNueva = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = numeroTarjetaNueva,
+                Codigo = "123",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+
+            Tarjeta buscadora = new Tarjeta()
+            {
+                Numero = numeroTarjetaVieja
+            };
+            categoria.ModificarTarjeta(tarjetaVieja, tarjetaNueva);
+            Assert.IsFalse(categoria.YaExisteTarjeta(buscadora));
+        }
+
+        [TestMethod]
+        public void CategoriaModificarTarjetaNoExistente()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            string numeroTarjeta = "4254567490876549";
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = numeroTarjeta,
+                Codigo = "123",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            categoria.AgregarTarjeta(tarjeta);
+
+            string numeroTarjetaInexistente = "1234567890876543";
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.ModificarTarjeta(categoria.GetTarjeta(numeroTarjetaInexistente), tarjeta));
+        }
+
+        [TestMethod]
+        public void CategoriaModificarTarjetaYaExistente()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            string numeroTarjeta = "4254567490876549";
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = numeroTarjeta,
+                Codigo = "123",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            categoria.AgregarTarjeta(tarjeta1);
+
+            string numeroTarjeta2 = "1234567890876543";
+            Tarjeta tarjeta2 = new Tarjeta()
+            {
+                Nombre = "Master",
+                Tipo = "Mastercard",
+                Numero = numeroTarjeta2,
+                Codigo = "123",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 4, 1)
+            };
+            categoria.AgregarTarjeta(tarjeta2);
+
+            Tarjeta duplicada = new Tarjeta()
+            {
+                Nombre = "Master",
+                Tipo = "Mastercard",
+                Numero = numeroTarjeta2,
+                Codigo = "123",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 4, 1)
+            };
+
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => categoria.ModificarTarjeta(tarjeta1, duplicada));
+        }
+
+        [TestMethod]
+        public void CategoriaModificarTarjetaAgregada()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            string numeroTarjetaVieja = "4254567490876549";
+            Tarjeta tarjetaVieja = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = numeroTarjetaVieja,
+                Codigo = "123",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            categoria.AgregarTarjeta(tarjetaVieja);
+
+            string numeroTarjetaNueva = "1234567890876543";
+            Tarjeta tarjetaNueva = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = numeroTarjetaNueva,
+                Nota = "",
+                Codigo = "123",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+
+            categoria.ModificarTarjeta(tarjetaVieja, tarjetaNueva);
+            Assert.AreEqual(tarjetaNueva, categoria.GetTarjeta(numeroTarjetaNueva));
+        }
     }
 }
