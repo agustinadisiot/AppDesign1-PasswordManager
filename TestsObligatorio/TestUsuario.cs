@@ -760,6 +760,45 @@ namespace TestsObligatorio
             usuario.borrarContra(paginaContra, usuarioContra);
             Assert.IsFalse(usuario.yaExisteContra(contraABorrar));
         }
+
+        [TestMethod]
+        public void UsuarioBorrarContraYYaExisteContraRestante()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Categoria1"
+            };
+
+            usuario.agregarCategoria(categoria);
+
+            String usuarioContra = "222222";
+            String paginaContra = "www.ort.edu.uy";
+
+            Contra contraABorrar = new Contra()
+            {
+                UsuarioContra = usuarioContra,
+                Sitio = paginaContra,
+                Clave = "12345AbC$"
+            };
+
+
+            Contra contraADejar = new Contra()
+            {
+                UsuarioContra = "OtraContra",
+                Sitio = "sitioContraADejar.com",
+                Clave = "12345AbC$"
+            };
+
+            usuario.agregarContra(contraABorrar, "Categoria1");
+            usuario.agregarContra(contraADejar, "Categoria1");
+            usuario.borrarContra(paginaContra, usuarioContra);
+            Assert.IsTrue(usuario.yaExisteContra(contraADejar));
+        }
     }
    
     [TestClass]
