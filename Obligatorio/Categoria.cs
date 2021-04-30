@@ -127,12 +127,8 @@ namespace Obligatorio
             
         }
 
-        public void borrarTarjeta(string tarjetaABorrar)
+        public void borrarTarjeta(Tarjeta aBorrar)
         {
-            Tarjeta aBorrar = new Tarjeta()
-            {
-                Numero = tarjetaABorrar
-            };
 
             if (this.esListaTarjetasVacia() || !this.yaExisteTarjeta(aBorrar))
             {

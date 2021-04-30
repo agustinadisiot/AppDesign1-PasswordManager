@@ -985,8 +985,14 @@ namespace TestsObligatorio
             {
                 Nombre = "Personal"
             };
-            string nroTarjeta = "1234567890876543";
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.borrarTarjeta(nroTarjeta));
+            string numeroTarjeta = "1234567890876543";
+
+            Tarjeta aBorrar = new Tarjeta()
+            {
+                Numero = numeroTarjeta
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.borrarTarjeta(aBorrar));
         }
 
         [TestMethod]
@@ -996,18 +1002,24 @@ namespace TestsObligatorio
             {
                 Nombre = "Personal"
             };
-            string nroTarjeta = "1234567890876543";
+            string numeroTarjeta = "1234567890876543";
             Tarjeta tarjeta = new Tarjeta()
             {
                 Nombre = "Visa Gold",
                 Tipo = "Visa",
-                Numero = nroTarjeta,
+                Numero = numeroTarjeta,
                 Codigo = "123",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria.agregarTarjeta(tarjeta);
             Assert.IsTrue(categoria.yaExisteTarjeta(tarjeta));
-            categoria.borrarTarjeta(nroTarjeta);
+
+            Tarjeta aBorrar = new Tarjeta()
+            {
+                Numero = numeroTarjeta
+            };
+
+            categoria.borrarTarjeta(aBorrar);
             Assert.IsFalse(categoria.yaExisteTarjeta(tarjeta));
         }
 
@@ -1018,18 +1030,24 @@ namespace TestsObligatorio
             {
                 Nombre = "Personal"
             };
-            string nroTarjeta = "1234567890876543";
+            string numeroTarjeta = "1234567890876543";
             Tarjeta tarjeta = new Tarjeta()
             {
                 Nombre = "Visa Gold",
                 Tipo = "Visa",
-                Numero = nroTarjeta,
+                Numero = numeroTarjeta,
                 Codigo = "123",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria.agregarTarjeta(tarjeta);
             Assert.IsTrue(categoria.yaExisteTarjeta(tarjeta));
-            categoria.borrarTarjeta(nroTarjeta);
+
+            Tarjeta aBorrar = new Tarjeta()
+            {
+                Numero = numeroTarjeta
+            };
+
+            categoria.borrarTarjeta(aBorrar);
             Assert.IsTrue(categoria.esListaTarjetasVacia());
         }
 
@@ -1053,8 +1071,13 @@ namespace TestsObligatorio
                 Vencimiento = new DateTime(2025, 7, 1)
             };
 
+            Tarjeta aBorrar = new Tarjeta()
+            {
+                Numero = numeroTarjeta
+            };
+
             categoria.agregarTarjeta(tarjeta);
-            categoria.borrarTarjeta(numeroTarjeta);
+            categoria.borrarTarjeta(aBorrar);
 
             Tarjeta buscadora = new Tarjeta()
             {
@@ -1098,10 +1121,14 @@ namespace TestsObligatorio
                 Numero = numeroTarjeta
             };
 
+            Tarjeta aBorrar = new Tarjeta()
+            {
+                Numero = numeroTarjeta
+            };
 
             categoria.agregarTarjeta(tarjeta1);
             categoria.agregarTarjeta(tarjeta2);
-            categoria.borrarTarjeta(numeroTarjeta);
+            categoria.borrarTarjeta(aBorrar);
             Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.getTarjeta(buscadora));
         }
 
@@ -1123,9 +1150,14 @@ namespace TestsObligatorio
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria.agregarTarjeta(tarjeta);
-            string nroTarjeta = "1234567890876543";
+            string numeroTarjeta = "1234567890876543";
 
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.borrarTarjeta(nroTarjeta));
+            Tarjeta aBorrar = new Tarjeta()
+            {
+                Numero = numeroTarjeta
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.borrarTarjeta(aBorrar));
         }
 
         [TestMethod]
