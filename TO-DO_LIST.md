@@ -53,8 +53,8 @@
 - [X] Agregar Tarjeta
 
 ### Eliminar 
-- [ ] Eliminar Contraseña
-- [ ] Eliminar Tarjeta
+- [X] Eliminar Contraseña
+- [X] Eliminar Tarjeta
 
 ### YaExiste
 - [X] YaExiste Contraseña
