@@ -384,7 +384,15 @@ namespace TestsObligatorio
 
             String usuarioContra = "222222";
             String paginaContra = "www.ort.edu.uy";
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.borrarContra(paginaContra, usuarioContra));
+
+            Contra aBorrar = new Contra()
+            {
+                Sitio = paginaContra,
+                UsuarioContra = usuarioContra
+
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.borrarContra(aBorrar));
         }
 
         [TestMethod]
@@ -406,7 +414,8 @@ namespace TestsObligatorio
 
             categoria.agregarContra(contra);
             Assert.IsTrue(categoria.yaExisteContra(contra));
-            categoria.borrarContra(paginaContra, usuarioContra);
+
+            categoria.borrarContra(contra);
             Assert.IsFalse(categoria.yaExisteContra(contra));
         }
 
@@ -429,7 +438,7 @@ namespace TestsObligatorio
             };
 
             categoria.agregarContra(contra);
-            categoria.borrarContra(paginaContra, usuarioContra);
+            categoria.borrarContra(contra);
             Assert.IsTrue(categoria.esListaContrasVacia());
         }
 
@@ -452,7 +461,7 @@ namespace TestsObligatorio
             };
 
             categoria.agregarContra(contra);
-            categoria.borrarContra(paginaContra, usuarioContra);
+            categoria.borrarContra(contra);
             categoria.agregarContra(contra);
             Assert.IsFalse(categoria.esListaContrasVacia());
         }
@@ -477,7 +486,7 @@ namespace TestsObligatorio
             };
 
             categoria.agregarContra(contraBorrar);
-            categoria.borrarContra(paginaContraBorrar, usuarioContraBorrar);
+            categoria.borrarContra(contraBorrar);
             Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.getContra(paginaContraBorrar, usuarioContraBorrar));
         }
 
@@ -510,7 +519,7 @@ namespace TestsObligatorio
 
             categoria.agregarContra(contraBorrar);
             categoria.agregarContra(contraOtra);
-            categoria.borrarContra(paginaContraBorrar, usuarioContraBorrar);
+            categoria.borrarContra(contraBorrar);
             Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.getContra(paginaContraBorrar, usuarioContraBorrar));
         }
 
@@ -528,6 +537,11 @@ namespace TestsObligatorio
             String usuarioContraBorrar = "222222";
             String paginaContraBorrar = "www.ort.edu.uy";
 
+            Contra contraBorrar = new Contra()
+            {
+                UsuarioContra = usuarioContraBorrar,
+                Sitio = paginaContraBorrar
+            };
 
             Contra contraOtra = new Contra()
             {
@@ -537,7 +551,7 @@ namespace TestsObligatorio
             };
 
             categoria.agregarContra(contraOtra);
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.borrarContra(paginaContraBorrar, usuarioContraBorrar));
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.borrarContra(contraBorrar));
         }
     }
 

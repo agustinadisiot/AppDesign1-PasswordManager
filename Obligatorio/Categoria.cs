@@ -41,17 +41,11 @@ namespace Obligatorio
             this.contras.Add(contraIngresada);
         }
 
-        public void borrarContra(string paginaContra, string usuarioContra)
+        public void borrarContra(Contra contraABorrar)
         {
             if (this.esListaContrasVacia()) {
                 throw new ObjetoInexistenteException();
             }
-            Contra contraABorrar = new Contra()
-            {
-                Sitio = paginaContra,
-                UsuarioContra = usuarioContra
-            };
-
             if (!this.yaExisteContra(contraABorrar)) {
                 throw new ObjetoInexistenteException();
             }

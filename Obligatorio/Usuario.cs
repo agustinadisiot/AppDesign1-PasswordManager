@@ -147,7 +147,7 @@ namespace Obligatorio
                 throw new ObjetoInexistenteException();
             }
             Categoria contieneContraABorrar = this.listaCategorias.First(categoria => categoria.yaExisteContra(aBorrar));
-            contieneContraABorrar.borrarContra(paginaContra,usuarioContra);
+            contieneContraABorrar.borrarContra(aBorrar);
         }
     }
 }
