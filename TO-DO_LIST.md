@@ -47,7 +47,7 @@
 
 ### Modificar
 - [ ] Modificar Contraseña
-- [ ] Modificar Tarjeta
+- [X] Modificar Tarjeta
 
 ### Agregar 
 - [X] Agregar Tarjeta
