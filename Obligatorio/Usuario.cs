@@ -9,13 +9,16 @@ namespace Obligatorio
         private string nombre;
         private string contraMaestra;
         private bool noAgregoCategorias;
-
+        private bool noAgregoContras;
+        private bool noBorroContras;
         private List<Categoria> listaCategorias;
 
 
         public Usuario()
         {
-            noAgregoCategorias = true;
+            this.noAgregoContras = true;
+            this.noBorroContras = true;
+            this.noAgregoCategorias = true;
             this.listaCategorias = new List<Categoria>();
         }
 
@@ -92,7 +95,10 @@ namespace Obligatorio
 
         public bool yaExisteContra(Contra contra)
         {
-            return this.listaCategorias.Any(catBuscadora => catBuscadora.yaExisteContra(contra));
+            if (this.noBorroContras) { 
+                return this.listaCategorias.Any(catBuscadora => catBuscadora.yaExisteContra(contra));
+            }
+            return false;
         }
 
         public void agregarContra(Contra contra, string categoria)
@@ -105,6 +111,8 @@ namespace Obligatorio
             if (noTieneSitio || noTieneClave || noTieneUsuario) throw new ObjetoIncompletoException();
             
             if(this.yaExisteContra(contra)) throw new ObjetoYaExistenteException();
+
+            this.noAgregoContras = false;
 
             this.getCategoria(categoria).agregarContra(contra);
         }
@@ -133,7 +141,12 @@ namespace Obligatorio
             if (this.noAgregoCategorias) {
                 throw new CategoriaInexistenteException();
             }
-            throw new ObjetoInexistenteException();
+            if (this.noAgregoContras) {
+                throw new ObjetoInexistenteException();
+            }
+
+            this.noBorroContras = false;
+
         }
     }
 }
