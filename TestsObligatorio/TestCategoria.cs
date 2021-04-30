@@ -1041,31 +1041,35 @@ namespace TestsObligatorio
                 Nombre = "Personal"
             };
 
-            string nroTarjetaVieja = "4254567490876549";
+            string numeroTarjetaVieja = "4254567490876549";
             Tarjeta tarjetaVieja = new Tarjeta()
             {
                 Nombre = "Visa Gold",
                 Tipo = "Visa",
-                Numero = nroTarjetaVieja,
+                Numero = numeroTarjetaVieja,
                 Codigo = "123",
                 Nota = "",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria.agregarTarjeta(tarjetaVieja);
 
-            string nroTarjetaNueva = "1234567890876543";
+            string numeroTarjetaNueva = "1234567890876543";
             Tarjeta tarjetaNueva = new Tarjeta()
             {
                 Nombre = "Prex",
                 Tipo = "Mastercard",
-                Numero = nroTarjetaNueva,
-                Nota = "",
+                Numero = numeroTarjetaNueva,
                 Codigo = "123",
+                Nota = "",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
 
+            Tarjeta buscadora = new Tarjeta()
+            {
+                Numero = numeroTarjetaVieja
+            };
             categoria.modificarTarjeta(tarjetaVieja, tarjetaNueva);
-            Assert.IsFalse(categoria.yaExisteTarjeta(tarjetaVieja));
+            Assert.IsFalse(categoria.yaExisteTarjeta(buscadora));
         }
 
         [TestMethod]
@@ -1077,21 +1081,21 @@ namespace TestsObligatorio
                 Nombre = "Personal"
             };
 
-            string nroTarjeta = "4254567490876549";
+            string numeroTarjeta = "4254567490876549";
             Tarjeta tarjeta = new Tarjeta()
             {
                 Nombre = "Visa Gold",
                 Tipo = "Visa",
-                Numero = nroTarjeta,
+                Numero = numeroTarjeta,
                 Codigo = "123",
                 Nota = "",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria.agregarTarjeta(tarjeta);
 
-            string nroTarjetaInexistente = "1234567890876543";
+            string numeroTarjetaInexistente = "1234567890876543";
 
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.modificarTarjeta(categoria.getTarjeta(nroTarjetaInexistente), tarjeta));
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.modificarTarjeta(categoria.getTarjeta(numeroTarjetaInexistente), tarjeta));
         }
 
         [TestMethod]
@@ -1103,24 +1107,24 @@ namespace TestsObligatorio
                 Nombre = "Personal"
             };
 
-            string nroTarjeta = "4254567490876549";
+            string numeroTarjeta = "4254567490876549";
             Tarjeta tarjeta1 = new Tarjeta()
             {
                 Nombre = "Visa Gold",
                 Tipo = "Visa",
-                Numero = nroTarjeta,
+                Numero = numeroTarjeta,
                 Codigo = "123",
                 Nota = "",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria.agregarTarjeta(tarjeta1);
 
-            string nroTarjeta2 = "1234567890876543";
+            string numeroTarjeta2 = "1234567890876543";
             Tarjeta tarjeta2 = new Tarjeta()
             {
                 Nombre = "Master",
                 Tipo = "Mastercard",
-                Numero = nroTarjeta2,
+                Numero = numeroTarjeta2,
                 Codigo = "123",
                 Nota = "",
                 Vencimiento = new DateTime(2025, 4, 1)
@@ -1131,7 +1135,7 @@ namespace TestsObligatorio
             {
                 Nombre = "Master",
                 Tipo = "Mastercard",
-                Numero = nroTarjeta2,
+                Numero = numeroTarjeta2,
                 Codigo = "123",
                 Nota = "",
                 Vencimiento = new DateTime(2025, 4, 1)
@@ -1149,31 +1153,31 @@ namespace TestsObligatorio
                 Nombre = "Personal"
             };
 
-            string nroTarjetaVieja = "4254567490876549";
+            string numeroTarjetaVieja = "4254567490876549";
             Tarjeta tarjetaVieja = new Tarjeta()
             {
                 Nombre = "Visa Gold",
                 Tipo = "Visa",
-                Numero = nroTarjetaVieja,
+                Numero = numeroTarjetaVieja,
                 Codigo = "123",
                 Nota = "",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria.agregarTarjeta(tarjetaVieja);
 
-            string nroTarjetaNueva = "1234567890876543";
+            string numeroTarjetaNueva = "1234567890876543";
             Tarjeta tarjetaNueva = new Tarjeta()
             {
                 Nombre = "Prex",
                 Tipo = "Mastercard",
-                Numero = nroTarjetaNueva,
+                Numero = numeroTarjetaNueva,
                 Nota = "",
                 Codigo = "123",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
 
             categoria.modificarTarjeta(tarjetaVieja, tarjetaNueva);
-            Assert.AreEqual(tarjetaNueva, categoria.getTarjeta(nroTarjetaNueva));
+            Assert.AreEqual(tarjetaNueva, categoria.getTarjeta(numeroTarjetaNueva));
         }
     }
 }
