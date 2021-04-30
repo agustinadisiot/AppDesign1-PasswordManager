@@ -149,14 +149,21 @@ namespace TestsObligatorio
         public void CategoriaGetContraCorrecta()
         {
             Categoria categoria1 = new Categoria();
-            Contra contra1 = new Contra()
+            Contra contraAGuardar = new Contra()
             {
                 Sitio = "web.whatsapp.com",
                 Clave = "EstaEsUnaClave1",
                 UsuarioContra = "Roberto"
             };
-            categoria1.agregarContra(contra1);
-            Assert.AreEqual(contra1, categoria1.getContra("web.whatsapp.com", "Roberto"));
+            categoria1.agregarContra(contraAGuardar);
+
+            Contra contraBuscadora = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                UsuarioContra = "Roberto"
+            };
+
+            Assert.AreEqual(contraAGuardar, categoria1.getContra(contraBuscadora));
         }
 
         [TestMethod]
@@ -170,6 +177,7 @@ namespace TestsObligatorio
                 UsuarioContra = "Roberto"
             };
             categoria1.agregarContra(contra1);
+
             Contra contra2 = new Contra()
             {
                 Sitio = "web.whatsapp.com",
@@ -178,7 +186,13 @@ namespace TestsObligatorio
             };
             categoria1.agregarContra(contra2);
 
-            Assert.AreEqual(contra1, categoria1.getContra("web.whatsapp.com", "Roberto")); ;
+            Contra contraBuscadora = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                UsuarioContra = "Roberto"
+            };
+
+            Assert.AreEqual(contra1, categoria1.getContra(contraBuscadora)); ;
         }
 
         [TestMethod]
@@ -192,6 +206,7 @@ namespace TestsObligatorio
                 UsuarioContra = "Roberto"
             };
             categoria1.agregarContra(contra1);
+
             Contra contra2 = new Contra()
             {
                 Sitio = "web.whatsapp.com",
@@ -200,7 +215,14 @@ namespace TestsObligatorio
             };
             categoria1.agregarContra(contra2);
 
-            Assert.AreEqual(contra2, categoria1.getContra("web.whatsapp.com", "Luis88")); ;
+            Contra contraBuscadora = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                UsuarioContra = "Luis88"
+            };
+
+
+            Assert.AreEqual(contra2, categoria1.getContra(contraBuscadora)); ;
         }
 
         [TestMethod]
@@ -485,9 +507,15 @@ namespace TestsObligatorio
                 Clave = "1234AbC$"
             };
 
+            Contra contraBuscadora = new Contra()
+            {
+                UsuarioContra = usuarioContraBorrar,
+                Sitio = paginaContraBorrar
+            };
+
             categoria.agregarContra(contraBorrar);
             categoria.borrarContra(contraBorrar);
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.getContra(paginaContraBorrar, usuarioContraBorrar));
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.getContra(contraBuscadora));
         }
 
         [TestMethod]
@@ -520,7 +548,9 @@ namespace TestsObligatorio
             categoria.agregarContra(contraBorrar);
             categoria.agregarContra(contraOtra);
             categoria.borrarContra(contraBorrar);
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.getContra(paginaContraBorrar, usuarioContraBorrar));
+
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.getContra(contraBorrar));
         }
 
 

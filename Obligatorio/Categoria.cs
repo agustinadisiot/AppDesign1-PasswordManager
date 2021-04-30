@@ -22,7 +22,6 @@ namespace Obligatorio
             set { this.nombre = VerificadoraString.verificarLargoXaY(value, 3, 15); }
         }
 
-
         public bool esListaContrasVacia()
         {
             bool noQuedanContras = (this.contras.Count == 0);
@@ -51,16 +50,16 @@ namespace Obligatorio
             }
             this.contras.Remove(contraABorrar);
         }
-        public Contra getContra(string sitioABuscar, string usuarioABuscar)
+
+        public Contra getContra(Contra aBuscar)
         {
             if (this.esListaContrasVacia()) {
                 throw new ObjetoInexistenteException();
             }
 
-            //Predicate se utiliza en conjunto con una clase, se le da una condicion que retorne true para ser buscado en una List con un List.Find
             Predicate<Contra> buscadorContra = (Contra contra) => 
-            { return contra.Sitio == sitioABuscar &&
-              contra.UsuarioContra == usuarioABuscar;
+            {
+                return contra.Equals(aBuscar);
             };
 
             Contra retorno = this.contras.Find(buscadorContra);
