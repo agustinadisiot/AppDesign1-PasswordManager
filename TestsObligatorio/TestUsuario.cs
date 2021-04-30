@@ -315,13 +315,20 @@ namespace TestsObligatorio
             };
             usuario.agregarCategoria(categoria);
 
-            usuario.modificarNombreCategoria("Personal", "Trabajo");
+            Categoria vieja = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            Categoria nueva = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            usuario.modificarNombreCategoria(vieja, nueva);
 
             Categoria buscadora = new Categoria()
             {
                 Nombre = "Trabajo"
             };
-
             Assert.AreEqual("Trabajo", usuario.getCategoria(buscadora).Nombre);
         }
 
@@ -334,7 +341,17 @@ namespace TestsObligatorio
                 Nombre = "Personal"
             };
             usuario.agregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.modificarNombreCategoria("Facultad", "Trabajo"));
+
+
+            Categoria modificarVieja = new Categoria()
+            {
+                Nombre = "Facultad"
+            };
+            Categoria modificarNueva = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.modificarNombreCategoria(modificarVieja, modificarNueva));
         }
 
         [TestMethod]
@@ -351,7 +368,17 @@ namespace TestsObligatorio
                 Nombre = "Trabajo"
             };
             usuario.agregarCategoria(categoria2);
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.modificarNombreCategoria("Personal", "Trabajo"));
+
+            Categoria modificarVieja = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            Categoria modificarNueva = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.modificarNombreCategoria(modificarVieja, modificarNueva));
         }
 
        
@@ -538,7 +565,13 @@ namespace TestsObligatorio
                 Clave = "12345678"
             };
             usuario.agregarCategoria(categoria);
-            usuario.agregarContra(contra, "Trabajo");
+
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            usuario.agregarContra(contra, buscadora);
             Assert.AreEqual(true, usuario.yaExisteContra(contra));
         }
 
@@ -560,7 +593,13 @@ namespace TestsObligatorio
                 Clave = "12345678"
             };
             usuario.agregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarContra(contra, "Trabajo"));
+
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarContra(contra, buscadora));
         }
 
         [TestMethod]
@@ -581,7 +620,13 @@ namespace TestsObligatorio
                 UsuarioContra = "111111"
             };
             usuario.agregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarContra(contra, "Trabajo"));
+
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarContra(contra, buscadora));
         }
 
         [TestMethod]
@@ -602,7 +647,13 @@ namespace TestsObligatorio
                 Clave = "12345678"
             };
             usuario.agregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarContra(contra, "Trabajo"));
+
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarContra(contra, buscadora));
         }
 
         [TestMethod]
@@ -624,8 +675,14 @@ namespace TestsObligatorio
                 Clave = "12345678"
             };
             usuario.agregarCategoria(categoria);
-            usuario.agregarContra(contra, "Trabajo");
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.agregarContra(contra, "Trabajo"));
+
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            usuario.agregarContra(contra, buscadora);
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.agregarContra(contra, buscadora));
         }
 
         [TestMethod]
@@ -647,12 +704,13 @@ namespace TestsObligatorio
                 Clave = "12345678"
             };
             usuario.agregarCategoria(categoria);
-            usuario.agregarContra(contra, "Trabajo");
 
             Categoria buscadora = new Categoria()
             {
                 Nombre = "Trabajo"
             };
+
+            usuario.agregarContra(contra, buscadora);
             Assert.AreEqual(true, usuario.getCategoria(buscadora).yaExisteContra(contra));
         }
 
@@ -728,7 +786,12 @@ namespace TestsObligatorio
                 Clave = "12345AbC$"
             };
 
-            usuario.agregarContra(contraABorrar, "Categoria1");
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Categoria1"
+            };
+
+            usuario.agregarContra(contraABorrar, buscadora);
 
             Contra aBorrar = new Contra()
             {
@@ -773,8 +836,13 @@ namespace TestsObligatorio
                 Clave = "12345AbC$"
             };
 
-            usuario.agregarContra(contraABorrar, "Categoria1");
-            usuario.agregarContra(contraADejar, "Categoria1");
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Categoria1"
+            };
+
+            usuario.agregarContra(contraABorrar, buscadora);
+            usuario.agregarContra(contraADejar, buscadora);
 
             Contra aBorrar = new Contra()
             {

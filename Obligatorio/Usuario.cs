@@ -71,27 +71,15 @@ namespace Obligatorio
             return aIgualar.Nombre == this.Nombre;
         }
 
-        public void modificarNombreCategoria(string nombreViejo, string nombreNuevo)
+        public void modificarNombreCategoria(Categoria vieja, Categoria nueva)
         {
-
-            Categoria buscadoraNueva = new Categoria()
-            {
-                Nombre = nombreNuevo
-            };
-
-
-            if (this.yaExisteCategoria(buscadoraNueva))
+            if (this.yaExisteCategoria(nueva))
             {
                 throw new ObjetoYaExistenteException();
             }
             else {
-                //.getCategoria tira una Excepcion de OBjetoInexistenteException si no existe la categoria buscada.
-                Categoria aModificar = new Categoria()
-                {
-                    Nombre=nombreViejo
-                };
-                Categoria aBuscar = this.getCategoria(aModificar);
-                aBuscar.Nombre = nombreNuevo;
+                Categoria aBuscar = this.getCategoria(vieja);
+                aBuscar.Nombre = nueva.Nombre;
             }
         }
 
@@ -105,7 +93,7 @@ namespace Obligatorio
             return this.listaCategorias.Any(catBuscadora => catBuscadora.yaExisteContra(contra));
         }
 
-        public void agregarContra(Contra contra, string categoria)
+        public void agregarContra(Contra contra, Categoria buscadora)
         {
             bool noTieneSitio = (contra.Sitio == null),
                  noTieneClave = (contra.Clave == null),
@@ -117,11 +105,6 @@ namespace Obligatorio
             if(this.yaExisteContra(contra)) throw new ObjetoYaExistenteException();
 
             this.noAgregoContras = false;
-
-            Categoria buscadora = new Categoria()
-            {
-                Nombre= categoria
-            };
 
             this.getCategoria(buscadora).agregarContra(contra);
         }
