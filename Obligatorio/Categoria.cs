@@ -6,7 +6,6 @@ namespace Obligatorio
 {
     public class Categoria
     {
-        private string nombre;
         private List<Contra> contras;
         private List<Tarjeta> tarjetas;
 
@@ -18,18 +17,18 @@ namespace Obligatorio
 
         public string Nombre
         {
-            get { return nombre; }
-            set { this.nombre = VerificadoraString.verificarLargoXaY(value, 3, 15); }
+            get { return Nombre; }
+            set { this.Nombre = VerificadoraString.verificarLargoXaY(value, 3, 15); }
         }
 
 
-        public bool esListaContrasVacia()
+        public bool EsListaContrasVacia()
         {
             bool noQuedanContras = (this.contras.Count == 0);
             return noQuedanContras;
         }
 
-        public void agregarContra(Contra contraIngresada)
+        public void AgregarContra(Contra contraIngresada)
         {
             bool noTieneSitio = (contraIngresada.Sitio == null),
                  noTieneClave = (contraIngresada.Clave == null),
@@ -37,13 +36,13 @@ namespace Obligatorio
 
 
             if (noTieneSitio || noTieneClave || noTieneUsuario ) throw new ObjetoIncompletoException();
-            if (this.yaExisteContra(contraIngresada)) throw new ObjetoYaExistenteException();
+            if (this.YaExisteContra(contraIngresada)) throw new ObjetoYaExistenteException();
             this.contras.Add(contraIngresada);
         }
 
-        public void borrarContra(string paginaContra, string usuarioContra)
+        public void BorrarContra(string paginaContra, string usuarioContra)
         {
-            if (this.esListaContrasVacia()) {
+            if (this.EsListaContrasVacia()) {
                 throw new ObjetoInexistenteException();
             }
             Contra contraABorrar = new Contra()
@@ -52,18 +51,17 @@ namespace Obligatorio
                 UsuarioContra = usuarioContra
             };
 
-            if (!this.yaExisteContra(contraABorrar)) {
+            if (!this.YaExisteContra(contraABorrar)) {
                 throw new ObjetoInexistenteException();
             }
             this.contras.Remove(contraABorrar);
         }
-        public Contra getContra(string sitioABuscar, string usuarioABuscar)
+        public Contra GetContra(string sitioABuscar, string usuarioABuscar)
         {
-            if (this.esListaContrasVacia()) {
+            if (this.EsListaContrasVacia()) {
                 throw new ObjetoInexistenteException();
             }
 
-            //Predicate se utiliza en conjunto con una clase, se le da una condicion que retorne true para ser buscado en una List con un List.Find
             Predicate<Contra> buscadorContra = (Contra contra) => 
             { return contra.Sitio == sitioABuscar &&
               contra.UsuarioContra == usuarioABuscar;
@@ -73,7 +71,7 @@ namespace Obligatorio
             return retorno != null ? retorno : throw new ObjetoInexistenteException();
         }
 
-        public List<Contra> getListaContras()
+        public List<Contra> GetListaContras()
         {
             return this.contras;
         }
@@ -86,12 +84,12 @@ namespace Obligatorio
             return aIgualar.Nombre.ToUpper() == this.Nombre.ToUpper();
         }
 
-        public bool esListaTarjetasVacia()
+        public bool EsListaTarjetasVacia()
         {
             return this.tarjetas.Count == 0;
         }
 
-        public void agregarTarjeta(Tarjeta tarjetaIngresada)
+        public void AgregarTarjeta(Tarjeta tarjetaIngresada)
         {
             bool noTieneNombre = (tarjetaIngresada.Nombre == null),
                 noTieneSitio = (tarjetaIngresada.Tipo == null),
@@ -101,14 +99,14 @@ namespace Obligatorio
 
             if (noTieneNombre || noTieneSitio || noTieneNumero || noTieneCodigo || noTieneVencimiento) throw new ObjetoIncompletoException();
 
-            if (this.yaExisteTarjeta(tarjetaIngresada)) throw new ObjetoYaExistenteException();
+            if (this.YaExisteTarjeta(tarjetaIngresada)) throw new ObjetoYaExistenteException();
            
             this.tarjetas.Add(tarjetaIngresada);
         }
 
-        public Tarjeta getTarjeta(string numeroABuscar)
+        public Tarjeta GetTarjeta(string numeroABuscar)
         {
-            if (this.esListaTarjetasVacia()) throw new ObjetoInexistenteException();
+            if (this.EsListaTarjetasVacia()) throw new ObjetoInexistenteException();
             Predicate<Tarjeta> buscadorTarjeta = (Tarjeta tarjeta) =>
             {
                 return tarjeta.Numero == numeroABuscar;
@@ -118,30 +116,30 @@ namespace Obligatorio
             return retorno != null ? retorno : throw new ObjetoInexistenteException();
         }
 
-        public List<Tarjeta> getListaTarjetas()
+        public List<Tarjeta> GetListaTarjetas()
         {
             return this.tarjetas;
         }
 
-        public bool yaExisteContra(Contra aBuscar)
+        public bool YaExisteContra(Contra aBuscar)
         {
             return this.contras.Any(buscadora => buscadora.Equals(aBuscar));
         }
 
-        public bool yaExisteTarjeta(Tarjeta aBuscar)
+        public bool YaExisteTarjeta(Tarjeta aBuscar)
         {
             return (this.tarjetas.Contains(aBuscar));
             
         }
 
-        public void borrarTarjeta(string tarjetaABorrar)
+        public void BorrarTarjeta(string tarjetaABorrar)
         {
             Tarjeta aBorrar = new Tarjeta()
             {
                 Numero = tarjetaABorrar
             };
 
-            if (this.esListaTarjetasVacia() || !this.yaExisteTarjeta(aBorrar))
+            if (this.EsListaTarjetasVacia() || !this.YaExisteTarjeta(aBorrar))
             {
                 throw new ObjetoInexistenteException();
             }

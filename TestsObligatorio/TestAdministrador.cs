@@ -17,7 +17,7 @@ namespace TestsObligatorio
         public void AdministradorEsListaUsuariosVaciaAlPrincipio()
         {
             AdminContras administrador = new AdminContras();
-            Assert.AreEqual(true, administrador.esListaUsuariosVacia());
+            Assert.AreEqual(true, administrador.EsListaUsuariosVacia());
         }
 
         [TestMethod]
@@ -28,8 +28,8 @@ namespace TestsObligatorio
             {
                 Nombre = "Roberto"
             };
-            administrador.agregarUsuario(usuario);
-            Assert.AreEqual(false, administrador.esListaUsuariosVacia());
+            administrador.AgregarUsuario(usuario);
+            Assert.AreEqual(false, administrador.EsListaUsuariosVacia());
         }
 
         [TestMethod]
@@ -37,7 +37,7 @@ namespace TestsObligatorio
         {
             AdminContras administrador = new AdminContras();
             Usuario usuario = new Usuario();
-            Assert.ThrowsException<ObjetoIncompletoException>(() => administrador.agregarUsuario(usuario));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => administrador.AgregarUsuario(usuario));
         }
 
         [TestMethod]
@@ -48,14 +48,14 @@ namespace TestsObligatorio
             {
                 Nombre = "Roberto"
             };
-            administrador.agregarUsuario(usuario);
-            Assert.AreEqual(false, administrador.esListaUsuariosVacia());
+            administrador.AgregarUsuario(usuario);
+            Assert.AreEqual(false, administrador.EsListaUsuariosVacia());
             Usuario usuario2 = new Usuario
             {
                 Nombre = "Pedro"
             };
-            administrador.agregarUsuario(usuario2);
-            Assert.AreEqual(false, administrador.esListaUsuariosVacia());
+            administrador.AgregarUsuario(usuario2);
+            Assert.AreEqual(false, administrador.EsListaUsuariosVacia());
         }
 
         [TestMethod]
@@ -66,8 +66,8 @@ namespace TestsObligatorio
             {
                 Nombre = "Roberto"
             };
-            administrador.agregarUsuario(usuario);
-            Assert.AreEqual(usuario, administrador.getUsuario("Roberto"));
+            administrador.AgregarUsuario(usuario);
+            Assert.AreEqual(usuario, administrador.GetUsuario("Roberto"));
         }
 
         [TestMethod]
@@ -78,13 +78,13 @@ namespace TestsObligatorio
             {
                 Nombre = "Roberto"
             };
-            administrador.agregarUsuario(usuario);
+            administrador.AgregarUsuario(usuario);
             Usuario usuario2 = new Usuario
             {
                 Nombre = "Pedro"
             };
-            administrador.agregarUsuario(usuario2);
-            Assert.AreEqual(usuario, administrador.getUsuario("Roberto"));
+            administrador.AgregarUsuario(usuario2);
+            Assert.AreEqual(usuario, administrador.GetUsuario("Roberto"));
         }
 
         [TestMethod]
@@ -95,13 +95,13 @@ namespace TestsObligatorio
             {
                 Nombre = "Roberto"
             };
-            administrador.agregarUsuario(usuario);
+            administrador.AgregarUsuario(usuario);
             Usuario usuario2 = new Usuario
             {
                 Nombre = "Pedro"
             };
-            administrador.agregarUsuario(usuario2);
-            Assert.AreEqual(usuario2, administrador.getUsuario("Pedro"));
+            administrador.AgregarUsuario(usuario2);
+            Assert.AreEqual(usuario2, administrador.GetUsuario("Pedro"));
         }
 
         [TestMethod]
@@ -112,13 +112,13 @@ namespace TestsObligatorio
             {
                 Nombre = "Roberto"
             };
-            administrador.agregarUsuario(usuario);
+            administrador.AgregarUsuario(usuario);
             Usuario usuario2 = new Usuario
             {
                 Nombre = "Pedro"
             };
-            administrador.agregarUsuario(usuario2);
-            Assert.ThrowsException<ObjetoInexistenteException>(() => administrador.getUsuario("Hernesto"));
+            administrador.AgregarUsuario(usuario2);
+            Assert.ThrowsException<ObjetoInexistenteException>(() => administrador.GetUsuario("Hernesto"));
         }
 
     }

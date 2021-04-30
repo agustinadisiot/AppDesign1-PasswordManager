@@ -4,43 +4,38 @@ namespace Obligatorio
 {
     public class Contra
     {
-        private string usuario;
-        private string clave;
-        private string sitio;
-        private string nota;
-
         public string UsuarioContra
         {
-            get { return usuario; }
-            set { this.usuario = VerificadoraString.verificarLargoXaY(value, 5, 25); }
+            get { return UsuarioContra; }
+            set { this.UsuarioContra = VerificadoraString.verificarLargoXaY(value, 5, 25); }
         }
 
         public string Clave
         {
-            get { return clave; }
-            set { this.clave = VerificadoraString.verificarLargoXaY(value, 5, 25); }
+            get { return Clave; }
+            set { this.Clave = VerificadoraString.verificarLargoXaY(value, 5, 25); }
         }
 
         public string Sitio
         {
-            get { return sitio; }
-            set { this.sitio = VerificadoraString.verificarLargoXaY(value, 3, 25); }
+            get { return Sitio; }
+            set { this.Sitio = VerificadoraString.verificarLargoXaY(value, 3, 25); }
         }
 
         public string Nota
         {
-            get { return nota; }
-            set { this.nota = VerificadoraString.verificarLargoXaY(value, 0, 250); }
+            get { return Nota; }
+            set { this.Nota = VerificadoraString.verificarLargoXaY(value, 0, 250); }
         }
 
-        public string getNivelSeguridad()
+        public string GetNivelSeguridad()
         {
             string rojo = "rojo", naranja = "naranja", amarillo = "amarillo", verdeClaro = "verde claro", verdeOscuro = "verde oscuro";
-            if (this.clave.Length < 8) return rojo;
-            if(this.clave.Length < 14) return naranja;
+            if (this.Clave.Length < 8) return rojo;
+            if(this.Clave.Length < 14) return naranja;
 
             bool tieneMin = false, tieneMay = false, tieneNum = false, tieneSim = false;
-            foreach (char c in this.clave)
+            foreach (char c in this.Clave)
             {
                 if (!tieneMay || !tieneMin || !tieneMin || !tieneSim)
                 {

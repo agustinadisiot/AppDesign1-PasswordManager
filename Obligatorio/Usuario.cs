@@ -6,12 +6,9 @@ namespace Obligatorio
 {
     public class Usuario
     {
-        private string nombre;
-        private string contraMaestra;
         private bool noAgregoCategorias;
         private bool noAgregoContras;
         private List<Categoria> listaCategorias;
-
 
         public Usuario()
         {
@@ -21,42 +18,41 @@ namespace Obligatorio
         }
 
         public string Nombre 
-        {   get { return nombre;}
-            set { this.nombre = VerificadoraString.verificarLargoXaY(value, 5, 25); }
+        {   get { return Nombre;}
+            set { this.Nombre = VerificadoraString.verificarLargoXaY(value, 5, 25); }
         }
 
         public string ContraMaestra {
-            get { return this.contraMaestra;}
-            set { this.contraMaestra = VerificadoraString.verificarLargoXaY(value,5,25);}
+            get { return this.ContraMaestra;}
+            set { this.ContraMaestra = VerificadoraString.verificarLargoXaY(value,5,25);}
         }
 
 
-        public bool validarIgualContraMaestra(string v)
+        public bool ValidarIgualContraMaestra(string v)
         {
-            return v == this.contraMaestra;
+            return v == this.ContraMaestra;
         }
 
-        public bool esListaCategoriasVacia()
+        public bool EsListaCategoriasVacia()
         {
             return this.noAgregoCategorias;
         }
 
-        public void agregarCategoria(Categoria c1)
+        public void AgregarCategoria(Categoria c1)
         {
             if (c1.Nombre == null) throw new ObjetoIncompletoException();
             else 
             {
                 this.noAgregoCategorias = false;
-                if (this.yaExisteCategoria(c1)) {
+                if (this.YaExisteCategoria(c1)) {
                     throw new ObjetoYaExistenteException();
                 }
                 this.listaCategorias.Add(c1);
             }  
         }
 
-        public Categoria getCategoria(string nombreCat)
+        public Categoria GetCategoria(string nombreCat)
         {
-            //Predicate se utiliza en conjunto con una clase, se le da una condicion que retorne true para ser buscado en una List con un List.Find
             Predicate<Categoria> buscadorCategoria = (Categoria c) => { return c.Nombre == nombreCat; };
 
             Categoria retorno = this.listaCategorias.Find(buscadorCategoria);
@@ -71,32 +67,31 @@ namespace Obligatorio
             return aIgualar.Nombre == this.Nombre;
         }
 
-        public void modificarNombreCategoria(string nombreViejo, string nombreNuevo)
+        public void ModificarNombreCategoria(string nombreViejo, string nombreNuevo)
         {
             Categoria buscadora = new Categoria(){ Nombre = nombreNuevo };
 
-            if (this.yaExisteCategoria(buscadora))
+            if (this.YaExisteCategoria(buscadora))
             {
                 throw new ObjetoYaExistenteException();
             }
             else {
-                //.getCategoria tira una Excepcion de OBjetoInexistenteException si no existe la categoria buscada.
-                Categoria aBuscar = this.getCategoria(nombreViejo);
+                Categoria aBuscar = this.GetCategoria(nombreViejo);
                 aBuscar.Nombre = nombreNuevo;
             }
         }
 
-        public bool yaExisteCategoria(Categoria aBuscar)
+        public bool YaExisteCategoria(Categoria aBuscar)
         {
             return this.listaCategorias.Any(buscadora => buscadora.Equals(aBuscar));
         }
 
-        public bool yaExisteContra(Contra contra)
+        public bool YaExisteContra(Contra contra)
         {
-            return this.listaCategorias.Any(catBuscadora => catBuscadora.yaExisteContra(contra));
+            return this.listaCategorias.Any(catBuscadora => catBuscadora.YaExisteContra(contra));
         }
 
-        public void agregarContra(Contra contra, string categoria)
+        public void AgregarContra(Contra contra, string categoria)
         {
             bool noTieneSitio = (contra.Sitio == null),
                  noTieneClave = (contra.Clave == null),
@@ -105,19 +100,19 @@ namespace Obligatorio
 
             if (noTieneSitio || noTieneClave || noTieneUsuario) throw new ObjetoIncompletoException();
             
-            if(this.yaExisteContra(contra)) throw new ObjetoYaExistenteException();
+            if(this.YaExisteContra(contra)) throw new ObjetoYaExistenteException();
 
             this.noAgregoContras = false;
 
-            this.getCategoria(categoria).agregarContra(contra);
+            this.GetCategoria(categoria).AgregarContra(contra);
         }
 
-        public bool yaExisteTarjeta(Tarjeta tarjeta)
+        public bool YaExisteTarjeta(Tarjeta tarjeta)
         {
-            return this.listaCategorias.Any(catBuscadora => catBuscadora.yaExisteTarjeta(tarjeta));
+            return this.listaCategorias.Any(catBuscadora => catBuscadora.YaExisteTarjeta(tarjeta));
         }
 
-        public void agregarTarjeta(Tarjeta tarjeta, string categoria)
+        public void AgregarTarjeta(Tarjeta tarjeta, string categoria)
         {
             bool noTieneNombre = (tarjeta.Nombre == null),
             noTieneSitio = (tarjeta.Tipo == null),
@@ -126,12 +121,12 @@ namespace Obligatorio
 
             if (noTieneNombre || noTieneSitio || noTieneNumero || noTieneCodigo) throw new ObjetoIncompletoException();
 
-            if (this.yaExisteTarjeta(tarjeta)) throw new ObjetoYaExistenteException();
+            if (this.YaExisteTarjeta(tarjeta)) throw new ObjetoYaExistenteException();
 
-            this.getCategoria(categoria).agregarTarjeta(tarjeta);
+            this.GetCategoria(categoria).AgregarTarjeta(tarjeta);
         }
 
-        public void borrarContra(string paginaContra, string usuarioContra)
+        public void BorrarContra(string paginaContra, string usuarioContra)
         {
             Contra aBorrar = new Contra() 
             {
@@ -142,12 +137,12 @@ namespace Obligatorio
             if (this.noAgregoCategorias) {
                 throw new CategoriaInexistenteException();
             }
-            if (this.noAgregoContras || !this.yaExisteContra(aBorrar))
+            if (this.noAgregoContras || !this.YaExisteContra(aBorrar))
             {
                 throw new ObjetoInexistenteException();
             }
-            Categoria contieneContraABorrar = this.listaCategorias.First(categoria => categoria.yaExisteContra(aBorrar));
-            contieneContraABorrar.borrarContra(paginaContra,usuarioContra);
+            Categoria contieneContraABorrar = this.listaCategorias.First(categoria => categoria.YaExisteContra(aBorrar));
+            contieneContraABorrar.BorrarContra(paginaContra,usuarioContra);
         }
     }
 }

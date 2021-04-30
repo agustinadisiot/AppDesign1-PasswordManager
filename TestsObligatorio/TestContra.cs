@@ -156,7 +156,7 @@ namespace TestsObligatorio
             {
                 Clave = "clave1"
             };
-            Assert.AreEqual("rojo", contra.getNivelSeguridad());
+            Assert.AreEqual("rojo", contra.GetNivelSeguridad());
         }
 
         [TestMethod]
@@ -166,7 +166,7 @@ namespace TestsObligatorio
             {
                 Clave = "clave212345"
             };
-            Assert.AreEqual("naranja", contra.getNivelSeguridad());
+            Assert.AreEqual("naranja", contra.GetNivelSeguridad());
         }
 
         [TestMethod]
@@ -176,7 +176,7 @@ namespace TestsObligatorio
             {
                 Clave = "CLAVESOLOMAYUSCULAS"
             };
-            Assert.AreEqual("amarillo", contra.getNivelSeguridad());
+            Assert.AreEqual("amarillo", contra.GetNivelSeguridad());
         }
 
         [TestMethod]
@@ -186,7 +186,7 @@ namespace TestsObligatorio
             {
                 Clave = "clavesolominusculas"
             };
-            Assert.AreEqual("amarillo", contra.getNivelSeguridad());
+            Assert.AreEqual("amarillo", contra.GetNivelSeguridad());
         }
 
         [TestMethod]
@@ -196,7 +196,7 @@ namespace TestsObligatorio
             {
                 Clave = "ClaveConMayYMin"
             };
-            Assert.AreEqual("verde claro", contra.getNivelSeguridad());
+            Assert.AreEqual("verde claro", contra.GetNivelSeguridad());
         }
 
         [TestMethod]
@@ -206,7 +206,7 @@ namespace TestsObligatorio
             {
                 Clave = "ClaveConMayYMin14@#"
             };
-            Assert.AreEqual("verde oscuro", contra.getNivelSeguridad());
+            Assert.AreEqual("verde oscuro", contra.GetNivelSeguridad());
         }
 
         [TestMethod]
@@ -216,7 +216,7 @@ namespace TestsObligatorio
             {
                 Clave = "claveconmayymiN14@"
             };
-            Assert.AreEqual("verde oscuro", contra.getNivelSeguridad());
+            Assert.AreEqual("verde oscuro", contra.GetNivelSeguridad());
         }
 
         [TestMethod]

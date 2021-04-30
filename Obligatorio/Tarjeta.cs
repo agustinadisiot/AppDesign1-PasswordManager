@@ -4,46 +4,39 @@ namespace Obligatorio
 {
     public class Tarjeta
     {
-        private string nombre;
-        private string tipo;
-        private string numero;
-        private string codigo;
-        private string nota;
-        //private DateTime
-
         public string Nombre 
         {
-            get { return nombre; }
-            set { this.nombre = VerificadoraString.verificarLargoXaY(value, 3, 25); } 
+            get { return Nombre; }
+            set { this.Nombre = VerificadoraString.verificarLargoXaY(value, 3, 25); } 
         }
 
         public string Tipo
         {
-            get { return tipo; }
-            set { this.tipo = VerificadoraString.verificarLargoXaY(value, 3, 25); }
+            get { return Tipo; }
+            set { this.Tipo = VerificadoraString.verificarLargoXaY(value, 3, 25); }
         }
 
         public string Numero 
         {
-            get { return this.numero; }
-            set { this.numero = verificarStringDeNumerosYSuLargoDeXaY(value, 16, 16); }
+            get { return this.Numero; }
+            set { this.Numero = VerificarStringDeNumerosYSuLargoDeXaY(value, 16, 16); }
         }
 
         public string Codigo
         {
-            get { return this.codigo; }
-            set { this.codigo = verificarStringDeNumerosYSuLargoDeXaY(value, 3, 4); }
+            get { return this.Codigo; }
+            set { this.Codigo = VerificarStringDeNumerosYSuLargoDeXaY(value, 3, 4); }
         }
 
         public DateTime Vencimiento { get; set; }
 
         public string Nota 
         {
-            get { return this.nota; }
-            set { this.nota = VerificadoraString.verificarLargoXaY(value, 0, 250); }
+            get { return this.Nota; }
+            set { this.Nota = VerificadoraString.verificarLargoXaY(value, 0, 250); }
         }
 
-        public static string verificarStringDeNumerosYSuLargoDeXaY(string dato, int x, int y)
+        public static string VerificarStringDeNumerosYSuLargoDeXaY(string dato, int x, int y)
         {
             if (dato.Length < x || dato.Length > y) throw new LargoIncorrectoException();
             foreach (char c in dato)
@@ -58,7 +51,7 @@ namespace Obligatorio
             if (obj == null) throw new ObjetoIncompletoException();
             if (obj.GetType() != this.GetType()) throw new ObjetoIncorrectoException();
             Tarjeta aIgualar = (Tarjeta)obj;
-            return aIgualar.Numero == this.numero;
+            return aIgualar.Numero == this.Numero;
         }
     }
 }

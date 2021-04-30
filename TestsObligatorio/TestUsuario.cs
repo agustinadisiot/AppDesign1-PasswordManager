@@ -53,7 +53,7 @@ namespace TestsObligatorio
             {
                 ContraMaestra = "Hola12345"
             };
-            Assert.AreEqual(true, usuario.validarIgualContraMaestra("Hola12345"));
+            Assert.AreEqual(true, usuario.ValidarIgualContraMaestra("Hola12345"));
         }
 
         [TestMethod]
@@ -63,7 +63,7 @@ namespace TestsObligatorio
             {
                 ContraMaestra = "Hola12345"
             };
-            Assert.AreEqual(false, u1.validarIgualContraMaestra("Diferente"));
+            Assert.AreEqual(false, u1.ValidarIgualContraMaestra("Diferente"));
         }
 
         [TestMethod]
@@ -73,11 +73,11 @@ namespace TestsObligatorio
             {
                 ContraMaestra = "Hola12345"
             };
-            Assert.AreEqual(true, usuario.validarIgualContraMaestra("Hola12345"));
+            Assert.AreEqual(true, usuario.ValidarIgualContraMaestra("Hola12345"));
 
             usuario.ContraMaestra = "Chau109876";
-            Assert.AreEqual(false, usuario.validarIgualContraMaestra("Hola12345"));
-            Assert.AreEqual(true, usuario.validarIgualContraMaestra("Chau109876"));
+            Assert.AreEqual(false, usuario.ValidarIgualContraMaestra("Hola12345"));
+            Assert.AreEqual(true, usuario.ValidarIgualContraMaestra("Chau109876"));
         }
 
         [TestMethod]
@@ -102,7 +102,7 @@ namespace TestsObligatorio
         public void UsuarioEsListaCategoriasVaciaSinCategorias()
         {
             Usuario usuario = new Usuario();
-            Assert.AreEqual(true, usuario.esListaCategoriasVacia());
+            Assert.AreEqual(true, usuario.EsListaCategoriasVacia());
         }
 
         [TestMethod]
@@ -113,8 +113,8 @@ namespace TestsObligatorio
             {
                 Nombre = "Personal"
             };
-            usuario.agregarCategoria(categoria);
-            Assert.AreEqual(false, usuario.esListaCategoriasVacia());
+            usuario.AgregarCategoria(categoria);
+            Assert.AreEqual(false, usuario.EsListaCategoriasVacia());
         }
 
         [TestMethod]
@@ -125,14 +125,14 @@ namespace TestsObligatorio
             {
                 Nombre = "Trabajo"
             };
-            usuario.agregarCategoria(categoria);
-            Assert.AreEqual(false, usuario.esListaCategoriasVacia());
+            usuario.AgregarCategoria(categoria);
+            Assert.AreEqual(false, usuario.EsListaCategoriasVacia());
             Categoria categoria2 = new Categoria()
             {
                 Nombre = "Personal"
             };
-            usuario.agregarCategoria(categoria2);
-            Assert.AreEqual(false, usuario.esListaCategoriasVacia());
+            usuario.AgregarCategoria(categoria2);
+            Assert.AreEqual(false, usuario.EsListaCategoriasVacia());
         }
 
         [TestMethod]
@@ -140,7 +140,7 @@ namespace TestsObligatorio
         {
             Usuario usuario = new Usuario();
             Categoria categoria = new Categoria();
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarCategoria(categoria));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarCategoria(categoria));
         }
 
         [TestMethod]
@@ -151,8 +151,8 @@ namespace TestsObligatorio
             {
                 Nombre = "Personal"
             };
-            usuario.agregarCategoria(categoria);
-            Assert.AreEqual(categoria, usuario.getCategoria("Personal"));
+            usuario.AgregarCategoria(categoria);
+            Assert.AreEqual(categoria, usuario.GetCategoria("Personal"));
         }
 
         [TestMethod]
@@ -163,13 +163,13 @@ namespace TestsObligatorio
             {
                 Nombre = "Personal"
             };
-            usuario.agregarCategoria(categoria);
+            usuario.AgregarCategoria(categoria);
             Categoria categoria2 = new Categoria()
             {
                 Nombre = "Trabajo"
             };
-            usuario.agregarCategoria(categoria2);
-            Assert.AreEqual(categoria, usuario.getCategoria("Personal"));
+            usuario.AgregarCategoria(categoria2);
+            Assert.AreEqual(categoria, usuario.GetCategoria("Personal"));
         }
 
         [TestMethod]
@@ -180,13 +180,13 @@ namespace TestsObligatorio
             {
                 Nombre = "Personal"
             };
-            usuario.agregarCategoria(categoria);
+            usuario.AgregarCategoria(categoria);
             Categoria categoria2 = new Categoria()
             {
                 Nombre = "Trabajo"
             };
-            usuario.agregarCategoria(categoria2);
-            Assert.AreEqual(categoria2, usuario.getCategoria("Trabajo"));
+            usuario.AgregarCategoria(categoria2);
+            Assert.AreEqual(categoria2, usuario.GetCategoria("Trabajo"));
         }
 
         [TestMethod]
@@ -197,13 +197,13 @@ namespace TestsObligatorio
             {
                 Nombre = "Personal"
             };
-            usuario.agregarCategoria(categoria);
+            usuario.AgregarCategoria(categoria);
             Categoria categoria2 = new Categoria()
             {
                 Nombre = "Personal"
             };
             
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.agregarCategoria(categoria2));
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.AgregarCategoria(categoria2));
         }
 
         [TestMethod]
@@ -214,12 +214,12 @@ namespace TestsObligatorio
             {
                 Nombre = "Personal"
             };
-            usuario.agregarCategoria(categoria);
+            usuario.AgregarCategoria(categoria);
             Categoria categoria2 = new Categoria()
             {
                 Nombre = "Personal"
             };
-            Assert.AreEqual(true, usuario.yaExisteCategoria(categoria2));
+            Assert.AreEqual(true, usuario.YaExisteCategoria(categoria2));
         }
 
         [TestMethod]
@@ -230,12 +230,12 @@ namespace TestsObligatorio
             {
                 Nombre = "Personal"
             };
-            usuario.agregarCategoria(categoria);
+            usuario.AgregarCategoria(categoria);
             Categoria categoria2 = new Categoria()
             {
                 Nombre = "Trabajo"
             };
-            Assert.AreEqual(false, usuario.yaExisteCategoria(categoria2));
+            Assert.AreEqual(false, usuario.YaExisteCategoria(categoria2));
         }
 
         [TestMethod]
@@ -296,12 +296,12 @@ namespace TestsObligatorio
             {
                 Nombre = "Personal"
             };
-            usuario.agregarCategoria(categoria);
+            usuario.AgregarCategoria(categoria);
 
-            usuario.modificarNombreCategoria("Personal", "Trabajo");
+            usuario.ModificarNombreCategoria("Personal", "Trabajo");
 
 
-            Assert.AreEqual("Trabajo", usuario.getCategoria("Trabajo").Nombre);
+            Assert.AreEqual("Trabajo", usuario.GetCategoria("Trabajo").Nombre);
         }
 
         [TestMethod]
@@ -312,8 +312,8 @@ namespace TestsObligatorio
             {
                 Nombre = "Personal"
             };
-            usuario.agregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.modificarNombreCategoria("Facultad", "Trabajo"));
+            usuario.AgregarCategoria(categoria);
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarNombreCategoria("Facultad", "Trabajo"));
         }
 
         [TestMethod]
@@ -324,13 +324,13 @@ namespace TestsObligatorio
             {
                 Nombre = "Personal"
             };
-            usuario.agregarCategoria(categoria);
+            usuario.AgregarCategoria(categoria);
             Categoria categoria2 = new Categoria()
             {
                 Nombre = "Trabajo"
             };
-            usuario.agregarCategoria(categoria2);
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.modificarNombreCategoria("Personal", "Trabajo"));
+            usuario.AgregarCategoria(categoria2);
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.ModificarNombreCategoria("Personal", "Trabajo"));
         }
 
        
@@ -358,15 +358,15 @@ namespace TestsObligatorio
                 UsuarioContra = "111111",
                 Clave = "12345678"
             };
-            categoria.agregarContra(contra);
-            usuario.agregarCategoria(categoria);
+            categoria.AgregarContra(contra);
+            usuario.AgregarCategoria(categoria);
             Contra contraIgual = new Contra()
             {
                 Sitio = "www.ort.edu.uy",
                 UsuarioContra = "111111",
                 Clave = "12345678"
             };
-            Assert.AreEqual(true, usuario.yaExisteContra(contraIgual));
+            Assert.AreEqual(true, usuario.YaExisteContra(contraIgual));
         }
 
         [TestMethod]
@@ -387,15 +387,15 @@ namespace TestsObligatorio
                 UsuarioContra = "111111",
                 Clave = "12345678"
             };
-            categoria.agregarContra(contra);
-            usuario.agregarCategoria(categoria);
+            categoria.AgregarContra(contra);
+            usuario.AgregarCategoria(categoria);
             Contra contraIgual = new Contra()
             {
                 Sitio = "www.youtube.com",
                 UsuarioContra = "111111",
                 Clave = "12345678"
             };
-            Assert.AreEqual(false, usuario.yaExisteContra(contraIgual));
+            Assert.AreEqual(false, usuario.YaExisteContra(contraIgual));
         }
 
         [TestMethod]
@@ -416,15 +416,15 @@ namespace TestsObligatorio
                 UsuarioContra = "111111",
                 Clave = "12345678"
             };
-            categoria.agregarContra(contra);
-            usuario.agregarCategoria(categoria);
+            categoria.AgregarContra(contra);
+            usuario.AgregarCategoria(categoria);
             Contra contraIgual = new Contra()
             {
                 Sitio = "www.ort.edu.uy",
                 UsuarioContra = "222222",
                 Clave = "12345678"
             };
-            Assert.AreEqual(false, usuario.yaExisteContra(contraIgual));
+            Assert.AreEqual(false, usuario.YaExisteContra(contraIgual));
         }
 
         [TestMethod]
@@ -445,15 +445,15 @@ namespace TestsObligatorio
                 UsuarioContra = "111111",
                 Clave = "12345678"
             };
-            categoria.agregarContra(contra);
-            usuario.agregarCategoria(categoria);
+            categoria.AgregarContra(contra);
+            usuario.AgregarCategoria(categoria);
             Contra contraIgual = new Contra()
             {
                 Sitio = "www.ort.edu.uy",
                 UsuarioContra = "111111",
                 Clave = "12345678"
             };
-            Assert.AreEqual(true, usuario.yaExisteContra(contraIgual));
+            Assert.AreEqual(true, usuario.YaExisteContra(contraIgual));
         }
 
         [TestMethod]
@@ -474,8 +474,8 @@ namespace TestsObligatorio
                 UsuarioContra = "111111",
                 Clave = "12345678"
             };
-            categoria1.agregarContra(contra1);
-            usuario.agregarCategoria(categoria1);
+            categoria1.AgregarContra(contra1);
+            usuario.AgregarCategoria(categoria1);
             Categoria categoria2 = new Categoria()
             {
                 Nombre = "Personal"
@@ -486,8 +486,8 @@ namespace TestsObligatorio
                 UsuarioContra = "usuarioYoutube",
                 Clave = "contra1234"
             };
-            categoria2.agregarContra(contra2);
-            usuario.agregarCategoria(categoria2);
+            categoria2.AgregarContra(contra2);
+            usuario.AgregarCategoria(categoria2);
 
             Contra contraIgual = new Contra()
             {
@@ -495,7 +495,7 @@ namespace TestsObligatorio
                 UsuarioContra = "usuarioYoutube",
                 Clave = "contra1234"
             };
-            Assert.AreEqual(true, usuario.yaExisteContra(contraIgual));
+            Assert.AreEqual(true, usuario.YaExisteContra(contraIgual));
         }
 
         [TestMethod]
@@ -516,9 +516,9 @@ namespace TestsObligatorio
                 UsuarioContra = "111111",
                 Clave = "12345678"
             };
-            usuario.agregarCategoria(categoria);
-            usuario.agregarContra(contra, "Trabajo");
-            Assert.AreEqual(true, usuario.yaExisteContra(contra));
+            usuario.AgregarCategoria(categoria);
+            usuario.AgregarContra(contra, "Trabajo");
+            Assert.AreEqual(true, usuario.YaExisteContra(contra));
         }
 
         [TestMethod]
@@ -538,8 +538,8 @@ namespace TestsObligatorio
                 UsuarioContra = "111111",
                 Clave = "12345678"
             };
-            usuario.agregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarContra(contra, "Trabajo"));
+            usuario.AgregarCategoria(categoria);
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarContra(contra, "Trabajo"));
         }
 
         [TestMethod]
@@ -559,8 +559,8 @@ namespace TestsObligatorio
                 Sitio = "www.ort.edu.uy",
                 UsuarioContra = "111111"
             };
-            usuario.agregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarContra(contra, "Trabajo"));
+            usuario.AgregarCategoria(categoria);
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarContra(contra, "Trabajo"));
         }
 
         [TestMethod]
@@ -580,8 +580,8 @@ namespace TestsObligatorio
                 Sitio = "www.ort.edu.uy",
                 Clave = "12345678"
             };
-            usuario.agregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarContra(contra, "Trabajo"));
+            usuario.AgregarCategoria(categoria);
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarContra(contra, "Trabajo"));
         }
 
         [TestMethod]
@@ -602,9 +602,9 @@ namespace TestsObligatorio
                 UsuarioContra = "111111",
                 Clave = "12345678"
             };
-            usuario.agregarCategoria(categoria);
-            usuario.agregarContra(contra, "Trabajo");
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.agregarContra(contra, "Trabajo"));
+            usuario.AgregarCategoria(categoria);
+            usuario.AgregarContra(contra, "Trabajo");
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.AgregarContra(contra, "Trabajo"));
         }
 
         [TestMethod]
@@ -625,9 +625,9 @@ namespace TestsObligatorio
                 UsuarioContra = "111111",
                 Clave = "12345678"
             };
-            usuario.agregarCategoria(categoria);
-            usuario.agregarContra(contra, "Trabajo");
-            Assert.AreEqual(true, usuario.getCategoria("Trabajo").yaExisteContra(contra));
+            usuario.AgregarCategoria(categoria);
+            usuario.AgregarContra(contra, "Trabajo");
+            Assert.AreEqual(true, usuario.GetCategoria("Trabajo").YaExisteContra(contra));
         }
 
         [TestMethod]
@@ -640,7 +640,7 @@ namespace TestsObligatorio
 
             String usuarioContra = "222222";
             String paginaContra = "www.ort.edu.uy";
-            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.borrarContra(paginaContra, usuarioContra));
+            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.BorrarContra(paginaContra, usuarioContra));
         }
 
         [TestMethod]
@@ -656,11 +656,11 @@ namespace TestsObligatorio
                 Nombre = "Categoria1"
             };
 
-            usuario.agregarCategoria(categoria);
+            usuario.AgregarCategoria(categoria);
 
             String usuarioContra = "222222";
             String paginaContra = "www.ort.edu.uy";
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.borrarContra(paginaContra, usuarioContra));
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.BorrarContra(paginaContra, usuarioContra));
         }
 
         [TestMethod]
@@ -676,7 +676,7 @@ namespace TestsObligatorio
                 Nombre = "Categoria1"
             };
 
-            usuario.agregarCategoria(categoria);
+            usuario.AgregarCategoria(categoria);
 
             String usuarioContra = "222222";
             String paginaContra = "www.ort.edu.uy";
@@ -688,9 +688,9 @@ namespace TestsObligatorio
                 Clave = "12345AbC$"
             };
 
-            usuario.agregarContra(contraABorrar, "Categoria1");
-            usuario.borrarContra(paginaContra, usuarioContra);
-            Assert.IsFalse(usuario.yaExisteContra(contraABorrar));
+            usuario.AgregarContra(contraABorrar, "Categoria1");
+            usuario.BorrarContra(paginaContra, usuarioContra);
+            Assert.IsFalse(usuario.YaExisteContra(contraABorrar));
         }
 
         [TestMethod]
@@ -706,7 +706,7 @@ namespace TestsObligatorio
                 Nombre = "Categoria1"
             };
 
-            usuario.agregarCategoria(categoria);
+            usuario.AgregarCategoria(categoria);
 
             String usuarioContra = "222222";
             String paginaContra = "www.ort.edu.uy";
@@ -726,10 +726,10 @@ namespace TestsObligatorio
                 Clave = "12345AbC$"
             };
 
-            usuario.agregarContra(contraABorrar, "Categoria1");
-            usuario.agregarContra(contraADejar, "Categoria1");
-            usuario.borrarContra(paginaContra, usuarioContra);
-            Assert.IsTrue(usuario.yaExisteContra(contraADejar));
+            usuario.AgregarContra(contraABorrar, "Categoria1");
+            usuario.AgregarContra(contraADejar, "Categoria1");
+            usuario.BorrarContra(paginaContra, usuarioContra);
+            Assert.IsTrue(usuario.YaExisteContra(contraADejar));
         }
     }
    
@@ -756,8 +756,8 @@ namespace TestsObligatorio
                 Codigo = "321",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
-            categoria.agregarTarjeta(tarjeta);
-            usuario.agregarCategoria(categoria);
+            categoria.AgregarTarjeta(tarjeta);
+            usuario.AgregarCategoria(categoria);
             Tarjeta tarjetaIgual = new Tarjeta()
             {
                 Nombre = "Prex",
@@ -766,7 +766,7 @@ namespace TestsObligatorio
                 Codigo = "321",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
-            Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjetaIgual));
+            Assert.AreEqual(true, usuario.YaExisteTarjeta(tarjetaIgual));
         }
 
         [TestMethod]
@@ -789,8 +789,8 @@ namespace TestsObligatorio
                 Codigo = "321",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
-            categoria.agregarTarjeta(tarjeta);
-            usuario.agregarCategoria(categoria);
+            categoria.AgregarTarjeta(tarjeta);
+            usuario.AgregarCategoria(categoria);
             Tarjeta tarjetaDistintoNumero = new Tarjeta()
             {
                 Nombre = "Prex",
@@ -799,7 +799,7 @@ namespace TestsObligatorio
                 Codigo = "321",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
-            Assert.AreEqual(false, usuario.yaExisteTarjeta(tarjetaDistintoNumero));
+            Assert.AreEqual(false, usuario.YaExisteTarjeta(tarjetaDistintoNumero));
         }
 
         [TestMethod]
@@ -822,8 +822,8 @@ namespace TestsObligatorio
                 Codigo = "321",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
-            categoria.agregarTarjeta(tarjeta);
-            usuario.agregarCategoria(categoria);
+            categoria.AgregarTarjeta(tarjeta);
+            usuario.AgregarCategoria(categoria);
             Tarjeta tarjetaDistintoNombre = new Tarjeta()
             {
                 Nombre = "Visa",
@@ -832,7 +832,7 @@ namespace TestsObligatorio
                 Codigo = "321",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
-            Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjetaDistintoNombre));
+            Assert.AreEqual(true, usuario.YaExisteTarjeta(tarjetaDistintoNombre));
         }
 
         [TestMethod]
@@ -855,8 +855,8 @@ namespace TestsObligatorio
                 Codigo = "321",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
-            categoria.agregarTarjeta(tarjeta);
-            usuario.agregarCategoria(categoria);
+            categoria.AgregarTarjeta(tarjeta);
+            usuario.AgregarCategoria(categoria);
             Tarjeta tarjetaDistintoTipo = new Tarjeta()
             {
                 Nombre = "Prex",
@@ -865,7 +865,7 @@ namespace TestsObligatorio
                 Codigo = "321",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
-            Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjetaDistintoTipo));
+            Assert.AreEqual(true, usuario.YaExisteTarjeta(tarjetaDistintoTipo));
         }
 
         [TestMethod]
@@ -888,8 +888,8 @@ namespace TestsObligatorio
                 Codigo = "321",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
-            categoria.agregarTarjeta(tarjeta);
-            usuario.agregarCategoria(categoria);
+            categoria.AgregarTarjeta(tarjeta);
+            usuario.AgregarCategoria(categoria);
             Tarjeta tarjetaDistintoTipo = new Tarjeta()
             {
                 Nombre = "Prex",
@@ -898,7 +898,7 @@ namespace TestsObligatorio
                 Codigo = "123",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
-            Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjetaDistintoTipo));
+            Assert.AreEqual(true, usuario.YaExisteTarjeta(tarjetaDistintoTipo));
         }
 
         [TestMethod]
@@ -922,8 +922,8 @@ namespace TestsObligatorio
                 Codigo = "321",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
-            categoria.agregarTarjeta(tarjeta);
-            usuario.agregarCategoria(categoria);
+            categoria.AgregarTarjeta(tarjeta);
+            usuario.AgregarCategoria(categoria);
             Tarjeta tarjetaDistintoTipo = new Tarjeta()
             {
                 Nombre = "Prex",
@@ -932,7 +932,7 @@ namespace TestsObligatorio
                 Codigo = "123",
                 Vencimiento = new DateTime(2026, 9, 2)
             };
-            Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjetaDistintoTipo));
+            Assert.AreEqual(true, usuario.YaExisteTarjeta(tarjetaDistintoTipo));
         }
 
         [TestMethod]
@@ -955,8 +955,8 @@ namespace TestsObligatorio
                 Codigo = "321",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
-            categoria.agregarTarjeta(tarjeta);
-            usuario.agregarCategoria(categoria);
+            categoria.AgregarTarjeta(tarjeta);
+            usuario.AgregarCategoria(categoria);
             Categoria categoria2 = new Categoria()
             {
                 Nombre = "Personal"
@@ -969,8 +969,8 @@ namespace TestsObligatorio
                 Codigo = "321",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
-            categoria.agregarTarjeta(tarjeta2);
-            usuario.agregarCategoria(categoria2);
+            categoria.AgregarTarjeta(tarjeta2);
+            usuario.AgregarCategoria(categoria2);
             Tarjeta tarjetaIgual = new Tarjeta()
             {
                 Nombre = "Visa",
@@ -979,7 +979,7 @@ namespace TestsObligatorio
                 Codigo = "321",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
-            Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjetaIgual));
+            Assert.AreEqual(true, usuario.YaExisteTarjeta(tarjetaIgual));
         }
 
         [TestMethod]
@@ -1002,9 +1002,9 @@ namespace TestsObligatorio
                 Codigo = "321",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
-            usuario.agregarCategoria(categoria);
-            usuario.agregarTarjeta(tarjeta, "Trabajo");
-            Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjeta));
+            usuario.AgregarCategoria(categoria);
+            usuario.AgregarTarjeta(tarjeta, "Trabajo");
+            Assert.AreEqual(true, usuario.YaExisteTarjeta(tarjeta));
         }
 
         [TestMethod]
@@ -1025,8 +1025,8 @@ namespace TestsObligatorio
                 Numero = "3456567890876543",
                 Codigo = "321"
             };
-            usuario.agregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
+            usuario.AgregarCategoria(categoria);
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarTarjeta(tarjeta, "Trabajo"));
         }
 
         [TestMethod]
@@ -1047,8 +1047,8 @@ namespace TestsObligatorio
                 Numero = "3456567890876543",
                 Codigo = "321"
             };
-            usuario.agregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
+            usuario.AgregarCategoria(categoria);
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarTarjeta(tarjeta, "Trabajo"));
         }
 
         [TestMethod]
@@ -1069,8 +1069,8 @@ namespace TestsObligatorio
                 Tipo = "Mastercard",
                 Codigo = "321"
             };
-            usuario.agregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
+            usuario.AgregarCategoria(categoria);
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarTarjeta(tarjeta, "Trabajo"));
         }
 
         [TestMethod]
@@ -1091,8 +1091,8 @@ namespace TestsObligatorio
                 Tipo = "Mastercard",
                 Numero = "3456567890876543"
             };
-            usuario.agregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
+            usuario.AgregarCategoria(categoria);
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarTarjeta(tarjeta, "Trabajo"));
         }
 
         [TestMethod]
@@ -1115,9 +1115,9 @@ namespace TestsObligatorio
                 Codigo = "321",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
-            usuario.agregarCategoria(categoria);
-            usuario.agregarTarjeta(tarjeta, "Trabajo");
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
+            usuario.AgregarCategoria(categoria);
+            usuario.AgregarTarjeta(tarjeta, "Trabajo");
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.AgregarTarjeta(tarjeta, "Trabajo"));
         }
 
         [TestMethod]
@@ -1140,9 +1140,9 @@ namespace TestsObligatorio
                 Codigo = "321",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
-            usuario.agregarCategoria(categoria);
-            usuario.agregarTarjeta(tarjeta, "Trabajo");
-            Assert.AreEqual(true, usuario.getCategoria("Trabajo").yaExisteTarjeta(tarjeta));
+            usuario.AgregarCategoria(categoria);
+            usuario.AgregarTarjeta(tarjeta, "Trabajo");
+            Assert.AreEqual(true, usuario.GetCategoria("Trabajo").YaExisteTarjeta(tarjeta));
         }
 
     }

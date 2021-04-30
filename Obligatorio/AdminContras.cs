@@ -13,12 +13,12 @@ namespace Obligatorio
             this.listaUsuarios = new List<Usuario>();
         }
 
-        public bool esListaUsuariosVacia()
+        public bool EsListaUsuariosVacia()
         {
             return this.noAgregoUsuarios;
         }
 
-        public void agregarUsuario(Usuario u1)
+        public void AgregarUsuario(Usuario u1)
         {
             if (u1.Nombre == null) {
                 throw new ObjetoIncompletoException();
@@ -29,9 +29,8 @@ namespace Obligatorio
             }
         }
 
-        public Usuario getUsuario(string nombre)
+        public Usuario GetUsuario(string nombre)
         {
-            //Predicate se utiliza en conjunto con una clase, se le da una condicion que retorne true para ser buscado en una List con un List.Find
             Predicate<Usuario> buscadorNombre = (Usuario u) => { return u.Nombre == nombre; };
             
             Usuario retorno = this.listaUsuarios.Find(buscadorNombre);
