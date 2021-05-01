@@ -39,7 +39,7 @@ namespace Obligatorio
 
         public bool YaExisteUsuario(Usuario buscador)
         {
-            return false;
+            return !this.EsListaUsuariosVacia();
         }
     }
 }

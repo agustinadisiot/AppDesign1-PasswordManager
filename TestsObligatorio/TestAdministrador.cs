@@ -133,6 +133,25 @@ namespace TestsObligatorio
             Assert.IsFalse(administrador.YaExisteUsuario(buscador));
         }
 
+        [TestMethod]
+        public void AdministradorYaExisteUsuarioExistente()
+        {
+            AdminContras administrador = new AdminContras();
+
+            Usuario agregar = new Usuario()
+            {
+                Nombre = "Roberto"
+            };
+            
+            Usuario buscador = new Usuario
+            {
+                Nombre = "Roberto"
+            };
+
+            administrador.AgregarUsuario(agregar);
+
+            Assert.IsTrue(administrador.YaExisteUsuario(buscador));
+        }
 
 
     }
