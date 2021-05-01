@@ -1550,5 +1550,25 @@ namespace TestsObligatorio
             Assert.AreEqual(true, usuario.GetCategoria(buscadora).YaExisteTarjeta(tarjeta));
         }
 
+
+        [TestMethod]
+        public void UsuarioBorrarTarjetaSinCategorias()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+
+            string numeroTarjeta = "3456567890876543";
+
+            Tarjeta aBorrar = new Tarjeta()
+            {
+                Numero = numeroTarjeta
+            };
+
+            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.BorrarTarjeta(aBorrar));
+        }
+
     }
 }
