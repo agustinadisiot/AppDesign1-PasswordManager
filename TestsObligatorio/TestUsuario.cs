@@ -1596,5 +1596,49 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.BorrarTarjeta(aBorrar));
         }
 
+
+        [TestMethod]
+        public void UsuarioYaExisteTarjetaBorrada()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Categoria1"
+            };
+
+            usuario.AgregarCategoria(categoria);
+
+            string numeroTarjeta = "3456567890876543";
+
+            Tarjeta aAgregar = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = numeroTarjeta,
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Categoria1"
+            };
+
+            usuario.AgregarTarjeta(aAgregar, buscadora);
+
+            Tarjeta aBorrar = new Tarjeta()
+            {
+                Numero = numeroTarjeta
+            };
+
+            usuario.BorrarTarjeta(aBorrar);
+            Assert.IsFalse(usuario.YaExisteTarjeta(aBorrar));
+        }
+
     }
 }
