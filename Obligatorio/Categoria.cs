@@ -158,6 +158,11 @@ namespace Obligatorio
         {
             if(this.YaExisteContra(contraNueva)) throw new ObjetoYaExistenteException();
             _noModificoContra = false;
+            Contra aModificar = this.GetContra(contraVieja);
+            aModificar.UsuarioContra = contraNueva.UsuarioContra;
+            aModificar.Clave = contraNueva.Clave;
+            aModificar.Sitio = contraNueva.Sitio;
+            aModificar.Nota = contraNueva.Nota;
         }
     }
 }

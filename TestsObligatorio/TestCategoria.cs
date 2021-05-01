@@ -635,7 +635,8 @@ namespace TestsObligatorio
             {
                 UsuarioContra = usuarioContraModificar,
                 Sitio = paginaContraModificar,
-                Clave = claveContraModificar
+                Clave = claveContraModificar,
+                Nota = ""
             };
             categoria.AgregarContra(contraVieja);
 
@@ -647,7 +648,8 @@ namespace TestsObligatorio
             {
                 UsuarioContra = usuarioContraNueva,
                 Sitio = paginaContraNueva,
-                Clave = claveContraNueva
+                Clave = claveContraNueva,
+                Nota = ""
             };
 
             Contra buscadora = new Contra()
@@ -703,6 +705,51 @@ namespace TestsObligatorio
             };
 
             Assert.ThrowsException<ObjetoYaExistenteException>(() => categoria.ModificarContra(contra1, duplicada));
+        }
+
+        [TestMethod]
+        public void CategoriaModificarContraAgregada()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            string usuarioContraVieja = "Usuario23";
+            string paginaContraVieja = "www.ort.edu.uy";
+            string claveContraVieja = "1234AbC$";
+
+            Contra contraVieja = new Contra()
+            {
+                UsuarioContra = usuarioContraVieja,
+                Sitio = paginaContraVieja,
+                Clave = claveContraVieja,
+                Nota = ""
+            };
+
+            categoria.AgregarContra(contraVieja);
+
+            string usuarioContraNueva = "user23";
+            string paginaContraNueva = "aulas.edu.uy";
+            string claveContraNueva = "1234AbC$";
+
+            Contra contraNueva = new Contra()
+            {
+                UsuarioContra = usuarioContraNueva,
+                Sitio = paginaContraNueva,
+                Clave = claveContraNueva,
+                Nota = ""
+            };
+
+            Contra buscadora = new Contra()
+            {
+                UsuarioContra = usuarioContraNueva,
+                Sitio = paginaContraNueva
+            };
+
+            categoria.ModificarContra(contraVieja, contraNueva);
+            Assert.AreEqual(contraNueva, categoria.GetContra(buscadora));
         }
     }
 
