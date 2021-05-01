@@ -413,6 +413,35 @@ namespace TestsObligatorio
             Assert.IsNotNull(usuario.GetListaCategorias());
         }
 
+        [TestMethod]
+        public void UsuarioGetListaCategoriasEsIgual()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+
+            Categoria primera = new Categoria()
+            {
+                Nombre = "Primera"
+            };
+            Categoria segunda = new Categoria()
+            {
+                Nombre="Segunda"
+            };
+
+            usuario.AgregarCategoria(primera);
+            usuario.AgregarCategoria(segunda);
+
+            List<Categoria> categorias = new List<Categoria>
+            {
+                primera,
+                segunda
+            };
+            Assert.AreEqual(true, categorias.SequenceEqual(usuario.GetListaCategorias())); ;
+        }
+
     }
 
     [TestClass]

@@ -144,7 +144,7 @@ namespace Obligatorio
             contieneContraABorrar.BorrarContra(aBorrar);
         }
 
-        public object GetListaCategorias()
+        public List<Categoria> GetListaCategorias()
         {
 
 
@@ -153,7 +153,7 @@ namespace Obligatorio
                 return null;
             }
             else {
-                return "test";
+                return this.listaCategorias;
             }
         }
     }
