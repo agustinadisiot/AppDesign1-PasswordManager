@@ -1644,5 +1644,43 @@ namespace TestsObligatorio
             Assert.AreEqual(tarjeta1.Codigo, usuario.GetTarjeta(buscadora).Codigo);
         }
 
+        [TestMethod]
+        public void UsuarioModificarTarjetaCategoriaNoExistente()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            usuario.AgregarCategoria(categoria);
+
+            string numeroTarjeta = "3456567890876543";
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = numeroTarjeta,
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            usuario.AgregarTarjeta(tarjeta1, categoria);
+
+
+            Tarjeta tarjetaVieja = new Tarjeta()
+            {
+                Numero = "1234567890876543"
+            };
+            Tarjeta tarjetaNueva = new Tarjeta()
+            {
+                Numero = "1987654321345678"
+            };
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarTarjetaCategoria(tarjetaVieja, tarjetaNueva, categoria));
+        }
+
     }
 }

@@ -180,5 +180,10 @@ namespace Obligatorio
 
             throw new ObjetoInexistenteException();
         }
+
+        public void ModificarTarjetaCategoria(Tarjeta modificarVieja, Tarjeta modificarNueva, Categoria categoria)
+        {
+            throw new ObjetoInexistenteException();
+        }
     }
 }
