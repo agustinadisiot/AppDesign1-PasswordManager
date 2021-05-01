@@ -151,7 +151,7 @@ namespace Obligatorio
                 return null;
             }
             else {
-                return this.listaCategorias;
+                return this._categorias;
             }
         }
     }
