@@ -206,5 +206,16 @@ namespace Obligatorio
             aModificar.Sitio = contraNueva.Sitio;
             aModificar.Nota = contraNueva.Nota;
         }
+
+        public void ModificarTarjetaCategoria(Tarjeta tarjetaVieja, Tarjeta tarjetaNueva)
+        {
+            if (this.YaExisteTarjeta(tarjetaNueva)) throw new ObjetoYaExistenteException();
+            Tarjeta aModificar = this.GetTarjeta(tarjetaVieja);
+            aModificar.Nombre = tarjetaNueva.Nombre;
+            aModificar.Numero = tarjetaNueva.Numero;
+            aModificar.Tipo = tarjetaNueva.Tipo;
+            aModificar.Nota = tarjetaNueva.Nota;
+            aModificar.Vencimiento = tarjetaNueva.Vencimiento;
+        }
     }
 }
