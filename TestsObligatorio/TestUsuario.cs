@@ -576,6 +576,27 @@ namespace TestsObligatorio
         }
 
         [TestMethod]
+        public void UsuarioAgregarContraSinCategoria()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Contra contra = new Contra()
+            {
+                UsuarioContra = "111111",
+                Clave = "12345678"
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.AgregarContra(contra, categoria));
+        }
+
+        [TestMethod]
         public void UsuarioAgregarContraSinSitioOAplicacion()
         {
             Usuario usuario = new Usuario()

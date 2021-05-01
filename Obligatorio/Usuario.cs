@@ -14,7 +14,6 @@ namespace Obligatorio
         private const int _largoNombreYContraMinimo = 5;
         private const int _largoNombreYContraMaximo = 25;
 
-
         public Usuario()
         {
             this._noAgregoContras = true;
@@ -31,7 +30,6 @@ namespace Obligatorio
             get { return this._contraMaestra; }
             set { this._contraMaestra = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreYContraMinimo, _largoNombreYContraMaximo);}
         }
-
 
         public bool ValidarIgualContraMaestra(string v)
         {
@@ -97,10 +95,11 @@ namespace Obligatorio
 
         public void AgregarContra(Contra contra, Categoria buscadora)
         {
+            if(!this.YaExisteCategoria(buscadora)) throw new ObjetoInexistenteException();
+
             bool noTieneSitio = (contra.Sitio == null),
                  noTieneClave = (contra.Clave == null),
                  noTieneUsuario = (contra.UsuarioContra == null);
-
 
             if (noTieneSitio || noTieneClave || noTieneUsuario) throw new ObjetoIncompletoException();
             
