@@ -394,7 +394,6 @@ namespace TestsObligatorio
             Assert.IsNull(usuario.GetListaCategorias());
         }
 
-
         [TestMethod]
         public void UsuarioGetListaCategoriasNoVacia()
         {
@@ -447,7 +446,6 @@ namespace TestsObligatorio
     [TestClass]
     public class TestUsuarioContra
     {
-
         [TestMethod]
         public void UsuarioYaExisteContraUnaCategoriaSiExistente()
         {
@@ -712,7 +710,7 @@ namespace TestsObligatorio
         }
 
         [TestMethod]
-        public void CategoriaAgregarContraSinUsuario()
+        public void UsuarioAgregarContraSinUsuario()
         {
             Usuario usuario = new Usuario()
             {
