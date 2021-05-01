@@ -9,6 +9,7 @@ namespace Obligatorio
         private List<Contra> contras;
         private List<Tarjeta> tarjetas;
         private string _nombre;
+        private bool _noModificoContra;
         private const int largoNombreMinimo = 3;
         private const int largoNombreMaximo = 15;
 
@@ -16,6 +17,7 @@ namespace Obligatorio
         {
             contras = new List<Contra>();
             tarjetas = new List<Tarjeta>();
+            _noModificoContra = true;
         }
 
         public string Nombre
@@ -121,6 +123,7 @@ namespace Obligatorio
 
         public bool YaExisteContra(Contra aBuscar)
         {
+            if (!_noModificoContra) return false;
             return this.contras.Any(buscadora => buscadora.Equals(aBuscar));
         }
 
@@ -153,7 +156,8 @@ namespace Obligatorio
 
         public void ModificarContra(Contra contraVieja, Contra contraNueva)
         {
-            throw new ObjetoInexistenteException();
+            if(this.YaExisteContra(contraNueva)) throw new ObjetoInexistenteException();
+            _noModificoContra = false;
         }
     }
 }
