@@ -147,5 +147,22 @@ namespace Obligatorio
                 return this._categorias;
             }
         }
+
+        public Contra GetContra(Contra contraBuscadora)
+        {
+            if (!YaExisteContra(contraBuscadora)) throw new ObjetoInexistenteException();
+
+            foreach (Categoria categoria in this._categorias)
+            {
+                if (categoria.YaExisteContra(contraBuscadora))
+                {
+                    return categoria.GetContra(contraBuscadora);
+                }
+               
+            }
+
+            throw new ObjetoInexistenteException();
+
+        }
     }
 }

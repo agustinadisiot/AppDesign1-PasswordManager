@@ -932,6 +932,171 @@ namespace TestsObligatorio
             usuario.BorrarContra(aBorrar);
             Assert.IsTrue(usuario.YaExisteContra(contraADejar));
         }
+
+        [TestMethod]
+        public void UsuarioGetContraCorrecta()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Categoria1"
+            };
+
+            usuario.AgregarCategoria(categoria);
+
+            Contra contraAGuardar = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+
+            usuario.AgregarContra(contraAGuardar, categoria);
+
+            Contra contraBuscadora = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                UsuarioContra = "Roberto"
+            };
+
+            Assert.AreEqual(contraAGuardar, usuario.GetContra(contraBuscadora));
+        }
+
+        [TestMethod]
+        public void UsuarioaGetContraPrimeraConDosContras()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Categoria1"
+            };
+
+            usuario.AgregarCategoria(categoria);
+
+            Contra contra1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            usuario.AgregarContra(contra1, categoria);
+
+            Contra contra2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Luis88"
+            };
+            usuario.AgregarContra(contra2, categoria);
+
+            Contra contraBuscadora = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                UsuarioContra = "Roberto"
+            };
+
+            Assert.AreEqual(contra1, usuario.GetContra(contraBuscadora)); ;
+        }
+
+        [TestMethod]
+        public void UsuarioaGetContraSegundaConDosContras()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Categoria1"
+            };
+
+            usuario.AgregarCategoria(categoria);
+
+            Contra contra1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            usuario.AgregarContra(contra1, categoria);
+
+            Contra contra2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Luis88"
+            };
+            usuario.AgregarContra(contra2, categoria);
+
+            Contra contraBuscadora = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                UsuarioContra = "Luis88"
+            };
+
+            Assert.AreEqual(contra2, usuario.GetContra(contraBuscadora)); ;
+        }
+
+        [TestMethod]
+        public void UsuarioaGetContraATravezDeContraSinClave()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Categoria1"
+            };
+
+            usuario.AgregarCategoria(categoria);
+
+            Contra contra1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            usuario.AgregarContra(contra1, categoria);
+
+            Contra contraBuscadora = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                UsuarioContra = "Roberto"
+            };
+
+            Assert.AreEqual(contra1.Clave, usuario.GetContra(contraBuscadora).Clave); ;
+        }
+
+        [TestMethod]
+        public void UsuarioaGetContraInexistente()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Contra contraBuscadora = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                UsuarioContra = "Luis123"
+            };
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.GetContra(contraBuscadora));
+        }
     }
    
     [TestClass]
