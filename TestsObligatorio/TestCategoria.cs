@@ -659,6 +659,51 @@ namespace TestsObligatorio
             categoria.ModificarContra(contraVieja, contraNueva);
             Assert.IsFalse(categoria.YaExisteContra(buscadora));
         }
+
+        [TestMethod]
+        public void CategoriaModificarContraYaExistente()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            string usuarioContra1 = "Usuario23";
+            string paginaContra1 = "www.ort.edu.uy";
+            string claveContra1 = "1234AbC$";
+
+            Contra contra1 = new Contra()
+            {
+                UsuarioContra = usuarioContra1,
+                Sitio = paginaContra1,
+                Clave = claveContra1
+            };
+
+            categoria.AgregarContra(contra1);
+
+            string usuarioContra2 = "user23";
+            string paginaContra2 = "aulas.edu.uy";
+            string claveContra2 = "1234AbC$";
+
+            Contra contra2 = new Contra()
+            {
+                UsuarioContra = usuarioContra2,
+                Sitio = paginaContra2,
+                Clave = claveContra2
+            };
+
+            categoria.AgregarContra(contra2);
+
+            Contra duplicada = new Contra()
+            {
+                UsuarioContra = usuarioContra2,
+                Sitio = paginaContra2,
+                Clave = claveContra2
+            };
+
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => categoria.ModificarContra(contra1, duplicada));
+        }
     }
 
     [TestClass]

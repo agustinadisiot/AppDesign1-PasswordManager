@@ -156,7 +156,7 @@ namespace Obligatorio
 
         public void ModificarContra(Contra contraVieja, Contra contraNueva)
         {
-            if(this.YaExisteContra(contraNueva)) throw new ObjetoInexistenteException();
+            if(this.YaExisteContra(contraNueva)) throw new ObjetoYaExistenteException();
             _noModificoContra = false;
         }
     }
