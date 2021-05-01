@@ -554,7 +554,6 @@ namespace TestsObligatorio
         }
 
 
-        //Prueba de agregar una contra y borrar otra que no existe en una categoria. Deberia tirar error.
         [TestMethod]
         public void CategoriaBorrarContraNoExistenteNoVacio()
         {
@@ -583,6 +582,40 @@ namespace TestsObligatorio
             categoria.AgregarContra(contraOtra);
             Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.BorrarContra(contraBorrar));
         }
+
+
+        [TestMethod]
+        public void CategoriaModificarContraNoExistente()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            string usuarioContraBorrar = "222222";
+            string paginaContraBorrar = "www.ort.edu.uy";
+
+            Contra contra = new Contra()
+            {
+                UsuarioContra = usuarioContraBorrar,
+                Sitio = paginaContraBorrar
+            };
+
+            categoria.AgregarContra(contra);
+
+            string usuarioContraInexistente = "12345@";
+            string paginaContraInexistente = "www.ort.edu.uy";
+
+            Contra buscadora = new Contra()
+            {
+                UsuarioContra = usuarioContraInexistente,
+                Sitio = paginaContraInexistente
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.ModificarContra(categoria.GetContra(buscadora), contra));
+        }
+
     }
 
     [TestClass]
@@ -1184,7 +1217,6 @@ namespace TestsObligatorio
             };
             Assert.AreEqual(true, categoria.YaExisteTarjeta(tarjetaDistintoTipo));
         }
-
 
         [TestMethod]
         public void CategoriaAlModificarTarjetaAgregadaLaTarjetaViejaDejaDeExistir()

@@ -150,5 +150,10 @@ namespace Obligatorio
             aModificar.Nota = tarjetaNueva.Nota;
             aModificar.Vencimiento = tarjetaNueva.Vencimiento;
         }
+
+        public void ModificarContra(Contra contraVieja, Contra contraNueva)
+        {
+            throw new ObjetoInexistenteException();
+        }
     }
 }
