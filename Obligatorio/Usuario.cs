@@ -183,7 +183,11 @@ namespace Obligatorio
 
         public void ModificarContra(Contra contraVieja, Contra contraNueva)
         {
-            throw new ObjetoInexistenteException();
+            Contra aModificar = this.GetContra(contraVieja);
+            aModificar.UsuarioContra = contraNueva.UsuarioContra;
+            aModificar.Clave = contraNueva.Clave;
+            aModificar.Sitio = contraNueva.Sitio;
+            aModificar.Nota = contraNueva.Nota;
         }
     }
 }

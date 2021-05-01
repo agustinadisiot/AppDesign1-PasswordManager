@@ -1129,6 +1129,56 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarContra(buscadora, contra));
         }
 
+        [TestMethod]
+        public void UsuarioAlModificarContraAgregadaLaContraViejaDejaDeExistir()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria);
+
+            string usuarioContraModificar = "Usuario23";
+            string paginaContraModificar = "www.ort.edu.uy";
+            string claveContraModificar = "1234AbC$";
+
+            Contra contraVieja = new Contra()
+            {
+                UsuarioContra = usuarioContraModificar,
+                Sitio = paginaContraModificar,
+                Clave = claveContraModificar,
+                Nota = ""
+            };
+            categoria.AgregarContra(contraVieja);
+
+            string usuarioContraNueva = "user543";
+            string paginaContraNueva = "aulas.edu.uy";
+            string claveContraNueva = "1234A@C$";
+
+            Contra contraNueva = new Contra()
+            {
+                UsuarioContra = usuarioContraNueva,
+                Sitio = paginaContraNueva,
+                Clave = claveContraNueva,
+                Nota = ""
+            };
+
+            Contra buscadora = new Contra()
+            {
+                UsuarioContra = usuarioContraModificar,
+                Sitio = paginaContraModificar
+            };
+
+            usuario.ModificarContra(contraVieja, contraNueva);
+            Assert.IsFalse(usuario.YaExisteContra(buscadora));
+        }
+
     }
 
     [TestClass]
