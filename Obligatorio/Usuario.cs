@@ -181,7 +181,7 @@ namespace Obligatorio
             throw new ObjetoInexistenteException();
         }
 
-        public void ModificarTarjetaCategoria(Tarjeta modificarVieja, Tarjeta modificarNueva, Categoria categoria)
+        public void ModificarTarjetaCategoria(Tarjeta modificarVieja, Tarjeta modificarNueva)
         {
             throw new ObjetoInexistenteException();
         }

@@ -1679,7 +1679,7 @@ namespace TestsObligatorio
             {
                 Numero = "1987654321345678"
             };
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarTarjetaCategoria(tarjetaVieja, tarjetaNueva, categoria));
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarTarjetaCategoria(tarjetaVieja, tarjetaNueva));
         }
 
     }
