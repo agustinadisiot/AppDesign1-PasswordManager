@@ -6,8 +6,6 @@ namespace Obligatorio
 {
     public class Usuario
     {
-        private bool _noAgregoCategorias;
-        private bool _noAgregoContras;
         private List<Categoria> _categorias;
         private string _nombre;
         private string _contraMaestra;
@@ -16,8 +14,6 @@ namespace Obligatorio
 
         public Usuario()
         {
-            this._noAgregoContras = true;
-            this._noAgregoCategorias = true;
             this._categorias = new List<Categoria>();
         }
 
@@ -38,7 +34,8 @@ namespace Obligatorio
 
         public bool EsListaCategoriasVacia()
         {
-            return this._noAgregoCategorias;
+            bool noAgregoCategorias = (this._categorias.Count() == 0);
+            return noAgregoCategorias;
         }
 
         public void AgregarCategoria(Categoria categoria)
@@ -46,7 +43,6 @@ namespace Obligatorio
             if (categoria.Nombre == null) throw new ObjetoIncompletoException();
             else 
             {
-                this._noAgregoCategorias = false;
                 if (this.YaExisteCategoria(categoria)) {
                     throw new ObjetoYaExistenteException();
                 }
@@ -104,8 +100,6 @@ namespace Obligatorio
             
             if(this.YaExisteContra(contra)) throw new ObjetoYaExistenteException();
 
-            this._noAgregoContras = false;
-
             this.GetCategoria(buscadora).AgregarContra(contra);
         }
 
@@ -130,10 +124,10 @@ namespace Obligatorio
 
         public void BorrarContra(Contra aBorrar)
         {
-            if (this._noAgregoCategorias) {
+            if (this.EsListaCategoriasVacia()) {
                 throw new CategoriaInexistenteException();
             }
-            if (this._noAgregoContras || !this.YaExisteContra(aBorrar))
+            if (!this.YaExisteContra(aBorrar))
             {
                 throw new ObjetoInexistenteException();
             }
