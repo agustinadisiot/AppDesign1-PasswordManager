@@ -46,7 +46,7 @@
 - [X] Get Tarjeta
 
 ### Modificar
-- [ ] Modificar Contraseña
+- [X] Modificar Contraseña
 - [X] Modificar Tarjeta
 
 ### Agregar 
