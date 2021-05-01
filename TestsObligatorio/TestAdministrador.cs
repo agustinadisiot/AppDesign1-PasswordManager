@@ -121,6 +121,60 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoInexistenteException>(() => administrador.GetUsuario("Hernesto"));
         }
 
+        [TestMethod]
+        public void AdministradorVacioYaExisteUsuario()
+        {
+            AdminContras administrador = new AdminContras();
+            Usuario buscador = new Usuario
+            {
+                Nombre = "Roberto"
+            };
+
+            Assert.IsFalse(administrador.YaExisteUsuario(buscador));
+        }
+
+        [TestMethod]
+        public void AdministradorYaExisteUsuarioExistente()
+        {
+            AdminContras administrador = new AdminContras();
+
+            Usuario agregar = new Usuario()
+            {
+                Nombre = "Roberto"
+            };
+            
+            Usuario buscador = new Usuario
+            {
+                Nombre = "Roberto"
+            };
+
+            administrador.AgregarUsuario(agregar);
+
+            Assert.IsTrue(administrador.YaExisteUsuario(buscador));
+        }
+
+        [TestMethod]
+        public void AdministradorNoVacioYaExisteUsuarioNoExistente()
+        {
+            AdminContras administrador = new AdminContras();
+
+            Usuario agregar = new Usuario()
+            {
+                Nombre = "Agregar"
+            };
+
+            Usuario buscador = new Usuario
+            {
+                Nombre = "Buscador"
+            };
+
+            administrador.AgregarUsuario(agregar);
+
+            Assert.IsFalse(administrador.YaExisteUsuario(buscador));
+        }
+
+
+
     }
 
 }

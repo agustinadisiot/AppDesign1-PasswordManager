@@ -36,5 +36,10 @@ namespace Obligatorio
             Usuario retorno = this._usuarios.Find(buscadorNombre);
             return retorno != null ? retorno : throw new ObjetoInexistenteException();
         }
+
+        public bool YaExisteUsuario(Usuario buscador)
+        {
+            return this._usuarios.Contains(buscador);
+        }
     }
 }
