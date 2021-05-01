@@ -581,6 +581,175 @@ namespace TestsObligatorio
             categoria.AgregarContra(contraOtra);
             Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.BorrarContra(contraBorrar));
         }
+
+
+        [TestMethod]
+        public void CategoriaModificarContraNoExistente()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            string usuarioContraModificar = "Usuario23";
+            string paginaContraModificar = "www.ort.edu.uy";
+            string claveContraModificar = "1234AbC$";
+
+            Contra contra = new Contra()
+            {
+                UsuarioContra = usuarioContraModificar,
+                Sitio = paginaContraModificar, 
+                Clave = claveContraModificar
+            };
+
+            categoria.AgregarContra(contra);
+
+            string usuarioContraInexistente = "12345@";
+            string paginaContraInexistente = "www.ort.edu.uy";
+
+            Contra buscadora = new Contra()
+            {
+                UsuarioContra = usuarioContraInexistente,
+                Sitio = paginaContraInexistente
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.ModificarContra(categoria.GetContra(buscadora), contra));
+        }
+
+        [TestMethod]
+        public void CategoriaAlModificarContraAgregadaLaContraViejaDejaDeExistir()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            string usuarioContraModificar = "Usuario23";
+            string paginaContraModificar = "www.ort.edu.uy";
+            string claveContraModificar = "1234AbC$";
+
+            Contra contraVieja = new Contra()
+            {
+                UsuarioContra = usuarioContraModificar,
+                Sitio = paginaContraModificar,
+                Clave = claveContraModificar,
+                Nota = ""
+            };
+            categoria.AgregarContra(contraVieja);
+
+            string usuarioContraNueva = "user543";
+            string paginaContraNueva = "aulas.edu.uy";
+            string claveContraNueva = "1234A@C$";
+
+            Contra contraNueva = new Contra()
+            {
+                UsuarioContra = usuarioContraNueva,
+                Sitio = paginaContraNueva,
+                Clave = claveContraNueva,
+                Nota = ""
+            };
+
+            Contra buscadora = new Contra()
+            {
+                UsuarioContra = usuarioContraModificar,
+                Sitio = paginaContraModificar
+            };
+
+            categoria.ModificarContra(contraVieja, contraNueva);
+            Assert.IsFalse(categoria.YaExisteContra(buscadora));
+        }
+
+        [TestMethod]
+        public void CategoriaModificarContraYaExistente()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            string usuarioContra1 = "Usuario23";
+            string paginaContra1 = "www.ort.edu.uy";
+            string claveContra1 = "1234AbC$";
+
+            Contra contra1 = new Contra()
+            {
+                UsuarioContra = usuarioContra1,
+                Sitio = paginaContra1,
+                Clave = claveContra1
+            };
+
+            categoria.AgregarContra(contra1);
+
+            string usuarioContra2 = "user23";
+            string paginaContra2 = "aulas.edu.uy";
+            string claveContra2 = "1234AbC$";
+
+            Contra contra2 = new Contra()
+            {
+                UsuarioContra = usuarioContra2,
+                Sitio = paginaContra2,
+                Clave = claveContra2
+            };
+
+            categoria.AgregarContra(contra2);
+
+            Contra duplicada = new Contra()
+            {
+                UsuarioContra = usuarioContra2,
+                Sitio = paginaContra2,
+                Clave = claveContra2
+            };
+
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => categoria.ModificarContra(contra1, duplicada));
+        }
+
+        [TestMethod]
+        public void CategoriaModificarContraAgregada()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            string usuarioContraVieja = "Usuario23";
+            string paginaContraVieja = "www.ort.edu.uy";
+            string claveContraVieja = "1234AbC$";
+
+            Contra contraVieja = new Contra()
+            {
+                UsuarioContra = usuarioContraVieja,
+                Sitio = paginaContraVieja,
+                Clave = claveContraVieja,
+                Nota = ""
+            };
+
+            categoria.AgregarContra(contraVieja);
+
+            string usuarioContraNueva = "user23";
+            string paginaContraNueva = "aulas.edu.uy";
+            string claveContraNueva = "1234AbC$";
+
+            Contra contraNueva = new Contra()
+            {
+                UsuarioContra = usuarioContraNueva,
+                Sitio = paginaContraNueva,
+                Clave = claveContraNueva,
+                Nota = ""
+            };
+
+            Contra buscadora = new Contra()
+            {
+                UsuarioContra = usuarioContraNueva,
+                Sitio = paginaContraNueva
+            };
+
+            categoria.ModificarContra(contraVieja, contraNueva);
+            Assert.AreEqual(contraNueva, categoria.GetContra(buscadora));
+        }
     }
 
     [TestClass]

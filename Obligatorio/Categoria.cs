@@ -122,7 +122,7 @@ namespace Obligatorio
 
         public bool YaExisteContra(Contra aBuscar)
         {
-            return this._contras.Any(buscadora => buscadora.Equals(aBuscar));
+            return (this._contras.Contains(aBuscar));
         }
 
         public bool YaExisteTarjeta(Tarjeta aBuscar)
@@ -150,6 +150,16 @@ namespace Obligatorio
             aModificar.Tipo = tarjetaNueva.Tipo;
             aModificar.Nota = tarjetaNueva.Nota;
             aModificar.Vencimiento = tarjetaNueva.Vencimiento;
+        }
+
+        public void ModificarContra(Contra contraVieja, Contra contraNueva)
+        {
+            if(this.YaExisteContra(contraNueva)) throw new ObjetoYaExistenteException();
+            Contra aModificar = this.GetContra(contraVieja);
+            aModificar.UsuarioContra = contraNueva.UsuarioContra;
+            aModificar.Clave = contraNueva.Clave;
+            aModificar.Sitio = contraNueva.Sitio;
+            aModificar.Nota = contraNueva.Nota;
         }
     }
 }
