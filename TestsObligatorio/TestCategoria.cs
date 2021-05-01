@@ -593,13 +593,15 @@ namespace TestsObligatorio
                 Nombre = "Personal"
             };
 
-            string usuarioContraBorrar = "222222";
-            string paginaContraBorrar = "www.ort.edu.uy";
+            string usuarioContraModificar = "Usuario23";
+            string paginaContraModificar = "www.ort.edu.uy";
+            string claveContraModificar = "1234AbC$";
 
             Contra contra = new Contra()
             {
-                UsuarioContra = usuarioContraBorrar,
-                Sitio = paginaContraBorrar
+                UsuarioContra = usuarioContraModificar,
+                Sitio = paginaContraModificar, 
+                Clave = claveContraModificar
             };
 
             categoria.AgregarContra(contra);
