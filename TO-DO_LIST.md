@@ -28,7 +28,7 @@
 
 ### Eliminar
 - [X] Eliminar Contraseña
-- [ ] Eliminar Tarjeta
+- [X] Eliminar Tarjeta
 
 ### Agregar
 - [X] Agregar Contraseña
