@@ -24,7 +24,7 @@
 ### Modificar
 - [X] Modificar Contraseña
 - [X] Modificar Categoria
-- [ ] Modificar Tarjeta
+- [X] Modificar Tarjeta
 
 ### Eliminar
 - [X] Eliminar Contraseña
