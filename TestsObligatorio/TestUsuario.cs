@@ -932,6 +932,39 @@ namespace TestsObligatorio
             usuario.BorrarContra(aBorrar);
             Assert.IsTrue(usuario.YaExisteContra(contraADejar));
         }
+
+        [TestMethod]
+        public void UsuarioGetContraCorrecta()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Categoria1"
+            };
+
+            usuario.AgregarCategoria(categoria);
+
+            Contra contraAGuardar = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+
+            categoria.AgregarContra(contraAGuardar);
+
+            Contra contraBuscadora = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                UsuarioContra = "Roberto"
+            };
+
+            Assert.AreEqual(contraAGuardar, usuario.GetContra(contraBuscadora));
+        }
     }
    
     [TestClass]

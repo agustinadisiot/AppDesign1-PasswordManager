@@ -147,5 +147,10 @@ namespace Obligatorio
                 return this._categorias;
             }
         }
+
+        public Contra GetContra(Contra contraBuscadora)
+        {
+            return contraBuscadora;
+        }
     }
 }
