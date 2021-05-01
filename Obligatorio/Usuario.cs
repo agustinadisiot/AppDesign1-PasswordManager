@@ -11,13 +11,11 @@ namespace Obligatorio
         private string _contraMaestra;
         private const int _largoNombreYContraMinimo = 5;
         private const int _largoNombreYContraMaximo = 25;
-        private bool _noBorroTarjeta;
 
 
         public Usuario()
         {
             this._categorias = new List<Categoria>();
-            this._noBorroTarjeta = true;
         }
 
         public string Nombre 
@@ -108,11 +106,6 @@ namespace Obligatorio
 
         public bool YaExisteTarjeta(Tarjeta tarjeta)
         {
-            if (!this._noBorroTarjeta)
-            {
-                return false;
-            }
-
             return this._categorias.Any(catBuscadora => catBuscadora.YaExisteTarjeta(tarjeta));
         }
 
@@ -183,8 +176,8 @@ namespace Obligatorio
                 throw new ObjetoInexistenteException();
             }
 
-            this._noBorroTarjeta = false;
-
+            Categoria contieneContraABorrar = this._categorias.First(categoria => categoria.YaExisteTarjeta(aBorrar));
+            contieneContraABorrar.BorrarTarjeta(aBorrar);
         }
     }
 }
