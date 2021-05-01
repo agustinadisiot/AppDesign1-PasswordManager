@@ -8,35 +8,35 @@ namespace Obligatorio
         private string _clave;
         private string _sitio;
         private string _nota;
-        private const int largoUsuarioYClaveMinimo = 5;
-        private const int largoUsuarioYClaveMaximo = 25;
-        private const int largoSitioMinimo = 3;
-        private const int largoSitioMaximo = 25;
-        private const int largoNotaMinimo = 0;
-        private const int largoNotaMaximo = 250;
+        private const int _largoUsuarioYClaveMinimo = 5;
+        private const int _largoUsuarioYClaveMaximo = 25;
+        private const int _largoSitioMinimo = 3;
+        private const int _largoSitioMaximo = 25;
+        private const int _largoNotaMinimo = 0;
+        private const int _largoNotaMaximo = 250;
 
         public string UsuarioContra
         {
             get { return _usuario; }
-            set { this._usuario = VerificadoraString.VerificarLargoXaY(value, largoUsuarioYClaveMinimo, largoUsuarioYClaveMaximo); }
+            set { this._usuario = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoUsuarioYClaveMinimo, _largoUsuarioYClaveMaximo); }
         }
 
         public string Clave
         {
             get { return _clave; }
-            set { this._clave = VerificadoraString.VerificarLargoXaY(value, largoUsuarioYClaveMinimo, largoUsuarioYClaveMaximo); }
+            set { this._clave = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoUsuarioYClaveMinimo, _largoUsuarioYClaveMaximo); }
         }
 
         public string Sitio
         {
             get { return _sitio; }
-            set { this._sitio = VerificadoraString.VerificarLargoXaY(value, largoSitioMinimo, largoSitioMaximo); }
+            set { this._sitio = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoSitioMinimo, _largoSitioMaximo); }
         }
 
         public string Nota
         {
             get { return _nota; }
-            set { this._nota = VerificadoraString.VerificarLargoXaY(value, largoNotaMinimo, largoNotaMaximo); }
+            set { this._nota = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNotaMinimo, _largoNotaMaximo); }
         }
 
         public string GetNivelSeguridad()
@@ -58,14 +58,14 @@ namespace Obligatorio
                 tieneNum = false,
                 tieneSim = false;
 
-            foreach (char c in this.Clave)
+            foreach (char caracter in this.Clave)
             {
                 if (!tieneMay || !tieneMin || !tieneMin || !tieneSim)
                 {
-                    tieneMin = tieneMin || VerificadoraString.EsMinuscula(c);
-                    tieneMay = tieneMay || VerificadoraString.EsMayuscula(c);
-                    tieneNum = tieneNum || VerificadoraString.EsNumero(c);
-                    tieneSim = tieneSim || VerificadoraString.EsSimbolo(c);
+                    tieneMin = tieneMin || VerificadoraString.EsMinuscula(caracter);
+                    tieneMay = tieneMay || VerificadoraString.EsMayuscula(caracter);
+                    tieneNum = tieneNum || VerificadoraString.EsNumero(caracter);
+                    tieneSim = tieneSim || VerificadoraString.EsSimbolo(caracter);
                 }
                 else return verdeOscuro;
             }
@@ -74,11 +74,11 @@ namespace Obligatorio
             return amarillo;   
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object objeto)
         {
-            if (obj == null) throw new ObjetoIncompletoException();
-            if (this.GetType() != obj.GetType()) throw new ObjetoIncorrectoException();
-            Contra aIgualar = (Contra)obj;
+            if (objeto == null) throw new ObjetoIncompletoException();
+            if (this.GetType() != objeto.GetType()) throw new ObjetoIncorrectoException();
+            Contra aIgualar = (Contra)objeto;
             bool mismoSitio = aIgualar.Sitio.ToUpper() == this.Sitio.ToUpper();
             bool mismoUsuario = aIgualar.UsuarioContra == this.UsuarioContra;
             return mismoSitio && mismoUsuario;

@@ -5,17 +5,17 @@ namespace Obligatorio
 {
     public class AdminContras
     {
-        private bool noAgregoUsuarios;
-        private List<Usuario> listaUsuarios;
+        private bool _noAgregoUsuarios;
+        private List<Usuario> _usuarios;
 
         public AdminContras() {
-            this.noAgregoUsuarios = true;
-            this.listaUsuarios = new List<Usuario>();
+            this._noAgregoUsuarios = true;
+            this._usuarios = new List<Usuario>();
         }
 
         public bool EsListaUsuariosVacia()
         {
-            return this.noAgregoUsuarios;
+            return this._noAgregoUsuarios;
         }
 
         public void AgregarUsuario(Usuario usuario)
@@ -24,16 +24,16 @@ namespace Obligatorio
                 throw new ObjetoIncompletoException();
             }
             else {
-                this.noAgregoUsuarios = false;
-                this.listaUsuarios.Add(usuario);
+                this._noAgregoUsuarios = false;
+                this._usuarios.Add(usuario);
             }
         }
 
         public Usuario GetUsuario(string nombre)
         {
-            Predicate<Usuario> buscadorNombre = (Usuario u) => { return u.Nombre == nombre; };
+            Predicate<Usuario> buscadorNombre = (Usuario usuario) => { return usuario.Nombre == nombre; };
             
-            Usuario retorno = this.listaUsuarios.Find(buscadorNombre);
+            Usuario retorno = this._usuarios.Find(buscadorNombre);
             return retorno != null ? retorno : throw new ObjetoInexistenteException();
         }
     }

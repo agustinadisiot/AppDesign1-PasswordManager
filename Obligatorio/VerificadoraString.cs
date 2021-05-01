@@ -8,15 +8,15 @@ namespace Obligatorio
 {
     public static class VerificadoraString
     {
-        public static string VerificarLargoXaY(string dato, int x, int y)
+        public static string VerificarLargoEntreMinimoYMaximo(string ingreso, int minimo, int maximo)
         {
-            if (dato.Length < x || dato.Length > y)
+            if (ingreso.Length < minimo || ingreso.Length > maximo)
             {
                 throw new LargoIncorrectoException();
             }
             else
             {
-                return dato;
+                return ingreso;
             }
         }
 

@@ -6,29 +6,29 @@ namespace Obligatorio
 {
     public class Categoria
     {
-        private List<Contra> contras;
-        private List<Tarjeta> tarjetas;
+        private List<Contra> _contras;
+        private List<Tarjeta> _tarjetas;
         private string _nombre;
-        private const int largoNombreMinimo = 3;
-        private const int largoNombreMaximo = 15;
+        private const int _largoNombreMinimo = 3;
+        private const int _largoNombreMaximo = 15;
 
         public Categoria()
         {
-            contras = new List<Contra>();
-            tarjetas = new List<Tarjeta>();
+            _contras = new List<Contra>();
+            _tarjetas = new List<Tarjeta>();
         }
 
         public string Nombre
         {
             get { return _nombre; }
-            set { this._nombre = VerificadoraString.VerificarLargoXaY(value, largoNombreMinimo, largoNombreMaximo); }
+            set { this._nombre = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreMinimo, _largoNombreMaximo); }
         }
 
 
         public bool EsListaContrasVacia()
         {
-            bool noQuedanContras = (this.contras.Count == 0);
-            return noQuedanContras;
+            bool noHayContras = (this._contras.Count == 0);
+            return noHayContras;
         }
 
         public void AgregarContra(Contra contraIngresada)
@@ -40,7 +40,7 @@ namespace Obligatorio
 
             if (noTieneSitio || noTieneClave || noTieneUsuario ) throw new ObjetoIncompletoException();
             if (this.YaExisteContra(contraIngresada)) throw new ObjetoYaExistenteException();
-            this.contras.Add(contraIngresada);
+            this._contras.Add(contraIngresada);
         }
 
         public void BorrarContra(Contra contraABorrar)
@@ -51,7 +51,7 @@ namespace Obligatorio
             if (!this.YaExisteContra(contraABorrar)) {
                 throw new ObjetoInexistenteException();
             }
-            this.contras.Remove(contraABorrar);
+            this._contras.Remove(contraABorrar);
         }
 
         public Contra GetContra(Contra aBuscar)
@@ -65,26 +65,27 @@ namespace Obligatorio
                 return contra.Equals(aBuscar);
             };
 
-            Contra retorno = this.contras.Find(buscadorContra);
+            Contra retorno = this._contras.Find(buscadorContra);
             return retorno != null ? retorno : throw new ObjetoInexistenteException();
         }
 
         public List<Contra> GetListaContras()
         {
-            return this.contras;
+            return this._contras;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object objeto)
         {
-            if (obj == null) throw new ObjetoIncompletoException();
-            if (obj.GetType() != this.GetType()) throw new ObjetoIncorrectoException();
-            Categoria aIgualar = (Categoria)obj;
+            if (objeto == null) throw new ObjetoIncompletoException();
+            if (objeto.GetType() != this.GetType()) throw new ObjetoIncorrectoException();
+            Categoria aIgualar = (Categoria)objeto;
             return aIgualar.Nombre.ToUpper() == this.Nombre.ToUpper();
         }
 
         public bool EsListaTarjetasVacia()
         {
-            return this.tarjetas.Count == 0;
+            bool noHayTarjetas = this._tarjetas.Count == 0;
+            return noHayTarjetas;
         }
 
         public void AgregarTarjeta(Tarjeta tarjetaIngresada)
@@ -99,7 +100,7 @@ namespace Obligatorio
 
             if (this.YaExisteTarjeta(tarjetaIngresada)) throw new ObjetoYaExistenteException();
            
-            this.tarjetas.Add(tarjetaIngresada);
+            this._tarjetas.Add(tarjetaIngresada);
         }
 
         public Tarjeta GetTarjeta(Tarjeta aBuscar)
@@ -110,23 +111,23 @@ namespace Obligatorio
                 return tarjeta.Equals(aBuscar);
             };
 
-            Tarjeta retorno = this.tarjetas.Find(buscadorTarjeta);
+            Tarjeta retorno = this._tarjetas.Find(buscadorTarjeta);
             return retorno != null ? retorno : throw new ObjetoInexistenteException();
         }
 
         public List<Tarjeta> GetListaTarjetas()
         {
-            return this.tarjetas;
+            return this._tarjetas;
         }
 
         public bool YaExisteContra(Contra aBuscar)
         {
-            return this.contras.Any(buscadora => buscadora.Equals(aBuscar));
+            return this._contras.Any(buscadora => buscadora.Equals(aBuscar));
         }
 
         public bool YaExisteTarjeta(Tarjeta aBuscar)
         {
-            return (this.tarjetas.Contains(aBuscar));
+            return (this._tarjetas.Contains(aBuscar));
             
         }
 
@@ -137,7 +138,7 @@ namespace Obligatorio
             {
                 throw new ObjetoInexistenteException();
             }
-            this.tarjetas.Remove(aBorrar);
+            this._tarjetas.Remove(aBorrar);
         }
 
         public void ModificarTarjeta(Tarjeta tarjetaVieja, Tarjeta tarjetaNueva)

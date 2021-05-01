@@ -9,36 +9,36 @@ namespace Obligatorio
         private string _numero;
         private string _codigo;
         private string _nota;
-        private const int largoNombreYTipoMinimo = 3;
-        private const int largoNombreYTipoMaximo = 25;
-        private const int largoNumeroMinimoYMaximo = 16;
-        private const int largoCodigoMinimo = 3;
-        private const int largoCodigoMaximo = 4;
-        private const int largoNotaMinimo = 0;
-        private const int largoNotaMaximo = 250;
+        private const int _largoNombreYTipoMinimo = 3;
+        private const int _largoNombreYTipoMaximo = 25;
+        private const int _largoNumeroMinimoYMaximo = 16;
+        private const int _largoCodigoMinimo = 3;
+        private const int _largoCodigoMaximo = 4;
+        private const int _largoNotaMinimo = 0;
+        private const int _largoNotaMaximo = 250;
 
         public string Nombre 
         {
             get { return _nombre; }
-            set { this._nombre = VerificadoraString.VerificarLargoXaY(value, largoNombreYTipoMinimo, largoNombreYTipoMaximo); } 
+            set { this._nombre = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreYTipoMinimo, _largoNombreYTipoMaximo); } 
         }
 
         public string Tipo
         {
             get { return _tipo; }
-            set { this._tipo = VerificadoraString.VerificarLargoXaY(value, largoNombreYTipoMinimo, largoNombreYTipoMaximo); }
+            set { this._tipo = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreYTipoMinimo, _largoNombreYTipoMaximo); }
         }
 
         public string Numero 
         {
             get { return this._numero; }
-            set { this._numero = VerificarStringDeNumerosYSuLargoDeXaY(value, largoNumeroMinimoYMaximo, largoNumeroMinimoYMaximo); }
+            set { this._numero = VerificarStringDeNumerosYSuLargoEntreMinimoYMaximo(value, _largoNumeroMinimoYMaximo, _largoNumeroMinimoYMaximo); }
         }
 
         public string Codigo
         {
             get { return this._codigo; }
-            set { this._codigo = VerificarStringDeNumerosYSuLargoDeXaY(value, largoCodigoMinimo, largoCodigoMaximo); }
+            set { this._codigo = VerificarStringDeNumerosYSuLargoEntreMinimoYMaximo(value, _largoCodigoMinimo, _largoCodigoMaximo); }
         }
 
         public DateTime Vencimiento { get; set; }
@@ -46,24 +46,24 @@ namespace Obligatorio
         public string Nota 
         {
             get { return this._nota; }
-            set { this._nota = VerificadoraString.VerificarLargoXaY(value, largoNotaMinimo, largoNotaMaximo); }
+            set { this._nota = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNotaMinimo, _largoNotaMaximo); }
         }
 
-        public static string VerificarStringDeNumerosYSuLargoDeXaY(string dato, int x, int y)
+        public static string VerificarStringDeNumerosYSuLargoEntreMinimoYMaximo(string ingreso, int minimo, int maximo)
         {
-            if (dato.Length < x || dato.Length > y) throw new LargoIncorrectoException();
-            foreach (char c in dato)
+            if (ingreso.Length < minimo || ingreso.Length > maximo) throw new LargoIncorrectoException();
+            foreach (char caracter in ingreso)
             {
-                if (!VerificadoraString.EsNumero(c)) throw new CaracterInesperadoException();
+                if (!VerificadoraString.EsNumero(caracter)) throw new CaracterInesperadoException();
             }
-            return dato;
+            return ingreso;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object objeto)
         {
-            if (obj == null) throw new ObjetoIncompletoException();
-            if (obj.GetType() != this.GetType()) throw new ObjetoIncorrectoException();
-            Tarjeta aIgualar = (Tarjeta)obj;
+            if (objeto == null) throw new ObjetoIncompletoException();
+            if (objeto.GetType() != this.GetType()) throw new ObjetoIncorrectoException();
+            Tarjeta aIgualar = (Tarjeta)objeto;
             return aIgualar.Numero == this.Numero;
         }
     }

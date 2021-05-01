@@ -6,30 +6,30 @@ namespace Obligatorio
 {
     public class Usuario
     {
-        private bool noAgregoCategorias;
-        private bool noAgregoContras;
-        private List<Categoria> listaCategorias;
+        private bool _noAgregoCategorias;
+        private bool _noAgregoContras;
+        private List<Categoria> _categorias;
         private string _nombre;
         private string _contraMaestra;
-        private const int largoNombreYContraMinimo = 5;
-        private const int largoNombreYContraMaximo = 25;
+        private const int _largoNombreYContraMinimo = 5;
+        private const int _largoNombreYContraMaximo = 25;
 
 
         public Usuario()
         {
-            this.noAgregoContras = true;
-            this.noAgregoCategorias = true;
-            this.listaCategorias = new List<Categoria>();
+            this._noAgregoContras = true;
+            this._noAgregoCategorias = true;
+            this._categorias = new List<Categoria>();
         }
 
         public string Nombre 
         {   get { return _nombre; }
-            set { this._nombre = VerificadoraString.VerificarLargoXaY(value, largoNombreYContraMinimo, largoNombreYContraMaximo); }
+            set { this._nombre = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreYContraMinimo, _largoNombreYContraMaximo); }
         }
 
         public string ContraMaestra {
             get { return this._contraMaestra; }
-            set { this._contraMaestra = VerificadoraString.VerificarLargoXaY(value, largoNombreYContraMinimo, largoNombreYContraMaximo);}
+            set { this._contraMaestra = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreYContraMinimo, _largoNombreYContraMaximo);}
         }
 
 
@@ -40,37 +40,36 @@ namespace Obligatorio
 
         public bool EsListaCategoriasVacia()
         {
-            return this.noAgregoCategorias;
+            return this._noAgregoCategorias;
         }
 
-        public void AgregarCategoria(Categoria c1)
+        public void AgregarCategoria(Categoria categoria)
         {
-            if (c1.Nombre == null) throw new ObjetoIncompletoException();
+            if (categoria.Nombre == null) throw new ObjetoIncompletoException();
             else 
             {
-                this.noAgregoCategorias = false;
-                if (this.YaExisteCategoria(c1)) {
+                this._noAgregoCategorias = false;
+                if (this.YaExisteCategoria(categoria)) {
                     throw new ObjetoYaExistenteException();
                 }
-                this.listaCategorias.Add(c1);
+                this._categorias.Add(categoria);
             }  
         }
 
         public Categoria GetCategoria(Categoria aBuscar)
         {
-            //Predicate se utiliza en conjunto con una clase, se le da una condicion que retorne true para ser buscado en una List con un List.Find
             Predicate<Categoria> buscadorCategoria = (Categoria categoria) =>
             { return categoria.Equals(aBuscar); };
 
-            Categoria retorno = this.listaCategorias.Find(buscadorCategoria);
+            Categoria retorno = this._categorias.Find(buscadorCategoria);
             return retorno != null ? retorno : throw new ObjetoInexistenteException();
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object objeto)
         {
-            if (obj == null) throw new ObjetoIncompletoException();
-            if (obj.GetType() != this.GetType()) throw new ObjetoIncorrectoException();
-            Usuario aIgualar = (Usuario)obj;
+            if (objeto == null) throw new ObjetoIncompletoException();
+            if (objeto.GetType() != this.GetType()) throw new ObjetoIncorrectoException();
+            Usuario aIgualar = (Usuario)objeto;
             return aIgualar.Nombre == this.Nombre;
         }
 
@@ -88,12 +87,12 @@ namespace Obligatorio
 
         public bool YaExisteCategoria(Categoria aBuscar)
         {
-            return this.listaCategorias.Any(buscadora => buscadora.Equals(aBuscar));
+            return this._categorias.Any(buscadora => buscadora.Equals(aBuscar));
         }
 
         public bool YaExisteContra(Contra contra)
         {
-            return this.listaCategorias.Any(catBuscadora => catBuscadora.YaExisteContra(contra));
+            return this._categorias.Any(catBuscadora => catBuscadora.YaExisteContra(contra));
         }
 
         public void AgregarContra(Contra contra, Categoria buscadora)
@@ -107,14 +106,14 @@ namespace Obligatorio
             
             if(this.YaExisteContra(contra)) throw new ObjetoYaExistenteException();
 
-            this.noAgregoContras = false;
+            this._noAgregoContras = false;
 
             this.GetCategoria(buscadora).AgregarContra(contra);
         }
 
         public bool YaExisteTarjeta(Tarjeta tarjeta)
         {
-            return this.listaCategorias.Any(catBuscadora => catBuscadora.YaExisteTarjeta(tarjeta));
+            return this._categorias.Any(catBuscadora => catBuscadora.YaExisteTarjeta(tarjeta));
         }
 
         public void AgregarTarjeta(Tarjeta tarjeta, Categoria categoria)
@@ -133,14 +132,14 @@ namespace Obligatorio
 
         public void BorrarContra(Contra aBorrar)
         {
-            if (this.noAgregoCategorias) {
+            if (this._noAgregoCategorias) {
                 throw new CategoriaInexistenteException();
             }
-            if (this.noAgregoContras || !this.YaExisteContra(aBorrar))
+            if (this._noAgregoContras || !this.YaExisteContra(aBorrar))
             {
                 throw new ObjetoInexistenteException();
             }
-            Categoria contieneContraABorrar = this.listaCategorias.First(categoria => categoria.YaExisteContra(aBorrar));
+            Categoria contieneContraABorrar = this._categorias.First(categoria => categoria.YaExisteContra(aBorrar));
             contieneContraABorrar.BorrarContra(aBorrar);
         }
     }
