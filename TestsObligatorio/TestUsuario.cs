@@ -589,6 +589,7 @@ namespace TestsObligatorio
             };
             Contra contra = new Contra()
             {
+                Sitio = "www.ort.edu.uy",
                 UsuarioContra = "111111",
                 Clave = "12345678"
             };
@@ -1044,7 +1045,7 @@ namespace TestsObligatorio
         }
 
         [TestMethod]
-        public void CategoriaYaExisteTarjetaDiferenteVencimiento()
+        public void UsuarioYaExisteTarjetaDiferenteVencimiento()
         {
 
             Usuario usuario = new Usuario()
@@ -1153,6 +1154,32 @@ namespace TestsObligatorio
         }
 
         [TestMethod]
+        public void UsuarioAgregarTarjetaSinCategoria()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            Tarjeta tarjeta = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "3456567890876543",
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.AgregarTarjeta(tarjeta, categoria));
+        }
+
+        [TestMethod]
         public void UsuarioAgregarTarjetaSinNombre()
         {
             Usuario usuario = new Usuario()
@@ -1168,7 +1195,8 @@ namespace TestsObligatorio
             {
                 Tipo = "Mastercard",
                 Numero = "3456567890876543",
-                Codigo = "321"
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
             };
             usuario.AgregarCategoria(categoria);
             Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarTarjeta(tarjeta, categoria));
@@ -1190,7 +1218,8 @@ namespace TestsObligatorio
             {
                 Nombre = "Prex",
                 Numero = "3456567890876543",
-                Codigo = "321"
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
             };
             usuario.AgregarCategoria(categoria);
             Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarTarjeta(tarjeta, categoria));
@@ -1212,7 +1241,8 @@ namespace TestsObligatorio
             {
                 Nombre = "Prex",
                 Tipo = "Mastercard",
-                Codigo = "321"
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
             };
             usuario.AgregarCategoria(categoria);
             Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarTarjeta(tarjeta, categoria));
@@ -1234,7 +1264,8 @@ namespace TestsObligatorio
             {
                 Nombre = "Prex",
                 Tipo = "Mastercard",
-                Numero = "3456567890876543"
+                Numero = "3456567890876543",
+                Vencimiento = new DateTime(2025, 7, 1)
             };
             usuario.AgregarCategoria(categoria);
             Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarTarjeta(tarjeta, categoria));

@@ -95,7 +95,6 @@ namespace Obligatorio
 
         public void AgregarContra(Contra contra, Categoria buscadora)
         {
-            if(!this.YaExisteCategoria(buscadora)) throw new ObjetoInexistenteException();
 
             bool noTieneSitio = (contra.Sitio == null),
                  noTieneClave = (contra.Clave == null),
