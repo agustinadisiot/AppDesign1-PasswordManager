@@ -143,5 +143,10 @@ namespace Obligatorio
             Categoria contieneContraABorrar = this.listaCategorias.First(categoria => categoria.YaExisteContra(aBorrar));
             contieneContraABorrar.BorrarContra(aBorrar);
         }
+
+        public object GetListaCategorias()
+        {
+            return null;
+        }
     }
 }

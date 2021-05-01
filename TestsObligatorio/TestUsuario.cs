@@ -381,7 +381,19 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.ModificarNombreCategoria(modificarVieja, modificarNueva));
         }
 
-       
+        [TestMethod]
+        public void UsuarioGetListaCategoriasVacia()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+
+
+            Assert.IsNull(usuario.GetListaCategorias());
+        }
+
     }
 
     [TestClass]
