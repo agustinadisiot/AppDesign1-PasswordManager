@@ -9,10 +9,10 @@
 ## AdminContras
 
 ### Agregar 
-- [ ] Agregar Usuario
+- [X] Agregar Usuario
 
 ### YaExiste
-- [ ] Usuario
+- [X] Usuario
 ---
 ## Usuario
 
@@ -24,9 +24,10 @@
 ### Modificar
 - [ ] Modificar Contraseña
 - [X] Modificar Categoria
+- [ ] Modificar Tarjeta
 
 ### Eliminar
-- [ ] Eliminar Contraseña
+- [X] Eliminar Contraseña
 - [ ] Eliminar Tarjeta
 
 ### Agregar
