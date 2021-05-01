@@ -150,13 +150,19 @@ namespace Obligatorio
 
         public Contra GetContra(Contra contraBuscadora)
         {
+            if (!YaExisteContra(contraBuscadora)) throw new ObjetoInexistenteException();
 
             foreach (Categoria categoria in this._categorias)
             {
-                return categoria.GetListaContras().First((Contra contra) => contra.Equals(contraBuscadora));
+                if (categoria.YaExisteContra(contraBuscadora))
+                {
+                    return categoria.GetContra(contraBuscadora);
+                }
+               
             }
 
-            return contraBuscadora;
+            throw new ObjetoInexistenteException();
+
         }
     }
 }

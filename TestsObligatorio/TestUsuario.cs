@@ -955,7 +955,7 @@ namespace TestsObligatorio
                 UsuarioContra = "Roberto"
             };
 
-            categoria.AgregarContra(contraAGuardar);
+            usuario.AgregarContra(contraAGuardar, categoria);
 
             Contra contraBuscadora = new Contra()
             {
@@ -988,7 +988,7 @@ namespace TestsObligatorio
                 Clave = "EstaEsUnaClave1",
                 UsuarioContra = "Roberto"
             };
-            categoria.AgregarContra(contra1);
+            usuario.AgregarContra(contra1, categoria);
 
             Contra contra2 = new Contra()
             {
@@ -996,7 +996,7 @@ namespace TestsObligatorio
                 Clave = "EstaEsUnaClave1",
                 UsuarioContra = "Luis88"
             };
-            categoria.AgregarContra(contra2);
+            usuario.AgregarContra(contra2, categoria);
 
             Contra contraBuscadora = new Contra()
             {
@@ -1029,7 +1029,7 @@ namespace TestsObligatorio
                 Clave = "EstaEsUnaClave1",
                 UsuarioContra = "Roberto"
             };
-            categoria.AgregarContra(contra1);
+            usuario.AgregarContra(contra1, categoria);
 
             Contra contra2 = new Contra()
             {
@@ -1037,7 +1037,7 @@ namespace TestsObligatorio
                 Clave = "EstaEsUnaClave1",
                 UsuarioContra = "Luis88"
             };
-            categoria.AgregarContra(contra2);
+            usuario.AgregarContra(contra2, categoria);
 
             Contra contraBuscadora = new Contra()
             {
@@ -1070,7 +1070,7 @@ namespace TestsObligatorio
                 Clave = "EstaEsUnaClave1",
                 UsuarioContra = "Roberto"
             };
-            categoria.AgregarContra(contra1);
+            usuario.AgregarContra(contra1, categoria);
 
             Contra contraBuscadora = new Contra()
             {
@@ -1079,6 +1079,23 @@ namespace TestsObligatorio
             };
 
             Assert.AreEqual(contra1.Clave, usuario.GetContra(contraBuscadora).Clave); ;
+        }
+
+        [TestMethod]
+        public void UsuarioaGetContraInexistente()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Contra contraBuscadora = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                UsuarioContra = "Luis123"
+            };
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.GetContra(contraBuscadora));
         }
     }
    
