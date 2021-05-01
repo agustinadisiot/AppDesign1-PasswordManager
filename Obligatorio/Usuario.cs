@@ -180,5 +180,10 @@ namespace Obligatorio
 
             throw new ObjetoInexistenteException();
         }
+
+        public void ModificarContra(Contra contraVieja, Contra contraNueva)
+        {
+            throw new ObjetoInexistenteException();
+        }
     }
 }

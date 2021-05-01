@@ -1097,8 +1097,40 @@ namespace TestsObligatorio
             };
             Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.GetContra(contraBuscadora));
         }
+        
+        [TestMethod]
+        public void UsuarioModificarContraNoExistente()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            string usuarioContraModificar = "Usuario23";
+            string paginaContraModificar = "www.ort.edu.uy";
+            string claveContraModificar = "1234AbC$";
+
+            Contra contra = new Contra()
+            {
+                UsuarioContra = usuarioContraModificar,
+                Sitio = paginaContraModificar,
+                Clave = claveContraModificar
+            };
+
+            string usuarioContraInexistente = "12345@";
+            string paginaContraInexistente = "www.ort.edu.uy";
+
+            Contra buscadora = new Contra()
+            {
+                UsuarioContra = usuarioContraInexistente,
+                Sitio = paginaContraInexistente
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarContra(buscadora, contra));
+        }
+
     }
-   
+
     [TestClass]
     public class TestUsuarioTarjeta
     {
