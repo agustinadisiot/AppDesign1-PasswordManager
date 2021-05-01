@@ -1004,7 +1004,48 @@ namespace TestsObligatorio
                 UsuarioContra = "Roberto"
             };
 
-            Assert.AreEqual(contra1, categoria.GetContra(contraBuscadora)); ;
+            Assert.AreEqual(contra1, usuario.GetContra(contraBuscadora)); ;
+        }
+
+        [TestMethod]
+        public void UsuarioaGetContraSegundaConDosContras()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Categoria1"
+            };
+
+            usuario.AgregarCategoria(categoria);
+
+            Contra contra1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria.AgregarContra(contra1);
+
+            Contra contra2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Luis88"
+            };
+            categoria.AgregarContra(contra2);
+
+            Contra contraBuscadora = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                UsuarioContra = "Luis88"
+            };
+
+            Assert.AreEqual(contra2, usuario.GetContra(contraBuscadora)); ;
         }
     }
    
