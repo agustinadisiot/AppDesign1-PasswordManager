@@ -17,8 +17,8 @@
 ## Usuario
 
 ### Get
-- [ ] Get Contraseña
-- [ ] Get Tarjeta
+- [X] Get Contraseña
+- [X] Get Tarjeta
 - [X] Get Categoria
 
 ### Modificar
