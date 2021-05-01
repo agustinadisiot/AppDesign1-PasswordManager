@@ -114,7 +114,7 @@ namespace Obligatorio
             return this.listaCategorias.Any(catBuscadora => catBuscadora.yaExisteTarjeta(tarjeta));
         }
 
-        public void agregarTarjeta(Tarjeta tarjeta, string categoria)
+        public void agregarTarjeta(Tarjeta tarjeta, Categoria categoria)
         {
             bool noTieneNombre = (tarjeta.Nombre == null),
             noTieneSitio = (tarjeta.Tipo == null),
@@ -125,12 +125,7 @@ namespace Obligatorio
 
             if (this.yaExisteTarjeta(tarjeta)) throw new ObjetoYaExistenteException();
 
-            Categoria buscadora = new Categoria()
-            {
-                Nombre = categoria
-            };
-
-            this.getCategoria(buscadora).agregarTarjeta(tarjeta);
+            this.getCategoria(categoria).agregarTarjeta(tarjeta);
         }
 
         public void borrarContra(Contra aBorrar)

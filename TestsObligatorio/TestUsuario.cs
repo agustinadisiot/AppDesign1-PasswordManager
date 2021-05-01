@@ -1124,7 +1124,10 @@ namespace TestsObligatorio
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             usuario.agregarCategoria(categoria);
-            usuario.agregarTarjeta(tarjeta, "Trabajo");
+
+
+
+            usuario.agregarTarjeta(tarjeta, categoria);
             Assert.AreEqual(true, usuario.yaExisteTarjeta(tarjeta));
         }
 
@@ -1147,7 +1150,7 @@ namespace TestsObligatorio
                 Codigo = "321"
             };
             usuario.agregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, categoria));
         }
 
         [TestMethod]
@@ -1169,7 +1172,7 @@ namespace TestsObligatorio
                 Codigo = "321"
             };
             usuario.agregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, categoria));
         }
 
         [TestMethod]
@@ -1191,7 +1194,7 @@ namespace TestsObligatorio
                 Codigo = "321"
             };
             usuario.agregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, categoria));
         }
 
         [TestMethod]
@@ -1213,7 +1216,7 @@ namespace TestsObligatorio
                 Numero = "3456567890876543"
             };
             usuario.agregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.agregarTarjeta(tarjeta, categoria));
         }
 
         [TestMethod]
@@ -1237,8 +1240,8 @@ namespace TestsObligatorio
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             usuario.agregarCategoria(categoria);
-            usuario.agregarTarjeta(tarjeta, "Trabajo");
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.agregarTarjeta(tarjeta, "Trabajo"));
+            usuario.agregarTarjeta(tarjeta, categoria);
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.agregarTarjeta(tarjeta, categoria));
         }
 
         [TestMethod]
@@ -1262,7 +1265,7 @@ namespace TestsObligatorio
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             usuario.agregarCategoria(categoria);
-            usuario.agregarTarjeta(tarjeta, "Trabajo");
+            usuario.agregarTarjeta(tarjeta, categoria);
 
 
             Categoria buscadora = new Categoria()
