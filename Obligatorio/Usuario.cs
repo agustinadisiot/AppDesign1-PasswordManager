@@ -146,7 +146,15 @@ namespace Obligatorio
 
         public object GetListaCategorias()
         {
-            return null;
+
+
+            if (this.EsListaCategoriasVacia())
+            {
+                return null;
+            }
+            else {
+                return "test";
+            }
         }
     }
 }

@@ -394,6 +394,25 @@ namespace TestsObligatorio
             Assert.IsNull(usuario.GetListaCategorias());
         }
 
+
+        [TestMethod]
+        public void UsuarioGetListaCategoriasNoVacia()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Categoria"
+            };
+
+            usuario.AgregarCategoria(categoria);
+            Assert.IsNotNull(usuario.GetListaCategorias());
+        }
+
     }
 
     [TestClass]
