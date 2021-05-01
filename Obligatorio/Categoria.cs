@@ -121,7 +121,7 @@ namespace Obligatorio
 
         public bool YaExisteContra(Contra aBuscar)
         {
-            return this.contras.Any(buscadora => buscadora.Equals(aBuscar));
+            return (this.contras.Contains(aBuscar));
         }
 
         public bool YaExisteTarjeta(Tarjeta aBuscar)
