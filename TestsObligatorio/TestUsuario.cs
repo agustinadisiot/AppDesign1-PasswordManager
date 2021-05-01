@@ -381,7 +381,67 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.ModificarNombreCategoria(modificarVieja, modificarNueva));
         }
 
-       
+        [TestMethod]
+        public void UsuarioGetListaCategoriasVacia()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+
+
+            Assert.IsNull(usuario.GetListaCategorias());
+        }
+
+
+        [TestMethod]
+        public void UsuarioGetListaCategoriasNoVacia()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Categoria"
+            };
+
+            usuario.AgregarCategoria(categoria);
+            Assert.IsNotNull(usuario.GetListaCategorias());
+        }
+
+        [TestMethod]
+        public void UsuarioGetListaCategoriasEsIgual()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+
+            Categoria primera = new Categoria()
+            {
+                Nombre = "Primera"
+            };
+            Categoria segunda = new Categoria()
+            {
+                Nombre="Segunda"
+            };
+
+            usuario.AgregarCategoria(primera);
+            usuario.AgregarCategoria(segunda);
+
+            List<Categoria> categorias = new List<Categoria>
+            {
+                primera,
+                segunda
+            };
+            Assert.AreEqual(true, categorias.SequenceEqual(usuario.GetListaCategorias())); ;
+        }
+
     }
 
     [TestClass]
