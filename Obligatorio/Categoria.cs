@@ -41,31 +41,26 @@ namespace Obligatorio
             this.contras.Add(contraIngresada);
         }
 
-        public void BorrarContra(string paginaContra, string usuarioContra)
+        public void BorrarContra(Contra contraABorrar)
         {
             if (this.EsListaContrasVacia()) {
                 throw new ObjetoInexistenteException();
             }
-            Contra contraABorrar = new Contra()
-            {
-                Sitio = paginaContra,
-                UsuarioContra = usuarioContra
-            };
-
             if (!this.YaExisteContra(contraABorrar)) {
                 throw new ObjetoInexistenteException();
             }
             this.contras.Remove(contraABorrar);
         }
-        public Contra GetContra(string sitioABuscar, string usuarioABuscar)
+
+        public Contra GetContra(Contra aBuscar)
         {
             if (this.EsListaContrasVacia()) {
                 throw new ObjetoInexistenteException();
             }
 
             Predicate<Contra> buscadorContra = (Contra contra) => 
-            { return contra.Sitio == sitioABuscar &&
-              contra.UsuarioContra == usuarioABuscar;
+            {
+                return contra.Equals(aBuscar);
             };
 
             Contra retorno = this.contras.Find(buscadorContra);
@@ -105,12 +100,12 @@ namespace Obligatorio
             this.tarjetas.Add(tarjetaIngresada);
         }
 
-        public Tarjeta GetTarjeta(string numeroABuscar)
+        public Tarjeta GetTarjeta(Tarjeta aBuscar)
         {
             if (this.EsListaTarjetasVacia()) throw new ObjetoInexistenteException();
             Predicate<Tarjeta> buscadorTarjeta = (Tarjeta tarjeta) =>
             {
-                return tarjeta.Numero == numeroABuscar;
+                return tarjeta.Equals(aBuscar);
             };
 
             Tarjeta retorno = this.tarjetas.Find(buscadorTarjeta);
@@ -133,12 +128,8 @@ namespace Obligatorio
             
         }
 
-        public void BorrarTarjeta(string tarjetaABorrar)
+        public void BorrarTarjeta(Tarjeta aBorrar)
         {
-            Tarjeta aBorrar = new Tarjeta()
-            {
-                Numero = tarjetaABorrar
-            };
 
             if (this.EsListaTarjetasVacia() || !this.YaExisteTarjeta(aBorrar))
             {
@@ -150,7 +141,7 @@ namespace Obligatorio
         public void ModificarTarjeta(Tarjeta tarjetaVieja, Tarjeta tarjetaNueva)
         {
             if (this.YaExisteTarjeta(tarjetaNueva)) throw new ObjetoYaExistenteException();
-            Tarjeta aModificar = this.GetTarjeta(tarjetaVieja.Numero);
+            Tarjeta aModificar = this.GetTarjeta(tarjetaVieja);
             aModificar.Nombre = tarjetaNueva.Nombre;
             aModificar.Numero = tarjetaNueva.Numero;
             aModificar.Tipo = tarjetaNueva.Tipo;

@@ -149,14 +149,21 @@ namespace TestsObligatorio
         public void CategoriaGetContraCorrecta()
         {
             Categoria categoria1 = new Categoria();
-            Contra contra1 = new Contra()
+            Contra contraAGuardar = new Contra()
             {
                 Sitio = "web.whatsapp.com",
                 Clave = "EstaEsUnaClave1",
                 UsuarioContra = "Roberto"
             };
-            categoria1.AgregarContra(contra1);
-            Assert.AreEqual(contra1, categoria1.GetContra("web.whatsapp.com", "Roberto"));
+            categoria1.AgregarContra(contraAGuardar);
+
+            Contra contraBuscadora = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                UsuarioContra = "Roberto"
+            };
+
+            Assert.AreEqual(contraAGuardar, categoria1.GetContra(contraBuscadora));
         }
 
         [TestMethod]
@@ -170,6 +177,7 @@ namespace TestsObligatorio
                 UsuarioContra = "Roberto"
             };
             categoria1.AgregarContra(contra1);
+
             Contra contra2 = new Contra()
             {
                 Sitio = "web.whatsapp.com",
@@ -178,7 +186,13 @@ namespace TestsObligatorio
             };
             categoria1.AgregarContra(contra2);
 
-            Assert.AreEqual(contra1, categoria1.GetContra("web.whatsapp.com", "Roberto")); ;
+            Contra contraBuscadora = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                UsuarioContra = "Roberto"
+            };
+
+            Assert.AreEqual(contra1, categoria1.GetContra(contraBuscadora)); ;
         }
 
         [TestMethod]
@@ -192,6 +206,7 @@ namespace TestsObligatorio
                 UsuarioContra = "Roberto"
             };
             categoria1.AgregarContra(contra1);
+
             Contra contra2 = new Contra()
             {
                 Sitio = "web.whatsapp.com",
@@ -200,7 +215,14 @@ namespace TestsObligatorio
             };
             categoria1.AgregarContra(contra2);
 
-            Assert.AreEqual(contra2, categoria1.GetContra("web.whatsapp.com", "Luis88")); ;
+            Contra contraBuscadora = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                UsuarioContra = "Luis88"
+            };
+
+
+            Assert.AreEqual(contra2, categoria1.GetContra(contraBuscadora)); ;
         }
 
         [TestMethod]
@@ -384,7 +406,15 @@ namespace TestsObligatorio
 
             String usuarioContra = "222222";
             String paginaContra = "www.ort.edu.uy";
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.BorrarContra(paginaContra, usuarioContra));
+
+            Contra aBorrar = new Contra()
+            {
+                Sitio = paginaContra,
+                UsuarioContra = usuarioContra
+
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.BorrarContra(aBorrar));
         }
 
         [TestMethod]
@@ -406,7 +436,8 @@ namespace TestsObligatorio
 
             categoria.AgregarContra(contra);
             Assert.IsTrue(categoria.YaExisteContra(contra));
-            categoria.BorrarContra(paginaContra, usuarioContra);
+
+            categoria.BorrarContra(contra);
             Assert.IsFalse(categoria.YaExisteContra(contra));
         }
 
@@ -429,7 +460,7 @@ namespace TestsObligatorio
             };
 
             categoria.AgregarContra(contra);
-            categoria.BorrarContra(paginaContra, usuarioContra);
+            categoria.BorrarContra(contra);
             Assert.IsTrue(categoria.EsListaContrasVacia());
         }
 
@@ -452,7 +483,7 @@ namespace TestsObligatorio
             };
 
             categoria.AgregarContra(contra);
-            categoria.BorrarContra(paginaContra, usuarioContra);
+            categoria.BorrarContra(contra);
             categoria.AgregarContra(contra);
             Assert.IsFalse(categoria.EsListaContrasVacia());
         }
@@ -476,9 +507,15 @@ namespace TestsObligatorio
                 Clave = "1234AbC$"
             };
 
+            Contra contraBuscadora = new Contra()
+            {
+                UsuarioContra = usuarioContraBorrar,
+                Sitio = paginaContraBorrar
+            };
+
             categoria.AgregarContra(contraBorrar);
-            categoria.BorrarContra(paginaContraBorrar, usuarioContraBorrar);
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.GetContra(paginaContraBorrar, usuarioContraBorrar));
+            categoria.BorrarContra(contraBorrar);
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.GetContra(contraBuscadora));
         }
 
         [TestMethod]
@@ -510,8 +547,10 @@ namespace TestsObligatorio
 
             categoria.AgregarContra(contraBorrar);
             categoria.AgregarContra(contraOtra);
-            categoria.BorrarContra(paginaContraBorrar, usuarioContraBorrar);
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.GetContra(paginaContraBorrar, usuarioContraBorrar));
+            categoria.BorrarContra(contraBorrar);
+
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.GetContra(contraBorrar));
         }
 
 
@@ -528,6 +567,11 @@ namespace TestsObligatorio
             String usuarioContraBorrar = "222222";
             String paginaContraBorrar = "www.ort.edu.uy";
 
+            Contra contraBorrar = new Contra()
+            {
+                UsuarioContra = usuarioContraBorrar,
+                Sitio = paginaContraBorrar
+            };
 
             Contra contraOtra = new Contra()
             {
@@ -537,7 +581,7 @@ namespace TestsObligatorio
             };
 
             categoria.AgregarContra(contraOtra);
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.BorrarContra(paginaContraBorrar, usuarioContraBorrar));
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.BorrarContra(contraBorrar));
         }
     }
 
@@ -675,27 +719,37 @@ namespace TestsObligatorio
         public void CategoriaGetTarjetaCorrecta()
         {
             Categoria categoria1 = new Categoria();
+            string numeroTarjeta = "3456567890876543";
+
             Tarjeta tarjeta1 = new Tarjeta()
             {
                 Nombre = "Prex",
                 Tipo = "Mastercard",
-                Numero = "3456567890876543",
+                Numero = numeroTarjeta,
                 Codigo = "321",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria1.AgregarTarjeta(tarjeta1);
-            Assert.AreEqual(tarjeta1, categoria1.GetTarjeta("3456567890876543")); 
+
+            Tarjeta buscadora = new Tarjeta() 
+            { 
+                Numero = numeroTarjeta
+            };
+
+            Assert.AreEqual(tarjeta1, categoria1.GetTarjeta(buscadora)); 
         }
 
         [TestMethod]
         public void CategoriaGetTarjetaPrimeraConDos()
         {
             Categoria categoria1 = new Categoria();
+
+            string numeroTarjetaPrimera = "3456567890876543";
             Tarjeta tarjeta1 = new Tarjeta()
             {
                 Nombre = "Prex",
                 Tipo = "Mastercard",
-                Numero = "3456567890876543",
+                Numero = numeroTarjetaPrimera,
                 Codigo = "321",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
@@ -710,7 +764,12 @@ namespace TestsObligatorio
             };
             categoria1.AgregarTarjeta(tarjeta2);
 
-            Assert.AreEqual(tarjeta1, categoria1.GetTarjeta("3456567890876543")); 
+            Tarjeta buscadora = new Tarjeta()
+            {
+                Numero = numeroTarjetaPrimera
+            };
+
+            Assert.AreEqual(tarjeta1, categoria1.GetTarjeta(buscadora)); 
         }
 
         [TestMethod]
@@ -726,17 +785,25 @@ namespace TestsObligatorio
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria1.AgregarTarjeta(tarjeta1);
+
+            string numeroSegundaTarjeta = "1234567890876553";
+
             Tarjeta tarjeta2 = new Tarjeta()
             {
                 Nombre = "Visa Gold",
                 Tipo = "Visa",
-                Numero = "1234567890876553",
+                Numero = numeroSegundaTarjeta,
                 Codigo = "789",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria1.AgregarTarjeta(tarjeta2);
 
-            Assert.AreEqual(tarjeta2, categoria1.GetTarjeta("1234567890876553"));
+            Tarjeta buscadora = new Tarjeta()
+            {
+                Numero = numeroSegundaTarjeta
+            };
+
+            Assert.AreEqual(tarjeta2, categoria1.GetTarjeta(buscadora));
         }
 
         [TestMethod]
@@ -918,8 +985,14 @@ namespace TestsObligatorio
             {
                 Nombre = "Personal"
             };
-            string nroTarjeta = "1234567890876543";
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.BorrarTarjeta(nroTarjeta));
+            string numeroTarjeta = "1234567890876543";
+
+            Tarjeta aBorrar = new Tarjeta()
+            {
+                Numero = numeroTarjeta
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.BorrarTarjeta(aBorrar));
         }
 
         [TestMethod]
@@ -929,18 +1002,24 @@ namespace TestsObligatorio
             {
                 Nombre = "Personal"
             };
-            string nroTarjeta = "1234567890876543";
+            string numeroTarjeta = "1234567890876543";
             Tarjeta tarjeta = new Tarjeta()
             {
                 Nombre = "Visa Gold",
                 Tipo = "Visa",
-                Numero = nroTarjeta,
+                Numero = numeroTarjeta,
                 Codigo = "123",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria.AgregarTarjeta(tarjeta);
             Assert.IsTrue(categoria.YaExisteTarjeta(tarjeta));
-            categoria.BorrarTarjeta(nroTarjeta);
+
+            Tarjeta aBorrar = new Tarjeta()
+            {
+                Numero = numeroTarjeta
+            };
+
+            categoria.BorrarTarjeta(aBorrar);
             Assert.IsFalse(categoria.YaExisteTarjeta(tarjeta));
         }
 
@@ -951,18 +1030,24 @@ namespace TestsObligatorio
             {
                 Nombre = "Personal"
             };
-            string nroTarjeta = "1234567890876543";
+            string numeroTarjeta = "1234567890876543";
             Tarjeta tarjeta = new Tarjeta()
             {
                 Nombre = "Visa Gold",
                 Tipo = "Visa",
-                Numero = nroTarjeta,
+                Numero = numeroTarjeta,
                 Codigo = "123",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria.AgregarTarjeta(tarjeta);
             Assert.IsTrue(categoria.YaExisteTarjeta(tarjeta));
-            categoria.BorrarTarjeta(nroTarjeta);
+
+            Tarjeta aBorrar = new Tarjeta()
+            {
+                Numero = numeroTarjeta
+            };
+
+            categoria.BorrarTarjeta(aBorrar);
             Assert.IsTrue(categoria.EsListaTarjetasVacia());
         }
 
@@ -975,20 +1060,31 @@ namespace TestsObligatorio
                 Nombre = "Personal"
             };
 
-            string nroTarjeta = "1234567890876543";
+            string numeroTarjeta = "1234567890876543";
 
             Tarjeta tarjeta = new Tarjeta()
             {
                 Nombre = "Visa Gold",
                 Tipo = "Visa",
-                Numero = nroTarjeta,
+                Numero = numeroTarjeta,
                 Codigo = "123",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
 
+            Tarjeta aBorrar = new Tarjeta()
+            {
+                Numero = numeroTarjeta
+            };
+
             categoria.AgregarTarjeta(tarjeta);
-            categoria.BorrarTarjeta(nroTarjeta);
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.GetTarjeta(nroTarjeta));
+            categoria.BorrarTarjeta(aBorrar);
+
+            Tarjeta buscadora = new Tarjeta()
+            {
+                Numero = numeroTarjeta
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.GetTarjeta(buscadora));
         }
 
         [TestMethod]
@@ -1000,13 +1096,13 @@ namespace TestsObligatorio
                 Nombre = "Personal"
             };
 
-            string nroTarjeta = "1234567890876543";
+            string numeroTarjeta = "1234567890876543";
 
             Tarjeta tarjeta1 = new Tarjeta()
             {
                 Nombre = "Visa Gold",
                 Tipo = "Visa",
-                Numero = nroTarjeta,
+                Numero = numeroTarjeta,
                 Codigo = "123",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
@@ -1020,11 +1116,20 @@ namespace TestsObligatorio
                 Vencimiento = new DateTime(2025, 7, 1)
             };
 
+            Tarjeta buscadora = new Tarjeta()
+            {
+                Numero = numeroTarjeta
+            };
+
+            Tarjeta aBorrar = new Tarjeta()
+            {
+                Numero = numeroTarjeta
+            };
 
             categoria.AgregarTarjeta(tarjeta1);
             categoria.AgregarTarjeta(tarjeta2);
-            categoria.BorrarTarjeta(nroTarjeta);
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.GetTarjeta(nroTarjeta));
+            categoria.BorrarTarjeta(aBorrar);
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.GetTarjeta(buscadora));
         }
 
         [TestMethod]
@@ -1045,9 +1150,14 @@ namespace TestsObligatorio
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria.AgregarTarjeta(tarjeta);
-            string nroTarjeta = "1234567890876543";
+            string numeroTarjeta = "1234567890876543";
 
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.BorrarTarjeta(nroTarjeta));
+            Tarjeta aBorrar = new Tarjeta()
+            {
+                Numero = numeroTarjeta
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.BorrarTarjeta(aBorrar));
         }
 
         [TestMethod]
@@ -1139,7 +1249,12 @@ namespace TestsObligatorio
 
             string numeroTarjetaInexistente = "1234567890876543";
 
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.ModificarTarjeta(categoria.GetTarjeta(numeroTarjetaInexistente), tarjeta));
+            Tarjeta buscadora = new Tarjeta()
+            {
+                Numero = numeroTarjetaInexistente
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.ModificarTarjeta(categoria.GetTarjeta(buscadora), tarjeta));
         }
 
         [TestMethod]
@@ -1220,8 +1335,13 @@ namespace TestsObligatorio
                 Vencimiento = new DateTime(2025, 7, 1)
             };
 
+            Tarjeta buscadora = new Tarjeta()
+            {
+                Numero = numeroTarjetaNueva
+            };
+
             categoria.ModificarTarjeta(tarjetaVieja, tarjetaNueva);
-            Assert.AreEqual(tarjetaNueva, categoria.GetTarjeta(numeroTarjetaNueva));
+            Assert.AreEqual(tarjetaNueva, categoria.GetTarjeta(buscadora));
         }
     }
 }

@@ -152,7 +152,12 @@ namespace TestsObligatorio
                 Nombre = "Personal"
             };
             usuario.AgregarCategoria(categoria);
-            Assert.AreEqual(categoria, usuario.GetCategoria("Personal"));
+
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            Assert.AreEqual(categoria, usuario.GetCategoria(buscadora));
         }
 
         [TestMethod]
@@ -169,7 +174,13 @@ namespace TestsObligatorio
                 Nombre = "Trabajo"
             };
             usuario.AgregarCategoria(categoria2);
-            Assert.AreEqual(categoria, usuario.GetCategoria("Personal"));
+
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            Assert.AreEqual(categoria, usuario.GetCategoria(buscadora));
         }
 
         [TestMethod]
@@ -186,7 +197,13 @@ namespace TestsObligatorio
                 Nombre = "Trabajo"
             };
             usuario.AgregarCategoria(categoria2);
-            Assert.AreEqual(categoria2, usuario.GetCategoria("Trabajo"));
+
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            Assert.AreEqual(categoria2, usuario.GetCategoria(buscadora));
         }
 
         [TestMethod]
@@ -298,10 +315,21 @@ namespace TestsObligatorio
             };
             usuario.AgregarCategoria(categoria);
 
-            usuario.ModificarNombreCategoria("Personal", "Trabajo");
+            Categoria vieja = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            Categoria nueva = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            usuario.ModificarNombreCategoria(vieja, nueva);
 
-
-            Assert.AreEqual("Trabajo", usuario.GetCategoria("Trabajo").Nombre);
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Assert.AreEqual("Trabajo", usuario.GetCategoria(buscadora).Nombre);
         }
 
         [TestMethod]
@@ -313,7 +341,17 @@ namespace TestsObligatorio
                 Nombre = "Personal"
             };
             usuario.AgregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarNombreCategoria("Facultad", "Trabajo"));
+
+
+            Categoria modificarVieja = new Categoria()
+            {
+                Nombre = "Facultad"
+            };
+            Categoria modificarNueva = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarNombreCategoria(modificarVieja, modificarNueva));
         }
 
         [TestMethod]
@@ -330,7 +368,17 @@ namespace TestsObligatorio
                 Nombre = "Trabajo"
             };
             usuario.AgregarCategoria(categoria2);
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.ModificarNombreCategoria("Personal", "Trabajo"));
+
+            Categoria modificarVieja = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            Categoria modificarNueva = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.ModificarNombreCategoria(modificarVieja, modificarNueva));
         }
 
        
@@ -517,7 +565,13 @@ namespace TestsObligatorio
                 Clave = "12345678"
             };
             usuario.AgregarCategoria(categoria);
-            usuario.AgregarContra(contra, "Trabajo");
+
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            usuario.AgregarContra(contra, buscadora);
             Assert.AreEqual(true, usuario.YaExisteContra(contra));
         }
 
@@ -539,7 +593,13 @@ namespace TestsObligatorio
                 Clave = "12345678"
             };
             usuario.AgregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarContra(contra, "Trabajo"));
+
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarContra(contra, buscadora));
         }
 
         [TestMethod]
@@ -560,7 +620,13 @@ namespace TestsObligatorio
                 UsuarioContra = "111111"
             };
             usuario.AgregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarContra(contra, "Trabajo"));
+
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarContra(contra, buscadora));
         }
 
         [TestMethod]
@@ -581,7 +647,13 @@ namespace TestsObligatorio
                 Clave = "12345678"
             };
             usuario.AgregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarContra(contra, "Trabajo"));
+
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarContra(contra, buscadora));
         }
 
         [TestMethod]
@@ -603,8 +675,14 @@ namespace TestsObligatorio
                 Clave = "12345678"
             };
             usuario.AgregarCategoria(categoria);
-            usuario.AgregarContra(contra, "Trabajo");
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.AgregarContra(contra, "Trabajo"));
+
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            usuario.AgregarContra(contra, buscadora);
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.AgregarContra(contra, buscadora));
         }
 
         [TestMethod]
@@ -626,8 +704,14 @@ namespace TestsObligatorio
                 Clave = "12345678"
             };
             usuario.AgregarCategoria(categoria);
-            usuario.AgregarContra(contra, "Trabajo");
-            Assert.AreEqual(true, usuario.GetCategoria("Trabajo").YaExisteContra(contra));
+
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            usuario.AgregarContra(contra, buscadora);
+            Assert.AreEqual(true, usuario.GetCategoria(buscadora).YaExisteContra(contra));
         }
 
         [TestMethod]
@@ -640,7 +724,14 @@ namespace TestsObligatorio
 
             String usuarioContra = "222222";
             String paginaContra = "www.ort.edu.uy";
-            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.BorrarContra(paginaContra, usuarioContra));
+
+            Contra aBorrar = new Contra()
+            {
+                UsuarioContra = usuarioContra,
+                Sitio = paginaContra
+            };
+
+            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.BorrarContra(aBorrar));
         }
 
         [TestMethod]
@@ -660,7 +751,14 @@ namespace TestsObligatorio
 
             String usuarioContra = "222222";
             String paginaContra = "www.ort.edu.uy";
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.BorrarContra(paginaContra, usuarioContra));
+
+            Contra aBorrar = new Contra()
+            {
+                UsuarioContra = usuarioContra,
+                Sitio =paginaContra
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.BorrarContra(aBorrar));
         }
 
         [TestMethod]
@@ -688,8 +786,20 @@ namespace TestsObligatorio
                 Clave = "12345AbC$"
             };
 
-            usuario.AgregarContra(contraABorrar, "Categoria1");
-            usuario.BorrarContra(paginaContra, usuarioContra);
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Categoria1"
+            };
+
+            usuario.AgregarContra(contraABorrar, buscadora);
+
+            Contra aBorrar = new Contra()
+            {
+                UsuarioContra = usuarioContra,
+                Sitio = paginaContra
+            };
+
+            usuario.BorrarContra(aBorrar);
             Assert.IsFalse(usuario.YaExisteContra(contraABorrar));
         }
 
@@ -726,9 +836,20 @@ namespace TestsObligatorio
                 Clave = "12345AbC$"
             };
 
-            usuario.AgregarContra(contraABorrar, "Categoria1");
-            usuario.AgregarContra(contraADejar, "Categoria1");
-            usuario.BorrarContra(paginaContra, usuarioContra);
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Categoria1"
+            };
+
+            usuario.AgregarContra(contraABorrar, buscadora);
+            usuario.AgregarContra(contraADejar, buscadora);
+
+            Contra aBorrar = new Contra()
+            {
+                UsuarioContra = usuarioContra,
+                Sitio = paginaContra
+            };
+            usuario.BorrarContra(aBorrar);
             Assert.IsTrue(usuario.YaExisteContra(contraADejar));
         }
     }
@@ -1003,7 +1124,10 @@ namespace TestsObligatorio
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             usuario.AgregarCategoria(categoria);
-            usuario.AgregarTarjeta(tarjeta, "Trabajo");
+
+
+
+            usuario.AgregarTarjeta(tarjeta, categoria);
             Assert.AreEqual(true, usuario.YaExisteTarjeta(tarjeta));
         }
 
@@ -1026,7 +1150,7 @@ namespace TestsObligatorio
                 Codigo = "321"
             };
             usuario.AgregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarTarjeta(tarjeta, "Trabajo"));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarTarjeta(tarjeta, categoria));
         }
 
         [TestMethod]
@@ -1048,7 +1172,7 @@ namespace TestsObligatorio
                 Codigo = "321"
             };
             usuario.AgregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarTarjeta(tarjeta, "Trabajo"));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarTarjeta(tarjeta, categoria));
         }
 
         [TestMethod]
@@ -1070,7 +1194,7 @@ namespace TestsObligatorio
                 Codigo = "321"
             };
             usuario.AgregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarTarjeta(tarjeta, "Trabajo"));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarTarjeta(tarjeta, categoria));
         }
 
         [TestMethod]
@@ -1092,7 +1216,7 @@ namespace TestsObligatorio
                 Numero = "3456567890876543"
             };
             usuario.AgregarCategoria(categoria);
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarTarjeta(tarjeta, "Trabajo"));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarTarjeta(tarjeta, categoria));
         }
 
         [TestMethod]
@@ -1116,8 +1240,8 @@ namespace TestsObligatorio
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             usuario.AgregarCategoria(categoria);
-            usuario.AgregarTarjeta(tarjeta, "Trabajo");
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.AgregarTarjeta(tarjeta, "Trabajo"));
+            usuario.AgregarTarjeta(tarjeta, categoria);
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.AgregarTarjeta(tarjeta, categoria));
         }
 
         [TestMethod]
@@ -1141,8 +1265,14 @@ namespace TestsObligatorio
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             usuario.AgregarCategoria(categoria);
-            usuario.AgregarTarjeta(tarjeta, "Trabajo");
-            Assert.AreEqual(true, usuario.GetCategoria("Trabajo").YaExisteTarjeta(tarjeta));
+            usuario.AgregarTarjeta(tarjeta, categoria);
+
+
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+            Assert.AreEqual(true, usuario.GetCategoria(buscadora).YaExisteTarjeta(tarjeta));
         }
 
     }
