@@ -9,6 +9,8 @@ namespace Obligatorio
         private List<Contra> contras;
         private List<Tarjeta> tarjetas;
         private string _nombre;
+        private const int largoNombreMinimo = 3;
+        private const int largoNombreMaximo = 15;
 
         public Categoria()
         {
@@ -19,7 +21,7 @@ namespace Obligatorio
         public string Nombre
         {
             get { return _nombre; }
-            set { this._nombre = VerificadoraString.VerificarLargoXaY(value, 3, 15); }
+            set { this._nombre = VerificadoraString.VerificarLargoXaY(value, largoNombreMinimo, largoNombreMaximo); }
         }
 
 
