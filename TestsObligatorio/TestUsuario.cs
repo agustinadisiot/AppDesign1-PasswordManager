@@ -1682,7 +1682,6 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarTarjetaCategoria(tarjetaVieja, tarjetaNueva));
         }
 
-
         [TestMethod]
         public void UsuarioModificarTarjetaCategoriaATarjetaYaExistente()
         {
@@ -1707,10 +1706,10 @@ namespace TestsObligatorio
             string numeroTarjeta2 = "1234567890876532";
             Tarjeta tarjeta2 = new Tarjeta()
             {
-                Nombre = "Prex",
-                Tipo = "Mastercard",
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
                 Numero = numeroTarjeta2,
-                Codigo = "321",
+                Codigo = "456",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             usuario.AgregarTarjeta(tarjeta2, categoria);
@@ -1726,6 +1725,47 @@ namespace TestsObligatorio
             };
 
             Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.ModificarTarjetaCategoria(tarjetaVieja, tarjetaNueva));
+        }
+
+        [TestMethod]
+        public void UsuarioModificarTarjetaCategoriaAgregada()
+        {
+            Usuario usuario = new Usuario();
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            usuario.AgregarCategoria(categoria);
+
+            string numeroTarjetaVieja = "3456567890876543";
+            Tarjeta tarjetaVieja = new Tarjeta()
+            {
+                Numero = numeroTarjetaVieja,
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Codigo = "321",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            usuario.AgregarTarjeta(tarjetaVieja, categoria);
+
+            string numeroTarjetaNueva = "1234098765433456";
+            Tarjeta tarjetaNueva = new Tarjeta()
+            {
+                Numero = numeroTarjetaNueva,
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Codigo = "456",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            usuario.ModificarTarjetaCategoria(tarjetaVieja, tarjetaNueva);
+
+            Tarjeta buscadora = new Tarjeta()
+            {
+                Numero = numeroTarjetaNueva
+            };
+            Assert.AreEqual(tarjetaNueva, usuario.GetTarjeta(buscadora));
         }
     }
 }
