@@ -595,14 +595,12 @@ namespace TestsObligatorio
             string paginaContraModificar = "www.ort.edu.uy";
             string claveContraModificar = "1234AbC$";
 
-            Contra contra = new Contra()
+            Contra nuevaContra = new Contra()
             {
                 UsuarioContra = usuarioContraModificar,
                 Sitio = paginaContraModificar, 
                 Clave = claveContraModificar
             };
-
-            categoria.AgregarContra(contra);
 
             string usuarioContraInexistente = "12345@";
             string paginaContraInexistente = "www.ort.edu.uy";
@@ -613,7 +611,7 @@ namespace TestsObligatorio
                 Sitio = paginaContraInexistente
             };
 
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.ModificarContra(categoria.GetContra(buscadora), contra));
+            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.ModificarContra(buscadora, nuevaContra));
         }
 
         [TestMethod]
@@ -747,7 +745,7 @@ namespace TestsObligatorio
             };
 
             categoria.ModificarContra(contraVieja, contraNueva);
-            Assert.AreEqual(contraNueva, categoria.GetContra(buscadora));
+            Assert.AreEqual(contraNueva, buscadora);
         }
     }
 
