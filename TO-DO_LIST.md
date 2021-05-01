@@ -22,7 +22,7 @@
 - [X] Get Categoria
 
 ### Modificar
-- [ ] Modificar Contraseña
+- [X] Modificar Contraseña
 - [X] Modificar Categoria
 - [ ] Modificar Tarjeta
 
