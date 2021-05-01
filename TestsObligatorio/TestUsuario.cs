@@ -712,7 +712,7 @@ namespace TestsObligatorio
         }
 
         [TestMethod]
-        public void CategoriaAgregarContraSinUsuario()
+        public void UsuarioAgregarContraSinUsuario()
         {
             Usuario usuario = new Usuario()
             {
