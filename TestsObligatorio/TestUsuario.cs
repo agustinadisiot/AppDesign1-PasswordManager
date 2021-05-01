@@ -1644,5 +1644,149 @@ namespace TestsObligatorio
             Assert.AreEqual(tarjeta1.Codigo, usuario.GetTarjeta(buscadora).Codigo);
         }
 
+
+        [TestMethod]
+        public void UsuarioBorrarTarjetaSinCategorias()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+
+            string numeroTarjeta = "3456567890876543";
+
+            Tarjeta aBorrar = new Tarjeta()
+            {
+                Numero = numeroTarjeta
+            };
+
+            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.BorrarTarjeta(aBorrar));
+        }
+
+
+        [TestMethod]
+        public void UsuarioBorrarTarjetaSinTarjetas()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Categoria1"
+            };
+
+            usuario.AgregarCategoria(categoria);
+
+            string numeroTarjeta = "3456567890876543";
+
+            Tarjeta aBorrar = new Tarjeta()
+            {
+                Numero = numeroTarjeta
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.BorrarTarjeta(aBorrar));
+        }
+
+
+        [TestMethod]
+        public void UsuarioYaExisteTarjetaBorrada()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Categoria1"
+            };
+
+            usuario.AgregarCategoria(categoria);
+
+            string numeroTarjeta = "3456567890876543";
+
+            Tarjeta aAgregar = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = numeroTarjeta,
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Categoria1"
+            };
+
+            usuario.AgregarTarjeta(aAgregar, buscadora);
+
+            Tarjeta aBorrar = new Tarjeta()
+            {
+                Numero = numeroTarjeta
+            };
+
+            usuario.BorrarTarjeta(aBorrar);
+            Assert.IsFalse(usuario.YaExisteTarjeta(aBorrar));
+        }
+
+
+        [TestMethod]
+        public void UsuarioBorrarTarjetaYaExisteTarjetaRestante()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Categoria1"
+            };
+
+            usuario.AgregarCategoria(categoria);
+
+            string numeroTarjeta = "3456567890876543";
+
+            Tarjeta aBorrar = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = numeroTarjeta,
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+
+            Tarjeta aDejar = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "1111111111111111",
+                Codigo = "111",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+
+            Categoria buscadora = new Categoria()
+            {
+                Nombre = "Categoria1"
+            };
+
+            usuario.AgregarTarjeta(aBorrar, buscadora);
+            usuario.AgregarTarjeta(aDejar, buscadora);
+
+            Tarjeta buscadoraBorrar = new Tarjeta()
+            {
+                Numero = numeroTarjeta
+            };
+            usuario.BorrarTarjeta(buscadoraBorrar);
+            Assert.IsTrue(usuario.YaExisteTarjeta(aDejar));
+        }
+
     }
 }

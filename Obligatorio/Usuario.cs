@@ -12,6 +12,7 @@ namespace Obligatorio
         private const int _largoNombreYContraMinimo = 5;
         private const int _largoNombreYContraMaximo = 25;
 
+
         public Usuario()
         {
             this._categorias = new List<Categoria>();
@@ -179,6 +180,20 @@ namespace Obligatorio
             }
 
             throw new ObjetoInexistenteException();
+        }
+
+        public void BorrarTarjeta(Tarjeta aBorrar)
+        {
+            if (this.EsListaCategoriasVacia()) {
+                throw new CategoriaInexistenteException();
+            }
+
+            if (!this.YaExisteTarjeta(aBorrar)) {
+                throw new ObjetoInexistenteException();
+            }
+
+            Categoria contieneContraABorrar = this._categorias.First(categoria => categoria.YaExisteTarjeta(aBorrar));
+            contieneContraABorrar.BorrarTarjeta(aBorrar);
         }
     }
 }
