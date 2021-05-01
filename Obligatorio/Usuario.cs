@@ -150,6 +150,12 @@ namespace Obligatorio
 
         public Contra GetContra(Contra contraBuscadora)
         {
+
+            foreach (Categoria categoria in this._categorias)
+            {
+                return categoria.GetListaContras().First((Contra contra) => contra.Equals(contraBuscadora));
+            }
+
             return contraBuscadora;
         }
     }
