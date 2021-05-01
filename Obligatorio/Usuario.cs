@@ -167,7 +167,12 @@ namespace Obligatorio
 
         public void BorrarTarjeta(Tarjeta aBorrar)
         {
-            throw new CategoriaInexistenteException();
+            if (this.EsListaCategoriasVacia()) {
+                throw new CategoriaInexistenteException();
+            }
+
+            throw new ObjetoInexistenteException();
+
         }
     }
 }
