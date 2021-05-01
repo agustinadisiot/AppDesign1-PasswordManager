@@ -11,6 +11,9 @@ namespace Obligatorio
         private List<Categoria> listaCategorias;
         private string _nombre;
         private string _contraMaestra;
+        private const int largoNombreYContraMinimo = 5;
+        private const int largoNombreYContraMaximo = 25;
+
 
         public Usuario()
         {
@@ -21,12 +24,12 @@ namespace Obligatorio
 
         public string Nombre 
         {   get { return _nombre; }
-            set { this._nombre = VerificadoraString.VerificarLargoXaY(value, 5, 25); }
+            set { this._nombre = VerificadoraString.VerificarLargoXaY(value, largoNombreYContraMinimo, largoNombreYContraMaximo); }
         }
 
         public string ContraMaestra {
             get { return this._contraMaestra; }
-            set { this._contraMaestra = VerificadoraString.VerificarLargoXaY(value,5,25);}
+            set { this._contraMaestra = VerificadoraString.VerificarLargoXaY(value, largoNombreYContraMinimo, largoNombreYContraMaximo);}
         }
 
 

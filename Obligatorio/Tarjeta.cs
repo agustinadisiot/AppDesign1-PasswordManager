@@ -9,30 +9,36 @@ namespace Obligatorio
         private string _numero;
         private string _codigo;
         private string _nota;
-
+        private const int largoNombreYTipoMinimo = 3;
+        private const int largoNombreYTipoMaximo = 25;
+        private const int largoNumeroMinimoYMaximo = 16;
+        private const int largoCodigoMinimo = 3;
+        private const int largoCodigoMaximo = 4;
+        private const int largoNotaMinimo = 0;
+        private const int largoNotaMaximo = 250;
 
         public string Nombre 
         {
             get { return _nombre; }
-            set { this._nombre = VerificadoraString.VerificarLargoXaY(value, 3, 25); } 
+            set { this._nombre = VerificadoraString.VerificarLargoXaY(value, largoNombreYTipoMinimo, largoNombreYTipoMaximo); } 
         }
 
         public string Tipo
         {
             get { return _tipo; }
-            set { this._tipo = VerificadoraString.VerificarLargoXaY(value, 3, 25); }
+            set { this._tipo = VerificadoraString.VerificarLargoXaY(value, largoNombreYTipoMinimo, largoNombreYTipoMaximo); }
         }
 
         public string Numero 
         {
             get { return this._numero; }
-            set { this._numero = VerificarStringDeNumerosYSuLargoDeXaY(value, 16, 16); }
+            set { this._numero = VerificarStringDeNumerosYSuLargoDeXaY(value, largoNumeroMinimoYMaximo, largoNumeroMinimoYMaximo); }
         }
 
         public string Codigo
         {
             get { return this._codigo; }
-            set { this._codigo = VerificarStringDeNumerosYSuLargoDeXaY(value, 3, 4); }
+            set { this._codigo = VerificarStringDeNumerosYSuLargoDeXaY(value, largoCodigoMinimo, largoCodigoMaximo); }
         }
 
         public DateTime Vencimiento { get; set; }
@@ -40,7 +46,7 @@ namespace Obligatorio
         public string Nota 
         {
             get { return this._nota; }
-            set { this._nota = VerificadoraString.VerificarLargoXaY(value, 0, 250); }
+            set { this._nota = VerificadoraString.VerificarLargoXaY(value, largoNotaMinimo, largoNotaMaximo); }
         }
 
         public static string VerificarStringDeNumerosYSuLargoDeXaY(string dato, int x, int y)
