@@ -181,8 +181,9 @@ namespace Obligatorio
             throw new ObjetoInexistenteException();
         }
 
-        public void ModificarTarjetaCategoria(Tarjeta modificarVieja, Tarjeta modificarNueva)
+        public void ModificarTarjetaCategoria(Tarjeta tarjetaVieja, Tarjeta tarjetaNueva)
         {
+            if (this.YaExisteTarjeta(tarjetaNueva)) throw new ObjetoYaExistenteException();
             throw new ObjetoInexistenteException();
         }
     }

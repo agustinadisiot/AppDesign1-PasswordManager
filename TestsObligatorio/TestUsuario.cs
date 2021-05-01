@@ -1682,5 +1682,50 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarTarjetaCategoria(tarjetaVieja, tarjetaNueva));
         }
 
+
+        [TestMethod]
+        public void UsuarioModificarTarjetaCategoriaATarjetaYaExistente()
+        {
+            Usuario usuario = new Usuario();
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            usuario.AgregarCategoria(categoria);
+
+            string numeroTarjeta1 = "3456567890876543";
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = numeroTarjeta1,
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            usuario.AgregarTarjeta(tarjeta1, categoria);
+
+            string numeroTarjeta2 = "1234567890876532";
+            Tarjeta tarjeta2 = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = numeroTarjeta2,
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            usuario.AgregarTarjeta(tarjeta2, categoria);
+
+
+            Tarjeta tarjetaVieja = new Tarjeta()
+            {
+                Numero = numeroTarjeta1
+            };
+            Tarjeta tarjetaNueva = new Tarjeta()
+            {
+                Numero = numeroTarjeta2
+            };
+
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.ModificarTarjetaCategoria(tarjetaVieja, tarjetaNueva));
+        }
     }
 }
