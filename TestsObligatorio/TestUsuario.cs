@@ -1097,8 +1097,142 @@ namespace TestsObligatorio
             };
             Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.GetContra(contraBuscadora));
         }
+        
+        [TestMethod]
+        public void UsuarioModificarContraNoExistente()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            string usuarioContraModificar = "Usuario23";
+            string paginaContraModificar = "www.ort.edu.uy";
+            string claveContraModificar = "1234AbC$";
+
+            Contra contra = new Contra()
+            {
+                UsuarioContra = usuarioContraModificar,
+                Sitio = paginaContraModificar,
+                Clave = claveContraModificar
+            };
+
+            string usuarioContraInexistente = "12345@";
+            string paginaContraInexistente = "www.ort.edu.uy";
+
+            Contra buscadora = new Contra()
+            {
+                UsuarioContra = usuarioContraInexistente,
+                Sitio = paginaContraInexistente
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarContra(buscadora, contra));
+        }
+
+        [TestMethod]
+        public void UsuarioAlModificarContraAgregadaLaContraViejaDejaDeExistir()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria);
+
+            string usuarioContraModificar = "Usuario23";
+            string paginaContraModificar = "www.ort.edu.uy";
+            string claveContraModificar = "1234AbC$";
+
+            Contra contraVieja = new Contra()
+            {
+                UsuarioContra = usuarioContraModificar,
+                Sitio = paginaContraModificar,
+                Clave = claveContraModificar,
+                Nota = ""
+            };
+            categoria.AgregarContra(contraVieja);
+
+            string usuarioContraNueva = "user543";
+            string paginaContraNueva = "aulas.edu.uy";
+            string claveContraNueva = "1234A@C$";
+
+            Contra contraNueva = new Contra()
+            {
+                UsuarioContra = usuarioContraNueva,
+                Sitio = paginaContraNueva,
+                Clave = claveContraNueva,
+                Nota = ""
+            };
+
+            Contra buscadora = new Contra()
+            {
+                UsuarioContra = usuarioContraModificar,
+                Sitio = paginaContraModificar
+            };
+
+            usuario.ModificarContra(contraVieja, contraNueva);
+            Assert.IsFalse(usuario.YaExisteContra(buscadora));
+        }
+
+        [TestMethod]
+        public void UsuarioModificarContraYaExistente()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria);
+
+            string usuarioContra1 = "Usuario23";
+            string paginaContra1 = "www.ort.edu.uy";
+            string claveContra1 = "1234AbC$";
+
+            Contra contra1 = new Contra()
+            {
+                UsuarioContra = usuarioContra1,
+                Sitio = paginaContra1,
+                Clave = claveContra1
+            };
+
+            categoria.AgregarContra(contra1);
+
+            string usuarioContra2 = "user23";
+            string paginaContra2 = "aulas.edu.uy";
+            string claveContra2 = "1234AbC$";
+
+            Contra contra2 = new Contra()
+            {
+                UsuarioContra = usuarioContra2,
+                Sitio = paginaContra2,
+                Clave = claveContra2
+            };
+
+            categoria.AgregarContra(contra2);
+
+            Contra duplicada = new Contra()
+            {
+                UsuarioContra = usuarioContra2,
+                Sitio = paginaContra2,
+                Clave = claveContra2
+            };
+
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.ModificarContra(contra1, duplicada));
+        }
+
+
     }
-   
+
     [TestClass]
     public class TestUsuarioTarjeta
     {

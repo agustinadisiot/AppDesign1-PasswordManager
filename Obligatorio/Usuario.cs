@@ -195,5 +195,15 @@ namespace Obligatorio
             Categoria contieneContraABorrar = this._categorias.First(categoria => categoria.YaExisteTarjeta(aBorrar));
             contieneContraABorrar.BorrarTarjeta(aBorrar);
         }
+
+        public void ModificarContra(Contra contraVieja, Contra contraNueva)
+        {
+            if(this.YaExisteContra(contraNueva)) throw new ObjetoYaExistenteException();
+            Contra aModificar = this.GetContra(contraVieja);
+            aModificar.UsuarioContra = contraNueva.UsuarioContra;
+            aModificar.Clave = contraNueva.Clave;
+            aModificar.Sitio = contraNueva.Sitio;
+            aModificar.Nota = contraNueva.Nota;
+        }
     }
 }

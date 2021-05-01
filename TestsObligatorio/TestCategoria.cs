@@ -582,7 +582,6 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.BorrarContra(contraBorrar));
         }
 
-
         [TestMethod]
         public void CategoriaModificarContraNoExistente()
         {
