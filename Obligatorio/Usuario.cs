@@ -164,5 +164,10 @@ namespace Obligatorio
             throw new ObjetoInexistenteException();
 
         }
+
+        public Tarjeta GetTarjeta(Tarjeta buscadora)
+        {
+            return buscadora;
+        }
     }
 }
