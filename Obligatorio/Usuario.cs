@@ -164,5 +164,21 @@ namespace Obligatorio
             throw new ObjetoInexistenteException();
 
         }
+
+        public Tarjeta GetTarjeta(Tarjeta buscadora)
+        {
+            if (!YaExisteTarjeta(buscadora)) throw new ObjetoInexistenteException();
+
+            foreach (Categoria categoria in this._categorias)
+            {
+                if (categoria.YaExisteTarjeta(buscadora))
+                {
+                    return categoria.GetTarjeta(buscadora);
+                }
+
+            }
+
+            throw new ObjetoInexistenteException();
+        }
     }
 }

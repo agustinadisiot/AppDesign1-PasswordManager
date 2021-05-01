@@ -1078,7 +1078,7 @@ namespace TestsObligatorio
                 UsuarioContra = "Roberto"
             };
 
-            Assert.AreEqual(contra1.Clave, usuario.GetContra(contraBuscadora).Clave); ;
+            Assert.AreEqual(contra1.Clave, usuario.GetContra(contraBuscadora).Clave);
         }
 
         [TestMethod]
@@ -1548,6 +1548,100 @@ namespace TestsObligatorio
                 Nombre = "Trabajo"
             };
             Assert.AreEqual(true, usuario.GetCategoria(buscadora).YaExisteTarjeta(tarjeta));
+        }
+
+        [TestMethod]
+        public void UsuarioGetTarjetaCorrecta()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            string numeroTarjeta = "3456567890876543";
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = numeroTarjeta,
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            categoria.AgregarTarjeta(tarjeta1);
+            usuario.AgregarCategoria(categoria);
+
+            Tarjeta buscadora = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = numeroTarjeta,
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+
+            Assert.AreEqual(tarjeta1, usuario.GetTarjeta(buscadora));
+        }
+
+        [TestMethod]
+        public void UsuarioGetTarjetaInexistente()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+
+            string numeroTarjeta = "3456567890876543";
+            Tarjeta buscadora = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = numeroTarjeta,
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.GetTarjeta(buscadora));
+        }
+
+        [TestMethod]
+        public void UsuarioGetTarjetaATravezDeContraSinCodigo()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario",
+                ContraMaestra = "contra123"
+            };
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            string numeroTarjeta = "3456567890876543";
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = numeroTarjeta,
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            categoria.AgregarTarjeta(tarjeta1);
+            usuario.AgregarCategoria(categoria);
+
+            Tarjeta buscadora = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = numeroTarjeta,
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+
+            Assert.AreEqual(tarjeta1.Codigo, usuario.GetTarjeta(buscadora).Codigo);
         }
 
     }
