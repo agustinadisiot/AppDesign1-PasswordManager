@@ -132,7 +132,7 @@ namespace TestsObligatorio
         }
 
         [TestMethod]
-        public void testCategoriaAgregarContraYaExistente()
+        public void CategoriaAgregarContraYaExistente()
         {
             Categoria categoria = new Categoria();
             Contra contra1 = new Contra()
@@ -553,8 +553,6 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.GetContra(contraBorrar));
         }
 
-
-        //Prueba de agregar una contra y borrar otra que no existe en una categoria. Deberia tirar error.
         [TestMethod]
         public void CategoriaBorrarContraNoExistenteNoVacio()
         {
@@ -963,7 +961,7 @@ namespace TestsObligatorio
         }
 
         [TestMethod]
-        public void testCategoriaAgregarTarjetaYaExistente()
+        public void CategoriaAgregarTarjetaYaExistente()
         {
             Categoria categoria = new Categoria();
             Tarjeta tarjeta = new Tarjeta()
@@ -1184,7 +1182,6 @@ namespace TestsObligatorio
             };
             Assert.AreEqual(true, categoria.YaExisteTarjeta(tarjetaDistintoTipo));
         }
-
 
         [TestMethod]
         public void CategoriaAlModificarTarjetaAgregadaLaTarjetaViejaDejaDeExistir()
