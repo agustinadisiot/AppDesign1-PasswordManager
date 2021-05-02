@@ -29,41 +29,42 @@ namespace Interfaz
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panelDrawer = new System.Windows.Forms.Panel();
+            this.panelForm = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // panel1
+            // panelDrawer
             // 
-            this.panel1.Location = new System.Drawing.Point(12, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(252, 554);
-            this.panel1.TabIndex = 0;
+            this.panelDrawer.Location = new System.Drawing.Point(12, 12);
+            this.panelDrawer.Name = "panelDrawer";
+            this.panelDrawer.Size = new System.Drawing.Size(252, 554);
+            this.panelDrawer.TabIndex = 0;
             // 
-            // panel2
+            // panelForm
             // 
-            this.panel2.Location = new System.Drawing.Point(270, 12);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(700, 554);
-            this.panel2.TabIndex = 1;
+            this.panelForm.Location = new System.Drawing.Point(270, 12);
+            this.panelForm.Name = "panelForm";
+            this.panelForm.Size = new System.Drawing.Size(700, 554);
+            this.panelForm.TabIndex = 1;
             // 
             // VentanaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(982, 578);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelForm);
+            this.Controls.Add(this.panelDrawer);
             this.Name = "VentanaPrincipal";
             this.Text = "Ventana Principal";
+            this.Load += new System.EventHandler(this.VentanaPrincipal_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panelDrawer;
+        private System.Windows.Forms.Panel panelForm;
     }
 }
 

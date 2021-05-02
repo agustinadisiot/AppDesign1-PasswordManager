@@ -16,5 +16,11 @@ namespace Interfaz
         {
             InitializeComponent();
         }
+
+        private void VentanaPrincipal_Load(object sender, EventArgs e)
+        {
+            UserControl iniciarSesion = new IniciarSesion();
+            panelForm.Controls.Add(iniciarSesion);
+        }
     }
 }

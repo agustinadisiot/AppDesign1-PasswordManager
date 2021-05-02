@@ -41,9 +41,9 @@ namespace Interfaz
             // botonIniciar
             // 
             this.botonIniciar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.botonIniciar.Location = new System.Drawing.Point(312, 376);
+            this.botonIniciar.Location = new System.Drawing.Point(140, 372);
             this.botonIniciar.Name = "botonIniciar";
-            this.botonIniciar.Size = new System.Drawing.Size(167, 34);
+            this.botonIniciar.Size = new System.Drawing.Size(199, 39);
             this.botonIniciar.TabIndex = 0;
             this.botonIniciar.Text = "Iniciar Sesion";
             this.botonIniciar.UseVisualStyleBackColor = true;
@@ -51,7 +51,7 @@ namespace Interfaz
             // inputUsuario
             // 
             this.inputUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.inputUsuario.Location = new System.Drawing.Point(150, 214);
+            this.inputUsuario.Location = new System.Drawing.Point(10, 210);
             this.inputUsuario.MaxLength = 25;
             this.inputUsuario.MinimumSize = new System.Drawing.Size(0, 5);
             this.inputUsuario.Name = "inputUsuario";
@@ -62,7 +62,7 @@ namespace Interfaz
             // 
             this.labelUsuario.AutoSize = true;
             this.labelUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelUsuario.Location = new System.Drawing.Point(145, 173);
+            this.labelUsuario.Location = new System.Drawing.Point(5, 169);
             this.labelUsuario.Name = "labelUsuario";
             this.labelUsuario.Size = new System.Drawing.Size(190, 29);
             this.labelUsuario.TabIndex = 2;
@@ -72,7 +72,7 @@ namespace Interfaz
             // 
             this.labelContra.AutoSize = true;
             this.labelContra.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelContra.Location = new System.Drawing.Point(145, 275);
+            this.labelContra.Location = new System.Drawing.Point(5, 271);
             this.labelContra.Name = "labelContra";
             this.labelContra.Size = new System.Drawing.Size(230, 29);
             this.labelContra.TabIndex = 4;
@@ -81,7 +81,7 @@ namespace Interfaz
             // inputContra
             // 
             this.inputContra.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.inputContra.Location = new System.Drawing.Point(150, 316);
+            this.inputContra.Location = new System.Drawing.Point(10, 312);
             this.inputContra.MaxLength = 25;
             this.inputContra.MinimumSize = new System.Drawing.Size(0, 5);
             this.inputContra.Name = "inputContra";
@@ -93,7 +93,7 @@ namespace Interfaz
             // 
             this.labelTitulo.AutoSize = true;
             this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
-            this.labelTitulo.Location = new System.Drawing.Point(143, 38);
+            this.labelTitulo.Location = new System.Drawing.Point(3, 34);
             this.labelTitulo.Name = "labelTitulo";
             this.labelTitulo.Size = new System.Drawing.Size(380, 42);
             this.labelTitulo.TabIndex = 5;
@@ -102,7 +102,7 @@ namespace Interfaz
             // btnCrearUsuario
             // 
             this.btnCrearUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.btnCrearUsuario.Location = new System.Drawing.Point(474, 475);
+            this.btnCrearUsuario.Location = new System.Drawing.Point(334, 471);
             this.btnCrearUsuario.Name = "btnCrearUsuario";
             this.btnCrearUsuario.Size = new System.Drawing.Size(192, 45);
             this.btnCrearUsuario.TabIndex = 6;
