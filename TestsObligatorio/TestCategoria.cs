@@ -1504,7 +1504,7 @@ namespace TestsObligatorio
             };
 
             categoria.ModificarTarjeta(tarjetaVieja, tarjetaNueva);
-            Assert.AreEqual(tarjetaNueva, categoria.GetTarjeta(buscadora));
+            Assert.AreEqual(tarjetaNueva, buscadora);
         }
     }
 }
