@@ -1,7 +1,7 @@
 ﻿
 namespace Interfaz
 {
-    partial class Form1
+    partial class VentanaPrincipal
     {
         /// <summary>
         /// Required designer variable.
@@ -29,20 +29,41 @@ namespace Interfaz
         /// </summary>
         private void InitializeComponent()
         {
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // Form1
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(252, 554);
+            this.panel1.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.Location = new System.Drawing.Point(270, 12);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(700, 554);
+            this.panel2.TabIndex = 1;
+            // 
+            // VentanaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(982, 578);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Name = "VentanaPrincipal";
+            this.Text = "Ventana Principal";
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 
