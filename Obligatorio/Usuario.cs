@@ -28,9 +28,9 @@ namespace Obligatorio
             set { this._contraMaestra = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreYContraMinimo, _largoNombreYContraMaximo);}
         }
 
-        public bool ValidarIgualContraMaestra(string v)
+        public bool ValidarIgualContraMaestra(string contraMaestraUsuario)
         {
-            return v == this.ContraMaestra;
+            return contraMaestraUsuario == this.ContraMaestra;
         }
 
         public bool EsListaCategoriasVacia()
