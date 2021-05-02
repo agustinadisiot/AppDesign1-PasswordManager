@@ -41,9 +41,9 @@ namespace Interfaz
             // botonIniciar
             // 
             this.botonIniciar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.botonIniciar.Location = new System.Drawing.Point(466, 461);
+            this.botonIniciar.Location = new System.Drawing.Point(312, 376);
             this.botonIniciar.Name = "botonIniciar";
-            this.botonIniciar.Size = new System.Drawing.Size(192, 45);
+            this.botonIniciar.Size = new System.Drawing.Size(167, 34);
             this.botonIniciar.TabIndex = 0;
             this.botonIniciar.Text = "Iniciar Sesion";
             this.botonIniciar.UseVisualStyleBackColor = true;
@@ -102,7 +102,7 @@ namespace Interfaz
             // btnCrearUsuario
             // 
             this.btnCrearUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.btnCrearUsuario.Location = new System.Drawing.Point(239, 461);
+            this.btnCrearUsuario.Location = new System.Drawing.Point(474, 475);
             this.btnCrearUsuario.Name = "btnCrearUsuario";
             this.btnCrearUsuario.Size = new System.Drawing.Size(192, 45);
             this.btnCrearUsuario.TabIndex = 6;
