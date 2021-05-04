@@ -41,9 +41,10 @@ namespace Interfaz
             // botonIniciar
             // 
             this.botonIniciar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.botonIniciar.Location = new System.Drawing.Point(140, 372);
+            this.botonIniciar.Location = new System.Drawing.Point(105, 302);
+            this.botonIniciar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.botonIniciar.Name = "botonIniciar";
-            this.botonIniciar.Size = new System.Drawing.Size(199, 39);
+            this.botonIniciar.Size = new System.Drawing.Size(149, 32);
             this.botonIniciar.TabIndex = 0;
             this.botonIniciar.Text = "Iniciar Sesion";
             this.botonIniciar.UseVisualStyleBackColor = true;
@@ -51,20 +52,22 @@ namespace Interfaz
             // inputUsuario
             // 
             this.inputUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.inputUsuario.Location = new System.Drawing.Point(10, 210);
+            this.inputUsuario.Location = new System.Drawing.Point(8, 171);
+            this.inputUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.inputUsuario.MaxLength = 25;
             this.inputUsuario.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputUsuario.Name = "inputUsuario";
-            this.inputUsuario.Size = new System.Drawing.Size(329, 34);
+            this.inputUsuario.Size = new System.Drawing.Size(248, 29);
             this.inputUsuario.TabIndex = 1;
             // 
             // labelUsuario
             // 
             this.labelUsuario.AutoSize = true;
             this.labelUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelUsuario.Location = new System.Drawing.Point(5, 169);
+            this.labelUsuario.Location = new System.Drawing.Point(4, 137);
+            this.labelUsuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelUsuario.Name = "labelUsuario";
-            this.labelUsuario.Size = new System.Drawing.Size(190, 29);
+            this.labelUsuario.Size = new System.Drawing.Size(147, 24);
             this.labelUsuario.TabIndex = 2;
             this.labelUsuario.Text = "Ingresar Usuario";
             // 
@@ -72,20 +75,22 @@ namespace Interfaz
             // 
             this.labelContra.AutoSize = true;
             this.labelContra.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelContra.Location = new System.Drawing.Point(5, 271);
+            this.labelContra.Location = new System.Drawing.Point(4, 220);
+            this.labelContra.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelContra.Name = "labelContra";
-            this.labelContra.Size = new System.Drawing.Size(230, 29);
+            this.labelContra.Size = new System.Drawing.Size(179, 24);
             this.labelContra.TabIndex = 4;
             this.labelContra.Text = "Ingresar Contraseña";
             // 
             // inputContra
             // 
             this.inputContra.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.inputContra.Location = new System.Drawing.Point(10, 312);
+            this.inputContra.Location = new System.Drawing.Point(8, 254);
+            this.inputContra.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.inputContra.MaxLength = 25;
             this.inputContra.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputContra.Name = "inputContra";
-            this.inputContra.Size = new System.Drawing.Size(329, 34);
+            this.inputContra.Size = new System.Drawing.Size(248, 29);
             this.inputContra.TabIndex = 3;
             this.inputContra.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -93,25 +98,27 @@ namespace Interfaz
             // 
             this.labelTitulo.AutoSize = true;
             this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
-            this.labelTitulo.Location = new System.Drawing.Point(3, 34);
+            this.labelTitulo.Location = new System.Drawing.Point(2, 28);
+            this.labelTitulo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(380, 42);
+            this.labelTitulo.Size = new System.Drawing.Size(307, 36);
             this.labelTitulo.TabIndex = 5;
             this.labelTitulo.Text = "Iniciar Sesion Usuario";
             // 
             // botonCrearUsuario
             // 
             this.botonCrearUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.botonCrearUsuario.Location = new System.Drawing.Point(334, 471);
+            this.botonCrearUsuario.Location = new System.Drawing.Point(250, 383);
+            this.botonCrearUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.botonCrearUsuario.Name = "botonCrearUsuario";
-            this.botonCrearUsuario.Size = new System.Drawing.Size(192, 45);
+            this.botonCrearUsuario.Size = new System.Drawing.Size(144, 37);
             this.botonCrearUsuario.TabIndex = 6;
             this.botonCrearUsuario.Text = "Crear Usuario";
             this.botonCrearUsuario.UseVisualStyleBackColor = true;
             // 
             // IniciarSesion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.botonCrearUsuario);
             this.Controls.Add(this.labelTitulo);
@@ -120,8 +127,9 @@ namespace Interfaz
             this.Controls.Add(this.labelUsuario);
             this.Controls.Add(this.inputUsuario);
             this.Controls.Add(this.botonIniciar);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "IniciarSesion";
-            this.Size = new System.Drawing.Size(700, 554);
+            this.Size = new System.Drawing.Size(1075, 681);
             this.ResumeLayout(false);
             this.PerformLayout();
 

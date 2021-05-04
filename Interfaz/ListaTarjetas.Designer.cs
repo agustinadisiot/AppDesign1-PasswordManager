@@ -41,6 +41,9 @@ namespace Interfaz
             // 
             // tablaTarjetas
             // 
+            this.tablaTarjetas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tablaTarjetas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaTarjetas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Catregoria,
@@ -57,8 +60,9 @@ namespace Interfaz
             this.tablaTarjetas.RowHeadersWidth = 51;
             this.tablaTarjetas.RowTemplate.Height = 24;
             this.tablaTarjetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tablaTarjetas.Size = new System.Drawing.Size(520, 445);
+            this.tablaTarjetas.Size = new System.Drawing.Size(1071, 677);
             this.tablaTarjetas.TabIndex = 0;
+            this.tablaTarjetas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaTarjetas_CellContentClick);
             // 
             // Catregoria
             // 
@@ -66,7 +70,7 @@ namespace Interfaz
             this.Catregoria.MinimumWidth = 6;
             this.Catregoria.Name = "Catregoria";
             this.Catregoria.ReadOnly = true;
-            this.Catregoria.Width = 25;
+            this.Catregoria.Width = 125;
             // 
             // Nombre
             // 
@@ -90,7 +94,7 @@ namespace Interfaz
             this.Tarjeta.MinimumWidth = 6;
             this.Tarjeta.Name = "Tarjeta";
             this.Tarjeta.ReadOnly = true;
-            this.Tarjeta.Width = 125;
+            this.Tarjeta.Width = 300;
             // 
             // Vencimiento
             // 
@@ -98,7 +102,7 @@ namespace Interfaz
             this.Vencimiento.MinimumWidth = 6;
             this.Vencimiento.Name = "Vencimiento";
             this.Vencimiento.ReadOnly = true;
-            this.Vencimiento.Width = 50;
+            this.Vencimiento.Width = 125;
             // 
             // Modificar
             // 
@@ -106,7 +110,7 @@ namespace Interfaz
             this.Modificar.MinimumWidth = 6;
             this.Modificar.Name = "Modificar";
             this.Modificar.ReadOnly = true;
-            this.Modificar.Width = 125;
+            this.Modificar.Width = 75;
             // 
             // ListaTarjetas
             // 
@@ -115,7 +119,7 @@ namespace Interfaz
             this.Controls.Add(this.tablaTarjetas);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ListaTarjetas";
-            this.Size = new System.Drawing.Size(525, 450);
+            this.Size = new System.Drawing.Size(1075, 681);
             ((System.ComponentModel.ISupportInitialize)(this.tablaTarjetas)).EndInit();
             this.ResumeLayout(false);
 

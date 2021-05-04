@@ -49,5 +49,10 @@ namespace Interfaz
                 this.tablaTarjetas.Rows.Add(categoriaActual, nombre, tipo, numero, vencimiento);
             }
         }
+
+        private void tablaTarjetas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

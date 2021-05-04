@@ -35,25 +35,30 @@ namespace Interfaz
             // 
             // panelDrawer
             // 
-            this.panelDrawer.Location = new System.Drawing.Point(12, 12);
+            this.panelDrawer.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelDrawer.Location = new System.Drawing.Point(0, 0);
+            this.panelDrawer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelDrawer.Name = "panelDrawer";
-            this.panelDrawer.Size = new System.Drawing.Size(252, 554);
+            this.panelDrawer.Size = new System.Drawing.Size(189, 681);
             this.panelDrawer.TabIndex = 0;
             // 
             // panelForm
             // 
-            this.panelForm.Location = new System.Drawing.Point(270, 12);
+            this.panelForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelForm.Location = new System.Drawing.Point(189, 0);
+            this.panelForm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelForm.Name = "panelForm";
-            this.panelForm.Size = new System.Drawing.Size(700, 554);
+            this.panelForm.Size = new System.Drawing.Size(1075, 681);
             this.panelForm.TabIndex = 1;
             // 
             // VentanaPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(982, 578);
+            this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.panelForm);
             this.Controls.Add(this.panelDrawer);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "VentanaPrincipal";
             this.Text = "Ventana Principal";
             this.Load += new System.EventHandler(this.VentanaPrincipal_Load);
