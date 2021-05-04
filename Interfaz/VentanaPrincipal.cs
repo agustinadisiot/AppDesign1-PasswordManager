@@ -24,7 +24,13 @@ namespace Interfaz
             Usuario usuarioPrueba = new Usuario();
             usuarioPrueba.Nombre = "Roberto";
             usuarioPrueba.ContraMaestra = "12345ABCD";
+
+            Usuario usuarioPrueba2 = new Usuario();
+            usuarioPrueba2.Nombre = "Santiago";
+            usuarioPrueba2.ContraMaestra = "ClaveUsuario123";
+
             this._administrador.AgregarUsuario(usuarioPrueba);
+            this._administrador.AgregarUsuario(usuarioPrueba2);
 
 
             Categoria trabajo = new Categoria() 
@@ -70,7 +76,8 @@ namespace Interfaz
         private void VentanaPrincipal_Load(object sender, EventArgs e)
         {
             UserControl listaTarjetas = new ListaTarjetas(this._usuarioActual, this._administrador);
-            panelForm.Controls.Add(listaTarjetas);
+            UserControl listaCategotias = new ListaCategorias(this._usuarioActual, this._administrador);
+            panelForm.Controls.Add(listaCategotias);
         }
     }
 }
