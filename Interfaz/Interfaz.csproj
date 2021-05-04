@@ -106,5 +106,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Obligatorio\Obligatorio.csproj">
+      <Project>{A2333956-836C-42AB-AD9B-DBBA96727E27}</Project>
+      <Name>Obligatorio</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

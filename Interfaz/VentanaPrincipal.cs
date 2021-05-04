@@ -20,7 +20,49 @@ namespace Interfaz
         public VentanaPrincipal()
         {
             this._administrador = new AdminContras();
-            this._usuarioActual = null;
+
+            Usuario usuarioPrueba = new Usuario();
+            usuarioPrueba.Nombre = "Roberto";
+            usuarioPrueba.ContraMaestra = "12345ABCD";
+            this._administrador.AgregarUsuario(usuarioPrueba);
+
+
+            Categoria trabajo = new Categoria() 
+            {
+                   Nombre = "Trabajo"
+            };
+
+            Categoria personal = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuarioPrueba.AgregarCategoria(trabajo);
+            usuarioPrueba.AgregarCategoria(personal);
+
+            Tarjeta tarjetaPrueba1 = new Tarjeta()
+            {
+                Nombre = "Itau",
+                Tipo = "Visa",
+                Numero = "3456567890876543",
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+
+            Tarjeta tarjetaPrueba2 = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = "2222567890876543",
+                Codigo = "8904",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+
+            usuarioPrueba.AgregarTarjeta(tarjetaPrueba1, trabajo);
+
+            usuarioPrueba.AgregarTarjeta(tarjetaPrueba2, personal);
+
+            this._usuarioActual = usuarioPrueba;
             InitializeComponent();
 
         }
