@@ -35,7 +35,6 @@ namespace Interfaz
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tarjeta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Vencimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTarjetas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,8 +49,7 @@ namespace Interfaz
             this.Nombre,
             this.Tipo,
             this.Tarjeta,
-            this.Vencimiento,
-            this.Modificar});
+            this.Vencimiento});
             this.tablaTarjetas.Location = new System.Drawing.Point(2, 2);
             this.tablaTarjetas.Margin = new System.Windows.Forms.Padding(2);
             this.tablaTarjetas.MultiSelect = false;
@@ -104,14 +102,6 @@ namespace Interfaz
             this.Vencimiento.ReadOnly = true;
             this.Vencimiento.Width = 125;
             // 
-            // Modificar
-            // 
-            this.Modificar.HeaderText = "Modificar";
-            this.Modificar.MinimumWidth = 6;
-            this.Modificar.Name = "Modificar";
-            this.Modificar.ReadOnly = true;
-            this.Modificar.Width = 75;
-            // 
             // ListaTarjetas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -133,6 +123,5 @@ namespace Interfaz
         private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tarjeta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Vencimiento;
-        private System.Windows.Forms.DataGridViewButtonColumn Modificar;
     }
 }

@@ -50,9 +50,22 @@ namespace Interfaz
             }
         }
 
-        private void tablaTarjetas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        private string FormatearTarjeta(Tarjeta actual)
         {
 
+            string numero = actual.Numero;
+            string tarjetaAMostrar = "XXXX XXXX XXXX ";
+
+            const int posicionPrimerDigitoAMostrar = 12;
+
+            string digitosFinales = numero.Substring(posicionPrimerDigitoAMostrar);
+
+            tarjetaAMostrar += digitosFinales;
+
+            return tarjetaAMostrar;
+
         }
+
     }
 }
