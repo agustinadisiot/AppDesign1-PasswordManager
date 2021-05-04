@@ -57,12 +57,12 @@ namespace Interfaz
             this.tablaTarjetas.MultiSelect = false;
             this.tablaTarjetas.Name = "tablaTarjetas";
             this.tablaTarjetas.ReadOnly = true;
+            this.tablaTarjetas.RowHeadersVisible = false;
             this.tablaTarjetas.RowHeadersWidth = 51;
             this.tablaTarjetas.RowTemplate.Height = 24;
             this.tablaTarjetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaTarjetas.Size = new System.Drawing.Size(1071, 677);
             this.tablaTarjetas.TabIndex = 0;
-            this.tablaTarjetas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaTarjetas_CellContentClick);
             // 
             // Catregoria
             // 
