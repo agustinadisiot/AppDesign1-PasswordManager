@@ -77,7 +77,10 @@ namespace Interfaz
         {
             UserControl listaTarjetas = new ListaTarjetas(this._usuarioActual, this._administrador);
             UserControl listaCategotias = new ListaCategorias(this._usuarioActual, this._administrador);
-            panelForm.Controls.Add(listaCategotias);
+
+            UserControl modificarCategoria = new ModificarCategoria(this._usuarioActual.GetListaCategorias()[0]);
+            panelForm.Controls.Add(modificarCategoria);
         }
+
     }
 }
