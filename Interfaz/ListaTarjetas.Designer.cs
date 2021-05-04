@@ -38,6 +38,7 @@ namespace Interfaz
             this.botonEliminar = new System.Windows.Forms.Button();
             this.botonModificar = new System.Windows.Forms.Button();
             this.buttonAgregar = new System.Windows.Forms.Button();
+            this.labelTitulo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTarjetas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -130,6 +131,7 @@ namespace Interfaz
             this.botonModificar.TabIndex = 2;
             this.botonModificar.Text = "Modificar";
             this.botonModificar.UseVisualStyleBackColor = true;
+            this.botonModificar.Click += new System.EventHandler(this.botonModificar_Click);
             // 
             // buttonAgregar
             // 
@@ -141,10 +143,21 @@ namespace Interfaz
             this.buttonAgregar.UseVisualStyleBackColor = true;
             this.buttonAgregar.Click += new System.EventHandler(this.buttonAgregar_Click);
             // 
+            // labelTitulo
+            // 
+            this.labelTitulo.AutoSize = true;
+            this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitulo.Location = new System.Drawing.Point(3, 36);
+            this.labelTitulo.Name = "labelTitulo";
+            this.labelTitulo.Size = new System.Drawing.Size(142, 25);
+            this.labelTitulo.TabIndex = 4;
+            this.labelTitulo.Text = "Lista Tarjetas";
+            // 
             // ListaTarjetas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.labelTitulo);
             this.Controls.Add(this.buttonAgregar);
             this.Controls.Add(this.botonModificar);
             this.Controls.Add(this.botonEliminar);
@@ -154,6 +167,7 @@ namespace Interfaz
             this.Size = new System.Drawing.Size(1075, 681);
             ((System.ComponentModel.ISupportInitialize)(this.tablaTarjetas)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -168,5 +182,6 @@ namespace Interfaz
         private System.Windows.Forms.Button botonEliminar;
         private System.Windows.Forms.Button botonModificar;
         private System.Windows.Forms.Button buttonAgregar;
+        private System.Windows.Forms.Label labelTitulo;
     }
 }
