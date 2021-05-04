@@ -52,6 +52,12 @@
     <Compile Include="CrearUsuario.Designer.cs">
       <DependentUpon>CrearUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="ListaClaves.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListaClaves.Designer.cs">
+      <DependentUpon>ListaClaves.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListaTarjetas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -74,6 +80,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CrearUsuario.resx">
       <DependentUpon>CrearUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListaClaves.resx">
+      <DependentUpon>ListaClaves.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListaTarjetas.resx">
       <DependentUpon>ListaTarjetas.cs</DependentUpon>
