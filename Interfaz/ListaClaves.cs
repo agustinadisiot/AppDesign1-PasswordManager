@@ -14,11 +14,14 @@ namespace Interfaz
     public partial class ListaClaves : UserControl
     {
         private Usuario _usuarioActual;
+        private AdminContras _administrador;
 
-        public ListaClaves(Usuario usuarioAgregar)
+        public ListaClaves(Usuario usuarioAgregar, AdminContras administradorAgregar)
         {
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;
+            this._administrador = administradorAgregar;
+            CargarTabla();
         }
 
         private void CargarTabla()
