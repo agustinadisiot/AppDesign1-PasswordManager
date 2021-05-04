@@ -35,11 +35,17 @@ namespace Interfaz
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tarjeta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Vencimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.botonEliminar = new System.Windows.Forms.Button();
+            this.botonModificar = new System.Windows.Forms.Button();
+            this.buttonAgregar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTarjetas)).BeginInit();
             this.SuspendLayout();
             // 
             // tablaTarjetas
             // 
+            this.tablaTarjetas.AllowUserToAddRows = false;
+            this.tablaTarjetas.AllowUserToDeleteRows = false;
+            this.tablaTarjetas.AllowUserToResizeRows = false;
             this.tablaTarjetas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -50,7 +56,7 @@ namespace Interfaz
             this.Tipo,
             this.Tarjeta,
             this.Vencimiento});
-            this.tablaTarjetas.Location = new System.Drawing.Point(2, 2);
+            this.tablaTarjetas.Location = new System.Drawing.Point(2, 74);
             this.tablaTarjetas.Margin = new System.Windows.Forms.Padding(2);
             this.tablaTarjetas.MultiSelect = false;
             this.tablaTarjetas.Name = "tablaTarjetas";
@@ -59,7 +65,7 @@ namespace Interfaz
             this.tablaTarjetas.RowHeadersWidth = 51;
             this.tablaTarjetas.RowTemplate.Height = 24;
             this.tablaTarjetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tablaTarjetas.Size = new System.Drawing.Size(1071, 677);
+            this.tablaTarjetas.Size = new System.Drawing.Size(1071, 557);
             this.tablaTarjetas.TabIndex = 0;
             // 
             // Catregoria
@@ -68,6 +74,7 @@ namespace Interfaz
             this.Catregoria.MinimumWidth = 6;
             this.Catregoria.Name = "Catregoria";
             this.Catregoria.ReadOnly = true;
+            this.Catregoria.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Catregoria.Width = 125;
             // 
             // Nombre
@@ -76,6 +83,7 @@ namespace Interfaz
             this.Nombre.MinimumWidth = 6;
             this.Nombre.Name = "Nombre";
             this.Nombre.ReadOnly = true;
+            this.Nombre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Nombre.Width = 125;
             // 
             // Tipo
@@ -84,6 +92,7 @@ namespace Interfaz
             this.Tipo.MinimumWidth = 6;
             this.Tipo.Name = "Tipo";
             this.Tipo.ReadOnly = true;
+            this.Tipo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Tipo.Width = 125;
             // 
             // Tarjeta
@@ -92,6 +101,7 @@ namespace Interfaz
             this.Tarjeta.MinimumWidth = 6;
             this.Tarjeta.Name = "Tarjeta";
             this.Tarjeta.ReadOnly = true;
+            this.Tarjeta.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Tarjeta.Width = 300;
             // 
             // Vencimiento
@@ -100,12 +110,44 @@ namespace Interfaz
             this.Vencimiento.MinimumWidth = 6;
             this.Vencimiento.Name = "Vencimiento";
             this.Vencimiento.ReadOnly = true;
+            this.Vencimiento.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Vencimiento.Width = 125;
+            // 
+            // botonEliminar
+            // 
+            this.botonEliminar.Location = new System.Drawing.Point(868, 645);
+            this.botonEliminar.Name = "botonEliminar";
+            this.botonEliminar.Size = new System.Drawing.Size(86, 23);
+            this.botonEliminar.TabIndex = 1;
+            this.botonEliminar.Text = "Eliminar";
+            this.botonEliminar.UseVisualStyleBackColor = true;
+            // 
+            // botonModificar
+            // 
+            this.botonModificar.Location = new System.Drawing.Point(960, 645);
+            this.botonModificar.Name = "botonModificar";
+            this.botonModificar.Size = new System.Drawing.Size(86, 23);
+            this.botonModificar.TabIndex = 2;
+            this.botonModificar.Text = "Modificar";
+            this.botonModificar.UseVisualStyleBackColor = true;
+            // 
+            // buttonAgregar
+            // 
+            this.buttonAgregar.Location = new System.Drawing.Point(776, 645);
+            this.buttonAgregar.Name = "buttonAgregar";
+            this.buttonAgregar.Size = new System.Drawing.Size(86, 23);
+            this.buttonAgregar.TabIndex = 3;
+            this.buttonAgregar.Text = "Agregar";
+            this.buttonAgregar.UseVisualStyleBackColor = true;
+            this.buttonAgregar.Click += new System.EventHandler(this.buttonAgregar_Click);
             // 
             // ListaTarjetas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonAgregar);
+            this.Controls.Add(this.botonModificar);
+            this.Controls.Add(this.botonEliminar);
             this.Controls.Add(this.tablaTarjetas);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ListaTarjetas";
@@ -123,5 +165,8 @@ namespace Interfaz
         private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tarjeta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Vencimiento;
+        private System.Windows.Forms.Button botonEliminar;
+        private System.Windows.Forms.Button botonModificar;
+        private System.Windows.Forms.Button buttonAgregar;
     }
 }

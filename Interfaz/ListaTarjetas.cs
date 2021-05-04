@@ -67,5 +67,9 @@ namespace Interfaz
 
         }
 
+        private void buttonAgregar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
