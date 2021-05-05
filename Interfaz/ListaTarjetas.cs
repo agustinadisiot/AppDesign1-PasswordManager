@@ -67,10 +67,12 @@ namespace Interfaz
 
         }
 
+        public event EventHandler BotonAgregarTarjetaEvent;
+
         private void buttonAgregar_Click(object sender, EventArgs e)
         {
-            
 
+            if (this.BotonAgregarTarjetaEvent != null) this.BotonAgregarTarjetaEvent(sender, e);
 
 
         }

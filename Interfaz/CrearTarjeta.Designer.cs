@@ -52,74 +52,74 @@ namespace Interfaz
             // 
             this.Titulo.AutoSize = true;
             this.Titulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Titulo.Location = new System.Drawing.Point(206, 21);
+            this.Titulo.Location = new System.Drawing.Point(275, 26);
+            this.Titulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Titulo.Name = "Titulo";
-            this.Titulo.Size = new System.Drawing.Size(187, 33);
+            this.Titulo.Size = new System.Drawing.Size(237, 42);
             this.Titulo.TabIndex = 0;
             this.Titulo.Text = "Crear Tarjeta";
             // 
             // botonCancelar
             // 
             this.botonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.botonCancelar.Location = new System.Drawing.Point(663, 563);
-            this.botonCancelar.Margin = new System.Windows.Forms.Padding(2);
+            this.botonCancelar.Location = new System.Drawing.Point(884, 693);
+            this.botonCancelar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.botonCancelar.Name = "botonCancelar";
-            this.botonCancelar.Size = new System.Drawing.Size(144, 37);
+            this.botonCancelar.Size = new System.Drawing.Size(192, 46);
             this.botonCancelar.TabIndex = 18;
             this.botonCancelar.Text = "Cancelar";
             this.botonCancelar.UseVisualStyleBackColor = true;
+            this.botonCancelar.Click += new System.EventHandler(this.botonCancelar_Click);
             // 
             // labelTipo
             // 
             this.labelTipo.AutoSize = true;
             this.labelTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelTipo.Location = new System.Drawing.Point(121, 216);
-            this.labelTipo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelTipo.Location = new System.Drawing.Point(161, 266);
             this.labelTipo.Name = "labelTipo";
-            this.labelTipo.Size = new System.Drawing.Size(121, 24);
+            this.labelTipo.Size = new System.Drawing.Size(157, 29);
             this.labelTipo.TabIndex = 17;
             this.labelTipo.Text = "Ingresar Tipo";
             // 
             // inputTipo
             // 
             this.inputTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.inputTipo.Location = new System.Drawing.Point(375, 213);
-            this.inputTipo.Margin = new System.Windows.Forms.Padding(2);
+            this.inputTipo.Location = new System.Drawing.Point(500, 262);
+            this.inputTipo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.inputTipo.MaxLength = 25;
             this.inputTipo.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputTipo.Name = "inputTipo";
-            this.inputTipo.Size = new System.Drawing.Size(248, 29);
+            this.inputTipo.Size = new System.Drawing.Size(329, 34);
             this.inputTipo.TabIndex = 16;
             // 
             // labelNombre
             // 
             this.labelNombre.AutoSize = true;
             this.labelNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelNombre.Location = new System.Drawing.Point(121, 173);
-            this.labelNombre.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelNombre.Location = new System.Drawing.Point(161, 213);
             this.labelNombre.Name = "labelNombre";
-            this.labelNombre.Size = new System.Drawing.Size(152, 24);
+            this.labelNombre.Size = new System.Drawing.Size(195, 29);
             this.labelNombre.TabIndex = 15;
             this.labelNombre.Text = "Ingresar Nombre";
             // 
             // inputNombre
             // 
             this.inputNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.inputNombre.Location = new System.Drawing.Point(375, 170);
-            this.inputNombre.Margin = new System.Windows.Forms.Padding(2);
+            this.inputNombre.Location = new System.Drawing.Point(500, 209);
+            this.inputNombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.inputNombre.MaxLength = 25;
             this.inputNombre.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputNombre.Name = "inputNombre";
-            this.inputNombre.Size = new System.Drawing.Size(248, 29);
+            this.inputNombre.Size = new System.Drawing.Size(329, 34);
             this.inputNombre.TabIndex = 14;
             // 
             // botonCrear
             // 
             this.botonCrear.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.botonCrear.Location = new System.Drawing.Point(479, 563);
-            this.botonCrear.Margin = new System.Windows.Forms.Padding(2);
+            this.botonCrear.Location = new System.Drawing.Point(639, 693);
+            this.botonCrear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.botonCrear.Name = "botonCrear";
-            this.botonCrear.Size = new System.Drawing.Size(144, 37);
+            this.botonCrear.Size = new System.Drawing.Size(192, 46);
             this.botonCrear.TabIndex = 13;
             this.botonCrear.Text = "Crear Tarjeta";
             this.botonCrear.UseVisualStyleBackColor = true;
@@ -129,54 +129,51 @@ namespace Interfaz
             // 
             this.ingresarCodigo.AutoSize = true;
             this.ingresarCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.ingresarCodigo.Location = new System.Drawing.Point(121, 302);
-            this.ingresarCodigo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.ingresarCodigo.Location = new System.Drawing.Point(161, 372);
             this.ingresarCodigo.Name = "ingresarCodigo";
-            this.ingresarCodigo.Size = new System.Drawing.Size(144, 24);
+            this.ingresarCodigo.Size = new System.Drawing.Size(186, 29);
             this.ingresarCodigo.TabIndex = 22;
             this.ingresarCodigo.Text = "Ingresar Codigo";
             // 
             // inputCodigo
             // 
             this.inputCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.inputCodigo.Location = new System.Drawing.Point(375, 299);
-            this.inputCodigo.Margin = new System.Windows.Forms.Padding(2);
+            this.inputCodigo.Location = new System.Drawing.Point(500, 368);
+            this.inputCodigo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.inputCodigo.MaxLength = 25;
             this.inputCodigo.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputCodigo.Name = "inputCodigo";
-            this.inputCodigo.Size = new System.Drawing.Size(248, 29);
+            this.inputCodigo.Size = new System.Drawing.Size(329, 34);
             this.inputCodigo.TabIndex = 21;
             // 
             // labelNumero
             // 
             this.labelNumero.AutoSize = true;
             this.labelNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelNumero.Location = new System.Drawing.Point(121, 259);
-            this.labelNumero.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelNumero.Location = new System.Drawing.Point(161, 319);
             this.labelNumero.Name = "labelNumero";
-            this.labelNumero.Size = new System.Drawing.Size(152, 24);
+            this.labelNumero.Size = new System.Drawing.Size(194, 29);
             this.labelNumero.TabIndex = 20;
             this.labelNumero.Text = "Ingresar Numero";
             // 
             // inputNumero
             // 
             this.inputNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.inputNumero.Location = new System.Drawing.Point(375, 256);
-            this.inputNumero.Margin = new System.Windows.Forms.Padding(2);
+            this.inputNumero.Location = new System.Drawing.Point(500, 315);
+            this.inputNumero.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.inputNumero.MaxLength = 25;
             this.inputNumero.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputNumero.Name = "inputNumero";
-            this.inputNumero.Size = new System.Drawing.Size(248, 29);
+            this.inputNumero.Size = new System.Drawing.Size(329, 34);
             this.inputNumero.TabIndex = 19;
             // 
             // labelCategoria
             // 
             this.labelCategoria.AutoSize = true;
             this.labelCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelCategoria.Location = new System.Drawing.Point(121, 127);
-            this.labelCategoria.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelCategoria.Location = new System.Drawing.Point(161, 156);
             this.labelCategoria.Name = "labelCategoria";
-            this.labelCategoria.Size = new System.Drawing.Size(144, 24);
+            this.labelCategoria.Size = new System.Drawing.Size(188, 29);
             this.labelCategoria.TabIndex = 23;
             this.labelCategoria.Text = "Elegir Categoria";
             // 
@@ -184,27 +181,28 @@ namespace Interfaz
             // 
             this.comboBoxCategorias.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxCategorias.FormattingEnabled = true;
-            this.comboBoxCategorias.Location = new System.Drawing.Point(375, 127);
+            this.comboBoxCategorias.Location = new System.Drawing.Point(500, 156);
+            this.comboBoxCategorias.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxCategorias.Name = "comboBoxCategorias";
-            this.comboBoxCategorias.Size = new System.Drawing.Size(248, 28);
+            this.comboBoxCategorias.Size = new System.Drawing.Size(329, 33);
             this.comboBoxCategorias.TabIndex = 24;
             // 
             // datePickerVencimiento
             // 
             this.datePickerVencimiento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.datePickerVencimiento.Location = new System.Drawing.Point(375, 347);
+            this.datePickerVencimiento.Location = new System.Drawing.Point(500, 427);
+            this.datePickerVencimiento.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.datePickerVencimiento.Name = "datePickerVencimiento";
-            this.datePickerVencimiento.Size = new System.Drawing.Size(248, 20);
+            this.datePickerVencimiento.Size = new System.Drawing.Size(329, 22);
             this.datePickerVencimiento.TabIndex = 25;
             // 
             // labelVencimiento
             // 
             this.labelVencimiento.AutoSize = true;
             this.labelVencimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelVencimiento.Location = new System.Drawing.Point(121, 345);
-            this.labelVencimiento.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelVencimiento.Location = new System.Drawing.Point(161, 425);
             this.labelVencimiento.Name = "labelVencimiento";
-            this.labelVencimiento.Size = new System.Drawing.Size(189, 24);
+            this.labelVencimiento.Size = new System.Drawing.Size(240, 29);
             this.labelVencimiento.TabIndex = 26;
             this.labelVencimiento.Text = "Ingresar Vencimiento";
             // 
@@ -212,28 +210,27 @@ namespace Interfaz
             // 
             this.labelNotas.AutoSize = true;
             this.labelNotas.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelNotas.Location = new System.Drawing.Point(121, 385);
-            this.labelNotas.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelNotas.Location = new System.Drawing.Point(161, 474);
             this.labelNotas.Name = "labelNotas";
-            this.labelNotas.Size = new System.Drawing.Size(131, 24);
+            this.labelNotas.Size = new System.Drawing.Size(170, 29);
             this.labelNotas.TabIndex = 27;
             this.labelNotas.Text = "Ingresar Notas";
             // 
             // inputNota
             // 
             this.inputNota.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.inputNota.Location = new System.Drawing.Point(375, 382);
-            this.inputNota.Margin = new System.Windows.Forms.Padding(2);
+            this.inputNota.Location = new System.Drawing.Point(500, 470);
+            this.inputNota.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.inputNota.MaxLength = 25;
             this.inputNota.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputNota.Multiline = true;
             this.inputNota.Name = "inputNota";
-            this.inputNota.Size = new System.Drawing.Size(432, 154);
+            this.inputNota.Size = new System.Drawing.Size(575, 189);
             this.inputNota.TabIndex = 28;
             // 
             // CrearTarjeta
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.inputNota);
             this.Controls.Add(this.labelNotas);
@@ -252,8 +249,9 @@ namespace Interfaz
             this.Controls.Add(this.inputNombre);
             this.Controls.Add(this.botonCrear);
             this.Controls.Add(this.Titulo);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "CrearTarjeta";
-            this.Size = new System.Drawing.Size(1075, 681);
+            this.Size = new System.Drawing.Size(1433, 838);
             this.Load += new System.EventHandler(this.CrearTarjeta_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

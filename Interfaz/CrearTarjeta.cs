@@ -104,5 +104,15 @@ namespace Interfaz
 
             return nombre;
         }
+
+
+        public event EventHandler AbrirListaTarjetas_Event;
+
+        protected void botonCancelar_Click(object sender, EventArgs e)
+        {
+
+            if (this.AbrirListaTarjetas_Event != null)
+                this.AbrirListaTarjetas_Event(this, e);
+        }
     }
 }
