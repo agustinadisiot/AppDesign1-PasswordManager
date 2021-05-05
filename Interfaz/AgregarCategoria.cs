@@ -49,7 +49,7 @@ namespace Interfaz
             }
             catch
             {
-                this.labelErrores.Text = "Error: El largo del nombre de la categoria no puede ser menor a 5 ni mayor a 25";
+                this.labelErrores.Text = "Error: El largo del nombre de la categoria no puede ser menor a 3 ni mayor a 15";
             }
         }
 
