@@ -76,8 +76,7 @@ namespace Interfaz
         private void VentanaPrincipal_Load(object sender, EventArgs e)
         {
             UserControl listaTarjetas = new ListaTarjetas(this._usuarioActual, this._administrador);
-            UserControl listaCategotias = new ListaCategorias(this._usuarioActual, this._administrador);
-            panelForm.Controls.Add(listaCategotias);
+            panelForm.Controls.Add(listaTarjetas);
         }
     }
 }
