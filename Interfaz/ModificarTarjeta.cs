@@ -26,6 +26,7 @@ namespace Interfaz
         private void ModificarTarjeta_Load(object sender, EventArgs e)
         {
             this.CargarComboBox();
+            this.CargarInputsConTarjeta();
             this.labelErrores.Text = "";
         }
 
