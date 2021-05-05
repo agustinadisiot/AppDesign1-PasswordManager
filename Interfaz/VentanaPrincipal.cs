@@ -75,10 +75,47 @@ namespace Interfaz
 
         private void VentanaPrincipal_Load(object sender, EventArgs e)
         {
-            CrearTarjeta crearTarjetas = new CrearTarjeta(this._usuarioActual);
+            ListaTarjetas listaTarjetas = new ListaTarjetas(this._usuarioActual, this._administrador);
 
-            crearTarjetas.AbrirListaTarjetas_Event += new EventHandler(this.AbrirListaTarjetas_Handler);
-            this.panelPrincipal.Controls.Add(crearTarjetas);
+            ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual, this._administrador);
+            listaCategorias.AbrirAgregarCategorias_Event += new EventHandler(this.AbrirAgregarCategorias_Handler);
+            listaCategorias.AbrirModificarCategorias_Event += new EventHandler(this.AbrirModificarCategorias_Handler);
+
+            panelPrincipal.Controls.Add(listaCategorias);
+        }
+
+        protected void AbrirListaCategorias_Handler(object sender, EventArgs e)
+        {
+
+            ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual, this._administrador);
+            listaCategorias.AbrirAgregarCategorias_Event += new EventHandler(this.AbrirAgregarCategorias_Handler);
+            listaCategorias.AbrirModificarCategorias_Event += new EventHandler(this.AbrirModificarCategorias_Handler);
+
+            this.panelPrincipal.Controls.Clear();
+
+            this.panelPrincipal.Controls.Add(listaCategorias);
+        }
+
+        protected void AbrirAgregarCategorias_Handler(object sender, EventArgs e)
+        {
+
+            AgregarCategoria agregarCategoria = new AgregarCategoria(this._usuarioActual, this._administrador);
+            agregarCategoria.AbrirListaCategorias_Event += new EventHandler(this.AbrirListaCategorias_Handler);
+
+            this.panelPrincipal.Controls.Clear();
+
+            this.panelPrincipal.Controls.Add(agregarCategoria);
+        }
+
+        protected void AbrirModificarCategorias_Handler(object sender, EventArgs e)
+        {
+
+            ModificarCategoria modificarCategoria = new ModificarCategoria(this._usuarioActual.GetListaCategorias()[0], this._usuarioActual);
+            modificarCategoria.AbrirListaCategorias_Event += new EventHandler(this.AbrirListaCategorias_Handler);
+
+            this.panelPrincipal.Controls.Clear();
+
+            this.panelPrincipal.Controls.Add(modificarCategoria);
         }
 
         protected void AbrirListaTarjetas_Handler(object sender, EventArgs e) {
