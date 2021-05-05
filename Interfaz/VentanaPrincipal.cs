@@ -75,9 +75,19 @@ namespace Interfaz
 
         private void VentanaPrincipal_Load(object sender, EventArgs e)
         {
-            UserControl listaTarjetas = new ListaTarjetas(this._usuarioActual, this._administrador);
-            UserControl listaCategotias = new ListaCategorias(this._usuarioActual, this._administrador);
-            panelForm.Controls.Add(listaCategotias);
+            CrearTarjeta crearTarjetas = new CrearTarjeta(this._usuarioActual);
+
+            crearTarjetas.AbrirListaTarjetas_Event += new EventHandler(this.AbrirListaTarjetas_Handler);
+            this.panelPrincipal.Controls.Add(crearTarjetas);
         }
+
+        protected void AbrirListaTarjetas_Handler(object sender, EventArgs e) {
+            this.panelPrincipal.Controls.Clear();
+
+            ListaTarjetas listarTarjetas = new ListaTarjetas(this._usuarioActual, this._administrador);
+
+            this.panelPrincipal.Controls.Add(listarTarjetas);
+        }
+
     }
 }
