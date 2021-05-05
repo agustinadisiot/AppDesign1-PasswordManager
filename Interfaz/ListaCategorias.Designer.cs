@@ -31,7 +31,6 @@ namespace Interfaz
         {
             this.TablaCategorias = new System.Windows.Forms.DataGridView();
             this.Catergorias = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.botonEliminar = new System.Windows.Forms.Button();
             this.botonModificar = new System.Windows.Forms.Button();
             this.botonAgregar = new System.Windows.Forms.Button();
             this.labelListadoCategorias = new System.Windows.Forms.Label();
@@ -64,15 +63,6 @@ namespace Interfaz
             this.Catergorias.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Catergorias.Width = 125;
             // 
-            // botonEliminar
-            // 
-            this.botonEliminar.Location = new System.Drawing.Point(282, 369);
-            this.botonEliminar.Name = "botonEliminar";
-            this.botonEliminar.Size = new System.Drawing.Size(75, 23);
-            this.botonEliminar.TabIndex = 1;
-            this.botonEliminar.Text = "Eliminar";
-            this.botonEliminar.UseVisualStyleBackColor = true;
-            // 
             // botonModificar
             // 
             this.botonModificar.Location = new System.Drawing.Point(363, 369);
@@ -85,7 +75,7 @@ namespace Interfaz
             // 
             // botonAgregar
             // 
-            this.botonAgregar.Location = new System.Drawing.Point(201, 369);
+            this.botonAgregar.Location = new System.Drawing.Point(282, 369);
             this.botonAgregar.Name = "botonAgregar";
             this.botonAgregar.Size = new System.Drawing.Size(75, 23);
             this.botonAgregar.TabIndex = 3;
@@ -110,7 +100,6 @@ namespace Interfaz
             this.Controls.Add(this.labelListadoCategorias);
             this.Controls.Add(this.botonAgregar);
             this.Controls.Add(this.botonModificar);
-            this.Controls.Add(this.botonEliminar);
             this.Controls.Add(this.TablaCategorias);
             this.Name = "ListaCategorias";
             this.Size = new System.Drawing.Size(1071, 677);
@@ -125,7 +114,6 @@ namespace Interfaz
 
         private System.Windows.Forms.DataGridView TablaCategorias;
         private System.Windows.Forms.DataGridViewTextBoxColumn Catergorias;
-        private System.Windows.Forms.Button botonEliminar;
         private System.Windows.Forms.Button botonModificar;
         private System.Windows.Forms.Button botonAgregar;
         private System.Windows.Forms.Label labelListadoCategorias;
