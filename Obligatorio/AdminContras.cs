@@ -6,17 +6,15 @@ namespace Obligatorio
 {
     public class AdminContras
     {
-        private bool _noAgregoUsuarios;
         private List<Usuario> _usuarios;
 
         public AdminContras() {
-            this._noAgregoUsuarios = true;
             this._usuarios = new List<Usuario>();
         }
 
         public bool EsListaUsuariosVacia()
         {
-            return this._noAgregoUsuarios;
+            return this._usuarios.Count() == 0;
         }
 
         public void AgregarUsuario(Usuario usuario)
@@ -25,7 +23,6 @@ namespace Obligatorio
                 throw new ObjetoIncompletoException();
             }
             else {
-                this._noAgregoUsuarios = false;
                 this._usuarios.Add(usuario);
             }
         }
