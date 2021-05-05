@@ -75,14 +75,24 @@ namespace Interfaz
 
         private void VentanaPrincipal_Load(object sender, EventArgs e)
         {
-            ListaTarjetas listaTarjetas = new ListaTarjetas(this._usuarioActual, this._administrador);
+            IniciarSesion iniciarSesion = new IniciarSesion(this._administrador);
+
+            iniciarSesion.IniciarSesion_Event += IniciarSesion_Handler;
+            panelPrincipal.Controls.Add(iniciarSesion);
+        }
+
+        private void IniciarSesion_Handler(Usuario aIngresar)
+        {
 
             ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual, this._administrador);
             listaCategorias.AbrirAgregarCategorias_Event += new EventHandler(this.AbrirAgregarCategorias_Handler);
             listaCategorias.AbrirModificarCategorias_Event += new EventHandler(this.AbrirModificarCategorias_Handler);
 
-            panelPrincipal.Controls.Add(listaCategorias);
+            this.panelPrincipal.Controls.Clear();
+
+            this.panelPrincipal.Controls.Add(listaCategorias);
         }
+
 
         protected void AbrirListaCategorias_Handler(object sender, EventArgs e)
         {
@@ -125,7 +135,6 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(crearTarjetas);
         }
 
-            
         protected void AbrirModificarTarjeta_Handler(object sender, EventArgs e)
         {
             this.panelPrincipal.Controls.Clear();

@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompartirClave.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CompartirClave.Designer.cs">
+      <DependentUpon>CompartirClave.cs</DependentUpon>
+    </Compile>
     <Compile Include="CrearTarjeta.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -110,6 +116,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AgregarCategoria.resx">
       <DependentUpon>AgregarCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CompartirClave.resx">
+      <DependentUpon>CompartirClave.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CrearTarjeta.resx">
       <DependentUpon>CrearTarjeta.cs</DependentUpon>
