@@ -45,7 +45,10 @@ namespace Obligatorio
 
         public List<Usuario> GetListaUsuarios()
         {
-             return null;
+            if(this.EsListaUsuariosVacia()) return null;
+            else { 
+                return this._usuarios;
+            }
         }
     }
 }

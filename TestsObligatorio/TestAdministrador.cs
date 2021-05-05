@@ -181,7 +181,18 @@ namespace TestsObligatorio
             Assert.IsNull(administrador.GetListaUsuarios());
         }
 
+        [TestMethod]
+        public void AdministradorGetListaUsuariosNoVacia()
+        {
+            AdminContras administrador = new AdminContras();
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+            administrador.AgregarUsuario(usuario);
 
+            Assert.IsNotNull(administrador.GetListaUsuarios());
+        }
     }
 
 }
