@@ -52,6 +52,12 @@
     <Compile Include="CompartirClave.Designer.cs">
       <DependentUpon>CompartirClave.cs</DependentUpon>
     </Compile>
+    <Compile Include="CrearClave.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrearClave.Designer.cs">
+      <DependentUpon>CrearClave.cs</DependentUpon>
+    </Compile>
     <Compile Include="CrearTarjeta.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -119,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CompartirClave.resx">
       <DependentUpon>CompartirClave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrearClave.resx">
+      <DependentUpon>CrearClave.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CrearTarjeta.resx">
       <DependentUpon>CrearTarjeta.cs</DependentUpon>
