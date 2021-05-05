@@ -124,8 +124,7 @@ namespace Interfaz
             crearTarjetas.AbrirListaTarjetas_Event += new EventHandler(this.AbrirListaTarjetas_Handler);
             this.panelPrincipal.Controls.Add(crearTarjetas);
         }
-
-            
+      
         protected void AbrirModificarTarjeta_Handler(object sender, EventArgs e)
         {
             this.panelPrincipal.Controls.Clear();
@@ -151,5 +150,36 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(listaTarjetas);
         }
 
+        private void botonListaCategorias_Click(object sender, EventArgs e)
+        {
+            ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual, this._administrador);
+            listaCategorias.AbrirAgregarCategorias_Event += new EventHandler(this.AbrirAgregarCategorias_Handler);
+            listaCategorias.AbrirModificarCategorias_Event += new EventHandler(this.AbrirModificarCategorias_Handler);
+
+            this.panelPrincipal.Controls.Clear();
+
+            this.panelPrincipal.Controls.Add(listaCategorias);
+        }
+
+        private void botonListaClaves_Click(object sender, EventArgs e)
+        {
+            ListaClaves listaClaves = new ListaClaves(this._usuarioActual, this._administrador);
+
+            this.panelPrincipal.Controls.Clear();
+
+            this.panelPrincipal.Controls.Add(listaClaves);
+
+        }
+
+        private void botonListaTarjetas_Click(object sender, EventArgs e)
+        {
+            ListaTarjetas listaTarjetas = new ListaTarjetas(this._usuarioActual, this._administrador);
+            listaTarjetas.AbrirCrearTarjeta_Event += new EventHandler(this.AbrirCrearTarjeta_Handler);
+            listaTarjetas.AbrirModificarTarjeta_Event += new EventHandler(this.AbrirModificarTarjeta_Handler);
+
+            this.panelPrincipal.Controls.Clear();
+
+            this.panelPrincipal.Controls.Add(listaTarjetas);
+        }
     }
 }
