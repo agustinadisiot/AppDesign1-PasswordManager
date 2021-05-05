@@ -46,6 +46,7 @@ namespace Interfaz
             this.labelVencimiento = new System.Windows.Forms.Label();
             this.labelNotas = new System.Windows.Forms.Label();
             this.inputNota = new System.Windows.Forms.TextBox();
+            this.labelErrores = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Titulo
@@ -179,10 +180,11 @@ namespace Interfaz
             // 
             // comboBoxCategorias
             // 
+            this.comboBoxCategorias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCategorias.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxCategorias.FormattingEnabled = true;
             this.comboBoxCategorias.Location = new System.Drawing.Point(500, 156);
-            this.comboBoxCategorias.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxCategorias.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxCategorias.Name = "comboBoxCategorias";
             this.comboBoxCategorias.Size = new System.Drawing.Size(329, 33);
             this.comboBoxCategorias.TabIndex = 24;
@@ -191,7 +193,7 @@ namespace Interfaz
             // 
             this.datePickerVencimiento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.datePickerVencimiento.Location = new System.Drawing.Point(500, 427);
-            this.datePickerVencimiento.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.datePickerVencimiento.Margin = new System.Windows.Forms.Padding(4);
             this.datePickerVencimiento.Name = "datePickerVencimiento";
             this.datePickerVencimiento.Size = new System.Drawing.Size(329, 22);
             this.datePickerVencimiento.TabIndex = 25;
@@ -228,10 +230,20 @@ namespace Interfaz
             this.inputNota.Size = new System.Drawing.Size(575, 189);
             this.inputNota.TabIndex = 28;
             // 
+            // labelErrores
+            // 
+            this.labelErrores.AutoSize = true;
+            this.labelErrores.Location = new System.Drawing.Point(83, 712);
+            this.labelErrores.Name = "labelErrores";
+            this.labelErrores.Size = new System.Drawing.Size(85, 17);
+            this.labelErrores.TabIndex = 29;
+            this.labelErrores.Text = "labelErrores";
+            // 
             // CrearTarjeta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.labelErrores);
             this.Controls.Add(this.inputNota);
             this.Controls.Add(this.labelNotas);
             this.Controls.Add(this.labelVencimiento);
@@ -249,7 +261,7 @@ namespace Interfaz
             this.Controls.Add(this.inputNombre);
             this.Controls.Add(this.botonCrear);
             this.Controls.Add(this.Titulo);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CrearTarjeta";
             this.Size = new System.Drawing.Size(1433, 838);
             this.Load += new System.EventHandler(this.CrearTarjeta_Load);
@@ -277,5 +289,6 @@ namespace Interfaz
         private System.Windows.Forms.Label labelVencimiento;
         private System.Windows.Forms.Label labelNotas;
         private System.Windows.Forms.TextBox inputNota;
+        private System.Windows.Forms.Label labelErrores;
     }
 }

@@ -27,7 +27,7 @@ namespace Interfaz
             List<Categoria> lista = this._actual.GetListaCategorias();
             this.comboBoxCategorias.Items.Clear();
             this.CargarComboBox();
-
+            this.labelErrores.Text = "";
 
 
         }
@@ -82,17 +82,17 @@ namespace Interfaz
                 catch (Exception)
                 {
 
-                    //TODO MOSTRAR YA EXISTE TARJETA EN EL SISTEMA O NO EXISTE CATEGORIA
+                    this.labelErrores.Text = "Ya existe la Tarjeta que se intento agregar.";
 
                 }
             }
             catch (Exception) {
-                //TODO TIRAR ERROR
+                this.labelErrores.Text = "Hay un error en los datos ingresados";
             }
 
             if (agrego) {
-            
-                //TODO CERRAR PANEL Y VOLVER A LISTA TARJETAS
+
+                this.volverAListaTarjetas(e);
 
             }
 
@@ -106,13 +106,17 @@ namespace Interfaz
         }
 
 
-        public event EventHandler AbrirListaTarjetas_Event;
-
-        protected void botonCancelar_Click(object sender, EventArgs e)
+        private void botonCancelar_Click(object sender, EventArgs e)
         {
-
-            if (this.AbrirListaTarjetas_Event != null)
-                this.AbrirListaTarjetas_Event(this, e);
+            this.volverAListaTarjetas(e);
         }
+
+
+        public event EventHandler AbrirListaTarjetas_Event;
+        private void volverAListaTarjetas(EventArgs e) {
+            if (this.AbrirListaTarjetas_Event != null)
+                this.AbrirListaTarjetas_Event(this,e);
+        }
+
     }
 }
