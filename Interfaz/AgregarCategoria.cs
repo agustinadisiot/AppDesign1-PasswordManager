@@ -21,6 +21,7 @@ namespace Interfaz
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;
             this._administrador = administradorAgregar;
+            this.labelErrores.Text = "";
         }
 
         private void botonAceptar_Click(object sender, EventArgs e)
@@ -37,19 +38,19 @@ namespace Interfaz
                 try
                 {
                     _usuarioActual.AgregarCategoria(nuevaCategoria);
+
+                    volverAListacategorias(e);
                 }
                 catch
                 {
-                    //Ya existe categoria
+                    this.labelErrores.Text = "Error: Ya existe una categoria con el mismo nombre";
                 }
 
             }
             catch
             {
-                //Datos de la categoria incorrectos
+                this.labelErrores.Text = "Error: El largo del nombre de la categoria no puede ser menor a 5 ni mayor a 25";
             }
-
-            volverAListacategorias(e);
         }
 
         private void botonCancelar_Click(object sender, EventArgs e)

@@ -93,9 +93,7 @@ namespace Interfaz
 
             this.panelForm.Controls.Clear();
 
-            ListaCategorias listarCategorias = new ListaCategorias(this._usuarioActual, this._administrador);
-
-            this.panelForm.Controls.Add(listarCategorias);
+            this.panelForm.Controls.Add(listaCategorias);
         }
 
         protected void AbrirAgregarCategorias_Handler(object sender, EventArgs e)
@@ -117,9 +115,8 @@ namespace Interfaz
 
             this.panelForm.Controls.Clear();
 
-            //ModificarCategoria modificarCategoria = new ModificarCategoria(this._usuarioActual)
 
-            //this.panelForm.Controls.Add(modificarCategoria);
+            this.panelForm.Controls.Add(modificarCategoria);
         }
 
     }

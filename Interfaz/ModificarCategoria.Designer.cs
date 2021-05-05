@@ -34,6 +34,7 @@ namespace Interfaz
             this.labelNombreCategoria = new System.Windows.Forms.Label();
             this.textNombreCategoria = new System.Windows.Forms.TextBox();
             this.labelModificarCategoria = new System.Windows.Forms.Label();
+            this.labelErrores = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // botonCancelar
@@ -83,10 +84,21 @@ namespace Interfaz
             this.labelModificarCategoria.TabIndex = 15;
             this.labelModificarCategoria.Text = "Modificar Categoria";
             // 
+            // labelErrores
+            // 
+            this.labelErrores.AutoSize = true;
+            this.labelErrores.ForeColor = System.Drawing.Color.Red;
+            this.labelErrores.Location = new System.Drawing.Point(141, 267);
+            this.labelErrores.Name = "labelErrores";
+            this.labelErrores.Size = new System.Drawing.Size(64, 13);
+            this.labelErrores.TabIndex = 20;
+            this.labelErrores.Text = "MostrarError";
+            // 
             // ModificarCategoria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.labelErrores);
             this.Controls.Add(this.botonCancelar);
             this.Controls.Add(this.botonAceptar);
             this.Controls.Add(this.labelNombreCategoria);
@@ -106,5 +118,6 @@ namespace Interfaz
         private System.Windows.Forms.Label labelNombreCategoria;
         private System.Windows.Forms.TextBox textNombreCategoria;
         private System.Windows.Forms.Label labelModificarCategoria;
+        private System.Windows.Forms.Label labelErrores;
     }
 }

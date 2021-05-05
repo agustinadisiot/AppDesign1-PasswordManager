@@ -22,6 +22,7 @@ namespace Interfaz
             _usuarioActual = usuarioActual;
             _categoriaActual = categoriaAModificar;
             this.textNombreCategoria.Text = _categoriaActual.Nombre;
+            this.labelErrores.Text = ""; 
         }
 
         private void botonCancelar_Click(object sender, EventArgs e)
@@ -41,20 +42,20 @@ namespace Interfaz
                 try
                 {
                     _usuarioActual.ModificarNombreCategoria(_categoriaActual, categoriaModificada);
+
+                    volverAListacategorias(e);
                 }
                 catch
                 {
-                    //Ya existe nombre categoria
+                    this.labelErrores.Text = "Error: Ya existe una categoria con el mismo nombre";
                 }
                 
 
             }
             catch (Exception)
             {
-                //Nombre de categoria incorrecto
+                this.labelErrores.Text = "Error: El largo del nombre de la categoria no puede ser menor a 5 ni mayor a 25";
             }
-
-            volverAListacategorias(e);
         }
 
         public event EventHandler AbrirListaCategorias_Event;
