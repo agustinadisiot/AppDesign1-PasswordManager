@@ -118,6 +118,7 @@ namespace Interfaz
             // 
             // comboCompartir
             // 
+            this.comboCompartir.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboCompartir.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.comboCompartir.FormattingEnabled = true;
             this.comboCompartir.Location = new System.Drawing.Point(249, 127);

@@ -173,8 +173,51 @@ namespace TestsObligatorio
             Assert.IsFalse(administrador.YaExisteUsuario(buscador));
         }
 
+        [TestMethod]
+        public void AdministradorGetListaUsuariosVacia()
+        {
+            AdminContras administrador = new AdminContras();
 
+            Assert.IsNull(administrador.GetListaUsuarios());
+        }
 
+        [TestMethod]
+        public void AdministradorGetListaUsuariosNoVacia()
+        {
+            AdminContras administrador = new AdminContras();
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+            administrador.AgregarUsuario(usuario);
+
+            Assert.IsNotNull(administrador.GetListaUsuarios());
+        }
+
+        [TestMethod]
+        public void AdministradorGetListaUsuariosEsIgual()
+        {
+            AdminContras administrador = new AdminContras();
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+
+            administrador.AgregarUsuario(usuario1);
+            administrador.AgregarUsuario(usuario2);
+
+            List<Usuario> usuariosComparar = new List<Usuario>
+            {
+                usuario1,
+                usuario2
+            };
+            Assert.AreEqual(true, usuariosComparar.SequenceEqual(administrador.GetListaUsuarios())); ;
+        }
     }
 
 }

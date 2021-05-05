@@ -10,7 +10,7 @@ namespace Obligatorio
     {
         public static string VerificarLargoEntreMinimoYMaximo(string ingreso, int minimo, int maximo)
         {
-            if (ingreso.Length < minimo || ingreso.Length > maximo)
+            if (String.IsNullOrEmpty(ingreso) || ingreso.Length < minimo || ingreso.Length > maximo)
             {
                 throw new LargoIncorrectoException();
             }

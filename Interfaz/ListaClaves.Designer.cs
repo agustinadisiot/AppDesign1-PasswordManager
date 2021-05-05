@@ -39,6 +39,7 @@ namespace Interfaz
             this.botonModificar = new System.Windows.Forms.Button();
             this.botonCompartir = new System.Windows.Forms.Button();
             this.labelTitulo = new System.Windows.Forms.Label();
+            this.botonVer = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tablaClaves)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,7 +54,7 @@ namespace Interfaz
             this.Usuario,
             this.UltimaModificacion});
             this.tablaClaves.Location = new System.Drawing.Point(18, 101);
-            this.tablaClaves.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tablaClaves.Margin = new System.Windows.Forms.Padding(4);
             this.tablaClaves.Name = "tablaClaves";
             this.tablaClaves.ReadOnly = true;
             this.tablaClaves.RowHeadersVisible = false;
@@ -153,10 +154,22 @@ namespace Interfaz
             this.labelTitulo.TabIndex = 17;
             this.labelTitulo.Text = "Listado de Contraseñas";
             // 
+            // botonVer
+            // 
+            this.botonVer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.botonVer.Location = new System.Drawing.Point(379, 942);
+            this.botonVer.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.botonVer.Name = "botonVer";
+            this.botonVer.Size = new System.Drawing.Size(240, 58);
+            this.botonVer.TabIndex = 18;
+            this.botonVer.Text = "Ver";
+            this.botonVer.UseVisualStyleBackColor = true;
+            // 
             // ListaClaves
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.botonVer);
             this.Controls.Add(this.labelTitulo);
             this.Controls.Add(this.botonCompartir);
             this.Controls.Add(this.botonModificar);
@@ -164,7 +177,7 @@ namespace Interfaz
             this.Controls.Add(this.botonAgregar);
             this.Controls.Add(this.tablaClaves);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ListaClaves";
             this.Size = new System.Drawing.Size(1791, 1048);
             ((System.ComponentModel.ISupportInitialize)(this.tablaClaves)).EndInit();
@@ -185,5 +198,6 @@ namespace Interfaz
         private System.Windows.Forms.Button botonModificar;
         private System.Windows.Forms.Button botonCompartir;
         private System.Windows.Forms.Label labelTitulo;
+        private System.Windows.Forms.Button botonVer;
     }
 }

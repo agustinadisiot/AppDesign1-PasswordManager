@@ -24,7 +24,13 @@ namespace Interfaz
             Usuario usuarioPrueba = new Usuario();
             usuarioPrueba.Nombre = "Roberto";
             usuarioPrueba.ContraMaestra = "12345ABCD";
+
+            Usuario usuarioPrueba2 = new Usuario();
+            usuarioPrueba2.Nombre = "Santiago";
+            usuarioPrueba2.ContraMaestra = "ClaveUsuario123";
+
             this._administrador.AgregarUsuario(usuarioPrueba);
+            this._administrador.AgregarUsuario(usuarioPrueba2);
 
 
             Categoria trabajo = new Categoria() 
@@ -69,8 +75,81 @@ namespace Interfaz
 
         private void VentanaPrincipal_Load(object sender, EventArgs e)
         {
-            UserControl listaTarjetas = new ListaTarjetas(this._usuarioActual, this._administrador);
-            panelForm.Controls.Add(listaTarjetas);
+            ListaTarjetas listaTarjetas = new ListaTarjetas(this._usuarioActual, this._administrador);
+
+            ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual, this._administrador);
+            listaCategorias.AbrirAgregarCategorias_Event += new EventHandler(this.AbrirAgregarCategorias_Handler);
+            listaCategorias.AbrirModificarCategorias_Event += new EventHandler(this.AbrirModificarCategorias_Handler);
+
+            panelPrincipal.Controls.Add(listaCategorias);
         }
+
+        protected void AbrirListaCategorias_Handler(object sender, EventArgs e)
+        {
+
+            ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual, this._administrador);
+            listaCategorias.AbrirAgregarCategorias_Event += new EventHandler(this.AbrirAgregarCategorias_Handler);
+            listaCategorias.AbrirModificarCategorias_Event += new EventHandler(this.AbrirModificarCategorias_Handler);
+
+            this.panelPrincipal.Controls.Clear();
+
+            this.panelPrincipal.Controls.Add(listaCategorias);
+        }
+
+        protected void AbrirAgregarCategorias_Handler(object sender, EventArgs e)
+        {
+
+            AgregarCategoria agregarCategoria = new AgregarCategoria(this._usuarioActual, this._administrador);
+            agregarCategoria.AbrirListaCategorias_Event += new EventHandler(this.AbrirListaCategorias_Handler);
+
+            this.panelPrincipal.Controls.Clear();
+
+            this.panelPrincipal.Controls.Add(agregarCategoria);
+        }
+
+        protected void AbrirModificarCategorias_Handler(object sender, EventArgs e)
+        {
+
+            ModificarCategoria modificarCategoria = new ModificarCategoria(this._usuarioActual.GetListaCategorias()[0], this._usuarioActual);
+            modificarCategoria.AbrirListaCategorias_Event += new EventHandler(this.AbrirListaCategorias_Handler);
+
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(modificarCategoria);
+        }
+
+        protected void AbrirCrearTarjeta_Handler(object sender, EventArgs e)
+        {
+            this.panelPrincipal.Controls.Clear();
+            CrearTarjeta crearTarjetas = new CrearTarjeta(this._usuarioActual);
+            crearTarjetas.AbrirListaTarjetas_Event += new EventHandler(this.AbrirListaTarjetas_Handler);
+            this.panelPrincipal.Controls.Add(crearTarjetas);
+        }
+
+            
+        protected void AbrirModificarTarjeta_Handler(object sender, EventArgs e)
+        {
+            this.panelPrincipal.Controls.Clear();
+            Tarjeta tarjetaPrueba1 = new Tarjeta()
+            {
+                Nombre = "Itau",
+                Tipo = "Visa",
+                Numero = "3456567890876543",
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            ModificarTarjeta modificarTarjeta = new ModificarTarjeta(this._usuarioActual, tarjetaPrueba1);
+            modificarTarjeta.AbrirListaTarjetas_Event += new EventHandler(this.AbrirListaTarjetas_Handler);
+            this.panelPrincipal.Controls.Add(modificarTarjeta);
+        }
+
+        protected void AbrirListaTarjetas_Handler(object sender, EventArgs e) {
+            this.panelPrincipal.Controls.Clear();
+
+            ListaTarjetas listaTarjetas = new ListaTarjetas(this._usuarioActual, this._administrador);
+            listaTarjetas.AbrirCrearTarjeta_Event += new EventHandler(this.AbrirCrearTarjeta_Handler);
+            listaTarjetas.AbrirModificarTarjeta_Event += new EventHandler(this.AbrirModificarTarjeta_Handler);
+            this.panelPrincipal.Controls.Add(listaTarjetas);
+        }
+
     }
 }

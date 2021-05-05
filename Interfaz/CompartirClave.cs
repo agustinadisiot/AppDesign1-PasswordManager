@@ -21,8 +21,23 @@ namespace Interfaz
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;
             this._administrador = administradorAgregar;
+            this.CargarComboBox();
         }
 
-        //TODO cargarCombo
+        private void CargarComboBox()
+        {
+            this.comboCompartir.Items.Clear();
+            List<Usuario> lista = this._administrador.GetListaUsuarios();
+
+            foreach (Usuario actual in lista)
+            {
+                if (!_usuarioActual.Equals(actual)) { 
+                string nombre = actual.Nombre;
+                this.comboCompartir.Items.Add(nombre);
+                }
+            }
+
+        }
+
     }
 }
