@@ -173,6 +173,13 @@ namespace TestsObligatorio
             Assert.IsFalse(administrador.YaExisteUsuario(buscador));
         }
 
+        [TestMethod]
+        public void AdministradorGetListaUsuariosVacia()
+        {
+            AdminContras administrador = new AdminContras();
+
+            Assert.IsNull(administrador.GetListaUsuarios());
+        }
 
 
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Obligatorio
 {
@@ -40,6 +41,11 @@ namespace Obligatorio
         public bool YaExisteUsuario(Usuario buscador)
         {
             return this._usuarios.Contains(buscador);
+        }
+
+        public List<Usuario> GetListaUsuarios()
+        {
+             return null;
         }
     }
 }
