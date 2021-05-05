@@ -24,8 +24,6 @@ namespace Interfaz
 
         private void CrearTarjeta_Load(object sender, EventArgs e)
         {
-            List<Categoria> lista = this._actual.GetListaCategorias();
-            this.comboBoxCategorias.Items.Clear();
             this.CargarComboBox();
             this.labelErrores.Text = "";
 
