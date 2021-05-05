@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Obligatorio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,16 @@ namespace Interfaz
 {
     public partial class CompartirClave : UserControl
     {
-        public CompartirClave()
+        private Usuario _usuarioActual;
+        private AdminContras _administrador;
+
+        public CompartirClave(Usuario usuarioAgregar, AdminContras administradorAgregar)
         {
             InitializeComponent();
+            this._usuarioActual = usuarioAgregar;
+            this._administrador = administradorAgregar;
         }
+
+        //TODO cargarCombo
     }
 }
