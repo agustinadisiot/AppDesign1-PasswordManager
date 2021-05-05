@@ -114,16 +114,41 @@ namespace Interfaz
             modificarCategoria.AbrirListaCategorias_Event += new EventHandler(this.AbrirListaCategorias_Handler);
 
             this.panelPrincipal.Controls.Clear();
-
             this.panelPrincipal.Controls.Add(modificarCategoria);
+        }
+
+        protected void AbrirCrearTarjeta_Handler(object sender, EventArgs e)
+        {
+            this.panelPrincipal.Controls.Clear();
+            CrearTarjeta crearTarjetas = new CrearTarjeta(this._usuarioActual);
+            crearTarjetas.AbrirListaTarjetas_Event += new EventHandler(this.AbrirListaTarjetas_Handler);
+            this.panelPrincipal.Controls.Add(crearTarjetas);
+        }
+
+            
+        protected void AbrirModificarTarjeta_Handler(object sender, EventArgs e)
+        {
+            this.panelPrincipal.Controls.Clear();
+            Tarjeta tarjetaPrueba1 = new Tarjeta()
+            {
+                Nombre = "Itau",
+                Tipo = "Visa",
+                Numero = "3456567890876543",
+                Codigo = "321",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            ModificarTarjeta modificarTarjeta = new ModificarTarjeta(this._usuarioActual, tarjetaPrueba1);
+            modificarTarjeta.AbrirListaTarjetas_Event += new EventHandler(this.AbrirListaTarjetas_Handler);
+            this.panelPrincipal.Controls.Add(modificarTarjeta);
         }
 
         protected void AbrirListaTarjetas_Handler(object sender, EventArgs e) {
             this.panelPrincipal.Controls.Clear();
 
-            ListaTarjetas listarTarjetas = new ListaTarjetas(this._usuarioActual, this._administrador);
-
-            this.panelPrincipal.Controls.Add(listarTarjetas);
+            ListaTarjetas listaTarjetas = new ListaTarjetas(this._usuarioActual, this._administrador);
+            listaTarjetas.AbrirCrearTarjeta_Event += new EventHandler(this.AbrirCrearTarjeta_Handler);
+            listaTarjetas.AbrirModificarTarjeta_Event += new EventHandler(this.AbrirModificarTarjeta_Handler);
+            this.panelPrincipal.Controls.Add(listaTarjetas);
         }
 
     }

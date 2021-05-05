@@ -67,19 +67,30 @@ namespace Interfaz
 
         }
 
-        public event EventHandler BotonAgregarTarjetaEvent;
 
         private void buttonAgregar_Click(object sender, EventArgs e)
         {
-
-            if (this.BotonAgregarTarjetaEvent != null) this.BotonAgregarTarjetaEvent(sender, e);
-
-
+            this.AbrirCrearTarjeta(e);
         }
+
+        public event EventHandler AbrirCrearTarjeta_Event;
+        private void AbrirCrearTarjeta(EventArgs e)
+        {
+            if (this.AbrirCrearTarjeta_Event != null)
+                this.AbrirCrearTarjeta_Event(this, e);
+        }
+
+        public event EventHandler AbrirModificarTarjeta_Event;
+        private void AbrirModificarTarjeta(EventArgs e)
+        {
+            if (this.AbrirModificarTarjeta_Event != null)
+                this.AbrirModificarTarjeta_Event(this, e);
+        }
+
 
         private void botonModificar_Click(object sender, EventArgs e)
         {
-           
+            this.AbrirModificarTarjeta(e);
         }
     }
 }

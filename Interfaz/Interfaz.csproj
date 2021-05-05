@@ -82,6 +82,12 @@
     <Compile Include="ModificarCategoria.Designer.cs">
       <DependentUpon>ModificarCategoria.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModificarTarjeta.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ModificarTarjeta.Designer.cs">
+      <DependentUpon>ModificarTarjeta.cs</DependentUpon>
+    </Compile>
     <Compile Include="VentanaPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ListaTarjetas.resx">
       <DependentUpon>ListaTarjetas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModificarTarjeta.resx">
+      <DependentUpon>ModificarTarjeta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModificarCategoria.resx">
       <DependentUpon>ModificarCategoria.cs</DependentUpon>
