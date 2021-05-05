@@ -44,5 +44,29 @@ namespace Interfaz
         {
             this.CargarTabla();
         }
+
+        public event EventHandler AbrirModificarCategorias_Event;
+        public void irAModificarCategoria(EventArgs e)
+        {
+            if (this.AbrirModificarCategorias_Event != null)
+                this.AbrirModificarCategorias_Event(this, e);
+        }
+
+        public event EventHandler AbrirAgregarCategorias_Event;
+        public void irAAgregarCategoria(EventArgs e)
+        {
+            if (this.AbrirAgregarCategorias_Event != null)
+                this.AbrirAgregarCategorias_Event(this, e);
+        }
+
+        private void botonModificar_Click(object sender, EventArgs e)
+        {
+            irAModificarCategoria(e);
+        }
+
+        private void botonAgregar_Click(object sender, EventArgs e)
+        {
+            irAAgregarCategoria(e);
+        }
     }
 }

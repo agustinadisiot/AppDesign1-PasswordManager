@@ -81,6 +81,7 @@ namespace Interfaz
             this.botonModificar.TabIndex = 2;
             this.botonModificar.Text = "Modificar";
             this.botonModificar.UseVisualStyleBackColor = true;
+            this.botonModificar.Click += new System.EventHandler(this.botonModificar_Click);
             // 
             // botonAgregar
             // 
@@ -90,6 +91,7 @@ namespace Interfaz
             this.botonAgregar.TabIndex = 3;
             this.botonAgregar.Text = "Agregar";
             this.botonAgregar.UseVisualStyleBackColor = true;
+            this.botonAgregar.Click += new System.EventHandler(this.botonAgregar_Click);
             // 
             // labelListadoCategorias
             // 
