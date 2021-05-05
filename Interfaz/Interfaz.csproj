@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CrearTarjeta.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrearTarjeta.Designer.cs">
+      <DependentUpon>CrearTarjeta.cs</DependentUpon>
+    </Compile>
     <Compile Include="CrearUsuario.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -72,6 +78,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CrearTarjeta.resx">
+      <DependentUpon>CrearTarjeta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CrearUsuario.resx">
       <DependentUpon>CrearUsuario.cs</DependentUpon>
     </EmbeddedResource>
