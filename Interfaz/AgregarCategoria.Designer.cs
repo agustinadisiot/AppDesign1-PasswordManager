@@ -44,6 +44,7 @@ namespace Interfaz
             this.botonCancelar.TabIndex = 14;
             this.botonCancelar.Text = "Cancelar";
             this.botonCancelar.UseVisualStyleBackColor = true;
+            this.botonCancelar.Click += new System.EventHandler(this.botonCancelar_Click);
             // 
             // botonAceptar
             // 
@@ -82,7 +83,7 @@ namespace Interfaz
             this.labelCrearCategoria.TabIndex = 10;
             this.labelCrearCategoria.Text = "Crear Categoria";
             // 
-            // AgregarCategopria
+            // AgregarCategoria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -91,7 +92,7 @@ namespace Interfaz
             this.Controls.Add(this.labelNombreCategoria);
             this.Controls.Add(this.textNombreCategoria);
             this.Controls.Add(this.labelCrearCategoria);
-            this.Name = "AgregarCategopria";
+            this.Name = "AgregarCategoria";
             this.Size = new System.Drawing.Size(557, 416);
             this.ResumeLayout(false);
             this.PerformLayout();

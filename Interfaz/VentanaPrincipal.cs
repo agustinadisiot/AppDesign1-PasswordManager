@@ -78,9 +78,13 @@ namespace Interfaz
             ListaTarjetas listaTarjetas = new ListaTarjetas(this._usuarioActual, this._administrador);
             ListaCategorias listaCategotias = new ListaCategorias(this._usuarioActual, this._administrador);
 
+            AgregarCategoria agregarCategoria = new AgregarCategoria(this._usuarioActual, this._administrador);
+            agregarCategoria.AbrirListaCategorias_Event += new EventHandler(this.AbrirListaCategorias_Handler);
+
             ModificarCategoria modificarCategoria = new ModificarCategoria(this._usuarioActual.GetListaCategorias()[0], this._usuarioActual);
             modificarCategoria.AbrirListaCategorias_Event += new EventHandler(this.AbrirListaCategorias_Handler);
-            panelForm.Controls.Add(modificarCategoria);
+
+            panelForm.Controls.Add(agregarCategoria);
         }
 
         protected void AbrirListaCategorias_Handler(object sender, EventArgs e)

@@ -26,16 +26,42 @@ namespace Interfaz
         private void botonAceptar_Click(object sender, EventArgs e)
         {
             string nombreCategoria = this.textNombreCategoria.Text;
-
-            Categoria nuevaCategoria = new Categoria
+            try
             {
-                Nombre = nombreCategoria
-            };
+                Categoria nuevaCategoria = new Categoria
+                {
+                    Nombre = nombreCategoria
+                };
 
-            this.textNombreCategoria.Clear();
+                this.textNombreCategoria.Clear();
+                try
+                {
+                    _usuarioActual.AgregarCategoria(nuevaCategoria);
+                }
+                catch
+                {
+                    //Ya existe categoria
+                }
 
-            _usuarioActual.AgregarCategoria(nuevaCategoria);
+            }
+            catch
+            {
+                //Datos de la categoria incorrectos
+            }
 
+            volverAListacategorias(e);
+        }
+
+        private void botonCancelar_Click(object sender, EventArgs e)
+        {
+            volverAListacategorias(e);
+        }
+
+        public event EventHandler AbrirListaCategorias_Event;
+        public void volverAListacategorias(EventArgs e)
+        {
+            if (this.AbrirListaCategorias_Event != null)
+                this.AbrirListaCategorias_Event(this, e);
         }
     }
 }
