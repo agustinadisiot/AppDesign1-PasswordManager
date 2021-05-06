@@ -2060,7 +2060,7 @@ namespace TestsObligatorio
         }
 
         [TestMethod]
-        public void UsuarioGetListaTarjetasEsIgual()
+        public void UsuarioGetListaTarjetasEsIgualConUnaCategoria()
         {
 
             Usuario usuario = new Usuario()
@@ -2108,6 +2108,64 @@ namespace TestsObligatorio
             bool tarjetasContieneGetTarjetas = usuario.GetListaTarjetas().All(tarjetas.Contains);
             bool getTarjetasContieneTarjetas = tarjetas.All(usuario.GetListaTarjetas().Contains);
             Assert.AreEqual(tarjetasContieneGetTarjetas, getTarjetasContieneTarjetas); 
+        }
+
+        [TestMethod]
+        public void UsuarioGetListaTarjetasEsIgualConDosCategorias()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+            Categoria categoria2 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria2);
+
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Numero = "1234123412341234",
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Codigo = "321",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+            categoria1.AgregarTarjeta(tarjeta1);
+
+            Tarjeta tarjeta2 = new Tarjeta()
+            {
+                Numero = "1234567890876543",
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Codigo = "345",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+            categoria2.AgregarTarjeta(tarjeta2);
+
+            List<Tarjeta> tarjetas = new List<Tarjeta>
+            {
+                tarjeta1,
+                tarjeta2
+            };
+
+            bool tarjetasContieneGetTarjetas = usuario.GetListaTarjetas().All(tarjetas.Contains);
+            bool getTarjetasContieneTarjetas = tarjetas.All(usuario.GetListaTarjetas().Contains);
+            Assert.AreEqual(tarjetasContieneGetTarjetas, getTarjetasContieneTarjetas);
         }
     }
 }
