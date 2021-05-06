@@ -2278,4 +2278,71 @@ namespace TestsObligatorio
             Assert.AreEqual(tarjetasContieneGetTarjetas, getTarjetasContieneTarjetas);
         }
     }
+
+    [TestClass]
+    public class TestUsuarioDataBreaches {
+
+        [TestMethod]
+        public void UsuarioGetDataBreachVacioRetornaListaVacia()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+            Categoria categoria2 = new Categoria()
+            {
+                Nombre = "Estudio"
+            };
+
+            usuario.AgregarCategoria(categoria2);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.AgregarContra(clave1);
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Luis88"
+            };
+            categoria1.AgregarContra(clave2);
+
+            Contra clave3 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave3",
+                UsuarioContra = "Hernesto"
+            };
+            categoria2.AgregarContra(clave3);
+            Contra clave4 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Peepo"
+            };
+            categoria2.AgregarContra(clave4);
+
+            List<Contra> clavesBreach = new List<Contra>();
+
+            List<Contra> getListaClaves = usuario.GetListaClaves();
+
+            List<string> dataBreach = new List<string>();
+
+
+            Assert.AreEqual(0, usuario.GetContrasDataBreach(dataBreach).Count);
+        }
+    }
+
 }

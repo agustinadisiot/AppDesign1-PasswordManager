@@ -233,5 +233,10 @@ namespace Obligatorio
             }
             return tarjetasUsuario;
         }
+
+        public List<Contra> GetContrasDataBreach(List<String> dataBreach)
+        {
+            return new List<Contra>();
+        }
     }
 }
