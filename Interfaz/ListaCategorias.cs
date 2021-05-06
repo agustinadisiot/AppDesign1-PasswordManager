@@ -53,11 +53,12 @@ namespace Interfaz
                 this.AbrirModificarCategorias_Event(catActual);
         }
 
-        public event EventHandler AbrirAgregarCategorias_Event;
-        public void irAAgregarCategoria(EventArgs e)
+        public delegate void AbrirAgregarCategotias_Handler();
+        public event AbrirAgregarCategotias_Handler AbrirAgregarCategorias_Event;
+        public void irAAgregarCategoria()
         {
             if (this.AbrirAgregarCategorias_Event != null)
-                this.AbrirAgregarCategorias_Event(this, e);
+                this.AbrirAgregarCategorias_Event();
         }
 
         private void botonModificar_Click(object sender, EventArgs e)
@@ -80,7 +81,7 @@ namespace Interfaz
 
         private void botonAgregar_Click(object sender, EventArgs e)
         {
-            irAAgregarCategoria(e);
+            irAAgregarCategoria();
         }
 
     }
