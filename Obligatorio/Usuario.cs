@@ -216,7 +216,7 @@ namespace Obligatorio
 
             foreach(Categoria categoria in this._categorias)
             {
-                claves.AddRange(categoria.GetListaContras());
+               claves.AddRange(categoria.GetListaContras());
             }
 
             return claves;

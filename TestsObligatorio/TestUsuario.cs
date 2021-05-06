@@ -1231,7 +1231,7 @@ namespace TestsObligatorio
         }
 
         [TestMethod]
-        public void UsuarioGetListaContrasUnaCategoria()
+        public void UsuarioGetListaClavesUnaCategoria()
         {
             Usuario usuario = new Usuario()
             {
@@ -1275,7 +1275,7 @@ namespace TestsObligatorio
         }
 
         [TestMethod]
-        public void UsuarioGetListaContrasDosCategoria()
+        public void UsuarioGetListaClavesDosCategorias()
         {
             Usuario usuario = new Usuario()
             {
@@ -1287,12 +1287,14 @@ namespace TestsObligatorio
                 Nombre = "Personal"
             };
 
+            usuario.AgregarCategoria(categoria1);
+
             Categoria categoria2 = new Categoria()
             {
                 Nombre = "Estudio"
             };
 
-            usuario.AgregarCategoria(categoria1);
+            usuario.AgregarCategoria(categoria2);
 
             Contra clave1 = new Contra()
             {
