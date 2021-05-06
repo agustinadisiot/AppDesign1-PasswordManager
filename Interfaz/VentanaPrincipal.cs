@@ -88,7 +88,7 @@ namespace Interfaz
 
             ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual, this._administrador);
             listaCategorias.AbrirAgregarCategorias_Event += new EventHandler(this.AbrirAgregarCategorias_Handler);
-            listaCategorias.AbrirModificarCategorias_Event += new EventHandler(this.AbrirModificarCategorias_Handler);
+            listaCategorias.AbrirModificarCategorias_Event +=AbrirModificarCategorias_Handler;
 
             this.panelDrawer.Visible = true;
 
@@ -102,7 +102,7 @@ namespace Interfaz
 
             ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual, this._administrador);
             listaCategorias.AbrirAgregarCategorias_Event += new EventHandler(this.AbrirAgregarCategorias_Handler);
-            listaCategorias.AbrirModificarCategorias_Event += new EventHandler(this.AbrirModificarCategorias_Handler);
+            listaCategorias.AbrirModificarCategorias_Event += AbrirModificarCategorias_Handler;
 
             this.panelPrincipal.Controls.Clear();
 
@@ -120,10 +120,10 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(agregarCategoria);
         }
 
-        protected void AbrirModificarCategorias_Handler(object sender, EventArgs e)
+        protected void AbrirModificarCategorias_Handler(Categoria aModificar)
         {
 
-            ModificarCategoria modificarCategoria = new ModificarCategoria(this._usuarioActual.GetListaCategorias()[0], this._usuarioActual);
+            ModificarCategoria modificarCategoria = new ModificarCategoria(aModificar, this._usuarioActual);
             modificarCategoria.AbrirListaCategorias_Event += new EventHandler(this.AbrirListaCategorias_Handler);
 
             this.panelPrincipal.Controls.Clear();
@@ -168,7 +168,7 @@ namespace Interfaz
         {
             ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual, this._administrador);
             listaCategorias.AbrirAgregarCategorias_Event += new EventHandler(this.AbrirAgregarCategorias_Handler);
-            listaCategorias.AbrirModificarCategorias_Event += new EventHandler(this.AbrirModificarCategorias_Handler);
+            listaCategorias.AbrirModificarCategorias_Event += AbrirModificarCategorias_Handler;
 
             this.panelPrincipal.Controls.Clear();
 
