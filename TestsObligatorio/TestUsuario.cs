@@ -2361,4 +2361,207 @@ namespace TestsObligatorio
             Assert.AreEqual(tarjetasContieneGetTarjetas, getTarjetasContieneTarjetas);
         }
     }
+
+    [TestClass]
+    public class TestUsuarioDataBreaches {
+
+        [TestMethod]
+        public void UsuarioGetDataBreachVacioRetornaListaVacia()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+            Categoria categoria2 = new Categoria()
+            {
+                Nombre = "Estudio"
+            };
+
+            usuario.AgregarCategoria(categoria2);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.AgregarContra(clave1);
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Luis88"
+            };
+            categoria1.AgregarContra(clave2);
+
+            Contra clave3 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave3",
+                UsuarioContra = "Hernesto"
+            };
+            categoria2.AgregarContra(clave3);
+            Contra clave4 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Peepo"
+            };
+            categoria2.AgregarContra(clave4);
+
+            List<string> dataBreach = new List<string>();
+
+
+            Assert.AreEqual(0, usuario.GetContrasDataBreach(dataBreach).Count);
+        }
+
+
+        [TestMethod]
+        public void UsuarioGetDataBreachNoVacio()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+            Categoria categoria2 = new Categoria()
+            {
+                Nombre = "Estudio"
+            };
+
+            usuario.AgregarCategoria(categoria2);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.AgregarContra(clave1);
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave2",
+                UsuarioContra = "Luis88"
+            };
+            categoria1.AgregarContra(clave2);
+
+            Contra clave3 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave3",
+                UsuarioContra = "Hernesto"
+            };
+            categoria2.AgregarContra(clave3);
+            Contra clave4 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave4",
+                UsuarioContra = "Peepo"
+            };
+            categoria2.AgregarContra(clave4);
+
+            List<string> dataBreach = new List<string>() {
+                "EstaEsUnaClave1",
+                "EstaEsUnaClave4"
+            };
+
+            List<Contra> esperadas = new List<Contra>() {
+                clave1,
+                clave4
+            };
+
+            List<Contra> retorno = usuario.GetContrasDataBreach(dataBreach);
+
+            bool esperadasContieneRetorno = retorno.All(esperadas.Contains);
+            bool retornoContieneEsperadas = esperadas.All(retorno.Contains);
+            Assert.IsTrue(esperadasContieneRetorno && retornoContieneEsperadas);
+        }
+
+
+        [TestMethod]
+        public void UsuarioGetDataBreachContrasNoExistentes()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+            Categoria categoria2 = new Categoria()
+            {
+                Nombre = "Estudio"
+            };
+
+            usuario.AgregarCategoria(categoria2);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.AgregarContra(clave1);
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave2",
+                UsuarioContra = "Luis88"
+            };
+            categoria1.AgregarContra(clave2);
+
+            Contra clave3 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave3",
+                UsuarioContra = "Hernesto"
+            };
+            categoria2.AgregarContra(clave3);
+            Contra clave4 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave4",
+                UsuarioContra = "Peepo"
+            };
+            categoria2.AgregarContra(clave4);
+
+            List<string> dataBreach = new List<string>() {
+                "ContraNoContenida",
+                "ContraTampocoContenida",
+                "EstaEsUnaClave3"
+            };
+
+            List<Contra> esperadas = new List<Contra>() {
+                clave3
+            };
+
+            List<Contra> retorno = usuario.GetContrasDataBreach(dataBreach);
+
+            bool esperadasContieneRetorno = retorno.All(esperadas.Contains);
+            bool retornoContieneEsperadas = esperadas.All(retorno.Contains);
+            Assert.IsTrue(esperadasContieneRetorno && retornoContieneEsperadas);
+        }
+    }
+
 }
