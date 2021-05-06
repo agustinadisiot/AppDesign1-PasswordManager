@@ -1382,6 +1382,48 @@ namespace TestsObligatorio
 
             Assert.AreEqual(cantidadRojas, usuario.GetCantidadColor("rojo"));
         }
+
+        [TestMethod]
+        public void UsuarioGetCantidadColor()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.AgregarContra(clave1);
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Luis88"
+            };
+            categoria1.AgregarContra(clave2);
+
+
+            List<Contra> getListaClaves = usuario.GetListaClaves();
+            string color = "verde claro";
+            int cantidadColor = 0;
+            foreach (Contra clave in getListaClaves)
+            {
+                if (clave.GetNivelSeguridad() == color) cantidadColor++;
+            }
+
+            Assert.AreEqual(cantidadColor, usuario.GetCantidadColor(color));
+        }
     }
 
     [TestClass]
