@@ -49,7 +49,7 @@
     <Compile Include="CompartirClave.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CompartirClave.Designer.cs">
+    <Compile Include="CompartirClave.designer.cs">
       <DependentUpon>CompartirClave.cs</DependentUpon>
     </Compile>
     <Compile Include="CrearClave.cs">
