@@ -83,5 +83,12 @@ namespace Obligatorio
             bool mismoUsuario = aIgualar.UsuarioContra == this.UsuarioContra;
             return mismoSitio && mismoUsuario;
         }
+
+        public DateTime GetFechaModificacion()
+        {
+            DateTime retorno = new System.DateTime().Date;
+            return retorno;
+
+        }
     }
 }

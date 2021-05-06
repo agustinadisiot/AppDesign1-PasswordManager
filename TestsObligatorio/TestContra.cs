@@ -306,6 +306,15 @@ namespace TestsObligatorio
             };
             Assert.AreEqual(contra1, contra2);
         }
+
+        [TestMethod]
+        public void ContraGetFechaModificacionNuevaContra() {
+
+            Contra evaluar = new Contra();
+
+            DateTime actual = new System.DateTime().Date;
+            Assert.AreEqual(actual, evaluar.GetFechaModificacion());
+        }
     }
 
 }
