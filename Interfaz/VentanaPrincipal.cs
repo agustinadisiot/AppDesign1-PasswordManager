@@ -77,6 +77,8 @@ namespace Interfaz
         {
             IniciarSesion iniciarSesion = new IniciarSesion(this._administrador);
 
+            this.panelDrawer.Visible = false;
+
             iniciarSesion.IniciarSesion_Event += IniciarSesion_Handler;
             panelPrincipal.Controls.Add(iniciarSesion);
         }
@@ -88,11 +90,12 @@ namespace Interfaz
             listaCategorias.AbrirAgregarCategorias_Event += new EventHandler(this.AbrirAgregarCategorias_Handler);
             listaCategorias.AbrirModificarCategorias_Event += new EventHandler(this.AbrirModificarCategorias_Handler);
 
+            this.panelDrawer.Visible = true;
+
             this.panelPrincipal.Controls.Clear();
 
             this.panelPrincipal.Controls.Add(listaCategorias);
         }
-
 
         protected void AbrirListaCategorias_Handler(object sender, EventArgs e)
         {
@@ -191,6 +194,19 @@ namespace Interfaz
             this.panelPrincipal.Controls.Clear();
 
             this.panelPrincipal.Controls.Add(listaTarjetas);
+        }
+
+        private void botonCerrarSesion_Click(object sender, EventArgs e)
+        {
+            IniciarSesion iniciarSesion = new IniciarSesion(this._administrador);
+            iniciarSesion.IniciarSesion_Event += IniciarSesion_Handler;
+
+            this.panelDrawer.Visible = false;
+
+            this.panelPrincipal.Controls.Clear();
+
+            panelPrincipal.Controls.Add(iniciarSesion);
+
         }
     }
 }
