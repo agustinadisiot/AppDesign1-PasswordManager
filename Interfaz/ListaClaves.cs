@@ -52,5 +52,69 @@ namespace Interfaz
                 this.tablaClaves.Rows.Add(categoriaActual, sitio, usuario, ultimaModificacion);
             }
         }
+
+        public delegate void irAVerClave_Handler(Usuario actual);
+
+        public event irAVerClave_Handler AbrirVerClave_Event;
+        public void irAVerClave(Usuario usuarioClaves)
+        {
+            if (this.AbrirVerClave_Event != null)
+                this.AbrirVerClave_Event(usuarioClaves);
+        }
+
+        public event EventHandler AbrirCompartirClave_Event;
+        public void irACompartirClave(EventArgs e)
+        {
+            if (this.AbrirCompartirClave_Event != null)
+                this.AbrirCompartirClave_Event(this, e);
+        }
+
+        public event EventHandler AbrirAgregarClave_Event;
+        public void irAAgregarClave(EventArgs e)
+        {
+            if (this.AbrirAgregarClave_Event != null)
+                this.AbrirAgregarClave_Event(this, e);
+        }
+
+        public event EventHandler AbrirEliminarClave_Event;
+        public void irAEliminarClave(EventArgs e)
+        {
+            if (this.AbrirEliminarClave_Event != null)
+                this.AbrirEliminarClave_Event(this, e);
+        }
+
+        public event EventHandler AbrirModificarClave_Event;
+        public void irAModificarClave(EventArgs e)
+        {
+            if (this.AbrirModificarClave_Event != null)
+                this.AbrirModificarClave_Event(this, e);
+        }
+
+
+        private void botonVer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void botonCompartir_Click(object sender, EventArgs e)
+        {
+            irACompartirClave(e);
+        }
+
+        private void botonAgregar_Click(object sender, EventArgs e)
+        {
+            irAAgregarClave(e);
+        }
+
+        private void botonEliminar_Click(object sender, EventArgs e)
+        {
+            irAEliminarClave(e);
+        }
+
+        private void botonModificar_Click(object sender, EventArgs e)
+        {
+            irAModificarClave(e);
+        }
+
     }
 }
