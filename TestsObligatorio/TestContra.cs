@@ -313,7 +313,22 @@ namespace TestsObligatorio
             Contra evaluar = new Contra();
 
             DateTime actual = new System.DateTime().Date;
-            Assert.AreEqual(actual, evaluar.GetFechaModificacion());
+            Assert.AreEqual(actual, evaluar.FechaModificacion);
+        }
+
+
+        [TestMethod]
+        public void ContraGetFechaModificacionContraVieja()
+        {
+
+            Contra evaluar = new Contra() {
+                Clave = "12345ABCD"
+            };
+            evaluar.FechaModificacion = new DateTime(2000, 1, 1);
+
+            evaluar.Clave = "ContraNueva";
+            DateTime actual = new System.DateTime().Date;
+            Assert.AreEqual(actual, evaluar.FechaModificacion);
         }
     }
 

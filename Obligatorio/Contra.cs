@@ -8,6 +8,7 @@ namespace Obligatorio
         private string _clave;
         private string _sitio;
         private string _nota;
+        private DateTime _fechaModificacion;
         private const int _largoUsuarioYClaveMinimo = 5;
         private const int _largoUsuarioYClaveMaximo = 25;
         private const int _largoSitioMinimo = 3;
@@ -24,7 +25,20 @@ namespace Obligatorio
         public string Clave
         {
             get { return _clave; }
-            set { this._clave = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoUsuarioYClaveMinimo, _largoUsuarioYClaveMaximo); }
+            set { CambioClave(value); }
+        }
+
+
+        private void CambioClave(string ingreso) {
+
+            try
+            {
+                this._clave = VerificadoraString.VerificarLargoEntreMinimoYMaximo(ingreso, _largoUsuarioYClaveMinimo, _largoUsuarioYClaveMaximo);
+                this.ActualizarFechaModificacion();
+            }
+            catch (LargoIncorrectoException) {
+                throw new LargoIncorrectoException();
+            }
         }
 
         public string Sitio
@@ -38,6 +52,13 @@ namespace Obligatorio
             get { return _nota; }
             set { this._nota = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNotaMinimo, _largoNotaMaximo); }
         }
+
+        public DateTime FechaModificacion
+        {
+            get { return this._fechaModificacion; }
+            set { this._fechaModificacion = value; }
+        }
+
 
         public string GetNivelSeguridad()
         {
@@ -84,11 +105,9 @@ namespace Obligatorio
             return mismoSitio && mismoUsuario;
         }
 
-        public DateTime GetFechaModificacion()
+        private void ActualizarFechaModificacion()
         {
-            DateTime retorno = new System.DateTime().Date;
-            return retorno;
-
+            this._fechaModificacion = new System.DateTime().Date;
         }
     }
 }
