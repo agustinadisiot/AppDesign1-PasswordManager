@@ -209,5 +209,29 @@ namespace Obligatorio
             aModificar.Nota = tarjetaNueva.Nota;
             aModificar.Vencimiento = tarjetaNueva.Vencimiento;
         }
+
+        public List<Contra> GetListaClaves()
+        {
+            List<Contra> claves = new List<Contra>();
+
+            foreach(Categoria categoria in this._categorias)
+            {
+               claves.AddRange(categoria.GetListaContras());
+            }
+
+            return claves;
+
+        }
+
+        public List<Tarjeta> GetListaTarjetas()
+        {
+            List<Categoria> categorias = this.GetListaCategorias();
+            List<Tarjeta> tarjetasUsuario = new List<Tarjeta>();
+            foreach(Categoria categoria in categorias)
+            {
+                tarjetasUsuario.AddRange(categoria.GetListaTarjetas());
+            }
+            return tarjetasUsuario;
+        }
     }
 }

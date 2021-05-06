@@ -102,7 +102,7 @@ namespace Obligatorio
             Contra aIgualar = (Contra)objeto;
             bool mismoSitio = aIgualar.Sitio.ToUpper() == this.Sitio.ToUpper();
             bool mismoUsuario = aIgualar.UsuarioContra == this.UsuarioContra;
-            return mismoSitio && mismoUsuario;
+            return (mismoSitio && mismoUsuario);
         }
 
         private void ActualizarFechaModificacion()

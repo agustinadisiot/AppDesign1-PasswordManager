@@ -10,7 +10,7 @@ namespace Obligatorio
     {
         static void Main(string[] args)
         {
-            
+
         }
     }
 }

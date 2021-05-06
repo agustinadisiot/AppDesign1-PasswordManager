@@ -1230,7 +1230,117 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.ModificarContra(contra1, duplicada));
         }
 
+        [TestMethod]
+        public void UsuarioGetListaClavesUnaCategoria()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
 
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.AgregarContra(clave1);
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Luis88"
+            };
+            categoria1.AgregarContra(clave2);
+
+            List<Contra> claves = new List<Contra>
+            {
+                clave1,
+                clave2
+            };
+
+            List<Contra> getListaClaves = usuario.GetListaClaves();
+
+            bool getListaClavesContieneLasClaves = getListaClaves.All(claves.Contains);
+            bool lasClavesContieneGetListaClaves = claves.All(getListaClaves.Contains);
+
+            Assert.AreEqual(getListaClavesContieneLasClaves, lasClavesContieneGetListaClaves);
+        }
+
+        [TestMethod]
+        public void UsuarioGetListaClavesDosCategorias()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+            Categoria categoria2 = new Categoria()
+            {
+                Nombre = "Estudio"
+            };
+
+            usuario.AgregarCategoria(categoria2);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.AgregarContra(clave1);
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Luis88"
+            };
+            categoria1.AgregarContra(clave2);
+
+            Contra clave3 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave3",
+                UsuarioContra = "Hernesto"
+            };
+            categoria2.AgregarContra(clave3);
+            Contra clave4 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Peepo"
+            };
+            categoria2.AgregarContra(clave4);
+
+            List<Contra> claves = new List<Contra>
+            {
+                clave1,
+                clave2,
+                clave3,
+                clave4
+            };
+
+            List<Contra> getListaClaves = usuario.GetListaClaves();
+
+            bool getListaClavesContieneLasClaves = getListaClaves.All(claves.Contains);
+            bool lasClavesContieneGetListaClaves = claves.All(getListaClaves.Contains);
+
+            Assert.AreEqual(getListaClavesContieneLasClaves, lasClavesContieneGetListaClaves);
+        }
     }
 
     [TestClass]
@@ -2044,6 +2154,128 @@ namespace TestsObligatorio
                 Numero = numeroTarjetaNueva
             };
             Assert.AreEqual(tarjetaNueva, usuario.GetTarjeta(buscadora));
+        }
+
+        [TestMethod]
+        public void UsuarioGetListaTarjetasVacia()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+            int cantidadTarjetas = usuario.GetListaTarjetas().Count();
+
+            Assert.IsTrue(cantidadTarjetas == 0);
+        }
+
+        [TestMethod]
+        public void UsuarioGetListaTarjetasEsIgualConUnaCategoria()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Numero = "1234123412341234",
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Codigo = "321",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+            categoria1.AgregarTarjeta(tarjeta1);
+
+            Tarjeta tarjeta2 = new Tarjeta()
+            {
+                Numero = "1234567890876543",
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Codigo = "345",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+            categoria1.AgregarTarjeta(tarjeta2);
+
+            List<Tarjeta> tarjetas = new List<Tarjeta>
+            {
+                tarjeta1,
+                tarjeta2
+            };
+
+            bool tarjetasContieneGetTarjetas = usuario.GetListaTarjetas().All(tarjetas.Contains);
+            bool getTarjetasContieneTarjetas = tarjetas.All(usuario.GetListaTarjetas().Contains);
+            Assert.AreEqual(tarjetasContieneGetTarjetas, getTarjetasContieneTarjetas); 
+        }
+
+        [TestMethod]
+        public void UsuarioGetListaTarjetasEsIgualConDosCategorias()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+            Categoria categoria2 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria2);
+
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Numero = "1234123412341234",
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Codigo = "321",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+            categoria1.AgregarTarjeta(tarjeta1);
+
+            Tarjeta tarjeta2 = new Tarjeta()
+            {
+                Numero = "1234567890876543",
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Codigo = "345",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+            categoria2.AgregarTarjeta(tarjeta2);
+
+            List<Tarjeta> tarjetas = new List<Tarjeta>
+            {
+                tarjeta1,
+                tarjeta2
+            };
+
+            bool tarjetasContieneGetTarjetas = usuario.GetListaTarjetas().All(tarjetas.Contains);
+            bool getTarjetasContieneTarjetas = tarjetas.All(usuario.GetListaTarjetas().Contains);
+            Assert.AreEqual(tarjetasContieneGetTarjetas, getTarjetasContieneTarjetas);
         }
     }
 }
