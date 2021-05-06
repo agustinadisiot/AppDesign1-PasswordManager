@@ -9,6 +9,7 @@ namespace Obligatorio
         private List<Categoria> _categorias;
         private string _nombre;
         private string _contraMaestra;
+        private List<Contra> _clavesCompartidasConmigo;
         private const int _largoNombreYContraMinimo = 5;
         private const int _largoNombreYContraMaximo = 25;
 
@@ -232,6 +233,11 @@ namespace Obligatorio
                 tarjetasUsuario.AddRange(categoria.GetListaTarjetas());
             }
             return tarjetasUsuario;
+        }
+
+        public void compartirClave(Usuario usuario2, Contra clave1)
+        {
+            throw new NotImplementedException();
         }
     }
 }
