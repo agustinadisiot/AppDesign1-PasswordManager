@@ -45,7 +45,8 @@ namespace Interfaz
                     Usuario verdadero = this._administrador.GetUsuario(iniciar.Nombre);
                     if (verdadero.ContraMaestra == iniciar.ContraMaestra)
                     {
-                        this.EnviarIniciarSesion(iniciar);
+                       
+                        this.EnviarIniciarSesion(verdadero);
                     }
                     else {
                         this.labelErrores.Text = "La contraseña es incorrecta.";
