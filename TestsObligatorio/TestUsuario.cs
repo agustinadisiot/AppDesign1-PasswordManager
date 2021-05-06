@@ -389,9 +389,9 @@ namespace TestsObligatorio
             {
                 Nombre = "Usuario"
             };
+            int cantCategorias = usuario.GetListaCategorias().Count();
 
-
-            Assert.IsNull(usuario.GetListaCategorias());
+            Assert.IsTrue(cantCategorias == 0);
         }
 
         [TestMethod]

@@ -138,15 +138,7 @@ namespace Obligatorio
 
         public List<Categoria> GetListaCategorias()
         {
-
-
-            if (this.EsListaCategoriasVacia())
-            {
-                return null;
-            }
-            else {
-                return this._categorias;
-            }
+            return this._categorias;
         }
 
         public Contra GetContra(Contra contraBuscadora)
