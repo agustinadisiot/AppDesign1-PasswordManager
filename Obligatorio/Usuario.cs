@@ -212,8 +212,13 @@ namespace Obligatorio
 
         public List<Tarjeta> GetListaTarjetas()
         {
-            List<Tarjeta> lista = new List<Tarjeta>();
-            return lista;
+            List<Categoria> categorias = this.GetListaCategorias();
+            List<Tarjeta> tarjetasUsuario = new List<Tarjeta>();
+            foreach(Categoria categoria in categorias)
+            {
+                tarjetasUsuario.AddRange(categoria.GetListaTarjetas());
+            }
+            return tarjetasUsuario;
         }
     }
 }
