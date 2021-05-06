@@ -236,6 +236,9 @@ namespace Obligatorio
 
         public List<Contra> GetContrasDataBreach(List<String> dataBreach)
         {
+            List<Contra> completa = this.GetListaClaves();
+            
+            return completa.FindAll(buscadora=> dataBreach.Contains(buscadora.Clave));
         }
     }
 }

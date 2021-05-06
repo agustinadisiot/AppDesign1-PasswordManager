@@ -2373,7 +2373,7 @@ namespace TestsObligatorio
             Contra clave2 = new Contra()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
+                Clave = "EstaEsUnaClave2",
                 UsuarioContra = "Luis88"
             };
             categoria1.AgregarContra(clave2);
@@ -2388,7 +2388,7 @@ namespace TestsObligatorio
             Contra clave4 = new Contra()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
+                Clave = "EstaEsUnaClave4",
                 UsuarioContra = "Peepo"
             };
             categoria2.AgregarContra(clave4);
