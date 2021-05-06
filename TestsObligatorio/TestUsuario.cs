@@ -1266,7 +1266,12 @@ namespace TestsObligatorio
                 clave2
             };
 
-            Assert.IsTrue(usuario.GetListaClaves().All(claves.Contains)); ;
+            List<Contra> getListaClaves = usuario.GetListaClaves();
+
+            bool getListaClavesContieneLasClaves = getListaClaves.All(claves.Contains);
+            bool lasClavesContieneGetListaClaves = claves.All(getListaClaves.Contains);
+
+            Assert.AreEqual(getListaClavesContieneLasClaves, lasClavesContieneGetListaClaves);
         }
 
         [TestMethod]
@@ -1327,7 +1332,12 @@ namespace TestsObligatorio
                 clave4
             };
 
-            Assert.IsTrue(usuario.GetListaClaves().All(claves.Contains)); ;
+            List<Contra> getListaClaves = usuario.GetListaClaves();
+
+            bool getListaClavesContieneLasClaves = getListaClaves.All(claves.Contains);
+            bool lasClavesContieneGetListaClaves = claves.All(getListaClaves.Contains);
+
+            Assert.AreEqual(getListaClavesContieneLasClaves, lasClavesContieneGetListaClaves);
         }
     }
 
