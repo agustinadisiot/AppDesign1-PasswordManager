@@ -2045,5 +2045,18 @@ namespace TestsObligatorio
             };
             Assert.AreEqual(tarjetaNueva, usuario.GetTarjeta(buscadora));
         }
+
+        [TestMethod]
+        public void UsuarioGetListaTarjetasVacia()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+            int cantidadTarjetas = usuario.GetListaTarjetas().Count();
+
+            Assert.IsTrue(cantidadTarjetas == 0);
+        }
     }
 }

@@ -209,5 +209,11 @@ namespace Obligatorio
             aModificar.Nota = tarjetaNueva.Nota;
             aModificar.Vencimiento = tarjetaNueva.Vencimiento;
         }
+
+        public List<Tarjeta> GetListaTarjetas()
+        {
+            List<Tarjeta> lista = new List<Tarjeta>();
+            return lista;
+        }
     }
 }
