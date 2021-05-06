@@ -1268,6 +1268,67 @@ namespace TestsObligatorio
 
             Assert.IsTrue(usuario.GetListaClaves().All(claves.Contains)); ;
         }
+
+        [TestMethod]
+        public void UsuarioGetListaContrasDosCategoria()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            Categoria categoria2 = new Categoria()
+            {
+                Nombre = "Estudio"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.AgregarContra(clave1);
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Luis88"
+            };
+            categoria1.AgregarContra(clave2);
+
+            Contra clave3 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave3",
+                UsuarioContra = "Hernesto"
+            };
+            categoria2.AgregarContra(clave3);
+            Contra clave4 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Peepo"
+            };
+            categoria2.AgregarContra(clave4);
+
+            List<Contra> claves = new List<Contra>
+            {
+                clave1,
+                clave2,
+                clave3,
+                clave4
+            };
+
+            Assert.IsTrue(usuario.GetListaClaves().All(claves.Contains)); ;
+        }
     }
 
     [TestClass]
