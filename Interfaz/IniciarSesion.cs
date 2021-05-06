@@ -34,19 +34,26 @@ namespace Interfaz
             {
 
 
-                Usuario nuevo = new Usuario()
+                Usuario iniciar = new Usuario()
                 {
                     Nombre = this.inputUsuario.Text,
                     ContraMaestra = this.inputContra.Text
                 };
 
                 try {
-                    this._administrador.AgregarUsuario(nuevo);
-                    this.EnviarIniciarSesion(nuevo);
+                    
+                    Usuario verdadero = this._administrador.GetUsuario(iniciar.Nombre);
+                    if (verdadero.ContraMaestra == iniciar.ContraMaestra)
+                    {
+                        this.EnviarIniciarSesion(iniciar);
+                    }
+                    else {
+                        this.labelErrores.Text = "La contraseña es incorrecta.";
+                    }
 
                 }
                 catch (Exception) {
-                    this.labelErrores.Text = "Ya existe el Usuario";
+                    this.labelErrores.Text = "No existe el Usuario.";
                 }
 
             }
