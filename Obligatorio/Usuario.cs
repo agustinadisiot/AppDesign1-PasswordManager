@@ -16,6 +16,7 @@ namespace Obligatorio
         {
             this._categorias = new List<Categoria>();
             this.Conmigo = new List<ClaveCompartida>();
+            this.QueComparto = new List<ClaveCompartida>();
         }
 
         public string Nombre 
@@ -27,6 +28,7 @@ namespace Obligatorio
             get { return this._contraMaestra; }
             set { this._contraMaestra = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreYContraMinimo, _largoNombreYContraMaximo);}
         }
+        public List<ClaveCompartida> QueComparto { get; set; }
 
         public List<ClaveCompartida> Conmigo { get; set; }
 
@@ -243,6 +245,8 @@ namespace Obligatorio
             Contra claveACompartir = claveCompartida.Clave;
 
             if (!this.YaExisteContra(claveACompartir)) throw new ObjetoInexistenteException();
+
+            this.QueComparto.Add(claveCompartida);
 
             claveACompartir.EsCompartida = true;
 
