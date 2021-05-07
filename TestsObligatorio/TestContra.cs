@@ -356,7 +356,7 @@ namespace TestsObligatorio
         {
             ClaveAGenerar parametros = new ClaveAGenerar()
             {
-                Largo = 10,
+                Largo = 5,
                 IncluirMayusculas = true,
                 IncluirMinusculas = false,
                 IncluirDigitos = false,
@@ -368,6 +368,24 @@ namespace TestsObligatorio
             string resultado = random.Clave;
             bool esSoloMayuscula = resultado.All(caracter => VerificadoraString.EsMayuscula(caracter));
             Assert.IsTrue(esSoloMayuscula);
+        }
+
+        [TestMethod]
+        public void ClaveGeneradaLargoCorrecto()
+        {
+            ClaveAGenerar parametros = new ClaveAGenerar()
+            {
+                Largo = 10,
+                IncluirMayusculas = true,
+                IncluirMinusculas = false,
+                IncluirDigitos = false,
+                IncluirSimbolos = false
+            };
+
+            Contra random = new Contra();
+            random.GenerarClave(parametros);
+            string resultado = random.Clave;
+            Assert.AreEqual(10, resultado.Length);
         }
     }
 

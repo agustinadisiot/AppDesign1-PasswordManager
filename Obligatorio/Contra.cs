@@ -114,7 +114,12 @@ namespace Obligatorio
         {
             if (parametros.IncluirMayusculas)
             {
-                this.Clave = "ABCDE";
+                string resultado = "";
+                for(int i = 0; i< parametros.Largo; i++)
+                {
+                    resultado += "A";
+                }
+                this.Clave = resultado;
             }
             else
             {
