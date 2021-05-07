@@ -13,10 +13,11 @@ namespace Obligatorio
         private const int _largoNombreYContraMinimo = 5;
         private const int _largoNombreYContraMaximo = 25;
 
-
         public Usuario()
         {
             this._categorias = new List<Categoria>();
+            this.CompartidasConmigo = new List<ClaveCompartida>();
+            this.CompartidasPorMi = new List<ClaveCompartida>();
         }
 
         public string Nombre 
@@ -28,6 +29,9 @@ namespace Obligatorio
             get { return this._contraMaestra; }
             set { this._contraMaestra = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreYContraMinimo, _largoNombreYContraMaximo);}
         }
+        public List<ClaveCompartida> CompartidasPorMi { get; set; }
+
+        public List<ClaveCompartida> CompartidasConmigo { get; set; }
 
         public bool ValidarIgualContraMaestra(string contraMaestraUsuario)
         {
@@ -232,6 +236,35 @@ namespace Obligatorio
                 tarjetasUsuario.AddRange(categoria.GetListaTarjetas());
             }
             return tarjetasUsuario;
+        }
+
+        public void CompartirClave(ClaveCompartida aCompartir)
+        {
+
+            Usuario usuarioACompartir = aCompartir.Usuario;
+            Contra claveACompartir = aCompartir.Clave;
+
+            if (!this.YaExisteContra(claveACompartir)) throw new ObjetoInexistenteException();
+
+            claveACompartir = this.GetContra(claveACompartir);
+
+            claveACompartir.EsCompartida = true;
+
+            ClaveCompartida guardar = new ClaveCompartida()
+            {
+                Usuario = usuarioACompartir,
+                Clave = claveACompartir
+            };
+
+            this.CompartidasPorMi.Add(guardar);
+
+            ClaveCompartida enviar = new ClaveCompartida()
+            {
+                Usuario = this,
+                Clave = claveACompartir
+            };
+
+            usuarioACompartir.CompartidasConmigo.Add(enviar);
         }
 
         public int GetCantidadColor(string color)
