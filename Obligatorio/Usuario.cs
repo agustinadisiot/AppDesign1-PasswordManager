@@ -29,6 +29,7 @@ namespace Obligatorio
             get { return this._contraMaestra; }
             set { this._contraMaestra = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreYContraMinimo, _largoNombreYContraMaximo);}
         }
+
         public List<ClaveCompartida> CompartidasPorMi { get; set; }
 
         public List<ClaveCompartida> CompartidasConmigo { get; set; }
@@ -141,7 +142,7 @@ namespace Obligatorio
             List<ClaveCompartida> clavesCompartidas = this.CompartidasPorMi.FindAll(buscadora => buscadora.Clave.Equals(aBorrar));
             foreach(ClaveCompartida aDejarDeCompartir in clavesCompartidas)
             {
-                this.dejarDeCompartir(aDejarDeCompartir);
+                this.DejarDeCompartir(aDejarDeCompartir);
             }
 
             Categoria contieneContraABorrar = this._categorias.First(categoria => categoria.YaExisteContra(aBorrar));
@@ -314,7 +315,7 @@ namespace Obligatorio
 
         }
 
-        public void dejarDeCompartir(ClaveCompartida aDejarDeCompartir)
+        public void DejarDeCompartir(ClaveCompartida aDejarDeCompartir)
         {
             Usuario usuarioADejarDeCompartir = aDejarDeCompartir.Usuario;
             Contra claveADejarDeCompartir = this.GetContra(aDejarDeCompartir.Clave);

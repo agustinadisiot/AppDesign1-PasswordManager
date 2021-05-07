@@ -1789,7 +1789,7 @@ namespace TestsObligatorio
                 Clave = claveNoCompartida
             };
 
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario1.dejarDeCompartir(claveQueNoComparto));
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario1.DejarDeCompartir(claveQueNoComparto));
         }
 
         [TestMethod]
@@ -1837,7 +1837,7 @@ namespace TestsObligatorio
 
             usuario1.CompartirClave(claveACompartir1);
 
-            usuario1.dejarDeCompartir(claveACompartir1);
+            usuario1.DejarDeCompartir(claveACompartir1);
 
             Assert.IsFalse(usuario1.CompartidasPorMi.Contains(claveACompartir1));
         }
@@ -1893,7 +1893,7 @@ namespace TestsObligatorio
                 Clave = clave1
             };
 
-            usuario1.dejarDeCompartir(claveACompartir1);
+            usuario1.DejarDeCompartir(claveACompartir1);
 
             Assert.IsFalse(usuario2.CompartidasConmigo.Contains(claveQueCompartieron));
         }
@@ -1948,7 +1948,7 @@ namespace TestsObligatorio
                 Clave = clave1
             };
 
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario1.dejarDeCompartir(claveQueNoComparto));
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario1.DejarDeCompartir(claveQueNoComparto));
         }
 
         [TestMethod]
@@ -1989,7 +1989,7 @@ namespace TestsObligatorio
 
             usuario1.CompartirClave(claveACompartir1);
 
-            usuario1.dejarDeCompartir(claveACompartir1);
+            usuario1.DejarDeCompartir(claveACompartir1);
 
             Assert.IsFalse(clave1.EsCompartida);
         }
@@ -2046,7 +2046,7 @@ namespace TestsObligatorio
 
             usuario1.CompartirClave(claveACompartir2);
 
-            usuario1.dejarDeCompartir(claveACompartir1);
+            usuario1.DejarDeCompartir(claveACompartir1);
 
             Assert.IsTrue(clave1.EsCompartida);
         }
