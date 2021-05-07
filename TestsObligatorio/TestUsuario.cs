@@ -1343,7 +1343,7 @@ namespace TestsObligatorio
         }
 
         [TestMethod]
-        public void UsuarioCompartirClave()
+        public void UsuarioCompartirUnaClave()
         {
             Usuario usuario1 = new Usuario()
             {
@@ -1370,7 +1370,15 @@ namespace TestsObligatorio
             };
             categoria1.AgregarContra(clave1);
 
-            usuario1.compartirClave(usuario2, clave1);
+            ClaveCompartida claveCompartida = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            usuario1.compartirClave(claveCompartida);
+
+            Assert.AreEqual(usuario2._clavesConmigo, clave1);
         }
     }
 

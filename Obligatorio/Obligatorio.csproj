@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Categoria.cs" />
+    <Compile Include="ClaveCompartida.cs" />
     <Compile Include="Contra.cs" />
     <Compile Include="Exceptions\CaracterInesperadoException.cs" />
     <Compile Include="Exceptions\CategoriaInexistenteException.cs" />
