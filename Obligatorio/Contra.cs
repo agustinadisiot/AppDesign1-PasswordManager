@@ -9,12 +9,18 @@ namespace Obligatorio
         private string _sitio;
         private string _nota;
         private DateTime _fechaModificacion;
+        public bool EsCompartida;
         private const int _largoUsuarioYClaveMinimo = 5;
         private const int _largoUsuarioYClaveMaximo = 25;
         private const int _largoSitioMinimo = 3;
         private const int _largoSitioMaximo = 25;
         private const int _largoNotaMinimo = 0;
         private const int _largoNotaMaximo = 250;
+
+        public Contra()
+        {
+            this.EsCompartida = false;
+        }
 
         public string UsuarioContra
         {

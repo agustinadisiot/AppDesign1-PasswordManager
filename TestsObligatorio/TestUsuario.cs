@@ -1529,6 +1529,39 @@ namespace TestsObligatorio
 
         }
 
+
+        [TestMethod]
+        public void UsuarioCompartirClaveEsCompartida()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+            usuario2.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            usuario1.AgregarContra(clave1, categoria1);
+
+            Assert.IsFalse(clave1.EsCompartida);
+
+        }
+
     }
 
     [TestClass]
