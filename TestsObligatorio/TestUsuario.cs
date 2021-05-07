@@ -1343,7 +1343,7 @@ namespace TestsObligatorio
         }
 
         [TestMethod]
-        public void UsuarioCompartirUnaClave()
+        public void UsuarioCompartirUnaClave_ClavesIguales()
         {
             Usuario usuario1 = new Usuario()
             {
@@ -1376,10 +1376,50 @@ namespace TestsObligatorio
                 Clave = clave1
             };
 
-            usuario1.compartirClave(claveCompartida);
+            usuario1.CompartirClave(claveCompartida);
 
             Assert.AreEqual(usuario2._clavesConmigo, clave1);
         }
+
+        [TestMethod]
+        public void UsuarioCompartirUnaClave_UsuariosIguales()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.AgregarContra(clave1);
+
+            ClaveCompartida claveCompartida = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            usuario1.CompartirClave(claveCompartida);
+
+            Assert.AreEqual(usuario2._usuarioQueMeComparte, usuario1);
+        }
+
     }
 
     [TestClass]

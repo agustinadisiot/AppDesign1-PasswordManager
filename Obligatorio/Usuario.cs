@@ -10,6 +10,7 @@ namespace Obligatorio
         private string _nombre;
         private string _contraMaestra;
         public Contra _clavesConmigo;
+        public Usuario _usuarioQueMeComparte;
         private const int _largoNombreYContraMinimo = 5;
         private const int _largoNombreYContraMaximo = 25;
 
@@ -235,11 +236,12 @@ namespace Obligatorio
             return tarjetasUsuario;
         }
 
-        public void compartirClave(ClaveCompartida claveCompartida)
+        public void CompartirClave(ClaveCompartida claveCompartida)
         {
             Usuario usuarioACompartir = claveCompartida.Usuario;
             Contra claveACompartir = claveCompartida.Clave;
             usuarioACompartir._clavesConmigo = claveACompartir;
+            usuarioACompartir._usuarioQueMeComparte = this;
         }
     }
 }
