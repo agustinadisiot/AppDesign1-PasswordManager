@@ -137,6 +137,13 @@ namespace Obligatorio
             {
                 throw new ObjetoInexistenteException();
             }
+
+            List<ClaveCompartida> clavesCompartidas = this.CompartidasPorMi.FindAll(buscadora => buscadora.Clave.Equals(aBorrar));
+            foreach(ClaveCompartida aDejarDeCompartir in clavesCompartidas)
+            {
+                this.dejarDeCompartir(aDejarDeCompartir);
+            }
+
             Categoria contieneContraABorrar = this._categorias.First(categoria => categoria.YaExisteContra(aBorrar));
             contieneContraABorrar.BorrarContra(aBorrar);
         }
@@ -310,7 +317,7 @@ namespace Obligatorio
         public void dejarDeCompartir(ClaveCompartida aDejarDeCompartir)
         {
             Usuario usuarioADejarDeCompartir = aDejarDeCompartir.Usuario;
-            Contra claveADejarDeCompartir = aDejarDeCompartir.Clave;
+            Contra claveADejarDeCompartir = this.GetContra(aDejarDeCompartir.Clave);
 
             if (!claveADejarDeCompartir.EsCompartida) throw new ObjetoInexistenteException();
 
