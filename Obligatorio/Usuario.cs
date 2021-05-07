@@ -244,6 +244,8 @@ namespace Obligatorio
 
             if (!this.YaExisteContra(claveACompartir)) throw new ObjetoInexistenteException();
 
+            claveACompartir.EsCompartida = true;
+
             ClaveCompartida compartidaConmigo = new ClaveCompartida()
             {
                 Usuario = this,
