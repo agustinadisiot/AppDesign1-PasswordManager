@@ -2359,7 +2359,7 @@ namespace TestsObligatorio
 
             bool tarjetasContieneGetTarjetas = usuario.GetListaTarjetas().All(tarjetas.Contains);
             bool getTarjetasContieneTarjetas = tarjetas.All(usuario.GetListaTarjetas().Contains);
-            Assert.AreEqual(tarjetasContieneGetTarjetas, getTarjetasContieneTarjetas);
+            Assert.IsTrue(tarjetasContieneGetTarjetas && getTarjetasContieneTarjetas);
         }
     }
 
