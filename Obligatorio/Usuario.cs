@@ -332,7 +332,8 @@ namespace Obligatorio
 
             usuarioADejarDeCompartir.CompartidasConmigo.Remove(enviadaAEliminar);
 
-            claveADejarDeCompartir.EsCompartida = false;
+            bool sigueCompartida = this.CompartidasPorMi.Any(buscadora => buscadora.Clave.Equals(claveADejarDeCompartir));
+            if (!sigueCompartida) claveADejarDeCompartir.EsCompartida = false;
 
 
         }

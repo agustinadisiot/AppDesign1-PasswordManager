@@ -1994,6 +1994,63 @@ namespace TestsObligatorio
             Assert.IsFalse(clave1.EsCompartida);
         }
 
+        [TestMethod]
+        public void UsuarioDejarDeCompartirUnaClave_CambiarClaveEsCompartidaATrue()
+        {
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+            usuario2.AgregarCategoria(categoria1);
+
+            Usuario usuario3 = new Usuario()
+            {
+                Nombre = "Usuario3"
+            };
+            usuario3.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+
+            usuario1.AgregarContra(clave1, categoria1);
+
+            ClaveCompartida claveACompartir1 = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            ClaveCompartida claveACompartir2 = new ClaveCompartida()
+            {
+                Usuario = usuario3,
+                Clave = clave1
+            };
+
+            usuario1.CompartirClave(claveACompartir1);
+
+            usuario1.CompartirClave(claveACompartir2);
+
+            usuario1.dejarDeCompartir(claveACompartir1);
+
+            Assert.IsTrue(clave1.EsCompartida);
+        }
+
     }
 
     [TestClass]
