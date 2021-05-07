@@ -350,6 +350,25 @@ namespace TestsObligatorio
             Contra random = new Contra();
             Assert.ThrowsException<ClaveGeneradaVaciaException>(() => random.GenerarClave(parametros));
         }
+
+        [TestMethod]
+        public void ClaveGeneradaSoloMayusculas()
+        {
+            ClaveAGenerar parametros = new ClaveAGenerar()
+            {
+                Largo = 10,
+                IncluirMayusculas = true,
+                IncluirMinusculas = false,
+                IncluirDigitos = false,
+                IncluirSimbolos = false
+            };
+
+            Contra random = new Contra();
+            random.GenerarClave(parametros);
+            string resultado = random.Clave;
+            bool esSoloMayuscula = resultado.All(caracter => VerificadoraString.EsMayuscula(caracter));
+            Assert.IsTrue(esSoloMayuscula);
+        }
     }
 
 }

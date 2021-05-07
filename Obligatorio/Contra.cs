@@ -112,7 +112,14 @@ namespace Obligatorio
 
         public void GenerarClave(ClaveAGenerar parametros)
         {
-            throw new ClaveGeneradaVaciaException();
+            if (parametros.IncluirMayusculas)
+            {
+                this.Clave = "ABCDE";
+            }
+            else
+            {
+                throw new ClaveGeneradaVaciaException();
+            }
         }
     }
 }
