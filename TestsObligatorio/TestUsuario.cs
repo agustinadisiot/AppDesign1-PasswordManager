@@ -2562,6 +2562,61 @@ namespace TestsObligatorio
             bool retornoContieneEsperadas = esperadas.All(retorno.Contains);
             Assert.IsTrue(esperadasContieneRetorno && retornoContieneEsperadas);
         }
+
+
+        [TestMethod]
+        public void UsuarioGetTarjetasDataBreachVacio()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+
+            Categoria trabajo = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            Categoria facultad = new Categoria()
+            {
+                Nombre = "Facultad"
+            };
+
+            usuario.AgregarCategoria(trabajo);
+            usuario.AgregarCategoria(facultad);
+
+
+
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Numero = "1111111111111111",
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Codigo = "321",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+            usuario.AgregarTarjeta(tarjeta1,trabajo);
+
+            Tarjeta tarjeta2 = new Tarjeta()
+            {
+                Numero = "2222222222222222",
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Codigo = "345",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+            usuario.AgregarTarjeta(tarjeta2, facultad);
+
+
+            List<string> dataBreach = new List<string>();
+
+            Assert.AreEqual(0, usuario.GetTarjetasDataBreach(dataBreach).Count);
+        }
     }
 
 }

@@ -251,5 +251,10 @@ namespace Obligatorio
             
             return completa.FindAll(buscadora=> dataBreach.Contains(buscadora.Clave));
         }
+
+        public List<Tarjeta> GetTarjetasDataBreach(List<string> dataBreach)
+        {
+            return new List<Tarjeta>();
+        }
     }
 }
