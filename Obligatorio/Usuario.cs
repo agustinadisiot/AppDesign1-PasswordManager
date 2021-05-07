@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Obligatorio
 {
@@ -220,7 +221,6 @@ namespace Obligatorio
             }
 
             return claves;
-
         }
 
         public List<Tarjeta> GetListaTarjetas()
@@ -254,7 +254,24 @@ namespace Obligatorio
 
         public List<Tarjeta> GetTarjetasDataBreach(List<string> dataBreach)
         {
-            return new List<Tarjeta>();
+            const int largoTarjetaSinEspacios = 16;
+            const string regexEspacio = @"\s+";
+            const string vacio = "";
+
+            List<string> potencialesTarjetas = new List<string>();
+
+            foreach (string potencial in dataBreach) {
+                string sinEspacio = Regex.Replace(potencial, regexEspacio, vacio);
+                bool esNumero = sinEspacio.All(caracter => VerificadoraString.EsNumero(caracter));
+                bool tieneLargoTarjeta = sinEspacio.Length == largoTarjetaSinEspacios;
+
+                if (esNumero && tieneLargoTarjeta) {
+                    potencialesTarjetas.Add(sinEspacio);
+                }
+            }
+            List<Tarjeta> completa = this.GetListaTarjetas();
+            return completa.FindAll(buscadora => potencialesTarjetas.Contains(buscadora.Numero));
+
         }
     }
 }
