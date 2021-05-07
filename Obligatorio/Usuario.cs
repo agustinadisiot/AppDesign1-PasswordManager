@@ -312,6 +312,9 @@ namespace Obligatorio
             Contra claveADejarDeCompartir = aDejarDeCompartir.Clave;
 
             if (!claveADejarDeCompartir.EsCompartida) throw new ObjetoInexistenteException();
+
+            this.CompartidasPorMi.Remove(aDejarDeCompartir);
+
         }
     }
 }
