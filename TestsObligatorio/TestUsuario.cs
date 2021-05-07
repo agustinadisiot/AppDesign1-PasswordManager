@@ -1368,7 +1368,7 @@ namespace TestsObligatorio
                 Clave = "EstaEsUnaClave1",
                 UsuarioContra = "Roberto"
             };
-            categoria1.AgregarContra(clave1);
+            usuario1.AgregarContra(clave1, categoria1);
 
             ClaveCompartida claveCompartida = new ClaveCompartida()
             {
@@ -1412,7 +1412,7 @@ namespace TestsObligatorio
                 Clave = "EstaEsUnaClave1",
                 UsuarioContra = "Roberto"
             };
-            categoria1.AgregarContra(clave1);
+            usuario1.AgregarContra(clave1, categoria1);
 
             ClaveCompartida claveCompartida = new ClaveCompartida()
             {
@@ -1490,6 +1490,43 @@ namespace TestsObligatorio
             };
 
             Assert.IsTrue(usuario2.Conmigo.Contains(claveCompartidaAUsuario2_1) && usuario2.Conmigo.Contains(claveCompartidaAUsuario2_2));
+        }
+
+        [TestMethod]
+        public void UsuarioCompartirClaveInexistente()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+            usuario2.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+
+            ClaveCompartida claveACompartir1 = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario1.CompartirClave(claveACompartir1));
+
         }
 
     }

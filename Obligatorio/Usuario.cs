@@ -238,8 +238,11 @@ namespace Obligatorio
 
         public void CompartirClave(ClaveCompartida claveCompartida)
         {
+
             Usuario usuarioACompartir = claveCompartida.Usuario;
             Contra claveACompartir = claveCompartida.Clave;
+
+            if (!this.YaExisteContra(claveACompartir)) throw new ObjetoInexistenteException();
 
             ClaveCompartida compartidaConmigo = new ClaveCompartida()
             {
