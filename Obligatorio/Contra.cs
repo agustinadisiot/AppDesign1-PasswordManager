@@ -109,5 +109,10 @@ namespace Obligatorio
         {
             this._fechaModificacion = new System.DateTime().Date;
         }
+
+        public void GenerarClave(ClaveAGenerar parametros)
+        {
+            throw new ClaveGeneradaVaciaException();
+        }
     }
 }

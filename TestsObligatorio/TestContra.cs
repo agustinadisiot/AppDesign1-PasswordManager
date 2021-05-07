@@ -316,7 +316,6 @@ namespace TestsObligatorio
             Assert.AreEqual(actual, evaluar.FechaModificacion);
         }
 
-
         [TestMethod]
         public void ContraGetFechaModificacionContraVieja()
         {
@@ -329,6 +328,27 @@ namespace TestsObligatorio
             evaluar.Clave = "ContraNueva";
             DateTime actual = new System.DateTime().Date;
             Assert.AreEqual(actual, evaluar.FechaModificacion);
+        }
+
+    }
+
+    [TestClass]
+    public class TestClaveGenerada
+    {
+        [TestMethod]
+        public void ClaveGeneradaVacia()
+        {
+            ClaveAGenerar parametros = new ClaveAGenerar()
+            {
+                Largo = 10,
+                IncluirMayusculas = false,
+                IncluirMinusculas = false,
+                IncluirDigitos = false,
+                IncluirSimbolos = false
+            };
+
+            Contra random = new Contra();
+            Assert.ThrowsException<ClaveGeneradaVaciaException>(() => random.GenerarClave(parametros));
         }
     }
 
