@@ -1378,7 +1378,7 @@ namespace TestsObligatorio
 
             usuario1.CompartirClave(claveCompartida);
 
-            Assert.AreEqual(usuario2._clavesConmigo, clave1);
+            Assert.AreEqual(usuario2.Conmigo.Clave, clave1);
         }
 
         [TestMethod]
@@ -1417,7 +1417,7 @@ namespace TestsObligatorio
 
             usuario1.CompartirClave(claveCompartida);
 
-            Assert.AreEqual(usuario2._usuarioQueMeComparte, usuario1);
+            Assert.AreEqual(usuario2.Conmigo.Usuario, usuario1);
         }
 
     }

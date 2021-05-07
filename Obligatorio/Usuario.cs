@@ -9,15 +9,13 @@ namespace Obligatorio
         private List<Categoria> _categorias;
         private string _nombre;
         private string _contraMaestra;
-        public Contra _clavesConmigo;
-        public Usuario _usuarioQueMeComparte;
         private const int _largoNombreYContraMinimo = 5;
         private const int _largoNombreYContraMaximo = 25;
-
 
         public Usuario()
         {
             this._categorias = new List<Categoria>();
+            this.Conmigo = new ClaveCompartida();
         }
 
         public string Nombre 
@@ -29,6 +27,8 @@ namespace Obligatorio
             get { return this._contraMaestra; }
             set { this._contraMaestra = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreYContraMinimo, _largoNombreYContraMaximo);}
         }
+
+        public ClaveCompartida Conmigo { get; set; }
 
         public bool ValidarIgualContraMaestra(string contraMaestraUsuario)
         {
@@ -240,8 +240,8 @@ namespace Obligatorio
         {
             Usuario usuarioACompartir = claveCompartida.Usuario;
             Contra claveACompartir = claveCompartida.Clave;
-            usuarioACompartir._clavesConmigo = claveACompartir;
-            usuarioACompartir._usuarioQueMeComparte = this;
+            usuarioACompartir.Conmigo.Clave = claveACompartir;
+            usuarioACompartir.Conmigo.Usuario = this;
         }
     }
 }

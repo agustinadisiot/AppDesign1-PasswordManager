@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Obligatorio
 {
-    class Program
+    public class ClaveCompartida
     {
-
+        public Usuario Usuario { get; set; }
+        public Contra Clave { get; set; }
     }
 }
