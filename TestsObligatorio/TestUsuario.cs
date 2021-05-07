@@ -1383,7 +1383,7 @@ namespace TestsObligatorio
                 Usuario = usuario1,
                 Clave = clave1
             };
-            Assert.AreEqual(usuario2.Conmigo[0].Clave, clave1);
+            Assert.AreEqual(usuario2.CompartidasConmigo[0].Clave, clave1);
         }
 
         [TestMethod]
@@ -1422,7 +1422,7 @@ namespace TestsObligatorio
 
             usuario1.CompartirClave(claveCompartida);
 
-            Assert.AreEqual(usuario2.Conmigo[0].Usuario, usuario1);
+            Assert.AreEqual(usuario2.CompartidasConmigo[0].Usuario, usuario1);
         }
 
         [TestMethod]
@@ -1489,7 +1489,7 @@ namespace TestsObligatorio
                 Clave = clave2
             };
 
-            Assert.IsTrue(usuario2.Conmigo.Contains(claveCompartidaAUsuario2_1) && usuario2.Conmigo.Contains(claveCompartidaAUsuario2_2));
+            Assert.IsTrue(usuario2.CompartidasConmigo.Contains(claveCompartidaAUsuario2_1) && usuario2.CompartidasConmigo.Contains(claveCompartidaAUsuario2_2));
         }
 
         [TestMethod]
@@ -1652,7 +1652,7 @@ namespace TestsObligatorio
 
             usuario1.CompartirClave(claveCompartir2);
 
-            Assert.IsTrue(usuario1.QueComparto.Contains(claveACompartir1) && usuario1.QueComparto.Contains(claveACompartir1));
+            Assert.IsTrue(usuario1.CompartidasPorMi.Contains(claveACompartir1) && usuario1.CompartidasPorMi.Contains(claveACompartir1));
         }
 
     }

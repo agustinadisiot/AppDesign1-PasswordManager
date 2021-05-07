@@ -74,7 +74,7 @@ namespace Obligatorio
 
             Console.WriteLine(claveCompartidaAUsuario2_1);
             Console.WriteLine(claveCompartidaAUsuario2_2);
-            Console.WriteLine(usuario2.Conmigo);
+            Console.WriteLine(usuario2.CompartidasConmigo);
             Console.ReadLine();
 
             //Assert.IsTrue(usuario2.Conmigo.Contains(claveCompartidaConmigo1) && usuario2.Conmigo.Contains(claveCompartidaConmigo2));

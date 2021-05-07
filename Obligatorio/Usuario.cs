@@ -15,8 +15,8 @@ namespace Obligatorio
         public Usuario()
         {
             this._categorias = new List<Categoria>();
-            this.Conmigo = new List<ClaveCompartida>();
-            this.QueComparto = new List<ClaveCompartida>();
+            this.CompartidasConmigo = new List<ClaveCompartida>();
+            this.CompartidasPorMi = new List<ClaveCompartida>();
         }
 
         public string Nombre 
@@ -28,9 +28,9 @@ namespace Obligatorio
             get { return this._contraMaestra; }
             set { this._contraMaestra = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreYContraMinimo, _largoNombreYContraMaximo);}
         }
-        public List<ClaveCompartida> QueComparto { get; set; }
+        public List<ClaveCompartida> CompartidasPorMi { get; set; }
 
-        public List<ClaveCompartida> Conmigo { get; set; }
+        public List<ClaveCompartida> CompartidasConmigo { get; set; }
 
         public bool ValidarIgualContraMaestra(string contraMaestraUsuario)
         {
@@ -238,25 +238,33 @@ namespace Obligatorio
             return tarjetasUsuario;
         }
 
-        public void CompartirClave(ClaveCompartida claveCompartida)
+        public void CompartirClave(ClaveCompartida aCompartir)
         {
 
-            Usuario usuarioACompartir = claveCompartida.Usuario;
-            Contra claveACompartir = claveCompartida.Clave;
+            Usuario usuarioACompartir = aCompartir.Usuario;
+            Contra claveACompartir = aCompartir.Clave;
 
             if (!this.YaExisteContra(claveACompartir)) throw new ObjetoInexistenteException();
 
-            this.QueComparto.Add(claveCompartida);
+            claveACompartir = this.GetContra(claveACompartir);
 
             claveACompartir.EsCompartida = true;
 
-            ClaveCompartida compartidaConmigo = new ClaveCompartida()
+            ClaveCompartida guardar = new ClaveCompartida()
+            {
+                Usuario = usuarioACompartir,
+                Clave = claveACompartir
+            };
+
+            this.CompartidasPorMi.Add(guardar);
+
+            ClaveCompartida enviar = new ClaveCompartida()
             {
                 Usuario = this,
                 Clave = claveACompartir
             };
 
-            usuarioACompartir.Conmigo.Add(compartidaConmigo);
+            usuarioACompartir.CompartidasConmigo.Add(enviar);
         }
     }
 }
