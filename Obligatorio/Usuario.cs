@@ -345,10 +345,5 @@ namespace Obligatorio
 
 
         }
-
-        public List<ClaveCompartida> GetCompartidasPorMi()
-        {
-            return this.CompartidasPorMi;
-        }
     }
 }

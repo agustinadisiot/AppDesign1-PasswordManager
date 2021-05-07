@@ -2114,69 +2114,6 @@ namespace TestsObligatorio
             Assert.IsFalse(usuario2.CompartidasConmigo.Contains(claveQueCompartieron) || usuario3.CompartidasConmigo.Contains(claveQueCompartieron));
         }
 
-        [TestMethod]
-        public void UsuarioGetListaCompartidasPorMi()
-        {
-            Usuario usuario = new Usuario()
-            {
-                Nombre = "Usuario1"
-            };
-
-            Usuario usuario2 = new Usuario()
-            {
-                Nombre = "Usuario2"
-            };
-
-            Usuario usuario3 = new Usuario()
-            {
-                Nombre = "Usuario3"
-            };
-
-            Categoria categoria1 = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            usuario.AgregarCategoria(categoria1);
-
-            Contra clave1 = new Contra()
-            {
-                Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
-            };
-            usuario.AgregarContra(clave1, categoria1);
-
-            ClaveCompartida claveACompartir1 = new ClaveCompartida()
-            {
-                Usuario = usuario2,
-                Clave = clave1
-            };
-
-            ClaveCompartida claveACompartir2 = new ClaveCompartida()
-            {
-                Usuario = usuario3,
-                Clave = clave1
-            };
-
-            List<ClaveCompartida> clavesCompartidas = new List<ClaveCompartida>()
-            {
-                claveACompartir1,
-                claveACompartir2
-            };
-
-            usuario.CompartirClave(claveACompartir1);
-            usuario.CompartirClave(claveACompartir2);
-
-            List<ClaveCompartida> getListaCompartidasPorMi = usuario.GetCompartidasPorMi();
-
-
-            bool getListaCompartidasPorMiContieneLasClavesCompartidas = getListaCompartidasPorMi.All(clavesCompartidas.Contains);
-            bool lasClavesCompartidasContieneGetListaCompartidasPorMi = clavesCompartidas.All(getListaCompartidasPorMi.Contains);
-
-            Assert.IsTrue(getListaCompartidasPorMiContieneLasClavesCompartidas && lasClavesCompartidasContieneGetListaCompartidasPorMi);
-        }
-
     }
 
     [TestClass]
