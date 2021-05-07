@@ -410,6 +410,29 @@ namespace TestsObligatorio
 
             Assert.IsTrue(contieneMayusculas && contieneMinusculas && contieneNumeros && contieneSimbolos);
         }
+
+        [TestMethod]
+        public void ClaveGeneradaIncluyendoSimbolosMinusculas()
+        {
+            ClaveAGenerar parametros = new ClaveAGenerar()
+            {
+                Largo = 15,
+                IncluirMayusculas = false,
+                IncluirMinusculas = true,
+                IncluirNumeros = false,
+                IncluirSimbolos = true
+            };
+
+            Contra random = new Contra();
+            random.GenerarClave(parametros);
+            string resultado = random.Clave;
+            bool contieneMayusculas = resultado.Any(caracter => VerificadoraString.EsMayuscula(caracter));
+            bool contieneMinusculas = resultado.Any(caracter => VerificadoraString.EsMinuscula(caracter));
+            bool contieneNumeros = resultado.Any(caracter => VerificadoraString.EsNumero(caracter));
+            bool contieneSimbolos = resultado.Any(caracter => VerificadoraString.EsSimbolo(caracter));
+
+            Assert.IsTrue(!contieneMayusculas && contieneMinusculas && !contieneNumeros && contieneSimbolos);
+        }
     }
 
 }
