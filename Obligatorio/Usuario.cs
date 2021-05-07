@@ -15,7 +15,7 @@ namespace Obligatorio
         public Usuario()
         {
             this._categorias = new List<Categoria>();
-            this.Conmigo = new ClaveCompartida();
+            this.Conmigo = new List<ClaveCompartida>();
         }
 
         public string Nombre 
@@ -28,7 +28,7 @@ namespace Obligatorio
             set { this._contraMaestra = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreYContraMinimo, _largoNombreYContraMaximo);}
         }
 
-        public ClaveCompartida Conmigo { get; set; }
+        public List<ClaveCompartida> Conmigo { get; set; }
 
         public bool ValidarIgualContraMaestra(string contraMaestraUsuario)
         {
@@ -240,8 +240,14 @@ namespace Obligatorio
         {
             Usuario usuarioACompartir = claveCompartida.Usuario;
             Contra claveACompartir = claveCompartida.Clave;
-            usuarioACompartir.Conmigo.Clave = claveACompartir;
-            usuarioACompartir.Conmigo.Usuario = this;
+
+            ClaveCompartida compartidaConmigo = new ClaveCompartida()
+            {
+                Usuario = this,
+                Clave = claveACompartir
+            };
+
+            usuarioACompartir.Conmigo.Add(compartidaConmigo);
         }
     }
 }
