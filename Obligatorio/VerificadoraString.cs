@@ -8,6 +8,7 @@ namespace Obligatorio
 {
     public static class VerificadoraString
     {
+
         public static string VerificarLargoEntreMinimoYMaximo(string ingreso, int minimo, int maximo)
         {
             if (ingreso==null || ingreso.Length < minimo || ingreso.Length > maximo)
@@ -63,34 +64,31 @@ namespace Obligatorio
             return (asciiIngresado >= asciiDigitoMinimo && asciiIngresado <= asciiDigitoMaximo);
         }
 
-        public static char GenerarMayuscula()
+        public static char GenerarMayuscula(Random aleatorio)
         {
             const int asciiMayusculaMinimo = 65;
             const int asciiMayusculaMaximo = 90;
-            Random aleatorio = new Random();
             char retorno = (char)aleatorio.Next(asciiMayusculaMinimo, asciiMayusculaMaximo + 1);
             return retorno;
         }
 
-        internal static char GenerarMinuscula()
+        internal static char GenerarMinuscula(Random aleatorio)
         {
             const int asciiMinusculaMinimo = 97;
             const int asciiMinusculaMaximo = 122;
-            Random aleatorio = new Random();
             char retorno = (char)aleatorio.Next(asciiMinusculaMinimo, asciiMinusculaMaximo + 1);
             return retorno;
         }
 
-        internal static char GenerarNumero()
+        internal static char GenerarNumero(Random aleatorio)
         {
             const int asciiDigitoMinimo = 48;
             const int asciiDigitoMaximo = 57;
-            Random aleatorio = new Random();
             char retorno = (char)aleatorio.Next(asciiDigitoMinimo, asciiDigitoMaximo + 1);
             return retorno;
         }
 
-        internal static char GenerarSimbolo()
+        internal static char GenerarSimbolo(Random aleatorio)
         {
             const int asciiRango1Minimo = 32;
             const int asciiRango1Maximo = 47;
@@ -103,7 +101,6 @@ namespace Obligatorio
             const int rangoMinimo = 1;
             const int rangoMaximo = 5;
 
-            Random aleatorio = new Random();
             int rango = aleatorio.Next(rangoMinimo, rangoMaximo);
             char resultado;
             switch (rango)

@@ -136,28 +136,28 @@ namespace Obligatorio
             {
                 categoriasDisponibles.Add(incluirMayusculas);
                 int pos = this.GenerarPosicion(largo, ocupado);
-                resultado[pos] = VerificadoraString.GenerarMayuscula();
+                resultado[pos] = VerificadoraString.GenerarMayuscula(this._aleatorio);
                 ocupado[pos] = true;
             }
             if (parametros.IncluirMinusculas)
             {
                 categoriasDisponibles.Add(incluirMinusculas);
                 int pos = this.GenerarPosicion(largo, ocupado);
-                resultado[pos] = VerificadoraString.GenerarMinuscula();
+                resultado[pos] = VerificadoraString.GenerarMinuscula(this._aleatorio);
                 ocupado[pos] = true;
             }
             if (parametros.IncluirNumeros)
             {
                 categoriasDisponibles.Add(incluirNumeros);
                 int pos = this.GenerarPosicion(largo, ocupado);
-                resultado[pos] = VerificadoraString.GenerarNumero();
+                resultado[pos] = VerificadoraString.GenerarNumero(this._aleatorio);
                 ocupado[pos] = true;
             }
             if (parametros.IncluirSimbolos)
             {
                 categoriasDisponibles.Add(incluirSimbolos);
                 int pos = this.GenerarPosicion(largo, ocupado);
-                resultado[pos] = VerificadoraString.GenerarSimbolo();
+                resultado[pos] = VerificadoraString.GenerarSimbolo(this._aleatorio);
                 ocupado[pos] = true;
             }
             
@@ -171,16 +171,16 @@ namespace Obligatorio
                     switch (categoriaElegida)
                     {
                         case incluirMayusculas:
-                            resultado[i] = VerificadoraString.GenerarMayuscula();
+                            resultado[i] = VerificadoraString.GenerarMayuscula(this._aleatorio);
                             break;
                         case incluirMinusculas:
-                            resultado[i] = VerificadoraString.GenerarMinuscula();
+                            resultado[i] = VerificadoraString.GenerarMinuscula(this._aleatorio);
                             break;
                         case incluirNumeros:
-                            resultado[i] = VerificadoraString.GenerarNumero();
+                            resultado[i] = VerificadoraString.GenerarNumero(this._aleatorio);
                             break;
                         case incluirSimbolos:
-                            resultado[i] = VerificadoraString.GenerarSimbolo();
+                            resultado[i] = VerificadoraString.GenerarSimbolo(this._aleatorio);
                             break;
                         default:
                             throw new CaracterInesperadoException();
