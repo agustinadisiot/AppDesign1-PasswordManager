@@ -1951,6 +1951,48 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoInexistenteException>(() => usuario1.dejarDeCompartir(claveQueNoComparto));
         }
 
+        [TestMethod]
+        public void UsuarioDejarDeCompartirUnaClave_CambiarClaveEsCompartidaAFalse()
+        {
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+            usuario2.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+
+            usuario1.AgregarContra(clave1, categoria1);
+
+            ClaveCompartida claveACompartir1 = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            usuario1.CompartirClave(claveACompartir1);
+
+            usuario1.dejarDeCompartir(claveACompartir1);
+
+            Assert.IsFalse(clave1.EsCompartida);
+        }
 
     }
 

@@ -332,6 +332,9 @@ namespace Obligatorio
 
             usuarioADejarDeCompartir.CompartidasConmigo.Remove(enviadaAEliminar);
 
+            claveADejarDeCompartir.EsCompartida = false;
+
+
         }
 
     }
