@@ -306,5 +306,12 @@ namespace Obligatorio
             return completa.FindAll(buscadora => potencialesTarjetas.Contains(buscadora.Numero));
 
         }
+
+        public void dejarDeCompartir(ClaveCompartida aDejarDeCompartir)
+        {
+            Contra claveADejarDeCompartir = aDejarDeCompartir.Clave;
+
+            if (!claveADejarDeCompartir.EsCompartida) throw new ObjetoInexistenteException();
+        }
     }
 }
