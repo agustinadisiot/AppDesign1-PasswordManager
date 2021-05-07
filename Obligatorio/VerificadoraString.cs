@@ -63,5 +63,69 @@ namespace Obligatorio
             return (asciiIngresado >= asciiDigitoMinimo && asciiIngresado <= asciiDigitoMaximo);
         }
 
+        public static char GenerarMayuscula()
+        {
+            const int asciiMayusculaMinimo = 65;
+            const int asciiMayusculaMaximo = 90;
+            Random aleatorio = new Random();
+            char retorno = (char)aleatorio.Next(asciiMayusculaMinimo, asciiMayusculaMaximo + 1);
+            return retorno;
+        }
+
+        internal static char GenerarMinuscula()
+        {
+            const int asciiMinusculaMinimo = 97;
+            const int asciiMinusculaMaximo = 122;
+            Random aleatorio = new Random();
+            char retorno = (char)aleatorio.Next(asciiMinusculaMinimo, asciiMinusculaMaximo + 1);
+            return retorno;
+        }
+
+        internal static char GenerarNumero()
+        {
+            const int asciiDigitoMinimo = 48;
+            const int asciiDigitoMaximo = 57;
+            Random aleatorio = new Random();
+            char retorno = (char)aleatorio.Next(asciiDigitoMinimo, asciiDigitoMaximo + 1);
+            return retorno;
+        }
+
+        internal static char GenerarSimbolo()
+        {
+            const int asciiRango1Minimo = 32;
+            const int asciiRango1Maximo = 47;
+            const int asciiRango2Minimo = 58;
+            const int asciiRango2Maximo = 64;
+            const int asciiRango3Minimo = 91;
+            const int asciiRango3Maximo = 96;
+            const int asciiRango4Minimo = 123;
+            const int asciiRango4Maximo = 126;
+            const int rangoMinimo = 1;
+            const int rangoMaximo = 5;
+
+            Random aleatorio = new Random();
+            int rango = aleatorio.Next(rangoMinimo, rangoMaximo);
+            char resultado;
+            switch (rango)
+            {
+                case 1:
+                    resultado =  (char)aleatorio.Next(asciiRango1Minimo, asciiRango1Maximo);
+                    break;
+                case 2:
+                    resultado = (char)aleatorio.Next(asciiRango2Minimo, asciiRango2Maximo);
+                    break;
+                case 3:
+                    resultado = (char)aleatorio.Next(asciiRango3Minimo, asciiRango3Maximo);
+                    break;
+                case 4:
+                    resultado = (char)aleatorio.Next(asciiRango4Minimo, asciiRango4Maximo);
+                    break;
+                default:
+                    throw new CaracterInesperadoException();
+                    break;
+            }
+            return resultado;
+        }
+
     }
 }

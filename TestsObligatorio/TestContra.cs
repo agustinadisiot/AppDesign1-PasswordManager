@@ -343,7 +343,7 @@ namespace TestsObligatorio
                 Largo = 10,
                 IncluirMayusculas = false,
                 IncluirMinusculas = false,
-                IncluirDigitos = false,
+                IncluirNumeros = false,
                 IncluirSimbolos = false
             };
 
@@ -359,7 +359,7 @@ namespace TestsObligatorio
                 Largo = 5,
                 IncluirMayusculas = true,
                 IncluirMinusculas = false,
-                IncluirDigitos = false,
+                IncluirNumeros = false,
                 IncluirSimbolos = false
             };
 
@@ -378,7 +378,7 @@ namespace TestsObligatorio
                 Largo = 10,
                 IncluirMayusculas = true,
                 IncluirMinusculas = false,
-                IncluirDigitos = false,
+                IncluirNumeros = false,
                 IncluirSimbolos = false
             };
 
@@ -386,6 +386,29 @@ namespace TestsObligatorio
             random.GenerarClave(parametros);
             string resultado = random.Clave;
             Assert.AreEqual(10, resultado.Length);
+        }
+
+        [TestMethod]
+        public void ClaveGeneradaIncluyendoTodo()
+        {
+            ClaveAGenerar parametros = new ClaveAGenerar()
+            {
+                Largo = 10,
+                IncluirMayusculas = true,
+                IncluirMinusculas = true,
+                IncluirNumeros = true,
+                IncluirSimbolos = true
+            };
+
+            Contra random = new Contra();
+            random.GenerarClave(parametros);
+            string resultado = random.Clave;
+            bool contieneMayusculas = resultado.Any(caracter => VerificadoraString.EsMayuscula(caracter));
+            bool contieneMinusculas = resultado.Any(caracter => VerificadoraString.EsMinuscula(caracter));
+            bool contieneNumeros = resultado.Any(caracter => VerificadoraString.EsNumero(caracter));
+            bool contieneSimbolos = resultado.Any(caracter => VerificadoraString.EsSimbolo(caracter));
+
+            Assert.IsTrue(contieneMayusculas && contieneMinusculas && contieneNumeros && contieneSimbolos);
         }
     }
 

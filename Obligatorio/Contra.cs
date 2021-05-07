@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Obligatorio
 {
@@ -15,6 +16,12 @@ namespace Obligatorio
         private const int _largoSitioMaximo = 25;
         private const int _largoNotaMinimo = 0;
         private const int _largoNotaMaximo = 250;
+        private Random _aleatorio;
+
+        public Contra()
+        {
+            _aleatorio = new Random();
+        }
 
         public string UsuarioContra
         {
@@ -112,19 +119,86 @@ namespace Obligatorio
 
         public void GenerarClave(ClaveAGenerar parametros)
         {
+            bool parametrosVacios = !(parametros.IncluirMayusculas || parametros.IncluirMinusculas || parametros.IncluirNumeros || parametros.IncluirSimbolos);
+            if (parametrosVacios) throw new ClaveGeneradaVaciaException();
+
+            List<string> categoriasDisponibles = new List<string>();
+            const string incluirMayusculas = "Mayusculas";
+            const string incluirMinusculas = "Minusculas";
+            const string incluirNumeros = "Numeros";
+            const string incluirSimbolos = "Simbolos";
+
+            int largo = parametros.Largo;
+            char[] resultado = new char[largo];
+            bool[] ocupado = new bool[largo];
+
             if (parametros.IncluirMayusculas)
             {
-                string resultado = "";
-                for(int i = 0; i< parametros.Largo; i++)
-                {
-                    resultado += "A";
-                }
-                this.Clave = resultado;
+                categoriasDisponibles.Add(incluirMayusculas);
+                int pos = this.GenerarPosicion(largo, ocupado);
+                resultado[pos] = VerificadoraString.GenerarMayuscula();
+                ocupado[pos] = true;
             }
-            else
+            if (parametros.IncluirMinusculas)
             {
-                throw new ClaveGeneradaVaciaException();
+                categoriasDisponibles.Add(incluirMinusculas);
+                int pos = this.GenerarPosicion(largo, ocupado);
+                resultado[pos] = VerificadoraString.GenerarMinuscula();
+                ocupado[pos] = true;
             }
+            if (parametros.IncluirNumeros)
+            {
+                categoriasDisponibles.Add(incluirNumeros);
+                int pos = this.GenerarPosicion(largo, ocupado);
+                resultado[pos] = VerificadoraString.GenerarNumero();
+                ocupado[pos] = true;
+            }
+            if (parametros.IncluirSimbolos)
+            {
+                categoriasDisponibles.Add(incluirSimbolos);
+                int pos = this.GenerarPosicion(largo, ocupado);
+                resultado[pos] = VerificadoraString.GenerarSimbolo();
+                ocupado[pos] = true;
+            }
+            
+            for(int i = 0;  i< largo; i++)
+            {
+                if (!ocupado[i])
+                {
+                    ocupado[i] = true;
+                    int posCategoriaElegida = this._aleatorio.Next(categoriasDisponibles.Count);
+                    string categoriaElegida = categoriasDisponibles[posCategoriaElegida];
+                    switch (categoriaElegida)
+                    {
+                        case incluirMayusculas:
+                            resultado[i] = VerificadoraString.GenerarMayuscula();
+                            break;
+                        case incluirMinusculas:
+                            resultado[i] = VerificadoraString.GenerarMinuscula();
+                            break;
+                        case incluirNumeros:
+                            resultado[i] = VerificadoraString.GenerarNumero();
+                            break;
+                        case incluirSimbolos:
+                            resultado[i] = VerificadoraString.GenerarSimbolo();
+                            break;
+                        default:
+                            throw new CaracterInesperadoException();
+                            break;
+                    }
+                }
+            }
+            this.Clave = new string(resultado);
+        }
+
+        private int GenerarPosicion(int largo, bool[] ocupado)
+        {
+            int pos = this._aleatorio.Next(largo);
+            while (ocupado[pos])
+            {
+                pos = this._aleatorio.Next(largo);
+            }
+            return pos;
         }
     }
 }
