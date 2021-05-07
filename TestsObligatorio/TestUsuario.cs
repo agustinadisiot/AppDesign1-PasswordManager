@@ -1271,7 +1271,7 @@ namespace TestsObligatorio
             bool getListaClavesContieneLasClaves = getListaClaves.All(claves.Contains);
             bool lasClavesContieneGetListaClaves = claves.All(getListaClaves.Contains);
 
-            Assert.AreEqual(getListaClavesContieneLasClaves, lasClavesContieneGetListaClaves);
+            Assert.IsTrue(getListaClavesContieneLasClaves && lasClavesContieneGetListaClaves);
         }
 
         [TestMethod]
