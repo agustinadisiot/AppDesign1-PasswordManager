@@ -309,12 +309,30 @@ namespace Obligatorio
 
         public void dejarDeCompartir(ClaveCompartida aDejarDeCompartir)
         {
+            Usuario usuarioADejarDeCompartir = aDejarDeCompartir.Usuario;
             Contra claveADejarDeCompartir = aDejarDeCompartir.Clave;
 
             if (!claveADejarDeCompartir.EsCompartida) throw new ObjetoInexistenteException();
 
-            this.CompartidasPorMi.Remove(aDejarDeCompartir);
+            ClaveCompartida guardadaAEliminar = new ClaveCompartida()
+            {
+                Usuario = usuarioADejarDeCompartir,
+                Clave = claveADejarDeCompartir
+            };
+
+            ClaveCompartida enviadaAEliminar = new ClaveCompartida()
+            {
+                Usuario = this,
+                Clave = claveADejarDeCompartir
+            };
+
+            if (!usuarioADejarDeCompartir.CompartidasConmigo.Contains(enviadaAEliminar)) throw new ObjetoInexistenteException();
+
+            this.CompartidasPorMi.Remove(guardadaAEliminar);
+
+            usuarioADejarDeCompartir.CompartidasConmigo.Remove(enviadaAEliminar);
 
         }
+
     }
 }

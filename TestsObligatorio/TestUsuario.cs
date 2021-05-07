@@ -1842,6 +1842,116 @@ namespace TestsObligatorio
             Assert.IsFalse(usuario1.CompartidasPorMi.Contains(claveACompartir1));
         }
 
+        [TestMethod]
+        public void UsuarioDejarDeCompartirUnaClave_EliminaDeListaDeQuienComparto()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+            usuario2.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+
+            Contra claveNoCompartida = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Hernesto"
+            };
+
+            usuario1.AgregarContra(claveNoCompartida, categoria1);
+            usuario1.AgregarContra(clave1, categoria1);
+
+            ClaveCompartida claveACompartir1 = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            usuario1.CompartirClave(claveACompartir1);
+
+            ClaveCompartida claveQueCompartieron = new ClaveCompartida()
+            {
+                Usuario = usuario1,
+                Clave = clave1
+            };
+
+            usuario1.dejarDeCompartir(claveACompartir1);
+
+            Assert.IsFalse(usuario2.CompartidasConmigo.Contains(claveQueCompartieron));
+        }
+
+        [TestMethod]
+        public void UsuarioDejarDeCompartirUnaClaveAUnUsuarioAQuienNoLeComparto()
+        {
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+            usuario2.AgregarCategoria(categoria1);
+
+            Usuario usuario3 = new Usuario()
+            {
+                Nombre = "Usuario3"
+            };
+            usuario3.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+
+            usuario1.AgregarContra(clave1, categoria1);
+
+            ClaveCompartida claveACompartir1 = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            usuario1.CompartirClave(claveACompartir1);
+
+            ClaveCompartida claveQueNoComparto = new ClaveCompartida()
+            {
+                Usuario = usuario3,
+                Clave = clave1
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario1.dejarDeCompartir(claveQueNoComparto));
+        }
+
+
     }
 
     [TestClass]
