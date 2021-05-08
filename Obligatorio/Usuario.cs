@@ -212,16 +212,30 @@ namespace Obligatorio
             aModificar.Nota = contraNueva.Nota;
         }
 
-        public void ModificarTarjetaCategoria(Tarjeta tarjetaVieja, Tarjeta tarjetaNueva)
+        public void ModificarTarjeta(TarjetaAModificar modificar)
         {
-            if (this.YaExisteTarjeta(tarjetaNueva)) throw new ObjetoYaExistenteException();
-            Tarjeta aModificar = this.GetTarjeta(tarjetaVieja);
-            aModificar.Nombre = tarjetaNueva.Nombre;
-            aModificar.Numero = tarjetaNueva.Numero;
-            aModificar.Tipo = tarjetaNueva.Tipo;
-            aModificar.Nota = tarjetaNueva.Nota;
-            aModificar.Vencimiento = tarjetaNueva.Vencimiento;
+            Tarjeta tarjetaVieja = this.GetTarjeta(modificar.TarjetaVieja);
+            Tarjeta tarjetaNueva = modificar.TarjetaNueva;
+
+
+            bool cambioNumero = tarjetaVieja.Numero != tarjetaNueva.Numero;
+            if (cambioNumero && this.YaExisteTarjeta(tarjetaNueva)) throw new ObjetoYaExistenteException();
+
+            Categoria categoriaVieja = this.GetCategoria(modificar.CategoriaVieja);
+            Categoria categoriaNueva = this.GetCategoria(modificar.CategoriaNueva);
+
+            if (categoriaNueva == categoriaVieja)
+            {
+                categoriaVieja.ModificarTarjeta(tarjetaVieja, tarjetaNueva);
+            }
+            else {
+                categoriaVieja.BorrarTarjeta(tarjetaVieja);
+
+                categoriaNueva.AgregarTarjeta(tarjetaVieja);
+                categoriaNueva.ModificarTarjeta(tarjetaVieja, tarjetaNueva);
+            }
         }
+
 
         public List<Contra> GetListaClaves()
         {
@@ -344,6 +358,40 @@ namespace Obligatorio
             if (!sigueCompartida) claveADejarDeCompartir.EsCompartida = false;
 
 
+        }
+
+        public List<Contra> GetListaClavesColor(string color)
+        {
+            List<Contra> todasLasClaves = this.GetListaClaves();
+            return todasLasClaves.FindAll(buscadora => buscadora.GetNivelSeguridad()==color);
+        }
+
+        public Categoria GetCategoriaTarjeta(Tarjeta buscadora)
+        {
+            List<Categoria> categorias = this.GetListaCategorias();
+
+            foreach (Categoria actual in categorias) {
+                if (actual.YaExisteTarjeta(buscadora)) {
+                    return actual;
+                }
+            }
+
+            throw new ObjetoInexistenteException();
+
+        }
+
+        public Categoria GetCategoriaClave(Contra buscadora)
+        {
+            List<Categoria> categorias = this.GetListaCategorias();
+
+            foreach (Categoria actual in categorias)
+            {
+                if (actual.YaExisteContra(buscadora))
+                {
+                    return actual;
+                }
+            }
+            throw new ObjetoInexistenteException();
         }
     }
 }

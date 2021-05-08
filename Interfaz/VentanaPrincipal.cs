@@ -85,7 +85,6 @@ namespace Interfaz
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(iniciarSesion);
         }
-
         
         private void IniciarSesion_Handler(Usuario aIngresar)
         {
@@ -109,6 +108,13 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(crearUsuario);
         }
 
+        private void AbrirListaClavesCompartidasConmigo_Handler()
+        {
+            ListaClavesCompartidasConmigo listaClavesCompartidasConmigo = new ListaClavesCompartidasConmigo(this._usuarioActual, this._administrador);
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(listaClavesCompartidasConmigo);
+        }
+
         private void AbrirIniciarSesion_Handler()
         {
             IniciarSesion iniciarSesion = new IniciarSesion(this._administrador);
@@ -120,7 +126,7 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(iniciarSesion);
         }
 
-        protected void AbrirListaCategorias_Handler(object sender, EventArgs e)
+        protected void AbrirListaCategorias_Handler()
         {
 
             ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual, this._administrador);
@@ -136,7 +142,7 @@ namespace Interfaz
         {
 
             AgregarCategoria agregarCategoria = new AgregarCategoria(this._usuarioActual, this._administrador);
-            agregarCategoria.AbrirListaCategorias_Event += new EventHandler(this.AbrirListaCategorias_Handler);
+            agregarCategoria.AbrirListaCategorias_Event += AbrirListaCategorias_Handler;
 
             this.panelPrincipal.Controls.Clear();
 
@@ -147,7 +153,7 @@ namespace Interfaz
         {
 
             ModificarCategoria modificarCategoria = new ModificarCategoria(aModificar, this._usuarioActual);
-            modificarCategoria.AbrirListaCategorias_Event += new EventHandler(this.AbrirListaCategorias_Handler);
+            modificarCategoria.AbrirListaCategorias_Event += AbrirListaCategorias_Handler;
 
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(modificarCategoria);
@@ -222,6 +228,13 @@ namespace Interfaz
 
             panelPrincipal.Controls.Add(iniciarSesion);
 
+        }
+
+        private void botonClavesQueMeComparten_Click(object sender, EventArgs e)
+        {
+            ListaClavesCompartidasConmigo listaClavesCompartidasConmigo = new ListaClavesCompartidasConmigo(this._usuarioActual, this._administrador);
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(listaClavesCompartidasConmigo);
         }
     }
 }
