@@ -25,7 +25,9 @@ namespace Interfaz
         }
 
         private void CargarTabla() {
-           
+
+            this.tablaTarjetas.Rows.Clear();
+
             List<Categoria> listaCategorias = this._usuarioActual.GetListaCategorias();
 
             foreach (Categoria categoriaActual in listaCategorias) {
@@ -44,7 +46,7 @@ namespace Interfaz
                 string nombre = tarjetaActual.Nombre;
                 string tipo = tarjetaActual.Tipo;
                 string numeroCompleto = tarjetaActual.Numero;
-                string numeroOculto = "XXXX XXXX XXXX " + numeroCompleto.Substring(12, 4);
+                string numeroOculto = OcultarTarjeta(tarjetaActual);
                 string vencimiento = tarjetaActual.Vencimiento.ToString();
 
                 this.tablaTarjetas.Rows.Add(categoriaActual, nombre, tipo, numeroOculto, numeroCompleto, vencimiento);
@@ -52,7 +54,7 @@ namespace Interfaz
         }
 
 
-        private string FormatearTarjeta(Tarjeta actual)
+        private string OcultarTarjeta(Tarjeta actual)
         {
 
             string numero = actual.Numero;
@@ -105,6 +107,39 @@ namespace Interfaz
                     Numero = numero
                 };
                 this.AbrirModificarTarjeta(buscadora);
+            }
+        }
+
+        private void botonEliminar_Click(object sender, EventArgs e)
+        {
+            bool haySeleccionada = this.tablaTarjetas.SelectedCells.Count > 0;
+            if (haySeleccionada)
+            {
+                string texto = "¿Estas seguro que quieres eliminar esta tarjeta?";
+                VentanaConfirmaciones ventanaConfirmar = new VentanaConfirmaciones(texto);
+                ventanaConfirmar.CerrarConfirmacion_Event += CerrarConfirmacion_Handler;
+                ventanaConfirmar.StartPosition = FormStartPosition.CenterParent;
+                ventanaConfirmar.ShowDialog();
+            }
+        }
+
+
+        private void CerrarConfirmacion_Handler(bool acepto)
+        {
+            bool haySeleccionada = this.tablaTarjetas.SelectedCells.Count > 0;
+            if (haySeleccionada && acepto)
+            {
+                int posSeleccionada = this.tablaTarjetas.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = this.tablaTarjetas.Rows[posSeleccionada];
+
+                string numeroTarjetaBorrar = Convert.ToString(selectedRow.Cells["TarjetaCompleta"].Value);
+
+                Tarjeta buscadora = new Tarjeta()
+                {
+                    Numero = numeroTarjetaBorrar
+                };
+                this._usuarioActual.BorrarTarjeta(buscadora);
+                this.CargarTabla();
             }
         }
     }
