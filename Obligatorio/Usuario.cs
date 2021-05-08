@@ -374,5 +374,10 @@ namespace Obligatorio
             throw new ObjetoInexistenteException();
 
         }
+
+        public void GetCategoriaClave(Contra buscadora)
+        {
+            throw new ObjetoInexistenteException();
+        }
     }
 }

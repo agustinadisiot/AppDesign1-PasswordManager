@@ -2224,6 +2224,33 @@ namespace TestsObligatorio
 
             Assert.IsTrue(getListaClavesContieneLasClavesVerdes && clavesVerdesContieneListaClavesVerdes);
         }
+
+        [TestMethod]
+        public void UsuarioGetCategoriaClaveSinClaves()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+
+            Contra buscadora = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "estaesunaclave",
+                UsuarioContra = "Roberto"
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.GetCategoriaClave(buscadora));
+        }
     }
 
     [TestClass]
