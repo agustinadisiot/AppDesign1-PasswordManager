@@ -351,7 +351,7 @@ namespace TestsObligatorio
             {
                 Nombre = "Trabajo"
             };
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarNombreCategoria(modificarVieja, modificarNueva));
+            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.ModificarNombreCategoria(modificarVieja, modificarNueva));
         }
 
         [TestMethod]
@@ -652,7 +652,7 @@ namespace TestsObligatorio
                 Clave = "12345678"
             };
 
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.AgregarContra(contra, categoria));
+            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.AgregarContra(contra, categoria));
         }
 
         [TestMethod]
@@ -1310,6 +1310,76 @@ namespace TestsObligatorio
             Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.ModificarContra(parametros));
         }
 
+        [TestMethod]
+        public void UsuarioModificarContraMoverACategoriaExistente()
+        {
+            Usuario usuario = new Usuario();
+            Categoria personal = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            usuario.AgregarCategoria(personal);
+
+            Categoria trabajo = new Categoria()
+            {
+                Nombre = "Trabajo"
+
+            };
+            usuario.AgregarCategoria(trabajo);
+
+
+            Contra vieja = new Contra()
+            {
+                UsuarioContra = "11111111",
+                Sitio = "ort.edu.uy",
+                Clave = "11111111",
+                Nota = "1111"
+            };
+
+            usuario.AgregarContra(vieja, personal);
+
+            string usuarioNueva = "22222222";
+            string sitioNueva = "aulas.ort.edu.uy";
+
+            Contra nueva = new Contra()
+            {
+                UsuarioContra = usuarioNueva,
+                Sitio = sitioNueva,
+                Clave = "22222222",
+                Nota = "2222"
+            };
+
+
+            ClaveAModificar parametros = new ClaveAModificar()
+            {
+                ClaveVieja = vieja,
+                ClaveNueva = nueva,
+                CategoriaVieja = personal,
+                CategoriaNueva = trabajo
+            };
+
+            usuario.ModificarContra(parametros);
+
+            Contra buscadora = new Contra()
+            {
+                UsuarioContra = usuarioNueva,
+                Sitio = sitioNueva
+            };
+
+            Contra resultado = usuario.GetContra(buscadora);
+
+            Categoria categoriaFinal = usuario.GetCategoriaClave(buscadora);
+
+            bool igualSitio = resultado.Sitio == nueva.Sitio;
+            bool igualUsuario = resultado.UsuarioContra == nueva.UsuarioContra;
+            bool igualNota = resultado.Nota == nueva.Nota;
+            bool igualClave = resultado.Clave == nueva.Clave;
+
+            bool igualesDatos = igualSitio && igualUsuario && igualNota && igualClave;
+            bool igualCategoria = trabajo == categoriaFinal;
+
+            Assert.IsTrue(igualesDatos && igualCategoria);
+        }
 
         [TestMethod]
         public void UsuarioGetListaClavesUnaCategoria()
@@ -2677,7 +2747,7 @@ namespace TestsObligatorio
                 Vencimiento = new DateTime(2025, 7, 1)
             };
 
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.AgregarTarjeta(tarjeta, categoria));
+            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.AgregarTarjeta(tarjeta, categoria));
         }
 
         [TestMethod]
@@ -3266,7 +3336,7 @@ namespace TestsObligatorio
                 CategoriaNueva = noAgregada
             };
 
-            Assert.ThrowsException<ObjetoInexistenteException>(()=> usuario.ModificarTarjeta(parametros));
+            Assert.ThrowsException<CategoriaInexistenteException>(()=> usuario.ModificarTarjeta(parametros));
         }
 
         [TestMethod]

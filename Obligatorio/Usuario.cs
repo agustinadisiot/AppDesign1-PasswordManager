@@ -63,7 +63,7 @@ namespace Obligatorio
             { return categoria.Equals(aBuscar); };
 
             Categoria retorno = this._categorias.Find(buscadorCategoria);
-            return retorno != null ? retorno : throw new ObjetoInexistenteException();
+            return retorno != null ? retorno : throw new CategoriaInexistenteException();
         }
 
         public override bool Equals(object objeto)
@@ -210,15 +210,19 @@ namespace Obligatorio
                 throw new ObjetoYaExistenteException();
             }
 
-            if (modificar.CategoriaVieja != modificar.CategoriaNueva) {
-                throw new CategoriaInexistenteException();
-            }
+            Categoria categoriaVieja = this.GetCategoria(modificar.CategoriaVieja);
+            Categoria categoriaNueva = this.GetCategoria(modificar.CategoriaNueva);
 
-            Contra aModificar = this.GetContra(contraVieja);
-            aModificar.UsuarioContra = contraNueva.UsuarioContra;
-            aModificar.Clave = contraNueva.Clave;
-            aModificar.Sitio = contraNueva.Sitio;
-            aModificar.Nota = contraNueva.Nota;
+            if (categoriaVieja.Equals(categoriaNueva))
+            {
+                categoriaVieja.ModificarContra(contraVieja, contraNueva);
+            }
+            else {
+                categoriaVieja.BorrarContra(contraVieja);
+
+                categoriaNueva.AgregarContra(contraVieja);
+                categoriaNueva.ModificarContra(contraVieja, contraNueva);
+            }
         }
 
         public void ModificarTarjeta(TarjetaAModificar modificar)
