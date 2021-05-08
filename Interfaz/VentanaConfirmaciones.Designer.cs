@@ -30,29 +30,20 @@ namespace Interfaz
         private void InitializeComponent()
         {
             this.labelTextoDeConfirmacion = new System.Windows.Forms.Label();
-            this.botonCancelar = new System.Windows.Forms.Button();
             this.botonAceptar = new System.Windows.Forms.Button();
+            this.botonCancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelTextoDeConfirmacion
             // 
             this.labelTextoDeConfirmacion.AutoSize = true;
             this.labelTextoDeConfirmacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTextoDeConfirmacion.Location = new System.Drawing.Point(40, 27);
+            this.labelTextoDeConfirmacion.Location = new System.Drawing.Point(12, 9);
+            this.labelTextoDeConfirmacion.MaximumSize = new System.Drawing.Size(400, 0);
             this.labelTextoDeConfirmacion.Name = "labelTextoDeConfirmacion";
             this.labelTextoDeConfirmacion.Size = new System.Drawing.Size(106, 18);
             this.labelTextoDeConfirmacion.TabIndex = 0;
             this.labelTextoDeConfirmacion.Text = "Aqui va el texto";
-            // 
-            // botonCancelar
-            // 
-            this.botonCancelar.Location = new System.Drawing.Point(64, 92);
-            this.botonCancelar.Name = "botonCancelar";
-            this.botonCancelar.Size = new System.Drawing.Size(99, 32);
-            this.botonCancelar.TabIndex = 16;
-            this.botonCancelar.Text = "Cancelar";
-            this.botonCancelar.UseVisualStyleBackColor = true;
-            this.botonCancelar.Click += new System.EventHandler(this.botonCancelar_Click);
             // 
             // botonAceptar
             // 
@@ -63,6 +54,16 @@ namespace Interfaz
             this.botonAceptar.Text = "Aceptar";
             this.botonAceptar.UseVisualStyleBackColor = true;
             this.botonAceptar.Click += new System.EventHandler(this.botonAceptar_Click);
+            // 
+            // botonCancelar
+            // 
+            this.botonCancelar.Location = new System.Drawing.Point(64, 92);
+            this.botonCancelar.Name = "botonCancelar";
+            this.botonCancelar.Size = new System.Drawing.Size(99, 32);
+            this.botonCancelar.TabIndex = 16;
+            this.botonCancelar.Text = "Cancelar";
+            this.botonCancelar.UseVisualStyleBackColor = true;
+            this.botonCancelar.Click += new System.EventHandler(this.botonCancelar_Click);
             // 
             // VentanaConfirmaciones
             // 
@@ -82,7 +83,7 @@ namespace Interfaz
         #endregion
 
         private System.Windows.Forms.Label labelTextoDeConfirmacion;
-        private System.Windows.Forms.Button botonCancelar;
         private System.Windows.Forms.Button botonAceptar;
+        private System.Windows.Forms.Button botonCancelar;
     }
 }
