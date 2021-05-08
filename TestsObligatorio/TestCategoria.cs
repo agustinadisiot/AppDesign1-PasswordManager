@@ -1554,5 +1554,55 @@ namespace TestsObligatorio
             categoria.ModificarTarjeta(tarjetaVieja, tarjetaNueva);
             Assert.AreEqual(tarjetaNueva, buscadora);
         }
+
+        [TestMethod]
+        public void CategoriaModificarTarjetaCambiarTodoMenosNumero()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            string numeroTarjetaVieja = "1111111111111111";
+            Tarjeta tarjetaVieja = new Tarjeta()
+            {
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Numero = numeroTarjetaVieja,
+                Codigo = "111",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            categoria.AgregarTarjeta(tarjetaVieja);
+
+            Tarjeta tarjetaNueva = new Tarjeta()
+            {
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Numero = numeroTarjetaVieja,
+                Nota = "Nota Agregada",
+                Codigo = "222",
+                Vencimiento = new DateTime(2099, 8, 8)
+            };
+
+            Tarjeta buscadora = new Tarjeta()
+            {
+                Numero = numeroTarjetaVieja
+            };
+
+            categoria.ModificarTarjeta(tarjetaVieja, tarjetaNueva);
+
+            bool igualNumero = tarjetaVieja.Numero == tarjetaNueva.Numero;
+            bool igualNombre = tarjetaVieja.Nombre == tarjetaNueva.Nombre;
+            bool igualTipo = tarjetaVieja.Tipo == tarjetaNueva.Tipo;
+            bool igualNota = tarjetaVieja.Nota == tarjetaNueva.Nota;
+            bool igualCodigo = tarjetaVieja.Codigo == tarjetaNueva.Codigo;
+            bool igualVencimiento = tarjetaVieja.Vencimiento == tarjetaNueva.Vencimiento;
+
+            bool modificoCorrecto = igualNumero && igualNombre && igualTipo && igualNota && igualCodigo && igualVencimiento;
+
+            Assert.IsTrue(modificoCorrecto);
+        }
     }
 }

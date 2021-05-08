@@ -143,7 +143,11 @@ namespace Obligatorio
 
         public void ModificarTarjeta(Tarjeta tarjetaVieja, Tarjeta tarjetaNueva)
         {
-            if (this.YaExisteTarjeta(tarjetaNueva)) throw new ObjetoYaExistenteException();
+            bool igualNumero = tarjetaVieja.Equals(tarjetaNueva);
+
+            if (!this.YaExisteTarjeta(tarjetaVieja)) throw new ObjetoInexistenteException();
+            if (!igualNumero && this.YaExisteTarjeta(tarjetaNueva)) throw new ObjetoYaExistenteException();
+
             Tarjeta aModificar = this.GetTarjeta(tarjetaVieja);
             aModificar.Nombre = tarjetaNueva.Nombre;
             aModificar.Numero = tarjetaNueva.Numero;
