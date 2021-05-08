@@ -51,6 +51,7 @@ namespace Interfaz.InterfacesCompartirClave
                 string texto = "¿Estas seguro que quieres dejar de compartir esta contraseña?";
                 VentanaConfirmaciones ventanaConfirmar = new VentanaConfirmaciones(texto);
                 ventanaConfirmar.CerrarConfirmacion_Event += CerrarConfirmacion_Handler;
+                ventanaConfirmar.StartPosition = FormStartPosition.CenterParent;
                 ventanaConfirmar.ShowDialog();
             }
         }
