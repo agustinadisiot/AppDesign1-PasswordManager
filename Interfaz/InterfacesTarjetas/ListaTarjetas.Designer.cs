@@ -68,12 +68,12 @@ namespace Interfaz
             this.tablaTarjetas.RowHeadersWidth = 51;
             this.tablaTarjetas.RowTemplate.Height = 24;
             this.tablaTarjetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tablaTarjetas.Size = new System.Drawing.Size(1071, 557);
+            this.tablaTarjetas.Size = new System.Drawing.Size(1010, 557);
             this.tablaTarjetas.TabIndex = 0;
             // 
             // botonEliminar
             // 
-            this.botonEliminar.Location = new System.Drawing.Point(868, 645);
+            this.botonEliminar.Location = new System.Drawing.Point(830, 636);
             this.botonEliminar.Name = "botonEliminar";
             this.botonEliminar.Size = new System.Drawing.Size(86, 23);
             this.botonEliminar.TabIndex = 1;
@@ -82,7 +82,7 @@ namespace Interfaz
             // 
             // botonModificar
             // 
-            this.botonModificar.Location = new System.Drawing.Point(960, 645);
+            this.botonModificar.Location = new System.Drawing.Point(922, 636);
             this.botonModificar.Name = "botonModificar";
             this.botonModificar.Size = new System.Drawing.Size(86, 23);
             this.botonModificar.TabIndex = 2;
@@ -92,7 +92,7 @@ namespace Interfaz
             // 
             // buttonAgregar
             // 
-            this.buttonAgregar.Location = new System.Drawing.Point(776, 645);
+            this.buttonAgregar.Location = new System.Drawing.Point(738, 636);
             this.buttonAgregar.Name = "buttonAgregar";
             this.buttonAgregar.Size = new System.Drawing.Size(86, 23);
             this.buttonAgregar.TabIndex = 3;
@@ -173,7 +173,7 @@ namespace Interfaz
             this.Controls.Add(this.tablaTarjetas);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ListaTarjetas";
-            this.Size = new System.Drawing.Size(1075, 681);
+            this.Size = new System.Drawing.Size(1014, 681);
             ((System.ComponentModel.ISupportInitialize)(this.tablaTarjetas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

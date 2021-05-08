@@ -51,8 +51,8 @@ namespace Interfaz
             {
                 Nombre = "Itau",
                 Tipo = "Visa",
-                Numero = "3456567890876543",
-                Codigo = "321",
+                Numero = "1111111111111111",
+                Codigo = "111",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
 
@@ -60,8 +60,8 @@ namespace Interfaz
             {
                 Nombre = "Prex",
                 Tipo = "Mastercard",
-                Numero = "2222567890876543",
-                Codigo = "8904",
+                Numero = "2222222222222222",
+                Codigo = "2222",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
 
