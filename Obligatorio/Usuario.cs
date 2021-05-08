@@ -212,10 +212,22 @@ namespace Obligatorio
             aModificar.Nota = contraNueva.Nota;
         }
 
-        public void ModificarTarjeta(Tarjeta tarjetaVieja, Tarjeta tarjetaNueva)
+        public void ModificarTarjeta(TarjetaAModificar modificar)
         {
+
+            Tarjeta tarjetaVieja = modificar.TarjetaVieja;
+            Tarjeta tarjetaNueva = modificar.TarjetaNueva;
+
+            Categoria categoriaVieja = modificar.CategoriaVieja;
+            Categoria categoriaNueva = modificar.CategoriaNueva;
+
+
+            if (!this.YaExisteCategoria(categoriaNueva)) throw new ObjetoInexistenteException();
+
             if (this.YaExisteTarjeta(tarjetaNueva)) throw new ObjetoYaExistenteException();
             Tarjeta aModificar = this.GetTarjeta(tarjetaVieja);
+            
+            
             aModificar.Nombre = tarjetaNueva.Nombre;
             aModificar.Numero = tarjetaNueva.Numero;
             aModificar.Tipo = tarjetaNueva.Tipo;

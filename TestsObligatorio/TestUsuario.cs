@@ -2986,7 +2986,7 @@ namespace TestsObligatorio
         }
 
         [TestMethod]
-        public void UsuarioModificarTarjetaCategoriaNoExistente()
+        public void UsuarioModificarTarjetaNoExistente()
         {
             Usuario usuario = new Usuario()
             {
@@ -3000,7 +3000,7 @@ namespace TestsObligatorio
             };
             usuario.AgregarCategoria(categoria);
 
-            string numeroTarjeta = "3456567890876543";
+            string numeroTarjeta = "1111111111111111";
             Tarjeta tarjeta1 = new Tarjeta()
             {
                 Nombre = "Prex",
@@ -3014,17 +3014,27 @@ namespace TestsObligatorio
 
             Tarjeta tarjetaVieja = new Tarjeta()
             {
-                Numero = "1234567890876543"
+                Numero = "2222222222222222"
             };
             Tarjeta tarjetaNueva = new Tarjeta()
             {
-                Numero = "1987654321345678"
+                Numero = "3333333333333333"
             };
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarTarjeta(tarjetaVieja, tarjetaNueva));
+
+            TarjetaAModificar parametros = new TarjetaAModificar()
+            {
+                TarjetaVieja = tarjetaVieja,
+                TarjetaNueva = tarjetaNueva,
+                CategoriaVieja = categoria,
+                CategoriaNueva = categoria
+
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarTarjeta(parametros));
         }
 
         [TestMethod]
-        public void UsuarioModificarTarjetaCategoriaATarjetaYaExistente()
+        public void UsuarioModificarTarjetaTarjetaYaExistente()
         {
             Usuario usuario = new Usuario();
             Categoria categoria = new Categoria()
@@ -3065,11 +3075,20 @@ namespace TestsObligatorio
                 Numero = numeroTarjeta2
             };
 
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.ModificarTarjeta(tarjetaVieja, tarjetaNueva));
+            TarjetaAModificar parametros = new TarjetaAModificar()
+            {
+                TarjetaVieja = tarjetaVieja,
+                TarjetaNueva = tarjetaNueva,
+                CategoriaVieja = categoria,
+                CategoriaNueva = categoria
+
+            };
+
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.ModificarTarjeta(parametros));
         }
 
         [TestMethod]
-        public void UsuarioModificarTarjetaCategoriaAgregada()
+        public void UsuarioModificarTarjetaTodosLosDatos()
         {
             Usuario usuario = new Usuario();
             Categoria categoria = new Categoria()
@@ -3100,7 +3119,18 @@ namespace TestsObligatorio
                 Nota = "",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
-            usuario.ModificarTarjeta(tarjetaVieja, tarjetaNueva);
+
+
+            TarjetaAModificar parametros = new TarjetaAModificar()
+            {
+                TarjetaVieja = tarjetaVieja,
+                TarjetaNueva = tarjetaNueva,
+                CategoriaVieja = categoria,
+                CategoriaNueva = categoria
+
+            };
+
+            usuario.ModificarTarjeta(parametros);
 
             Tarjeta buscadora = new Tarjeta()
             {
@@ -3117,6 +3147,48 @@ namespace TestsObligatorio
             bool igualVencimiento = tarjetaNueva.Vencimiento == resultado.Vencimiento;
 
             Assert.IsTrue(igualNumero&&igualNombre&&igualTipo&&igualCodigo&&igualNota&&igualVencimiento);
+        }
+
+
+        [TestMethod]
+        public void UsuarioModificarTarjetaMoverACategoriaNoExistente()
+        {
+            Usuario usuario = new Usuario();
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            usuario.AgregarCategoria(categoria);
+
+            string numeroTarjeta = "3456567890876543";
+            Tarjeta aMover= new Tarjeta()
+            {
+                Numero = numeroTarjeta,
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Codigo = "321",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            usuario.AgregarTarjeta(aMover, categoria);
+
+            Categoria noAgregada = new Categoria()
+            {
+                Nombre = "NoAgregada"
+
+            };
+
+            TarjetaAModificar parametros = new TarjetaAModificar()
+            {
+                TarjetaVieja = aMover,
+                TarjetaNueva = aMover,
+                CategoriaVieja = categoria,
+                CategoriaNueva = noAgregada
+            };
+            
+
+
+            Assert.ThrowsException<ObjetoInexistenteException>(()=> usuario.ModificarTarjeta(parametros));
         }
 
         [TestMethod]
@@ -3310,6 +3382,8 @@ namespace TestsObligatorio
 
             Assert.AreEqual(trabajo, usuario.GetCategoriaTarjeta(buscadora));
         }
+
+        
     }
 
     [TestClass]
