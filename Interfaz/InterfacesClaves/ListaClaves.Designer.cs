@@ -60,7 +60,7 @@ namespace Interfaz
             this.tablaClaves.RowHeadersVisible = false;
             this.tablaClaves.RowHeadersWidth = 51;
             this.tablaClaves.RowTemplate.Height = 24;
-            this.tablaClaves.Size = new System.Drawing.Size(1741, 809);
+            this.tablaClaves.Size = new System.Drawing.Size(643, 809);
             this.tablaClaves.TabIndex = 0;
             // 
             // Categoria

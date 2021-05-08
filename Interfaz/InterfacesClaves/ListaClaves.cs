@@ -21,7 +21,6 @@ namespace Interfaz
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;
             this._administrador = administradorAgregar;
-            CargarTabla();
         }
 
         private void CargarTabla()
@@ -31,7 +30,7 @@ namespace Interfaz
 
             foreach (Contra claveActual in listaClaves)
             {
-                string nombreCategoria = usuarioActual.GetCategoriaClave(claveActual);
+                string nombreCategoria = this._usuarioActual.GetCategoriaClave(claveActual).Nombre;
                 string sitio = claveActual.Sitio;
                 string usuario = claveActual.UsuarioContra;
                 DateTime ultimaModificacion = claveActual.FechaModificacion;
@@ -39,6 +38,10 @@ namespace Interfaz
             }
         }
 
+        private void ListaCategorias_Load(object sender, EventArgs e)
+        {
+            this.CargarTabla();
+        }
 
 
         public delegate void irAVerClave_Handler(Usuario actual);
@@ -59,31 +62,29 @@ namespace Interfaz
                 this.AbrirCompartirClave_Event(usuarioClaves);
         }
 
-        public delegate void irAAgregarClave_Handler(Usuario actual);
 
-        public event irAAgregarClave_Handler AbrirAgregarClave_Event;
-        public void irAAgregarClave(Usuario usuarioClaves)
+        public delegate void AbrirAgregarClave_Handler();
+        public event AbrirAgregarClave_Handler AbrirAgregarClave_Event;
+        public void irAAgregarClave()
         {
             if (this.AbrirAgregarClave_Event != null)
-                this.AbrirAgregarClave_Event(usuarioClaves);
+                this.AbrirAgregarClave_Event();
         }
 
-        public delegate void irAEliminarClave_Handler(Usuario actual);
-
-        public event irAEliminarClave_Handler AbrirEliminarClave_Event;
-        public void irAEliminarClave(Usuario usuarioClaves)
+        public delegate void AbrirEliminarClave_Handler(Contra claveAModificar);
+        public event AbrirEliminarClave_Handler AbrirEliminarClave_Event;
+        public void irAEliminarClave(Contra claveAModificar)
         {
             if (this.AbrirEliminarClave_Event != null)
-                this.AbrirEliminarClave_Event(usuarioClaves);
+                this.AbrirEliminarClave_Event(claveAModificar);
         }
 
-        public delegate void irAModificarClave_Handler(Usuario actual);
-
-        public event irAModificarClave_Handler AbrirModificarClave_Event;
-        public void irAModificarClave(Usuario usuarioClaves)
+        public delegate void AbrirModificarClave_Handler(Contra claveAModificar);
+        public event AbrirModificarClave_Handler AbrirModificarClave_Event;
+        public void irAModificarClave(Contra claveAModificar)
         {
             if (this.AbrirModificarClave_Event != null)
-                this.AbrirModificarClave_Event(usuarioClaves);
+                this.AbrirModificarClave_Event(claveAModificar);
         }
 
 
@@ -94,11 +95,12 @@ namespace Interfaz
 
         private void botonCompartir_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void botonAgregar_Click(object sender, EventArgs e)
         {
+            irAAgregarClave();
         }
 
         private void botonEliminar_Click(object sender, EventArgs e)
@@ -107,6 +109,23 @@ namespace Interfaz
 
         private void botonModificar_Click(object sender, EventArgs e)
         {
+            string sitioClave = "";
+            string usuarioClave = "";
+            if (this.tablaClaves.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = tablaClaves.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = tablaClaves.Rows[selectedrowindex];
+                sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
+                usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
+            }
+
+            Contra aModificar = new Contra()
+            {
+                Sitio = sitioClave,
+                UsuarioContra = usuarioClave
+            };
+
+            irAModificarClave(aModificar);
         }
 
     }
