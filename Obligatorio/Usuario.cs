@@ -348,17 +348,8 @@ namespace Obligatorio
 
         public List<Contra> GetListaClavesColor(string color)
         {
-            List<Contra> clavesColor = new List<Contra>();
             List<Contra> todasLasClaves = this.GetListaClaves();
-            foreach(Contra clave in todasLasClaves)
-            {
-                string nivelSeguridad = clave.GetNivelSeguridad();
-                if (nivelSeguridad == color)
-                {
-                    clavesColor.Add(clave);
-                }
-            }
-            return clavesColor;
+            return todasLasClaves.FindAll(buscadora => buscadora.GetNivelSeguridad()==color);
         }
 
         public Categoria GetCategoriaTarjeta(Tarjeta buscadora)
