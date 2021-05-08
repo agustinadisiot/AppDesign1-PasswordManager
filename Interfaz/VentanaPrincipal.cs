@@ -213,12 +213,6 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(listaTarjetas);
         }
 
-        private void EstadoVentana_Handler(bool mostrar)
-        {
-            this.panelPrincipal.Enabled = mostrar;
-            this.panelDrawer.Enabled = mostrar;
-        }
-
         private void botonListaCategorias_Click(object sender, EventArgs e)
         {
             ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual, this._administrador);
@@ -274,7 +268,6 @@ namespace Interfaz
         private void botonClavesQueComparto_Click(object sender, EventArgs e)
         {
             ListaClavesCompartidasPorMi listaClavesCompartidasPorMi = new ListaClavesCompartidasPorMi(this._usuarioActual, this._administrador);
-            listaClavesCompartidasPorMi.EstadoVentana_Event += EstadoVentana_Handler;
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(listaClavesCompartidasPorMi);
         }
