@@ -2395,6 +2395,81 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoInexistenteException>(() => usuario1.GetClaveCompartidaPorMi(buscadora));
         }
 
+        [TestMethod]
+        public void UsuarioGetClaveCompartidaPorDosCompartidasConParametrosDiferentes()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2",
+                ContraMaestra = "123456789"
+            };
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave2",
+                UsuarioContra = "Hernesto"
+            };
+
+            usuario1.AgregarContra(clave1, categoria1);
+            usuario1.AgregarContra(clave2, categoria1);
+
+            ClaveCompartida claveCompartida1 = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            ClaveCompartida claveCompartida2 = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave2
+            };
+
+            usuario1.CompartirClave(claveCompartida1);
+            usuario1.CompartirClave(claveCompartida2);
+
+            Usuario usuarioBuscador = new Usuario
+            {
+                Nombre = "Usuario2",
+                ContraMaestra = "ClaveDiferente"
+            };
+
+            Contra claveBuscadora = new Contra
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaDiferente",
+                UsuarioContra = "Hernesto"
+            };
+
+            ClaveCompartida buscadora = new ClaveCompartida()
+            {
+                Usuario = usuarioBuscador,
+                Clave = claveBuscadora
+            };
+
+            Assert.AreEqual(claveCompartida2, usuario1.GetClaveCompartidaPorMi(buscadora));
+        }
+
     }
 
     [TestClass]

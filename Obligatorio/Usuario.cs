@@ -384,7 +384,7 @@ namespace Obligatorio
         public ClaveCompartida GetClaveCompartidaPorMi(ClaveCompartida buscadora)
         {
             if (!this.CompartidasPorMi.Contains(buscadora)) throw new ObjetoInexistenteException();
-            return buscadora;
+            return this.CompartidasPorMi.First(aBuscar => aBuscar.Equals(buscadora));
         }
     }
 }
