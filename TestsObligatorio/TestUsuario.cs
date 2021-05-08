@@ -3186,6 +3186,50 @@ namespace TestsObligatorio
 
             Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.GetCategoriaTarjeta(buscadora));
         }
+
+        [TestMethod]
+        public void UsuarioGetCategoriaTarjetaDosCategorias()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+
+            Categoria trabajo = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            usuario.AgregarCategoria(trabajo);
+
+            Categoria facultad = new Categoria()
+            {
+                Nombre = "Facultad"
+            };
+
+            usuario.AgregarCategoria(facultad);
+
+            Tarjeta agregar = new Tarjeta()
+            {
+                Numero = "2222222222222222",
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Codigo = "222",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+
+            usuario.AgregarTarjeta(agregar, trabajo);
+
+            Tarjeta buscadora = new Tarjeta()
+            {
+                Numero = "2222222222222222",
+            };
+
+            Assert.AreEqual(trabajo, usuario.GetCategoriaTarjeta(buscadora));
+        }
     }
 
     [TestClass]
