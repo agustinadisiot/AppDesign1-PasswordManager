@@ -360,5 +360,10 @@ namespace Obligatorio
             }
             return clavesColor;
         }
+
+        public Categoria GetCategoriaTarjeta(Tarjeta buscadora)
+        {
+            throw new ObjetoInexistenteException();
+        }
     }
 }

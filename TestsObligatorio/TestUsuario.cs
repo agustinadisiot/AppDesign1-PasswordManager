@@ -3161,6 +3161,31 @@ namespace TestsObligatorio
             bool getTarjetasContieneTarjetas = tarjetas.All(usuario.GetListaTarjetas().Contains);
             Assert.IsTrue(tarjetasContieneGetTarjetas && getTarjetasContieneTarjetas);
         }
+
+        [TestMethod]
+        public void UsuarioGetCategoriaTarjetaSinTarjetas()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+           
+            Tarjeta buscadora = new Tarjeta()
+            {
+                Numero = "2222222222222222",
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.GetCategoriaTarjeta(buscadora));
+        }
     }
 
     [TestClass]
