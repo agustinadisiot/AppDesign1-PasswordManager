@@ -71,12 +71,12 @@ namespace Interfaz
                 this.AbrirAgregarClave_Event();
         }
 
-        public delegate void AbrirEliminarClave_Handler(Contra claveAModificar);
+        public delegate void AbrirEliminarClave_Handler(Contra claveABorrar);
         public event AbrirEliminarClave_Handler AbrirEliminarClave_Event;
-        public void irAEliminarClave(Contra claveAModificar)
+        public void irAEliminarClave(Contra claveABorrar)
         {
             if (this.AbrirEliminarClave_Event != null)
-                this.AbrirEliminarClave_Event(claveAModificar);
+                this.AbrirEliminarClave_Event(claveABorrar);
         }
 
         public delegate void AbrirModificarClave_Handler(Contra claveAModificar);
@@ -105,6 +105,25 @@ namespace Interfaz
 
         private void botonEliminar_Click(object sender, EventArgs e)
         {
+            string sitioClave = "";
+            string usuarioClave = "";
+            if (this.tablaClaves.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = tablaClaves.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = tablaClaves.Rows[selectedrowindex];
+                sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
+                usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
+            }
+
+            Contra aBorrar = new Contra()
+            {
+                Sitio = sitioClave,
+                UsuarioContra = usuarioClave
+            };
+
+            //Pop up de confirmacion para eliminar(?
+            _usuarioActual.BorrarContra(aBorrar);
+            this.CargarTabla();
         }
 
         private void botonModificar_Click(object sender, EventArgs e)
