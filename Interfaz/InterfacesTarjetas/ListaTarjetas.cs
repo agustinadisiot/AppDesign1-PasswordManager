@@ -43,10 +43,11 @@ namespace Interfaz
 
                 string nombre = tarjetaActual.Nombre;
                 string tipo = tarjetaActual.Tipo;
-                string numero = tarjetaActual.Numero;
+                string numeroCompleto = tarjetaActual.Numero;
+                string numeroOculto = "XXXX XXXX XXXX " + numeroCompleto.Substring(12, 4);
                 string vencimiento = tarjetaActual.Vencimiento.ToString();
 
-                this.tablaTarjetas.Rows.Add(categoriaActual, nombre, tipo, numero, vencimiento);
+                this.tablaTarjetas.Rows.Add(categoriaActual, nombre, tipo, numeroOculto, numeroCompleto, vencimiento);
             }
         }
 
@@ -80,17 +81,31 @@ namespace Interfaz
                 this.AbrirCrearTarjeta_Event(this, e);
         }
 
-        public event EventHandler AbrirModificarTarjeta_Event;
-        private void AbrirModificarTarjeta(EventArgs e)
+        public delegate void AbrirModificarTarjeta_Handler(Tarjeta modificar);
+        public event AbrirModificarTarjeta_Handler AbrirModificarTarjeta_Event;
+        private void AbrirModificarTarjeta(Tarjeta modificar)
         {
             if (this.AbrirModificarTarjeta_Event != null)
-                this.AbrirModificarTarjeta_Event(this, e);
+                this.AbrirModificarTarjeta_Event(modificar);
         }
 
 
         private void botonModificar_Click(object sender, EventArgs e)
         {
-            this.AbrirModificarTarjeta(e);
+            bool haySeleccionada = this.tablaTarjetas.SelectedCells.Count > 0;
+            if (haySeleccionada)
+            {
+                int posSeleccionada = this.tablaTarjetas.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = this.tablaTarjetas.Rows[posSeleccionada];
+                string numero = Convert.ToString(selectedRow.Cells["TarjetaCompleta"].Value);
+                
+                
+                Tarjeta buscadora = new Tarjeta()
+                {
+                    Numero = numero
+                };
+                this.AbrirModificarTarjeta(buscadora);
+            }
         }
     }
 }

@@ -42,6 +42,7 @@ namespace Interfaz
 
         private void CargarComboBox()
         {
+
             this.comboBoxCategorias.Items.Clear();
             List<Categoria> lista = this._actual.GetListaCategorias();
 
@@ -51,7 +52,7 @@ namespace Interfaz
                 string nombre = actual.Nombre;
                 this.comboBoxCategorias.Items.Add(nombre);
             }
-
+            this.comboBoxCategorias.SelectedIndex = 0;
         }
 
         private string LeerComboBox()
