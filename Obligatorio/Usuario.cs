@@ -214,27 +214,28 @@ namespace Obligatorio
 
         public void ModificarTarjeta(TarjetaAModificar modificar)
         {
-
-            Tarjeta tarjetaVieja = modificar.TarjetaVieja;
+            Tarjeta tarjetaVieja = this.GetTarjeta(modificar.TarjetaVieja);
             Tarjeta tarjetaNueva = modificar.TarjetaNueva;
 
-            Categoria categoriaVieja = modificar.CategoriaVieja;
-            Categoria categoriaNueva = modificar.CategoriaNueva;
 
+            bool cambioNumero = tarjetaVieja.Numero != tarjetaNueva.Numero;
+            if (cambioNumero && this.YaExisteTarjeta(tarjetaNueva)) throw new ObjetoYaExistenteException();
 
-            if (!this.YaExisteCategoria(categoriaNueva)) throw new ObjetoInexistenteException();
+            Categoria categoriaVieja = this.GetCategoria(modificar.CategoriaVieja);
+            Categoria categoriaNueva = this.GetCategoria(modificar.CategoriaNueva);
 
-            if (this.YaExisteTarjeta(tarjetaNueva)) throw new ObjetoYaExistenteException();
-            Tarjeta aModificar = this.GetTarjeta(tarjetaVieja);
-            
-            
-            aModificar.Nombre = tarjetaNueva.Nombre;
-            aModificar.Numero = tarjetaNueva.Numero;
-            aModificar.Tipo = tarjetaNueva.Tipo;
-            aModificar.Codigo = tarjetaNueva.Codigo;
-            aModificar.Nota = tarjetaNueva.Nota;
-            aModificar.Vencimiento = tarjetaNueva.Vencimiento;
+            if (categoriaNueva == categoriaVieja)
+            {
+                categoriaVieja.ModificarTarjeta(tarjetaVieja, tarjetaNueva);
+            }
+            else {
+                categoriaVieja.BorrarTarjeta(tarjetaVieja);
+
+                categoriaNueva.AgregarTarjeta(tarjetaVieja);
+                categoriaNueva.ModificarTarjeta(tarjetaVieja, tarjetaNueva);
+            }
         }
+
 
         public List<Contra> GetListaClaves()
         {

@@ -3149,7 +3149,6 @@ namespace TestsObligatorio
             Assert.IsTrue(igualNumero&&igualNombre&&igualTipo&&igualCodigo&&igualNota&&igualVencimiento);
         }
 
-
         [TestMethod]
         public void UsuarioModificarTarjetaMoverACategoriaNoExistente()
         {
@@ -3185,10 +3184,81 @@ namespace TestsObligatorio
                 CategoriaVieja = categoria,
                 CategoriaNueva = noAgregada
             };
-            
-
 
             Assert.ThrowsException<ObjetoInexistenteException>(()=> usuario.ModificarTarjeta(parametros));
+        }
+
+        [TestMethod]
+        public void UsuarioModificarTarjetaMoverACategoriaExistente()
+        {
+            Usuario usuario = new Usuario();
+            Categoria personal = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            usuario.AgregarCategoria(personal);
+
+            Categoria trabajo = new Categoria()
+            {
+                Nombre = "Trabajo"
+
+            };
+            usuario.AgregarCategoria(trabajo);
+            
+            Tarjeta vieja = new Tarjeta()
+            {
+                Numero = "1111111111111111",
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Codigo = "111",
+                Nota = "AAAAA",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            usuario.AgregarTarjeta(vieja, personal);
+
+            string numeroTarjetaNueva = "2222222222222222";
+
+            Tarjeta nueva = new Tarjeta()
+            {
+                Numero = numeroTarjetaNueva,
+                Nombre = "Otro",
+                Tipo = "Visa",
+                Codigo = "222",
+                Nota = "BBBB",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+
+            TarjetaAModificar parametros = new TarjetaAModificar()
+            {
+                TarjetaVieja = vieja,
+                TarjetaNueva = nueva,
+                CategoriaVieja = personal,
+                CategoriaNueva = trabajo
+            };
+
+            usuario.ModificarTarjeta(parametros);
+
+            Tarjeta buscadora = new Tarjeta()
+            {
+                Numero = numeroTarjetaNueva
+            };
+
+            Tarjeta resultado = usuario.GetTarjeta(buscadora);
+
+            Categoria categoriaFinal = usuario.GetCategoriaTarjeta(buscadora);
+
+            bool igualNumero = nueva.Numero == resultado.Numero;
+            bool igualNombre = nueva.Nombre == resultado.Nombre;
+            bool igualTipo = nueva.Tipo == resultado.Tipo;
+            bool igualCodigo = nueva.Codigo == resultado.Codigo;
+            bool igualNota = nueva.Nota == resultado.Nota;
+            bool igualVencimiento = nueva.Vencimiento == resultado.Vencimiento;
+            
+
+            bool igualesDatos = igualNumero && igualNombre && igualTipo && igualCodigo && igualNota && igualVencimiento;
+            bool igualCategoria = trabajo == categoriaFinal;
+
+            Assert.IsTrue(igualesDatos && igualCategoria);
         }
 
         [TestMethod]

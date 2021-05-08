@@ -148,6 +148,7 @@ namespace Obligatorio
             aModificar.Nombre = tarjetaNueva.Nombre;
             aModificar.Numero = tarjetaNueva.Numero;
             aModificar.Tipo = tarjetaNueva.Tipo;
+            aModificar.Codigo = tarjetaNueva.Codigo;
             aModificar.Nota = tarjetaNueva.Nota;
             aModificar.Vencimiento = tarjetaNueva.Vencimiento;
         }
