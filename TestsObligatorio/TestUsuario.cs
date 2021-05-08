@@ -2253,7 +2253,7 @@ namespace TestsObligatorio
         }
 
         [TestMethod]
-        public void UsuarioGetCategoriaTarjetaDosCategorias()
+        public void UsuarioGetCategoriaClaveDosCategorias()
         {
 
             Usuario usuario = new Usuario()
@@ -2294,6 +2294,107 @@ namespace TestsObligatorio
 
             Assert.AreEqual(facultad, usuario.GetCategoriaClave(buscadora));
         }
+
+        [TestMethod]
+        public void UsuarioGetClaveCompartidaPorMiCorrecta()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            usuario1.AgregarContra(clave1, categoria1);
+
+            ClaveCompartida claveCompartida = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            ClaveCompartida buscadora = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            usuario1.CompartirClave(claveCompartida);
+
+            Assert.AreEqual(claveCompartida, usuario1.GetClaveCompartidaPorMi(buscadora));
+        }
+
+        [TestMethod]
+        public void UsuarioGetClaveCompartidaPorMiInexistente()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave2",
+                UsuarioContra = "Hernesto"
+            };
+
+            usuario1.AgregarContra(clave1, categoria1);
+            usuario1.AgregarContra(clave2, categoria1);
+
+            ClaveCompartida claveCompartida = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            ClaveCompartida buscadora = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave2
+            };
+
+            usuario1.CompartirClave(claveCompartida);
+
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario1.GetClaveCompartidaPorMi(buscadora));
+        }
+
     }
 
     [TestClass]

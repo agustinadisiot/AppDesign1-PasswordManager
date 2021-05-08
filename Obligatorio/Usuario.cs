@@ -380,5 +380,11 @@ namespace Obligatorio
             }
             throw new ObjetoInexistenteException();
         }
+
+        public ClaveCompartida GetClaveCompartidaPorMi(ClaveCompartida buscadora)
+        {
+            if (!this.CompartidasPorMi.Contains(buscadora)) throw new ObjetoInexistenteException();
+            return buscadora;
+        }
     }
 }

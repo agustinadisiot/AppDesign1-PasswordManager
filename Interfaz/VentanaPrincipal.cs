@@ -251,5 +251,7 @@ namespace Interfaz
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(listaClavesCompartidasPorMi);
         }
+
+
     }
 }
