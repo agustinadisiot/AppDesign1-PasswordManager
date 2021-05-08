@@ -85,7 +85,6 @@ namespace Interfaz
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(iniciarSesion);
         }
-
         
         private void IniciarSesion_Handler(Usuario aIngresar)
         {
@@ -107,6 +106,13 @@ namespace Interfaz
             crearUsuario.AbrirIniciarSesion_Event += AbrirIniciarSesion_Handler;
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(crearUsuario);
+        }
+
+        private void AbrirListaClavesCompartidasConmigo_Handler()
+        {
+            ListaClavesCompartidasConmigo listaClavesCompartidasConmigo = new ListaClavesCompartidasConmigo(this._usuarioActual, this._administrador);
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(listaClavesCompartidasConmigo);
         }
 
         private void AbrirIniciarSesion_Handler()
@@ -229,6 +235,13 @@ namespace Interfaz
 
             panelPrincipal.Controls.Add(iniciarSesion);
 
+        }
+
+        private void botonClavesQueMeComparten_Click(object sender, EventArgs e)
+        {
+            ListaClavesCompartidasConmigo listaClavesCompartidasConmigo = new ListaClavesCompartidasConmigo(this._usuarioActual, this._administrador);
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(listaClavesCompartidasConmigo);
         }
     }
 }

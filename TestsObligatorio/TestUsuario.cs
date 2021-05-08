@@ -2224,6 +2224,76 @@ namespace TestsObligatorio
 
             Assert.IsTrue(getListaClavesContieneLasClavesVerdes && clavesVerdesContieneListaClavesVerdes);
         }
+
+        [TestMethod]
+        public void UsuarioGetCategoriaClaveSinClaves()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+
+            Contra buscadora = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "estaesunaclave",
+                UsuarioContra = "Roberto"
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.GetCategoriaClave(buscadora));
+        }
+
+        [TestMethod]
+        public void UsuarioGetCategoriaTarjetaDosCategorias()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+
+            Categoria trabajo = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            usuario.AgregarCategoria(trabajo);
+
+            Categoria facultad = new Categoria()
+            {
+                Nombre = "Facultad"
+            };
+
+            usuario.AgregarCategoria(facultad);
+
+            Contra agregar = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "estaesunaclave",
+                UsuarioContra = "Roberto"
+
+            };
+
+            usuario.AgregarContra(agregar, facultad);
+
+            Contra buscadora = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "estaesunaclave",
+                UsuarioContra = "Roberto"
+            };
+
+            Assert.AreEqual(facultad, usuario.GetCategoriaClave(buscadora));
+        }
     }
 
     [TestClass]
@@ -3160,6 +3230,75 @@ namespace TestsObligatorio
             bool tarjetasContieneGetTarjetas = usuario.GetListaTarjetas().All(tarjetas.Contains);
             bool getTarjetasContieneTarjetas = tarjetas.All(usuario.GetListaTarjetas().Contains);
             Assert.IsTrue(tarjetasContieneGetTarjetas && getTarjetasContieneTarjetas);
+        }
+
+        [TestMethod]
+        public void UsuarioGetCategoriaTarjetaSinTarjetas()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+           
+            Tarjeta buscadora = new Tarjeta()
+            {
+                Numero = "2222222222222222",
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.GetCategoriaTarjeta(buscadora));
+        }
+
+        [TestMethod]
+        public void UsuarioGetCategoriaTarjetaDosCategorias()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+
+            Categoria trabajo = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            usuario.AgregarCategoria(trabajo);
+
+            Categoria facultad = new Categoria()
+            {
+                Nombre = "Facultad"
+            };
+
+            usuario.AgregarCategoria(facultad);
+
+            Tarjeta agregar = new Tarjeta()
+            {
+                Numero = "2222222222222222",
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Codigo = "222",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+
+            usuario.AgregarTarjeta(agregar, trabajo);
+
+            Tarjeta buscadora = new Tarjeta()
+            {
+                Numero = "2222222222222222",
+            };
+
+            Assert.AreEqual(trabajo, usuario.GetCategoriaTarjeta(buscadora));
         }
     }
 

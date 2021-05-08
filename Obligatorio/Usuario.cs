@@ -348,17 +348,36 @@ namespace Obligatorio
 
         public List<Contra> GetListaClavesColor(string color)
         {
-            List<Contra> clavesColor = new List<Contra>();
             List<Contra> todasLasClaves = this.GetListaClaves();
-            foreach(Contra clave in todasLasClaves)
-            {
-                string nivelSeguridad = clave.GetNivelSeguridad();
-                if (nivelSeguridad == color)
-                {
-                    clavesColor.Add(clave);
+            return todasLasClaves.FindAll(buscadora => buscadora.GetNivelSeguridad()==color);
+        }
+
+        public Categoria GetCategoriaTarjeta(Tarjeta buscadora)
+        {
+            List<Categoria> categorias = this.GetListaCategorias();
+
+            foreach (Categoria actual in categorias) {
+                if (actual.YaExisteTarjeta(buscadora)) {
+                    return actual;
                 }
             }
-            return clavesColor;
+
+            throw new ObjetoInexistenteException();
+
+        }
+
+        public Categoria GetCategoriaClave(Contra buscadora)
+        {
+            List<Categoria> categorias = this.GetListaCategorias();
+
+            foreach (Categoria actual in categorias)
+            {
+                if (actual.YaExisteContra(buscadora))
+                {
+                    return actual;
+                }
+            }
+            throw new ObjetoInexistenteException();
         }
     }
 }

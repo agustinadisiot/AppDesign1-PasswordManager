@@ -92,6 +92,7 @@ namespace Interfaz
             this.inputContra.MaxLength = 25;
             this.inputContra.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputContra.Name = "inputContra";
+            this.inputContra.PasswordChar = '*';
             this.inputContra.Size = new System.Drawing.Size(248, 29);
             this.inputContra.TabIndex = 3;
             // 
