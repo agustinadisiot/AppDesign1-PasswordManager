@@ -360,5 +360,19 @@ namespace Obligatorio
             }
             return clavesColor;
         }
+
+        public Categoria GetCategoriaTarjeta(Tarjeta buscadora)
+        {
+            List<Categoria> categorias = this.GetListaCategorias();
+
+            foreach (Categoria actual in categorias) {
+                if (actual.YaExisteTarjeta(buscadora)) {
+                    return actual;
+                }
+            }
+
+            throw new ObjetoInexistenteException();
+
+        }
     }
 }
