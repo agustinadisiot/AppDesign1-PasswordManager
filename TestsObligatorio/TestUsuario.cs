@@ -1126,7 +1126,21 @@ namespace TestsObligatorio
                 Sitio = paginaContraInexistente
             };
 
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarContra(buscadora, contra));
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Categoria"
+            };
+
+            ClaveAModificar parametros = new ClaveAModificar()
+            {
+                ClaveVieja = buscadora,
+                ClaveNueva = buscadora,
+                CategoriaVieja = categoria,
+                CategoriaNueva = categoria
+            };
+
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarContra(parametros));
         }
 
         [TestMethod]
@@ -1175,7 +1189,16 @@ namespace TestsObligatorio
                 Sitio = paginaContraModificar
             };
 
-            usuario.ModificarContra(contraVieja, contraNueva);
+
+            ClaveAModificar parametros = new ClaveAModificar()
+            {
+                ClaveVieja = buscadora,
+                ClaveNueva = contraNueva,
+                CategoriaVieja = categoria,
+                CategoriaNueva = categoria
+            };
+
+            usuario.ModificarContra(parametros);
             Assert.IsFalse(usuario.YaExisteContra(buscadora));
         }
 
@@ -1194,28 +1217,31 @@ namespace TestsObligatorio
 
             usuario.AgregarCategoria(categoria);
 
-            string usuarioContra1 = "Usuario23";
+            string usuarioContra1 = "11111111";
             string paginaContra1 = "www.ort.edu.uy";
-            string claveContra1 = "1234AbC$";
+            string claveContra1 = "11111111";
 
             Contra contra1 = new Contra()
             {
                 UsuarioContra = usuarioContra1,
                 Sitio = paginaContra1,
-                Clave = claveContra1
+                Clave = claveContra1,
+                Nota = ""
             };
 
             categoria.AgregarContra(contra1);
 
-            string usuarioContra2 = "user23";
+            string usuarioContra2 = "22222222";
             string paginaContra2 = "aulas.edu.uy";
-            string claveContra2 = "1234AbC$";
+            string claveContra2 = "22222222";
 
             Contra contra2 = new Contra()
             {
                 UsuarioContra = usuarioContra2,
                 Sitio = paginaContra2,
-                Clave = claveContra2
+                Clave = claveContra2,
+                Nota = "Tiene Nota"
+
             };
 
             categoria.AgregarContra(contra2);
@@ -1224,11 +1250,66 @@ namespace TestsObligatorio
             {
                 UsuarioContra = usuarioContra2,
                 Sitio = paginaContra2,
-                Clave = claveContra2
+                Clave = "33333333",
+                Nota = "Otra Nota"
             };
 
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.ModificarContra(contra1, duplicada));
+
+            ClaveAModificar parametros = new ClaveAModificar()
+            {
+                ClaveVieja = contra1,
+                ClaveNueva = duplicada,
+                CategoriaVieja = categoria,
+                CategoriaNueva = categoria
+            };
+
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.ModificarContra(parametros));
         }
+
+        [TestMethod]
+        public void UsuarioModificarContraMoverACategoriaNoExistente()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            Categoria noAgregada = new Categoria()
+            {
+                Nombre = "No Agregada"
+            };
+
+            usuario.AgregarCategoria(categoria);
+
+            string usuarioContra1 = "Usuario23";
+            string paginaContra1 = "www.ort.edu.uy";
+            string claveContra1 = "1234AbC$";
+
+            Contra mover = new Contra()
+            {
+                UsuarioContra = usuarioContra1,
+                Sitio = paginaContra1,
+                Clave = claveContra1
+            };
+
+            usuario.AgregarContra(mover,categoria);
+
+            ClaveAModificar parametros = new ClaveAModificar()
+            {
+                ClaveVieja = mover,
+                ClaveNueva = mover,
+                CategoriaVieja = categoria,
+                CategoriaNueva = noAgregada
+            };
+
+            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.ModificarContra(parametros));
+        }
+
 
         [TestMethod]
         public void UsuarioGetListaClavesUnaCategoria()

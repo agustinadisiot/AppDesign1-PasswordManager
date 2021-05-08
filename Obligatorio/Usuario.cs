@@ -201,10 +201,19 @@ namespace Obligatorio
             contieneContraABorrar.BorrarTarjeta(aBorrar);
         }
 
-        public void ModificarContra(Contra contraVieja, Contra contraNueva)
+        public void ModificarContra(ClaveAModificar modificar)
         {
-            if (!this.YaExisteContra(contraVieja)) throw new ObjetoInexistenteException();
-            if (this.YaExisteContra(contraNueva)) throw new ObjetoYaExistenteException();
+            Contra contraVieja = this.GetContra(modificar.ClaveVieja);
+            Contra contraNueva = modificar.ClaveNueva;
+
+            if (!contraVieja.Equals(contraNueva) && this.YaExisteContra(contraNueva)) {
+                throw new ObjetoYaExistenteException();
+            }
+
+            if (modificar.CategoriaVieja != modificar.CategoriaNueva) {
+                throw new CategoriaInexistenteException();
+            }
+
             Contra aModificar = this.GetContra(contraVieja);
             aModificar.UsuarioContra = contraNueva.UsuarioContra;
             aModificar.Clave = contraNueva.Clave;
