@@ -1,4 +1,5 @@
-﻿using Obligatorio;
+﻿using Interfaz.InterfacesCompartirClave;
+using Obligatorio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -69,6 +70,39 @@ namespace Interfaz
 
             usuarioPrueba.AgregarTarjeta(tarjetaPrueba2, personal);
 
+            Contra clavePrueba1 = new Contra()
+            {
+                Sitio = "www.ort.edu.uy",
+                UsuarioContra = "usuarioClave1",
+                Clave = "12345678"
+            };
+
+            Contra clavePrueba2 = new Contra()
+            {
+                Sitio = "www.netflix.com",
+                UsuarioContra = "usuarioClave2",
+                Clave = "12345678"
+            };
+
+            usuarioPrueba.AgregarContra(clavePrueba1, trabajo);
+            usuarioPrueba.AgregarContra(clavePrueba2, personal);
+
+            ClaveCompartida claveACompartir1 = new ClaveCompartida()
+            {
+                Usuario = usuarioPrueba2,
+                Clave = clavePrueba1
+            };
+
+            ClaveCompartida claveACompartir2 = new ClaveCompartida()
+            {
+                Usuario = usuarioPrueba2,
+                Clave = clavePrueba2
+            };
+
+            usuarioPrueba.CompartirClave(claveACompartir1);
+
+            usuarioPrueba.CompartirClave(claveACompartir2);
+
             InitializeComponent();
 
         }
@@ -108,12 +142,6 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(crearUsuario);
         }
 
-        private void AbrirListaClavesCompartidasConmigo_Handler()
-        {
-            ListaClavesCompartidasConmigo listaClavesCompartidasConmigo = new ListaClavesCompartidasConmigo(this._usuarioActual, this._administrador);
-            this.panelPrincipal.Controls.Clear();
-            this.panelPrincipal.Controls.Add(listaClavesCompartidasConmigo);
-        }
 
         private void AbrirIniciarSesion_Handler()
         {
@@ -185,6 +213,12 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(listaTarjetas);
         }
 
+        private void EstadoVentana_Handler(bool mostrar)
+        {
+            this.panelPrincipal.Enabled = mostrar;
+            this.panelDrawer.Enabled = mostrar;
+        }
+
         private void botonListaCategorias_Click(object sender, EventArgs e)
         {
             ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual, this._administrador);
@@ -236,5 +270,16 @@ namespace Interfaz
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(listaClavesCompartidasConmigo);
         }
+
+        private void botonClavesQueComparto_Click(object sender, EventArgs e)
+        {
+            ListaClavesCompartidasPorMi listaClavesCompartidasPorMi = new ListaClavesCompartidasPorMi(this._usuarioActual, this._administrador);
+            listaClavesCompartidasPorMi.EstadoVentana_Event += EstadoVentana_Handler;
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(listaClavesCompartidasPorMi);
+        }
+
+
+
     }
 }
