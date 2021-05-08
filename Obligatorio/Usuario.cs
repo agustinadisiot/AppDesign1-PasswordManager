@@ -352,7 +352,8 @@ namespace Obligatorio
             List<Contra> todasLasClaves = this.GetListaClaves();
             foreach(Contra clave in todasLasClaves)
             {
-                if(clave.GetNivelSeguridad() == color)
+                string nivelSeguridad = clave.GetNivelSeguridad();
+                if (nivelSeguridad == color)
                 {
                     clavesColor.Add(clave);
                 }
