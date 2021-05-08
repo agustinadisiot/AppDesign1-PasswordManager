@@ -46,64 +46,64 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompartirClave.cs">
+    <Compile Include="InterfacesCompartirClave\CompartirClave.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CompartirClave.designer.cs">
+    <Compile Include="InterfacesCompartirClave\CompartirClave.designer.cs">
       <DependentUpon>CompartirClave.cs</DependentUpon>
     </Compile>
-    <Compile Include="CrearClave.cs">
+    <Compile Include="InterfacesClaves\CrearClave.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CrearClave.Designer.cs">
+    <Compile Include="InterfacesClaves\CrearClave.Designer.cs">
       <DependentUpon>CrearClave.cs</DependentUpon>
     </Compile>
-    <Compile Include="CrearTarjeta.cs">
+    <Compile Include="InterfacesTarjetas\CrearTarjeta.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CrearTarjeta.Designer.cs">
+    <Compile Include="InterfacesTarjetas\CrearTarjeta.Designer.cs">
       <DependentUpon>CrearTarjeta.cs</DependentUpon>
     </Compile>
-    <Compile Include="AgregarCategoria.cs">
+    <Compile Include="InterfacesCategorias\AgregarCategoria.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AgregarCategoria.Designer.cs">
+    <Compile Include="InterfacesCategorias\AgregarCategoria.Designer.cs">
       <DependentUpon>AgregarCategoria.cs</DependentUpon>
     </Compile>
-    <Compile Include="CrearUsuario.cs">
+    <Compile Include="InterfacesIniciarSesion\CrearUsuario.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CrearUsuario.Designer.cs">
+    <Compile Include="InterfacesIniciarSesion\CrearUsuario.Designer.cs">
       <DependentUpon>CrearUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListaCategorias.cs">
+    <Compile Include="InterfacesCategorias\ListaCategorias.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ListaCategorias.Designer.cs">
+    <Compile Include="InterfacesCategorias\ListaCategorias.Designer.cs">
       <DependentUpon>ListaCategorias.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListaClaves.cs">
+    <Compile Include="InterfacesClaves\ListaClaves.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ListaClaves.Designer.cs">
+    <Compile Include="InterfacesClaves\ListaClaves.Designer.cs">
       <DependentUpon>ListaClaves.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListaTarjetas.cs">
+    <Compile Include="InterfacesTarjetas\ListaTarjetas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ListaTarjetas.Designer.cs">
+    <Compile Include="InterfacesTarjetas\ListaTarjetas.Designer.cs">
       <DependentUpon>ListaTarjetas.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModificarCategoria.cs">
+    <Compile Include="InterfacesCategorias\ModificarCategoria.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ModificarCategoria.Designer.cs">
+    <Compile Include="InterfacesCategorias\ModificarCategoria.Designer.cs">
       <DependentUpon>ModificarCategoria.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModificarTarjeta.cs">
+    <Compile Include="InterfacesTarjetas\ModificarTarjeta.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ModificarTarjeta.Designer.cs">
+    <Compile Include="InterfacesTarjetas\ModificarTarjeta.Designer.cs">
       <DependentUpon>ModificarTarjeta.cs</DependentUpon>
     </Compile>
     <Compile Include="VentanaPrincipal.cs">
@@ -112,48 +112,48 @@
     <Compile Include="VentanaPrincipal.Designer.cs">
       <DependentUpon>VentanaPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="IniciarSesion.cs">
+    <Compile Include="InterfacesIniciarSesion\IniciarSesion.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IniciarSesion.Designer.cs">
+    <Compile Include="InterfacesIniciarSesion\IniciarSesion.Designer.cs">
       <DependentUpon>IniciarSesion.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AgregarCategoria.resx">
+    <EmbeddedResource Include="InterfacesCategorias\AgregarCategoria.resx">
       <DependentUpon>AgregarCategoria.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CompartirClave.resx">
+    <EmbeddedResource Include="InterfacesCompartirClave\CompartirClave.resx">
       <DependentUpon>CompartirClave.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrearClave.resx">
+    <EmbeddedResource Include="InterfacesClaves\CrearClave.resx">
       <DependentUpon>CrearClave.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrearTarjeta.resx">
+    <EmbeddedResource Include="InterfacesTarjetas\CrearTarjeta.resx">
       <DependentUpon>CrearTarjeta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrearUsuario.resx">
+    <EmbeddedResource Include="InterfacesIniciarSesion\CrearUsuario.resx">
       <DependentUpon>CrearUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ListaCategorias.resx">
+    <EmbeddedResource Include="InterfacesCategorias\ListaCategorias.resx">
       <DependentUpon>ListaCategorias.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ListaClaves.resx">
+    <EmbeddedResource Include="InterfacesClaves\ListaClaves.resx">
       <DependentUpon>ListaClaves.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ListaTarjetas.resx">
+    <EmbeddedResource Include="InterfacesTarjetas\ListaTarjetas.resx">
       <DependentUpon>ListaTarjetas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModificarTarjeta.resx">
+    <EmbeddedResource Include="InterfacesTarjetas\ModificarTarjeta.resx">
       <DependentUpon>ModificarTarjeta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModificarCategoria.resx">
+    <EmbeddedResource Include="InterfacesCategorias\ModificarCategoria.resx">
       <DependentUpon>ModificarCategoria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VentanaPrincipal.resx">
       <DependentUpon>VentanaPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IniciarSesion.resx">
+    <EmbeddedResource Include="InterfacesIniciarSesion\IniciarSesion.resx">
       <DependentUpon>IniciarSesion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -183,6 +183,9 @@
       <Project>{A2333956-836C-42AB-AD9B-DBBA96727E27}</Project>
       <Name>Obligatorio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="InterfacesSeguridad\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

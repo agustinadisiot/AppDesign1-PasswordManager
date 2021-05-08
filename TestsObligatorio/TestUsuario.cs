@@ -389,9 +389,9 @@ namespace TestsObligatorio
             {
                 Nombre = "Usuario"
             };
+            int cantCategorias = usuario.GetListaCategorias().Count();
 
-
-            Assert.IsNull(usuario.GetListaCategorias());
+            Assert.IsTrue(cantCategorias == 0);
         }
 
         [TestMethod]
@@ -1230,7 +1230,1000 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.ModificarContra(contra1, duplicada));
         }
 
+        [TestMethod]
+        public void UsuarioGetListaClavesUnaCategoria()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
 
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.AgregarContra(clave1);
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Luis88"
+            };
+            categoria1.AgregarContra(clave2);
+
+            List<Contra> claves = new List<Contra>
+            {
+                clave1,
+                clave2
+            };
+
+            List<Contra> getListaClaves = usuario.GetListaClaves();
+
+            bool getListaClavesContieneLasClaves = getListaClaves.All(claves.Contains);
+            bool lasClavesContieneGetListaClaves = claves.All(getListaClaves.Contains);
+
+            Assert.IsTrue(getListaClavesContieneLasClaves && lasClavesContieneGetListaClaves);
+        }
+
+        [TestMethod]
+        public void UsuarioGetListaClavesDosCategorias()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+            Categoria categoria2 = new Categoria()
+            {
+                Nombre = "Estudio"
+            };
+
+            usuario.AgregarCategoria(categoria2);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.AgregarContra(clave1);
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Luis88"
+            };
+            categoria1.AgregarContra(clave2);
+
+            Contra clave3 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave3",
+                UsuarioContra = "Hernesto"
+            };
+            categoria2.AgregarContra(clave3);
+            Contra clave4 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Peepo"
+            };
+            categoria2.AgregarContra(clave4);
+
+            List<Contra> claves = new List<Contra>
+            {
+                clave1,
+                clave2,
+                clave3,
+                clave4
+            };
+
+            List<Contra> getListaClaves = usuario.GetListaClaves();
+
+            bool getListaClavesContieneLasClaves = getListaClaves.All(claves.Contains);
+            bool lasClavesContieneGetListaClaves = claves.All(getListaClaves.Contains);
+
+            Assert.IsTrue(getListaClavesContieneLasClaves && lasClavesContieneGetListaClaves);
+        }
+
+        [TestMethod]
+        public void UsuarioGetCantidadColorRojo()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.AgregarContra(clave1);
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Luis88"
+            };
+            categoria1.AgregarContra(clave2);
+
+
+            List<Contra> getListaClaves = usuario.GetListaClaves();
+            int cantidadRojas = 0;
+            foreach(Contra clave in getListaClaves)
+            {
+                if (clave.GetNivelSeguridad() == "rojo") cantidadRojas ++;
+            }
+
+            Assert.AreEqual(cantidadRojas, usuario.GetCantidadColor("rojo"));
+        }
+
+        [TestMethod]
+        public void UsuarioGetCantidadColor()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.AgregarContra(clave1);
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Luis88"
+            };
+            categoria1.AgregarContra(clave2);
+
+
+            List<Contra> getListaClaves = usuario.GetListaClaves();
+            string color = "verde claro";
+            int cantidadColor = 0;
+            foreach (Contra clave in getListaClaves)
+            {
+                if (clave.GetNivelSeguridad() == color) cantidadColor++;
+            }
+
+            Assert.AreEqual(cantidadColor, usuario.GetCantidadColor(color));
+        }
+
+        [TestMethod]
+        public void UsuarioCompartirUnaClave_ConfirmarClavesIguales()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            usuario1.AgregarContra(clave1, categoria1);
+
+            ClaveCompartida claveCompartida = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            usuario1.CompartirClave(claveCompartida);
+
+            ClaveCompartida claveCompartidaConmigo = new ClaveCompartida()
+            {
+                Usuario = usuario1,
+                Clave = clave1
+            };
+            Assert.AreEqual(usuario2.CompartidasConmigo[0].Clave, clave1);
+        }
+
+        [TestMethod]
+        public void UsuarioCompartirUnaClave_ConfirmarUsuariosIguales()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            usuario1.AgregarContra(clave1, categoria1);
+
+            ClaveCompartida claveCompartida = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            usuario1.CompartirClave(claveCompartida);
+
+            Assert.AreEqual(usuario2.CompartidasConmigo[0].Usuario, usuario1);
+        }
+
+        [TestMethod]
+        public void UsuarioCompartirDosClaves()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+            usuario2.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave2",
+                UsuarioContra = "Hernesto"
+            };
+
+            usuario1.AgregarContra(clave1, categoria1);
+            usuario1.AgregarContra(clave2, categoria1);
+
+            ClaveCompartida claveACompartir1 = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            ClaveCompartida claveCompartir2 = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave2
+            };
+
+            usuario1.CompartirClave(claveACompartir1);
+
+            usuario1.CompartirClave(claveCompartir2);
+
+            ClaveCompartida claveCompartidaAUsuario2_1 = new ClaveCompartida()
+            {
+                Usuario = usuario1,
+                Clave = clave1
+            };
+
+            ClaveCompartida claveCompartidaAUsuario2_2 = new ClaveCompartida()
+            {
+                Usuario = usuario1,
+                Clave = clave2
+            };
+
+            Assert.IsTrue(usuario2.CompartidasConmigo.Contains(claveCompartidaAUsuario2_1) && usuario2.CompartidasConmigo.Contains(claveCompartidaAUsuario2_2));
+        }
+
+        [TestMethod]
+        public void UsuarioCompartirClaveInexistente()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+            usuario2.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+
+            ClaveCompartida claveACompartir1 = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario1.CompartirClave(claveACompartir1));
+
+        }
+
+        [TestMethod]
+        public void UsuarioCompartirClaveEsCompartida()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+            usuario2.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            usuario1.AgregarContra(clave1, categoria1);
+
+            Assert.IsFalse(clave1.EsCompartida);
+
+        }
+
+        [TestMethod]
+        public void UsuarioCompartirUnaClaveEsCompartida()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            usuario1.AgregarContra(clave1, categoria1);
+
+            ClaveCompartida claveCompartida = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            usuario1.CompartirClave(claveCompartida);
+
+            Assert.IsTrue(clave1.EsCompartida);
+        }
+        
+        [TestMethod]
+        public void UsuarioCompartirDosClaves_listaClavesQueComparto()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+            usuario2.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave2",
+                UsuarioContra = "Hernesto"
+            };
+
+            usuario1.AgregarContra(clave1, categoria1);
+            usuario1.AgregarContra(clave2, categoria1);
+
+            ClaveCompartida claveACompartir1 = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            ClaveCompartida claveCompartir2 = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave2
+            };
+
+            usuario1.CompartirClave(claveACompartir1);
+
+            usuario1.CompartirClave(claveCompartir2);
+
+            Assert.IsTrue(usuario1.CompartidasPorMi.Contains(claveACompartir1) && usuario1.CompartidasPorMi.Contains(claveACompartir1));
+        }
+
+        [TestMethod]
+        public void UsuarioDejarDeCompartirUnaClaveQueNoComparto()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+            usuario2.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+
+            Contra claveNoCompartida = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Hernesto"
+            };
+
+            usuario1.AgregarContra(claveNoCompartida, categoria1);
+            usuario1.AgregarContra(clave1, categoria1);
+
+            ClaveCompartida claveACompartir1 = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            usuario1.CompartirClave(claveACompartir1);
+
+            ClaveCompartida claveQueNoComparto = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = claveNoCompartida
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario1.DejarDeCompartir(claveQueNoComparto));
+        }
+
+        [TestMethod]
+        public void UsuarioDejarDeCompartirUnaClave_EliminaDeListaQueComparto()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+            usuario2.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+
+            Contra claveNoCompartida = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Hernesto"
+            };
+
+            usuario1.AgregarContra(claveNoCompartida, categoria1);
+            usuario1.AgregarContra(clave1, categoria1);
+
+            ClaveCompartida claveACompartir1 = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            usuario1.CompartirClave(claveACompartir1);
+
+            usuario1.DejarDeCompartir(claveACompartir1);
+
+            Assert.IsFalse(usuario1.CompartidasPorMi.Contains(claveACompartir1));
+        }
+
+        [TestMethod]
+        public void UsuarioDejarDeCompartirUnaClave_EliminaDeListaDeQuienComparto()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+            usuario2.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+
+            Contra claveNoCompartida = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Hernesto"
+            };
+
+            usuario1.AgregarContra(claveNoCompartida, categoria1);
+            usuario1.AgregarContra(clave1, categoria1);
+
+            ClaveCompartida claveACompartir1 = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            usuario1.CompartirClave(claveACompartir1);
+
+            ClaveCompartida claveQueCompartieron = new ClaveCompartida()
+            {
+                Usuario = usuario1,
+                Clave = clave1
+            };
+
+            usuario1.DejarDeCompartir(claveACompartir1);
+
+            Assert.IsFalse(usuario2.CompartidasConmigo.Contains(claveQueCompartieron));
+        }
+
+        [TestMethod]
+        public void UsuarioDejarDeCompartirUnaClaveAUnUsuarioAQuienNoLeComparto()
+        {
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+            usuario2.AgregarCategoria(categoria1);
+
+            Usuario usuario3 = new Usuario()
+            {
+                Nombre = "Usuario3"
+            };
+            usuario3.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+
+            usuario1.AgregarContra(clave1, categoria1);
+
+            ClaveCompartida claveACompartir1 = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            usuario1.CompartirClave(claveACompartir1);
+
+            ClaveCompartida claveQueNoComparto = new ClaveCompartida()
+            {
+                Usuario = usuario3,
+                Clave = clave1
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario1.DejarDeCompartir(claveQueNoComparto));
+        }
+
+        [TestMethod]
+        public void UsuarioDejarDeCompartirUnaClave_CambiarClaveEsCompartidaAFalse()
+        {
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+            usuario2.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+
+            usuario1.AgregarContra(clave1, categoria1);
+
+            ClaveCompartida claveACompartir1 = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            usuario1.CompartirClave(claveACompartir1);
+
+            usuario1.DejarDeCompartir(claveACompartir1);
+
+            Assert.IsFalse(clave1.EsCompartida);
+        }
+
+        [TestMethod]
+        public void UsuarioDejarDeCompartirUnaClave_CambiarClaveEsCompartidaATrue()
+        {
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+            usuario2.AgregarCategoria(categoria1);
+
+            Usuario usuario3 = new Usuario()
+            {
+                Nombre = "Usuario3"
+            };
+            usuario3.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+
+            usuario1.AgregarContra(clave1, categoria1);
+
+            ClaveCompartida claveACompartir1 = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            ClaveCompartida claveACompartir2 = new ClaveCompartida()
+            {
+                Usuario = usuario3,
+                Clave = clave1
+            };
+
+            usuario1.CompartirClave(claveACompartir1);
+
+            usuario1.CompartirClave(claveACompartir2);
+
+            usuario1.DejarDeCompartir(claveACompartir1);
+
+            Assert.IsTrue(clave1.EsCompartida);
+        }
+
+        [TestMethod]
+        public void UsuarioDejarDeCompartirUnaClaveAlBorrarLaClave()
+        {
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+            usuario2.AgregarCategoria(categoria1);
+
+            Usuario usuario3 = new Usuario()
+            {
+                Nombre = "Usuario3"
+            };
+            usuario3.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+
+            usuario1.AgregarContra(clave1, categoria1);
+
+            ClaveCompartida claveACompartir1 = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            ClaveCompartida claveACompartir2 = new ClaveCompartida()
+            {
+                Usuario = usuario3,
+                Clave = clave1
+            };
+
+            usuario1.CompartirClave(claveACompartir1);
+
+            usuario1.CompartirClave(claveACompartir2);
+
+            ClaveCompartida claveQueCompartieron = new ClaveCompartida()
+            {
+                Usuario = usuario1,
+                Clave = clave1
+            };
+
+            usuario1.BorrarContra(clave1);
+
+            Assert.IsFalse(usuario2.CompartidasConmigo.Contains(claveQueCompartieron) || usuario3.CompartidasConmigo.Contains(claveQueCompartieron));
+        }
+
+        [TestMethod]
+        public void UsuarioGetListaClavesColorEsVacia()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            int cantidadRojas = 0;
+            const string rojo = "rojo";
+            Assert.AreEqual(cantidadRojas, usuario.GetListaClavesColor(rojo).Count);
+        }
+
+        [TestMethod]
+        public void UsuarioGetListaClavesColorNoVaciaUnaCategoria()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave12@",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.AgregarContra(clave1);
+
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "clave",
+                UsuarioContra = "Luis88"
+            };
+            categoria1.AgregarContra(clave2);
+
+            List<Contra> clavesVerdes = new List<Contra>
+            {
+                clave1
+            };
+
+            const string verdeOscuro = "verde oscuro";
+            List<Contra> getListaClavesVerdes = usuario.GetListaClavesColor(verdeOscuro);
+
+            bool getListaClavesContieneLasClavesVerdes = getListaClavesVerdes.All(clavesVerdes.Contains);
+            bool clavesVerdesContieneListaClavesVerdes = clavesVerdes.All(getListaClavesVerdes.Contains);
+
+            Assert.IsTrue(getListaClavesContieneLasClavesVerdes && clavesVerdesContieneListaClavesVerdes);
+        }
+
+        [TestMethod]
+        public void UsuarioGetListaClavesColorNoVaciaDosCategoria()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+            Categoria categoria2 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            usuario.AgregarCategoria(categoria2);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "estaesunaclave",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.AgregarContra(clave1);
+
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "ESTAESUNACLAVE",
+                UsuarioContra = "Luis88"
+            };
+            categoria2.AgregarContra(clave2);
+
+            List<Contra> clavesAmarillas = new List<Contra>
+            {
+                clave1,
+                clave2
+            };
+
+            const string amarillo = "amarillo";
+            List<Contra> getListaClavesAmarillas = usuario.GetListaClavesColor(amarillo);
+
+            bool getListaClavesContieneLasClavesVerdes = getListaClavesAmarillas.All(clavesAmarillas.Contains);
+            bool clavesVerdesContieneListaClavesVerdes = clavesAmarillas.All(getListaClavesAmarillas.Contains);
+
+            Assert.IsTrue(getListaClavesContieneLasClavesVerdes && clavesVerdesContieneListaClavesVerdes);
+        }
     }
 
     [TestClass]
@@ -2045,5 +3038,465 @@ namespace TestsObligatorio
             };
             Assert.AreEqual(tarjetaNueva, usuario.GetTarjeta(buscadora));
         }
+
+        [TestMethod]
+        public void UsuarioGetListaTarjetasVacia()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+            int cantidadTarjetas = usuario.GetListaTarjetas().Count();
+
+            Assert.IsTrue(cantidadTarjetas == 0);
+        }
+
+        [TestMethod]
+        public void UsuarioGetListaTarjetasEsIgualConUnaCategoria()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Numero = "1234123412341234",
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Codigo = "321",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+            categoria1.AgregarTarjeta(tarjeta1);
+
+            Tarjeta tarjeta2 = new Tarjeta()
+            {
+                Numero = "1234567890876543",
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Codigo = "345",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+            categoria1.AgregarTarjeta(tarjeta2);
+
+            List<Tarjeta> tarjetas = new List<Tarjeta>
+            {
+                tarjeta1,
+                tarjeta2
+            };
+
+            bool tarjetasContieneGetTarjetas = usuario.GetListaTarjetas().All(tarjetas.Contains);
+            bool getTarjetasContieneTarjetas = tarjetas.All(usuario.GetListaTarjetas().Contains);
+           
+            Assert.IsTrue(tarjetasContieneGetTarjetas && getTarjetasContieneTarjetas); 
+        }
+
+        [TestMethod]
+        public void UsuarioGetListaTarjetasEsIgualConDosCategorias()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+            Categoria categoria2 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria2);
+
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Numero = "1234123412341234",
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Codigo = "321",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+            categoria1.AgregarTarjeta(tarjeta1);
+
+            Tarjeta tarjeta2 = new Tarjeta()
+            {
+                Numero = "1234567890876543",
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Codigo = "345",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+            categoria2.AgregarTarjeta(tarjeta2);
+
+            List<Tarjeta> tarjetas = new List<Tarjeta>
+            {
+                tarjeta1,
+                tarjeta2
+            };
+
+            bool tarjetasContieneGetTarjetas = usuario.GetListaTarjetas().All(tarjetas.Contains);
+            bool getTarjetasContieneTarjetas = tarjetas.All(usuario.GetListaTarjetas().Contains);
+            Assert.IsTrue(tarjetasContieneGetTarjetas && getTarjetasContieneTarjetas);
+        }
     }
+
+    [TestClass]
+    public class TestUsuarioDataBreaches {
+
+        [TestMethod]
+        public void UsuarioGetDataBreachVacioRetornaListaVacia()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+            Categoria categoria2 = new Categoria()
+            {
+                Nombre = "Estudio"
+            };
+
+            usuario.AgregarCategoria(categoria2);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.AgregarContra(clave1);
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Luis88"
+            };
+            categoria1.AgregarContra(clave2);
+
+            Contra clave3 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave3",
+                UsuarioContra = "Hernesto"
+            };
+            categoria2.AgregarContra(clave3);
+            Contra clave4 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Peepo"
+            };
+            categoria2.AgregarContra(clave4);
+
+            List<string> dataBreach = new List<string>();
+
+
+            Assert.AreEqual(0, usuario.GetContrasDataBreach(dataBreach).Count);
+        }
+
+
+        [TestMethod]
+        public void UsuarioGetDataBreachNoVacio()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+            Categoria categoria2 = new Categoria()
+            {
+                Nombre = "Estudio"
+            };
+
+            usuario.AgregarCategoria(categoria2);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.AgregarContra(clave1);
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave2",
+                UsuarioContra = "Luis88"
+            };
+            categoria1.AgregarContra(clave2);
+
+            Contra clave3 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave3",
+                UsuarioContra = "Hernesto"
+            };
+            categoria2.AgregarContra(clave3);
+            Contra clave4 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave4",
+                UsuarioContra = "Peepo"
+            };
+            categoria2.AgregarContra(clave4);
+
+            List<string> dataBreach = new List<string>() {
+                "EstaEsUnaClave1",
+                "EstaEsUnaClave4"
+            };
+
+            List<Contra> esperadas = new List<Contra>() {
+                clave1,
+                clave4
+            };
+
+            List<Contra> retorno = usuario.GetContrasDataBreach(dataBreach);
+
+            bool esperadasContieneRetorno = retorno.All(esperadas.Contains);
+            bool retornoContieneEsperadas = esperadas.All(retorno.Contains);
+            Assert.IsTrue(esperadasContieneRetorno && retornoContieneEsperadas);
+        }
+
+
+        [TestMethod]
+        public void UsuarioGetDataBreachContrasNoExistentes()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+            Categoria categoria2 = new Categoria()
+            {
+                Nombre = "Estudio"
+            };
+
+            usuario.AgregarCategoria(categoria2);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.AgregarContra(clave1);
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave2",
+                UsuarioContra = "Luis88"
+            };
+            categoria1.AgregarContra(clave2);
+
+            Contra clave3 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave3",
+                UsuarioContra = "Hernesto"
+            };
+            categoria2.AgregarContra(clave3);
+            Contra clave4 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave4",
+                UsuarioContra = "Peepo"
+            };
+            categoria2.AgregarContra(clave4);
+
+            List<string> dataBreach = new List<string>() {
+                "ContraNoContenida",
+                "ContraTampocoContenida",
+                "EstaEsUnaClave3"
+            };
+
+            List<Contra> esperadas = new List<Contra>() {
+                clave3
+            };
+
+            List<Contra> retorno = usuario.GetContrasDataBreach(dataBreach);
+
+            bool esperadasContieneRetorno = retorno.All(esperadas.Contains);
+            bool retornoContieneEsperadas = esperadas.All(retorno.Contains);
+            Assert.IsTrue(esperadasContieneRetorno && retornoContieneEsperadas);
+        }
+
+
+        [TestMethod]
+        public void UsuarioGetTarjetasDataBreachVacio()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+
+            Categoria trabajo = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            Categoria facultad = new Categoria()
+            {
+                Nombre = "Facultad"
+            };
+
+            usuario.AgregarCategoria(trabajo);
+            usuario.AgregarCategoria(facultad);
+
+
+
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Numero = "1111111111111111",
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Codigo = "321",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+            usuario.AgregarTarjeta(tarjeta1,trabajo);
+
+            Tarjeta tarjeta2 = new Tarjeta()
+            {
+                Numero = "2222222222222222",
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Codigo = "345",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+            usuario.AgregarTarjeta(tarjeta2, facultad);
+
+
+            List<string> dataBreach = new List<string>();
+
+            Assert.AreEqual(0, usuario.GetTarjetasDataBreach(dataBreach).Count);
+        }
+
+        [TestMethod]
+        public void UsuarioGetTarjetasDataBreachNoVacio()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+
+            Categoria trabajo = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            Categoria facultad = new Categoria()
+            {
+                Nombre = "Facultad"
+            };
+
+            usuario.AgregarCategoria(trabajo);
+            usuario.AgregarCategoria(facultad);
+
+
+
+            Tarjeta tarjeta1 = new Tarjeta()
+            {
+                Numero = "1111111111111111",
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Codigo = "321",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+            usuario.AgregarTarjeta(tarjeta1, trabajo);
+
+            Tarjeta tarjeta2 = new Tarjeta()
+            {
+                Numero = "2222222222222222",
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Codigo = "345",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+            usuario.AgregarTarjeta(tarjeta2, facultad);
+
+            Tarjeta tarjeta3 = new Tarjeta()
+            {
+                Numero = "3333333333333333",
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Codigo = "345",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+            usuario.AgregarTarjeta(tarjeta3, facultad);
+
+            List<string> dataBreach = new List<string>() {
+                "1111111111111111",
+                "UnaClave",
+                "3333 3333 3333 3333",
+                "4444 4444 4444 4444"
+            };
+
+            List<Tarjeta> esperadas = new List<Tarjeta>() {
+                tarjeta1,
+                tarjeta3
+            };
+
+            List<Tarjeta> retorno = usuario.GetTarjetasDataBreach(dataBreach);
+
+            bool esperadasContieneRetorno = retorno.All(esperadas.Contains);
+            bool retornoContieneEsperadas = esperadas.All(retorno.Contains);
+            Assert.IsTrue(esperadasContieneRetorno && retornoContieneEsperadas);
+        }
+    }
+
 }

@@ -116,6 +116,7 @@ namespace Interfaz
             this.botonCrearUsuario.TabIndex = 6;
             this.botonCrearUsuario.Text = "Crear Usuario";
             this.botonCrearUsuario.UseVisualStyleBackColor = true;
+            this.botonCrearUsuario.Click += new System.EventHandler(this.botonCrearUsuario_Click);
             // 
             // labelErrores
             // 

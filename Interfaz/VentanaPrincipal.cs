@@ -21,6 +21,7 @@ namespace Interfaz
         {
             this._administrador = new AdminContras();
 
+            this._usuarioActual = null;
             Usuario usuarioPrueba = new Usuario();
             usuarioPrueba.Nombre = "Roberto";
             usuarioPrueba.ContraMaestra = "12345ABCD";
@@ -68,7 +69,6 @@ namespace Interfaz
 
             usuarioPrueba.AgregarTarjeta(tarjetaPrueba2, personal);
 
-            this._usuarioActual = usuarioPrueba;
             InitializeComponent();
 
         }
@@ -77,51 +77,77 @@ namespace Interfaz
         {
             IniciarSesion iniciarSesion = new IniciarSesion(this._administrador);
 
+            this.panelDrawer.Visible = false;
+
             iniciarSesion.IniciarSesion_Event += IniciarSesion_Handler;
-            panelPrincipal.Controls.Add(iniciarSesion);
+            iniciarSesion.AbrirCrearUsuario_Event += AbrirCrearUsuario_Handler;
+
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(iniciarSesion);
         }
 
+        
         private void IniciarSesion_Handler(Usuario aIngresar)
         {
-
+            this._usuarioActual = aIngresar;
             ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual, this._administrador);
-            listaCategorias.AbrirAgregarCategorias_Event += new EventHandler(this.AbrirAgregarCategorias_Handler);
-            listaCategorias.AbrirModificarCategorias_Event += new EventHandler(this.AbrirModificarCategorias_Handler);
+            listaCategorias.AbrirAgregarCategorias_Event += AbrirAgregarCategorias_Handler;
+            listaCategorias.AbrirModificarCategorias_Event +=AbrirModificarCategorias_Handler;
+
+            this.panelDrawer.Visible = true;
 
             this.panelPrincipal.Controls.Clear();
 
             this.panelPrincipal.Controls.Add(listaCategorias);
         }
 
+        private void AbrirCrearUsuario_Handler()
+        {
+            CrearUsuario crearUsuario = new CrearUsuario(this._administrador);
+            crearUsuario.AbrirIniciarSesion_Event += AbrirIniciarSesion_Handler;
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(crearUsuario);
+        }
 
-        protected void AbrirListaCategorias_Handler(object sender, EventArgs e)
+        private void AbrirIniciarSesion_Handler()
+        {
+            IniciarSesion iniciarSesion = new IniciarSesion(this._administrador);
+
+            iniciarSesion.IniciarSesion_Event += IniciarSesion_Handler;
+            iniciarSesion.AbrirCrearUsuario_Event += AbrirCrearUsuario_Handler;
+
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(iniciarSesion);
+        }
+
+        protected void AbrirListaCategorias_Handler()
         {
 
             ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual, this._administrador);
-            listaCategorias.AbrirAgregarCategorias_Event += new EventHandler(this.AbrirAgregarCategorias_Handler);
-            listaCategorias.AbrirModificarCategorias_Event += new EventHandler(this.AbrirModificarCategorias_Handler);
+            listaCategorias.AbrirAgregarCategorias_Event += AbrirAgregarCategorias_Handler;
+            listaCategorias.AbrirModificarCategorias_Event += AbrirModificarCategorias_Handler;
 
             this.panelPrincipal.Controls.Clear();
 
             this.panelPrincipal.Controls.Add(listaCategorias);
         }
 
-        protected void AbrirAgregarCategorias_Handler(object sender, EventArgs e)
+        protected void AbrirAgregarCategorias_Handler()
         {
 
             AgregarCategoria agregarCategoria = new AgregarCategoria(this._usuarioActual, this._administrador);
-            agregarCategoria.AbrirListaCategorias_Event += new EventHandler(this.AbrirListaCategorias_Handler);
+            agregarCategoria.AbrirListaCategorias_Event += AbrirListaCategorias_Handler;
 
             this.panelPrincipal.Controls.Clear();
 
             this.panelPrincipal.Controls.Add(agregarCategoria);
         }
 
-        protected void AbrirModificarCategorias_Handler(object sender, EventArgs e)
+        protected void AbrirModificarCategorias_Handler(Categoria aModificar)
         {
 
-            ModificarCategoria modificarCategoria = new ModificarCategoria(this._usuarioActual.GetListaCategorias()[0], this._usuarioActual);
-            modificarCategoria.AbrirListaCategorias_Event += new EventHandler(this.AbrirListaCategorias_Handler);
+            ModificarCategoria modificarCategoria = new ModificarCategoria(aModificar, this._usuarioActual);
+            modificarCategoria.AbrirListaCategorias_Event += AbrirListaCategorias_Handler;
 
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(modificarCategoria);
@@ -134,7 +160,6 @@ namespace Interfaz
             crearTarjetas.AbrirListaTarjetas_Event += new EventHandler(this.AbrirListaTarjetas_Handler);
             this.panelPrincipal.Controls.Add(crearTarjetas);
         }
-      
 
         protected void AbrirModificarTarjeta_Handler(object sender, EventArgs e)
         {
@@ -164,8 +189,8 @@ namespace Interfaz
         private void botonListaCategorias_Click(object sender, EventArgs e)
         {
             ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual, this._administrador);
-            listaCategorias.AbrirAgregarCategorias_Event += new EventHandler(this.AbrirAgregarCategorias_Handler);
-            listaCategorias.AbrirModificarCategorias_Event += new EventHandler(this.AbrirModificarCategorias_Handler);
+            listaCategorias.AbrirAgregarCategorias_Event += AbrirAgregarCategorias_Handler;
+            listaCategorias.AbrirModificarCategorias_Event += AbrirModificarCategorias_Handler;
 
             this.panelPrincipal.Controls.Clear();
 
@@ -191,6 +216,19 @@ namespace Interfaz
             this.panelPrincipal.Controls.Clear();
 
             this.panelPrincipal.Controls.Add(listaTarjetas);
+        }
+
+        private void botonCerrarSesion_Click(object sender, EventArgs e)
+        {
+            IniciarSesion iniciarSesion = new IniciarSesion(this._administrador);
+            iniciarSesion.IniciarSesion_Event += IniciarSesion_Handler;
+
+            this.panelDrawer.Visible = false;
+
+            this.panelPrincipal.Controls.Clear();
+
+            panelPrincipal.Controls.Add(iniciarSesion);
+
         }
     }
 }

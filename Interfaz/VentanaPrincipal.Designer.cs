@@ -30,7 +30,7 @@ namespace Interfaz
         private void InitializeComponent()
         {
             this.panelDrawer = new System.Windows.Forms.Panel();
-            this.botonDataBranches = new System.Windows.Forms.Button();
+            this.botonDataBreaches = new System.Windows.Forms.Button();
             this.botonReeeporteFortaleza = new System.Windows.Forms.Button();
             this.botonListaTarjetas = new System.Windows.Forms.Button();
             this.botonClavesQueMeComparten = new System.Windows.Forms.Button();
@@ -38,12 +38,14 @@ namespace Interfaz
             this.botonListaClaves = new System.Windows.Forms.Button();
             this.botonListaCategorias = new System.Windows.Forms.Button();
             this.panelPrincipal = new System.Windows.Forms.Panel();
+            this.botonCerrarSesion = new System.Windows.Forms.Button();
             this.panelDrawer.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelDrawer
             // 
-            this.panelDrawer.Controls.Add(this.botonDataBranches);
+            this.panelDrawer.Controls.Add(this.botonCerrarSesion);
+            this.panelDrawer.Controls.Add(this.botonDataBreaches);
             this.panelDrawer.Controls.Add(this.botonReeeporteFortaleza);
             this.panelDrawer.Controls.Add(this.botonListaTarjetas);
             this.panelDrawer.Controls.Add(this.botonClavesQueMeComparten);
@@ -57,15 +59,15 @@ namespace Interfaz
             this.panelDrawer.Size = new System.Drawing.Size(189, 681);
             this.panelDrawer.TabIndex = 0;
             // 
-            // botonDataBranches
+            // botonDataBreaches
             // 
-            this.botonDataBranches.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.botonDataBranches.Location = new System.Drawing.Point(12, 438);
-            this.botonDataBranches.Name = "botonDataBranches";
-            this.botonDataBranches.Size = new System.Drawing.Size(172, 63);
-            this.botonDataBranches.TabIndex = 6;
-            this.botonDataBranches.Text = "Data Branches";
-            this.botonDataBranches.UseVisualStyleBackColor = true;
+            this.botonDataBreaches.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.botonDataBreaches.Location = new System.Drawing.Point(12, 438);
+            this.botonDataBreaches.Name = "botonDataBreaches";
+            this.botonDataBreaches.Size = new System.Drawing.Size(172, 63);
+            this.botonDataBreaches.TabIndex = 6;
+            this.botonDataBreaches.Text = "Data Breaches";
+            this.botonDataBreaches.UseVisualStyleBackColor = true;
             // 
             // botonReeeporteFortaleza
             // 
@@ -139,6 +141,17 @@ namespace Interfaz
             this.panelPrincipal.Size = new System.Drawing.Size(1014, 681);
             this.panelPrincipal.TabIndex = 1;
             // 
+            // botonCerrarSesion
+            // 
+            this.botonCerrarSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.botonCerrarSesion.Location = new System.Drawing.Point(12, 571);
+            this.botonCerrarSesion.Name = "botonCerrarSesion";
+            this.botonCerrarSesion.Size = new System.Drawing.Size(172, 63);
+            this.botonCerrarSesion.TabIndex = 7;
+            this.botonCerrarSesion.Text = "Cerrar Sesion";
+            this.botonCerrarSesion.UseVisualStyleBackColor = true;
+            this.botonCerrarSesion.Click += new System.EventHandler(this.botonCerrarSesion_Click);
+            // 
             // VentanaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -160,12 +173,13 @@ namespace Interfaz
         private System.Windows.Forms.Panel panelDrawer;
         private System.Windows.Forms.Panel panelPrincipal;
         private System.Windows.Forms.Button botonListaCategorias;
-        private System.Windows.Forms.Button botonDataBranches;
+        private System.Windows.Forms.Button botonDataBreaches;
         private System.Windows.Forms.Button botonReeeporteFortaleza;
         private System.Windows.Forms.Button botonListaTarjetas;
         private System.Windows.Forms.Button botonClavesQueMeComparten;
         private System.Windows.Forms.Button botonClavesQueComparto;
         private System.Windows.Forms.Button botonListaClaves;
+        private System.Windows.Forms.Button botonCerrarSesion;
     }
 }
 

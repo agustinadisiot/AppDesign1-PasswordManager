@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Obligatorio
 {
@@ -12,10 +13,11 @@ namespace Obligatorio
         private const int _largoNombreYContraMinimo = 5;
         private const int _largoNombreYContraMaximo = 25;
 
-
         public Usuario()
         {
             this._categorias = new List<Categoria>();
+            this.CompartidasConmigo = new List<ClaveCompartida>();
+            this.CompartidasPorMi = new List<ClaveCompartida>();
         }
 
         public string Nombre 
@@ -27,6 +29,10 @@ namespace Obligatorio
             get { return this._contraMaestra; }
             set { this._contraMaestra = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreYContraMinimo, _largoNombreYContraMaximo);}
         }
+
+        public List<ClaveCompartida> CompartidasPorMi { get; set; }
+
+        public List<ClaveCompartida> CompartidasConmigo { get; set; }
 
         public bool ValidarIgualContraMaestra(string contraMaestraUsuario)
         {
@@ -132,21 +138,20 @@ namespace Obligatorio
             {
                 throw new ObjetoInexistenteException();
             }
+
+            List<ClaveCompartida> clavesCompartidas = this.CompartidasPorMi.FindAll(buscadora => buscadora.Clave.Equals(aBorrar));
+            foreach(ClaveCompartida aDejarDeCompartir in clavesCompartidas)
+            {
+                this.DejarDeCompartir(aDejarDeCompartir);
+            }
+
             Categoria contieneContraABorrar = this._categorias.First(categoria => categoria.YaExisteContra(aBorrar));
             contieneContraABorrar.BorrarContra(aBorrar);
         }
 
         public List<Categoria> GetListaCategorias()
         {
-
-
-            if (this.EsListaCategoriasVacia())
-            {
-                return null;
-            }
-            else {
-                return this._categorias;
-            }
+            return this._categorias;
         }
 
         public Contra GetContra(Contra contraBuscadora)
@@ -216,6 +221,144 @@ namespace Obligatorio
             aModificar.Tipo = tarjetaNueva.Tipo;
             aModificar.Nota = tarjetaNueva.Nota;
             aModificar.Vencimiento = tarjetaNueva.Vencimiento;
+        }
+
+        public List<Contra> GetListaClaves()
+        {
+            List<Contra> claves = new List<Contra>();
+
+            foreach(Categoria categoria in this._categorias)
+            {
+               claves.AddRange(categoria.GetListaContras());
+            }
+
+            return claves;
+        }
+
+        public List<Tarjeta> GetListaTarjetas()
+        {
+            List<Categoria> categorias = this.GetListaCategorias();
+            List<Tarjeta> tarjetasUsuario = new List<Tarjeta>();
+            foreach(Categoria categoria in categorias)
+            {
+                tarjetasUsuario.AddRange(categoria.GetListaTarjetas());
+            }
+            return tarjetasUsuario;
+        }
+
+        public void CompartirClave(ClaveCompartida aCompartir)
+        {
+
+            Usuario usuarioACompartir = aCompartir.Usuario;
+            Contra claveACompartir = aCompartir.Clave;
+
+            if (!this.YaExisteContra(claveACompartir)) throw new ObjetoInexistenteException();
+
+            claveACompartir = this.GetContra(claveACompartir);
+
+            claveACompartir.EsCompartida = true;
+
+            ClaveCompartida guardar = new ClaveCompartida()
+            {
+                Usuario = usuarioACompartir,
+                Clave = claveACompartir
+            };
+
+            this.CompartidasPorMi.Add(guardar);
+
+            ClaveCompartida enviar = new ClaveCompartida()
+            {
+                Usuario = this,
+                Clave = claveACompartir
+            };
+
+            usuarioACompartir.CompartidasConmigo.Add(enviar);
+        }
+
+        public int GetCantidadColor(string color)
+        {
+            List<Contra> clavesUsuario = this.GetListaClaves();
+            int cantidadColor = 0;
+            foreach(Contra clave in clavesUsuario)
+            {
+                if (clave.GetNivelSeguridad() == color) cantidadColor++;
+            }
+            return cantidadColor;
+        }
+
+        public List<Contra> GetContrasDataBreach(List<String> dataBreach)
+        {
+            List<Contra> completa = this.GetListaClaves();
+            
+            return completa.FindAll(buscadora=> dataBreach.Contains(buscadora.Clave));
+        }
+
+        public List<Tarjeta> GetTarjetasDataBreach(List<string> dataBreach)
+        {
+            const int largoTarjetaSinEspacios = 16;
+            const string regexEspacio = @"\s+";
+            const string vacio = "";
+
+            List<string> potencialesTarjetas = new List<string>();
+
+            foreach (string potencial in dataBreach) {
+                string sinEspacio = Regex.Replace(potencial, regexEspacio, vacio);
+                bool esNumero = sinEspacio.All(caracter => VerificadoraString.EsNumero(caracter));
+                bool tieneLargoTarjeta = sinEspacio.Length == largoTarjetaSinEspacios;
+
+                if (esNumero && tieneLargoTarjeta) {
+                    potencialesTarjetas.Add(sinEspacio);
+                }
+            }
+            List<Tarjeta> completa = this.GetListaTarjetas();
+            return completa.FindAll(buscadora => potencialesTarjetas.Contains(buscadora.Numero));
+
+        }
+
+        public void DejarDeCompartir(ClaveCompartida aDejarDeCompartir)
+        {
+            Usuario usuarioADejarDeCompartir = aDejarDeCompartir.Usuario;
+            Contra claveADejarDeCompartir = this.GetContra(aDejarDeCompartir.Clave);
+
+            if (!claveADejarDeCompartir.EsCompartida) throw new ObjetoInexistenteException();
+
+            ClaveCompartida guardadaAEliminar = new ClaveCompartida()
+            {
+                Usuario = usuarioADejarDeCompartir,
+                Clave = claveADejarDeCompartir
+            };
+
+            ClaveCompartida enviadaAEliminar = new ClaveCompartida()
+            {
+                Usuario = this,
+                Clave = claveADejarDeCompartir
+            };
+
+            if (!usuarioADejarDeCompartir.CompartidasConmigo.Contains(enviadaAEliminar)) throw new ObjetoInexistenteException();
+
+            this.CompartidasPorMi.Remove(guardadaAEliminar);
+
+            usuarioADejarDeCompartir.CompartidasConmigo.Remove(enviadaAEliminar);
+
+            bool sigueCompartida = this.CompartidasPorMi.Any(buscadora => buscadora.Clave.Equals(claveADejarDeCompartir));
+            if (!sigueCompartida) claveADejarDeCompartir.EsCompartida = false;
+
+
+        }
+
+        public List<Contra> GetListaClavesColor(string color)
+        {
+            List<Contra> clavesColor = new List<Contra>();
+            List<Contra> todasLasClaves = this.GetListaClaves();
+            foreach(Contra clave in todasLasClaves)
+            {
+                string nivelSeguridad = clave.GetNivelSeguridad();
+                if (nivelSeguridad == color)
+                {
+                    clavesColor.Add(clave);
+                }
+            }
+            return clavesColor;
         }
     }
 }

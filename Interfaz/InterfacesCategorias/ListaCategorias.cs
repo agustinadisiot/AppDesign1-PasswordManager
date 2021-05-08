@@ -45,28 +45,44 @@ namespace Interfaz
             this.CargarTabla();
         }
 
-        public event EventHandler AbrirModificarCategorias_Event;
-        public void irAModificarCategoria(EventArgs e)
+        public delegate void AbrirModificarCategoria_Handler(Categoria catActual);
+        public event AbrirModificarCategoria_Handler AbrirModificarCategorias_Event;
+        public void irAModificarCategoria(Categoria catActual)
         {
             if (this.AbrirModificarCategorias_Event != null)
-                this.AbrirModificarCategorias_Event(this, e);
+                this.AbrirModificarCategorias_Event(catActual);
         }
 
-        public event EventHandler AbrirAgregarCategorias_Event;
-        public void irAAgregarCategoria(EventArgs e)
+        public delegate void AbrirAgregarCategotias_Handler();
+        public event AbrirAgregarCategotias_Handler AbrirAgregarCategorias_Event;
+        public void irAAgregarCategoria()
         {
             if (this.AbrirAgregarCategorias_Event != null)
-                this.AbrirAgregarCategorias_Event(this, e);
+                this.AbrirAgregarCategorias_Event();
         }
 
         private void botonModificar_Click(object sender, EventArgs e)
         {
-            irAModificarCategoria(e);
+            string nombreCat = "";
+            if (this.TablaCategorias.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = TablaCategorias.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = TablaCategorias.Rows[selectedrowindex];
+                nombreCat = Convert.ToString(selectedRow.Cells["Catergorias"].Value);
+            }
+
+            Categoria aModificar = new Categoria
+            {
+                Nombre = nombreCat
+            };
+
+            irAModificarCategoria(aModificar);
         }
 
         private void botonAgregar_Click(object sender, EventArgs e)
         {
-            irAAgregarCategoria(e);
+            irAAgregarCategoria();
         }
+
     }
 }

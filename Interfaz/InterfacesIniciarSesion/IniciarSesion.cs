@@ -45,7 +45,8 @@ namespace Interfaz
                     Usuario verdadero = this._administrador.GetUsuario(iniciar.Nombre);
                     if (verdadero.ContraMaestra == iniciar.ContraMaestra)
                     {
-                        this.EnviarIniciarSesion(iniciar);
+                       
+                        this.EnviarIniciarSesion(verdadero);
                     }
                     else {
                         this.labelErrores.Text = "La contraseña es incorrecta.";
@@ -72,6 +73,19 @@ namespace Interfaz
                 this.IniciarSesion_Event(aIniciar);
         }
 
-        
+
+        public delegate void AbrirCrearUsuario_Handler();
+
+        public event AbrirCrearUsuario_Handler AbrirCrearUsuario_Event;
+
+        private void EnviarAbrirCrearUsuario() {
+            if (this.AbrirCrearUsuario_Event != null)
+                this.AbrirCrearUsuario_Event();
+        }
+
+        private void botonCrearUsuario_Click(object sender, EventArgs e)
+        {
+            this.EnviarAbrirCrearUsuario();
+        }
     }
 }
