@@ -386,5 +386,11 @@ namespace Obligatorio
             if (!this.CompartidasPorMi.Contains(buscadora)) throw new ObjetoInexistenteException();
             return this.CompartidasPorMi.First(aBuscar => aBuscar.Equals(buscadora));
         }
+
+        public ClaveCompartida GetClaveCompartidaConmigo(ClaveCompartida buscadora)
+        {
+            if (!this.CompartidasConmigo.Contains(buscadora)) throw new ObjetoInexistenteException();
+            return this.CompartidasConmigo.First(aBuscar => aBuscar.Equals(buscadora));
+        }
     }
 }
