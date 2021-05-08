@@ -118,7 +118,6 @@ namespace Interfaz
                 string texto = "¿Estas seguro que quieres eliminar esta tarjeta?";
                 VentanaConfirmaciones ventanaConfirmar = new VentanaConfirmaciones(texto);
                 ventanaConfirmar.CerrarConfirmacion_Event += CerrarConfirmacion_Handler;
-                ventanaConfirmar.StartPosition = FormStartPosition.CenterParent;
                 ventanaConfirmar.ShowDialog();
             }
         }

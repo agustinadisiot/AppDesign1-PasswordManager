@@ -161,7 +161,10 @@ namespace Interfaz
             this.ClientSize = new System.Drawing.Size(1203, 681);
             this.Controls.Add(this.panelPrincipal);
             this.Controls.Add(this.panelDrawer);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "VentanaPrincipal";
             this.Text = "Ventana Principal";
             this.Load += new System.EventHandler(this.VentanaPrincipal_Load);
