@@ -30,16 +30,16 @@ namespace Interfaz
         private void InitializeComponent()
         {
             this.tablaTarjetas = new System.Windows.Forms.DataGridView();
-            this.botonEliminar = new System.Windows.Forms.Button();
-            this.botonModificar = new System.Windows.Forms.Button();
-            this.buttonAgregar = new System.Windows.Forms.Button();
-            this.labelTitulo = new System.Windows.Forms.Label();
             this.Catregoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TarjetaMostrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TarjetaCompleta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Vencimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.botonEliminar = new System.Windows.Forms.Button();
+            this.botonModificar = new System.Windows.Forms.Button();
+            this.buttonAgregar = new System.Windows.Forms.Button();
+            this.labelTitulo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTarjetas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,45 +70,6 @@ namespace Interfaz
             this.tablaTarjetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaTarjetas.Size = new System.Drawing.Size(1010, 557);
             this.tablaTarjetas.TabIndex = 0;
-            // 
-            // botonEliminar
-            // 
-            this.botonEliminar.Location = new System.Drawing.Point(830, 636);
-            this.botonEliminar.Name = "botonEliminar";
-            this.botonEliminar.Size = new System.Drawing.Size(86, 23);
-            this.botonEliminar.TabIndex = 1;
-            this.botonEliminar.Text = "Eliminar";
-            this.botonEliminar.UseVisualStyleBackColor = true;
-            // 
-            // botonModificar
-            // 
-            this.botonModificar.Location = new System.Drawing.Point(922, 636);
-            this.botonModificar.Name = "botonModificar";
-            this.botonModificar.Size = new System.Drawing.Size(86, 23);
-            this.botonModificar.TabIndex = 2;
-            this.botonModificar.Text = "Modificar";
-            this.botonModificar.UseVisualStyleBackColor = true;
-            this.botonModificar.Click += new System.EventHandler(this.botonModificar_Click);
-            // 
-            // buttonAgregar
-            // 
-            this.buttonAgregar.Location = new System.Drawing.Point(738, 636);
-            this.buttonAgregar.Name = "buttonAgregar";
-            this.buttonAgregar.Size = new System.Drawing.Size(86, 23);
-            this.buttonAgregar.TabIndex = 3;
-            this.buttonAgregar.Text = "Agregar";
-            this.buttonAgregar.UseVisualStyleBackColor = true;
-            this.buttonAgregar.Click += new System.EventHandler(this.buttonAgregar_Click);
-            // 
-            // labelTitulo
-            // 
-            this.labelTitulo.AutoSize = true;
-            this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitulo.Location = new System.Drawing.Point(3, 36);
-            this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(142, 25);
-            this.labelTitulo.TabIndex = 4;
-            this.labelTitulo.Text = "Lista Tarjetas";
             // 
             // Catregoria
             // 
@@ -161,6 +122,46 @@ namespace Interfaz
             this.Vencimiento.ReadOnly = true;
             this.Vencimiento.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Vencimiento.Width = 125;
+            // 
+            // botonEliminar
+            // 
+            this.botonEliminar.Location = new System.Drawing.Point(830, 636);
+            this.botonEliminar.Name = "botonEliminar";
+            this.botonEliminar.Size = new System.Drawing.Size(86, 23);
+            this.botonEliminar.TabIndex = 1;
+            this.botonEliminar.Text = "Eliminar";
+            this.botonEliminar.UseVisualStyleBackColor = true;
+            this.botonEliminar.Click += new System.EventHandler(this.botonEliminar_Click);
+            // 
+            // botonModificar
+            // 
+            this.botonModificar.Location = new System.Drawing.Point(922, 636);
+            this.botonModificar.Name = "botonModificar";
+            this.botonModificar.Size = new System.Drawing.Size(86, 23);
+            this.botonModificar.TabIndex = 2;
+            this.botonModificar.Text = "Modificar";
+            this.botonModificar.UseVisualStyleBackColor = true;
+            this.botonModificar.Click += new System.EventHandler(this.botonModificar_Click);
+            // 
+            // buttonAgregar
+            // 
+            this.buttonAgregar.Location = new System.Drawing.Point(738, 636);
+            this.buttonAgregar.Name = "buttonAgregar";
+            this.buttonAgregar.Size = new System.Drawing.Size(86, 23);
+            this.buttonAgregar.TabIndex = 3;
+            this.buttonAgregar.Text = "Agregar";
+            this.buttonAgregar.UseVisualStyleBackColor = true;
+            this.buttonAgregar.Click += new System.EventHandler(this.buttonAgregar_Click);
+            // 
+            // labelTitulo
+            // 
+            this.labelTitulo.AutoSize = true;
+            this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitulo.Location = new System.Drawing.Point(3, 36);
+            this.labelTitulo.Name = "labelTitulo";
+            this.labelTitulo.Size = new System.Drawing.Size(142, 25);
+            this.labelTitulo.TabIndex = 4;
+            this.labelTitulo.Text = "Lista Tarjetas";
             // 
             // ListaTarjetas
             // 
