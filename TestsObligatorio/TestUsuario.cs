@@ -2115,37 +2115,14 @@ namespace TestsObligatorio
         }
 
         [TestMethod]
-        public void UsuarioGetListaClavesColorRojoEsVacia()
+        public void UsuarioGetListaClavesColorEsVacia()
         {
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario1"
             };
 
-            Categoria categoria1 = new Categoria()
-            {
-                Nombre = "Personal"
-            };
 
-            usuario.AgregarCategoria(categoria1);
-
-            Contra clave1 = new Contra()
-            {
-                Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave@",
-                UsuarioContra = "Roberto"
-            };
-            categoria1.AgregarContra(clave1);
-            Contra clave2 = new Contra()
-            {
-                Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Luis88"
-            };
-            categoria1.AgregarContra(clave2);
-
-
-            List<Contra> getListaClaves = usuario.GetListaClaves();
             int cantidadRojas = 0;
             const string rojo = "rojo";
             Assert.AreEqual(cantidadRojas, usuario.GetListaClavesColor(rojo).Count);
