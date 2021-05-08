@@ -58,6 +58,12 @@
     <Compile Include="InterfacesClaves\CrearClave.Designer.cs">
       <DependentUpon>CrearClave.cs</DependentUpon>
     </Compile>
+    <Compile Include="InterfacesCompartirClave\ListaClavesCompartidasPorMi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesCompartirClave\ListaClavesCompartidasPorMi.Designer.cs">
+      <DependentUpon>ListaClavesCompartidasPorMi.cs</DependentUpon>
+    </Compile>
     <Compile Include="InterfacesTarjetas\CrearTarjeta.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -134,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InterfacesClaves\CrearClave.resx">
       <DependentUpon>CrearClave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesCompartirClave\ListaClavesCompartidasPorMi.resx">
+      <DependentUpon>ListaClavesCompartidasPorMi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InterfacesTarjetas\CrearTarjeta.resx">
       <DependentUpon>CrearTarjeta.cs</DependentUpon>

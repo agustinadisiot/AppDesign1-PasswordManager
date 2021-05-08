@@ -1,4 +1,5 @@
-﻿using Obligatorio;
+﻿using Interfaz.InterfacesCompartirClave;
+using Obligatorio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -242,6 +243,13 @@ namespace Interfaz
             ListaClavesCompartidasConmigo listaClavesCompartidasConmigo = new ListaClavesCompartidasConmigo(this._usuarioActual, this._administrador);
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(listaClavesCompartidasConmigo);
+        }
+
+        private void botonClavesQueComparto_Click(object sender, EventArgs e)
+        {
+            ListaClavesCompartidasPorMi listaClavesCompartidasPorMi = new ListaClavesCompartidasPorMi(this._usuarioActual, this._administrador);
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(listaClavesCompartidasPorMi);
         }
     }
 }

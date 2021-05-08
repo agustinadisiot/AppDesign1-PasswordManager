@@ -121,6 +121,7 @@ namespace Interfaz
             this.botonClavesQueComparto.TabIndex = 2;
             this.botonClavesQueComparto.Text = "Contraseñas Que Comparto";
             this.botonClavesQueComparto.UseVisualStyleBackColor = true;
+            this.botonClavesQueComparto.Click += new System.EventHandler(this.botonClavesQueComparto_Click);
             // 
             // botonListaClaves
             // 
