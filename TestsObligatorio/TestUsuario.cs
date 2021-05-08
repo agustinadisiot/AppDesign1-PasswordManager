@@ -3020,7 +3020,7 @@ namespace TestsObligatorio
             {
                 Numero = "1987654321345678"
             };
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarTarjetaCategoria(tarjetaVieja, tarjetaNueva));
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarTarjeta(tarjetaVieja, tarjetaNueva));
         }
 
         [TestMethod]
@@ -3065,7 +3065,7 @@ namespace TestsObligatorio
                 Numero = numeroTarjeta2
             };
 
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.ModificarTarjetaCategoria(tarjetaVieja, tarjetaNueva));
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.ModificarTarjeta(tarjetaVieja, tarjetaNueva));
         }
 
         [TestMethod]
@@ -3100,13 +3100,23 @@ namespace TestsObligatorio
                 Nota = "",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
-            usuario.ModificarTarjetaCategoria(tarjetaVieja, tarjetaNueva);
+            usuario.ModificarTarjeta(tarjetaVieja, tarjetaNueva);
 
             Tarjeta buscadora = new Tarjeta()
             {
                 Numero = numeroTarjetaNueva
             };
-            Assert.AreEqual(tarjetaNueva, usuario.GetTarjeta(buscadora));
+
+            Tarjeta resultado = usuario.GetTarjeta(buscadora);
+
+            bool igualNumero = tarjetaNueva.Numero == resultado.Numero;
+            bool igualNombre = tarjetaNueva.Nombre == resultado.Nombre;
+            bool igualTipo = tarjetaNueva.Tipo == resultado.Tipo;
+            bool igualCodigo = tarjetaNueva.Codigo == resultado.Codigo;
+            bool igualNota = tarjetaNueva.Nota == resultado.Nota;
+            bool igualVencimiento = tarjetaNueva.Vencimiento == resultado.Vencimiento;
+
+            Assert.IsTrue(igualNumero&&igualNombre&&igualTipo&&igualCodigo&&igualNota&&igualVencimiento);
         }
 
         [TestMethod]
