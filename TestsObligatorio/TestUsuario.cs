@@ -2128,7 +2128,7 @@ namespace TestsObligatorio
         }
 
         [TestMethod]
-        public void UsuarioGetListaClavesColorNoVacia()
+        public void UsuarioGetListaClavesColorNoVaciaUnaCategoria()
         {
             Usuario usuario = new Usuario()
             {
@@ -2168,6 +2168,59 @@ namespace TestsObligatorio
 
             bool getListaClavesContieneLasClavesVerdes = getListaClavesVerdes.All(clavesVerdes.Contains);
             bool clavesVerdesContieneListaClavesVerdes = clavesVerdes.All(getListaClavesVerdes.Contains);
+
+            Assert.IsTrue(getListaClavesContieneLasClavesVerdes && clavesVerdesContieneListaClavesVerdes);
+        }
+
+        [TestMethod]
+        public void UsuarioGetListaClavesColorNoVaciaDosCategoria()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+
+            Categoria categoria2 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            usuario.AgregarCategoria(categoria2);
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "estaesunaclave",
+                UsuarioContra = "Roberto"
+            };
+            categoria1.AgregarContra(clave1);
+
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "ESTAESUNACLAVE",
+                UsuarioContra = "Luis88"
+            };
+            categoria2.AgregarContra(clave2);
+
+            List<Contra> clavesAmarillas = new List<Contra>
+            {
+                clave1,
+                clave2
+            };
+
+            const string amarillo = "amarillo";
+            List<Contra> getListaClavesAmarillas = usuario.GetListaClavesColor(amarillo);
+
+            bool getListaClavesContieneLasClavesVerdes = getListaClavesAmarillas.All(clavesAmarillas.Contains);
+            bool clavesVerdesContieneListaClavesVerdes = clavesAmarillas.All(getListaClavesAmarillas.Contains);
 
             Assert.IsTrue(getListaClavesContieneLasClavesVerdes && clavesVerdesContieneListaClavesVerdes);
         }
