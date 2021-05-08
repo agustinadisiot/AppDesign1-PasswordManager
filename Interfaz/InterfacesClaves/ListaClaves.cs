@@ -27,31 +27,19 @@ namespace Interfaz
         private void CargarTabla()
         {
 
-            List<Categoria> listaCategorias = this._usuarioActual.GetListaCategorias();
+            List<Contra> listaClaves = this._usuarioActual.GetListaClaves();
 
-            foreach (Categoria categoriaActual in listaCategorias)
+            foreach (Contra claveActual in listaClaves)
             {
-
-                string nombreCategoria = categoriaActual.Nombre;
-                List<Contra> listaContras = categoriaActual.GetListaContras();
-                CargarFila(nombreCategoria, listaContras);
+                string nombreCategoria = usuarioActual.GetCategoriaClave(claveActual);
+                string sitio = claveActual.Sitio;
+                string usuario = claveActual.UsuarioContra;
+                DateTime ultimaModificacion = claveActual.FechaModificacion;
+                this.tablaClaves.Rows.Add(nombreCategoria, sitio, usuario, ultimaModificacion);
             }
         }
 
 
-        private void CargarFila(string categoriaActual, List<Contra> listaContras)
-        {
-
-            foreach (Contra contraActual in listaContras)
-            {
-
-                string sitio = contraActual.Sitio;
-                string usuario = contraActual.UsuarioContra;
-                string ultimaModificacion = "";
-
-                this.tablaClaves.Rows.Add(categoriaActual, sitio, usuario, ultimaModificacion);
-            }
-        }
 
         public delegate void irAVerClave_Handler(Usuario actual);
 
@@ -62,32 +50,40 @@ namespace Interfaz
                 this.AbrirVerClave_Event(usuarioClaves);
         }
 
-        public event EventHandler AbrirCompartirClave_Event;
-        public void irACompartirClave(EventArgs e)
+        public delegate void irACompartirClave_Handler(Usuario actual);
+
+        public event irACompartirClave_Handler AbrirCompartirClave_Event;
+        public void irACompartirClave(Usuario usuarioClaves)
         {
             if (this.AbrirCompartirClave_Event != null)
-                this.AbrirCompartirClave_Event(this, e);
+                this.AbrirCompartirClave_Event(usuarioClaves);
         }
 
-        public event EventHandler AbrirAgregarClave_Event;
-        public void irAAgregarClave(EventArgs e)
+        public delegate void irAAgregarClave_Handler(Usuario actual);
+
+        public event irAAgregarClave_Handler AbrirAgregarClave_Event;
+        public void irAAgregarClave(Usuario usuarioClaves)
         {
             if (this.AbrirAgregarClave_Event != null)
-                this.AbrirAgregarClave_Event(this, e);
+                this.AbrirAgregarClave_Event(usuarioClaves);
         }
 
-        public event EventHandler AbrirEliminarClave_Event;
-        public void irAEliminarClave(EventArgs e)
+        public delegate void irAEliminarClave_Handler(Usuario actual);
+
+        public event irAEliminarClave_Handler AbrirEliminarClave_Event;
+        public void irAEliminarClave(Usuario usuarioClaves)
         {
             if (this.AbrirEliminarClave_Event != null)
-                this.AbrirEliminarClave_Event(this, e);
+                this.AbrirEliminarClave_Event(usuarioClaves);
         }
 
-        public event EventHandler AbrirModificarClave_Event;
-        public void irAModificarClave(EventArgs e)
+        public delegate void irAModificarClave_Handler(Usuario actual);
+
+        public event irAModificarClave_Handler AbrirModificarClave_Event;
+        public void irAModificarClave(Usuario usuarioClaves)
         {
             if (this.AbrirModificarClave_Event != null)
-                this.AbrirModificarClave_Event(this, e);
+                this.AbrirModificarClave_Event(usuarioClaves);
         }
 
 
@@ -98,22 +94,19 @@ namespace Interfaz
 
         private void botonCompartir_Click(object sender, EventArgs e)
         {
-            irACompartirClave(e);
+
         }
 
         private void botonAgregar_Click(object sender, EventArgs e)
         {
-            irAAgregarClave(e);
         }
 
         private void botonEliminar_Click(object sender, EventArgs e)
         {
-            irAEliminarClave(e);
         }
 
         private void botonModificar_Click(object sender, EventArgs e)
         {
-            irAModificarClave(e);
         }
 
     }
