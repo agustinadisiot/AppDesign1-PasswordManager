@@ -155,8 +155,11 @@ namespace Obligatorio
 
         public void ModificarContra(Contra contraVieja, Contra contraNueva)
         {
+            bool igualSitioyUsuario = contraVieja.Equals(contraNueva);
+
             if (!this.YaExisteContra(contraVieja)) throw new ObjetoInexistenteException();
-            if (this.YaExisteContra(contraNueva)) throw new ObjetoYaExistenteException();
+            if (!igualSitioyUsuario && this.YaExisteContra(contraNueva)) throw new ObjetoYaExistenteException();
+
             Contra aModificar = this.GetContra(contraVieja);
             aModificar.UsuarioContra = contraNueva.UsuarioContra;
             aModificar.Clave = contraNueva.Clave;
