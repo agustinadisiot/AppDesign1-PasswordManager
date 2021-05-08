@@ -27,7 +27,7 @@ namespace Interfaz
 
         private void botonCancelar_Click(object sender, EventArgs e)
         {
-            volverAListacategorias(e);
+            volverAListaCategorias();
         }
 
         protected void botonAceptar_Click(object sender, EventArgs e)
@@ -43,7 +43,7 @@ namespace Interfaz
                 {
                     _usuarioActual.ModificarNombreCategoria(_categoriaActual, categoriaModificada);
 
-                    volverAListacategorias(e);
+                    volverAListaCategorias();
                 }
                 catch
                 {
@@ -58,11 +58,12 @@ namespace Interfaz
             }
         }
 
-        public event EventHandler AbrirListaCategorias_Event;
-        public void volverAListacategorias(EventArgs e)
+        public delegate void AbrirListaCategorias_Handler();
+        public event AbrirListaCategorias_Handler AbrirListaCategorias_Event;
+        public void volverAListaCategorias()
         {
             if (this.AbrirListaCategorias_Event != null)
-                this.AbrirListaCategorias_Event(this, e);
+                this.AbrirListaCategorias_Event();
         }
     }
 }

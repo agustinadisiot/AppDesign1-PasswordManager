@@ -45,8 +45,8 @@ namespace Interfaz
             this.CargarTabla();
         }
 
-        public delegate void AbreirModificarCategoria_Handler(Categoria catActual);
-        public event AbreirModificarCategoria_Handler AbrirModificarCategorias_Event;
+        public delegate void AbrirModificarCategoria_Handler(Categoria catActual);
+        public event AbrirModificarCategoria_Handler AbrirModificarCategorias_Event;
         public void irAModificarCategoria(Categoria catActual)
         {
             if (this.AbrirModificarCategorias_Event != null)

@@ -120,7 +120,7 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(iniciarSesion);
         }
 
-        protected void AbrirListaCategorias_Handler(object sender, EventArgs e)
+        protected void AbrirListaCategorias_Handler()
         {
 
             ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual, this._administrador);
@@ -136,7 +136,7 @@ namespace Interfaz
         {
 
             AgregarCategoria agregarCategoria = new AgregarCategoria(this._usuarioActual, this._administrador);
-            agregarCategoria.AbrirListaCategorias_Event += new EventHandler(this.AbrirListaCategorias_Handler);
+            agregarCategoria.AbrirListaCategorias_Event += AbrirListaCategorias_Handler;
 
             this.panelPrincipal.Controls.Clear();
 
@@ -147,7 +147,7 @@ namespace Interfaz
         {
 
             ModificarCategoria modificarCategoria = new ModificarCategoria(aModificar, this._usuarioActual);
-            modificarCategoria.AbrirListaCategorias_Event += new EventHandler(this.AbrirListaCategorias_Handler);
+            modificarCategoria.AbrirListaCategorias_Event += AbrirListaCategorias_Handler;
 
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(modificarCategoria);
