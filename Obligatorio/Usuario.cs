@@ -345,5 +345,10 @@ namespace Obligatorio
 
 
         }
+
+        public List<Contra> GetListaClavesColor(string rojo)
+        {
+            return new List<Contra>();
+        }
     }
 }
