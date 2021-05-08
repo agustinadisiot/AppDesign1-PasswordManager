@@ -2251,6 +2251,49 @@ namespace TestsObligatorio
 
             Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.GetCategoriaClave(buscadora));
         }
+
+        [TestMethod]
+        public void UsuarioGetCategoriaTarjetaDosCategorias()
+        {
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario"
+            };
+
+            Categoria trabajo = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            usuario.AgregarCategoria(trabajo);
+
+            Categoria facultad = new Categoria()
+            {
+                Nombre = "Facultad"
+            };
+
+            usuario.AgregarCategoria(facultad);
+
+            Contra agregar = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "estaesunaclave",
+                UsuarioContra = "Roberto"
+
+            };
+
+            usuario.AgregarContra(agregar, facultad);
+
+            Contra buscadora = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "estaesunaclave",
+                UsuarioContra = "Roberto"
+            };
+
+            Assert.AreEqual(facultad, usuario.GetCategoriaClave(buscadora));
+        }
     }
 
     [TestClass]

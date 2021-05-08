@@ -375,8 +375,17 @@ namespace Obligatorio
 
         }
 
-        public void GetCategoriaClave(Contra buscadora)
+        public Categoria GetCategoriaClave(Contra buscadora)
         {
+            List<Categoria> categorias = this.GetListaCategorias();
+
+            foreach (Categoria actual in categorias)
+            {
+                if (actual.YaExisteContra(buscadora))
+                {
+                    return actual;
+                }
+            }
             throw new ObjetoInexistenteException();
         }
     }
