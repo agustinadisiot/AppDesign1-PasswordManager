@@ -52,6 +52,7 @@ namespace Interfaz
             // labelErrores
             // 
             this.labelErrores.AutoSize = true;
+            this.labelErrores.ForeColor = System.Drawing.Color.Red;
             this.labelErrores.Location = new System.Drawing.Point(145, 607);
             this.labelErrores.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelErrores.Name = "labelErrores";
