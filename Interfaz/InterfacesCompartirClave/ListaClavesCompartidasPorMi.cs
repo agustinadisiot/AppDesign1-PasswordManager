@@ -44,17 +44,49 @@ namespace Interfaz.InterfacesCompartirClave
 
         private void botonDejarDeCompartir_Click(object sender, EventArgs e)
         {
-            string texto = "¿Estas seguro que quieres dejar de compartir esta coontraseña?";
-            VentanaConfirmaciones ventanaConfirmar = new VentanaConfirmaciones(texto);
-            ventanaConfirmar.CerrarConfirmacion_Event += CerrarConfirmacion_Handler;
-            Application.Run(new VentanaConfirmaciones(texto));
-            
-
+            bool haySeleccionada = this.tablaClavesComparidas.SelectedCells.Count > 0;
+            if (haySeleccionada)
+            {
+                string texto = "¿Estas seguro que quieres dejar de compartir esta coontraseña?";
+                VentanaConfirmaciones ventanaConfirmar = new VentanaConfirmaciones(texto);
+                ventanaConfirmar.CerrarConfirmacion_Event += CerrarConfirmacion_Handler;
+                ventanaConfirmar.Show();
+            }
         }
 
         private void CerrarConfirmacion_Handler(bool acepto)
         {
-           
+            bool haySeleccionada = this.tablaClavesComparidas.SelectedCells.Count > 0;
+            if (haySeleccionada)
+            {
+                int posSeleccionada = this.tablaClavesComparidas.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = this.tablaClavesComparidas.Rows[posSeleccionada];
+
+                string nombreUsuarioDejarDeCompartir = Convert.ToString(selectedRow.Cells["CompartidaA"].Value);
+                string sitioClaveDejarDeCompartir = Convert.ToString(selectedRow.Cells["Sitio"].Value);
+                string usuarioClaveDejarDeCompartir = Convert.ToString(selectedRow.Cells["Usuario"].Value);
+
+                Contra claveBuscadora = new Contra
+                {
+                    Sitio = sitioClaveDejarDeCompartir,
+                    UsuarioContra = usuarioClaveDejarDeCompartir
+                };
+
+                Usuario usuarioBuscador = new Usuario
+                {
+                    Nombre = nombreUsuarioDejarDeCompartir
+                };
+
+                ClaveCompartida buscadora = new ClaveCompartida
+                {
+                    Clave = claveBuscadora,
+                    Usuario = usuarioBuscador
+                };
+
+                ClaveCompartida aEliminar = this._usuarioActual.GetClaveCompartidaPorMi(buscadora);
+
+                this._usuarioActual.DejarDeCompartir(aEliminar);
+            }
         }
 
     }
