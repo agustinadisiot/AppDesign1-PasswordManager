@@ -63,12 +63,12 @@ namespace Interfaz
         }
 
 
-        public delegate void AbrirAgregarClave_Handler();
-        public event AbrirAgregarClave_Handler AbrirAgregarClave_Event;
-        public void irAAgregarClave()
+
+        public event EventHandler AbrirCrearClave_Event;
+        public void AbrirCrearClave(EventArgs e)
         {
-            if (this.AbrirAgregarClave_Event != null)
-                this.AbrirAgregarClave_Event();
+            if (this.AbrirCrearClave_Event != null)
+                this.AbrirCrearClave_Event(this,e);
         }
 
         public delegate void AbrirEliminarClave_Handler(Contra claveABorrar);
@@ -100,7 +100,7 @@ namespace Interfaz
 
         private void botonAgregar_Click(object sender, EventArgs e)
         {
-            irAAgregarClave();
+            AbrirCrearClave(e);
         }
 
         private void botonEliminar_Click(object sender, EventArgs e)

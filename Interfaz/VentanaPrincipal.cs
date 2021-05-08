@@ -192,6 +192,23 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(listaTarjetas);
         }
 
+        protected void AbrirListaClaves_Handler(object sender, EventArgs e)
+        {
+            this.panelPrincipal.Controls.Clear();
+            ListaClaves listaClaves = new ListaClaves(this._usuarioActual, this._administrador);
+           // listaClaves.AbrirCrearClave_Event += new EventHandler(this.AbrirCrearClave_Handler);
+            // listaClaves.AbrirModificarClave_Event += new EventHandler(this.AbrirCrearClave_Handler);
+            this.panelPrincipal.Controls.Add(listaClaves);
+        }
+
+        protected void AbrirCrearClave_Handler()
+        {
+            this.panelPrincipal.Controls.Clear();
+            CrearClave crearClave = new CrearClave(this._usuarioActual, this._administrador);
+            crearClave.AbrirListaClaves_Event += new EventHandler(this.AbrirListaClaves_Handler);
+            this.panelPrincipal.Controls.Add(crearClave);
+        }
+
         private void botonListaCategorias_Click(object sender, EventArgs e)
         {
             ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual, this._administrador);

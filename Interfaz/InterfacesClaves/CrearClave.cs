@@ -38,5 +38,12 @@ namespace Interfaz
 
         }
 
+        public event EventHandler AbrirListaClaves_Event;
+        private void volverAListaClaves(EventArgs e)
+        {
+            if (this.AbrirListaClaves_Event != null)
+                this.AbrirListaClaves_Event(this, e);
+        }
+
     }
 }
