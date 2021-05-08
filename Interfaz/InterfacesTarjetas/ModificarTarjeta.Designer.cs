@@ -64,7 +64,7 @@ namespace Interfaz
             this.inputNota.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.inputNota.Location = new System.Drawing.Point(458, 411);
             this.inputNota.Margin = new System.Windows.Forms.Padding(2);
-            this.inputNota.MaxLength = 25;
+            this.inputNota.MaxLength = 250;
             this.inputNota.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputNota.Multiline = true;
             this.inputNota.Name = "inputNota";
@@ -138,7 +138,7 @@ namespace Interfaz
             this.inputCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.inputCodigo.Location = new System.Drawing.Point(458, 328);
             this.inputCodigo.Margin = new System.Windows.Forms.Padding(2);
-            this.inputCodigo.MaxLength = 25;
+            this.inputCodigo.MaxLength = 4;
             this.inputCodigo.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputCodigo.Name = "inputCodigo";
             this.inputCodigo.Size = new System.Drawing.Size(248, 29);
@@ -160,7 +160,7 @@ namespace Interfaz
             this.inputNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.inputNumero.Location = new System.Drawing.Point(458, 285);
             this.inputNumero.Margin = new System.Windows.Forms.Padding(2);
-            this.inputNumero.MaxLength = 25;
+            this.inputNumero.MaxLength = 16;
             this.inputNumero.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputNumero.Name = "inputNumero";
             this.inputNumero.Size = new System.Drawing.Size(248, 29);
