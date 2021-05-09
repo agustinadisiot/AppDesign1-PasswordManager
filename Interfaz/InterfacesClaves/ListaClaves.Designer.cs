@@ -158,6 +158,7 @@ namespace Interfaz
             this.botonEliminar.TabIndex = 22;
             this.botonEliminar.Text = "Eliminar";
             this.botonEliminar.UseVisualStyleBackColor = true;
+            this.botonEliminar.Click += new System.EventHandler(this.botonEliminar_Click);
             // 
             // botonModificar
             // 
@@ -169,6 +170,7 @@ namespace Interfaz
             this.botonModificar.TabIndex = 23;
             this.botonModificar.Text = "Modificar";
             this.botonModificar.UseVisualStyleBackColor = true;
+            this.botonModificar.Click += new System.EventHandler(this.botonModificar_Click);
             // 
             // ListaClaves
             // 

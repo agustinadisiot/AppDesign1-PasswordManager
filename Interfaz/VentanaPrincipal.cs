@@ -1,4 +1,5 @@
-﻿using Interfaz.InterfacesCompartirClave;
+﻿using Interfaz.InterfacesClaves;
+using Interfaz.InterfacesCompartirClave;
 using Obligatorio;
 using System;
 using System.Collections.Generic;
@@ -217,11 +218,19 @@ namespace Interfaz
         {
             ListaClaves listaClaves = new ListaClaves(this._usuarioActual, this._administrador);
             listaClaves.AbrirCrearClave_Event += this.AbrirCrearClave_Handler;
-            //listaClaves.AbrirModificarClave_Event += AbrirModificarClave_Handler;
-            //
-
+            listaClaves.AbrirModificarClave_Event += AbrirModificarClave_Event;
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(listaClaves);
+        }
+
+        private void AbrirModificarClave_Event(Contra buscadora)
+        {
+            Contra modificar = this._usuarioActual.GetContra(buscadora);
+            ModificarClave modificarClave = new ModificarClave(this._usuarioActual, modificar);
+            modificarClave.AbrirListaClaves_Event += this.AbrirListaClaves_Handler;
+
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(modificarClave);
         }
 
         protected void AbrirCrearClave_Handler()
@@ -257,15 +266,7 @@ namespace Interfaz
 
         private void botonListaClaves_Click(object sender, EventArgs e)
         {
-            ListaClaves listaClaves = new ListaClaves(this._usuarioActual, this._administrador);
-            listaClaves.AbrirCrearClave_Event += this.AbrirCrearClave_Handler;
-            listaClaves.AbrirCompartirClave_Event += this.AbrirCompartirClave_Handler;
-            //modificar
-            //ver
-
-            this.panelPrincipal.Controls.Clear();
-
-            this.panelPrincipal.Controls.Add(listaClaves);
+            this.AbrirListaClaves_Handler();
 
         }
 

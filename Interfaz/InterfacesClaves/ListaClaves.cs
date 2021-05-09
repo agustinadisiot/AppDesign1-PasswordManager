@@ -31,7 +31,7 @@ namespace Interfaz
 
         private void CargarTabla()
         {
-
+            this.tablaClaves.Rows.Clear();
             List<Contra> listaClaves = this._usuarioActual.GetListaClaves();
 
             foreach (Contra claveActual in listaClaves)
@@ -50,49 +50,29 @@ namespace Interfaz
 
         }
         
-        private void botonEliminar_Click(object sender, EventArgs e)
+        
+
+        private void CerrarConfirmacion_Handler(bool acepto)
         {
-            string sitioClave = "";
-            string usuarioClave = "";
-            if (this.tablaClaves.SelectedCells.Count > 0)
+            bool haySeleccionada = this.tablaClaves.SelectedCells.Count > 0;
+            if (haySeleccionada && acepto)
             {
-                int selectedrowindex = tablaClaves.SelectedCells[0].RowIndex;
-                DataGridViewRow selectedRow = tablaClaves.Rows[selectedrowindex];
-                sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
-                usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
+                int posSeleccionada = this.tablaClaves.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = this.tablaClaves.Rows[posSeleccionada];
+
+                string usuarioClaveBorrar = Convert.ToString(selectedRow.Cells["Usuario"].Value);
+                string sitioClaveBorrar = Convert.ToString(selectedRow.Cells["Sitio"].Value);
+
+                Contra buscadora = new Contra()
+                {
+                    UsuarioContra = usuarioClaveBorrar,
+                    Sitio = sitioClaveBorrar
+                };
+                this._usuarioActual.BorrarContra(buscadora);
+                this.CargarTabla();
             }
-
-            Contra aBorrar = new Contra()
-            {
-                Sitio = sitioClave,
-                UsuarioContra = usuarioClave
-            };
-
-            //Pop up de confirmacion para eliminar(?
-            _usuarioActual.BorrarContra(aBorrar);
-            this.CargarTabla();
         }
 
-        private void botonModificar_Click(object sender, EventArgs e)
-        {
-            string sitioClave = "";
-            string usuarioClave = "";
-            if (this.tablaClaves.SelectedCells.Count > 0)
-            {
-                int selectedrowindex = tablaClaves.SelectedCells[0].RowIndex;
-                DataGridViewRow selectedRow = tablaClaves.Rows[selectedrowindex];
-                sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
-                usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
-            }
-
-            Contra aModificar = new Contra()
-            {
-                Sitio = sitioClave,
-                UsuarioContra = usuarioClave
-            };
-
-            irAModificarClave(aModificar);
-        }
 
         private void botonAgregar_Click(object sender, EventArgs e)
         {
@@ -154,6 +134,39 @@ namespace Interfaz
         {
             if (this.AbrirCompartirClave_Event != null)
                 this.AbrirCompartirClave_Event(compartir);
+        }
+
+        private void botonEliminar_Click(object sender, EventArgs e)
+        {
+            bool haySeleccionada = this.tablaClaves.SelectedCells.Count > 0;
+            if (haySeleccionada)
+            {
+                string texto = "¿Estas seguro que quieres eliminar esta contraseña?";
+                VentanaConfirmaciones ventanaConfirmar = new VentanaConfirmaciones(texto);
+                ventanaConfirmar.CerrarConfirmacion_Event += CerrarConfirmacion_Handler;
+                ventanaConfirmar.ShowDialog();
+            }
+        }
+
+        private void botonModificar_Click(object sender, EventArgs e)
+        {
+            string sitioClave = "";
+            string usuarioClave = "";
+            if (this.tablaClaves.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = tablaClaves.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = tablaClaves.Rows[selectedrowindex];
+                sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
+                usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
+
+                Contra aModificar = new Contra()
+                {
+                    Sitio = sitioClave,
+                    UsuarioContra = usuarioClave
+                };
+
+                irAModificarClave(aModificar);
+            }
         }
     }
 }
