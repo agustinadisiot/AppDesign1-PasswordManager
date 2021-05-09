@@ -1621,6 +1621,47 @@ namespace TestsObligatorio
         }
 
         [TestMethod]
+        public void UsuarioCompartirUnaClaveYaCompartida()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+
+            usuario1.AgregarContra(clave1, categoria1);
+
+            ClaveCompartida claveACompartir = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            usuario1.CompartirClave(claveACompartir);
+
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario1.CompartirClave(claveACompartir));
+        }
+
+
+        [TestMethod]
         public void UsuarioCompartirUnaClave_ConfirmarUsuariosIguales()
         {
             Usuario usuario1 = new Usuario()
