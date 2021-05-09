@@ -173,9 +173,18 @@ namespace Obligatorio
             }
         }
 
-        public List<Contra> GetListaClavesColor(string rojo)
+        public List<Contra> GetListaClavesColor(string color)
         {
-            return new List<Contra>();
+            List<Contra> clavesColor = new List<Contra>();
+            List<Contra> clavesCategoria = this.GetListaContras();
+            foreach (Contra clave in clavesCategoria)
+            {
+                if(clave.GetNivelSeguridad() == color)
+                {
+                    clavesColor.Add(clave);
+                }
+            }
+            return clavesColor;
         }
     }
 }
