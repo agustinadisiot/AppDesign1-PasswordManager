@@ -849,17 +849,10 @@ namespace TestsObligatorio
         [TestMethod]
         public void CategoriaGetClavesColorEsVacia()
         {
-            Usuario usuario = new Usuario()
-            {
-                Nombre = "Usuario1"
-            };
-
             Categoria categoria = new Categoria()
             {
                 Nombre = "Personal"
             };
-
-            usuario.AgregarCategoria(categoria);
 
             int cantidadRojas = 0;
             const string rojo = "rojo";
