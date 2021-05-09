@@ -33,11 +33,11 @@ namespace Interfaz
             this.botonCancelar = new System.Windows.Forms.Button();
             this.labelUsuario = new System.Windows.Forms.Label();
             this.labelSitio = new System.Windows.Forms.Label();
-            this.inputSitio = new System.Windows.Forms.TextBox();
-            this.inputUsuario = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboCompartir = new System.Windows.Forms.ComboBox();
             this.botonAceptar = new System.Windows.Forms.Button();
+            this.labelSitioAMostrar = new System.Windows.Forms.Label();
+            this.labelUsuarioAMostrar = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelTitulo
@@ -53,8 +53,8 @@ namespace Interfaz
             // botonCancelar
             // 
             this.botonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.botonCancelar.Location = new System.Drawing.Point(117, 314);
-            this.botonCancelar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.botonCancelar.Location = new System.Drawing.Point(119, 327);
+            this.botonCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.botonCancelar.Name = "botonCancelar";
             this.botonCancelar.Size = new System.Drawing.Size(144, 37);
             this.botonCancelar.TabIndex = 24;
@@ -84,30 +84,6 @@ namespace Interfaz
             this.labelSitio.TabIndex = 21;
             this.labelSitio.Text = "Sitio";
             // 
-            // inputSitio
-            // 
-            this.inputSitio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.inputSitio.Location = new System.Drawing.Point(182, 176);
-            this.inputSitio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.inputSitio.MaxLength = 25;
-            this.inputSitio.MinimumSize = new System.Drawing.Size(4, 5);
-            this.inputSitio.Name = "inputSitio";
-            this.inputSitio.ReadOnly = true;
-            this.inputSitio.Size = new System.Drawing.Size(248, 29);
-            this.inputSitio.TabIndex = 20;
-            // 
-            // inputUsuario
-            // 
-            this.inputUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.inputUsuario.Location = new System.Drawing.Point(182, 254);
-            this.inputUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.inputUsuario.MaxLength = 25;
-            this.inputUsuario.MinimumSize = new System.Drawing.Size(4, 5);
-            this.inputUsuario.Name = "inputUsuario";
-            this.inputUsuario.ReadOnly = true;
-            this.inputUsuario.Size = new System.Drawing.Size(248, 29);
-            this.inputUsuario.TabIndex = 22;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -125,7 +101,7 @@ namespace Interfaz
             this.comboCompartir.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.comboCompartir.FormattingEnabled = true;
             this.comboCompartir.Location = new System.Drawing.Point(182, 103);
-            this.comboCompartir.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboCompartir.Margin = new System.Windows.Forms.Padding(2);
             this.comboCompartir.Name = "comboCompartir";
             this.comboCompartir.Size = new System.Drawing.Size(248, 32);
             this.comboCompartir.TabIndex = 26;
@@ -133,28 +109,55 @@ namespace Interfaz
             // botonAceptar
             // 
             this.botonAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.botonAceptar.Location = new System.Drawing.Point(284, 314);
-            this.botonAceptar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.botonAceptar.Location = new System.Drawing.Point(286, 327);
+            this.botonAceptar.Margin = new System.Windows.Forms.Padding(2);
             this.botonAceptar.Name = "botonAceptar";
             this.botonAceptar.Size = new System.Drawing.Size(144, 37);
             this.botonAceptar.TabIndex = 27;
             this.botonAceptar.Text = "Aceptar";
             this.botonAceptar.UseVisualStyleBackColor = true;
+            this.botonAceptar.Click += new System.EventHandler(this.botonAceptar_Click);
+            // 
+            // labelSitioAMostrar
+            // 
+            this.labelSitioAMostrar.AutoSize = true;
+            this.labelSitioAMostrar.BackColor = System.Drawing.Color.White;
+            this.labelSitioAMostrar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelSitioAMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.labelSitioAMostrar.Location = new System.Drawing.Point(178, 179);
+            this.labelSitioAMostrar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelSitioAMostrar.Name = "labelSitioAMostrar";
+            this.labelSitioAMostrar.Size = new System.Drawing.Size(132, 26);
+            this.labelSitioAMostrar.TabIndex = 28;
+            this.labelSitioAMostrar.Text = "Sitio A Mostrar";
+            // 
+            // labelUsuarioAMostrar
+            // 
+            this.labelUsuarioAMostrar.AutoSize = true;
+            this.labelUsuarioAMostrar.BackColor = System.Drawing.Color.White;
+            this.labelUsuarioAMostrar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelUsuarioAMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.labelUsuarioAMostrar.Location = new System.Drawing.Point(178, 257);
+            this.labelUsuarioAMostrar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelUsuarioAMostrar.Name = "labelUsuarioAMostrar";
+            this.labelUsuarioAMostrar.Size = new System.Drawing.Size(161, 26);
+            this.labelUsuarioAMostrar.TabIndex = 29;
+            this.labelUsuarioAMostrar.Text = "Usuario A Mostrar";
             // 
             // CompartirClave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.labelUsuarioAMostrar);
+            this.Controls.Add(this.labelSitioAMostrar);
             this.Controls.Add(this.botonAceptar);
             this.Controls.Add(this.comboCompartir);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.botonCancelar);
             this.Controls.Add(this.labelUsuario);
-            this.Controls.Add(this.inputUsuario);
             this.Controls.Add(this.labelSitio);
-            this.Controls.Add(this.inputSitio);
             this.Controls.Add(this.labelTitulo);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CompartirClave";
             this.Size = new System.Drawing.Size(1343, 852);
             this.ResumeLayout(false);
@@ -168,10 +171,10 @@ namespace Interfaz
         private System.Windows.Forms.Button botonCancelar;
         private System.Windows.Forms.Label labelUsuario;
         private System.Windows.Forms.Label labelSitio;
-        private System.Windows.Forms.TextBox inputSitio;
-        private System.Windows.Forms.TextBox inputUsuario;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboCompartir;
         private System.Windows.Forms.Button botonAceptar;
+        private System.Windows.Forms.Label labelSitioAMostrar;
+        private System.Windows.Forms.Label labelUsuarioAMostrar;
     }
 }
