@@ -116,7 +116,7 @@ namespace Obligatorio
 
         private void ActualizarFechaModificacion()
         {
-            this._fechaModificacion = new System.DateTime().Date;
+            this._fechaModificacion = System.DateTime.Now.Date;
         }
 
         public void GenerarClave(ClaveAGenerar parametros)

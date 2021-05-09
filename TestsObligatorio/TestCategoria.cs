@@ -771,7 +771,7 @@ namespace TestsObligatorio
 
             categoria.AgregarContra(contraVieja);
 
-            string claveContraNueva = "1234AbC$";
+            string claveContraNueva = "Nueva";
 
             Contra contraNueva = new Contra()
             {
@@ -794,6 +794,56 @@ namespace TestsObligatorio
             bool igualClave = contraVieja.Clave == contraNueva.Clave;  
 
             Assert.IsTrue(igualSitioYUsuario && igualNota && igualClave);
+        }
+
+        [TestMethod]
+        public void CategoriaModificarContraCambiaFechaModificacion()
+        {
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            string usuarioContraVieja = "Usuario23";
+            string paginaContraVieja = "www.ort.edu.uy";
+            string claveContraVieja = "1234AbC$";
+
+            Contra contraVieja = new Contra()
+            {
+                UsuarioContra = usuarioContraVieja,
+                Sitio = paginaContraVieja,
+                Clave = claveContraVieja,
+                Nota = "Vieja"
+            };
+
+            contraVieja.FechaModificacion = new DateTime(2000, 1, 1);
+
+            categoria.AgregarContra(contraVieja);
+
+            string claveContraNueva = "Cambiada";
+
+            Contra contraNueva = new Contra()
+            {
+                UsuarioContra = usuarioContraVieja,
+                Sitio = paginaContraVieja,
+                Clave = claveContraNueva,
+                Nota = "Nueva"
+            };
+
+            Contra buscadora = new Contra()
+            {
+                UsuarioContra = usuarioContraVieja,
+                Sitio = paginaContraVieja
+            };
+
+            categoria.ModificarContra(buscadora, contraNueva);
+
+            bool igualSitioYUsuario = contraVieja.Equals(contraNueva);
+            bool igualNota = contraVieja.Nota == contraNueva.Nota;
+            bool igualClave = contraVieja.Clave == contraNueva.Clave;
+            bool distintaFecha = contraVieja.FechaModificacion == System.DateTime.Now.Date;
+            Assert.IsTrue(igualSitioYUsuario && igualNota && igualClave && distintaFecha);
         }
     }
 

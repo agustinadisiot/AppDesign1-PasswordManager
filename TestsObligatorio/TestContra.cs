@@ -326,7 +326,7 @@ namespace TestsObligatorio
             evaluar.FechaModificacion = new DateTime(2000, 1, 1);
 
             evaluar.Clave = "ContraNueva";
-            DateTime actual = new System.DateTime().Date;
+            DateTime actual = System.DateTime.Now.Date;
             Assert.AreEqual(actual, evaluar.FechaModificacion);
         }
 
