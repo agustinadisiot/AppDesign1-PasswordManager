@@ -99,20 +99,18 @@ namespace Interfaz.InterfacesCompartirClave
                 int posSeleccionada = this.tablaClavesCompartidas.SelectedCells[0].RowIndex;
                 DataGridViewRow selectedRow = this.tablaClavesCompartidas.Rows[posSeleccionada];
 
-                string sitioClaveDejarDeCompartir = Convert.ToString(selectedRow.Cells["Sitio"].Value);
-                string usuarioClaveDejarDeCompartir = Convert.ToString(selectedRow.Cells["Usuario"].Value);
+                string sitioClaveAMostrar = Convert.ToString(selectedRow.Cells["Sitio"].Value);
+                string usuarioClaveAMostrar = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
                 Contra buscadora = new Contra
                 {
-                    Sitio = sitioClaveDejarDeCompartir,
-                    UsuarioContra = usuarioClaveDejarDeCompartir
+                    Sitio = sitioClaveAMostrar,
+                    UsuarioContra = usuarioClaveAMostrar
                 };
 
                 AbrirVerClave(buscadora, _usuarioActual);
             }
         }
-
-
 
         public delegate void AbrirVerClave_Handler(Contra buscadora, Usuario usuarioActual);
         public event AbrirVerClave_Handler AbrirVerClaveEvent;

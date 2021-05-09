@@ -29,37 +29,37 @@ namespace Interfaz
         /// </summary>
         private void InitializeComponent()
         {
-            this.tablaClavesComparidas = new System.Windows.Forms.DataGridView();
+            this.tablaClavesCompartidas = new System.Windows.Forms.DataGridView();
             this.CompartidaPor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sitio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.botonVer = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaClavesComparidas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaClavesCompartidas)).BeginInit();
             this.SuspendLayout();
             // 
-            // tablaClavesComparidas
+            // tablaClavesCompartidas
             // 
-            this.tablaClavesComparidas.AllowUserToAddRows = false;
-            this.tablaClavesComparidas.AllowUserToDeleteRows = false;
-            this.tablaClavesComparidas.AllowUserToResizeColumns = false;
-            this.tablaClavesComparidas.AllowUserToResizeRows = false;
-            this.tablaClavesComparidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tablaClavesComparidas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tablaClavesCompartidas.AllowUserToAddRows = false;
+            this.tablaClavesCompartidas.AllowUserToDeleteRows = false;
+            this.tablaClavesCompartidas.AllowUserToResizeColumns = false;
+            this.tablaClavesCompartidas.AllowUserToResizeRows = false;
+            this.tablaClavesCompartidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tablaClavesCompartidas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CompartidaPor,
             this.Sitio,
             this.Usuario});
-            this.tablaClavesComparidas.Location = new System.Drawing.Point(68, 23);
-            this.tablaClavesComparidas.Margin = new System.Windows.Forms.Padding(4);
-            this.tablaClavesComparidas.MultiSelect = false;
-            this.tablaClavesComparidas.Name = "tablaClavesComparidas";
-            this.tablaClavesComparidas.ReadOnly = true;
-            this.tablaClavesComparidas.RowHeadersVisible = false;
-            this.tablaClavesComparidas.RowHeadersWidth = 51;
-            this.tablaClavesComparidas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.tablaClavesComparidas.RowTemplate.Height = 24;
-            this.tablaClavesComparidas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tablaClavesComparidas.Size = new System.Drawing.Size(380, 337);
-            this.tablaClavesComparidas.TabIndex = 1;
+            this.tablaClavesCompartidas.Location = new System.Drawing.Point(68, 23);
+            this.tablaClavesCompartidas.Margin = new System.Windows.Forms.Padding(4);
+            this.tablaClavesCompartidas.MultiSelect = false;
+            this.tablaClavesCompartidas.Name = "tablaClavesCompartidas";
+            this.tablaClavesCompartidas.ReadOnly = true;
+            this.tablaClavesCompartidas.RowHeadersVisible = false;
+            this.tablaClavesCompartidas.RowHeadersWidth = 51;
+            this.tablaClavesCompartidas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.tablaClavesCompartidas.RowTemplate.Height = 24;
+            this.tablaClavesCompartidas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.tablaClavesCompartidas.Size = new System.Drawing.Size(380, 337);
+            this.tablaClavesCompartidas.TabIndex = 1;
             // 
             // CompartidaPor
             // 
@@ -96,23 +96,24 @@ namespace Interfaz
             this.botonVer.TabIndex = 2;
             this.botonVer.Text = "Ver";
             this.botonVer.UseVisualStyleBackColor = true;
+            this.botonVer.Click += new System.EventHandler(this.botonVer_Click);
             // 
             // ListaClavesCompartidasConmigo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.botonVer);
-            this.Controls.Add(this.tablaClavesComparidas);
+            this.Controls.Add(this.tablaClavesCompartidas);
             this.Name = "ListaClavesCompartidasConmigo";
             this.Size = new System.Drawing.Size(673, 430);
-            ((System.ComponentModel.ISupportInitialize)(this.tablaClavesComparidas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaClavesCompartidas)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView tablaClavesComparidas;
+        private System.Windows.Forms.DataGridView tablaClavesCompartidas;
         private System.Windows.Forms.DataGridViewTextBoxColumn CompartidaPor;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sitio;
         private System.Windows.Forms.DataGridViewTextBoxColumn Usuario;

@@ -38,8 +38,44 @@ namespace Interfaz
                 string sitioClaveQueSeComparte = claveQueSeComparte.Sitio;
                 string usuarioClaveQueSeComparte = claveQueSeComparte.UsuarioContra;
 
-                this.tablaClavesComparidas.Rows.Add(nombreUsuarioQueComparte, sitioClaveQueSeComparte, usuarioClaveQueSeComparte);
+                this.tablaClavesCompartidas.Rows.Add(nombreUsuarioQueComparte, sitioClaveQueSeComparte, usuarioClaveQueSeComparte);
             }
         }
+
+        private void botonVer_Click(object sender, EventArgs e)
+        {
+            bool haySeleccionada = this.tablaClavesCompartidas.SelectedCells.Count > 0;
+            if (haySeleccionada)
+            {
+                int posSeleccionada = this.tablaClavesCompartidas.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = this.tablaClavesCompartidas.Rows[posSeleccionada];
+
+                string usuarioAMostrar = Convert.ToString(selectedRow.Cells["CompartidaPor"].Value);
+                string sitioClaveAMostrar = Convert.ToString(selectedRow.Cells["Sitio"].Value);
+                string usuarioClaveAMostrar = Convert.ToString(selectedRow.Cells["Usuario"].Value);
+
+                Contra claveBuscadora = new Contra
+                {
+                    Sitio = sitioClaveAMostrar,
+                    UsuarioContra = usuarioClaveAMostrar
+                };
+
+                Usuario usuarioBuscador = new Usuario()
+                {
+                    Nombre = usuarioAMostrar
+                };
+
+                AbrirVerClave(claveBuscadora, usuarioBuscador);
+            }
+        }
+
+        public delegate void AbrirVerClave_Handler(Contra buscadora, Usuario usuarioActual);
+        public event AbrirVerClave_Handler AbrirVerClaveEvent;
+        private void AbrirVerClave(Contra buscadora, Usuario usuarioActual)
+        {
+            if (this.AbrirVerClaveEvent != null)
+                this.AbrirVerClaveEvent(buscadora, usuarioActual);
+        }
+
     }
 }

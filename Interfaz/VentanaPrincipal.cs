@@ -30,7 +30,7 @@ namespace Interfaz
 
             Usuario usuarioPrueba2 = new Usuario();
             usuarioPrueba2.Nombre = "Santiago";
-            usuarioPrueba2.ContraMaestra = "ClaveUsuario123";
+            usuarioPrueba2.ContraMaestra = "12345SD";
 
             this._administrador.AgregarUsuario(usuarioPrueba);
             this._administrador.AgregarUsuario(usuarioPrueba2);
@@ -224,7 +224,7 @@ namespace Interfaz
             string nombreUsuario = usuarioABuscar.Nombre;
 
             Usuario usuarioAMostrar = this._administrador.GetUsuario(nombreUsuario);
-            Contra claveAMostrar = this._usuarioActual.GetContra(buscadora);
+            Contra claveAMostrar = usuarioAMostrar.GetContra(buscadora);
             VerClave verClaveSeleccionada = new VerClave(claveAMostrar, usuarioAMostrar);
             verClaveSeleccionada.SalirDeVerClave_Event += this.SalirDeVerClave_Handler;
 
@@ -240,7 +240,22 @@ namespace Interfaz
                 case "ListaClavesCompartidasPorMi":
                     AbrirListaClavesCompartidasPorMi_Handler();
                     break;
+
+                case "ListaClavesCompartidasConmigo":
+                    AbrirListaClavesCompartidasConmigo_Handler();
+                    break;
             }
+        }
+
+        protected void AbrirListaClavesCompartidasConmigo_Handler()
+        {
+
+            ListaClavesCompartidasConmigo listaClavesCompartidasConmigo = new ListaClavesCompartidasConmigo(this._usuarioActual, this._administrador);
+            listaClavesCompartidasConmigo.AbrirVerClaveEvent += this.AbrirVerClave_Handler;
+
+            this.panelPrincipal.Controls.Clear();
+
+            this.panelPrincipal.Controls.Add(listaClavesCompartidasConmigo);
         }
 
         protected void AbrirListaClavesCompartidasPorMi_Handler()
@@ -301,9 +316,7 @@ namespace Interfaz
 
         private void botonClavesQueMeComparten_Click(object sender, EventArgs e)
         {
-            ListaClavesCompartidasConmigo listaClavesCompartidasConmigo = new ListaClavesCompartidasConmigo(this._usuarioActual, this._administrador);
-            this.panelPrincipal.Controls.Clear();
-            this.panelPrincipal.Controls.Add(listaClavesCompartidasConmigo);
+            AbrirListaClavesCompartidasConmigo_Handler();
         }
 
         private void botonClavesQueComparto_Click(object sender, EventArgs e)
