@@ -172,5 +172,11 @@ namespace Obligatorio
                 aModificar.Clave = contraNueva.Clave;
             }
         }
+
+        public List<Contra> GetListaClavesColor(string color)
+        {
+            List<Contra> todasLasClaves = this.GetListaContras();
+            return todasLasClaves.FindAll(buscadora => buscadora.GetNivelSeguridad() == color);
+        }
     }
 }
