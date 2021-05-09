@@ -27,6 +27,7 @@ namespace Interfaz.InterfacesClaves
         {
             this.CargarComboBox();
             this.CargarInputsConClave();
+            this.labelErrores.Text = "";
         }
 
         private void CargarInputsConClave() {
@@ -62,6 +63,89 @@ namespace Interfaz.InterfacesClaves
             return nombre;
         }
 
+        private void botonModificar_Click(object sender, EventArgs e)
+        {
+            Categoria categoria = new Categoria()
+            {
+                Nombre = this.LeerComboBox()
+            };
+
+
+            try
+            {
+                DateTime modificacion = (this._vieja.Clave == this.inputContra.Text) ? this._vieja.FechaModificacion : System.DateTime.Now.Date;
+
+                Contra nueva = new Contra()
+                {
+                    UsuarioContra = this.inputUsuario.Text,
+                    Sitio = this.inputSitio.Text,
+                    Clave = this.inputContra.Text,
+                    Nota = this.inputNota.Text,
+                    FechaModificacion = modificacion
+                };
+                try
+                {
+                    ClaveAModificar aModificar = new ClaveAModificar()
+                    {
+                        ClaveVieja = this._vieja,
+                        ClaveNueva = nueva,
+                        CategoriaVieja = this._actual.GetCategoriaClave(this._vieja),
+                        CategoriaNueva = categoria
+                    };
+                    this._actual.ModificarContra(aModificar);
+                    this.AbrirListaClaves();
+                }
+                catch (ObjetoYaExistenteException)
+                {
+                    this.labelErrores.Text = "Ya existe la contraseña a la que se intento modificar.";
+                }
+                catch (CategoriaInexistenteException)
+                {
+                    this.labelErrores.Text = "No existe la categoria a la que se intento cambiar.";
+                }
+                catch (ObjetoInexistenteException)
+                {
+                    this.labelErrores.Text = "No existe la contraseña original.";
+                }
+            }
+            catch (Exception)
+            {
+                this.labelErrores.Text = "Hay un error en los datos ingresados.";
+            }
+
+        }
+
+        private void botonGenerar_Click(object sender, EventArgs e)
+        {
+            Contra generador = new Contra();
+            ClaveAGenerar parametros = new ClaveAGenerar()
+            {
+                Largo = (int)this.spinnerLargo.Value,
+                IncluirMayusculas = this.checkBoxMayusculas.Checked,
+                IncluirMinusculas = this.checkBoxMinusculas.Checked,
+                IncluirNumeros = this.checkBoxNumeros.Checked,
+                IncluirSimbolos = this.checkBoxSimbolos.Checked
+            };
+
+            this.inputContra.Text = "";
+
+            try
+            {
+                generador.GenerarClave(parametros);
+            }
+            catch (ClaveGeneradaVaciaException)
+            {
+                this.labelErrores.Text = "Por lo menos un tipo de caracter debe ser elegido.";
+            };
+            this.inputContra.Text = generador.Clave;
+        }
+
+        private void botonCancelar_Click(object sender, EventArgs e)
+        {
+            this.AbrirListaClaves();
+        }
+
+
         public delegate void AbrirListaClaves_Handler();
         public event AbrirListaClaves_Handler AbrirListaClaves_Event;
         private void AbrirListaClaves()
@@ -70,9 +154,6 @@ namespace Interfaz.InterfacesClaves
                 this.AbrirListaClaves_Event();
         }
 
-        private void botonCancelar_Click(object sender, EventArgs e)
-        {
-            this.AbrirListaClaves();
-        }
+        
     }
 }

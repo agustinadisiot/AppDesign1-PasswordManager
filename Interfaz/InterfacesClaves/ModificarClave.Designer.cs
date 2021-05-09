@@ -39,7 +39,7 @@ namespace Interfaz.InterfacesClaves
             this.checkBoxSimbolos = new System.Windows.Forms.CheckBox();
             this.checkBoxMinusculas = new System.Windows.Forms.CheckBox();
             this.checkBoxNumeros = new System.Windows.Forms.CheckBox();
-            this.botonAgregar = new System.Windows.Forms.Button();
+            this.botonModificar = new System.Windows.Forms.Button();
             this.botonCancelar = new System.Windows.Forms.Button();
             this.inputNota = new System.Windows.Forms.TextBox();
             this.labelNota = new System.Windows.Forms.Label();
@@ -140,6 +140,7 @@ namespace Interfaz.InterfacesClaves
             this.botonGenerar.TabIndex = 50;
             this.botonGenerar.Text = "Generar";
             this.botonGenerar.UseVisualStyleBackColor = true;
+            this.botonGenerar.Click += new System.EventHandler(this.botonGenerar_Click);
             // 
             // checkBoxMayusculas
             // 
@@ -189,14 +190,15 @@ namespace Interfaz.InterfacesClaves
             this.checkBoxNumeros.Text = "Numeros (1, 2, 3, ...)";
             this.checkBoxNumeros.UseVisualStyleBackColor = true;
             // 
-            // botonAgregar
+            // botonModificar
             // 
-            this.botonAgregar.Location = new System.Drawing.Point(462, 605);
-            this.botonAgregar.Name = "botonAgregar";
-            this.botonAgregar.Size = new System.Drawing.Size(75, 23);
-            this.botonAgregar.TabIndex = 66;
-            this.botonAgregar.Text = "Agregar";
-            this.botonAgregar.UseVisualStyleBackColor = true;
+            this.botonModificar.Location = new System.Drawing.Point(462, 605);
+            this.botonModificar.Name = "botonModificar";
+            this.botonModificar.Size = new System.Drawing.Size(75, 23);
+            this.botonModificar.TabIndex = 66;
+            this.botonModificar.Text = "Modificar";
+            this.botonModificar.UseVisualStyleBackColor = true;
+            this.botonModificar.Click += new System.EventHandler(this.botonModificar_Click);
             // 
             // botonCancelar
             // 
@@ -325,7 +327,7 @@ namespace Interfaz.InterfacesClaves
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.labelErrores);
             this.Controls.Add(this.groupBoxClave);
-            this.Controls.Add(this.botonAgregar);
+            this.Controls.Add(this.botonModificar);
             this.Controls.Add(this.botonCancelar);
             this.Controls.Add(this.inputNota);
             this.Controls.Add(this.labelNota);
@@ -360,7 +362,7 @@ namespace Interfaz.InterfacesClaves
         private System.Windows.Forms.CheckBox checkBoxSimbolos;
         private System.Windows.Forms.CheckBox checkBoxMinusculas;
         private System.Windows.Forms.CheckBox checkBoxNumeros;
-        private System.Windows.Forms.Button botonAgregar;
+        private System.Windows.Forms.Button botonModificar;
         private System.Windows.Forms.Button botonCancelar;
         private System.Windows.Forms.TextBox inputNota;
         private System.Windows.Forms.Label labelNota;
