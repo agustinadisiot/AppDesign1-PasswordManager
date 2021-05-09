@@ -33,6 +33,7 @@ namespace Interfaz
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.grafica = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.labelTitulo = new System.Windows.Forms.Label();
+            this.botonVolver = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grafica)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,10 +59,21 @@ namespace Interfaz
             this.labelTitulo.TabIndex = 29;
             this.labelTitulo.Text = "Grafica Seguridad";
             // 
+            // botonVolver
+            // 
+            this.botonVolver.Location = new System.Drawing.Point(882, 608);
+            this.botonVolver.Name = "botonVolver";
+            this.botonVolver.Size = new System.Drawing.Size(75, 23);
+            this.botonVolver.TabIndex = 30;
+            this.botonVolver.Text = "Volver";
+            this.botonVolver.UseVisualStyleBackColor = true;
+            this.botonVolver.Click += new System.EventHandler(this.botonVolver_Click);
+            // 
             // GraficaSeguridad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.botonVolver);
             this.Controls.Add(this.labelTitulo);
             this.Controls.Add(this.grafica);
             this.Name = "GraficaSeguridad";
@@ -77,5 +89,6 @@ namespace Interfaz
 
         private System.Windows.Forms.DataVisualization.Charting.Chart grafica;
         private System.Windows.Forms.Label labelTitulo;
+        private System.Windows.Forms.Button botonVolver;
     }
 }

@@ -62,5 +62,19 @@ namespace Interfaz
                 grafica.Series[verdeOscuro].Points.AddXY(categoria.Nombre, cantidadVerdeOscuro);
             }
         }
+
+        private void botonVolver_Click(object sender, EventArgs e)
+        {
+            this.AbrirReporteFortaleza();
+        }
+
+
+        public delegate void AbrirReporteFortaleza_Handler();
+        public event AbrirReporteFortaleza_Handler AbrirReporteFortaleza_Event;
+        public void AbrirReporteFortaleza()
+        {
+            if (this.AbrirReporteFortaleza_Event != null)
+                this.AbrirReporteFortaleza_Event();
+        }
     }
 }

@@ -385,6 +385,7 @@ namespace Interfaz
         private void AbrirGrafica_Handler()
         {
             GraficaSeguridad grafica = new GraficaSeguridad(this._usuarioActual);
+            grafica.AbrirReporteFortaleza_Event += AbrirReporteFortaleza_Handler;
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(grafica);
         }
