@@ -41,6 +41,19 @@ namespace TestsObligatorio
         }
 
         [TestMethod]
+        public void AdministradorAgregarUsuarioYaExistente()
+        {
+            AdminContras administrador = new AdminContras();
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Roberto"
+            };
+            administrador.AgregarUsuario(usuario);
+
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => administrador.AgregarUsuario(usuario));
+        }
+
+        [TestMethod]
         public void AdministradorEsListaUsuariosVaciaConDosUsuarios()
         {
             AdminContras administrador = new AdminContras();

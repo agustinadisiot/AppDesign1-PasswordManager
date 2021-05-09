@@ -19,12 +19,10 @@ namespace Obligatorio
 
         public void AgregarUsuario(Usuario usuario)
         {
-            if (usuario.Nombre == null) {
-                throw new ObjetoIncompletoException();
-            }
-            else {
-                this._usuarios.Add(usuario);
-            }
+            if (usuario.Nombre == null)  throw new ObjetoIncompletoException();
+            if (this.YaExisteUsuario(usuario)) throw new ObjetoYaExistenteException();
+            this._usuarios.Add(usuario);
+            
         }
 
         public Usuario GetUsuario(Usuario aBuscar)
