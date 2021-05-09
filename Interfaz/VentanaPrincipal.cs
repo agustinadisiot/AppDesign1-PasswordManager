@@ -1,4 +1,5 @@
-﻿using Interfaz.InterfacesCompartirClave;
+﻿using Interfaz.InterfacesClaves;
+using Interfaz.InterfacesCompartirClave;
 using Interfaz.InterfacesTarjetas;
 using Obligatorio;
 using System;
@@ -129,11 +130,7 @@ namespace Interfaz
 
         private void botonListaClaves_Click(object sender, EventArgs e)
         {
-            ListaClaves listaClaves = new ListaClaves(this._usuarioActual, this._administrador);
-
-            this.panelPrincipal.Controls.Clear();
-
-            this.panelPrincipal.Controls.Add(listaClaves);
+            this.AbrirListaClaves_Handler();
 
         }
 
@@ -163,6 +160,8 @@ namespace Interfaz
         {
             AbrirListaClavesCompartidasPorMi_Handler();
         }
+
+
 
         private void IniciarSesion_Handler(Usuario aIngresar)
         {
@@ -252,11 +251,51 @@ namespace Interfaz
             Contra claveAMostrar = usuarioAMostrar.GetContra(buscadora);
             VerClave verClaveSeleccionada = new VerClave(claveAMostrar, usuarioAMostrar);
             verClaveSeleccionada.SalirDeVerClave_Event += this.SalirDeVerClave_Handler;
-
             this.panelPrincipal.Controls.Clear();
 
             this.panelPrincipal.Controls.Add(verClaveSeleccionada);
         }
+
+        protected void AbrirListaClaves_Handler()
+        {
+            ListaClaves listaClaves = new ListaClaves(this._usuarioActual, this._administrador);
+            listaClaves.AbrirCrearClave_Event += this.AbrirCrearClave_Handler;
+            listaClaves.AbrirModificarClave_Event += AbrirModificarClave_Event;
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(listaClaves);
+        }
+
+        private void AbrirModificarClave_Event(Contra buscadora)
+        {
+            Contra modificar = this._usuarioActual.GetContra(buscadora);
+            ModificarClave modificarClave = new ModificarClave(this._usuarioActual, modificar);
+            modificarClave.AbrirListaClaves_Event += this.AbrirListaClaves_Handler;
+
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(modificarClave);
+        }
+
+        protected void AbrirCrearClave_Handler()
+        {
+            CrearClave crearClave = new CrearClave(this._usuarioActual, this._administrador);
+            crearClave.AbrirListaClaves_Event += this.AbrirListaClaves_Handler;
+
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(crearClave);
+        }
+
+        protected void AbrirCompartirClave_Handler(Contra compartir)
+        {
+            CompartirClave compartirClave = new CompartirClave(this._usuarioActual, this._administrador);
+            compartirClave.AbrirListaClaves_Event += this.AbrirListaClaves_Handler;
+
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(compartirClave);
+        }
+
+
+
+
 
         protected void SalirDeVerClave_Handler()
         {

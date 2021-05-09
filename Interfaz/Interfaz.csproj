@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InterfacesClaves\ModificarClave.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesClaves\ModificarClave.Designer.cs">
+      <DependentUpon>ModificarClave.cs</DependentUpon>
+    </Compile>
     <Compile Include="InterfacesCompartirClave\CompartirClave.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -152,6 +158,9 @@
     </Compile>
     <EmbeddedResource Include="InterfacesCategorias\AgregarCategoria.resx">
       <DependentUpon>AgregarCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesClaves\ModificarClave.resx">
+      <DependentUpon>ModificarClave.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InterfacesCompartirClave\CompartirClave.resx">
       <DependentUpon>CompartirClave.cs</DependentUpon>

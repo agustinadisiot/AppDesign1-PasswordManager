@@ -48,8 +48,8 @@ namespace Interfaz
                 this.AbrirModificarCategorias_Event(catActual);
         }
 
-        public delegate void AbrirAgregarCategotias_Handler();
-        public event AbrirAgregarCategotias_Handler AbrirAgregarCategorias_Event;
+        public delegate void AbrirAgregarCategorias_Handler();
+        public event AbrirAgregarCategorias_Handler AbrirAgregarCategorias_Event;
         public void irAAgregarCategoria()
         {
             if (this.AbrirAgregarCategorias_Event != null)
@@ -66,7 +66,7 @@ namespace Interfaz
                 {
                     int selectedrowindex = TablaCategorias.SelectedCells[0].RowIndex;
                     DataGridViewRow selectedRow = TablaCategorias.Rows[selectedrowindex];
-                    nombreCat = Convert.ToString(selectedRow.Cells["Catergorias"].Value);
+                    nombreCat = Convert.ToString(selectedRow.Cells["Categorias"].Value);
                 }
 
                 Categoria aModificar = new Categoria
