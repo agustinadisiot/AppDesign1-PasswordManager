@@ -78,22 +78,29 @@ namespace Interfaz
             string nombreUsuarioACompartir = LeerComboBox();
             if (nombreUsuarioACompartir != null)
             {
-
-                Usuario buscador = new Usuario()
+                try
                 {
-                    Nombre = nombreUsuarioACompartir
-                };
+                    Usuario buscador = new Usuario()
+                    {
+                        Nombre = nombreUsuarioACompartir
+                    };
 
-                Usuario usuarioACompartir = this._administrador.GetUsuario(buscador);
+                    Usuario usuarioACompartir = this._administrador.GetUsuario(buscador);
 
-                ClaveCompartida claveACompartir = new ClaveCompartida()
+                    ClaveCompartida claveACompartir = new ClaveCompartida()
+                    {
+                        Usuario = usuarioACompartir,
+                        Clave = _claveACompartir
+                    };
+
+                    this._usuarioActual.CompartirClave(claveACompartir);
+
+                    this.VolverAListaClaves();
+                }
+                catch (Exception)
                 {
-                    Usuario = usuarioACompartir,
-                    Clave = _claveACompartir
-                };
-
-                this._usuarioActual.CompartirClave(claveACompartir);
-                this.VolverAListaClaves();
+                    this.labelErrores.Text = "Contraseña ya compartida.";
+                }
             }
             else {
                 this.labelErrores.Text = "Debe elegir un usuario al cual compartir.";
