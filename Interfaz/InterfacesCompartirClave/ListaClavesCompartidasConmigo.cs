@@ -70,11 +70,11 @@ namespace Interfaz
         }
 
         public delegate void AbrirVerClave_Handler(Contra buscadora, Usuario usuarioActual);
-        public event AbrirVerClave_Handler AbrirVerClaveEvent;
+        public event AbrirVerClave_Handler AbrirVerClave_Event;
         private void AbrirVerClave(Contra buscadora, Usuario usuarioActual)
         {
-            if (this.AbrirVerClaveEvent != null)
-                this.AbrirVerClaveEvent(buscadora, usuarioActual);
+            if (this.AbrirVerClave_Event != null)
+                this.AbrirVerClave_Event(buscadora, usuarioActual);
         }
 
     }

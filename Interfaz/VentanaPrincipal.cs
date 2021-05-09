@@ -258,6 +258,7 @@ namespace Interfaz
             listaClaves.AbrirCrearClave_Event += this.AbrirCrearClave_Handler;
             listaClaves.AbrirModificarClave_Event += this.AbrirModificarClave_Event;
             listaClaves.AbrirCompartirClave_Event += this.AbrirCompartirClave_Handler;
+            listaClaves.AbrirVerClave_Event += this.AbrirVerClave_Handler;
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(listaClaves);
         }
@@ -301,6 +302,14 @@ namespace Interfaz
                 case "ListaClavesCompartidasConmigo":
                     AbrirListaClavesCompartidasConmigo_Handler();
                     break;
+
+                case "ListaClaves":
+                    AbrirListaClaves_Handler();
+                    break;
+
+                default:
+                    AbrirListaCategorias_Handler();
+                    break;
             }
         }
 
@@ -308,7 +317,7 @@ namespace Interfaz
         {
 
             ListaClavesCompartidasConmigo listaClavesCompartidasConmigo = new ListaClavesCompartidasConmigo(this._usuarioActual, this._administrador);
-            listaClavesCompartidasConmigo.AbrirVerClaveEvent += this.AbrirVerClave_Handler;
+            listaClavesCompartidasConmigo.AbrirVerClave_Event += this.AbrirVerClave_Handler;
 
             this.panelPrincipal.Controls.Clear();
 
@@ -319,7 +328,7 @@ namespace Interfaz
         {
 
             ListaClavesCompartidasPorMi listaClavesCompartidasPorMi = new ListaClavesCompartidasPorMi(this._usuarioActual, this._administrador);
-            listaClavesCompartidasPorMi.AbrirVerClaveEvent += this.AbrirVerClave_Handler;
+            listaClavesCompartidasPorMi.AbrirVerClave_Event += this.AbrirVerClave_Handler;
 
             this.panelPrincipal.Controls.Clear();
 

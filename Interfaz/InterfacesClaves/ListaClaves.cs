@@ -156,15 +156,6 @@ namespace Interfaz
                 this.AbrirCrearClave_Event();
         }
 
-
-        public delegate void AbrirVerClave_Handler(Usuario actual);
-        public event AbrirVerClave_Handler AbrirVerClave_Event;
-        public void irAVerClave(Usuario usuarioClaves)
-        {
-            if (this.AbrirVerClave_Event != null)
-                this.AbrirVerClave_Event(usuarioClaves);
-        }
-
         public delegate void AbrirCompartirClave_Handler(ClaveCompartida aCompartir);
         public event AbrirCompartirClave_Handler AbrirCompartirClave_Event;
         public void irACompartirClave(ClaveCompartida aCompartir)
@@ -172,5 +163,36 @@ namespace Interfaz
             if (this.AbrirCompartirClave_Event != null)
                 this.AbrirCompartirClave_Event(aCompartir);
         }
+
+        private void botonVer_Click_1(object sender, EventArgs e)
+        {
+
+            bool haySeleccionada = this.tablaClaves.SelectedCells.Count > 0;
+            if (haySeleccionada)
+            {
+                int posSeleccionada = this.tablaClaves.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = this.tablaClaves.Rows[posSeleccionada];
+
+                string sitioClaveAMostrar = Convert.ToString(selectedRow.Cells["Sitio"].Value);
+                string usuarioClaveAMostrar = Convert.ToString(selectedRow.Cells["Usuario"].Value);
+
+                Contra buscadora = new Contra
+                {
+                    Sitio = sitioClaveAMostrar,
+                    UsuarioContra = usuarioClaveAMostrar
+                };
+
+                AbrirVerClave(buscadora, _usuarioActual);
+            }
+        }
+
+        public delegate void AbrirVerClave_Handler(Contra buscadora, Usuario usuarioActual);
+        public event AbrirVerClave_Handler AbrirVerClave_Event;
+        private void AbrirVerClave(Contra buscadora, Usuario usuarioActual)
+        {
+            if (this.AbrirVerClave_Event != null)
+                this.AbrirVerClave_Event(buscadora, usuarioActual);
+        }
+
     }
 }

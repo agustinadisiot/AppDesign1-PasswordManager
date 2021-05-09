@@ -135,6 +135,7 @@ namespace Interfaz
             this.botonVer.TabIndex = 20;
             this.botonVer.Text = "Ver";
             this.botonVer.UseVisualStyleBackColor = true;
+            this.botonVer.Click += new System.EventHandler(this.botonVer_Click_1);
             // 
             // botonCompartir
             // 
