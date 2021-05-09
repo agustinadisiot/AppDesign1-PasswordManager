@@ -77,6 +77,12 @@
     <Compile Include="InterfacesCompartirClave\ListaClavesCompartidasPorMi.Designer.cs">
       <DependentUpon>ListaClavesCompartidasPorMi.cs</DependentUpon>
     </Compile>
+    <Compile Include="InterfacesSeguridad\ReporteDeFortaleza.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesSeguridad\ReporteDeFortaleza.Designer.cs">
+      <DependentUpon>ReporteDeFortaleza.cs</DependentUpon>
+    </Compile>
     <Compile Include="InterfacesTarjetas\CrearTarjeta.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -180,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InterfacesSeguridad\GraficaSeguridad.resx">
       <DependentUpon>GraficaSeguridad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesSeguridad\ReporteDeFortaleza.resx">
+      <DependentUpon>ReporteDeFortaleza.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InterfacesTarjetas\CrearTarjeta.resx">
       <DependentUpon>CrearTarjeta.cs</DependentUpon>

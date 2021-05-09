@@ -1,5 +1,6 @@
 ﻿using Interfaz.InterfacesClaves;
 using Interfaz.InterfacesCompartirClave;
+using Interfaz.InterfacesSeguridad;
 using Interfaz.InterfacesTarjetas;
 using Obligatorio;
 using System;
@@ -152,6 +153,11 @@ namespace Interfaz
         private void botonClavesQueComparto_Click(object sender, EventArgs e)
         {
             AbrirListaClavesCompartidasPorMi_Handler();
+        }
+
+        private void botonReporteFortaleza_Click(object sender, EventArgs e)
+        {
+            AbrirReporteFortaleza_Handler();
         }
 
 
@@ -376,11 +382,22 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(verTarjeta);
         }
 
-        private void botonReporteFortaleza_Click(object sender, EventArgs e)
+        private void AbrirGrafica_Handler()
         {
             GraficaSeguridad grafica = new GraficaSeguridad(this._usuarioActual);
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(grafica);
+        }
+
+        private void AbrirReporteFortaleza_Handler()
+        {
+            ReporteDeFortaleza reporteFortaleza = new ReporteDeFortaleza(this._usuarioActual);
+            reporteFortaleza.AbrirGrafica_Event += AbrirGrafica_Handler;
+
+            this.panelPrincipal.Controls.Clear();
+
+            this.panelPrincipal.Controls.Add(reporteFortaleza);
+
         }
     }
 }
