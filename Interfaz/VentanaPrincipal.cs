@@ -121,12 +121,62 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(iniciarSesion);
         }
         
+       
+
+        private void botonListaCategorias_Click(object sender, EventArgs e)
+        {
+            this.AbrirListaCategorias_Handler();
+        }
+
+        private void botonListaClaves_Click(object sender, EventArgs e)
+        {
+            ListaClaves listaClaves = new ListaClaves(this._usuarioActual, this._administrador);
+
+            this.panelPrincipal.Controls.Clear();
+
+            this.panelPrincipal.Controls.Add(listaClaves);
+
+        }
+
+        private void botonListaTarjetas_Click(object sender, EventArgs e)
+        {
+            this.AbrirListaTarjetas_Handler();
+        }
+
+        private void botonCerrarSesion_Click(object sender, EventArgs e)
+        {
+            IniciarSesion iniciarSesion = new IniciarSesion(this._administrador);
+            iniciarSesion.IniciarSesion_Event += IniciarSesion_Handler;
+            iniciarSesion.AbrirCrearUsuario_Event += this.AbrirCrearUsuario_Handler;
+            this.panelDrawer.Visible = false;
+
+            this.panelPrincipal.Controls.Clear();
+            panelPrincipal.Controls.Add(iniciarSesion);
+
+        }
+
+        private void botonClavesQueMeComparten_Click(object sender, EventArgs e)
+        {
+            ListaClavesCompartidasConmigo listaClavesCompartidasConmigo = new ListaClavesCompartidasConmigo(this._usuarioActual, this._administrador);
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(listaClavesCompartidasConmigo);
+        }
+
+        private void botonClavesQueComparto_Click(object sender, EventArgs e)
+        {
+            ListaClavesCompartidasPorMi listaClavesCompartidasPorMi = new ListaClavesCompartidasPorMi(this._usuarioActual, this._administrador);
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(listaClavesCompartidasPorMi);
+        }
+
+
+
         private void IniciarSesion_Handler(Usuario aIngresar)
         {
             this._usuarioActual = aIngresar;
             ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual, this._administrador);
             listaCategorias.AbrirAgregarCategorias_Event += AbrirAgregarCategorias_Handler;
-            listaCategorias.AbrirModificarCategorias_Event +=AbrirModificarCategorias_Handler;
+            listaCategorias.AbrirModificarCategorias_Event += AbrirModificarCategorias_Handler;
 
             this.panelDrawer.Visible = true;
 
@@ -143,7 +193,6 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(crearUsuario);
         }
 
-
         private void AbrirIniciarSesion_Handler()
         {
             IniciarSesion iniciarSesion = new IniciarSesion(this._administrador);
@@ -154,6 +203,7 @@ namespace Interfaz
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(iniciarSesion);
         }
+
 
         protected void AbrirListaCategorias_Handler()
         {
@@ -188,7 +238,19 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(modificarCategoria);
         }
 
-        protected void AbrirCrearTarjeta_Handler(object sender, EventArgs e)
+
+        protected void AbrirListaTarjetas_Handler()
+        {
+            this.panelPrincipal.Controls.Clear();
+
+            ListaTarjetas listaTarjetas = new ListaTarjetas(this._usuarioActual, this._administrador);
+            listaTarjetas.AbrirCrearTarjeta_Event += this.AbrirCrearTarjeta_Handler;
+            listaTarjetas.AbrirModificarTarjeta_Event += this.AbrirModificarTarjeta_Handler;
+            listaTarjetas.AbrirVerTarjeta_Event += this.AbrirVerTarjeta_Handler;
+            this.panelPrincipal.Controls.Add(listaTarjetas);
+        }
+
+        protected void AbrirCrearTarjeta_Handler()
         {
             this.panelPrincipal.Controls.Clear();
             CrearTarjeta crearTarjetas = new CrearTarjeta(this._usuarioActual);
@@ -204,17 +266,7 @@ namespace Interfaz
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(modificarTarjeta);
         }
-
-        protected void AbrirListaTarjetas_Handler() {
-            this.panelPrincipal.Controls.Clear();
-
-            ListaTarjetas listaTarjetas = new ListaTarjetas(this._usuarioActual, this._administrador);
-            listaTarjetas.AbrirCrearTarjeta_Event += new EventHandler(this.AbrirCrearTarjeta_Handler);
-            listaTarjetas.AbrirModificarTarjeta_Event += this.AbrirModificarTarjeta_Handler;
-            listaTarjetas.AbrirVerTarjeta_Event += this.AbrirVerTarjeta_Handler;
-            this.panelPrincipal.Controls.Add(listaTarjetas);
-        }
-
+       
         private void AbrirVerTarjeta_Handler(Tarjeta buscadora)
         {
             Tarjeta ver = this._usuarioActual.GetTarjeta(buscadora);
@@ -225,67 +277,6 @@ namespace Interfaz
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(verTarjeta);
         }
-
-        private void botonListaCategorias_Click(object sender, EventArgs e)
-        {
-            ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual, this._administrador);
-            listaCategorias.AbrirAgregarCategorias_Event += AbrirAgregarCategorias_Handler;
-            listaCategorias.AbrirModificarCategorias_Event += AbrirModificarCategorias_Handler;
-
-            this.panelPrincipal.Controls.Clear();
-
-            this.panelPrincipal.Controls.Add(listaCategorias);
-        }
-
-        private void botonListaClaves_Click(object sender, EventArgs e)
-        {
-            ListaClaves listaClaves = new ListaClaves(this._usuarioActual, this._administrador);
-
-            this.panelPrincipal.Controls.Clear();
-
-            this.panelPrincipal.Controls.Add(listaClaves);
-
-        }
-
-        private void botonListaTarjetas_Click(object sender, EventArgs e)
-        {
-            ListaTarjetas listaTarjetas = new ListaTarjetas(this._usuarioActual, this._administrador);
-            listaTarjetas.AbrirCrearTarjeta_Event += new EventHandler(this.AbrirCrearTarjeta_Handler);
-            listaTarjetas.AbrirModificarTarjeta_Event += this.AbrirModificarTarjeta_Handler;
-            listaTarjetas.AbrirVerTarjeta_Event += this.AbrirVerTarjeta_Handler;
-
-            this.panelPrincipal.Controls.Clear();
-
-            this.panelPrincipal.Controls.Add(listaTarjetas);
-        }
-
-        private void botonCerrarSesion_Click(object sender, EventArgs e)
-        {
-            IniciarSesion iniciarSesion = new IniciarSesion(this._administrador);
-            iniciarSesion.IniciarSesion_Event += IniciarSesion_Handler;
-
-            this.panelDrawer.Visible = false;
-
-            this.panelPrincipal.Controls.Clear();
-
-            panelPrincipal.Controls.Add(iniciarSesion);
-
-        }
-
-        private void botonClavesQueMeComparten_Click(object sender, EventArgs e)
-        {
-            ListaClavesCompartidasConmigo listaClavesCompartidasConmigo = new ListaClavesCompartidasConmigo(this._usuarioActual, this._administrador);
-            this.panelPrincipal.Controls.Clear();
-            this.panelPrincipal.Controls.Add(listaClavesCompartidasConmigo);
-        }
-
-        private void botonClavesQueComparto_Click(object sender, EventArgs e)
-        {
-            ListaClavesCompartidasPorMi listaClavesCompartidasPorMi = new ListaClavesCompartidasPorMi(this._usuarioActual, this._administrador);
-            this.panelPrincipal.Controls.Clear();
-            this.panelPrincipal.Controls.Add(listaClavesCompartidasPorMi);
-        }
-
 
 
     }

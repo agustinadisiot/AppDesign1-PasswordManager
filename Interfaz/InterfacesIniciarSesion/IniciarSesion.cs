@@ -74,18 +74,19 @@ namespace Interfaz
         }
 
 
-        public delegate void AbrirCrearUsuario_Handler();
-
-        public event AbrirCrearUsuario_Handler AbrirCrearUsuario_Event;
-
-        private void EnviarAbrirCrearUsuario() {
-            if (this.AbrirCrearUsuario_Event != null)
-                this.AbrirCrearUsuario_Event();
-        }
 
         private void botonCrearUsuario_Click(object sender, EventArgs e)
         {
             this.EnviarAbrirCrearUsuario();
         }
+
+        public delegate void AbrirCrearUsuario_Handler();
+        public event AbrirCrearUsuario_Handler AbrirCrearUsuario_Event;
+        private void EnviarAbrirCrearUsuario() {
+            if (this.AbrirCrearUsuario_Event != null)
+                this.AbrirCrearUsuario_Event();
+        }
+
+        
     }
 }

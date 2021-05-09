@@ -76,21 +76,23 @@ namespace Interfaz
             this.AbrirCrearTarjeta(e);
         }
 
-        public event EventHandler AbrirCrearTarjeta_Event;
-        private void AbrirCrearTarjeta(EventArgs e)
+        private void buttonVer_Click(object sender, EventArgs e)
         {
-            if (this.AbrirCrearTarjeta_Event != null)
-                this.AbrirCrearTarjeta_Event(this, e);
-        }
+            bool haySeleccionada = this.tablaTarjetas.SelectedCells.Count > 0;
+            if (haySeleccionada)
+            {
+                int posSeleccionada = this.tablaTarjetas.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = this.tablaTarjetas.Rows[posSeleccionada];
+                string numero = Convert.ToString(selectedRow.Cells["TarjetaCompleta"].Value);
 
-        public delegate void AbrirModificarTarjeta_Handler(Tarjeta modificar);
-        public event AbrirModificarTarjeta_Handler AbrirModificarTarjeta_Event;
-        private void AbrirModificarTarjeta(Tarjeta modificar)
-        {
-            if (this.AbrirModificarTarjeta_Event != null)
-                this.AbrirModificarTarjeta_Event(modificar);
-        }
 
+                Tarjeta buscadora = new Tarjeta()
+                {
+                    Numero = numero
+                };
+                this.AbrirVerTarjeta(buscadora);
+            }
+        }
 
         private void botonModificar_Click(object sender, EventArgs e)
         {
@@ -122,7 +124,6 @@ namespace Interfaz
             }
         }
 
-
         private void CerrarConfirmacion_Handler(bool acepto)
         {
             bool haySeleccionada = this.tablaTarjetas.SelectedCells.Count > 0;
@@ -143,6 +144,22 @@ namespace Interfaz
         }
 
 
+        public delegate void AbrirCrearTarjeta_Handler();
+        public event AbrirCrearTarjeta_Handler AbrirCrearTarjeta_Event;
+        private void AbrirCrearTarjeta(EventArgs e)
+        {
+            if (this.AbrirCrearTarjeta_Event != null)
+                this.AbrirCrearTarjeta_Event();
+        }
+
+        public delegate void AbrirModificarTarjeta_Handler(Tarjeta modificar);
+        public event AbrirModificarTarjeta_Handler AbrirModificarTarjeta_Event;
+        private void AbrirModificarTarjeta(Tarjeta modificar)
+        {
+            if (this.AbrirModificarTarjeta_Event != null)
+                this.AbrirModificarTarjeta_Event(modificar);
+        }
+
         public delegate void AbrirVerTarjeta_Handler(Tarjeta modificar);
         public event AbrirVerTarjeta_Handler AbrirVerTarjeta_Event;
         private void AbrirVerTarjeta(Tarjeta ver)
@@ -151,22 +168,5 @@ namespace Interfaz
                 this.AbrirVerTarjeta_Event(ver);
         }
 
-        private void buttonVer_Click(object sender, EventArgs e)
-        {
-            bool haySeleccionada = this.tablaTarjetas.SelectedCells.Count > 0;
-            if (haySeleccionada)
-            {
-                int posSeleccionada = this.tablaTarjetas.SelectedCells[0].RowIndex;
-                DataGridViewRow selectedRow = this.tablaTarjetas.Rows[posSeleccionada];
-                string numero = Convert.ToString(selectedRow.Cells["TarjetaCompleta"].Value);
-
-
-                Tarjeta buscadora = new Tarjeta()
-                {
-                    Numero = numero
-                };
-                this.AbrirVerTarjeta(buscadora);
-            }
-        }
     }
 }
