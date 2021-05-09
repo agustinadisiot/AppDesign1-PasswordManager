@@ -44,31 +44,28 @@ namespace Interfaz
         }
 
 
-        public delegate void irAVerClave_Handler(Usuario actual);
-
-        public event irAVerClave_Handler AbrirVerClave_Event;
+        public delegate void AbrirVerClave_Handler(Usuario actual);
+        public event AbrirVerClave_Handler AbrirVerClave_Event;
         public void irAVerClave(Usuario usuarioClaves)
         {
             if (this.AbrirVerClave_Event != null)
                 this.AbrirVerClave_Event(usuarioClaves);
         }
 
-        public delegate void irACompartirClave_Handler(Usuario actual);
-
-        public event irACompartirClave_Handler AbrirCompartirClave_Event;
-        public void irACompartirClave(Usuario usuarioClaves)
+        public delegate void AbrirCompartirClave_Handler(Contra compartir);
+        public event AbrirCompartirClave_Handler AbrirCompartirClave_Event;
+        public void irACompartirClave(Contra compartir)
         {
             if (this.AbrirCompartirClave_Event != null)
-                this.AbrirCompartirClave_Event(usuarioClaves);
+                this.AbrirCompartirClave_Event(compartir);
         }
 
-
-
-        public event EventHandler AbrirCrearClave_Event;
-        public void AbrirCrearClave(EventArgs e)
+        public delegate void AbrirCrearClave_Handler();
+        public event AbrirCrearClave_Handler AbrirCrearClave_Event;
+        public void irACrearClave()
         {
             if (this.AbrirCrearClave_Event != null)
-                this.AbrirCrearClave_Event(this,e);
+                this.AbrirCrearClave_Event();
         }
 
         public delegate void AbrirEliminarClave_Handler(Contra claveABorrar);
@@ -95,14 +92,26 @@ namespace Interfaz
 
         private void botonCompartir_Click(object sender, EventArgs e)
         {
-            
+            string sitioClave = "";
+            string usuarioClave = "";
+            if (this.tablaClaves.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = tablaClaves.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = tablaClaves.Rows[selectedrowindex];
+                sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
+                usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
+            }
+
+            Contra aCompartir = new Contra()
+            {
+                Sitio = sitioClave,
+                UsuarioContra = usuarioClave
+            };
+
+            irACompartirClave(aCompartir);
         }
 
-        private void botonAgregar_Click(object sender, EventArgs e)
-        {
-            AbrirCrearClave(e);
-        }
-
+        
         private void botonEliminar_Click(object sender, EventArgs e)
         {
             string sitioClave = "";
@@ -147,5 +156,9 @@ namespace Interfaz
             irAModificarClave(aModificar);
         }
 
+        private void botonAgregar_Click(object sender, EventArgs e)
+        {
+            irACrearClave();
+        }
     }
 }

@@ -215,20 +215,33 @@ namespace Interfaz
 
         protected void AbrirListaClaves_Handler(object sender, EventArgs e)
         {
-            this.panelPrincipal.Controls.Clear();
             ListaClaves listaClaves = new ListaClaves(this._usuarioActual, this._administrador);
-           // listaClaves.AbrirCrearClave_Event += new EventHandler(this.AbrirCrearClave_Handler);
-            // listaClaves.AbrirModificarClave_Event += new EventHandler(this.AbrirCrearClave_Handler);
+            listaClaves.AbrirCrearClave_Event += this.AbrirCrearClave_Handler;
+            //listaClaves.AbrirModificarClave_Event += AbrirModificarClave_Handler;
+
+            this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(listaClaves);
         }
 
         protected void AbrirCrearClave_Handler()
         {
-            this.panelPrincipal.Controls.Clear();
             CrearClave crearClave = new CrearClave(this._usuarioActual, this._administrador);
-            crearClave.AbrirListaClaves_Event += new EventHandler(this.AbrirListaClaves_Handler);
+            crearClave.AbrirListaClaves_Event += this.AbrirListaClaves_Handler;
+
+            this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(crearClave);
         }
+
+        protected void AbrirCompartirClave_Handler()
+        {
+            CompartirClave compartirClave = new CompartirClave(this._usuarioActual, this._administrador);
+            //compartirClave.AbrirCompartirClave_Event += AbrirCompartirClave_Handler;
+
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(compartirClave);
+        }
+
+
 
         private void botonListaCategorias_Click(object sender, EventArgs e)
         {
@@ -244,7 +257,7 @@ namespace Interfaz
         private void botonListaClaves_Click(object sender, EventArgs e)
         {
             ListaClaves listaClaves = new ListaClaves(this._usuarioActual, this._administrador);
-
+            listaClaves.AbrirCrearClave_Event += this.AbrirCrearClave_Handler;
             this.panelPrincipal.Controls.Clear();
 
             this.panelPrincipal.Controls.Add(listaClaves);

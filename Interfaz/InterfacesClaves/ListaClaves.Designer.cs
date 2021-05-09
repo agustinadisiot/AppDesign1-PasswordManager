@@ -29,8 +29,6 @@ namespace Interfaz
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tablaClaves = new System.Windows.Forms.DataGridView();
             this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sitio = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,14 +47,6 @@ namespace Interfaz
             // 
             this.tablaClaves.AllowUserToAddRows = false;
             this.tablaClaves.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaClaves.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tablaClaves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaClaves.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Categoria,
@@ -67,14 +57,6 @@ namespace Interfaz
             this.tablaClaves.Margin = new System.Windows.Forms.Padding(4);
             this.tablaClaves.Name = "tablaClaves";
             this.tablaClaves.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaClaves.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.tablaClaves.RowHeadersVisible = false;
             this.tablaClaves.RowHeadersWidth = 51;
             this.tablaClaves.RowTemplate.Height = 24;
@@ -138,6 +120,7 @@ namespace Interfaz
             this.botonAgregar.TabIndex = 19;
             this.botonAgregar.Text = "Agregar";
             this.botonAgregar.UseVisualStyleBackColor = true;
+            this.botonAgregar.Click += new System.EventHandler(this.botonAgregar_Click);
             // 
             // botonVer
             // 

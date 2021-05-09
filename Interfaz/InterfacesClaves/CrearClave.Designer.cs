@@ -319,7 +319,7 @@ namespace Interfaz
             this.Controls.Add(this.labelTitulo);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "CrearClave";
-            this.Size = new System.Drawing.Size(1428, 833);
+            this.Size = new System.Drawing.Size(1352, 838);
             ((System.ComponentModel.ISupportInitialize)(this.largoSpinner)).EndInit();
             this.groupBoxClave.ResumeLayout(false);
             this.groupBoxClave.PerformLayout();
