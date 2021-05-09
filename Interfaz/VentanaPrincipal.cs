@@ -137,13 +137,10 @@ namespace Interfaz
 
         private void botonCerrarSesion_Click(object sender, EventArgs e)
         {
-            IniciarSesion iniciarSesion = new IniciarSesion(this._administrador);
-            iniciarSesion.IniciarSesion_Event += IniciarSesion_Handler;
-            iniciarSesion.AbrirCrearUsuario_Event += this.AbrirCrearUsuario_Handler;
-            this.panelDrawer.Visible = false;
-
-            this.panelPrincipal.Controls.Clear();
-            panelPrincipal.Controls.Add(iniciarSesion);
+            string texto = "¿Estas seguro que quieres cerrar la sesión?";
+            VentanaConfirmaciones ventanaConfirmar = new VentanaConfirmaciones(texto);
+            ventanaConfirmar.CerrarConfirmacion_Event += CerrarConfirmacion_Handler;
+            ventanaConfirmar.ShowDialog();
 
         }
 
@@ -158,6 +155,24 @@ namespace Interfaz
         }
 
 
+
+        private void CerrarConfirmacion_Handler(bool acepto)
+        {
+            if (acepto)
+            {
+                IniciarSesion iniciarSesion = new IniciarSesion(this._administrador);
+                iniciarSesion.IniciarSesion_Event += IniciarSesion_Handler;
+                iniciarSesion.AbrirCrearUsuario_Event += this.AbrirCrearUsuario_Handler;
+                this.panelDrawer.Visible = false;
+
+                this.panelPrincipal.Controls.Clear();
+                panelPrincipal.Controls.Add(iniciarSesion);
+            }
+            else
+            {
+
+            }
+        }
 
         private void IniciarSesion_Handler(Usuario aIngresar)
         {
