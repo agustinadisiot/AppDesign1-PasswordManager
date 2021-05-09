@@ -46,37 +46,14 @@ namespace Interfaz
             grafica.Series[verdeOscuro].Color = Color.DarkGreen;
 
 
-
             List<Categoria> listaCategorias = this._actual.GetListaCategorias();
 
             foreach (Categoria categoria in listaCategorias) {
-                int cantidadRojo = 0;
-                int cantidadNaranja = 0;
-                int cantidadAmarillo = 0;
-                int cantidadVerdeClaro = 0;
-                int cantidadVerdeOscuro = 0;
-
-                List<Contra> listaContra = categoria.GetListaContras();
-
-                foreach (Contra clave in listaContra) {
-                    switch (clave.GetNivelSeguridad()) {
-                        case rojo:
-                            cantidadRojo++;
-                            break;
-                        case naranja:
-                            cantidadNaranja++;
-                            break;
-                        case amarillo:
-                            cantidadAmarillo++;
-                            break;
-                        case verdeClaro:
-                            cantidadVerdeClaro++;
-                            break;
-                        case verdeOscuro:
-                            cantidadVerdeOscuro++;
-                            break;
-                    }
-                }
+                int cantidadRojo = categoria.GetListaClavesColor(rojo).Count;
+                int cantidadNaranja = categoria.GetListaClavesColor(naranja).Count;
+                int cantidadAmarillo = categoria.GetListaClavesColor(amarillo).Count;
+                int cantidadVerdeClaro = categoria.GetListaClavesColor(verdeClaro).Count;
+                int cantidadVerdeOscuro = categoria.GetListaClavesColor(verdeOscuro).Count;
 
                 grafica.Series[rojo].Points.AddXY(categoria.Nombre, cantidadRojo);
                 grafica.Series[naranja].Points.AddXY(categoria.Nombre, cantidadNaranja);
