@@ -91,5 +91,34 @@ namespace Interfaz.InterfacesCompartirClave
             }
         }
 
+        private void botonVer_Click(object sender, EventArgs e)
+        {
+            bool haySeleccionada = this.tablaClavesCompartidas.SelectedCells.Count > 0;
+            if (haySeleccionada )
+            {
+                int posSeleccionada = this.tablaClavesCompartidas.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = this.tablaClavesCompartidas.Rows[posSeleccionada];
+
+                string sitioClaveAMostrar = Convert.ToString(selectedRow.Cells["Sitio"].Value);
+                string usuarioClaveAMostrar = Convert.ToString(selectedRow.Cells["Usuario"].Value);
+
+                Contra buscadora = new Contra
+                {
+                    Sitio = sitioClaveAMostrar,
+                    UsuarioContra = usuarioClaveAMostrar
+                };
+
+                AbrirVerClave(buscadora, _usuarioActual);
+            }
+        }
+
+        public delegate void AbrirVerClave_Handler(Contra buscadora, Usuario usuarioActual);
+        public event AbrirVerClave_Handler AbrirVerClaveEvent;
+        private void AbrirVerClave(Contra buscadora, Usuario usuarioActual)
+        {
+            if (this.AbrirVerClaveEvent != null)
+                this.AbrirVerClaveEvent(buscadora, usuarioActual);
+        }
+
     }
 }

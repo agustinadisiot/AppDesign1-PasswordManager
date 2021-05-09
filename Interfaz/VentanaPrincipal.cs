@@ -18,6 +18,7 @@ namespace Interfaz
 
         private AdminContras _administrador;
         private Usuario _usuarioActual;
+        private Type _panelAVolver;
 
         public VentanaPrincipal()
         {
@@ -30,7 +31,7 @@ namespace Interfaz
 
             Usuario usuarioPrueba2 = new Usuario();
             usuarioPrueba2.Nombre = "Santiago";
-            usuarioPrueba2.ContraMaestra = "ClaveUsuario123";
+            usuarioPrueba2.ContraMaestra = "12345SD";
 
             this._administrador.AgregarUsuario(usuarioPrueba);
             this._administrador.AgregarUsuario(usuarioPrueba2);
@@ -121,8 +122,6 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(iniciarSesion);
         }
         
-       
-
         private void botonListaCategorias_Click(object sender, EventArgs e)
         {
             this.AbrirListaCategorias_Handler();
@@ -157,19 +156,13 @@ namespace Interfaz
 
         private void botonClavesQueMeComparten_Click(object sender, EventArgs e)
         {
-            ListaClavesCompartidasConmigo listaClavesCompartidasConmigo = new ListaClavesCompartidasConmigo(this._usuarioActual, this._administrador);
-            this.panelPrincipal.Controls.Clear();
-            this.panelPrincipal.Controls.Add(listaClavesCompartidasConmigo);
+            AbrirListaClavesCompartidasConmigo_Handler();
         }
 
         private void botonClavesQueComparto_Click(object sender, EventArgs e)
         {
-            ListaClavesCompartidasPorMi listaClavesCompartidasPorMi = new ListaClavesCompartidasPorMi(this._usuarioActual, this._administrador);
-            this.panelPrincipal.Controls.Clear();
-            this.panelPrincipal.Controls.Add(listaClavesCompartidasPorMi);
+            AbrirListaClavesCompartidasPorMi_Handler();
         }
-
-
 
         private void IniciarSesion_Handler(Usuario aIngresar)
         {
@@ -204,7 +197,6 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(iniciarSesion);
         }
 
-
         protected void AbrirListaCategorias_Handler()
         {
 
@@ -238,7 +230,6 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(modificarCategoria);
         }
 
-
         protected void AbrirListaTarjetas_Handler()
         {
             this.panelPrincipal.Controls.Clear();
@@ -248,6 +239,61 @@ namespace Interfaz
             listaTarjetas.AbrirModificarTarjeta_Event += this.AbrirModificarTarjeta_Handler;
             listaTarjetas.AbrirVerTarjeta_Event += this.AbrirVerTarjeta_Handler;
             this.panelPrincipal.Controls.Add(listaTarjetas);
+        }
+
+        protected void AbrirVerClave_Handler(Contra buscadora, Usuario usuarioABuscar)
+        {
+            foreach (Control p in this.panelPrincipal.Controls)
+            {
+                this._panelAVolver = p.GetType();
+            }
+
+            string nombreUsuario = usuarioABuscar.Nombre;
+
+            Usuario usuarioAMostrar = this._administrador.GetUsuario(nombreUsuario);
+            Contra claveAMostrar = usuarioAMostrar.GetContra(buscadora);
+            VerClave verClaveSeleccionada = new VerClave(claveAMostrar, usuarioAMostrar);
+            verClaveSeleccionada.SalirDeVerClave_Event += this.SalirDeVerClave_Handler;
+
+            this.panelPrincipal.Controls.Clear();
+
+            this.panelPrincipal.Controls.Add(verClaveSeleccionada);
+        }
+
+        protected void SalirDeVerClave_Handler()
+        {
+            switch (this._panelAVolver.Name)
+            {
+                case "ListaClavesCompartidasPorMi":
+                    AbrirListaClavesCompartidasPorMi_Handler();
+                    break;
+
+                case "ListaClavesCompartidasConmigo":
+                    AbrirListaClavesCompartidasConmigo_Handler();
+                    break;
+            }
+        }
+
+        protected void AbrirListaClavesCompartidasConmigo_Handler()
+        {
+
+            ListaClavesCompartidasConmigo listaClavesCompartidasConmigo = new ListaClavesCompartidasConmigo(this._usuarioActual, this._administrador);
+            listaClavesCompartidasConmigo.AbrirVerClaveEvent += this.AbrirVerClave_Handler;
+
+            this.panelPrincipal.Controls.Clear();
+
+            this.panelPrincipal.Controls.Add(listaClavesCompartidasConmigo);
+        }
+
+        protected void AbrirListaClavesCompartidasPorMi_Handler()
+        {
+
+            ListaClavesCompartidasPorMi listaClavesCompartidasPorMi = new ListaClavesCompartidasPorMi(this._usuarioActual, this._administrador);
+            listaClavesCompartidasPorMi.AbrirVerClaveEvent += this.AbrirVerClave_Handler;
+
+            this.panelPrincipal.Controls.Clear();
+
+            this.panelPrincipal.Controls.Add(listaClavesCompartidasPorMi);
         }
 
         protected void AbrirCrearTarjeta_Handler()
@@ -266,18 +312,15 @@ namespace Interfaz
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(modificarTarjeta);
         }
-       
+
         private void AbrirVerTarjeta_Handler(Tarjeta buscadora)
         {
             Tarjeta ver = this._usuarioActual.GetTarjeta(buscadora);
             VerTarjeta verTarjeta = new VerTarjeta(ver, this._usuarioActual);
             verTarjeta.AbrirListaTarjetas_Event += this.AbrirListaTarjetas_Handler;
-
-
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(verTarjeta);
         }
-
 
     }
 }

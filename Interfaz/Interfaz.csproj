@@ -144,6 +144,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VerClave.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VerClave.Designer.cs">
+      <DependentUpon>VerClave.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="InterfacesCategorias\AgregarCategoria.resx">
       <DependentUpon>AgregarCategoria.cs</DependentUpon>
     </EmbeddedResource>
@@ -201,6 +207,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="VerClave.resx">
+      <DependentUpon>VerClave.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
