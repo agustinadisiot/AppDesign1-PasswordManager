@@ -46,6 +46,7 @@ namespace Interfaz.InterfacesCompartirClave
             this.botonVer.TabIndex = 4;
             this.botonVer.Text = "Ver";
             this.botonVer.UseVisualStyleBackColor = true;
+            this.botonVer.Click += new System.EventHandler(this.botonVer_Click);
             // 
             // tablaClavesCompartidas
             // 
@@ -115,7 +116,7 @@ namespace Interfaz.InterfacesCompartirClave
             this.Controls.Add(this.botonVer);
             this.Controls.Add(this.tablaClavesCompartidas);
             this.Name = "ListaClavesCompartidasPorMi";
-            this.Size = new System.Drawing.Size(674, 432);
+            this.Size = new System.Drawing.Size(889, 592);
             ((System.ComponentModel.ISupportInitialize)(this.tablaClavesCompartidas)).EndInit();
             this.ResumeLayout(false);
 

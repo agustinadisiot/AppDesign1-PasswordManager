@@ -17,6 +17,7 @@ namespace Interfaz
 
         private AdminContras _administrador;
         private Usuario _usuarioActual;
+        private Type _panelAVolver;
 
         public VentanaPrincipal()
         {
@@ -213,6 +214,46 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(listaTarjetas);
         }
 
+        protected void AbrirVerClave_Handler(Contra buscadora, Usuario usuarioABuscar)
+        {
+            foreach (Control p in this.panelPrincipal.Controls)
+            {
+                this._panelAVolver = p.GetType();
+            }
+
+            string nombreUsuario = usuarioABuscar.Nombre;
+
+            Usuario usuarioAMostrar = this._administrador.GetUsuario(nombreUsuario);
+            Contra claveAMostrar = this._usuarioActual.GetContra(buscadora);
+            VerClave verClaveSeleccionada = new VerClave(claveAMostrar, usuarioAMostrar);
+            verClaveSeleccionada.SalirDeVerClave_Event += this.SalirDeVerClave_Handler;
+
+            this.panelPrincipal.Controls.Clear();
+
+            this.panelPrincipal.Controls.Add(verClaveSeleccionada);
+        }
+
+        protected void SalirDeVerClave_Handler()
+        {
+            switch (this._panelAVolver.Name)
+            {
+                case "ListaClavesCompartidasPorMi":
+                    AbrirListaClavesCompartidasPorMi_Handler();
+                    break;
+            }
+        }
+
+        protected void AbrirListaClavesCompartidasPorMi_Handler()
+        {
+
+            ListaClavesCompartidasPorMi listaClavesCompartidasPorMi = new ListaClavesCompartidasPorMi(this._usuarioActual, this._administrador);
+            listaClavesCompartidasPorMi.AbrirVerClaveEvent += this.AbrirVerClave_Handler;
+
+            this.panelPrincipal.Controls.Clear();
+
+            this.panelPrincipal.Controls.Add(listaClavesCompartidasPorMi);
+        }
+
         private void botonListaCategorias_Click(object sender, EventArgs e)
         {
             ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual, this._administrador);
@@ -267,9 +308,7 @@ namespace Interfaz
 
         private void botonClavesQueComparto_Click(object sender, EventArgs e)
         {
-            ListaClavesCompartidasPorMi listaClavesCompartidasPorMi = new ListaClavesCompartidasPorMi(this._usuarioActual, this._administrador);
-            this.panelPrincipal.Controls.Clear();
-            this.panelPrincipal.Controls.Add(listaClavesCompartidasPorMi);
+            AbrirListaClavesCompartidasPorMi_Handler();
         }
 
 
