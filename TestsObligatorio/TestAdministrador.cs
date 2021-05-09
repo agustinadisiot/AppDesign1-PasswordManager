@@ -67,7 +67,12 @@ namespace TestsObligatorio
                 Nombre = "Roberto"
             };
             administrador.AgregarUsuario(usuario);
-            Assert.AreEqual(usuario, administrador.GetUsuario("Roberto"));
+
+            Usuario aBuscar = new Usuario
+            {
+                Nombre = "Roberto"
+            };
+            Assert.AreEqual(usuario, administrador.GetUsuario(aBuscar));
         }
 
         [TestMethod]
@@ -84,7 +89,13 @@ namespace TestsObligatorio
                 Nombre = "Pedro"
             };
             administrador.AgregarUsuario(usuario2);
-            Assert.AreEqual(usuario, administrador.GetUsuario("Roberto"));
+
+            Usuario aBuscar = new Usuario
+            {
+                Nombre = "Roberto"
+            };
+
+            Assert.AreEqual(usuario, administrador.GetUsuario(aBuscar));
         }
 
         [TestMethod]
@@ -101,7 +112,12 @@ namespace TestsObligatorio
                 Nombre = "Pedro"
             };
             administrador.AgregarUsuario(usuario2);
-            Assert.AreEqual(usuario2, administrador.GetUsuario("Pedro"));
+
+            Usuario aBuscar = new Usuario
+            {
+                Nombre = "Pedro"
+            };
+            Assert.AreEqual(usuario2, administrador.GetUsuario(aBuscar));
         }
 
         [TestMethod]
@@ -118,7 +134,12 @@ namespace TestsObligatorio
                 Nombre = "Pedro"
             };
             administrador.AgregarUsuario(usuario2);
-            Assert.ThrowsException<ObjetoInexistenteException>(() => administrador.GetUsuario("Hernesto"));
+
+            Usuario inexistente = new Usuario
+            {
+                Nombre = "Ernesto"
+            };
+            Assert.ThrowsException<ObjetoInexistenteException>(() => administrador.GetUsuario(inexistente));
         }
 
         [TestMethod]

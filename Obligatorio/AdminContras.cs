@@ -27,9 +27,9 @@ namespace Obligatorio
             }
         }
 
-        public Usuario GetUsuario(string nombre)
+        public Usuario GetUsuario(Usuario aBuscar)
         {
-            Predicate<Usuario> buscadorNombre = (Usuario usuario) => { return usuario.Nombre == nombre; };
+            Predicate<Usuario> buscadorNombre = (Usuario usuario) => { return usuario.Nombre == aBuscar.Nombre; };
             
             Usuario retorno = this._usuarios.Find(buscadorNombre);
             return retorno != null ? retorno : throw new ObjetoInexistenteException();

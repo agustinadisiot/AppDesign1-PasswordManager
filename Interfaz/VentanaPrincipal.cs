@@ -248,9 +248,7 @@ namespace Interfaz
                 this._panelAVolver = p.GetType();
             }
 
-            string nombreUsuario = usuarioABuscar.Nombre;
-
-            Usuario usuarioAMostrar = this._administrador.GetUsuario(nombreUsuario);
+            Usuario usuarioAMostrar = this._administrador.GetUsuario(usuarioABuscar);
             Contra claveAMostrar = usuarioAMostrar.GetContra(buscadora);
             VerClave verClaveSeleccionada = new VerClave(claveAMostrar, usuarioAMostrar);
             verClaveSeleccionada.SalirDeVerClave_Event += this.SalirDeVerClave_Handler;
