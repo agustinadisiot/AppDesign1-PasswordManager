@@ -166,9 +166,11 @@ namespace Obligatorio
 
             Contra aModificar = this.GetContra(contraVieja);
             aModificar.UsuarioContra = contraNueva.UsuarioContra;
-            aModificar.Clave = contraNueva.Clave;
             aModificar.Sitio = contraNueva.Sitio;
             aModificar.Nota = contraNueva.Nota;
+            if (aModificar.Clave != contraNueva.Clave) {
+                aModificar.Clave = contraNueva.Clave;
+            }
         }
     }
 }
