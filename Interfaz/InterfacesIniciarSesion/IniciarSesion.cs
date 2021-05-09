@@ -42,7 +42,7 @@ namespace Interfaz
 
                 try {
                     
-                    Usuario verdadero = this._administrador.GetUsuario(iniciar.Nombre);
+                    Usuario verdadero = this._administrador.GetUsuario(iniciar);
                     if (verdadero.ContraMaestra == iniciar.ContraMaestra)
                     {
                        
