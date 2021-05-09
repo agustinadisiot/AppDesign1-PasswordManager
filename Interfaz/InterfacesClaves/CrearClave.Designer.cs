@@ -59,19 +59,20 @@ namespace Interfaz
             this.comboCategorias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboCategorias.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.comboCategorias.FormattingEnabled = true;
-            this.comboCategorias.Location = new System.Drawing.Point(243, 127);
-            this.comboCategorias.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboCategorias.Location = new System.Drawing.Point(183, 59);
+            this.comboCategorias.Margin = new System.Windows.Forms.Padding(2);
             this.comboCategorias.Name = "comboCategorias";
-            this.comboCategorias.Size = new System.Drawing.Size(266, 28);
+            this.comboCategorias.Size = new System.Drawing.Size(200, 24);
             this.comboCategorias.TabIndex = 35;
             // 
             // labelCategoria
             // 
             this.labelCategoria.AutoSize = true;
             this.labelCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.labelCategoria.Location = new System.Drawing.Point(5, 130);
+            this.labelCategoria.Location = new System.Drawing.Point(5, 62);
+            this.labelCategoria.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCategoria.Name = "labelCategoria";
-            this.labelCategoria.Size = new System.Drawing.Size(81, 20);
+            this.labelCategoria.Size = new System.Drawing.Size(69, 17);
             this.labelCategoria.TabIndex = 34;
             this.labelCategoria.Text = "Categoria";
             // 
@@ -79,54 +80,55 @@ namespace Interfaz
             // 
             this.labelUsuario.AutoSize = true;
             this.labelUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.labelUsuario.Location = new System.Drawing.Point(6, 229);
+            this.labelUsuario.Location = new System.Drawing.Point(5, 133);
+            this.labelUsuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelUsuario.Name = "labelUsuario";
-            this.labelUsuario.Size = new System.Drawing.Size(67, 20);
+            this.labelUsuario.Size = new System.Drawing.Size(57, 17);
             this.labelUsuario.TabIndex = 32;
             this.labelUsuario.Text = "Usuario";
             // 
             // inputUsuario
             // 
             this.inputUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.inputUsuario.Location = new System.Drawing.Point(242, 226);
-            this.inputUsuario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.inputUsuario.Location = new System.Drawing.Point(182, 130);
+            this.inputUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.inputUsuario.MaxLength = 25;
             this.inputUsuario.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputUsuario.Name = "inputUsuario";
             this.inputUsuario.ReadOnly = true;
-            this.inputUsuario.Size = new System.Drawing.Size(267, 26);
+            this.inputUsuario.Size = new System.Drawing.Size(201, 23);
             this.inputUsuario.TabIndex = 31;
             // 
             // labelSitio
             // 
             this.labelSitio.AutoSize = true;
             this.labelSitio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.labelSitio.Location = new System.Drawing.Point(6, 179);
+            this.labelSitio.Location = new System.Drawing.Point(5, 98);
+            this.labelSitio.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelSitio.Name = "labelSitio";
-            this.labelSitio.Size = new System.Drawing.Size(42, 20);
+            this.labelSitio.Size = new System.Drawing.Size(35, 17);
             this.labelSitio.TabIndex = 30;
             this.labelSitio.Text = "Sitio";
             // 
             // inputSitio
             // 
             this.inputSitio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.inputSitio.Location = new System.Drawing.Point(243, 176);
-            this.inputSitio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.inputSitio.Location = new System.Drawing.Point(182, 95);
+            this.inputSitio.Margin = new System.Windows.Forms.Padding(2);
             this.inputSitio.MaxLength = 25;
             this.inputSitio.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputSitio.Name = "inputSitio";
             this.inputSitio.ReadOnly = true;
-            this.inputSitio.Size = new System.Drawing.Size(266, 26);
+            this.inputSitio.Size = new System.Drawing.Size(200, 23);
             this.inputSitio.TabIndex = 29;
             // 
             // labelTitulo
             // 
             this.labelTitulo.AutoSize = true;
             this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.labelTitulo.Location = new System.Drawing.Point(4, 25);
-            this.labelTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelTitulo.Location = new System.Drawing.Point(3, 20);
             this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(230, 31);
+            this.labelTitulo.Size = new System.Drawing.Size(182, 25);
             this.labelTitulo.TabIndex = 28;
             this.labelTitulo.Text = "Crear Contraseña";
             // 
@@ -134,9 +136,10 @@ namespace Interfaz
             // 
             this.labelLargo.AutoSize = true;
             this.labelLargo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.labelLargo.Location = new System.Drawing.Point(6, 85);
+            this.labelLargo.Location = new System.Drawing.Point(4, 69);
+            this.labelLargo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelLargo.Name = "labelLargo";
-            this.labelLargo.Size = new System.Drawing.Size(52, 20);
+            this.labelLargo.Size = new System.Drawing.Size(45, 17);
             this.labelLargo.TabIndex = 40;
             this.labelLargo.Text = "Largo";
             // 
@@ -144,29 +147,30 @@ namespace Interfaz
             // 
             this.labelContra.AutoSize = true;
             this.labelContra.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.labelContra.Location = new System.Drawing.Point(6, 316);
+            this.labelContra.Location = new System.Drawing.Point(5, 166);
+            this.labelContra.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelContra.Name = "labelContra";
-            this.labelContra.Size = new System.Drawing.Size(95, 20);
+            this.labelContra.Size = new System.Drawing.Size(81, 17);
             this.labelContra.TabIndex = 38;
             this.labelContra.Text = "Contraseña";
             // 
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox2.Location = new System.Drawing.Point(6, 30);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox2.Location = new System.Drawing.Point(4, 24);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.MaxLength = 25;
             this.textBox2.MinimumSize = new System.Drawing.Size(4, 5);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(267, 26);
+            this.textBox2.Size = new System.Drawing.Size(201, 23);
             this.textBox2.TabIndex = 37;
             // 
             // largoSpinner
             // 
             this.largoSpinner.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.largoSpinner.Location = new System.Drawing.Point(183, 83);
-            this.largoSpinner.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.largoSpinner.Location = new System.Drawing.Point(137, 67);
+            this.largoSpinner.Margin = new System.Windows.Forms.Padding(2);
             this.largoSpinner.Maximum = new decimal(new int[] {
             25,
             0,
@@ -178,7 +182,7 @@ namespace Interfaz
             0,
             0});
             this.largoSpinner.Name = "largoSpinner";
-            this.largoSpinner.Size = new System.Drawing.Size(90, 26);
+            this.largoSpinner.Size = new System.Drawing.Size(68, 23);
             this.largoSpinner.TabIndex = 41;
             this.largoSpinner.Value = new decimal(new int[] {
             25,
@@ -190,31 +194,33 @@ namespace Interfaz
             // 
             this.labelNota.AutoSize = true;
             this.labelNota.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.labelNota.Location = new System.Drawing.Point(6, 682);
+            this.labelNota.Location = new System.Drawing.Point(2, 484);
+            this.labelNota.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelNota.Name = "labelNota";
-            this.labelNota.Size = new System.Drawing.Size(53, 20);
+            this.labelNota.Size = new System.Drawing.Size(45, 17);
             this.labelNota.TabIndex = 43;
             this.labelNota.Text = "Notas";
             // 
             // inputNota
             // 
             this.inputNota.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.inputNota.Location = new System.Drawing.Point(243, 682);
-            this.inputNota.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.inputNota.Location = new System.Drawing.Point(182, 484);
+            this.inputNota.Margin = new System.Windows.Forms.Padding(2);
             this.inputNota.MaxLength = 25;
             this.inputNota.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputNota.Multiline = true;
             this.inputNota.Name = "inputNota";
-            this.inputNota.Size = new System.Drawing.Size(305, 134);
+            this.inputNota.Size = new System.Drawing.Size(230, 110);
             this.inputNota.TabIndex = 44;
             // 
             // checkBoxMayusculas
             // 
             this.checkBoxMayusculas.AutoSize = true;
             this.checkBoxMayusculas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.checkBoxMayusculas.Location = new System.Drawing.Point(10, 137);
+            this.checkBoxMayusculas.Location = new System.Drawing.Point(8, 111);
+            this.checkBoxMayusculas.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxMayusculas.Name = "checkBoxMayusculas";
-            this.checkBoxMayusculas.Size = new System.Drawing.Size(211, 24);
+            this.checkBoxMayusculas.Size = new System.Drawing.Size(178, 21);
             this.checkBoxMayusculas.TabIndex = 46;
             this.checkBoxMayusculas.Text = "Mayúsculas (A, B, C, ...)";
             this.checkBoxMayusculas.UseVisualStyleBackColor = true;
@@ -223,9 +229,10 @@ namespace Interfaz
             // 
             this.checkBoxMinusculas.AutoSize = true;
             this.checkBoxMinusculas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.checkBoxMinusculas.Location = new System.Drawing.Point(10, 178);
+            this.checkBoxMinusculas.Location = new System.Drawing.Point(8, 145);
+            this.checkBoxMinusculas.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxMinusculas.Name = "checkBoxMinusculas";
-            this.checkBoxMinusculas.Size = new System.Drawing.Size(199, 24);
+            this.checkBoxMinusculas.Size = new System.Drawing.Size(170, 21);
             this.checkBoxMinusculas.TabIndex = 47;
             this.checkBoxMinusculas.Text = "Minúsculas (a, b, c, ...)";
             this.checkBoxMinusculas.UseVisualStyleBackColor = true;
@@ -234,9 +241,10 @@ namespace Interfaz
             // 
             this.checkBoxNumeros.AutoSize = true;
             this.checkBoxNumeros.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.checkBoxNumeros.Location = new System.Drawing.Point(10, 219);
+            this.checkBoxNumeros.Location = new System.Drawing.Point(8, 178);
+            this.checkBoxNumeros.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxNumeros.Name = "checkBoxNumeros";
-            this.checkBoxNumeros.Size = new System.Drawing.Size(182, 24);
+            this.checkBoxNumeros.Size = new System.Drawing.Size(158, 21);
             this.checkBoxNumeros.TabIndex = 48;
             this.checkBoxNumeros.Text = "Numeros (1, 2, 3, ...)";
             this.checkBoxNumeros.UseVisualStyleBackColor = true;
@@ -245,39 +253,37 @@ namespace Interfaz
             // 
             this.checkBoxSimbolos.AutoSize = true;
             this.checkBoxSimbolos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.checkBoxSimbolos.Location = new System.Drawing.Point(10, 259);
+            this.checkBoxSimbolos.Location = new System.Drawing.Point(8, 210);
+            this.checkBoxSimbolos.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxSimbolos.Name = "checkBoxSimbolos";
-            this.checkBoxSimbolos.Size = new System.Drawing.Size(187, 24);
+            this.checkBoxSimbolos.Size = new System.Drawing.Size(160, 21);
             this.checkBoxSimbolos.TabIndex = 49;
             this.checkBoxSimbolos.Text = "Símbolos (@, [, $, ...)";
             this.checkBoxSimbolos.UseVisualStyleBackColor = true;
             // 
             // botonGenerar
             // 
-            this.botonGenerar.Location = new System.Drawing.Point(173, 316);
-            this.botonGenerar.Margin = new System.Windows.Forms.Padding(4);
+            this.botonGenerar.Location = new System.Drawing.Point(130, 257);
             this.botonGenerar.Name = "botonGenerar";
-            this.botonGenerar.Size = new System.Drawing.Size(100, 28);
+            this.botonGenerar.Size = new System.Drawing.Size(75, 23);
             this.botonGenerar.TabIndex = 50;
             this.botonGenerar.Text = "Generar";
             this.botonGenerar.UseVisualStyleBackColor = true;
             // 
             // botonCancelar
             // 
-            this.botonCancelar.Location = new System.Drawing.Point(134, 878);
-            this.botonCancelar.Margin = new System.Windows.Forms.Padding(4);
+            this.botonCancelar.Location = new System.Drawing.Point(110, 615);
             this.botonCancelar.Name = "botonCancelar";
-            this.botonCancelar.Size = new System.Drawing.Size(100, 28);
+            this.botonCancelar.Size = new System.Drawing.Size(75, 23);
             this.botonCancelar.TabIndex = 51;
             this.botonCancelar.Text = "Cancelar";
             this.botonCancelar.UseVisualStyleBackColor = true;
             // 
             // botonAgregar
             // 
-            this.botonAgregar.Location = new System.Drawing.Point(460, 878);
-            this.botonAgregar.Margin = new System.Windows.Forms.Padding(4);
+            this.botonAgregar.Location = new System.Drawing.Point(337, 615);
             this.botonAgregar.Name = "botonAgregar";
-            this.botonAgregar.Size = new System.Drawing.Size(100, 28);
+            this.botonAgregar.Size = new System.Drawing.Size(75, 23);
             this.botonAgregar.TabIndex = 52;
             this.botonAgregar.Text = "Agregar";
             this.botonAgregar.UseVisualStyleBackColor = true;
@@ -293,16 +299,18 @@ namespace Interfaz
             this.groupBoxClave.Controls.Add(this.checkBoxSimbolos);
             this.groupBoxClave.Controls.Add(this.checkBoxMinusculas);
             this.groupBoxClave.Controls.Add(this.checkBoxNumeros);
-            this.groupBoxClave.Location = new System.Drawing.Point(242, 283);
+            this.groupBoxClave.Location = new System.Drawing.Point(182, 166);
+            this.groupBoxClave.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxClave.Name = "groupBoxClave";
-            this.groupBoxClave.Size = new System.Drawing.Size(306, 364);
+            this.groupBoxClave.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBoxClave.Size = new System.Drawing.Size(230, 296);
             this.groupBoxClave.TabIndex = 53;
             this.groupBoxClave.TabStop = false;
             this.groupBoxClave.Text = "Contraseña";
             // 
             // CrearClave
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBoxClave);
             this.Controls.Add(this.botonAgregar);
@@ -317,9 +325,9 @@ namespace Interfaz
             this.Controls.Add(this.labelSitio);
             this.Controls.Add(this.inputSitio);
             this.Controls.Add(this.labelTitulo);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CrearClave";
-            this.Size = new System.Drawing.Size(1352, 838);
+            this.Size = new System.Drawing.Size(1014, 681);
             ((System.ComponentModel.ISupportInitialize)(this.largoSpinner)).EndInit();
             this.groupBoxClave.ResumeLayout(false);
             this.groupBoxClave.PerformLayout();

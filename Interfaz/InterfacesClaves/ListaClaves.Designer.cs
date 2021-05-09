@@ -180,7 +180,7 @@ namespace Interfaz
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ListaClaves";
-            this.Size = new System.Drawing.Size(1428, 833);
+            this.Size = new System.Drawing.Size(1071, 677);
             ((System.ComponentModel.ISupportInitialize)(this.tablaClaves)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
