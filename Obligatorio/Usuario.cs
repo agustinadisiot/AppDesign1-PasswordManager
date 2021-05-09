@@ -303,13 +303,7 @@ namespace Obligatorio
 
         public int GetCantidadColor(string color)
         {
-            List<Contra> clavesUsuario = this.GetListaClaves();
-            int cantidadColor = 0;
-            foreach(Contra clave in clavesUsuario)
-            {
-                if (clave.GetNivelSeguridad() == color) cantidadColor++;
-            }
-            return cantidadColor;
+            return this.GetListaClavesColor(color).Count;
         }
 
         public List<Contra> GetContrasDataBreach(List<String> dataBreach)
