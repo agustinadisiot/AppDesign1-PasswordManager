@@ -21,6 +21,7 @@ namespace Interfaz
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;
             this._administrador = administradorAgregar;
+            this.CargarTabla();
         }
 
         private void CargarTabla()
@@ -68,14 +69,7 @@ namespace Interfaz
                 this.AbrirCrearClave_Event();
         }
 
-        public delegate void AbrirEliminarClave_Handler(Contra claveABorrar);
-        public event AbrirEliminarClave_Handler AbrirEliminarClave_Event;
-        public void irAEliminarClave(Contra claveABorrar)
-        {
-            if (this.AbrirEliminarClave_Event != null)
-                this.AbrirEliminarClave_Event(claveABorrar);
-        }
-
+      
         public delegate void AbrirModificarClave_Handler(Contra claveAModificar);
         public event AbrirModificarClave_Handler AbrirModificarClave_Event;
         public void irAModificarClave(Contra claveAModificar)
@@ -90,28 +84,7 @@ namespace Interfaz
 
         }
 
-        private void botonCompartir_Click(object sender, EventArgs e)
-        {
-            string sitioClave = "";
-            string usuarioClave = "";
-            if (this.tablaClaves.SelectedCells.Count > 0)
-            {
-                int selectedrowindex = tablaClaves.SelectedCells[0].RowIndex;
-                DataGridViewRow selectedRow = tablaClaves.Rows[selectedrowindex];
-                sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
-                usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
-            }
-
-            Contra aCompartir = new Contra()
-            {
-                Sitio = sitioClave,
-                UsuarioContra = usuarioClave
-            };
-
-            irACompartirClave(aCompartir);
-        }
-
-        
+      
         private void botonEliminar_Click(object sender, EventArgs e)
         {
             string sitioClave = "";
@@ -159,6 +132,28 @@ namespace Interfaz
         private void botonAgregar_Click(object sender, EventArgs e)
         {
             irACrearClave();
+        }
+
+        private void botonCompartir_Click(object sender, EventArgs e)
+        {
+            string sitioClave = "";
+            string usuarioClave = "";
+            if (this.tablaClaves.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = tablaClaves.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = tablaClaves.Rows[selectedrowindex];
+                sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
+                usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
+
+                Contra aCompartir = new Contra()
+                {
+                    Sitio = sitioClave,
+                    UsuarioContra = usuarioClave
+                };
+
+                irACompartirClave(aCompartir);
+            }
+
         }
     }
 }

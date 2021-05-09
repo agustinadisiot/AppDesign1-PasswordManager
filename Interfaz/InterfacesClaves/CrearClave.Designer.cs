@@ -269,6 +269,7 @@ namespace Interfaz
             this.botonGenerar.TabIndex = 50;
             this.botonGenerar.Text = "Generar";
             this.botonGenerar.UseVisualStyleBackColor = true;
+            this.botonGenerar.Click += new System.EventHandler(this.botonGenerar_Click);
             // 
             // botonCancelar
             // 
@@ -278,6 +279,7 @@ namespace Interfaz
             this.botonCancelar.TabIndex = 51;
             this.botonCancelar.Text = "Cancelar";
             this.botonCancelar.UseVisualStyleBackColor = true;
+            this.botonCancelar.Click += new System.EventHandler(this.botonCancelar_Click);
             // 
             // botonAgregar
             // 
@@ -287,6 +289,7 @@ namespace Interfaz
             this.botonAgregar.TabIndex = 52;
             this.botonAgregar.Text = "Agregar";
             this.botonAgregar.UseVisualStyleBackColor = true;
+            this.botonAgregar.Click += new System.EventHandler(this.botonAgregar_Click);
             // 
             // groupBoxClave
             // 

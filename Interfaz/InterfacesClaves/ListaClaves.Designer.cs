@@ -47,6 +47,8 @@ namespace Interfaz
             // 
             this.tablaClaves.AllowUserToAddRows = false;
             this.tablaClaves.AllowUserToDeleteRows = false;
+            this.tablaClaves.AllowUserToResizeColumns = false;
+            this.tablaClaves.AllowUserToResizeRows = false;
             this.tablaClaves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaClaves.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Categoria,
@@ -60,6 +62,7 @@ namespace Interfaz
             this.tablaClaves.RowHeadersVisible = false;
             this.tablaClaves.RowHeadersWidth = 51;
             this.tablaClaves.RowTemplate.Height = 24;
+            this.tablaClaves.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaClaves.Size = new System.Drawing.Size(608, 369);
             this.tablaClaves.TabIndex = 0;
             // 
@@ -106,7 +109,7 @@ namespace Interfaz
             this.labelTitulo.Location = new System.Drawing.Point(93, 43);
             this.labelTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(301, 31);
+            this.labelTitulo.Size = new System.Drawing.Size(240, 25);
             this.labelTitulo.TabIndex = 17;
             this.labelTitulo.Text = "Listado de Contraseñas";
             // 
@@ -143,6 +146,7 @@ namespace Interfaz
             this.botonCompartir.TabIndex = 21;
             this.botonCompartir.Text = "Compartir";
             this.botonCompartir.UseVisualStyleBackColor = true;
+            this.botonCompartir.Click += new System.EventHandler(this.botonCompartir_Click);
             // 
             // botonEliminar
             // 
@@ -168,7 +172,7 @@ namespace Interfaz
             // 
             // ListaClaves
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.botonModificar);
             this.Controls.Add(this.botonEliminar);

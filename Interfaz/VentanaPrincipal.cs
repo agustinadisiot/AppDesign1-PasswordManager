@@ -213,11 +213,12 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(listaTarjetas);
         }
 
-        protected void AbrirListaClaves_Handler(object sender, EventArgs e)
+        protected void AbrirListaClaves_Handler()
         {
             ListaClaves listaClaves = new ListaClaves(this._usuarioActual, this._administrador);
             listaClaves.AbrirCrearClave_Event += this.AbrirCrearClave_Handler;
             //listaClaves.AbrirModificarClave_Event += AbrirModificarClave_Handler;
+            //
 
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(listaClaves);
@@ -232,10 +233,10 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(crearClave);
         }
 
-        protected void AbrirCompartirClave_Handler()
+        protected void AbrirCompartirClave_Handler(Contra compartir)
         {
             CompartirClave compartirClave = new CompartirClave(this._usuarioActual, this._administrador);
-            //compartirClave.AbrirCompartirClave_Event += AbrirCompartirClave_Handler;
+            compartirClave.AbrirListaClaves_Event += this.AbrirListaClaves_Handler;
 
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(compartirClave);
@@ -258,12 +259,17 @@ namespace Interfaz
         {
             ListaClaves listaClaves = new ListaClaves(this._usuarioActual, this._administrador);
             listaClaves.AbrirCrearClave_Event += this.AbrirCrearClave_Handler;
+            listaClaves.AbrirCompartirClave_Event += this.AbrirCompartirClave_Handler;
+            //modificar
+            //ver
+
             this.panelPrincipal.Controls.Clear();
 
             this.panelPrincipal.Controls.Add(listaClaves);
 
         }
 
+       
         private void botonListaTarjetas_Click(object sender, EventArgs e)
         {
             ListaTarjetas listaTarjetas = new ListaTarjetas(this._usuarioActual, this._administrador);
