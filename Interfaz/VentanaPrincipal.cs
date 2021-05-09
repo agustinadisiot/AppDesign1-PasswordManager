@@ -29,10 +29,11 @@ namespace Interfaz
             Usuario usuarioPrueba = new Usuario();
             usuarioPrueba.Nombre = "Roberto";
             usuarioPrueba.ContraMaestra = "12345ABCD";
-
+            
             Usuario usuarioPrueba2 = new Usuario();
             usuarioPrueba2.Nombre = "Santiago";
             usuarioPrueba2.ContraMaestra = "12345SD";
+            
 
             this._administrador.AgregarUsuario(usuarioPrueba);
             this._administrador.AgregarUsuario(usuarioPrueba2);
@@ -94,17 +95,9 @@ namespace Interfaz
             {
                 Usuario = usuarioPrueba2,
                 Clave = clavePrueba1
-            };
-
-            ClaveCompartida claveACompartir2 = new ClaveCompartida()
-            {
-                Usuario = usuarioPrueba2,
-                Clave = clavePrueba2
-            };
-
+            }; 
+            
             usuarioPrueba.CompartirClave(claveACompartir1);
-
-            usuarioPrueba.CompartirClave(claveACompartir2);
 
             InitializeComponent();
 
@@ -260,7 +253,8 @@ namespace Interfaz
         {
             ListaClaves listaClaves = new ListaClaves(this._usuarioActual, this._administrador);
             listaClaves.AbrirCrearClave_Event += this.AbrirCrearClave_Handler;
-            listaClaves.AbrirModificarClave_Event += AbrirModificarClave_Event;
+            listaClaves.AbrirModificarClave_Event += this.AbrirModificarClave_Event;
+            listaClaves.AbrirCompartirClave_Event += this.AbrirCompartirClave_Handler;
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(listaClaves);
         }
@@ -284,18 +278,14 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(crearClave);
         }
 
-        protected void AbrirCompartirClave_Handler(Contra compartir)
+        protected void AbrirCompartirClave_Handler(ClaveCompartida aCompartir)
         {
-            CompartirClave compartirClave = new CompartirClave(this._usuarioActual, this._administrador);
+            CompartirClave compartirClave = new CompartirClave(aCompartir, this._administrador);
             compartirClave.AbrirListaClaves_Event += this.AbrirListaClaves_Handler;
 
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(compartirClave);
         }
-
-
-
-
 
         protected void SalirDeVerClave_Handler()
         {
