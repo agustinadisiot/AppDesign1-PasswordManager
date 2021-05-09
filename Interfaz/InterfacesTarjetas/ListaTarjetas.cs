@@ -25,7 +25,9 @@ namespace Interfaz
         }
 
         private void CargarTabla() {
-           
+
+            this.tablaTarjetas.Rows.Clear();
+
             List<Categoria> listaCategorias = this._usuarioActual.GetListaCategorias();
 
             foreach (Categoria categoriaActual in listaCategorias) {
@@ -43,15 +45,16 @@ namespace Interfaz
 
                 string nombre = tarjetaActual.Nombre;
                 string tipo = tarjetaActual.Tipo;
-                string numero = tarjetaActual.Numero;
+                string numeroCompleto = tarjetaActual.Numero;
+                string numeroOculto = OcultarTarjeta(tarjetaActual);
                 string vencimiento = tarjetaActual.Vencimiento.ToString();
 
-                this.tablaTarjetas.Rows.Add(categoriaActual, nombre, tipo, numero, vencimiento);
+                this.tablaTarjetas.Rows.Add(categoriaActual, nombre, tipo, numeroOculto, numeroCompleto, vencimiento);
             }
         }
 
 
-        private string FormatearTarjeta(Tarjeta actual)
+        private string OcultarTarjeta(Tarjeta actual)
         {
 
             string numero = actual.Numero;
@@ -80,17 +83,63 @@ namespace Interfaz
                 this.AbrirCrearTarjeta_Event(this, e);
         }
 
-        public event EventHandler AbrirModificarTarjeta_Event;
-        private void AbrirModificarTarjeta(EventArgs e)
+        public delegate void AbrirModificarTarjeta_Handler(Tarjeta modificar);
+        public event AbrirModificarTarjeta_Handler AbrirModificarTarjeta_Event;
+        private void AbrirModificarTarjeta(Tarjeta modificar)
         {
             if (this.AbrirModificarTarjeta_Event != null)
-                this.AbrirModificarTarjeta_Event(this, e);
+                this.AbrirModificarTarjeta_Event(modificar);
         }
 
 
         private void botonModificar_Click(object sender, EventArgs e)
         {
-            this.AbrirModificarTarjeta(e);
+            bool haySeleccionada = this.tablaTarjetas.SelectedCells.Count > 0;
+            if (haySeleccionada)
+            {
+                int posSeleccionada = this.tablaTarjetas.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = this.tablaTarjetas.Rows[posSeleccionada];
+                string numero = Convert.ToString(selectedRow.Cells["TarjetaCompleta"].Value);
+                
+                
+                Tarjeta buscadora = new Tarjeta()
+                {
+                    Numero = numero
+                };
+                this.AbrirModificarTarjeta(buscadora);
+            }
+        }
+
+        private void botonEliminar_Click(object sender, EventArgs e)
+        {
+            bool haySeleccionada = this.tablaTarjetas.SelectedCells.Count > 0;
+            if (haySeleccionada)
+            {
+                string texto = "¿Estas seguro que quieres eliminar esta tarjeta?";
+                VentanaConfirmaciones ventanaConfirmar = new VentanaConfirmaciones(texto);
+                ventanaConfirmar.CerrarConfirmacion_Event += CerrarConfirmacion_Handler;
+                ventanaConfirmar.ShowDialog();
+            }
+        }
+
+
+        private void CerrarConfirmacion_Handler(bool acepto)
+        {
+            bool haySeleccionada = this.tablaTarjetas.SelectedCells.Count > 0;
+            if (haySeleccionada && acepto)
+            {
+                int posSeleccionada = this.tablaTarjetas.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = this.tablaTarjetas.Rows[posSeleccionada];
+
+                string numeroTarjetaBorrar = Convert.ToString(selectedRow.Cells["TarjetaCompleta"].Value);
+
+                Tarjeta buscadora = new Tarjeta()
+                {
+                    Numero = numeroTarjetaBorrar
+                };
+                this._usuarioActual.BorrarTarjeta(buscadora);
+                this.CargarTabla();
+            }
         }
     }
 }

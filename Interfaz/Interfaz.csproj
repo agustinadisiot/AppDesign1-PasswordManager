@@ -58,6 +58,12 @@
     <Compile Include="InterfacesClaves\CrearClave.Designer.cs">
       <DependentUpon>CrearClave.cs</DependentUpon>
     </Compile>
+    <Compile Include="InterfacesCompartirClave\ListaClavesCompartidasPorMi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesCompartirClave\ListaClavesCompartidasPorMi.Designer.cs">
+      <DependentUpon>ListaClavesCompartidasPorMi.cs</DependentUpon>
+    </Compile>
     <Compile Include="InterfacesTarjetas\CrearTarjeta.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -112,6 +118,12 @@
     <Compile Include="InterfacesCompartirClave\ListaClavesCompartidasConmigo.Designer.cs">
       <DependentUpon>ListaClavesCompartidasConmigo.cs</DependentUpon>
     </Compile>
+    <Compile Include="VentanaConfirmaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VentanaConfirmaciones.Designer.cs">
+      <DependentUpon>VentanaConfirmaciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="VentanaPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InterfacesClaves\CrearClave.resx">
       <DependentUpon>CrearClave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesCompartirClave\ListaClavesCompartidasPorMi.resx">
+      <DependentUpon>ListaClavesCompartidasPorMi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InterfacesTarjetas\CrearTarjeta.resx">
       <DependentUpon>CrearTarjeta.cs</DependentUpon>
@@ -158,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InterfacesCompartirClave\ListaClavesCompartidasConmigo.resx">
       <DependentUpon>ListaClavesCompartidasConmigo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VentanaConfirmaciones.resx">
+      <DependentUpon>VentanaConfirmaciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VentanaPrincipal.resx">
       <DependentUpon>VentanaPrincipal.cs</DependentUpon>

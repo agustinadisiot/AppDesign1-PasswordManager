@@ -1,4 +1,5 @@
-﻿using Obligatorio;
+﻿using Interfaz.InterfacesCompartirClave;
+using Obligatorio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,8 +52,8 @@ namespace Interfaz
             {
                 Nombre = "Itau",
                 Tipo = "Visa",
-                Numero = "3456567890876543",
-                Codigo = "321",
+                Numero = "1111111111111111",
+                Codigo = "111",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
 
@@ -60,14 +61,47 @@ namespace Interfaz
             {
                 Nombre = "Prex",
                 Tipo = "Mastercard",
-                Numero = "2222567890876543",
-                Codigo = "8904",
+                Numero = "2222222222222222",
+                Codigo = "2222",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
 
             usuarioPrueba.AgregarTarjeta(tarjetaPrueba1, trabajo);
 
             usuarioPrueba.AgregarTarjeta(tarjetaPrueba2, personal);
+
+            Contra clavePrueba1 = new Contra()
+            {
+                Sitio = "www.ort.edu.uy",
+                UsuarioContra = "usuarioClave1",
+                Clave = "12345678"
+            };
+
+            Contra clavePrueba2 = new Contra()
+            {
+                Sitio = "www.netflix.com",
+                UsuarioContra = "usuarioClave2",
+                Clave = "12345678"
+            };
+
+            usuarioPrueba.AgregarContra(clavePrueba1, trabajo);
+            usuarioPrueba.AgregarContra(clavePrueba2, personal);
+
+            ClaveCompartida claveACompartir1 = new ClaveCompartida()
+            {
+                Usuario = usuarioPrueba2,
+                Clave = clavePrueba1
+            };
+
+            ClaveCompartida claveACompartir2 = new ClaveCompartida()
+            {
+                Usuario = usuarioPrueba2,
+                Clave = clavePrueba2
+            };
+
+            usuarioPrueba.CompartirClave(claveACompartir1);
+
+            usuarioPrueba.CompartirClave(claveACompartir2);
 
             InitializeComponent();
 
@@ -108,12 +142,6 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(crearUsuario);
         }
 
-        private void AbrirListaClavesCompartidasConmigo_Handler()
-        {
-            ListaClavesCompartidasConmigo listaClavesCompartidasConmigo = new ListaClavesCompartidasConmigo(this._usuarioActual, this._administrador);
-            this.panelPrincipal.Controls.Clear();
-            this.panelPrincipal.Controls.Add(listaClavesCompartidasConmigo);
-        }
 
         private void AbrirIniciarSesion_Handler()
         {
@@ -167,19 +195,12 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(crearTarjetas);
         }
 
-        protected void AbrirModificarTarjeta_Handler(object sender, EventArgs e)
+        protected void AbrirModificarTarjeta_Handler(Tarjeta buscadora)
         {
-            this.panelPrincipal.Controls.Clear();
-            Tarjeta tarjetaPrueba1 = new Tarjeta()
-            {
-                Nombre = "Itau",
-                Tipo = "Visa",
-                Numero = "3456567890876543",
-                Codigo = "321",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            ModificarTarjeta modificarTarjeta = new ModificarTarjeta(this._usuarioActual, tarjetaPrueba1);
+            Tarjeta modificar = this._usuarioActual.GetTarjeta(buscadora);
+            ModificarTarjeta modificarTarjeta = new ModificarTarjeta(this._usuarioActual, modificar);
             modificarTarjeta.AbrirListaTarjetas_Event += new EventHandler(this.AbrirListaTarjetas_Handler);
+            this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(modificarTarjeta);
         }
 
@@ -188,7 +209,7 @@ namespace Interfaz
 
             ListaTarjetas listaTarjetas = new ListaTarjetas(this._usuarioActual, this._administrador);
             listaTarjetas.AbrirCrearTarjeta_Event += new EventHandler(this.AbrirCrearTarjeta_Handler);
-            listaTarjetas.AbrirModificarTarjeta_Event += new EventHandler(this.AbrirModificarTarjeta_Handler);
+            listaTarjetas.AbrirModificarTarjeta_Event += this.AbrirModificarTarjeta_Handler;
             this.panelPrincipal.Controls.Add(listaTarjetas);
         }
 
@@ -234,7 +255,7 @@ namespace Interfaz
         {
             ListaTarjetas listaTarjetas = new ListaTarjetas(this._usuarioActual, this._administrador);
             listaTarjetas.AbrirCrearTarjeta_Event += new EventHandler(this.AbrirCrearTarjeta_Handler);
-            listaTarjetas.AbrirModificarTarjeta_Event += new EventHandler(this.AbrirModificarTarjeta_Handler);
+            listaTarjetas.AbrirModificarTarjeta_Event += this.AbrirModificarTarjeta_Handler;
 
             this.panelPrincipal.Controls.Clear();
 
@@ -260,5 +281,15 @@ namespace Interfaz
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(listaClavesCompartidasConmigo);
         }
+
+        private void botonClavesQueComparto_Click(object sender, EventArgs e)
+        {
+            ListaClavesCompartidasPorMi listaClavesCompartidasPorMi = new ListaClavesCompartidasPorMi(this._usuarioActual, this._administrador);
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(listaClavesCompartidasPorMi);
+        }
+
+
+
     }
 }

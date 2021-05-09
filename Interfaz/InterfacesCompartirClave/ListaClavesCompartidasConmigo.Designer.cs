@@ -41,6 +41,8 @@ namespace Interfaz
             // 
             this.tablaClavesComparidas.AllowUserToAddRows = false;
             this.tablaClavesComparidas.AllowUserToDeleteRows = false;
+            this.tablaClavesComparidas.AllowUserToResizeColumns = false;
+            this.tablaClavesComparidas.AllowUserToResizeRows = false;
             this.tablaClavesComparidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaClavesComparidas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CompartidaPor,
@@ -48,11 +50,14 @@ namespace Interfaz
             this.Usuario});
             this.tablaClavesComparidas.Location = new System.Drawing.Point(68, 23);
             this.tablaClavesComparidas.Margin = new System.Windows.Forms.Padding(4);
+            this.tablaClavesComparidas.MultiSelect = false;
             this.tablaClavesComparidas.Name = "tablaClavesComparidas";
             this.tablaClavesComparidas.ReadOnly = true;
             this.tablaClavesComparidas.RowHeadersVisible = false;
             this.tablaClavesComparidas.RowHeadersWidth = 51;
+            this.tablaClavesComparidas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.tablaClavesComparidas.RowTemplate.Height = 24;
+            this.tablaClavesComparidas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaClavesComparidas.Size = new System.Drawing.Size(380, 337);
             this.tablaClavesComparidas.TabIndex = 1;
             // 

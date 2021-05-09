@@ -351,7 +351,7 @@ namespace TestsObligatorio
             {
                 Nombre = "Trabajo"
             };
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarNombreCategoria(modificarVieja, modificarNueva));
+            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.ModificarNombreCategoria(modificarVieja, modificarNueva));
         }
 
         [TestMethod]
@@ -652,7 +652,7 @@ namespace TestsObligatorio
                 Clave = "12345678"
             };
 
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.AgregarContra(contra, categoria));
+            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.AgregarContra(contra, categoria));
         }
 
         [TestMethod]
@@ -1126,7 +1126,21 @@ namespace TestsObligatorio
                 Sitio = paginaContraInexistente
             };
 
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarContra(buscadora, contra));
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Categoria"
+            };
+
+            ClaveAModificar parametros = new ClaveAModificar()
+            {
+                ClaveVieja = buscadora,
+                ClaveNueva = buscadora,
+                CategoriaVieja = categoria,
+                CategoriaNueva = categoria
+            };
+
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarContra(parametros));
         }
 
         [TestMethod]
@@ -1175,7 +1189,16 @@ namespace TestsObligatorio
                 Sitio = paginaContraModificar
             };
 
-            usuario.ModificarContra(contraVieja, contraNueva);
+
+            ClaveAModificar parametros = new ClaveAModificar()
+            {
+                ClaveVieja = buscadora,
+                ClaveNueva = contraNueva,
+                CategoriaVieja = categoria,
+                CategoriaNueva = categoria
+            };
+
+            usuario.ModificarContra(parametros);
             Assert.IsFalse(usuario.YaExisteContra(buscadora));
         }
 
@@ -1194,28 +1217,31 @@ namespace TestsObligatorio
 
             usuario.AgregarCategoria(categoria);
 
-            string usuarioContra1 = "Usuario23";
+            string usuarioContra1 = "11111111";
             string paginaContra1 = "www.ort.edu.uy";
-            string claveContra1 = "1234AbC$";
+            string claveContra1 = "11111111";
 
             Contra contra1 = new Contra()
             {
                 UsuarioContra = usuarioContra1,
                 Sitio = paginaContra1,
-                Clave = claveContra1
+                Clave = claveContra1,
+                Nota = ""
             };
 
             categoria.AgregarContra(contra1);
 
-            string usuarioContra2 = "user23";
+            string usuarioContra2 = "22222222";
             string paginaContra2 = "aulas.edu.uy";
-            string claveContra2 = "1234AbC$";
+            string claveContra2 = "22222222";
 
             Contra contra2 = new Contra()
             {
                 UsuarioContra = usuarioContra2,
                 Sitio = paginaContra2,
-                Clave = claveContra2
+                Clave = claveContra2,
+                Nota = "Tiene Nota"
+
             };
 
             categoria.AgregarContra(contra2);
@@ -1224,10 +1250,135 @@ namespace TestsObligatorio
             {
                 UsuarioContra = usuarioContra2,
                 Sitio = paginaContra2,
-                Clave = claveContra2
+                Clave = "33333333",
+                Nota = "Otra Nota"
             };
 
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.ModificarContra(contra1, duplicada));
+
+            ClaveAModificar parametros = new ClaveAModificar()
+            {
+                ClaveVieja = contra1,
+                ClaveNueva = duplicada,
+                CategoriaVieja = categoria,
+                CategoriaNueva = categoria
+            };
+
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.ModificarContra(parametros));
+        }
+
+        [TestMethod]
+        public void UsuarioModificarContraMoverACategoriaNoExistente()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            Categoria noAgregada = new Categoria()
+            {
+                Nombre = "No Agregada"
+            };
+
+            usuario.AgregarCategoria(categoria);
+
+            string usuarioContra1 = "Usuario23";
+            string paginaContra1 = "www.ort.edu.uy";
+            string claveContra1 = "1234AbC$";
+
+            Contra mover = new Contra()
+            {
+                UsuarioContra = usuarioContra1,
+                Sitio = paginaContra1,
+                Clave = claveContra1
+            };
+
+            usuario.AgregarContra(mover,categoria);
+
+            ClaveAModificar parametros = new ClaveAModificar()
+            {
+                ClaveVieja = mover,
+                ClaveNueva = mover,
+                CategoriaVieja = categoria,
+                CategoriaNueva = noAgregada
+            };
+
+            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.ModificarContra(parametros));
+        }
+
+        [TestMethod]
+        public void UsuarioModificarContraMoverACategoriaExistente()
+        {
+            Usuario usuario = new Usuario();
+            Categoria personal = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            usuario.AgregarCategoria(personal);
+
+            Categoria trabajo = new Categoria()
+            {
+                Nombre = "Trabajo"
+
+            };
+            usuario.AgregarCategoria(trabajo);
+
+
+            Contra vieja = new Contra()
+            {
+                UsuarioContra = "11111111",
+                Sitio = "ort.edu.uy",
+                Clave = "11111111",
+                Nota = "1111"
+            };
+
+            usuario.AgregarContra(vieja, personal);
+
+            string usuarioNueva = "22222222";
+            string sitioNueva = "aulas.ort.edu.uy";
+
+            Contra nueva = new Contra()
+            {
+                UsuarioContra = usuarioNueva,
+                Sitio = sitioNueva,
+                Clave = "22222222",
+                Nota = "2222"
+            };
+
+
+            ClaveAModificar parametros = new ClaveAModificar()
+            {
+                ClaveVieja = vieja,
+                ClaveNueva = nueva,
+                CategoriaVieja = personal,
+                CategoriaNueva = trabajo
+            };
+
+            usuario.ModificarContra(parametros);
+
+            Contra buscadora = new Contra()
+            {
+                UsuarioContra = usuarioNueva,
+                Sitio = sitioNueva
+            };
+
+            Contra resultado = usuario.GetContra(buscadora);
+
+            Categoria categoriaFinal = usuario.GetCategoriaClave(buscadora);
+
+            bool igualSitio = resultado.Sitio == nueva.Sitio;
+            bool igualUsuario = resultado.UsuarioContra == nueva.UsuarioContra;
+            bool igualNota = resultado.Nota == nueva.Nota;
+            bool igualClave = resultado.Clave == nueva.Clave;
+
+            bool igualesDatos = igualSitio && igualUsuario && igualNota && igualClave;
+            bool igualCategoria = trabajo == categoriaFinal;
+
+            Assert.IsTrue(igualesDatos && igualCategoria);
         }
 
         [TestMethod]
@@ -2253,7 +2404,7 @@ namespace TestsObligatorio
         }
 
         [TestMethod]
-        public void UsuarioGetCategoriaTarjetaDosCategorias()
+        public void UsuarioGetCategoriaClaveDosCategorias()
         {
 
             Usuario usuario = new Usuario()
@@ -2294,6 +2445,357 @@ namespace TestsObligatorio
 
             Assert.AreEqual(facultad, usuario.GetCategoriaClave(buscadora));
         }
+
+        [TestMethod]
+        public void UsuarioGetClaveCompartidaPorMiCorrecta()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            usuario1.AgregarContra(clave1, categoria1);
+
+            ClaveCompartida claveCompartida = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            ClaveCompartida buscadora = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            usuario1.CompartirClave(claveCompartida);
+
+            Assert.AreEqual(claveCompartida, usuario1.GetClaveCompartidaPorMi(buscadora));
+        }
+
+        [TestMethod]
+        public void UsuarioGetClaveCompartidaPorMiInexistente()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave2",
+                UsuarioContra = "Hernesto"
+            };
+
+            usuario1.AgregarContra(clave1, categoria1);
+            usuario1.AgregarContra(clave2, categoria1);
+
+            ClaveCompartida claveCompartida = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            ClaveCompartida buscadora = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave2
+            };
+
+            usuario1.CompartirClave(claveCompartida);
+
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario1.GetClaveCompartidaPorMi(buscadora));
+        }
+
+        [TestMethod]
+        public void UsuarioGetClaveCompartidaPorDosCompartidasConParametrosDiferentes()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2",
+                ContraMaestra = "123456789"
+            };
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave2",
+                UsuarioContra = "Hernesto"
+            };
+
+            usuario1.AgregarContra(clave1, categoria1);
+            usuario1.AgregarContra(clave2, categoria1);
+
+            ClaveCompartida claveCompartida1 = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            ClaveCompartida claveCompartida2 = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave2
+            };
+
+            usuario1.CompartirClave(claveCompartida1);
+            usuario1.CompartirClave(claveCompartida2);
+
+            Usuario usuarioBuscador = new Usuario
+            {
+                Nombre = "Usuario2",
+                ContraMaestra = "ClaveDiferente"
+            };
+
+            Contra claveBuscadora = new Contra
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaDiferente",
+                UsuarioContra = "Hernesto"
+            };
+
+            ClaveCompartida buscadora = new ClaveCompartida()
+            {
+                Usuario = usuarioBuscador,
+                Clave = claveBuscadora
+            };
+
+            Assert.AreEqual(claveCompartida2, usuario1.GetClaveCompartidaPorMi(buscadora));
+        }
+
+        [TestMethod]
+        public void UsuarioGetClaveCompartidaConmigoCorrecta()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+            usuario1.AgregarContra(clave1, categoria1);
+
+            ClaveCompartida claveCompartida = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            ClaveCompartida buscadora = new ClaveCompartida()
+            {
+                Usuario = usuario1,
+                Clave = clave1
+            };
+
+            usuario1.CompartirClave(claveCompartida);
+
+            Assert.AreEqual(buscadora, usuario2.GetClaveCompartidaConmigo(buscadora));
+        }
+
+        [TestMethod]
+        public void UsuarioGetClaveCompartidaConmigoInexistente()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2"
+            };
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave2",
+                UsuarioContra = "Hernesto"
+            };
+
+            usuario1.AgregarContra(clave1, categoria1);
+            usuario1.AgregarContra(clave2, categoria1);
+
+            ClaveCompartida claveCompartida = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            ClaveCompartida buscadora = new ClaveCompartida()
+            {
+                Usuario = usuario1,
+                Clave = clave2
+            };
+
+            usuario1.CompartirClave(claveCompartida);
+
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario2.GetClaveCompartidaPorMi(buscadora));
+        }
+
+        [TestMethod]
+        public void UsuarioGetClaveCompartidaConmigoCompartidasConParametrosDiferentes()
+        {
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "Usuario1",
+                ContraMaestra = "123456789"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario1.AgregarCategoria(categoria1);
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2",
+            };
+
+            Contra clave1 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave1",
+                UsuarioContra = "Roberto"
+            };
+
+            Contra clave2 = new Contra()
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaClave2",
+                UsuarioContra = "Hernesto"
+            };
+
+            usuario1.AgregarContra(clave1, categoria1);
+            usuario1.AgregarContra(clave2, categoria1);
+
+            ClaveCompartida claveCompartida1 = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave1
+            };
+
+            ClaveCompartida claveCompartida2 = new ClaveCompartida()
+            {
+                Usuario = usuario2,
+                Clave = clave2
+            };
+
+            usuario1.CompartirClave(claveCompartida1);
+            usuario1.CompartirClave(claveCompartida2);
+
+            Usuario usuarioBuscador = new Usuario
+            {
+                Nombre = "Usuario1",
+                ContraMaestra = "ClaveDiferente"
+            };
+
+            Contra claveBuscadora = new Contra
+            {
+                Sitio = "web.whatsapp.com",
+                Clave = "EstaEsUnaDiferente",
+                UsuarioContra = "Hernesto"
+            };
+
+            ClaveCompartida buscadora = new ClaveCompartida()
+            {
+                Usuario = usuarioBuscador,
+                Clave = claveBuscadora
+            };
+
+            Assert.AreEqual(buscadora, usuario2.GetClaveCompartidaConmigo(buscadora));
+        }
+
     }
 
     [TestClass]
@@ -2596,7 +3098,7 @@ namespace TestsObligatorio
                 Vencimiento = new DateTime(2025, 7, 1)
             };
 
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.AgregarTarjeta(tarjeta, categoria));
+            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.AgregarTarjeta(tarjeta, categoria));
         }
 
         [TestMethod]
@@ -2986,7 +3488,7 @@ namespace TestsObligatorio
         }
 
         [TestMethod]
-        public void UsuarioModificarTarjetaCategoriaNoExistente()
+        public void UsuarioModificarTarjetaNoExistente()
         {
             Usuario usuario = new Usuario()
             {
@@ -3000,7 +3502,7 @@ namespace TestsObligatorio
             };
             usuario.AgregarCategoria(categoria);
 
-            string numeroTarjeta = "3456567890876543";
+            string numeroTarjeta = "1111111111111111";
             Tarjeta tarjeta1 = new Tarjeta()
             {
                 Nombre = "Prex",
@@ -3014,17 +3516,27 @@ namespace TestsObligatorio
 
             Tarjeta tarjetaVieja = new Tarjeta()
             {
-                Numero = "1234567890876543"
+                Numero = "2222222222222222"
             };
             Tarjeta tarjetaNueva = new Tarjeta()
             {
-                Numero = "1987654321345678"
+                Numero = "3333333333333333"
             };
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarTarjetaCategoria(tarjetaVieja, tarjetaNueva));
+
+            TarjetaAModificar parametros = new TarjetaAModificar()
+            {
+                TarjetaVieja = tarjetaVieja,
+                TarjetaNueva = tarjetaNueva,
+                CategoriaVieja = categoria,
+                CategoriaNueva = categoria
+
+            };
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarTarjeta(parametros));
         }
 
         [TestMethod]
-        public void UsuarioModificarTarjetaCategoriaATarjetaYaExistente()
+        public void UsuarioModificarTarjetaTarjetaYaExistente()
         {
             Usuario usuario = new Usuario();
             Categoria categoria = new Categoria()
@@ -3065,11 +3577,20 @@ namespace TestsObligatorio
                 Numero = numeroTarjeta2
             };
 
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.ModificarTarjetaCategoria(tarjetaVieja, tarjetaNueva));
+            TarjetaAModificar parametros = new TarjetaAModificar()
+            {
+                TarjetaVieja = tarjetaVieja,
+                TarjetaNueva = tarjetaNueva,
+                CategoriaVieja = categoria,
+                CategoriaNueva = categoria
+
+            };
+
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.ModificarTarjeta(parametros));
         }
 
         [TestMethod]
-        public void UsuarioModificarTarjetaCategoriaAgregada()
+        public void UsuarioModificarTarjetaTodosLosDatos()
         {
             Usuario usuario = new Usuario();
             Categoria categoria = new Categoria()
@@ -3100,13 +3621,146 @@ namespace TestsObligatorio
                 Nota = "",
                 Vencimiento = new DateTime(2025, 7, 1)
             };
-            usuario.ModificarTarjetaCategoria(tarjetaVieja, tarjetaNueva);
+
+
+            TarjetaAModificar parametros = new TarjetaAModificar()
+            {
+                TarjetaVieja = tarjetaVieja,
+                TarjetaNueva = tarjetaNueva,
+                CategoriaVieja = categoria,
+                CategoriaNueva = categoria
+
+            };
+
+            usuario.ModificarTarjeta(parametros);
 
             Tarjeta buscadora = new Tarjeta()
             {
                 Numero = numeroTarjetaNueva
             };
-            Assert.AreEqual(tarjetaNueva, usuario.GetTarjeta(buscadora));
+
+            Tarjeta resultado = usuario.GetTarjeta(buscadora);
+
+            bool igualNumero = tarjetaNueva.Numero == resultado.Numero;
+            bool igualNombre = tarjetaNueva.Nombre == resultado.Nombre;
+            bool igualTipo = tarjetaNueva.Tipo == resultado.Tipo;
+            bool igualCodigo = tarjetaNueva.Codigo == resultado.Codigo;
+            bool igualNota = tarjetaNueva.Nota == resultado.Nota;
+            bool igualVencimiento = tarjetaNueva.Vencimiento == resultado.Vencimiento;
+
+            Assert.IsTrue(igualNumero&&igualNombre&&igualTipo&&igualCodigo&&igualNota&&igualVencimiento);
+        }
+
+        [TestMethod]
+        public void UsuarioModificarTarjetaMoverACategoriaNoExistente()
+        {
+            Usuario usuario = new Usuario();
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            usuario.AgregarCategoria(categoria);
+
+            string numeroTarjeta = "3456567890876543";
+            Tarjeta aMover= new Tarjeta()
+            {
+                Numero = numeroTarjeta,
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Codigo = "321",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            usuario.AgregarTarjeta(aMover, categoria);
+
+            Categoria noAgregada = new Categoria()
+            {
+                Nombre = "NoAgregada"
+
+            };
+
+            TarjetaAModificar parametros = new TarjetaAModificar()
+            {
+                TarjetaVieja = aMover,
+                TarjetaNueva = aMover,
+                CategoriaVieja = categoria,
+                CategoriaNueva = noAgregada
+            };
+
+            Assert.ThrowsException<CategoriaInexistenteException>(()=> usuario.ModificarTarjeta(parametros));
+        }
+
+        [TestMethod]
+        public void UsuarioModificarTarjetaMoverACategoriaExistente()
+        {
+            Usuario usuario = new Usuario();
+            Categoria personal = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+            usuario.AgregarCategoria(personal);
+
+            Categoria trabajo = new Categoria()
+            {
+                Nombre = "Trabajo"
+
+            };
+            usuario.AgregarCategoria(trabajo);
+            
+            Tarjeta vieja = new Tarjeta()
+            {
+                Numero = "1111111111111111",
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Codigo = "111",
+                Nota = "AAAAA",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+            usuario.AgregarTarjeta(vieja, personal);
+
+            string numeroTarjetaNueva = "2222222222222222";
+
+            Tarjeta nueva = new Tarjeta()
+            {
+                Numero = numeroTarjetaNueva,
+                Nombre = "Otro",
+                Tipo = "Visa",
+                Codigo = "222",
+                Nota = "BBBB",
+                Vencimiento = new DateTime(2025, 7, 1)
+            };
+
+            TarjetaAModificar parametros = new TarjetaAModificar()
+            {
+                TarjetaVieja = vieja,
+                TarjetaNueva = nueva,
+                CategoriaVieja = personal,
+                CategoriaNueva = trabajo
+            };
+
+            usuario.ModificarTarjeta(parametros);
+
+            Tarjeta buscadora = new Tarjeta()
+            {
+                Numero = numeroTarjetaNueva
+            };
+
+            Tarjeta resultado = usuario.GetTarjeta(buscadora);
+
+            Categoria categoriaFinal = usuario.GetCategoriaTarjeta(buscadora);
+
+            bool igualNumero = nueva.Numero == resultado.Numero;
+            bool igualNombre = nueva.Nombre == resultado.Nombre;
+            bool igualTipo = nueva.Tipo == resultado.Tipo;
+            bool igualCodigo = nueva.Codigo == resultado.Codigo;
+            bool igualNota = nueva.Nota == resultado.Nota;
+            bool igualVencimiento = nueva.Vencimiento == resultado.Vencimiento;
+            
+
+            bool igualesDatos = igualNumero && igualNombre && igualTipo && igualCodigo && igualNota && igualVencimiento;
+            bool igualCategoria = trabajo == categoriaFinal;
+
+            Assert.IsTrue(igualesDatos && igualCategoria);
         }
 
         [TestMethod]
@@ -3300,6 +3954,8 @@ namespace TestsObligatorio
 
             Assert.AreEqual(trabajo, usuario.GetCategoriaTarjeta(buscadora));
         }
+
+        
     }
 
     [TestClass]

@@ -63,7 +63,7 @@ namespace Obligatorio
             { return categoria.Equals(aBuscar); };
 
             Categoria retorno = this._categorias.Find(buscadorCategoria);
-            return retorno != null ? retorno : throw new ObjetoInexistenteException();
+            return retorno != null ? retorno : throw new CategoriaInexistenteException();
         }
 
         public override bool Equals(object objeto)
@@ -201,27 +201,54 @@ namespace Obligatorio
             contieneContraABorrar.BorrarTarjeta(aBorrar);
         }
 
-        public void ModificarContra(Contra contraVieja, Contra contraNueva)
+        public void ModificarContra(ClaveAModificar modificar)
         {
-            if (!this.YaExisteContra(contraVieja)) throw new ObjetoInexistenteException();
-            if (this.YaExisteContra(contraNueva)) throw new ObjetoYaExistenteException();
-            Contra aModificar = this.GetContra(contraVieja);
-            aModificar.UsuarioContra = contraNueva.UsuarioContra;
-            aModificar.Clave = contraNueva.Clave;
-            aModificar.Sitio = contraNueva.Sitio;
-            aModificar.Nota = contraNueva.Nota;
+            Contra contraVieja = this.GetContra(modificar.ClaveVieja);
+            Contra contraNueva = modificar.ClaveNueva;
+
+            if (!contraVieja.Equals(contraNueva) && this.YaExisteContra(contraNueva)) {
+                throw new ObjetoYaExistenteException();
+            }
+
+            Categoria categoriaVieja = this.GetCategoria(modificar.CategoriaVieja);
+            Categoria categoriaNueva = this.GetCategoria(modificar.CategoriaNueva);
+
+            if (categoriaVieja.Equals(categoriaNueva))
+            {
+                categoriaVieja.ModificarContra(contraVieja, contraNueva);
+            }
+            else {
+                categoriaVieja.BorrarContra(contraVieja);
+
+                categoriaNueva.AgregarContra(contraVieja);
+                categoriaNueva.ModificarContra(contraVieja, contraNueva);
+            }
         }
 
-        public void ModificarTarjetaCategoria(Tarjeta tarjetaVieja, Tarjeta tarjetaNueva)
+        public void ModificarTarjeta(TarjetaAModificar modificar)
         {
-            if (this.YaExisteTarjeta(tarjetaNueva)) throw new ObjetoYaExistenteException();
-            Tarjeta aModificar = this.GetTarjeta(tarjetaVieja);
-            aModificar.Nombre = tarjetaNueva.Nombre;
-            aModificar.Numero = tarjetaNueva.Numero;
-            aModificar.Tipo = tarjetaNueva.Tipo;
-            aModificar.Nota = tarjetaNueva.Nota;
-            aModificar.Vencimiento = tarjetaNueva.Vencimiento;
+            Tarjeta tarjetaVieja = this.GetTarjeta(modificar.TarjetaVieja);
+            Tarjeta tarjetaNueva = modificar.TarjetaNueva;
+
+
+            bool cambioNumero = tarjetaVieja.Numero != tarjetaNueva.Numero;
+            if (cambioNumero && this.YaExisteTarjeta(tarjetaNueva)) throw new ObjetoYaExistenteException();
+
+            Categoria categoriaVieja = this.GetCategoria(modificar.CategoriaVieja);
+            Categoria categoriaNueva = this.GetCategoria(modificar.CategoriaNueva);
+
+            if (categoriaNueva == categoriaVieja)
+            {
+                categoriaVieja.ModificarTarjeta(tarjetaVieja, tarjetaNueva);
+            }
+            else {
+                categoriaVieja.BorrarTarjeta(tarjetaVieja);
+
+                categoriaNueva.AgregarTarjeta(tarjetaVieja);
+                categoriaNueva.ModificarTarjeta(tarjetaVieja, tarjetaNueva);
+            }
         }
+
 
         public List<Contra> GetListaClaves()
         {
@@ -378,6 +405,18 @@ namespace Obligatorio
                 }
             }
             throw new ObjetoInexistenteException();
+        }
+
+        public ClaveCompartida GetClaveCompartidaPorMi(ClaveCompartida buscadora)
+        {
+            if (!this.CompartidasPorMi.Contains(buscadora)) throw new ObjetoInexistenteException();
+            return this.CompartidasPorMi.First(aBuscar => aBuscar.Equals(buscadora));
+        }
+
+        public ClaveCompartida GetClaveCompartidaConmigo(ClaveCompartida buscadora)
+        {
+            if (!this.CompartidasConmigo.Contains(buscadora)) throw new ObjetoInexistenteException();
+            return this.CompartidasConmigo.First(aBuscar => aBuscar.Equals(buscadora));
         }
     }
 }

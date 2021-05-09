@@ -40,7 +40,7 @@ namespace Interfaz
                 string nombre = actual.Nombre;
                 this.comboBoxCategorias.Items.Add(nombre);
             }
-
+            this.comboBoxCategorias.SelectedIndex = 0;
         }
 
         private void botonCrear_Click(object sender, EventArgs e)

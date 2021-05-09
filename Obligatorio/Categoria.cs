@@ -143,19 +143,27 @@ namespace Obligatorio
 
         public void ModificarTarjeta(Tarjeta tarjetaVieja, Tarjeta tarjetaNueva)
         {
-            if (this.YaExisteTarjeta(tarjetaNueva)) throw new ObjetoYaExistenteException();
+            bool igualNumero = tarjetaVieja.Equals(tarjetaNueva);
+
+            if (!this.YaExisteTarjeta(tarjetaVieja)) throw new ObjetoInexistenteException();
+            if (!igualNumero && this.YaExisteTarjeta(tarjetaNueva)) throw new ObjetoYaExistenteException();
+
             Tarjeta aModificar = this.GetTarjeta(tarjetaVieja);
             aModificar.Nombre = tarjetaNueva.Nombre;
             aModificar.Numero = tarjetaNueva.Numero;
             aModificar.Tipo = tarjetaNueva.Tipo;
+            aModificar.Codigo = tarjetaNueva.Codigo;
             aModificar.Nota = tarjetaNueva.Nota;
             aModificar.Vencimiento = tarjetaNueva.Vencimiento;
         }
 
         public void ModificarContra(Contra contraVieja, Contra contraNueva)
         {
+            bool igualSitioyUsuario = contraVieja.Equals(contraNueva);
+
             if (!this.YaExisteContra(contraVieja)) throw new ObjetoInexistenteException();
-            if (this.YaExisteContra(contraNueva)) throw new ObjetoYaExistenteException();
+            if (!igualSitioyUsuario && this.YaExisteContra(contraNueva)) throw new ObjetoYaExistenteException();
+
             Contra aModificar = this.GetContra(contraVieja);
             aModificar.UsuarioContra = contraNueva.UsuarioContra;
             aModificar.Clave = contraNueva.Clave;

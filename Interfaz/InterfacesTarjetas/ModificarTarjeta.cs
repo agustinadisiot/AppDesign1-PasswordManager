@@ -14,12 +14,12 @@ namespace Interfaz
     public partial class ModificarTarjeta : UserControl
     {
         private Usuario _actual;
-        private Tarjeta _modificar;
+        private Tarjeta _vieja;
 
         public ModificarTarjeta(Usuario usuario, Tarjeta tarjeta )
         {
             this._actual = usuario;
-            this._modificar = tarjeta;
+            this._vieja = tarjeta;
             InitializeComponent();
         }
 
@@ -32,16 +32,17 @@ namespace Interfaz
 
         private void CargarInputsConTarjeta() {
 
-            this.inputNombre.Text = this._modificar.Nombre;
-            this.inputTipo.Text = this._modificar.Tipo;
-            this.inputNumero.Text = this._modificar.Numero;
-            this.datePickerVencimiento.Value = this._modificar.Vencimiento;
-            this.inputNota.Text = this._modificar.Nota;
+            this.inputNombre.Text = this._vieja.Nombre;
+            this.inputTipo.Text = this._vieja.Tipo;
+            this.inputNumero.Text = this._vieja.Numero;
+            this.inputCodigo.Text = this._vieja.Codigo;
+            this.datePickerVencimiento.Value = this._vieja.Vencimiento;
+            this.inputNota.Text = this._vieja.Nota;
         }
-
 
         private void CargarComboBox()
         {
+
             this.comboBoxCategorias.Items.Clear();
             List<Categoria> lista = this._actual.GetListaCategorias();
 
@@ -50,6 +51,64 @@ namespace Interfaz
 
                 string nombre = actual.Nombre;
                 this.comboBoxCategorias.Items.Add(nombre);
+            }
+
+            Categoria pertence = this._actual.GetCategoriaTarjeta(this._vieja);
+
+            this.comboBoxCategorias.SelectedItem = pertence.Nombre;
+        }
+
+        private void botonCancelar_Click(object sender, EventArgs e)
+        {
+            this.volverAListaTarjetas(e);
+        }
+
+        private void botonModificar_Click(object sender, EventArgs e)
+        {
+            Categoria categoria = new Categoria()
+            {
+                Nombre = this.LeerComboBox()
+            };
+
+            try
+            {
+                Tarjeta nueva = new Tarjeta()
+                {
+                    Nombre = this.inputNombre.Text,
+                    Tipo = this.inputTipo.Text,
+                    Numero = this.inputNumero.Text,
+                    Codigo = this.inputCodigo.Text,
+                    Vencimiento = this.datePickerVencimiento.Value,
+                    Nota = this.inputNota.Text
+                };
+                try
+                {
+                    TarjetaAModificar aModificar = new TarjetaAModificar()
+                    {
+                        TarjetaVieja = this._vieja,
+                        TarjetaNueva = nueva,
+                        CategoriaVieja = this._actual.GetCategoriaTarjeta(this._vieja),
+                        CategoriaNueva = categoria
+                    };
+                    this._actual.ModificarTarjeta(aModificar);
+                    this.volverAListaTarjetas(e);
+                }
+                catch (ObjetoYaExistenteException)
+                {
+                    this.labelErrores.Text = "Ya existe la Tarjeta a la que se intento modificar.";
+                }
+                catch (CategoriaInexistenteException)
+                {
+                    this.labelErrores.Text = "No existe la categoria a la que se intento cambiar.";
+                }
+                catch (ObjetoInexistenteException)
+                {
+                    this.labelErrores.Text = "No existe la tarjeta original.";
+                }
+            }
+            catch (Exception)
+            {
+                this.labelErrores.Text = "Hay un error en los datos ingresados.";
             }
 
         }
@@ -61,25 +120,11 @@ namespace Interfaz
             return nombre;
         }
 
-
-        private void botonCancelar_Click(object sender, EventArgs e)
-        {
-            this.volverAListaTarjetas(e);
-        }
-
-
         public event EventHandler AbrirListaTarjetas_Event;
         private void volverAListaTarjetas(EventArgs e)
         {
             if (this.AbrirListaTarjetas_Event != null)
                 this.AbrirListaTarjetas_Event(this, e);
         }
-
-        private void botonModificar_Click(object sender, EventArgs e)
-        {
-            this.volverAListaTarjetas(e);
-        }
-
-        
     }
 }
