@@ -862,18 +862,10 @@ namespace TestsObligatorio
         [TestMethod]
         public void CategoriaGetListaClavesColorNoVacia()
         {
-            Usuario usuario = new Usuario()
-            {
-                Nombre = "Usuario1"
-            };
-
             Categoria categoria1 = new Categoria()
             {
                 Nombre = "Personal"
             };
-
-            usuario.AgregarCategoria(categoria1);
-
             Contra clave1 = new Contra()
             {
                 Sitio = "web.whatsapp.com",
