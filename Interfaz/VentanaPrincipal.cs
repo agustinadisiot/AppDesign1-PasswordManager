@@ -87,6 +87,9 @@ namespace Interfaz
                 Clave = "12345678"
             };
 
+            clavePrueba1.FechaModificacion = new DateTime(2000, 1, 1);
+            clavePrueba2.FechaModificacion = new DateTime(2000,1,1);
+
             usuarioPrueba.AgregarContra(clavePrueba1, trabajo);
             usuarioPrueba.AgregarContra(clavePrueba2, personal);
 
