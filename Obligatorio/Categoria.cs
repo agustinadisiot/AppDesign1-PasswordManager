@@ -172,5 +172,10 @@ namespace Obligatorio
                 aModificar.Clave = contraNueva.Clave;
             }
         }
+
+        public List<Contra> GetListaClavesColor(string rojo)
+        {
+            return new List<Contra>();
+        }
     }
 }
