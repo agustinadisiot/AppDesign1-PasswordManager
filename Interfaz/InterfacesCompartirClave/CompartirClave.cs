@@ -23,8 +23,15 @@ namespace Interfaz
             this._usuarioActual = aCompartir.Usuario;
             this._claveACompartir = aCompartir.Clave;
             this._administrador = administrador;
-            this.CargarComboBox();
+            
         }
+
+        private void CompartirClave_Load(object sender, EventArgs e)
+        {
+            this.CargarComboBox();
+            this.labelErrores.Text = "";
+        }
+
 
         private void CargarComboBox()
         {
@@ -60,26 +67,39 @@ namespace Interfaz
             this.VolverAListaClaves();
         }
 
+        private string LeerComboBox()
+        {
+            string nombre = (string)this.comboCompartir.SelectedItem;
+
+            return nombre;
+        }
         private void botonAceptar_Click(object sender, EventArgs e)
         {
-            string nombreUsuarioACompartir = this.comboCompartir.Text;
-
-            Usuario buscador = new Usuario()
+            string nombreUsuarioACompartir = LeerComboBox();
+            if (nombreUsuarioACompartir != null)
             {
-                Nombre = nombreUsuarioACompartir
-            };
 
-            Usuario usuarioACompartir = this._administrador.GetUsuario(buscador);
+                Usuario buscador = new Usuario()
+                {
+                    Nombre = nombreUsuarioACompartir
+                };
 
-            ClaveCompartida claveACompartir = new ClaveCompartida()
-            {
-                Usuario = usuarioACompartir,
-                Clave = _claveACompartir
-            };
+                Usuario usuarioACompartir = this._administrador.GetUsuario(buscador);
 
-            this._usuarioActual.CompartirClave(claveACompartir);
-            this.VolverAListaClaves();
+                ClaveCompartida claveACompartir = new ClaveCompartida()
+                {
+                    Usuario = usuarioACompartir,
+                    Clave = _claveACompartir
+                };
 
+                this._usuarioActual.CompartirClave(claveACompartir);
+                this.VolverAListaClaves();
+            }
+            else {
+                this.labelErrores.Text = "Debe elegir un usuario al cual compartir.";
+            }
         }
+
+        
     }
 }

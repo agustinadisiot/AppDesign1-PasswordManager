@@ -41,8 +41,6 @@ namespace Interfaz
                 
             }
 
-            this.comboBoxCategorias.SelectedIndex = 0;
-
 
         }
 
@@ -60,43 +58,52 @@ namespace Interfaz
 
         private void botonAgregar_Click(object sender, EventArgs e)
         {
-            Categoria categoria = new Categoria()
+            string categoriaElegida = this.LeerComboBox();
+            if (categoriaElegida != null)
             {
-                Nombre = this.LeerComboBox()
-            };
-
-
-            try
-            {
-                Contra nueva = new Contra()
+                Categoria categoria = new Categoria()
                 {
-                    UsuarioContra = this.inputUsuario.Text,
-                    Clave = this.inputContra.Text,
-                    Nota = this.inputNota.Text,
-                    Sitio = this.inputSitio.Text,
-                    FechaModificacion = System.DateTime.Now.Date
+                    Nombre = this.LeerComboBox()
                 };
+
+
 
                 try
                 {
-                    this._usuarioActual.AgregarContra(nueva, categoria);
-                    this.VolverAListaClaves();
+                    Contra nueva = new Contra()
+                    {
+                        UsuarioContra = this.inputUsuario.Text,
+                        Clave = this.inputContra.Text,
+                        Nota = this.inputNota.Text,
+                        Sitio = this.inputSitio.Text,
+                        FechaModificacion = System.DateTime.Now.Date
+                    };
+
+                    try
+                    {
+                        this._usuarioActual.AgregarContra(nueva, categoria);
+                        this.VolverAListaClaves();
+                    }
+                    catch (ObjetoYaExistenteException)
+                    {
+
+                        this.labelErrores.Text = "Ya existe la Clave que se intento agregar.";
+
+                    }
                 }
-                catch (ObjetoYaExistenteException)
+                catch (Exception)
                 {
-
-                    this.labelErrores.Text = "Ya existe la Clave que se intento agregar.";
-
+                    this.labelErrores.Text = "Hay un error en los datos ingresados";
                 }
             }
-            catch (Exception)
-            {
-                this.labelErrores.Text = "Hay un error en los datos ingresados";
+            else {
+                this.labelErrores.Text = "Debe elegir una categoria";
             }
         }
 
         private void botonGenerar_Click(object sender, EventArgs e)
         {
+
             Contra generador = new Contra();
             ClaveAGenerar parametros = new ClaveAGenerar()
             {

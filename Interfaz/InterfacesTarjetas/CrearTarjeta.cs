@@ -40,60 +40,62 @@ namespace Interfaz
                 string nombre = actual.Nombre;
                 this.comboBoxCategorias.Items.Add(nombre);
             }
-            this.comboBoxCategorias.SelectedIndex = 0;
         }
 
         private void botonCrear_Click(object sender, EventArgs e)
         {
-            bool agrego = false;
-            Categoria categoria = new Categoria()
+            string valorComboBox = this.LeerComboBox();
+
+            if (valorComboBox != null)
             {
-                Nombre = this.LeerComboBox()
-            };
-
-            string nombre = this.inputNombre.Text;
-            string tipo = this.inputTipo.Text;
-            string numero = this.inputNumero.Text;
-            string codigo = this.inputCodigo.Text;
-            DateTime vencimiento = this.datePickerVencimiento.Value;
-            string nota = this.inputNota.Text;
-
-            Tarjeta nueva = null;
-
-            try
-            {
-                nueva = new Tarjeta()
+                Categoria categoria = new Categoria()
                 {
-                    Nombre = nombre,
-                    Tipo = tipo,
-                    Numero = numero,
-                    Codigo = codigo,
-                    Vencimiento = vencimiento,
-                    Nota = nota
+                    Nombre = valorComboBox
                 };
+
+                string nombre = this.inputNombre.Text;
+                string tipo = this.inputTipo.Text;
+                string numero = this.inputNumero.Text;
+                string codigo = this.inputCodigo.Text;
+                DateTime vencimiento = this.datePickerVencimiento.Value;
+                string nota = this.inputNota.Text;
+
+                Tarjeta nueva = null;
 
                 try
                 {
-                    this._actual.AgregarTarjeta(nueva, categoria);
-                    agrego = true;
+                    nueva = new Tarjeta()
+                    {
+                        Nombre = nombre,
+                        Tipo = tipo,
+                        Numero = numero,
+                        Codigo = codigo,
+                        Vencimiento = vencimiento,
+                        Nota = nota
+                    };
+
+                    try
+                    {
+                        this._actual.AgregarTarjeta(nueva, categoria);
+                        this.VolverAListaTarjetas();
+                    }
+                    catch (Exception)
+                    {
+
+                        this.labelErrores.Text = "Ya existe la Tarjeta que se intento agregar.";
+
+                    }
                 }
                 catch (Exception)
                 {
-
-                    this.labelErrores.Text = "Ya existe la Tarjeta que se intento agregar.";
-
+                    this.labelErrores.Text = "Hay un error en los datos ingresados";
                 }
             }
-            catch (Exception) {
-                this.labelErrores.Text = "Hay un error en los datos ingresados";
+            else {
+                this.labelErrores.Text = "Debe elegir una categoria";
             }
 
-            if (agrego) {
-
-                this.VolverAListaTarjetas();
-
-            }
-
+            
         }
 
 

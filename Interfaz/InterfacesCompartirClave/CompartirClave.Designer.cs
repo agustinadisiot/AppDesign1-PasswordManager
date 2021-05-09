@@ -38,6 +38,7 @@ namespace Interfaz
             this.botonAceptar = new System.Windows.Forms.Button();
             this.labelSitioAMostrar = new System.Windows.Forms.Label();
             this.labelUsuarioAMostrar = new System.Windows.Forms.Label();
+            this.labelErrores = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelTitulo
@@ -144,10 +145,21 @@ namespace Interfaz
             this.labelUsuarioAMostrar.TabIndex = 29;
             this.labelUsuarioAMostrar.Text = "Usuario A Mostrar";
             // 
+            // labelErrores
+            // 
+            this.labelErrores.AutoSize = true;
+            this.labelErrores.ForeColor = System.Drawing.Color.Red;
+            this.labelErrores.Location = new System.Drawing.Point(485, 341);
+            this.labelErrores.Name = "labelErrores";
+            this.labelErrores.Size = new System.Drawing.Size(64, 13);
+            this.labelErrores.TabIndex = 30;
+            this.labelErrores.Text = "MostrarError";
+            // 
             // CompartirClave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.labelErrores);
             this.Controls.Add(this.labelUsuarioAMostrar);
             this.Controls.Add(this.labelSitioAMostrar);
             this.Controls.Add(this.botonAceptar);
@@ -160,6 +172,7 @@ namespace Interfaz
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CompartirClave";
             this.Size = new System.Drawing.Size(1343, 852);
+            this.Load += new System.EventHandler(this.CompartirClave_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,5 +189,6 @@ namespace Interfaz
         private System.Windows.Forms.Button botonAceptar;
         private System.Windows.Forms.Label labelSitioAMostrar;
         private System.Windows.Forms.Label labelUsuarioAMostrar;
+        private System.Windows.Forms.Label labelErrores;
     }
 }
