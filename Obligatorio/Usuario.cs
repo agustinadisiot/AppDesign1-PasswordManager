@@ -279,7 +279,7 @@ namespace Obligatorio
             Usuario usuarioACompartir = aCompartir.Usuario;
             Contra claveACompartir = aCompartir.Clave;
 
-            if (!this.YaExisteContra(claveACompartir)) throw new ObjetoInexistenteException();
+            if (this.CompartidasPorMi.Contains(aCompartir)) throw new ObjetoYaExistenteException();
 
             claveACompartir = this.GetContra(claveACompartir);
 
@@ -290,7 +290,6 @@ namespace Obligatorio
                 Usuario = usuarioACompartir,
                 Clave = claveACompartir
             };
-
             this.CompartidasPorMi.Add(guardar);
 
             ClaveCompartida enviar = new ClaveCompartida()
