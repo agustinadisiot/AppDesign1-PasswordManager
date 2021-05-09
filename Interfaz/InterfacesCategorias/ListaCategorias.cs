@@ -35,11 +35,6 @@ namespace Interfaz
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void ListaCategorias_Load(object sender, EventArgs e)
         {
             this.CargarTabla();
@@ -63,20 +58,24 @@ namespace Interfaz
 
         private void botonModificar_Click(object sender, EventArgs e)
         {
-            string nombreCat = "";
-            if (this.TablaCategorias.SelectedCells.Count > 0)
+            bool haySeleccionada = this.TablaCategorias.SelectedCells.Count > 0;
+            if (haySeleccionada)
             {
-                int selectedrowindex = TablaCategorias.SelectedCells[0].RowIndex;
-                DataGridViewRow selectedRow = TablaCategorias.Rows[selectedrowindex];
-                nombreCat = Convert.ToString(selectedRow.Cells["Catergorias"].Value);
+                string nombreCat = "";
+                if (this.TablaCategorias.SelectedCells.Count > 0)
+                {
+                    int selectedrowindex = TablaCategorias.SelectedCells[0].RowIndex;
+                    DataGridViewRow selectedRow = TablaCategorias.Rows[selectedrowindex];
+                    nombreCat = Convert.ToString(selectedRow.Cells["Catergorias"].Value);
+                }
+
+                Categoria aModificar = new Categoria
+                {
+                    Nombre = nombreCat
+                };
+
+                irAModificarCategoria(aModificar);
             }
-
-            Categoria aModificar = new Categoria
-            {
-                Nombre = nombreCat
-            };
-
-            irAModificarCategoria(aModificar);
         }
 
         private void botonAgregar_Click(object sender, EventArgs e)

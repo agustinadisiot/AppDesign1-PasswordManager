@@ -53,7 +53,6 @@ namespace Interfaz
             this.TablaCategorias.RowHeadersWidth = 22;
             this.TablaCategorias.Size = new System.Drawing.Size(363, 300);
             this.TablaCategorias.TabIndex = 0;
-            this.TablaCategorias.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Catergorias
             // 
