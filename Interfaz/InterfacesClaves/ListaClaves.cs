@@ -24,6 +24,11 @@ namespace Interfaz
             this.CargarTabla();
         }
 
+        private void ListaCategorias_Load(object sender, EventArgs e)
+        {
+            this.CargarTabla();
+        }
+
         private void CargarTabla()
         {
 
@@ -38,53 +43,13 @@ namespace Interfaz
                 this.tablaClaves.Rows.Add(nombreCategoria, sitio, usuario, ultimaModificacion);
             }
         }
-
-        private void ListaCategorias_Load(object sender, EventArgs e)
-        {
-            this.CargarTabla();
-        }
-
-
-        public delegate void AbrirVerClave_Handler(Usuario actual);
-        public event AbrirVerClave_Handler AbrirVerClave_Event;
-        public void irAVerClave(Usuario usuarioClaves)
-        {
-            if (this.AbrirVerClave_Event != null)
-                this.AbrirVerClave_Event(usuarioClaves);
-        }
-
-        public delegate void AbrirCompartirClave_Handler(Contra compartir);
-        public event AbrirCompartirClave_Handler AbrirCompartirClave_Event;
-        public void irACompartirClave(Contra compartir)
-        {
-            if (this.AbrirCompartirClave_Event != null)
-                this.AbrirCompartirClave_Event(compartir);
-        }
-
-        public delegate void AbrirCrearClave_Handler();
-        public event AbrirCrearClave_Handler AbrirCrearClave_Event;
-        public void irACrearClave()
-        {
-            if (this.AbrirCrearClave_Event != null)
-                this.AbrirCrearClave_Event();
-        }
-
-      
-        public delegate void AbrirModificarClave_Handler(Contra claveAModificar);
-        public event AbrirModificarClave_Handler AbrirModificarClave_Event;
-        public void irAModificarClave(Contra claveAModificar)
-        {
-            if (this.AbrirModificarClave_Event != null)
-                this.AbrirModificarClave_Event(claveAModificar);
-        }
-
+        
 
         private void botonVer_Click(object sender, EventArgs e)
         {
 
         }
-
-      
+        
         private void botonEliminar_Click(object sender, EventArgs e)
         {
             string sitioClave = "";
@@ -154,6 +119,41 @@ namespace Interfaz
                 irACompartirClave(aCompartir);
             }
 
+        }
+
+
+
+        public delegate void AbrirModificarClave_Handler(Contra claveAModificar);
+        public event AbrirModificarClave_Handler AbrirModificarClave_Event;
+        public void irAModificarClave(Contra claveAModificar)
+        {
+            if (this.AbrirModificarClave_Event != null)
+                this.AbrirModificarClave_Event(claveAModificar);
+        }
+
+        public delegate void AbrirCrearClave_Handler();
+        public event AbrirCrearClave_Handler AbrirCrearClave_Event;
+        public void irACrearClave()
+        {
+            if (this.AbrirCrearClave_Event != null)
+                this.AbrirCrearClave_Event();
+        }
+
+
+        public delegate void AbrirVerClave_Handler(Usuario actual);
+        public event AbrirVerClave_Handler AbrirVerClave_Event;
+        public void irAVerClave(Usuario usuarioClaves)
+        {
+            if (this.AbrirVerClave_Event != null)
+                this.AbrirVerClave_Event(usuarioClaves);
+        }
+
+        public delegate void AbrirCompartirClave_Handler(Contra compartir);
+        public event AbrirCompartirClave_Handler AbrirCompartirClave_Event;
+        public void irACompartirClave(Contra compartir)
+        {
+            if (this.AbrirCompartirClave_Event != null)
+                this.AbrirCompartirClave_Event(compartir);
         }
     }
 }

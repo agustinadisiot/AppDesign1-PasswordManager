@@ -29,7 +29,7 @@ namespace Interfaz
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboCategorias = new System.Windows.Forms.ComboBox();
+            this.comboBoxCategorias = new System.Windows.Forms.ComboBox();
             this.labelCategoria = new System.Windows.Forms.Label();
             this.labelUsuario = new System.Windows.Forms.Label();
             this.inputUsuario = new System.Windows.Forms.TextBox();
@@ -38,8 +38,8 @@ namespace Interfaz
             this.labelTitulo = new System.Windows.Forms.Label();
             this.labelLargo = new System.Windows.Forms.Label();
             this.labelContra = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.largoSpinner = new System.Windows.Forms.NumericUpDown();
+            this.inputContra = new System.Windows.Forms.TextBox();
+            this.spinnerLargo = new System.Windows.Forms.NumericUpDown();
             this.labelNota = new System.Windows.Forms.Label();
             this.inputNota = new System.Windows.Forms.TextBox();
             this.checkBoxMayusculas = new System.Windows.Forms.CheckBox();
@@ -50,20 +50,21 @@ namespace Interfaz
             this.botonCancelar = new System.Windows.Forms.Button();
             this.botonAgregar = new System.Windows.Forms.Button();
             this.groupBoxClave = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.largoSpinner)).BeginInit();
+            this.labelErrores = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.spinnerLargo)).BeginInit();
             this.groupBoxClave.SuspendLayout();
             this.SuspendLayout();
             // 
-            // comboCategorias
+            // comboBoxCategorias
             // 
-            this.comboCategorias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboCategorias.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.comboCategorias.FormattingEnabled = true;
-            this.comboCategorias.Location = new System.Drawing.Point(183, 59);
-            this.comboCategorias.Margin = new System.Windows.Forms.Padding(2);
-            this.comboCategorias.Name = "comboCategorias";
-            this.comboCategorias.Size = new System.Drawing.Size(200, 24);
-            this.comboCategorias.TabIndex = 35;
+            this.comboBoxCategorias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxCategorias.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.comboBoxCategorias.FormattingEnabled = true;
+            this.comboBoxCategorias.Location = new System.Drawing.Point(183, 59);
+            this.comboBoxCategorias.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxCategorias.Name = "comboBoxCategorias";
+            this.comboBoxCategorias.Size = new System.Drawing.Size(200, 24);
+            this.comboBoxCategorias.TabIndex = 35;
             // 
             // labelCategoria
             // 
@@ -95,7 +96,6 @@ namespace Interfaz
             this.inputUsuario.MaxLength = 25;
             this.inputUsuario.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputUsuario.Name = "inputUsuario";
-            this.inputUsuario.ReadOnly = true;
             this.inputUsuario.Size = new System.Drawing.Size(201, 23);
             this.inputUsuario.TabIndex = 31;
             // 
@@ -118,7 +118,6 @@ namespace Interfaz
             this.inputSitio.MaxLength = 25;
             this.inputSitio.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputSitio.Name = "inputSitio";
-            this.inputSitio.ReadOnly = true;
             this.inputSitio.Size = new System.Drawing.Size(200, 23);
             this.inputSitio.TabIndex = 29;
             // 
@@ -154,37 +153,37 @@ namespace Interfaz
             this.labelContra.TabIndex = 38;
             this.labelContra.Text = "Contraseña";
             // 
-            // textBox2
+            // inputContra
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox2.Location = new System.Drawing.Point(4, 24);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox2.MaxLength = 25;
-            this.textBox2.MinimumSize = new System.Drawing.Size(4, 5);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(201, 23);
-            this.textBox2.TabIndex = 37;
+            this.inputContra.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.inputContra.Location = new System.Drawing.Point(4, 24);
+            this.inputContra.Margin = new System.Windows.Forms.Padding(2);
+            this.inputContra.MaxLength = 25;
+            this.inputContra.MinimumSize = new System.Drawing.Size(4, 5);
+            this.inputContra.Name = "inputContra";
+            this.inputContra.ReadOnly = true;
+            this.inputContra.Size = new System.Drawing.Size(201, 23);
+            this.inputContra.TabIndex = 37;
             // 
-            // largoSpinner
+            // spinnerLargo
             // 
-            this.largoSpinner.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.largoSpinner.Location = new System.Drawing.Point(137, 67);
-            this.largoSpinner.Margin = new System.Windows.Forms.Padding(2);
-            this.largoSpinner.Maximum = new decimal(new int[] {
+            this.spinnerLargo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.spinnerLargo.Location = new System.Drawing.Point(137, 67);
+            this.spinnerLargo.Margin = new System.Windows.Forms.Padding(2);
+            this.spinnerLargo.Maximum = new decimal(new int[] {
             25,
             0,
             0,
             0});
-            this.largoSpinner.Minimum = new decimal(new int[] {
+            this.spinnerLargo.Minimum = new decimal(new int[] {
             5,
             0,
             0,
             0});
-            this.largoSpinner.Name = "largoSpinner";
-            this.largoSpinner.Size = new System.Drawing.Size(68, 23);
-            this.largoSpinner.TabIndex = 41;
-            this.largoSpinner.Value = new decimal(new int[] {
+            this.spinnerLargo.Name = "spinnerLargo";
+            this.spinnerLargo.Size = new System.Drawing.Size(68, 23);
+            this.spinnerLargo.TabIndex = 41;
+            this.spinnerLargo.Value = new decimal(new int[] {
             25,
             0,
             0,
@@ -273,7 +272,7 @@ namespace Interfaz
             // 
             // botonCancelar
             // 
-            this.botonCancelar.Location = new System.Drawing.Point(110, 615);
+            this.botonCancelar.Location = new System.Drawing.Point(93, 615);
             this.botonCancelar.Name = "botonCancelar";
             this.botonCancelar.Size = new System.Drawing.Size(75, 23);
             this.botonCancelar.TabIndex = 51;
@@ -295,8 +294,8 @@ namespace Interfaz
             // 
             this.groupBoxClave.BackColor = System.Drawing.SystemColors.ControlDark;
             this.groupBoxClave.Controls.Add(this.labelLargo);
-            this.groupBoxClave.Controls.Add(this.textBox2);
-            this.groupBoxClave.Controls.Add(this.largoSpinner);
+            this.groupBoxClave.Controls.Add(this.inputContra);
+            this.groupBoxClave.Controls.Add(this.spinnerLargo);
             this.groupBoxClave.Controls.Add(this.botonGenerar);
             this.groupBoxClave.Controls.Add(this.checkBoxMayusculas);
             this.groupBoxClave.Controls.Add(this.checkBoxSimbolos);
@@ -306,22 +305,34 @@ namespace Interfaz
             this.groupBoxClave.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxClave.Name = "groupBoxClave";
             this.groupBoxClave.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxClave.Size = new System.Drawing.Size(230, 296);
+            this.groupBoxClave.Size = new System.Drawing.Size(230, 289);
             this.groupBoxClave.TabIndex = 53;
             this.groupBoxClave.TabStop = false;
             this.groupBoxClave.Text = "Contraseña";
+            // 
+            // labelErrores
+            // 
+            this.labelErrores.AutoSize = true;
+            this.labelErrores.ForeColor = System.Drawing.Color.Red;
+            this.labelErrores.Location = new System.Drawing.Point(479, 620);
+            this.labelErrores.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelErrores.Name = "labelErrores";
+            this.labelErrores.Size = new System.Drawing.Size(62, 13);
+            this.labelErrores.TabIndex = 54;
+            this.labelErrores.Text = "labelErrores";
             // 
             // CrearClave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.labelErrores);
             this.Controls.Add(this.groupBoxClave);
             this.Controls.Add(this.botonAgregar);
             this.Controls.Add(this.botonCancelar);
             this.Controls.Add(this.inputNota);
             this.Controls.Add(this.labelNota);
             this.Controls.Add(this.labelContra);
-            this.Controls.Add(this.comboCategorias);
+            this.Controls.Add(this.comboBoxCategorias);
             this.Controls.Add(this.labelCategoria);
             this.Controls.Add(this.labelUsuario);
             this.Controls.Add(this.inputUsuario);
@@ -331,7 +342,8 @@ namespace Interfaz
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CrearClave";
             this.Size = new System.Drawing.Size(1014, 681);
-            ((System.ComponentModel.ISupportInitialize)(this.largoSpinner)).EndInit();
+            this.Load += new System.EventHandler(this.CrearClave_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.spinnerLargo)).EndInit();
             this.groupBoxClave.ResumeLayout(false);
             this.groupBoxClave.PerformLayout();
             this.ResumeLayout(false);
@@ -340,7 +352,7 @@ namespace Interfaz
         }
 
         #endregion
-        private System.Windows.Forms.ComboBox comboCategorias;
+        private System.Windows.Forms.ComboBox comboBoxCategorias;
         private System.Windows.Forms.Label labelCategoria;
         private System.Windows.Forms.Label labelUsuario;
         private System.Windows.Forms.TextBox inputUsuario;
@@ -349,8 +361,8 @@ namespace Interfaz
         private System.Windows.Forms.Label labelTitulo;
         private System.Windows.Forms.Label labelLargo;
         private System.Windows.Forms.Label labelContra;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.NumericUpDown largoSpinner;
+        private System.Windows.Forms.TextBox inputContra;
+        private System.Windows.Forms.NumericUpDown spinnerLargo;
         private System.Windows.Forms.Label labelNota;
         private System.Windows.Forms.TextBox inputNota;
         private System.Windows.Forms.CheckBox checkBoxMayusculas;
@@ -361,5 +373,6 @@ namespace Interfaz
         private System.Windows.Forms.Button botonCancelar;
         private System.Windows.Forms.Button botonAgregar;
         private System.Windows.Forms.GroupBox groupBoxClave;
+        private System.Windows.Forms.Label labelErrores;
     }
 }

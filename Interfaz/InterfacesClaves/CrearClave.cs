@@ -21,29 +21,36 @@ namespace Interfaz
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;
             this._administrador = administradorAgregar;
+        }
+
+        private void CrearClave_Load(object sender, EventArgs e)
+        {
             this.CargarComboBox();
+            this.labelErrores.Text = "";
         }
 
         private void CargarComboBox()
         {
-            this.comboCategorias.Items.Clear();
+            this.comboBoxCategorias.Items.Clear();
             List<Categoria> lista = this._usuarioActual.GetListaCategorias();
 
             foreach (Categoria actual in lista)
             {
                 string nombre = actual.Nombre;
-                this.comboCategorias.Items.Add(nombre);
+                this.comboBoxCategorias.Items.Add(nombre);
                 
             }
 
+            this.comboBoxCategorias.SelectedIndex = 0;
+
+
         }
 
-        public delegate void AbrirListaClaves_Handler();
-        public event AbrirListaClaves_Handler AbrirListaClaves_Event;
-        public void VolverAListaClaves()
+        private string LeerComboBox()
         {
-            if (this.AbrirListaClaves_Event != null)
-                this.AbrirListaClaves_Event();
+            string nombre = (string)this.comboBoxCategorias.SelectedItem;
+
+            return nombre;
         }
 
         private void botonCancelar_Click(object sender, EventArgs e)
@@ -53,12 +60,72 @@ namespace Interfaz
 
         private void botonAgregar_Click(object sender, EventArgs e)
         {
+            Categoria categoria = new Categoria()
+            {
+                Nombre = this.LeerComboBox()
+            };
 
+
+            try
+            {
+                Contra nueva = new Contra()
+                {
+                    UsuarioContra = this.inputUsuario.Text,
+                    Clave = this.inputContra.Text,
+                    Nota = this.inputNota.Text,
+                    Sitio = this.inputSitio.Text,
+                    FechaModificacion = System.DateTime.Now.Date
+                };
+
+                try
+                {
+                    this._usuarioActual.AgregarContra(nueva, categoria);
+                    this.VolverAListaClaves();
+                }
+                catch (ObjetoYaExistenteException)
+                {
+
+                    this.labelErrores.Text = "Ya existe la Clave que se intento agregar.";
+
+                }
+            }
+            catch (Exception)
+            {
+                this.labelErrores.Text = "Hay un error en los datos ingresados";
+            }
         }
 
         private void botonGenerar_Click(object sender, EventArgs e)
         {
+            Contra generador = new Contra();
+            ClaveAGenerar parametros = new ClaveAGenerar()
+            {
+                Largo = (int)this.spinnerLargo.Value,
+                IncluirMayusculas = this.checkBoxMayusculas.Checked,
+                IncluirMinusculas = this.checkBoxMinusculas.Checked,
+                IncluirNumeros = this.checkBoxNumeros.Checked,
+                IncluirSimbolos = this.checkBoxSimbolos.Checked
+            };
 
+            this.inputContra.Text = "";
+
+            try
+            {
+                generador.GenerarClave(parametros);
+            }
+            catch (ClaveGeneradaVaciaException) {
+                this.labelErrores.Text = "Por lo menos un tipo de caracter debe ser elegido.";
+            };
+            this.inputContra.Text = generador.Clave;
+        }
+
+
+        public delegate void AbrirListaClaves_Handler();
+        public event AbrirListaClaves_Handler AbrirListaClaves_Event;
+        public void VolverAListaClaves()
+        {
+            if (this.AbrirListaClaves_Event != null)
+                this.AbrirListaClaves_Event();
         }
     }
 }
