@@ -376,5 +376,11 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(verTarjeta);
         }
 
+        private void botonReporteFortaleza_Click(object sender, EventArgs e)
+        {
+            GraficaSeguridad grafica = new GraficaSeguridad(this._usuarioActual);
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(grafica);
+        }
     }
 }

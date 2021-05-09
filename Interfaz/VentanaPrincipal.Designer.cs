@@ -32,7 +32,7 @@ namespace Interfaz
             this.panelDrawer = new System.Windows.Forms.Panel();
             this.botonCerrarSesion = new System.Windows.Forms.Button();
             this.botonDataBreaches = new System.Windows.Forms.Button();
-            this.botonReeeporteFortaleza = new System.Windows.Forms.Button();
+            this.botonReporteFortaleza = new System.Windows.Forms.Button();
             this.botonListaTarjetas = new System.Windows.Forms.Button();
             this.botonClavesQueMeComparten = new System.Windows.Forms.Button();
             this.botonClavesQueComparto = new System.Windows.Forms.Button();
@@ -46,7 +46,7 @@ namespace Interfaz
             // 
             this.panelDrawer.Controls.Add(this.botonCerrarSesion);
             this.panelDrawer.Controls.Add(this.botonDataBreaches);
-            this.panelDrawer.Controls.Add(this.botonReeeporteFortaleza);
+            this.panelDrawer.Controls.Add(this.botonReporteFortaleza);
             this.panelDrawer.Controls.Add(this.botonListaTarjetas);
             this.panelDrawer.Controls.Add(this.botonClavesQueMeComparten);
             this.panelDrawer.Controls.Add(this.botonClavesQueComparto);
@@ -80,15 +80,16 @@ namespace Interfaz
             this.botonDataBreaches.Text = "Data Breaches";
             this.botonDataBreaches.UseVisualStyleBackColor = true;
             // 
-            // botonReeeporteFortaleza
+            // botonReporteFortaleza
             // 
-            this.botonReeeporteFortaleza.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.botonReeeporteFortaleza.Location = new System.Drawing.Point(12, 369);
-            this.botonReeeporteFortaleza.Name = "botonReeeporteFortaleza";
-            this.botonReeeporteFortaleza.Size = new System.Drawing.Size(172, 63);
-            this.botonReeeporteFortaleza.TabIndex = 5;
-            this.botonReeeporteFortaleza.Text = "Reporte Fortaleza";
-            this.botonReeeporteFortaleza.UseVisualStyleBackColor = true;
+            this.botonReporteFortaleza.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.botonReporteFortaleza.Location = new System.Drawing.Point(12, 369);
+            this.botonReporteFortaleza.Name = "botonReporteFortaleza";
+            this.botonReporteFortaleza.Size = new System.Drawing.Size(172, 63);
+            this.botonReporteFortaleza.TabIndex = 5;
+            this.botonReporteFortaleza.Text = "Reporte Fortaleza";
+            this.botonReporteFortaleza.UseVisualStyleBackColor = true;
+            this.botonReporteFortaleza.Click += new System.EventHandler(this.botonReporteFortaleza_Click);
             // 
             // botonListaTarjetas
             // 
@@ -179,7 +180,7 @@ namespace Interfaz
         private System.Windows.Forms.Panel panelPrincipal;
         private System.Windows.Forms.Button botonListaCategorias;
         private System.Windows.Forms.Button botonDataBreaches;
-        private System.Windows.Forms.Button botonReeeporteFortaleza;
+        private System.Windows.Forms.Button botonReporteFortaleza;
         private System.Windows.Forms.Button botonListaTarjetas;
         private System.Windows.Forms.Button botonClavesQueMeComparten;
         private System.Windows.Forms.Button botonClavesQueComparto;
