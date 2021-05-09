@@ -40,6 +40,7 @@ namespace Interfaz
             this.botonModificar = new System.Windows.Forms.Button();
             this.buttonAgregar = new System.Windows.Forms.Button();
             this.labelTitulo = new System.Windows.Forms.Label();
+            this.buttonVer = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTarjetas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -163,10 +164,21 @@ namespace Interfaz
             this.labelTitulo.TabIndex = 4;
             this.labelTitulo.Text = "Lista Tarjetas";
             // 
+            // buttonVer
+            // 
+            this.buttonVer.Location = new System.Drawing.Point(646, 636);
+            this.buttonVer.Name = "buttonVer";
+            this.buttonVer.Size = new System.Drawing.Size(86, 23);
+            this.buttonVer.TabIndex = 5;
+            this.buttonVer.Text = "Ver";
+            this.buttonVer.UseVisualStyleBackColor = true;
+            this.buttonVer.Click += new System.EventHandler(this.buttonVer_Click);
+            // 
             // ListaTarjetas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonVer);
             this.Controls.Add(this.labelTitulo);
             this.Controls.Add(this.buttonAgregar);
             this.Controls.Add(this.botonModificar);
@@ -194,5 +206,6 @@ namespace Interfaz
         private System.Windows.Forms.DataGridViewTextBoxColumn TarjetaMostrada;
         private System.Windows.Forms.DataGridViewTextBoxColumn TarjetaCompleta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Vencimiento;
+        private System.Windows.Forms.Button buttonVer;
     }
 }

@@ -59,6 +59,7 @@ namespace Interfaz
             this.labelErrores.Size = new System.Drawing.Size(62, 13);
             this.labelErrores.TabIndex = 47;
             this.labelErrores.Text = "labelErrores";
+            this.labelErrores.Click += new System.EventHandler(this.labelErrores_Click);
             // 
             // inputNota
             // 
@@ -71,6 +72,7 @@ namespace Interfaz
             this.inputNota.Name = "inputNota";
             this.inputNota.Size = new System.Drawing.Size(432, 154);
             this.inputNota.TabIndex = 46;
+            this.inputNota.TextChanged += new System.EventHandler(this.inputNota_TextChanged);
             // 
             // labelNotas
             // 
@@ -82,6 +84,7 @@ namespace Interfaz
             this.labelNotas.Size = new System.Drawing.Size(131, 24);
             this.labelNotas.TabIndex = 45;
             this.labelNotas.Text = "Ingresar Notas";
+            this.labelNotas.Click += new System.EventHandler(this.labelNotas_Click);
             // 
             // labelVencimiento
             // 
@@ -93,6 +96,7 @@ namespace Interfaz
             this.labelVencimiento.Size = new System.Drawing.Size(189, 24);
             this.labelVencimiento.TabIndex = 44;
             this.labelVencimiento.Text = "Ingresar Vencimiento";
+            this.labelVencimiento.Click += new System.EventHandler(this.labelVencimiento_Click);
             // 
             // datePickerVencimiento
             // 
@@ -101,6 +105,7 @@ namespace Interfaz
             this.datePickerVencimiento.Name = "datePickerVencimiento";
             this.datePickerVencimiento.Size = new System.Drawing.Size(248, 20);
             this.datePickerVencimiento.TabIndex = 43;
+            this.datePickerVencimiento.ValueChanged += new System.EventHandler(this.datePickerVencimiento_ValueChanged);
             // 
             // comboBoxCategorias
             // 
@@ -111,6 +116,7 @@ namespace Interfaz
             this.comboBoxCategorias.Name = "comboBoxCategorias";
             this.comboBoxCategorias.Size = new System.Drawing.Size(248, 28);
             this.comboBoxCategorias.TabIndex = 42;
+            this.comboBoxCategorias.SelectedIndexChanged += new System.EventHandler(this.comboBoxCategorias_SelectedIndexChanged);
             // 
             // labelCategoria
             // 
@@ -122,6 +128,7 @@ namespace Interfaz
             this.labelCategoria.Size = new System.Drawing.Size(144, 24);
             this.labelCategoria.TabIndex = 41;
             this.labelCategoria.Text = "Elegir Categoria";
+            this.labelCategoria.Click += new System.EventHandler(this.labelCategoria_Click);
             // 
             // ingresarCodigo
             // 
@@ -133,6 +140,7 @@ namespace Interfaz
             this.ingresarCodigo.Size = new System.Drawing.Size(144, 24);
             this.ingresarCodigo.TabIndex = 40;
             this.ingresarCodigo.Text = "Ingresar Codigo";
+            this.ingresarCodigo.Click += new System.EventHandler(this.ingresarCodigo_Click);
             // 
             // inputCodigo
             // 
@@ -144,6 +152,7 @@ namespace Interfaz
             this.inputCodigo.Name = "inputCodigo";
             this.inputCodigo.Size = new System.Drawing.Size(248, 29);
             this.inputCodigo.TabIndex = 39;
+            this.inputCodigo.TextChanged += new System.EventHandler(this.inputCodigo_TextChanged);
             // 
             // labelNumero
             // 
@@ -155,6 +164,7 @@ namespace Interfaz
             this.labelNumero.Size = new System.Drawing.Size(152, 24);
             this.labelNumero.TabIndex = 38;
             this.labelNumero.Text = "Ingresar Numero";
+            this.labelNumero.Click += new System.EventHandler(this.labelNumero_Click);
             // 
             // inputNumero
             // 
@@ -166,6 +176,7 @@ namespace Interfaz
             this.inputNumero.Name = "inputNumero";
             this.inputNumero.Size = new System.Drawing.Size(248, 29);
             this.inputNumero.TabIndex = 37;
+            this.inputNumero.TextChanged += new System.EventHandler(this.inputNumero_TextChanged);
             // 
             // botonCancelar
             // 
@@ -189,6 +200,7 @@ namespace Interfaz
             this.labelTipo.Size = new System.Drawing.Size(121, 24);
             this.labelTipo.TabIndex = 35;
             this.labelTipo.Text = "Ingresar Tipo";
+            this.labelTipo.Click += new System.EventHandler(this.labelTipo_Click);
             // 
             // inputTipo
             // 
@@ -200,6 +212,7 @@ namespace Interfaz
             this.inputTipo.Name = "inputTipo";
             this.inputTipo.Size = new System.Drawing.Size(248, 29);
             this.inputTipo.TabIndex = 34;
+            this.inputTipo.TextChanged += new System.EventHandler(this.inputTipo_TextChanged);
             // 
             // labelNombre
             // 
@@ -211,6 +224,7 @@ namespace Interfaz
             this.labelNombre.Size = new System.Drawing.Size(152, 24);
             this.labelNombre.TabIndex = 33;
             this.labelNombre.Text = "Ingresar Nombre";
+            this.labelNombre.Click += new System.EventHandler(this.labelNombre_Click);
             // 
             // inputNombre
             // 
@@ -222,6 +236,7 @@ namespace Interfaz
             this.inputNombre.Name = "inputNombre";
             this.inputNombre.Size = new System.Drawing.Size(248, 29);
             this.inputNombre.TabIndex = 32;
+            this.inputNombre.TextChanged += new System.EventHandler(this.inputNombre_TextChanged);
             // 
             // botonModificar
             // 
@@ -244,6 +259,7 @@ namespace Interfaz
             this.Titulo.Size = new System.Drawing.Size(233, 33);
             this.Titulo.TabIndex = 30;
             this.Titulo.Text = "Modificar Tarjeta";
+            this.Titulo.Click += new System.EventHandler(this.Titulo_Click);
             // 
             // ModificarTarjeta
             // 

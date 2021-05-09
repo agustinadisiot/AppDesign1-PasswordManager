@@ -141,5 +141,32 @@ namespace Interfaz
                 this.CargarTabla();
             }
         }
+
+
+        public delegate void AbrirVerTarjeta_Handler(Tarjeta modificar);
+        public event AbrirVerTarjeta_Handler AbrirVerTarjeta_Event;
+        private void AbrirVerTarjeta(Tarjeta ver)
+        {
+            if (this.AbrirVerTarjeta_Event != null)
+                this.AbrirVerTarjeta_Event(ver);
+        }
+
+        private void buttonVer_Click(object sender, EventArgs e)
+        {
+            bool haySeleccionada = this.tablaTarjetas.SelectedCells.Count > 0;
+            if (haySeleccionada)
+            {
+                int posSeleccionada = this.tablaTarjetas.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = this.tablaTarjetas.Rows[posSeleccionada];
+                string numero = Convert.ToString(selectedRow.Cells["TarjetaCompleta"].Value);
+
+
+                Tarjeta buscadora = new Tarjeta()
+                {
+                    Numero = numero
+                };
+                this.AbrirVerTarjeta(buscadora);
+            }
+        }
     }
 }

@@ -90,7 +90,7 @@ namespace Interfaz
 
             if (agrego) {
 
-                this.volverAListaTarjetas(e);
+                this.VolverAListaTarjetas();
 
             }
 
@@ -106,14 +106,16 @@ namespace Interfaz
 
         private void botonCancelar_Click(object sender, EventArgs e)
         {
-            this.volverAListaTarjetas(e);
+            this.VolverAListaTarjetas();
         }
 
 
-        public event EventHandler AbrirListaTarjetas_Event;
-        private void volverAListaTarjetas(EventArgs e) {
+        public delegate void AbrirListaTarjetas_Handler();
+        public event AbrirListaTarjetas_Handler AbrirListaTarjetas_Event;
+        private void VolverAListaTarjetas()
+        {
             if (this.AbrirListaTarjetas_Event != null)
-                this.AbrirListaTarjetas_Event(this,e);
+                this.AbrirListaTarjetas_Event();
         }
 
     }

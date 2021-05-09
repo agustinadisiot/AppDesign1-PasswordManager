@@ -60,7 +60,7 @@ namespace Interfaz
 
         private void botonCancelar_Click(object sender, EventArgs e)
         {
-            this.volverAListaTarjetas(e);
+            this.VolverAListaTarjetas();
         }
 
         private void botonModificar_Click(object sender, EventArgs e)
@@ -91,7 +91,7 @@ namespace Interfaz
                         CategoriaNueva = categoria
                     };
                     this._actual.ModificarTarjeta(aModificar);
-                    this.volverAListaTarjetas(e);
+                    this.VolverAListaTarjetas();
                 }
                 catch (ObjetoYaExistenteException)
                 {
@@ -120,11 +120,92 @@ namespace Interfaz
             return nombre;
         }
 
-        public event EventHandler AbrirListaTarjetas_Event;
-        private void volverAListaTarjetas(EventArgs e)
+        public delegate void AbrirListaTarjetas_Handler();
+        public event AbrirListaTarjetas_Handler AbrirListaTarjetas_Event;
+        private void VolverAListaTarjetas()
         {
             if (this.AbrirListaTarjetas_Event != null)
-                this.AbrirListaTarjetas_Event(this, e);
+                this.AbrirListaTarjetas_Event();
+        }
+
+        private void inputNota_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelNotas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelVencimiento_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void datePickerVencimiento_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxCategorias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelCategoria_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ingresarCodigo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void inputCodigo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelNumero_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void inputNumero_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelErrores_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelTipo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void inputTipo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelNombre_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void inputNombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Titulo_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

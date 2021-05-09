@@ -118,6 +118,12 @@
     <Compile Include="InterfacesCompartirClave\ListaClavesCompartidasConmigo.Designer.cs">
       <DependentUpon>ListaClavesCompartidasConmigo.cs</DependentUpon>
     </Compile>
+    <Compile Include="InterfacesTarjetas\VerTarjeta.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesTarjetas\VerTarjeta.Designer.cs">
+      <DependentUpon>VerTarjeta.cs</DependentUpon>
+    </Compile>
     <Compile Include="VentanaConfirmaciones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InterfacesCompartirClave\ListaClavesCompartidasConmigo.resx">
       <DependentUpon>ListaClavesCompartidasConmigo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesTarjetas\VerTarjeta.resx">
+      <DependentUpon>VerTarjeta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VentanaConfirmaciones.resx">
       <DependentUpon>VentanaConfirmaciones.cs</DependentUpon>

@@ -1,4 +1,5 @@
 ﻿using Interfaz.InterfacesCompartirClave;
+using Interfaz.InterfacesTarjetas;
 using Obligatorio;
 using System;
 using System.Collections.Generic;
@@ -191,7 +192,7 @@ namespace Interfaz
         {
             this.panelPrincipal.Controls.Clear();
             CrearTarjeta crearTarjetas = new CrearTarjeta(this._usuarioActual);
-            crearTarjetas.AbrirListaTarjetas_Event += new EventHandler(this.AbrirListaTarjetas_Handler);
+            crearTarjetas.AbrirListaTarjetas_Event += this.AbrirListaTarjetas_Handler;
             this.panelPrincipal.Controls.Add(crearTarjetas);
         }
 
@@ -199,18 +200,30 @@ namespace Interfaz
         {
             Tarjeta modificar = this._usuarioActual.GetTarjeta(buscadora);
             ModificarTarjeta modificarTarjeta = new ModificarTarjeta(this._usuarioActual, modificar);
-            modificarTarjeta.AbrirListaTarjetas_Event += new EventHandler(this.AbrirListaTarjetas_Handler);
+            modificarTarjeta.AbrirListaTarjetas_Event += this.AbrirListaTarjetas_Handler;
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(modificarTarjeta);
         }
 
-        protected void AbrirListaTarjetas_Handler(object sender, EventArgs e) {
+        protected void AbrirListaTarjetas_Handler() {
             this.panelPrincipal.Controls.Clear();
 
             ListaTarjetas listaTarjetas = new ListaTarjetas(this._usuarioActual, this._administrador);
             listaTarjetas.AbrirCrearTarjeta_Event += new EventHandler(this.AbrirCrearTarjeta_Handler);
             listaTarjetas.AbrirModificarTarjeta_Event += this.AbrirModificarTarjeta_Handler;
+            listaTarjetas.AbrirVerTarjeta_Event += this.AbrirVerTarjeta_Handler;
             this.panelPrincipal.Controls.Add(listaTarjetas);
+        }
+
+        private void AbrirVerTarjeta_Handler(Tarjeta buscadora)
+        {
+            Tarjeta ver = this._usuarioActual.GetTarjeta(buscadora);
+            VerTarjeta verTarjeta = new VerTarjeta(ver, this._usuarioActual);
+            verTarjeta.AbrirListaTarjetas_Event += this.AbrirListaTarjetas_Handler;
+
+
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(verTarjeta);
         }
 
         private void botonListaCategorias_Click(object sender, EventArgs e)
@@ -239,6 +252,7 @@ namespace Interfaz
             ListaTarjetas listaTarjetas = new ListaTarjetas(this._usuarioActual, this._administrador);
             listaTarjetas.AbrirCrearTarjeta_Event += new EventHandler(this.AbrirCrearTarjeta_Handler);
             listaTarjetas.AbrirModificarTarjeta_Event += this.AbrirModificarTarjeta_Handler;
+            listaTarjetas.AbrirVerTarjeta_Event += this.AbrirVerTarjeta_Handler;
 
             this.panelPrincipal.Controls.Clear();
 
