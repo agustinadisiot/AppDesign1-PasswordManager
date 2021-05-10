@@ -30,19 +30,19 @@ namespace Interfaz
             Usuario usuarioPrueba = new Usuario();
             usuarioPrueba.Nombre = "Roberto";
             usuarioPrueba.ContraMaestra = "12345ABCD";
-            
+
             Usuario usuarioPrueba2 = new Usuario();
             usuarioPrueba2.Nombre = "Santiago";
             usuarioPrueba2.ContraMaestra = "12345SD";
-            
+
 
             this._administrador.AgregarUsuario(usuarioPrueba);
             this._administrador.AgregarUsuario(usuarioPrueba2);
 
 
-            Categoria trabajo = new Categoria() 
+            Categoria trabajo = new Categoria()
             {
-                   Nombre = "Trabajo"
+                Nombre = "Trabajo"
             };
 
             Categoria personal = new Categoria()
@@ -90,7 +90,7 @@ namespace Interfaz
             };
 
             clavePrueba1.FechaModificacion = new DateTime(2000, 1, 1);
-            clavePrueba2.FechaModificacion = new DateTime(2000,1,1);
+            clavePrueba2.FechaModificacion = new DateTime(2000, 1, 1);
 
             usuarioPrueba.AgregarContra(clavePrueba1, trabajo);
             usuarioPrueba.AgregarContra(clavePrueba2, personal);
@@ -99,8 +99,8 @@ namespace Interfaz
             {
                 Usuario = usuarioPrueba2,
                 Clave = clavePrueba1
-            }; 
-            
+            };
+
             usuarioPrueba.CompartirClave(claveACompartir1);
 
             InitializeComponent();
@@ -119,7 +119,7 @@ namespace Interfaz
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(iniciarSesion);
         }
-        
+
         private void botonListaCategorias_Click(object sender, EventArgs e)
         {
             this.AbrirListaCategorias_Handler();
@@ -327,7 +327,9 @@ namespace Interfaz
                 case "ListaClaves":
                     AbrirListaClaves_Handler();
                     break;
-
+                case "ReporteDeFortaleza":
+                    AbrirReporteFortaleza_Handler();
+                    break;
                 default:
                     AbrirListaCategorias_Handler();
                     break;
@@ -394,6 +396,7 @@ namespace Interfaz
         {
             ReporteDeFortaleza reporteFortaleza = new ReporteDeFortaleza(this._usuarioActual);
             reporteFortaleza.AbrirGrafica_Event += AbrirGrafica_Handler;
+            reporteFortaleza.AbrirVerClave_Event += AbrirVerClave_Handler;
 
             this.panelPrincipal.Controls.Clear();
 
