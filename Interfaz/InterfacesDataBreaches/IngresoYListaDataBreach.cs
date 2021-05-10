@@ -34,16 +34,27 @@ namespace Interfaz.InterfacesClaves
 
         private void IngresoYListaDataBreach_Load(object sender, EventArgs e)
         {
-            this.AnalizarDataBreach();
-            this.CargarTablaClaves();
-            this.CargarTablaTarjetas();
+            if (this._dataBreach.Count>0) {
+                this.CargarInputDataBreach();
+                this.AnalizarDataBreach();
+                this.CargarTablaClaves();
+                this.CargarTablaTarjetas();
+            }
         }
-
 
         private void AnalizarDataBreach()
         {
             this._claves = this._usuarioActual.GetContrasDataBreach(this._dataBreach);
             this._tarjetas = this._usuarioActual.GetTarjetasDataBreach(this._dataBreach);
+        }
+
+        private void CargarInputDataBreach() {
+            string mostrar = "";
+
+            foreach (string linea in this._dataBreach) {
+                mostrar += linea + Environment.NewLine;
+            }
+            this.inputDatos.Text = mostrar;
         }
 
         private void CargarTablaClaves()
@@ -136,12 +147,12 @@ namespace Interfaz.InterfacesClaves
             }
         }
 
-        public delegate void AbrirModificarClave_Handler(Contra claveAModificar);
+        public delegate void AbrirModificarClave_Handler(Contra claveAModificar, List<string> dataBreach);
         public event AbrirModificarClave_Handler AbrirModificarClave_Event;
         public void irAModificarClave(Contra claveAModificar)
         {
             if (this.AbrirModificarClave_Event != null)
-                this.AbrirModificarClave_Event(claveAModificar);
+                this.AbrirModificarClave_Event(claveAModificar, this._dataBreach);
         }
 
         

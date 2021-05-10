@@ -93,7 +93,7 @@ namespace Interfaz.InterfacesClaves
                         CategoriaNueva = categoria
                     };
                     this._actual.ModificarContra(aModificar);
-                    this.AbrirListaClaves();
+                    this.CerrarModificarClave();
                 }
                 catch (ObjetoYaExistenteException)
                 {
@@ -142,16 +142,16 @@ namespace Interfaz.InterfacesClaves
 
         private void botonCancelar_Click(object sender, EventArgs e)
         {
-            this.AbrirListaClaves();
+            this.CerrarModificarClave();
         }
+        
 
-
-        public delegate void AbrirListaClaves_Handler();
-        public event AbrirListaClaves_Handler AbrirListaClaves_Event;
-        private void AbrirListaClaves()
+        public delegate void CerrarModificarClave_Handler();
+        public event CerrarModificarClave_Handler CerrarModificarClave_Event;
+        private void CerrarModificarClave()
         {
-            if (this.AbrirListaClaves_Event != null)
-                this.AbrirListaClaves_Event();
+            if (this.CerrarModificarClave_Event != null)
+                this.CerrarModificarClave_Event();
         }
 
         

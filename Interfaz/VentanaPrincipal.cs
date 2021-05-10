@@ -19,7 +19,9 @@ namespace Interfaz
 
         private AdminContras _administrador;
         private Usuario _usuarioActual;
-        private Type _panelAVolver;
+        private Type _panelAVolverVerClave;
+        private Type _panelAVolverModificarClave;
+        private List<string> _ultimoDataBreach;
 
         public VentanaPrincipal()
         {
@@ -255,7 +257,7 @@ namespace Interfaz
         {
             foreach (Control p in this.panelPrincipal.Controls)
             {
-                this._panelAVolver = p.GetType();
+                this._panelAVolverVerClave = p.GetType();
             }
 
             Usuario usuarioAMostrar = this._administrador.GetUsuario(usuarioABuscar);
@@ -267,25 +269,37 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(verClaveSeleccionada);
         }
 
-        protected void AbrirListaClaves_Handler()
-        {
-            ListaClaves listaClaves = new ListaClaves(this._usuarioActual, this._administrador);
-            listaClaves.AbrirCrearClave_Event += this.AbrirCrearClave_Handler;
-            listaClaves.AbrirModificarClave_Event += this.AbrirModificarClave_Event;
-            listaClaves.AbrirCompartirClave_Event += this.AbrirCompartirClave_Handler;
-            listaClaves.AbrirVerClave_Event += this.AbrirVerClave_Handler;
-            this.panelPrincipal.Controls.Clear();
-            this.panelPrincipal.Controls.Add(listaClaves);
+        private void ModificarClaveDataBreach_Event(Contra buscadora, List<string> dataBreach) {
+            this._ultimoDataBreach = dataBreach;
+            this.AbrirModificarClave_Event(buscadora);
         }
 
         private void AbrirModificarClave_Event(Contra buscadora)
         {
+
+            foreach (Control p in this.panelPrincipal.Controls)
+            {
+                this._panelAVolverModificarClave = p.GetType();
+            }
+
             Contra modificar = this._usuarioActual.GetContra(buscadora);
             ModificarClave modificarClave = new ModificarClave(this._usuarioActual, modificar);
-            modificarClave.AbrirListaClaves_Event += this.AbrirListaClaves_Handler;
+            modificarClave.CerrarModificarClave_Event += CerrarModificarClave_Event;
 
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(modificarClave);
+        }
+
+        protected void CerrarModificarClave_Event() {
+            switch (this._panelAVolverModificarClave.Name)
+            {
+                case "IngresoYListaDataBreach":
+                    this.AbrirDataBreaches_Handler(this._ultimoDataBreach);
+                    break;
+                default:
+                    this.AbrirListaClaves_Handler();
+                    break;
+            }
         }
 
         protected void AbrirCrearClave_Handler()
@@ -308,7 +322,7 @@ namespace Interfaz
 
         protected void SalirDeVerClave_Handler()
         {
-            switch (this._panelAVolver.Name)
+            switch (this._panelAVolverVerClave.Name)
             {
                 case "ListaClavesCompartidasPorMi":
                     AbrirListaClavesCompartidasPorMi_Handler();
@@ -326,6 +340,17 @@ namespace Interfaz
                     AbrirListaCategorias_Handler();
                     break;
             }
+        }
+
+        protected void AbrirListaClaves_Handler()
+        {
+            ListaClaves listaClaves = new ListaClaves(this._usuarioActual, this._administrador);
+            listaClaves.AbrirCrearClave_Event += this.AbrirCrearClave_Handler;
+            listaClaves.AbrirModificarClave_Event += this.AbrirModificarClave_Event;
+            listaClaves.AbrirCompartirClave_Event += this.AbrirCompartirClave_Handler;
+            listaClaves.AbrirVerClave_Event += this.AbrirVerClave_Handler;
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(listaClaves);
         }
 
         protected void AbrirListaClavesCompartidasConmigo_Handler()
@@ -378,6 +403,7 @@ namespace Interfaz
 
         private void AbrirDataBreaches_Handler(List<string> dataBreach) {
             IngresoYListaDataBreach panelDataBreach = new IngresoYListaDataBreach(this._usuarioActual, dataBreach);
+            panelDataBreach.AbrirModificarClave_Event += this.ModificarClaveDataBreach_Event;
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(panelDataBreach);
         }
