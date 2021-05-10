@@ -123,5 +123,35 @@ namespace Interfaz.InterfacesSeguridad
             if (this.AbrirVerClave_Event != null)
                 this.AbrirVerClave_Event(buscadora, usuarioActual);
         }
+
+        private void botonModificar_Click(object sender, EventArgs e)
+        {
+
+            string sitioClave = "";
+            string usuarioClave = "";
+            if (this.tablaClaves.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = tablaClaves.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = tablaClaves.Rows[selectedrowindex];
+                sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
+                usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
+
+                Contra aModificar = new Contra()
+                {
+                    Sitio = sitioClave,
+                    UsuarioContra = usuarioClave
+                };
+
+                irAModificarClave(aModificar);
+            }
+        }
+
+        public delegate void AbrirModificarClave_Handler(Contra claveAModificar);
+        public event AbrirModificarClave_Handler AbrirModificarClave_Event;
+        public void irAModificarClave(Contra claveAModificar)
+        {
+            if (this.AbrirModificarClave_Event != null)
+                this.AbrirModificarClave_Event(claveAModificar);
+        }
     }
 }
