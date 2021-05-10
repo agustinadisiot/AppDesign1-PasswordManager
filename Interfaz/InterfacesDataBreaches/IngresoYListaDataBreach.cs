@@ -44,7 +44,7 @@ namespace Interfaz.InterfacesClaves
 
         private void AnalizarDataBreach()
         {
-            this._claves = this._usuarioActual.GetContrasDataBreach(this._dataBreach);
+            this._claves = this._usuarioActual.GetClavesDataBreach(this._dataBreach);
             this._tarjetas = this._usuarioActual.GetTarjetasDataBreach(this._dataBreach);
         }
 

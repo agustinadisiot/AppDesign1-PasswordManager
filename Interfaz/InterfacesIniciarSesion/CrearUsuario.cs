@@ -34,7 +34,7 @@ namespace Interfaz
                 Usuario agregar = new Usuario()
                 {
                     Nombre = this.inputUsuario.Text,
-                    ContraMaestra = this.inputContra.Text
+                    ClaveMaestra = this.inputContra.Text
                 };
 
                 try {

@@ -41,8 +41,8 @@ namespace Obligatorio
                 UsuarioClave = "Hernesto"
             };
 
-            usuario1.AgregarContra(clave1, categoria1);
-            usuario1.AgregarContra(clave2, categoria1);
+            usuario1.AgregarClave(clave1, categoria1);
+            usuario1.AgregarClave(clave2, categoria1);
 
             ClaveCompartida claveACompartir1 = new ClaveCompartida()
             {

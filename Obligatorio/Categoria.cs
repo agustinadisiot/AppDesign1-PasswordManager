@@ -27,8 +27,8 @@ namespace Obligatorio
 
         public bool EsListaClavesVacia()
         {
-            bool noHayContras = (this._claves.Count == 0);
-            return noHayContras;
+            bool noHayClaves = (this._claves.Count == 0);
+            return noHayClaves;
         }
 
         public void AgregarClave(Clave claveIngresada)
@@ -60,12 +60,12 @@ namespace Obligatorio
                 throw new ObjetoInexistenteException();
             }
 
-            Predicate<Clave> buscadorContra = (Clave clave) => 
+            Predicate<Clave> buscadorClave = (Clave clave) => 
             {
                 return clave.Equals(aBuscar);
             };
 
-            Clave retorno = this._claves.Find(buscadorContra);
+            Clave retorno = this._claves.Find(buscadorClave);
             return retorno != null ? retorno : throw new ObjetoInexistenteException();
         }
 

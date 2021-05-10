@@ -62,7 +62,7 @@ namespace Interfaz
                     UsuarioClave = usuarioClaveBorrar,
                     Sitio = sitioClaveBorrar
                 };
-                this._usuarioActual.BorrarContra(buscadora);
+                this._usuarioActual.BorrarClave(buscadora);
                 this.CargarTabla();
             }
         }

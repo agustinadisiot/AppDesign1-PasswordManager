@@ -37,13 +37,13 @@ namespace Interfaz
                 Usuario iniciar = new Usuario()
                 {
                     Nombre = this.inputUsuario.Text,
-                    ContraMaestra = this.inputContra.Text
+                    ClaveMaestra = this.inputContra.Text
                 };
 
                 try {
                     
                     Usuario verdadero = this._administrador.GetUsuario(iniciar);
-                    if (verdadero.ContraMaestra == iniciar.ContraMaestra)
+                    if (verdadero.ClaveMaestra == iniciar.ClaveMaestra)
                     {
                        
                         this.EnviarIniciarSesion(verdadero);

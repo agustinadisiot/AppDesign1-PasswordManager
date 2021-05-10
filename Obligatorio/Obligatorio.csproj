@@ -58,7 +58,7 @@
     <Compile Include="Exceptions\ClaveGeneradaVaciaException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AdminContras.cs" />
+    <Compile Include="Administrador.cs" />
     <Compile Include="Tarjeta.cs" />
     <Compile Include="TarjetaAModificar.cs" />
     <Compile Include="Usuario.cs" />

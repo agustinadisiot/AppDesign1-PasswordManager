@@ -51,9 +51,9 @@ namespace TestsObligatorio
         {
             Usuario usuario = new Usuario
             {
-                ContraMaestra = "Hola12345"
+                ClaveMaestra = "Hola12345"
             };
-            Assert.AreEqual(true, usuario.ValidarIgualContraMaestra("Hola12345"));
+            Assert.AreEqual(true, usuario.ValidarIgualClaveMaestra("Hola12345"));
         }
 
         [TestMethod]
@@ -61,9 +61,9 @@ namespace TestsObligatorio
         {
             Usuario u1 = new Usuario
             {
-                ContraMaestra = "Hola12345"
+                ClaveMaestra = "Hola12345"
             };
-            Assert.AreEqual(false, u1.ValidarIgualContraMaestra("Diferente"));
+            Assert.AreEqual(false, u1.ValidarIgualClaveMaestra("Diferente"));
         }
 
         [TestMethod]
@@ -71,27 +71,27 @@ namespace TestsObligatorio
         {
             Usuario usuario = new Usuario
             {
-                ContraMaestra = "Hola12345"
+                ClaveMaestra = "Hola12345"
             };
-            Assert.AreEqual(true, usuario.ValidarIgualContraMaestra("Hola12345"));
+            Assert.AreEqual(true, usuario.ValidarIgualClaveMaestra("Hola12345"));
 
-            usuario.ContraMaestra = "Chau109876";
-            Assert.AreEqual(false, usuario.ValidarIgualContraMaestra("Hola12345"));
-            Assert.AreEqual(true, usuario.ValidarIgualContraMaestra("Chau109876"));
+            usuario.ClaveMaestra = "Chau109876";
+            Assert.AreEqual(false, usuario.ValidarIgualClaveMaestra("Hola12345"));
+            Assert.AreEqual(true, usuario.ValidarIgualClaveMaestra("Chau109876"));
         }
 
         [TestMethod]
         public void UsuarioLargoContraMaestraMenorA5()
         {
             Usuario usuario = new Usuario();
-            Assert.ThrowsException<LargoIncorrectoException>(() => usuario.ContraMaestra = "A");
+            Assert.ThrowsException<LargoIncorrectoException>(() => usuario.ClaveMaestra = "A");
         }
 
         [TestMethod]
         public void UsuarioLargoContraMaestraMayorA25()
         {
             Usuario usuario = new Usuario();
-            Assert.ThrowsException<LargoIncorrectoException>(() => usuario.ContraMaestra = "12345678901234567890123456");
+            Assert.ThrowsException<LargoIncorrectoException>(() => usuario.ClaveMaestra = "12345678901234567890123456");
         }
     }
 
@@ -466,7 +466,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             { 
@@ -486,7 +486,7 @@ namespace TestsObligatorio
                 UsuarioClave = "111111",
                 Codigo = "12345678"
             };
-            Assert.AreEqual(true, usuario.YaExisteContra(contraIgual));
+            Assert.AreEqual(true, usuario.YaExisteClave(contraIgual));
         }
 
         [TestMethod]
@@ -495,7 +495,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -515,7 +515,7 @@ namespace TestsObligatorio
                 UsuarioClave = "111111",
                 Codigo = "12345678"
             };
-            Assert.AreEqual(false, usuario.YaExisteContra(contraIgual));
+            Assert.AreEqual(false, usuario.YaExisteClave(contraIgual));
         }
 
         [TestMethod]
@@ -524,7 +524,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -544,7 +544,7 @@ namespace TestsObligatorio
                 UsuarioClave = "222222",
                 Codigo = "12345678"
             };
-            Assert.AreEqual(false, usuario.YaExisteContra(contraIgual));
+            Assert.AreEqual(false, usuario.YaExisteClave(contraIgual));
         }
 
         [TestMethod]
@@ -553,7 +553,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -573,7 +573,7 @@ namespace TestsObligatorio
                 UsuarioClave = "111111",
                 Codigo = "12345678"
             };
-            Assert.AreEqual(true, usuario.YaExisteContra(contraIgual));
+            Assert.AreEqual(true, usuario.YaExisteClave(contraIgual));
         }
 
         [TestMethod]
@@ -582,7 +582,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria1 = new Categoria()
             {
@@ -615,7 +615,7 @@ namespace TestsObligatorio
                 UsuarioClave = "usuarioYoutube",
                 Codigo = "contra1234"
             };
-            Assert.AreEqual(true, usuario.YaExisteContra(contraIgual));
+            Assert.AreEqual(true, usuario.YaExisteClave(contraIgual));
         }
 
         [TestMethod]
@@ -624,7 +624,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -643,8 +643,8 @@ namespace TestsObligatorio
                 Nombre = "Trabajo"
             };
 
-            usuario.AgregarContra(contra, buscadora);
-            Assert.AreEqual(true, usuario.YaExisteContra(contra));
+            usuario.AgregarClave(contra, buscadora);
+            Assert.AreEqual(true, usuario.YaExisteClave(contra));
         }
 
         [TestMethod]
@@ -653,7 +653,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -666,7 +666,7 @@ namespace TestsObligatorio
                 Codigo = "12345678"
             };
 
-            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.AgregarContra(contra, categoria));
+            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.AgregarClave(contra, categoria));
         }
 
         [TestMethod]
@@ -675,7 +675,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -693,7 +693,7 @@ namespace TestsObligatorio
                 Nombre = "Trabajo"
             };
 
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarContra(contra, buscadora));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarClave(contra, buscadora));
         }
 
         [TestMethod]
@@ -702,7 +702,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -720,7 +720,7 @@ namespace TestsObligatorio
                 Nombre = "Trabajo"
             };
 
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarContra(contra, buscadora));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarClave(contra, buscadora));
         }
 
         [TestMethod]
@@ -729,7 +729,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -747,7 +747,7 @@ namespace TestsObligatorio
                 Nombre = "Trabajo"
             };
 
-            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarContra(contra, buscadora));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarClave(contra, buscadora));
         }
 
         [TestMethod]
@@ -756,7 +756,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -775,8 +775,8 @@ namespace TestsObligatorio
                 Nombre = "Trabajo"
             };
 
-            usuario.AgregarContra(contra, buscadora);
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.AgregarContra(contra, buscadora));
+            usuario.AgregarClave(contra, buscadora);
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.AgregarClave(contra, buscadora));
         }
 
         [TestMethod]
@@ -785,7 +785,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -804,7 +804,7 @@ namespace TestsObligatorio
                 Nombre = "Trabajo"
             };
 
-            usuario.AgregarContra(contra, buscadora);
+            usuario.AgregarClave(contra, buscadora);
             Assert.AreEqual(true, usuario.GetCategoria(buscadora).YaExisteClave(contra));
         }
 
@@ -825,7 +825,7 @@ namespace TestsObligatorio
                 Sitio = paginaContra
             };
 
-            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.BorrarContra(aBorrar));
+            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.BorrarClave(aBorrar));
         }
 
         [TestMethod]
@@ -852,7 +852,7 @@ namespace TestsObligatorio
                 Sitio =paginaContra
             };
 
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.BorrarContra(aBorrar));
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.BorrarClave(aBorrar));
         }
 
         [TestMethod]
@@ -885,7 +885,7 @@ namespace TestsObligatorio
                 Nombre = "Categoria1"
             };
 
-            usuario.AgregarContra(contraABorrar, buscadora);
+            usuario.AgregarClave(contraABorrar, buscadora);
 
             Clave aBorrar = new Clave()
             {
@@ -893,8 +893,8 @@ namespace TestsObligatorio
                 Sitio = paginaContra
             };
 
-            usuario.BorrarContra(aBorrar);
-            Assert.IsFalse(usuario.YaExisteContra(contraABorrar));
+            usuario.BorrarClave(aBorrar);
+            Assert.IsFalse(usuario.YaExisteClave(contraABorrar));
         }
 
         [TestMethod]
@@ -935,16 +935,16 @@ namespace TestsObligatorio
                 Nombre = "Categoria1"
             };
 
-            usuario.AgregarContra(contraABorrar, buscadora);
-            usuario.AgregarContra(contraADejar, buscadora);
+            usuario.AgregarClave(contraABorrar, buscadora);
+            usuario.AgregarClave(contraADejar, buscadora);
 
             Clave aBorrar = new Clave()
             {
                 UsuarioClave = usuarioContra,
                 Sitio = paginaContra
             };
-            usuario.BorrarContra(aBorrar);
-            Assert.IsTrue(usuario.YaExisteContra(contraADejar));
+            usuario.BorrarClave(aBorrar);
+            Assert.IsTrue(usuario.YaExisteClave(contraADejar));
         }
 
         [TestMethod]
@@ -969,7 +969,7 @@ namespace TestsObligatorio
                 UsuarioClave = "Roberto"
             };
 
-            usuario.AgregarContra(contraAGuardar, categoria);
+            usuario.AgregarClave(contraAGuardar, categoria);
 
             Clave contraBuscadora = new Clave()
             {
@@ -977,7 +977,7 @@ namespace TestsObligatorio
                 UsuarioClave = "Roberto"
             };
 
-            Assert.AreEqual(contraAGuardar, usuario.GetContra(contraBuscadora));
+            Assert.AreEqual(contraAGuardar, usuario.GetClave(contraBuscadora));
         }
 
         [TestMethod]
@@ -1002,7 +1002,7 @@ namespace TestsObligatorio
                 Codigo = "EstaEsUnaClave1",
                 UsuarioClave = "Roberto"
             };
-            usuario.AgregarContra(contra1, categoria);
+            usuario.AgregarClave(contra1, categoria);
 
             Clave contra2 = new Clave()
             {
@@ -1010,7 +1010,7 @@ namespace TestsObligatorio
                 Codigo = "EstaEsUnaClave1",
                 UsuarioClave = "Luis88"
             };
-            usuario.AgregarContra(contra2, categoria);
+            usuario.AgregarClave(contra2, categoria);
 
             Clave contraBuscadora = new Clave()
             {
@@ -1018,7 +1018,7 @@ namespace TestsObligatorio
                 UsuarioClave = "Roberto"
             };
 
-            Assert.AreEqual(contra1, usuario.GetContra(contraBuscadora)); ;
+            Assert.AreEqual(contra1, usuario.GetClave(contraBuscadora)); ;
         }
 
         [TestMethod]
@@ -1043,7 +1043,7 @@ namespace TestsObligatorio
                 Codigo = "EstaEsUnaClave1",
                 UsuarioClave = "Roberto"
             };
-            usuario.AgregarContra(contra1, categoria);
+            usuario.AgregarClave(contra1, categoria);
 
             Clave contra2 = new Clave()
             {
@@ -1051,7 +1051,7 @@ namespace TestsObligatorio
                 Codigo = "EstaEsUnaClave1",
                 UsuarioClave = "Luis88"
             };
-            usuario.AgregarContra(contra2, categoria);
+            usuario.AgregarClave(contra2, categoria);
 
             Clave contraBuscadora = new Clave()
             {
@@ -1059,7 +1059,7 @@ namespace TestsObligatorio
                 UsuarioClave = "Luis88"
             };
 
-            Assert.AreEqual(contra2, usuario.GetContra(contraBuscadora)); ;
+            Assert.AreEqual(contra2, usuario.GetClave(contraBuscadora)); ;
         }
 
         [TestMethod]
@@ -1084,7 +1084,7 @@ namespace TestsObligatorio
                 Codigo = "EstaEsUnaClave1",
                 UsuarioClave = "Roberto"
             };
-            usuario.AgregarContra(contra1, categoria);
+            usuario.AgregarClave(contra1, categoria);
 
             Clave contraBuscadora = new Clave()
             {
@@ -1092,7 +1092,7 @@ namespace TestsObligatorio
                 UsuarioClave = "Roberto"
             };
 
-            Assert.AreEqual(contra1.Codigo, usuario.GetContra(contraBuscadora).Codigo);
+            Assert.AreEqual(contra1.Codigo, usuario.GetClave(contraBuscadora).Codigo);
         }
 
         [TestMethod]
@@ -1109,7 +1109,7 @@ namespace TestsObligatorio
                 Sitio = "web.whatsapp.com",
                 UsuarioClave = "Luis123"
             };
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.GetContra(contraBuscadora));
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.GetClave(contraBuscadora));
         }
         
         [TestMethod]
@@ -1154,7 +1154,7 @@ namespace TestsObligatorio
             };
 
 
-            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarContra(parametros));
+            Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.ModificarClave(parametros));
         }
 
         [TestMethod]
@@ -1212,8 +1212,8 @@ namespace TestsObligatorio
                 CategoriaNueva = categoria
             };
 
-            usuario.ModificarContra(parametros);
-            Assert.IsFalse(usuario.YaExisteContra(buscadora));
+            usuario.ModificarClave(parametros);
+            Assert.IsFalse(usuario.YaExisteClave(buscadora));
         }
 
         [TestMethod]
@@ -1277,7 +1277,7 @@ namespace TestsObligatorio
                 CategoriaNueva = categoria
             };
 
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.ModificarContra(parametros));
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.ModificarClave(parametros));
         }
 
         [TestMethod]
@@ -1311,7 +1311,7 @@ namespace TestsObligatorio
                 Codigo = claveContra1
             };
 
-            usuario.AgregarContra(mover,categoria);
+            usuario.AgregarClave(mover,categoria);
 
             ClaveAModificar parametros = new ClaveAModificar()
             {
@@ -1321,7 +1321,7 @@ namespace TestsObligatorio
                 CategoriaNueva = noAgregada
             };
 
-            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.ModificarContra(parametros));
+            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.ModificarClave(parametros));
         }
 
         [TestMethod]
@@ -1350,7 +1350,7 @@ namespace TestsObligatorio
                 Nota = "1111"
             };
 
-            usuario.AgregarContra(vieja, personal);
+            usuario.AgregarClave(vieja, personal);
 
             string usuarioNueva = "22222222";
             string sitioNueva = "aulas.ort.edu.uy";
@@ -1372,7 +1372,7 @@ namespace TestsObligatorio
                 CategoriaNueva = trabajo
             };
 
-            usuario.ModificarContra(parametros);
+            usuario.ModificarClave(parametros);
 
             Clave buscadora = new Clave()
             {
@@ -1380,7 +1380,7 @@ namespace TestsObligatorio
                 Sitio = sitioNueva
             };
 
-            Clave resultado = usuario.GetContra(buscadora);
+            Clave resultado = usuario.GetClave(buscadora);
 
             Categoria categoriaFinal = usuario.GetCategoriaClave(buscadora);
 
@@ -1616,7 +1616,7 @@ namespace TestsObligatorio
                 Codigo = "EstaEsUnaClave1",
                 UsuarioClave = "Roberto"
             };
-            usuario1.AgregarContra(clave1, categoria1);
+            usuario1.AgregarClave(clave1, categoria1);
 
             ClaveCompartida claveCompartida = new ClaveCompartida()
             {
@@ -1661,7 +1661,7 @@ namespace TestsObligatorio
                 UsuarioClave = "Roberto"
             };
 
-            usuario1.AgregarContra(clave1, categoria1);
+            usuario1.AgregarClave(clave1, categoria1);
 
             ClaveCompartida claveACompartir = new ClaveCompartida()
             {
@@ -1701,7 +1701,7 @@ namespace TestsObligatorio
                 Codigo = "EstaEsUnaClave1",
                 UsuarioClave = "Roberto"
             };
-            usuario1.AgregarContra(clave1, categoria1);
+            usuario1.AgregarClave(clave1, categoria1);
 
             ClaveCompartida claveCompartida = new ClaveCompartida()
             {
@@ -1747,8 +1747,8 @@ namespace TestsObligatorio
                 UsuarioClave = "Hernesto"
             };
 
-            usuario1.AgregarContra(clave1, categoria1);
-            usuario1.AgregarContra(clave2, categoria1);
+            usuario1.AgregarClave(clave1, categoria1);
+            usuario1.AgregarClave(clave2, categoria1);
 
             ClaveCompartida claveACompartir1 = new ClaveCompartida()
             {
@@ -1844,7 +1844,7 @@ namespace TestsObligatorio
                 Codigo = "EstaEsUnaClave1",
                 UsuarioClave = "Roberto"
             };
-            usuario1.AgregarContra(clave1, categoria1);
+            usuario1.AgregarClave(clave1, categoria1);
 
             Assert.IsFalse(clave1.EsCompartida);
 
@@ -1876,7 +1876,7 @@ namespace TestsObligatorio
                 Codigo = "EstaEsUnaClave1",
                 UsuarioClave = "Roberto"
             };
-            usuario1.AgregarContra(clave1, categoria1);
+            usuario1.AgregarClave(clave1, categoria1);
 
             ClaveCompartida claveCompartida = new ClaveCompartida()
             {
@@ -1922,8 +1922,8 @@ namespace TestsObligatorio
                 UsuarioClave = "Hernesto"
             };
 
-            usuario1.AgregarContra(clave1, categoria1);
-            usuario1.AgregarContra(clave2, categoria1);
+            usuario1.AgregarClave(clave1, categoria1);
+            usuario1.AgregarClave(clave2, categoria1);
 
             ClaveCompartida claveACompartir1 = new ClaveCompartida()
             {
@@ -1978,8 +1978,8 @@ namespace TestsObligatorio
                 UsuarioClave = "Hernesto"
             };
 
-            usuario1.AgregarContra(claveNoCompartida, categoria1);
-            usuario1.AgregarContra(clave1, categoria1);
+            usuario1.AgregarClave(claveNoCompartida, categoria1);
+            usuario1.AgregarClave(clave1, categoria1);
 
             ClaveCompartida claveACompartir1 = new ClaveCompartida()
             {
@@ -2032,8 +2032,8 @@ namespace TestsObligatorio
                 UsuarioClave = "Hernesto"
             };
 
-            usuario1.AgregarContra(claveNoCompartida, categoria1);
-            usuario1.AgregarContra(clave1, categoria1);
+            usuario1.AgregarClave(claveNoCompartida, categoria1);
+            usuario1.AgregarClave(clave1, categoria1);
 
             ClaveCompartida claveACompartir1 = new ClaveCompartida()
             {
@@ -2082,8 +2082,8 @@ namespace TestsObligatorio
                 UsuarioClave = "Hernesto"
             };
 
-            usuario1.AgregarContra(claveNoCompartida, categoria1);
-            usuario1.AgregarContra(clave1, categoria1);
+            usuario1.AgregarClave(claveNoCompartida, categoria1);
+            usuario1.AgregarClave(clave1, categoria1);
 
             ClaveCompartida claveACompartir1 = new ClaveCompartida()
             {
@@ -2138,7 +2138,7 @@ namespace TestsObligatorio
                 UsuarioClave = "Roberto"
             };
 
-            usuario1.AgregarContra(clave1, categoria1);
+            usuario1.AgregarClave(clave1, categoria1);
 
             ClaveCompartida claveACompartir1 = new ClaveCompartida()
             {
@@ -2185,7 +2185,7 @@ namespace TestsObligatorio
                 UsuarioClave = "Roberto"
             };
 
-            usuario1.AgregarContra(clave1, categoria1);
+            usuario1.AgregarClave(clave1, categoria1);
 
             ClaveCompartida claveACompartir1 = new ClaveCompartida()
             {
@@ -2234,7 +2234,7 @@ namespace TestsObligatorio
                 UsuarioClave = "Roberto"
             };
 
-            usuario1.AgregarContra(clave1, categoria1);
+            usuario1.AgregarClave(clave1, categoria1);
 
             ClaveCompartida claveACompartir1 = new ClaveCompartida()
             {
@@ -2291,7 +2291,7 @@ namespace TestsObligatorio
                 UsuarioClave = "Roberto"
             };
 
-            usuario1.AgregarContra(clave1, categoria1);
+            usuario1.AgregarClave(clave1, categoria1);
 
             ClaveCompartida claveACompartir1 = new ClaveCompartida()
             {
@@ -2315,7 +2315,7 @@ namespace TestsObligatorio
                 Clave = clave1
             };
 
-            usuario1.BorrarContra(clave1);
+            usuario1.BorrarClave(clave1);
 
             Assert.IsFalse(usuario2.CompartidasConmigo.Contains(claveQueCompartieron) || usuario3.CompartidasConmigo.Contains(claveQueCompartieron));
         }
@@ -2489,7 +2489,7 @@ namespace TestsObligatorio
 
             };
 
-            usuario.AgregarContra(agregar, facultad);
+            usuario.AgregarClave(agregar, facultad);
 
             Clave buscadora = new Clave()
             {
@@ -2527,7 +2527,7 @@ namespace TestsObligatorio
                 Codigo = "EstaEsUnaClave1",
                 UsuarioClave = "Roberto"
             };
-            usuario1.AgregarContra(clave1, categoria1);
+            usuario1.AgregarClave(clave1, categoria1);
 
             ClaveCompartida claveCompartida = new ClaveCompartida()
             {
@@ -2580,8 +2580,8 @@ namespace TestsObligatorio
                 UsuarioClave = "Hernesto"
             };
 
-            usuario1.AgregarContra(clave1, categoria1);
-            usuario1.AgregarContra(clave2, categoria1);
+            usuario1.AgregarClave(clave1, categoria1);
+            usuario1.AgregarClave(clave2, categoria1);
 
             ClaveCompartida claveCompartida = new ClaveCompartida()
             {
@@ -2619,7 +2619,7 @@ namespace TestsObligatorio
             Usuario usuario2 = new Usuario()
             {
                 Nombre = "Usuario2",
-                ContraMaestra = "123456789"
+                ClaveMaestra = "123456789"
             };
 
             Clave clave1 = new Clave()
@@ -2636,8 +2636,8 @@ namespace TestsObligatorio
                 UsuarioClave = "Hernesto"
             };
 
-            usuario1.AgregarContra(clave1, categoria1);
-            usuario1.AgregarContra(clave2, categoria1);
+            usuario1.AgregarClave(clave1, categoria1);
+            usuario1.AgregarClave(clave2, categoria1);
 
             ClaveCompartida claveCompartida1 = new ClaveCompartida()
             {
@@ -2657,7 +2657,7 @@ namespace TestsObligatorio
             Usuario usuarioBuscador = new Usuario
             {
                 Nombre = "Usuario2",
-                ContraMaestra = "ClaveDiferente"
+                ClaveMaestra = "ClaveDiferente"
             };
 
             Clave claveBuscadora = new Clave
@@ -2702,7 +2702,7 @@ namespace TestsObligatorio
                 Codigo = "EstaEsUnaClave1",
                 UsuarioClave = "Roberto"
             };
-            usuario1.AgregarContra(clave1, categoria1);
+            usuario1.AgregarClave(clave1, categoria1);
 
             ClaveCompartida claveCompartida = new ClaveCompartida()
             {
@@ -2755,8 +2755,8 @@ namespace TestsObligatorio
                 UsuarioClave = "Hernesto"
             };
 
-            usuario1.AgregarContra(clave1, categoria1);
-            usuario1.AgregarContra(clave2, categoria1);
+            usuario1.AgregarClave(clave1, categoria1);
+            usuario1.AgregarClave(clave2, categoria1);
 
             ClaveCompartida claveCompartida = new ClaveCompartida()
             {
@@ -2782,7 +2782,7 @@ namespace TestsObligatorio
             Usuario usuario1 = new Usuario()
             {
                 Nombre = "Usuario1",
-                ContraMaestra = "123456789"
+                ClaveMaestra = "123456789"
             };
 
             Categoria categoria1 = new Categoria()
@@ -2811,8 +2811,8 @@ namespace TestsObligatorio
                 UsuarioClave = "Hernesto"
             };
 
-            usuario1.AgregarContra(clave1, categoria1);
-            usuario1.AgregarContra(clave2, categoria1);
+            usuario1.AgregarClave(clave1, categoria1);
+            usuario1.AgregarClave(clave2, categoria1);
 
             ClaveCompartida claveCompartida1 = new ClaveCompartida()
             {
@@ -2832,7 +2832,7 @@ namespace TestsObligatorio
             Usuario usuarioBuscador = new Usuario
             {
                 Nombre = "Usuario1",
-                ContraMaestra = "ClaveDiferente"
+                ClaveMaestra = "ClaveDiferente"
             };
 
             Clave claveBuscadora = new Clave
@@ -2862,7 +2862,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -2895,7 +2895,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -2928,7 +2928,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -2961,7 +2961,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -2994,7 +2994,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -3028,7 +3028,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -3061,7 +3061,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -3108,7 +3108,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -3136,7 +3136,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
 
             Categoria categoria = new Categoria()
@@ -3162,7 +3162,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -3185,7 +3185,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -3208,7 +3208,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -3231,7 +3231,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -3254,7 +3254,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -3279,7 +3279,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -3310,7 +3310,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -3347,7 +3347,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
 
             string numeroTarjeta = "3456567890876543";
@@ -3368,7 +3368,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
             Categoria categoria = new Categoria()
             {
@@ -3548,7 +3548,7 @@ namespace TestsObligatorio
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario",
-                ContraMaestra = "contra123"
+                ClaveMaestra = "contra123"
             };
 
             Categoria categoria = new Categoria()
@@ -4071,7 +4071,7 @@ namespace TestsObligatorio
             List<string> dataBreach = new List<string>();
 
 
-            Assert.AreEqual(0, usuario.GetContrasDataBreach(dataBreach).Count);
+            Assert.AreEqual(0, usuario.GetClavesDataBreach(dataBreach).Count);
         }
 
 
@@ -4137,7 +4137,7 @@ namespace TestsObligatorio
                 clave4
             };
 
-            List<Clave> retorno = usuario.GetContrasDataBreach(dataBreach);
+            List<Clave> retorno = usuario.GetClavesDataBreach(dataBreach);
 
             bool esperadasContieneRetorno = retorno.All(esperadas.Contains);
             bool retornoContieneEsperadas = esperadas.All(retorno.Contains);
@@ -4207,7 +4207,7 @@ namespace TestsObligatorio
                 clave3
             };
 
-            List<Clave> retorno = usuario.GetContrasDataBreach(dataBreach);
+            List<Clave> retorno = usuario.GetClavesDataBreach(dataBreach);
 
             bool esperadasContieneRetorno = retorno.All(esperadas.Contains);
             bool retornoContieneEsperadas = esperadas.All(retorno.Contains);

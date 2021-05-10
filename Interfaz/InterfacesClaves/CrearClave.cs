@@ -81,7 +81,7 @@ namespace Interfaz
 
                     try
                     {
-                        this._usuarioActual.AgregarContra(nueva, categoria);
+                        this._usuarioActual.AgregarClave(nueva, categoria);
                         this.VolverAListaClaves();
                     }
                     catch (ObjetoYaExistenteException)

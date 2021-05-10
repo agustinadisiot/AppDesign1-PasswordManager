@@ -9,9 +9,9 @@ namespace Obligatorio
     {
         private List<Categoria> _categorias;
         private string _nombre;
-        private string _contraMaestra;
-        private const int _largoNombreYContraMinimo = 5;
-        private const int _largoNombreYContraMaximo = 25;
+        private string _claveMaestra;
+        private const int _largoNombreYClaveMinimo = 5;
+        private const int _largoNombreYClaveMaximo = 25;
 
         public Usuario()
         {
@@ -22,21 +22,21 @@ namespace Obligatorio
 
         public string Nombre 
         {   get { return _nombre; }
-            set { this._nombre = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreYContraMinimo, _largoNombreYContraMaximo); }
+            set { this._nombre = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreYClaveMinimo, _largoNombreYClaveMaximo); }
         }
 
-        public string ContraMaestra {
-            get { return this._contraMaestra; }
-            set { this._contraMaestra = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreYContraMinimo, _largoNombreYContraMaximo);}
+        public string ClaveMaestra {
+            get { return this._claveMaestra; }
+            set { this._claveMaestra = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreYClaveMinimo, _largoNombreYClaveMaximo);}
         }
 
         public List<ClaveCompartida> CompartidasPorMi { get; set; }
 
         public List<ClaveCompartida> CompartidasConmigo { get; set; }
 
-        public bool ValidarIgualContraMaestra(string contraMaestraUsuario)
+        public bool ValidarIgualClaveMaestra(string claveMaestraUsuario)
         {
-            return contraMaestraUsuario == this.ContraMaestra;
+            return claveMaestraUsuario == this.ClaveMaestra;
         }
 
         public bool EsListaCategoriasVacia()
@@ -91,23 +91,23 @@ namespace Obligatorio
             return this._categorias.Any(buscadora => buscadora.Equals(aBuscar));
         }
 
-        public bool YaExisteContra(Clave contra)
+        public bool YaExisteClave(Clave clave)
         {
-            return this._categorias.Any(catBuscadora => catBuscadora.YaExisteClave(contra));
+            return this._categorias.Any(catBuscadora => catBuscadora.YaExisteClave(clave));
         }
 
-        public void AgregarContra(Clave contra, Categoria buscadora)
+        public void AgregarClave(Clave clave, Categoria buscadora)
         {
 
-            bool noTieneSitio = (contra.Sitio == null),
-                 noTieneClave = (contra.Codigo == null),
-                 noTieneUsuario = (contra.UsuarioClave == null);
+            bool noTieneSitio = (clave.Sitio == null),
+                 noTieneClave = (clave.Codigo == null),
+                 noTieneUsuario = (clave.UsuarioClave == null);
 
             if (noTieneSitio || noTieneClave || noTieneUsuario) throw new ObjetoIncompletoException();
             
-            if(this.YaExisteContra(contra)) throw new ObjetoYaExistenteException();
+            if(this.YaExisteClave(clave)) throw new ObjetoYaExistenteException();
 
-            this.GetCategoria(buscadora).AgregarClave(contra);
+            this.GetCategoria(buscadora).AgregarClave(clave);
         }
 
         public bool YaExisteTarjeta(Tarjeta tarjeta)
@@ -129,12 +129,12 @@ namespace Obligatorio
             this.GetCategoria(categoria).AgregarTarjeta(tarjeta);
         }
 
-        public void BorrarContra(Clave aBorrar)
+        public void BorrarClave(Clave aBorrar)
         {
             if (this.EsListaCategoriasVacia()) {
                 throw new CategoriaInexistenteException();
             }
-            if (!this.YaExisteContra(aBorrar))
+            if (!this.YaExisteClave(aBorrar))
             {
                 throw new ObjetoInexistenteException();
             }
@@ -145,8 +145,8 @@ namespace Obligatorio
                 this.DejarDeCompartir(aDejarDeCompartir);
             }
 
-            Categoria contieneContraABorrar = this._categorias.First(categoria => categoria.YaExisteClave(aBorrar));
-            contieneContraABorrar.BorrarClave(aBorrar);
+            Categoria contieneClaveABorrar = this._categorias.First(categoria => categoria.YaExisteClave(aBorrar));
+            contieneClaveABorrar.BorrarClave(aBorrar);
         }
 
         public List<Categoria> GetListaCategorias()
@@ -154,15 +154,15 @@ namespace Obligatorio
             return this._categorias;
         }
 
-        public Clave GetContra(Clave contraBuscadora)
+        public Clave GetClave(Clave claveBuscadora)
         {
-            if (!YaExisteContra(contraBuscadora)) throw new ObjetoInexistenteException();
+            if (!YaExisteClave(claveBuscadora)) throw new ObjetoInexistenteException();
 
             foreach (Categoria categoria in this._categorias)
             {
-                if (categoria.YaExisteClave(contraBuscadora))
+                if (categoria.YaExisteClave(claveBuscadora))
                 {
-                    return categoria.GetClave(contraBuscadora);
+                    return categoria.GetClave(claveBuscadora);
                 }
                
             }
@@ -197,16 +197,16 @@ namespace Obligatorio
                 throw new ObjetoInexistenteException();
             }
 
-            Categoria contieneContraABorrar = this._categorias.First(categoria => categoria.YaExisteTarjeta(aBorrar));
-            contieneContraABorrar.BorrarTarjeta(aBorrar);
+            Categoria contieneClaveABorrar = this._categorias.First(categoria => categoria.YaExisteTarjeta(aBorrar));
+            contieneClaveABorrar.BorrarTarjeta(aBorrar);
         }
 
-        public void ModificarContra(ClaveAModificar modificar)
+        public void ModificarClave(ClaveAModificar modificar)
         {
-            Clave contraVieja = this.GetContra(modificar.ClaveVieja);
-            Clave contraNueva = modificar.ClaveNueva;
+            Clave claveVieja = this.GetClave(modificar.ClaveVieja);
+            Clave claveNueva = modificar.ClaveNueva;
 
-            if (!contraVieja.Equals(contraNueva) && this.YaExisteContra(contraNueva)) {
+            if (!claveVieja.Equals(claveNueva) && this.YaExisteClave(claveNueva)) {
                 throw new ObjetoYaExistenteException();
             }
 
@@ -215,13 +215,13 @@ namespace Obligatorio
 
             if (categoriaVieja.Equals(categoriaNueva))
             {
-                categoriaVieja.ModificarClave(contraVieja, contraNueva);
+                categoriaVieja.ModificarClave(claveVieja, claveNueva);
             }
             else {
-                categoriaVieja.BorrarClave(contraVieja);
+                categoriaVieja.BorrarClave(claveVieja);
 
-                categoriaNueva.AgregarClave(contraVieja);
-                categoriaNueva.ModificarClave(contraVieja, contraNueva);
+                categoriaNueva.AgregarClave(claveVieja);
+                categoriaNueva.ModificarClave(claveVieja, claveNueva);
             }
         }
 
@@ -281,7 +281,7 @@ namespace Obligatorio
 
             if (this.CompartidasPorMi.Contains(aCompartir)) throw new ObjetoYaExistenteException();
 
-            claveACompartir = this.GetContra(claveACompartir);
+            claveACompartir = this.GetClave(claveACompartir);
 
             claveACompartir.EsCompartida = true;
 
@@ -306,7 +306,7 @@ namespace Obligatorio
             return this.GetListaClavesColor(color).Count;
         }
 
-        public List<Clave> GetContrasDataBreach(List<String> dataBreach)
+        public List<Clave> GetClavesDataBreach(List<String> dataBreach)
         {
             List<Clave> completa = this.GetListaClaves();
             
@@ -338,7 +338,7 @@ namespace Obligatorio
         public void DejarDeCompartir(ClaveCompartida aDejarDeCompartir)
         {
             Usuario usuarioADejarDeCompartir = aDejarDeCompartir.Usuario;
-            Clave claveADejarDeCompartir = this.GetContra(aDejarDeCompartir.Clave);
+            Clave claveADejarDeCompartir = this.GetClave(aDejarDeCompartir.Clave);
 
             if (!claveADejarDeCompartir.EsCompartida) throw new ObjetoInexistenteException();
 

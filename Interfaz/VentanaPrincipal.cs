@@ -31,11 +31,11 @@ namespace Interfaz
             this._usuarioActual = null;
             Usuario usuarioPrueba = new Usuario();
             usuarioPrueba.Nombre = "Roberto";
-            usuarioPrueba.ContraMaestra = "12345ABCD";
+            usuarioPrueba.ClaveMaestra = "12345ABCD";
 
             Usuario usuarioPrueba2 = new Usuario();
             usuarioPrueba2.Nombre = "Santiago";
-            usuarioPrueba2.ContraMaestra = "12345SD";
+            usuarioPrueba2.ClaveMaestra = "12345SD";
 
 
             this._administrador.AgregarUsuario(usuarioPrueba);
@@ -94,8 +94,8 @@ namespace Interfaz
             clavePrueba1.FechaModificacion = new DateTime(2000, 1, 1);
             clavePrueba2.FechaModificacion = new DateTime(2000, 1, 1);
 
-            usuarioPrueba.AgregarContra(clavePrueba1, trabajo);
-            usuarioPrueba.AgregarContra(clavePrueba2, personal);
+            usuarioPrueba.AgregarClave(clavePrueba1, trabajo);
+            usuarioPrueba.AgregarClave(clavePrueba2, personal);
 
             ClaveCompartida claveACompartir1 = new ClaveCompartida()
             {
@@ -271,7 +271,7 @@ namespace Interfaz
             }
 
             Usuario usuarioAMostrar = this._administrador.GetUsuario(usuarioABuscar);
-            Clave claveAMostrar = usuarioAMostrar.GetContra(buscadora);
+            Clave claveAMostrar = usuarioAMostrar.GetClave(buscadora);
             VerClave verClaveSeleccionada = new VerClave(claveAMostrar, usuarioAMostrar);
             verClaveSeleccionada.SalirDeVerClave_Event += this.SalirDeVerClave_Handler;
             this.panelPrincipal.Controls.Clear();
@@ -292,7 +292,7 @@ namespace Interfaz
                 this._panelAVolverModificarClave = p.GetType();
             }
 
-            Clave modificar = this._usuarioActual.GetContra(buscadora);
+            Clave modificar = this._usuarioActual.GetClave(buscadora);
             ModificarClave modificarClave = new ModificarClave(this._usuarioActual, modificar);
             modificarClave.CerrarModificarClave_Event += CerrarModificarClave_Event;
 

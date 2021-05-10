@@ -92,7 +92,7 @@ namespace Interfaz.InterfacesClaves
                         CategoriaVieja = this._actual.GetCategoriaClave(this._vieja),
                         CategoriaNueva = categoria
                     };
-                    this._actual.ModificarContra(aModificar);
+                    this._actual.ModificarClave(aModificar);
                     this.CerrarModificarClave();
                 }
                 catch (ObjetoYaExistenteException)
