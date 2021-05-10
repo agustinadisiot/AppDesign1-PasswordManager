@@ -21,12 +21,11 @@ namespace Interfaz
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;
             this._administrador = administradorAgregar;
-            this.CargarTabla();
         }
 
-        private void ListaCategorias_Load(object sender, EventArgs e)
+        private void ListaClaves_Load(object sender, EventArgs e)
         {
-            this.CargarTabla();
+            CargarTabla();
         }
 
         private void CargarTabla()
@@ -190,5 +189,6 @@ namespace Interfaz
                 AbrirVerClave(buscadora, _usuarioActual);
             }
         }
+
     }
 }
