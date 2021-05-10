@@ -16,10 +16,10 @@ namespace Interfaz.InterfacesClaves
         private Usuario _actual;
         private Clave _vieja;
 
-        public ModificarClave(Usuario usuario, Clave contra)
+        public ModificarClave(Usuario usuario, Clave clave)
         {
             this._actual = usuario;
-            this._vieja = contra;
+            this._vieja = clave;
             InitializeComponent();
         }
 
