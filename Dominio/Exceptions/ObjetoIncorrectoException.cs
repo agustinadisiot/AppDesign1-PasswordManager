@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Runtime.Serialization;
-namespace Obligatorio
+namespace Dominio
 {
-    public class ObjetoInexistenteException : Exception
+    public class ObjetoIncorrectoException : Exception
     {
 
         private string message;
@@ -12,9 +12,9 @@ namespace Obligatorio
             get { return message; }
         }
 
-        public ObjetoInexistenteException()
+        public ObjetoIncorrectoException()
         {
-            this.message = "El objeto buscado no existe o no esta contenido en la lista.";
+            this.message = "El objeto utilizado no es de la clase o tipo esperado.";
         }
     }
 }

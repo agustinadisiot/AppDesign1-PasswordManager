@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Obligatorio;
+using Dominio;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

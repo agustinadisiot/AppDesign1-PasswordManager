@@ -1,4 +1,4 @@
-﻿namespace Obligatorio
+﻿namespace Dominio
 {
     public class ClaveAModificar
     {

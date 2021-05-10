@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Obligatorio
+namespace Dominio
 {
     public class Clave
     {

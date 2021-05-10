@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Runtime.Serialization;
-namespace Obligatorio
+namespace Dominio
 {
-    public class ObjetoIncorrectoException : Exception
+    public class ObjetoIncompletoException : Exception
     {
 
         private string message;
@@ -12,9 +12,9 @@ namespace Obligatorio
             get { return message; }
         }
 
-        public ObjetoIncorrectoException()
+        public ObjetoIncompletoException()
         {
-            this.message = "El objeto utilizado no es de la clase o tipo esperado.";
+            this.message = "Al objeto ingresado le falta uno o mas atributos.";
         }
     }
 }

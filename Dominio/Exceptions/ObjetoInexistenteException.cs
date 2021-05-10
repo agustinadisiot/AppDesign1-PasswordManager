@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Runtime.Serialization;
-namespace Obligatorio
+namespace Dominio
 {
-    public class ObjetoIncompletoException : Exception
+    public class ObjetoInexistenteException : Exception
     {
 
         private string message;
@@ -12,9 +12,9 @@ namespace Obligatorio
             get { return message; }
         }
 
-        public ObjetoIncompletoException()
+        public ObjetoInexistenteException()
         {
-            this.message = "Al objeto ingresado le falta uno o mas atributos.";
+            this.message = "El objeto buscado no existe o no esta contenido en la lista.";
         }
     }
 }

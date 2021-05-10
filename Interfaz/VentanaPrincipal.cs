@@ -2,7 +2,7 @@
 using Interfaz.InterfacesCompartirClave;
 using Interfaz.InterfacesSeguridad;
 using Interfaz.InterfacesTarjetas;
-using Obligatorio;
+using Dominio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Obligatorio", "Obligatorio\Obligatorio.csproj", "{A2333956-836C-42AB-AD9B-DBBA96727E27}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio", "Dominio\Dominio.csproj", "{A2333956-836C-42AB-AD9B-DBBA96727E27}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsObligatorio", "TestsObligatorio\TestsObligatorio.csproj", "{5ADA9150-F7EB-478B-A7BB-B979717ED59E}"
 EndProject

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Obligatorio
+namespace Dominio
 {
     public class Tarjeta
     {

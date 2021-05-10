@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
-namespace Obligatorio
+namespace Dominio
 {
     public class CategoriaInexistenteException : ObjetoInexistenteException
     {
