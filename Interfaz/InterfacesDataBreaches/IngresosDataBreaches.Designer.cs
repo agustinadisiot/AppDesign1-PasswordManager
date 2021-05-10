@@ -75,7 +75,6 @@ namespace Interfaz.InterfacesDataBreaches
             this.Controls.Add(this.inputDatos);
             this.Name = "IngresosDataBreaches";
             this.Size = new System.Drawing.Size(1014, 681);
-            this.Load += new System.EventHandler(this.IngresosDataBreaches_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
