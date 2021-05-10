@@ -71,7 +71,7 @@ namespace Obligatorio
             if (objeto == null) throw new ObjetoIncompletoException();
             if (objeto.GetType() != this.GetType()) throw new ObjetoIncorrectoException();
             Usuario aIgualar = (Usuario)objeto;
-            return aIgualar.Nombre == this.Nombre;
+            return aIgualar.Nombre.ToUpper() == this.Nombre.ToUpper();
         }
 
         public void ModificarNombreCategoria(Categoria vieja, Categoria nueva)

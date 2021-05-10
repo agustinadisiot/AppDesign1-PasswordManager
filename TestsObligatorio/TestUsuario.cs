@@ -301,8 +301,22 @@ namespace TestsObligatorio
             {
                 Nombre = "Usuario123"
             };
-            String falsoUsuario = "Usuario123";
+            string falsoUsuario = "Usuario123";
             Assert.ThrowsException<ObjetoIncorrectoException>(() => usuario.Equals(falsoUsuario));
+        }
+
+        [TestMethod]
+        public void UsuarioEqualsMismoNombreMayusculaYMinusucula()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "usuario12"
+            };
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "Usuario12"
+            };
+            Assert.AreEqual(usuario, usuario2);
         }
 
         [TestMethod]
