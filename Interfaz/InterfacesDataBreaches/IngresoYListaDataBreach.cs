@@ -149,12 +149,12 @@ namespace Interfaz.InterfacesClaves
             }
         }
 
-        public delegate void AbrirModificarClave_Handler(Contra claveAModificar, List<string> dataBreach);
-        public event AbrirModificarClave_Handler AbrirModificarClave_Event;
+        public delegate void ModificarClaveDataBreach_Handler(Contra claveAModificar, List<string> dataBreach);
+        public event ModificarClaveDataBreach_Handler ModificarClaveDataBreach_Event;
         public void irAModificarClave(Contra claveAModificar)
         {
-            if (this.AbrirModificarClave_Event != null)
-                this.AbrirModificarClave_Event(claveAModificar, this._dataBreach);
+            if (this.ModificarClaveDataBreach_Event != null)
+                this.ModificarClaveDataBreach_Event(claveAModificar, this._dataBreach);
         }
 
         
