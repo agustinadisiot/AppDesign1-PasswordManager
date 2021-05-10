@@ -143,6 +143,8 @@ namespace Interfaz.InterfacesClaves
                     UsuarioContra = usuarioClave
                 };
 
+                this.ProcesarIngresos();
+
                 irAModificarClave(aModificar);
             }
         }
