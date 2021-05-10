@@ -28,21 +28,11 @@ namespace Interfaz
 
             this.tablaTarjetas.Rows.Clear();
 
-            List<Categoria> listaCategorias = this._usuarioActual.GetListaCategorias();
+            List<Tarjeta> listaTarjeta = this._usuarioActual.GetListaTarjetas();
 
-            foreach (Categoria categoriaActual in listaCategorias) {
+            foreach (Tarjeta tarjetaActual in listaTarjeta) {
 
-                string nombreCategoria = categoriaActual.Nombre;
-                List<Tarjeta> listaTarjetas = categoriaActual.GetListaTarjetas();
-                CargarFila(nombreCategoria, listaTarjetas);
-            }
-        }
-
-
-        private void CargarFila(string categoriaActual, List<Tarjeta> listaTarjetas) {
-
-            foreach (Tarjeta tarjetaActual in listaTarjetas) {
-
+                string categoriaActual = this._usuarioActual.GetCategoriaTarjeta(tarjetaActual).Nombre;
                 string nombre = tarjetaActual.Nombre;
                 string tipo = tarjetaActual.Tipo;
                 string numeroCompleto = tarjetaActual.Numero;
@@ -52,7 +42,6 @@ namespace Interfaz
                 this.tablaTarjetas.Rows.Add(categoriaActual, nombre, tipo, numeroOculto, numeroCompleto, vencimiento);
             }
         }
-
 
         private string OcultarTarjeta(Tarjeta actual)
         {
