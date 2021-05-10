@@ -79,6 +79,7 @@ namespace Interfaz
             this.botonDataBreaches.TabIndex = 6;
             this.botonDataBreaches.Text = "Data Breaches";
             this.botonDataBreaches.UseVisualStyleBackColor = true;
+            this.botonDataBreaches.Click += new System.EventHandler(this.botonDataBreaches_Click);
             // 
             // botonReporteFortaleza
             // 

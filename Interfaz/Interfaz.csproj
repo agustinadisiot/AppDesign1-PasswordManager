@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InterfacesDataBreaches\IngresoYListaDataBreach.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesDataBreaches\IngresoYListaDataBreach.Designer.cs">
+      <DependentUpon>IngresoYListaDataBreach.cs</DependentUpon>
+    </Compile>
     <Compile Include="InterfacesSeguridad\GraficaSeguridad.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -171,6 +177,9 @@
     </Compile>
     <EmbeddedResource Include="InterfacesCategorias\AgregarCategoria.resx">
       <DependentUpon>AgregarCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesDataBreaches\IngresoYListaDataBreach.resx">
+      <DependentUpon>IngresoYListaDataBreach.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InterfacesClaves\ModificarClave.resx">
       <DependentUpon>ModificarClave.cs</DependentUpon>
