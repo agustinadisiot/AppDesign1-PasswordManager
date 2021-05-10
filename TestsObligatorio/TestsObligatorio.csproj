@@ -52,7 +52,7 @@
     <Compile Include="TestAdministrador.cs" />
     <Compile Include="TestCategoria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestContra.cs" />
+    <Compile Include="TestClave.cs" />
     <Compile Include="TestTarjeta.cs" />
     <Compile Include="TestUsuario.cs" />
   </ItemGroup>
