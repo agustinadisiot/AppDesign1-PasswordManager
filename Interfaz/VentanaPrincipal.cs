@@ -418,7 +418,7 @@ namespace Interfaz
 
         private void AbrirDataBreaches_Handler(List<string> dataBreach) {
             IngresoYListaDataBreach panelDataBreach = new IngresoYListaDataBreach(this._usuarioActual, dataBreach);
-            panelDataBreach.AbrirModificarClave_Event += this.ModificarClaveDataBreach_Event;
+            panelDataBreach.ModificarClaveDataBreach_Event += this.ModificarClaveDataBreach_Event;
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(panelDataBreach);
         }
