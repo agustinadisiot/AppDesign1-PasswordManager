@@ -45,10 +45,6 @@ namespace Interfaz
         }
 
 
-        private void botonVer_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void CerrarConfirmacion_Handler(bool acepto)
         {
@@ -164,7 +160,16 @@ namespace Interfaz
                 this.AbrirCompartirClave_Event(aCompartir);
         }
 
-        private void botonVer_Click_1(object sender, EventArgs e)
+
+        public delegate void AbrirVerClave_Handler(Contra buscadora, Usuario usuarioActual);
+        public event AbrirVerClave_Handler AbrirVerClave_Event;
+        private void AbrirVerClave(Contra buscadora, Usuario usuarioActual)
+        {
+            if (this.AbrirVerClave_Event != null)
+                this.AbrirVerClave_Event(buscadora, usuarioActual);
+        }
+
+        private void botonVer_Click(object sender, EventArgs e)
         {
 
             bool haySeleccionada = this.tablaClaves.SelectedCells.Count > 0;
@@ -185,14 +190,5 @@ namespace Interfaz
                 AbrirVerClave(buscadora, _usuarioActual);
             }
         }
-
-        public delegate void AbrirVerClave_Handler(Contra buscadora, Usuario usuarioActual);
-        public event AbrirVerClave_Handler AbrirVerClave_Event;
-        private void AbrirVerClave(Contra buscadora, Usuario usuarioActual)
-        {
-            if (this.AbrirVerClave_Event != null)
-                this.AbrirVerClave_Event(buscadora, usuarioActual);
-        }
-
     }
 }

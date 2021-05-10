@@ -47,6 +47,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InterfacesClaves\ListaClavesSeguridad.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesClaves\ListaClavesSeguridad.Designer.cs">
+      <DependentUpon>ListaClavesSeguridad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InterfacesDataBreaches\IngresosDataBreaches.cs" />
+    <Compile Include="InterfacesDataBreaches\IngresosDataBreaches.Designer.cs">
+      <DependentUpon>IngresosDataBreaches.cs</DependentUpon>
+    </Compile>
     <Compile Include="InterfacesSeguridad\GraficaSeguridad.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -166,6 +176,9 @@
     <EmbeddedResource Include="InterfacesCategorias\AgregarCategoria.resx">
       <DependentUpon>AgregarCategoria.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesClaves\ListaClavesSeguridad.resx">
+      <DependentUpon>ListaClavesSeguridad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InterfacesClaves\ModificarClave.resx">
       <DependentUpon>ModificarClave.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,6 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InterfacesCompartirClave\ListaClavesCompartidasPorMi.resx">
       <DependentUpon>ListaClavesCompartidasPorMi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesDataBreaches\IngresosDataBreaches.resx">
+      <DependentUpon>IngresosDataBreaches.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InterfacesSeguridad\GraficaSeguridad.resx">
       <DependentUpon>GraficaSeguridad.cs</DependentUpon>
