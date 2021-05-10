@@ -6,36 +6,45 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Interfaz.InterfacesClaves
 {
-    public partial class ListaClavesSeguridad : UserControl
+    public partial class IngresoYListaDataBreach : UserControl
     {
         private Usuario _usuarioActual;
         private List<Contra> _claves;
         private List<Tarjeta> _tarjetas;
         private List<string> _dataBreach;
 
-        public ListaClavesSeguridad(Usuario actual, List<string> dataBreach)
+        public IngresoYListaDataBreach(Usuario actual, List<string> dataBreach)
         {
             InitializeComponent();
-            this._dataBreach = dataBreach;
-            this.AnalizarDataBreach();
+            this._usuarioActual = actual;
+            if (dataBreach != null)
+            {
+                this._dataBreach = dataBreach;
+            }
+            else {
+                this._dataBreach = new List<string>();
+            }
         }
 
-        private void ListaClavesSeguridad_Load(object sender, EventArgs e)
+        private void IngresoYListaDataBreach_Load(object sender, EventArgs e)
         {
+            this.AnalizarDataBreach();
             this.CargarTablaClaves();
             this.CargarTablaTarjetas();
         }
 
-        private void AnalizarDataBreach() {
+
+        private void AnalizarDataBreach()
+        {
             this._claves = this._usuarioActual.GetContrasDataBreach(this._dataBreach);
             this._tarjetas = this._usuarioActual.GetTarjetasDataBreach(this._dataBreach);
         }
-
 
         private void CargarTablaClaves()
         {
@@ -69,6 +78,7 @@ namespace Interfaz.InterfacesClaves
                 this.tablaTarjetas.Rows.Add(categoriaActual, nombre, tipo, numeroOculto, numeroCompleto, vencimiento);
             }
         }
+
         private string OcultarTarjeta(Tarjeta actual)
         {
 
@@ -85,26 +95,25 @@ namespace Interfaz.InterfacesClaves
 
         }
 
-        private void CerrarConfirmacion_Handler(bool acepto)
+
+        private void botonVerificar_Click(object sender, EventArgs e)
         {
-            bool haySeleccionada = this.tablaClaves.SelectedCells.Count > 0;
-            if (haySeleccionada && acepto)
-            {
-                int posSeleccionada = this.tablaClaves.SelectedCells[0].RowIndex;
-                DataGridViewRow selectedRow = this.tablaClaves.Rows[posSeleccionada];
-
-                string usuarioClaveBorrar = Convert.ToString(selectedRow.Cells["Usuario"].Value);
-                string sitioClaveBorrar = Convert.ToString(selectedRow.Cells["Sitio"].Value);
-
-                Contra buscadora = new Contra()
-                {
-                    UsuarioContra = usuarioClaveBorrar,
-                    Sitio = sitioClaveBorrar
-                };
-                this._usuarioActual.BorrarContra(buscadora);
-                this.CargarTabla();
-            }
+            this.ProcesarIngresos();
+            this.AnalizarDataBreach();
+            this.CargarTablaClaves();
+            this.CargarTablaTarjetas();
         }
+
+
+        private void ProcesarIngresos()
+        {
+            string ingreso = this.inputDatos.Text;
+
+            List<string> verificar = new List<string>(Regex.Split(ingreso, Environment.NewLine));
+
+            this._dataBreach = verificar;
+        }
+
 
         private void botonModificar_Click(object sender, EventArgs e)
         {
@@ -127,7 +136,6 @@ namespace Interfaz.InterfacesClaves
             }
         }
 
-
         public delegate void AbrirModificarClave_Handler(Contra claveAModificar);
         public event AbrirModificarClave_Handler AbrirModificarClave_Event;
         public void irAModificarClave(Contra claveAModificar)
@@ -138,6 +146,4 @@ namespace Interfaz.InterfacesClaves
 
         
     }
-
-
 }

@@ -1,7 +1,7 @@
 ﻿
 namespace Interfaz.InterfacesClaves
 {
-    partial class ListaClavesSeguridad
+    partial class IngresoYListaDataBreach
     {
         /// <summary> 
         /// Required designer variable.
@@ -43,7 +43,8 @@ namespace Interfaz.InterfacesClaves
             this.TarjetaMostrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TarjetaCompleta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Vencimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.botonModificarTarjeta = new System.Windows.Forms.Button();
+            this.botonVerificar = new System.Windows.Forms.Button();
+            this.inputDatos = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.tablaClaves)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTarjetas)).BeginInit();
             this.SuspendLayout();
@@ -60,7 +61,7 @@ namespace Interfaz.InterfacesClaves
             this.Sitio,
             this.Usuario,
             this.UltimaModificacion});
-            this.tablaClaves.Location = new System.Drawing.Point(100, 78);
+            this.tablaClaves.Location = new System.Drawing.Point(377, 108);
             this.tablaClaves.Margin = new System.Windows.Forms.Padding(4);
             this.tablaClaves.Name = "tablaClaves";
             this.tablaClaves.ReadOnly = true;
@@ -68,7 +69,7 @@ namespace Interfaz.InterfacesClaves
             this.tablaClaves.RowHeadersWidth = 51;
             this.tablaClaves.RowTemplate.Height = 24;
             this.tablaClaves.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tablaClaves.Size = new System.Drawing.Size(701, 231);
+            this.tablaClaves.Size = new System.Drawing.Size(503, 218);
             this.tablaClaves.TabIndex = 24;
             // 
             // Categoria
@@ -110,10 +111,10 @@ namespace Interfaz.InterfacesClaves
             // botonModificarClave
             // 
             this.botonModificarClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.botonModificarClave.Location = new System.Drawing.Point(842, 281);
+            this.botonModificarClave.Location = new System.Drawing.Point(888, 298);
             this.botonModificarClave.Margin = new System.Windows.Forms.Padding(4);
             this.botonModificarClave.Name = "botonModificarClave";
-            this.botonModificarClave.Size = new System.Drawing.Size(126, 28);
+            this.botonModificarClave.Size = new System.Drawing.Size(115, 28);
             this.botonModificarClave.TabIndex = 30;
             this.botonModificarClave.Text = "Modificar Contraseña";
             this.botonModificarClave.UseVisualStyleBackColor = true;
@@ -123,7 +124,7 @@ namespace Interfaz.InterfacesClaves
             // 
             this.labelTitulo.AutoSize = true;
             this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.labelTitulo.Location = new System.Drawing.Point(93, 43);
+            this.labelTitulo.Location = new System.Drawing.Point(22, 46);
             this.labelTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTitulo.Name = "labelTitulo";
             this.labelTitulo.Size = new System.Drawing.Size(237, 25);
@@ -146,7 +147,7 @@ namespace Interfaz.InterfacesClaves
             this.TarjetaMostrada,
             this.TarjetaCompleta,
             this.Vencimiento});
-            this.tablaTarjetas.Location = new System.Drawing.Point(98, 334);
+            this.tablaTarjetas.Location = new System.Drawing.Point(377, 357);
             this.tablaTarjetas.Margin = new System.Windows.Forms.Padding(2);
             this.tablaTarjetas.MultiSelect = false;
             this.tablaTarjetas.Name = "tablaTarjetas";
@@ -155,7 +156,7 @@ namespace Interfaz.InterfacesClaves
             this.tablaTarjetas.RowHeadersWidth = 51;
             this.tablaTarjetas.RowTemplate.Height = 24;
             this.tablaTarjetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tablaTarjetas.Size = new System.Drawing.Size(703, 288);
+            this.tablaTarjetas.Size = new System.Drawing.Size(618, 288);
             this.tablaTarjetas.TabIndex = 31;
             // 
             // Catregoria
@@ -192,7 +193,7 @@ namespace Interfaz.InterfacesClaves
             this.TarjetaMostrada.Name = "TarjetaMostrada";
             this.TarjetaMostrada.ReadOnly = true;
             this.TarjetaMostrada.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.TarjetaMostrada.Width = 200;
+            this.TarjetaMostrada.Width = 160;
             // 
             // TarjetaCompleta
             // 
@@ -208,31 +209,43 @@ namespace Interfaz.InterfacesClaves
             this.Vencimiento.Name = "Vencimiento";
             this.Vencimiento.ReadOnly = true;
             this.Vencimiento.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Vencimiento.Width = 125;
+            this.Vencimiento.Width = 80;
             // 
-            // botonModificarTarjeta
+            // botonVerificar
             // 
-            this.botonModificarTarjeta.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.botonModificarTarjeta.Location = new System.Drawing.Point(842, 594);
-            this.botonModificarTarjeta.Margin = new System.Windows.Forms.Padding(4);
-            this.botonModificarTarjeta.Name = "botonModificarTarjeta";
-            this.botonModificarTarjeta.Size = new System.Drawing.Size(126, 28);
-            this.botonModificarTarjeta.TabIndex = 32;
-            this.botonModificarTarjeta.Text = "Modificar Tarjeta";
-            this.botonModificarTarjeta.UseVisualStyleBackColor = true;
+            this.botonVerificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.botonVerificar.Location = new System.Drawing.Point(149, 572);
+            this.botonVerificar.Margin = new System.Windows.Forms.Padding(2);
+            this.botonVerificar.Name = "botonVerificar";
+            this.botonVerificar.Size = new System.Drawing.Size(144, 37);
+            this.botonVerificar.TabIndex = 34;
+            this.botonVerificar.Text = "Verificar";
+            this.botonVerificar.UseVisualStyleBackColor = true;
+            this.botonVerificar.Click += new System.EventHandler(this.botonVerificar_Click);
             // 
-            // ListaClavesSeguridad
+            // inputDatos
+            // 
+            this.inputDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inputDatos.Location = new System.Drawing.Point(27, 108);
+            this.inputDatos.Multiline = true;
+            this.inputDatos.Name = "inputDatos";
+            this.inputDatos.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.inputDatos.Size = new System.Drawing.Size(266, 444);
+            this.inputDatos.TabIndex = 33;
+            // 
+            // IngresoYListaDataBreach
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.botonModificarTarjeta);
+            this.Controls.Add(this.botonVerificar);
+            this.Controls.Add(this.inputDatos);
             this.Controls.Add(this.tablaTarjetas);
             this.Controls.Add(this.tablaClaves);
             this.Controls.Add(this.botonModificarClave);
             this.Controls.Add(this.labelTitulo);
-            this.Name = "ListaClavesSeguridad";
+            this.Name = "IngresoYListaDataBreach";
             this.Size = new System.Drawing.Size(1014, 681);
-            this.Load += new System.EventHandler(this.ListaClavesSeguridad_Load);
+            this.Load += new System.EventHandler(this.IngresoYListaDataBreach_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablaClaves)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTarjetas)).EndInit();
             this.ResumeLayout(false);
@@ -256,6 +269,7 @@ namespace Interfaz.InterfacesClaves
         private System.Windows.Forms.DataGridViewTextBoxColumn TarjetaMostrada;
         private System.Windows.Forms.DataGridViewTextBoxColumn TarjetaCompleta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Vencimiento;
-        private System.Windows.Forms.Button botonModificarTarjeta;
+        private System.Windows.Forms.Button botonVerificar;
+        private System.Windows.Forms.TextBox inputDatos;
     }
 }

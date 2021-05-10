@@ -376,11 +376,23 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(verTarjeta);
         }
 
+        private void AbrirDataBreaches_Handler(List<string> dataBreach) {
+            IngresoYListaDataBreach panelDataBreach = new IngresoYListaDataBreach(this._usuarioActual, dataBreach);
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(panelDataBreach);
+        }
+
+
         private void botonReporteFortaleza_Click(object sender, EventArgs e)
         {
             GraficaSeguridad grafica = new GraficaSeguridad(this._usuarioActual);
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(grafica);
+        }
+
+        private void botonDataBreaches_Click(object sender, EventArgs e)
+        {
+            this.AbrirDataBreaches_Handler(null);
         }
     }
 }
