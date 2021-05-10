@@ -15,9 +15,9 @@ namespace Interfaz
     {
         private Usuario _usuarioActual;
         private Clave _claveACompartir;
-        private AdminContras _administrador;
+        private Administrador _administrador;
 
-        public CompartirClave(ClaveCompartida aCompartir, AdminContras administrador)
+        public CompartirClave(ClaveCompartida aCompartir, Administrador administrador)
         {
             InitializeComponent();
             this._usuarioActual = aCompartir.Usuario;

@@ -18,7 +18,7 @@ namespace Interfaz
     public partial class VentanaPrincipal : Form
     {
 
-        private AdminContras _administrador;
+        private Administrador _administrador;
         private Usuario _usuarioActual;
         private Type _panelAVolverVerClave;
         private Type _panelAVolverModificarClave;
@@ -26,7 +26,7 @@ namespace Interfaz
 
         public VentanaPrincipal()
         {
-            this._administrador = new AdminContras();
+            this._administrador = new Administrador();
 
             this._usuarioActual = null;
             Usuario usuarioPrueba = new Usuario();

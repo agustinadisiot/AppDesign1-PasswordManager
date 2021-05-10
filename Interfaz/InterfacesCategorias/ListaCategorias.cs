@@ -13,10 +13,10 @@ namespace Interfaz
 {
     public partial class ListaCategorias : UserControl
     {
-        private AdminContras _administrador;
+        private Administrador _administrador;
         private Usuario _usuarioActual;
 
-        public ListaCategorias(Usuario usuarioAgregar, AdminContras administradorAgregar)
+        public ListaCategorias(Usuario usuarioAgregar, Administrador administradorAgregar)
         {
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;

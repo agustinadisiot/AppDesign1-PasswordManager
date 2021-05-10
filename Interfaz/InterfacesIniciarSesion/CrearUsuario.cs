@@ -13,9 +13,9 @@ namespace Interfaz
 {
     public partial class CrearUsuario : UserControl
     {
-        private AdminContras _administrador;
+        private Administrador _administrador;
 
-        public CrearUsuario(AdminContras administradorActual)
+        public CrearUsuario(Administrador administradorActual)
         {
             InitializeComponent();
             this._administrador = administradorActual;

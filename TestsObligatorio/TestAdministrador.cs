@@ -16,14 +16,14 @@ namespace TestsObligatorio
         [TestMethod]
         public void AdministradorEsListaUsuariosVaciaAlPrincipio()
         {
-            AdminContras administrador = new AdminContras();
+            Administrador administrador = new Administrador();
             Assert.AreEqual(true, administrador.EsListaUsuariosVacia());
         }
 
         [TestMethod]
         public void AdministradorEsListaUsuariosVaciaConUsuarios()
         {
-            AdminContras administrador = new AdminContras();
+            Administrador administrador = new Administrador();
             Usuario usuario = new Usuario
             {
                 Nombre = "Roberto"
@@ -35,7 +35,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void AdministradorAgregarUsuarioSinNombre()
         {
-            AdminContras administrador = new AdminContras();
+            Administrador administrador = new Administrador();
             Usuario usuario = new Usuario();
             Assert.ThrowsException<ObjetoIncompletoException>(() => administrador.AgregarUsuario(usuario));
         }
@@ -43,7 +43,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void AdministradorAgregarUsuarioYaExistente()
         {
-            AdminContras administrador = new AdminContras();
+            Administrador administrador = new Administrador();
             Usuario usuario = new Usuario()
             {
                 Nombre = "Roberto"
@@ -56,7 +56,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void AdministradorEsListaUsuariosVaciaConDosUsuarios()
         {
-            AdminContras administrador = new AdminContras();
+            Administrador administrador = new Administrador();
             Usuario usuario = new Usuario
             {
                 Nombre = "Roberto"
@@ -74,7 +74,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void AdministradorPedirNombreUsuarioCorrecto()
         {
-            AdminContras administrador = new AdminContras();
+            Administrador administrador = new Administrador();
             Usuario usuario = new Usuario
             {
                 Nombre = "Roberto"
@@ -91,7 +91,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void AdministradorPedirUsuarioPrimeroConDosAgregados()
         {
-            AdminContras administrador = new AdminContras();
+            Administrador administrador = new Administrador();
             Usuario usuario = new Usuario
             {
                 Nombre = "Roberto"
@@ -114,7 +114,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void AdministradorPedirUsuarioSegundoConDosAgregados()
         {
-            AdminContras administrador = new AdminContras();
+            Administrador administrador = new Administrador();
             Usuario usuario = new Usuario
             {
                 Nombre = "Roberto"
@@ -136,7 +136,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void AdministradorPedirUsuarioInexistente()
         {
-            AdminContras administrador = new AdminContras();
+            Administrador administrador = new Administrador();
             Usuario usuario = new Usuario
             {
                 Nombre = "Roberto"
@@ -158,7 +158,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void AdministradorVacioYaExisteUsuario()
         {
-            AdminContras administrador = new AdminContras();
+            Administrador administrador = new Administrador();
             Usuario buscador = new Usuario
             {
                 Nombre = "Roberto"
@@ -170,7 +170,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void AdministradorYaExisteUsuarioExistente()
         {
-            AdminContras administrador = new AdminContras();
+            Administrador administrador = new Administrador();
 
             Usuario agregar = new Usuario()
             {
@@ -190,7 +190,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void AdministradorNoVacioYaExisteUsuarioNoExistente()
         {
-            AdminContras administrador = new AdminContras();
+            Administrador administrador = new Administrador();
 
             Usuario agregar = new Usuario()
             {
@@ -210,7 +210,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void AdministradorGetListaUsuariosVacia()
         {
-            AdminContras administrador = new AdminContras();
+            Administrador administrador = new Administrador();
 
             Assert.IsNull(administrador.GetListaUsuarios());
         }
@@ -218,7 +218,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void AdministradorGetListaUsuariosNoVacia()
         {
-            AdminContras administrador = new AdminContras();
+            Administrador administrador = new Administrador();
             Usuario usuario = new Usuario()
             {
                 Nombre = "Usuario"
@@ -231,7 +231,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void AdministradorGetListaUsuariosEsIgual()
         {
-            AdminContras administrador = new AdminContras();
+            Administrador administrador = new Administrador();
             Usuario usuario1 = new Usuario()
             {
                 Nombre = "Usuario1"

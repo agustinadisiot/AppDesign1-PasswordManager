@@ -13,10 +13,10 @@ namespace Interfaz.InterfacesCompartirClave
 {
     public partial class ListaClavesCompartidasPorMi : UserControl
     {
-        private AdminContras _administrador;
+        private Administrador _administrador;
         private Usuario _usuarioActual;
 
-        public ListaClavesCompartidasPorMi(Usuario usuarioAgregar, AdminContras administradorAgregar)
+        public ListaClavesCompartidasPorMi(Usuario usuarioAgregar, Administrador administradorAgregar)
         {
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;

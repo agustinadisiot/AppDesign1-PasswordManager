@@ -13,9 +13,9 @@ namespace Interfaz
 {
     public partial class IniciarSesion : UserControl
     {
-        private AdminContras _administrador;
+        private Administrador _administrador;
 
-        public IniciarSesion(AdminContras administrador)
+        public IniciarSesion(Administrador administrador)
         {
             this._administrador = administrador;
             InitializeComponent();
