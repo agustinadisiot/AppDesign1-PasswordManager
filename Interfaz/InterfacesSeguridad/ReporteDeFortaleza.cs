@@ -23,10 +23,44 @@ namespace Interfaz.InterfacesSeguridad
 
         private void ReporteDeFortaleza_Load(object sender, EventArgs e)
         {
-            this.CargarTabla();
+            this.CargarTablaReporte();
+            this.TablaReporte.SelectionChanged += TablaReporte_SelectionChanged;
         }
 
-        private void CargarTabla()
+        private void TablaReporte_SelectionChanged(object sender, EventArgs e)
+        {
+            var rowsCount = this.TablaReporte.SelectedRows.Count;
+            if (rowsCount == 0 || rowsCount > 1) return;
+
+            var row = this.TablaReporte.SelectedRows[0];
+            if (row == null) return;
+           CargarTablaClaves();
+        }
+
+        private void CargarTablaClaves()
+        {
+            
+            this.tablaClaves.Rows.Clear();
+            if (this.TablaReporte.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = TablaReporte.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = TablaReporte.Rows[selectedrowindex];
+                string color = Convert.ToString(selectedRow.Cells["Color"].Value);
+
+                List<Contra> listaClaves = this._usuarioActual.GetListaClavesColor(color);
+
+                foreach (Contra claveActual in listaClaves)
+                {
+                    string nombreCategoria = this._usuarioActual.GetCategoriaClave(claveActual).Nombre;
+                    string sitio = claveActual.Sitio;
+                    string usuario = claveActual.UsuarioContra;
+                    DateTime ultimaModificacion = claveActual.FechaModificacion;
+                    this.tablaClaves.Rows.Add(nombreCategoria, sitio, usuario, ultimaModificacion);
+                }
+            }
+        }
+
+        private void CargarTablaReporte()
         {
             const string rojo = "rojo",
                 naranja = "naranja",
@@ -59,6 +93,35 @@ namespace Interfaz.InterfacesSeguridad
         {
             if (this.AbrirGrafica_Event != null)
                 this.AbrirGrafica_Event();
+        }
+
+        private void botonVer_Click(object sender, EventArgs e)
+        {
+            bool haySeleccionada = this.tablaClaves.SelectedCells.Count > 0;
+            if (haySeleccionada)
+            {
+                int posSeleccionada = this.tablaClaves.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = this.tablaClaves.Rows[posSeleccionada];
+
+                string sitioClaveAMostrar = Convert.ToString(selectedRow.Cells["Sitio"].Value);
+                string usuarioClaveAMostrar = Convert.ToString(selectedRow.Cells["Usuario"].Value);
+
+                Contra buscadora = new Contra
+                {
+                    Sitio = sitioClaveAMostrar,
+                    UsuarioContra = usuarioClaveAMostrar
+                };
+
+                AbrirVerClave(buscadora, _usuarioActual);
+            }
+        }
+
+        public delegate void AbrirVerClave_Handler(Contra buscadora, Usuario usuarioActual);
+        public event AbrirVerClave_Handler AbrirVerClave_Event;
+        private void AbrirVerClave(Contra buscadora, Usuario usuarioActual)
+        {
+            if (this.AbrirVerClave_Event != null)
+                this.AbrirVerClave_Event(buscadora, usuarioActual);
         }
     }
 }
