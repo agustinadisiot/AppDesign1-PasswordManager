@@ -101,6 +101,7 @@ namespace Interfaz.InterfacesSeguridad
             this.botonModificar.TabIndex = 26;
             this.botonModificar.Text = "Modificar";
             this.botonModificar.UseVisualStyleBackColor = true;
+            this.botonModificar.Click += new System.EventHandler(this.botonModificar_Click);
             // 
             // labelTitulo
             // 

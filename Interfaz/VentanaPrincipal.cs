@@ -306,6 +306,9 @@ namespace Interfaz
                 case "IngresoYListaDataBreach":
                     this.AbrirDataBreaches_Handler(this._ultimoDataBreach);
                     break;
+                case "ReporteDeFortaleza":
+                    this.AbrirReporteFortaleza_Handler();
+                    break;
                 default:
                     this.AbrirListaClaves_Handler();
                     break;
@@ -415,7 +418,7 @@ namespace Interfaz
 
         private void AbrirDataBreaches_Handler(List<string> dataBreach) {
             IngresoYListaDataBreach panelDataBreach = new IngresoYListaDataBreach(this._usuarioActual, dataBreach);
-            panelDataBreach.AbrirModificarClave_Event += this.ModificarClaveDataBreach_Event;
+            panelDataBreach.ModificarClaveDataBreach_Event += this.ModificarClaveDataBreach_Event;
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(panelDataBreach);
         }
@@ -433,6 +436,7 @@ namespace Interfaz
             ReporteDeFortaleza reporteFortaleza = new ReporteDeFortaleza(this._usuarioActual);
             reporteFortaleza.AbrirGrafica_Event += AbrirGrafica_Handler;
             reporteFortaleza.AbrirVerClave_Event += AbrirVerClave_Handler;
+            reporteFortaleza.AbrirModificarClave_Event += AbrirModificarClave_Event;
 
             this.panelPrincipal.Controls.Clear();
 
