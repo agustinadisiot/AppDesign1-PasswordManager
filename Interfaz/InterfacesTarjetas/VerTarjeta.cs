@@ -56,5 +56,6 @@ namespace Interfaz.InterfacesTarjetas
             if (this.AbrirListaTarjetas_Event != null)
                 this.AbrirListaTarjetas_Event();
         }
+
     }
 }

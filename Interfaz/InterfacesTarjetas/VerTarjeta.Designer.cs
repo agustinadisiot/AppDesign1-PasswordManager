@@ -53,10 +53,9 @@ namespace Interfaz.InterfacesTarjetas
             // 
             this.labelErrores.AutoSize = true;
             this.labelErrores.ForeColor = System.Drawing.Color.Red;
-            this.labelErrores.Location = new System.Drawing.Point(163, 606);
-            this.labelErrores.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelErrores.Location = new System.Drawing.Point(217, 746);
             this.labelErrores.Name = "labelErrores";
-            this.labelErrores.Size = new System.Drawing.Size(62, 13);
+            this.labelErrores.Size = new System.Drawing.Size(85, 17);
             this.labelErrores.TabIndex = 65;
             this.labelErrores.Text = "labelErrores";
             // 
@@ -64,10 +63,9 @@ namespace Interfaz.InterfacesTarjetas
             // 
             this.labelNotas.AutoSize = true;
             this.labelNotas.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelNotas.Location = new System.Drawing.Point(222, 416);
-            this.labelNotas.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelNotas.Location = new System.Drawing.Point(296, 512);
             this.labelNotas.Name = "labelNotas";
-            this.labelNotas.Size = new System.Drawing.Size(58, 24);
+            this.labelNotas.Size = new System.Drawing.Size(76, 29);
             this.labelNotas.TabIndex = 63;
             this.labelNotas.Text = "Notas";
             // 
@@ -75,10 +73,9 @@ namespace Interfaz.InterfacesTarjetas
             // 
             this.labelVencimiento.AutoSize = true;
             this.labelVencimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelVencimiento.Location = new System.Drawing.Point(222, 373);
-            this.labelVencimiento.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelVencimiento.Location = new System.Drawing.Point(296, 459);
             this.labelVencimiento.Name = "labelVencimiento";
-            this.labelVencimiento.Size = new System.Drawing.Size(116, 24);
+            this.labelVencimiento.Size = new System.Drawing.Size(146, 29);
             this.labelVencimiento.TabIndex = 62;
             this.labelVencimiento.Text = "Vencimiento";
             // 
@@ -87,19 +84,19 @@ namespace Interfaz.InterfacesTarjetas
             this.comboBoxCategorias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCategorias.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxCategorias.FormattingEnabled = true;
-            this.comboBoxCategorias.Location = new System.Drawing.Point(476, 155);
+            this.comboBoxCategorias.Location = new System.Drawing.Point(635, 191);
+            this.comboBoxCategorias.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxCategorias.Name = "comboBoxCategorias";
-            this.comboBoxCategorias.Size = new System.Drawing.Size(0, 28);
+            this.comboBoxCategorias.Size = new System.Drawing.Size(0, 33);
             this.comboBoxCategorias.TabIndex = 60;
             // 
             // labelCategoria
             // 
             this.labelCategoria.AutoSize = true;
             this.labelCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelCategoria.Location = new System.Drawing.Point(222, 155);
-            this.labelCategoria.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelCategoria.Location = new System.Drawing.Point(296, 191);
             this.labelCategoria.Name = "labelCategoria";
-            this.labelCategoria.Size = new System.Drawing.Size(90, 24);
+            this.labelCategoria.Size = new System.Drawing.Size(118, 29);
             this.labelCategoria.TabIndex = 59;
             this.labelCategoria.Text = "Categoria";
             // 
@@ -107,10 +104,9 @@ namespace Interfaz.InterfacesTarjetas
             // 
             this.ingresarCodigo.AutoSize = true;
             this.ingresarCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.ingresarCodigo.Location = new System.Drawing.Point(222, 330);
-            this.ingresarCodigo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.ingresarCodigo.Location = new System.Drawing.Point(296, 406);
             this.ingresarCodigo.Name = "ingresarCodigo";
-            this.ingresarCodigo.Size = new System.Drawing.Size(71, 24);
+            this.ingresarCodigo.Size = new System.Drawing.Size(92, 29);
             this.ingresarCodigo.TabIndex = 58;
             this.ingresarCodigo.Text = "Codigo";
             // 
@@ -118,20 +114,19 @@ namespace Interfaz.InterfacesTarjetas
             // 
             this.labelNumero.AutoSize = true;
             this.labelNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelNumero.Location = new System.Drawing.Point(222, 287);
-            this.labelNumero.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelNumero.Location = new System.Drawing.Point(296, 353);
             this.labelNumero.Name = "labelNumero";
-            this.labelNumero.Size = new System.Drawing.Size(79, 24);
+            this.labelNumero.Size = new System.Drawing.Size(100, 29);
             this.labelNumero.TabIndex = 56;
             this.labelNumero.Text = "Numero";
             // 
             // botonVolver
             // 
             this.botonVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.botonVolver.Location = new System.Drawing.Point(764, 591);
-            this.botonVolver.Margin = new System.Windows.Forms.Padding(2);
+            this.botonVolver.Location = new System.Drawing.Point(1019, 727);
+            this.botonVolver.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.botonVolver.Name = "botonVolver";
-            this.botonVolver.Size = new System.Drawing.Size(144, 37);
+            this.botonVolver.Size = new System.Drawing.Size(192, 46);
             this.botonVolver.TabIndex = 54;
             this.botonVolver.Text = "Volver";
             this.botonVolver.UseVisualStyleBackColor = true;
@@ -141,10 +136,9 @@ namespace Interfaz.InterfacesTarjetas
             // 
             this.labelTipo.AutoSize = true;
             this.labelTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelTipo.Location = new System.Drawing.Point(222, 244);
-            this.labelTipo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelTipo.Location = new System.Drawing.Point(296, 300);
             this.labelTipo.Name = "labelTipo";
-            this.labelTipo.Size = new System.Drawing.Size(48, 24);
+            this.labelTipo.Size = new System.Drawing.Size(63, 29);
             this.labelTipo.TabIndex = 53;
             this.labelTipo.Text = "Tipo";
             // 
@@ -152,10 +146,9 @@ namespace Interfaz.InterfacesTarjetas
             // 
             this.labelNombre.AutoSize = true;
             this.labelNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelNombre.Location = new System.Drawing.Point(222, 201);
-            this.labelNombre.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelNombre.Location = new System.Drawing.Point(296, 247);
             this.labelNombre.Name = "labelNombre";
-            this.labelNombre.Size = new System.Drawing.Size(79, 24);
+            this.labelNombre.Size = new System.Drawing.Size(101, 29);
             this.labelNombre.TabIndex = 51;
             this.labelNombre.Text = "Nombre";
             // 
@@ -163,9 +156,10 @@ namespace Interfaz.InterfacesTarjetas
             // 
             this.Titulo.AutoSize = true;
             this.Titulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Titulo.Location = new System.Drawing.Point(307, 49);
+            this.Titulo.Location = new System.Drawing.Point(409, 60);
+            this.Titulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Titulo.Name = "Titulo";
-            this.Titulo.Size = new System.Drawing.Size(159, 33);
+            this.Titulo.Size = new System.Drawing.Size(202, 42);
             this.Titulo.TabIndex = 48;
             this.Titulo.Text = "Ver Tarjeta";
             // 
@@ -175,11 +169,12 @@ namespace Interfaz.InterfacesTarjetas
             this.labelMostrarCategoria.BackColor = System.Drawing.Color.White;
             this.labelMostrarCategoria.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelMostrarCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMostrarCategoria.Location = new System.Drawing.Point(476, 154);
-            this.labelMostrarCategoria.MaximumSize = new System.Drawing.Size(248, 29);
-            this.labelMostrarCategoria.MinimumSize = new System.Drawing.Size(248, 29);
+            this.labelMostrarCategoria.Location = new System.Drawing.Point(635, 190);
+            this.labelMostrarCategoria.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelMostrarCategoria.MaximumSize = new System.Drawing.Size(330, 35);
+            this.labelMostrarCategoria.MinimumSize = new System.Drawing.Size(330, 35);
             this.labelMostrarCategoria.Name = "labelMostrarCategoria";
-            this.labelMostrarCategoria.Size = new System.Drawing.Size(248, 29);
+            this.labelMostrarCategoria.Size = new System.Drawing.Size(330, 35);
             this.labelMostrarCategoria.TabIndex = 66;
             // 
             // labelMostrarNombre
@@ -188,11 +183,12 @@ namespace Interfaz.InterfacesTarjetas
             this.labelMostrarNombre.BackColor = System.Drawing.Color.White;
             this.labelMostrarNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelMostrarNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMostrarNombre.Location = new System.Drawing.Point(476, 201);
-            this.labelMostrarNombre.MaximumSize = new System.Drawing.Size(248, 29);
-            this.labelMostrarNombre.MinimumSize = new System.Drawing.Size(248, 29);
+            this.labelMostrarNombre.Location = new System.Drawing.Point(635, 247);
+            this.labelMostrarNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelMostrarNombre.MaximumSize = new System.Drawing.Size(330, 35);
+            this.labelMostrarNombre.MinimumSize = new System.Drawing.Size(330, 35);
             this.labelMostrarNombre.Name = "labelMostrarNombre";
-            this.labelMostrarNombre.Size = new System.Drawing.Size(248, 29);
+            this.labelMostrarNombre.Size = new System.Drawing.Size(330, 35);
             this.labelMostrarNombre.TabIndex = 67;
             // 
             // labelMostrarTipo
@@ -201,11 +197,12 @@ namespace Interfaz.InterfacesTarjetas
             this.labelMostrarTipo.BackColor = System.Drawing.Color.White;
             this.labelMostrarTipo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelMostrarTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMostrarTipo.Location = new System.Drawing.Point(476, 244);
-            this.labelMostrarTipo.MaximumSize = new System.Drawing.Size(248, 29);
-            this.labelMostrarTipo.MinimumSize = new System.Drawing.Size(248, 29);
+            this.labelMostrarTipo.Location = new System.Drawing.Point(635, 300);
+            this.labelMostrarTipo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelMostrarTipo.MaximumSize = new System.Drawing.Size(330, 35);
+            this.labelMostrarTipo.MinimumSize = new System.Drawing.Size(330, 35);
             this.labelMostrarTipo.Name = "labelMostrarTipo";
-            this.labelMostrarTipo.Size = new System.Drawing.Size(248, 29);
+            this.labelMostrarTipo.Size = new System.Drawing.Size(330, 35);
             this.labelMostrarTipo.TabIndex = 68;
             // 
             // labelMostrarNumero
@@ -214,11 +211,12 @@ namespace Interfaz.InterfacesTarjetas
             this.labelMostrarNumero.BackColor = System.Drawing.Color.White;
             this.labelMostrarNumero.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelMostrarNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMostrarNumero.Location = new System.Drawing.Point(476, 287);
-            this.labelMostrarNumero.MaximumSize = new System.Drawing.Size(248, 29);
-            this.labelMostrarNumero.MinimumSize = new System.Drawing.Size(248, 29);
+            this.labelMostrarNumero.Location = new System.Drawing.Point(635, 353);
+            this.labelMostrarNumero.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelMostrarNumero.MaximumSize = new System.Drawing.Size(330, 35);
+            this.labelMostrarNumero.MinimumSize = new System.Drawing.Size(330, 35);
             this.labelMostrarNumero.Name = "labelMostrarNumero";
-            this.labelMostrarNumero.Size = new System.Drawing.Size(248, 29);
+            this.labelMostrarNumero.Size = new System.Drawing.Size(330, 35);
             this.labelMostrarNumero.TabIndex = 69;
             // 
             // labelMostrarCodigo
@@ -227,11 +225,12 @@ namespace Interfaz.InterfacesTarjetas
             this.labelMostrarCodigo.BackColor = System.Drawing.Color.White;
             this.labelMostrarCodigo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelMostrarCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMostrarCodigo.Location = new System.Drawing.Point(476, 330);
-            this.labelMostrarCodigo.MaximumSize = new System.Drawing.Size(248, 29);
-            this.labelMostrarCodigo.MinimumSize = new System.Drawing.Size(248, 29);
+            this.labelMostrarCodigo.Location = new System.Drawing.Point(635, 406);
+            this.labelMostrarCodigo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelMostrarCodigo.MaximumSize = new System.Drawing.Size(330, 35);
+            this.labelMostrarCodigo.MinimumSize = new System.Drawing.Size(330, 35);
             this.labelMostrarCodigo.Name = "labelMostrarCodigo";
-            this.labelMostrarCodigo.Size = new System.Drawing.Size(248, 29);
+            this.labelMostrarCodigo.Size = new System.Drawing.Size(330, 35);
             this.labelMostrarCodigo.TabIndex = 70;
             // 
             // labelMostrarVencimiento
@@ -240,11 +239,12 @@ namespace Interfaz.InterfacesTarjetas
             this.labelMostrarVencimiento.BackColor = System.Drawing.Color.White;
             this.labelMostrarVencimiento.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelMostrarVencimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMostrarVencimiento.Location = new System.Drawing.Point(476, 373);
-            this.labelMostrarVencimiento.MaximumSize = new System.Drawing.Size(248, 29);
-            this.labelMostrarVencimiento.MinimumSize = new System.Drawing.Size(248, 29);
+            this.labelMostrarVencimiento.Location = new System.Drawing.Point(635, 459);
+            this.labelMostrarVencimiento.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelMostrarVencimiento.MaximumSize = new System.Drawing.Size(330, 35);
+            this.labelMostrarVencimiento.MinimumSize = new System.Drawing.Size(330, 35);
             this.labelMostrarVencimiento.Name = "labelMostrarVencimiento";
-            this.labelMostrarVencimiento.Size = new System.Drawing.Size(248, 29);
+            this.labelMostrarVencimiento.Size = new System.Drawing.Size(330, 35);
             this.labelMostrarVencimiento.TabIndex = 71;
             // 
             // labelMostrarNotas
@@ -253,16 +253,17 @@ namespace Interfaz.InterfacesTarjetas
             this.labelMostrarNotas.BackColor = System.Drawing.Color.White;
             this.labelMostrarNotas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelMostrarNotas.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMostrarNotas.Location = new System.Drawing.Point(476, 416);
-            this.labelMostrarNotas.MaximumSize = new System.Drawing.Size(432, 154);
-            this.labelMostrarNotas.MinimumSize = new System.Drawing.Size(432, 154);
+            this.labelMostrarNotas.Location = new System.Drawing.Point(635, 512);
+            this.labelMostrarNotas.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelMostrarNotas.MaximumSize = new System.Drawing.Size(575, 189);
+            this.labelMostrarNotas.MinimumSize = new System.Drawing.Size(575, 189);
             this.labelMostrarNotas.Name = "labelMostrarNotas";
-            this.labelMostrarNotas.Size = new System.Drawing.Size(432, 154);
+            this.labelMostrarNotas.Size = new System.Drawing.Size(575, 189);
             this.labelMostrarNotas.TabIndex = 72;
             // 
             // VerTarjeta
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.labelMostrarNotas);
             this.Controls.Add(this.labelMostrarVencimiento);
@@ -282,8 +283,9 @@ namespace Interfaz.InterfacesTarjetas
             this.Controls.Add(this.labelTipo);
             this.Controls.Add(this.labelNombre);
             this.Controls.Add(this.Titulo);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "VerTarjeta";
-            this.Size = new System.Drawing.Size(1071, 677);
+            this.Size = new System.Drawing.Size(1428, 833);
             this.Load += new System.EventHandler(this.VerTarjeta_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

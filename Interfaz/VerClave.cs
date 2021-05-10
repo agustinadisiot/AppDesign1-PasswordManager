@@ -53,5 +53,6 @@ namespace Interfaz
             if (this.SalirDeVerClave_Event != null)
                 this.SalirDeVerClave_Event();
         }
+
     }
 }
