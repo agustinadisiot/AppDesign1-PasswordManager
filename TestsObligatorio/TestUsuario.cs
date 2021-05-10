@@ -472,19 +472,19 @@ namespace TestsObligatorio
             { 
                 Nombre = "Trabajo"
             };
-            Contra contra = new Contra()
+            Clave contra = new Clave()
             {
                 Sitio = "www.ort.edu.uy",
-                UsuarioContra = "111111",
-                Clave = "12345678"
+                UsuarioClave = "111111",
+                Codigo = "12345678"
             };
-            categoria.AgregarContra(contra);
+            categoria.AgregarClave(contra);
             usuario.AgregarCategoria(categoria);
-            Contra contraIgual = new Contra()
+            Clave contraIgual = new Clave()
             {
                 Sitio = "www.ort.edu.uy",
-                UsuarioContra = "111111",
-                Clave = "12345678"
+                UsuarioClave = "111111",
+                Codigo = "12345678"
             };
             Assert.AreEqual(true, usuario.YaExisteContra(contraIgual));
         }
@@ -501,19 +501,19 @@ namespace TestsObligatorio
             {
                 Nombre = "Trabajo"
             };
-            Contra contra = new Contra()
+            Clave contra = new Clave()
             {
                 Sitio = "www.ort.edu.uy",
-                UsuarioContra = "111111",
-                Clave = "12345678"
+                UsuarioClave = "111111",
+                Codigo = "12345678"
             };
-            categoria.AgregarContra(contra);
+            categoria.AgregarClave(contra);
             usuario.AgregarCategoria(categoria);
-            Contra contraIgual = new Contra()
+            Clave contraIgual = new Clave()
             {
                 Sitio = "www.youtube.com",
-                UsuarioContra = "111111",
-                Clave = "12345678"
+                UsuarioClave = "111111",
+                Codigo = "12345678"
             };
             Assert.AreEqual(false, usuario.YaExisteContra(contraIgual));
         }
@@ -530,19 +530,19 @@ namespace TestsObligatorio
             {
                 Nombre = "Trabajo"
             };
-            Contra contra = new Contra()
+            Clave contra = new Clave()
             {
                 Sitio = "www.ort.edu.uy",
-                UsuarioContra = "111111",
-                Clave = "12345678"
+                UsuarioClave = "111111",
+                Codigo = "12345678"
             };
-            categoria.AgregarContra(contra);
+            categoria.AgregarClave(contra);
             usuario.AgregarCategoria(categoria);
-            Contra contraIgual = new Contra()
+            Clave contraIgual = new Clave()
             {
                 Sitio = "www.ort.edu.uy",
-                UsuarioContra = "222222",
-                Clave = "12345678"
+                UsuarioClave = "222222",
+                Codigo = "12345678"
             };
             Assert.AreEqual(false, usuario.YaExisteContra(contraIgual));
         }
@@ -559,19 +559,19 @@ namespace TestsObligatorio
             {
                 Nombre = "Trabajo"
             };
-            Contra contra = new Contra()
+            Clave contra = new Clave()
             {
                 Sitio = "www.ort.edu.uy",
-                UsuarioContra = "111111",
-                Clave = "12345678"
+                UsuarioClave = "111111",
+                Codigo = "12345678"
             };
-            categoria.AgregarContra(contra);
+            categoria.AgregarClave(contra);
             usuario.AgregarCategoria(categoria);
-            Contra contraIgual = new Contra()
+            Clave contraIgual = new Clave()
             {
                 Sitio = "www.ort.edu.uy",
-                UsuarioContra = "111111",
-                Clave = "12345678"
+                UsuarioClave = "111111",
+                Codigo = "12345678"
             };
             Assert.AreEqual(true, usuario.YaExisteContra(contraIgual));
         }
@@ -588,32 +588,32 @@ namespace TestsObligatorio
             {
                 Nombre = "Trabajo"
             };
-            Contra contra1 = new Contra()
+            Clave contra1 = new Clave()
             {
                 Sitio = "www.ort.edu.uy",
-                UsuarioContra = "111111",
-                Clave = "12345678"
+                UsuarioClave = "111111",
+                Codigo = "12345678"
             };
-            categoria1.AgregarContra(contra1);
+            categoria1.AgregarClave(contra1);
             usuario.AgregarCategoria(categoria1);
             Categoria categoria2 = new Categoria()
             {
                 Nombre = "Personal"
             };
-            Contra contra2 = new Contra()
+            Clave contra2 = new Clave()
             {
                 Sitio = "www.youtube.com",
-                UsuarioContra = "usuarioYoutube",
-                Clave = "contra1234"
+                UsuarioClave = "usuarioYoutube",
+                Codigo = "contra1234"
             };
-            categoria2.AgregarContra(contra2);
+            categoria2.AgregarClave(contra2);
             usuario.AgregarCategoria(categoria2);
 
-            Contra contraIgual = new Contra()
+            Clave contraIgual = new Clave()
             {
                 Sitio = "www.youtube.com",
-                UsuarioContra = "usuarioYoutube",
-                Clave = "contra1234"
+                UsuarioClave = "usuarioYoutube",
+                Codigo = "contra1234"
             };
             Assert.AreEqual(true, usuario.YaExisteContra(contraIgual));
         }
@@ -630,11 +630,11 @@ namespace TestsObligatorio
             {
                 Nombre = "Trabajo"
             };
-            Contra contra = new Contra()
+            Clave contra = new Clave()
             {
                 Sitio = "www.ort.edu.uy",
-                UsuarioContra = "111111",
-                Clave = "12345678"
+                UsuarioClave = "111111",
+                Codigo = "12345678"
             };
             usuario.AgregarCategoria(categoria);
 
@@ -659,11 +659,11 @@ namespace TestsObligatorio
             {
                 Nombre = "Trabajo"
             };
-            Contra contra = new Contra()
+            Clave contra = new Clave()
             {
                 Sitio = "www.ort.edu.uy",
-                UsuarioContra = "111111",
-                Clave = "12345678"
+                UsuarioClave = "111111",
+                Codigo = "12345678"
             };
 
             Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.AgregarContra(contra, categoria));
@@ -681,10 +681,10 @@ namespace TestsObligatorio
             {
                 Nombre = "Trabajo"
             };
-            Contra contra = new Contra()
+            Clave contra = new Clave()
             {
-                UsuarioContra = "111111",
-                Clave = "12345678"
+                UsuarioClave = "111111",
+                Codigo = "12345678"
             };
             usuario.AgregarCategoria(categoria);
 
@@ -708,10 +708,10 @@ namespace TestsObligatorio
             {
                 Nombre = "Trabajo"
             };
-            Contra contra = new Contra()
+            Clave contra = new Clave()
             {
                 Sitio = "www.ort.edu.uy",
-                UsuarioContra = "111111"
+                UsuarioClave = "111111"
             };
             usuario.AgregarCategoria(categoria);
 
@@ -735,10 +735,10 @@ namespace TestsObligatorio
             {
                 Nombre = "Trabajo"
             };
-            Contra contra = new Contra()
+            Clave contra = new Clave()
             {
                 Sitio = "www.ort.edu.uy",
-                Clave = "12345678"
+                Codigo = "12345678"
             };
             usuario.AgregarCategoria(categoria);
 
@@ -762,11 +762,11 @@ namespace TestsObligatorio
             {
                 Nombre = "Trabajo"
             };
-            Contra contra = new Contra()
+            Clave contra = new Clave()
             {
                 Sitio = "www.ort.edu.uy",
-                UsuarioContra = "111111",
-                Clave = "12345678"
+                UsuarioClave = "111111",
+                Codigo = "12345678"
             };
             usuario.AgregarCategoria(categoria);
 
@@ -791,11 +791,11 @@ namespace TestsObligatorio
             {
                 Nombre = "Trabajo"
             };
-            Contra contra = new Contra()
+            Clave contra = new Clave()
             {
                 Sitio = "www.ort.edu.uy",
-                UsuarioContra = "111111",
-                Clave = "12345678"
+                UsuarioClave = "111111",
+                Codigo = "12345678"
             };
             usuario.AgregarCategoria(categoria);
 
@@ -805,7 +805,7 @@ namespace TestsObligatorio
             };
 
             usuario.AgregarContra(contra, buscadora);
-            Assert.AreEqual(true, usuario.GetCategoria(buscadora).YaExisteContra(contra));
+            Assert.AreEqual(true, usuario.GetCategoria(buscadora).YaExisteClave(contra));
         }
 
         [TestMethod]
@@ -819,9 +819,9 @@ namespace TestsObligatorio
             String usuarioContra = "222222";
             String paginaContra = "www.ort.edu.uy";
 
-            Contra aBorrar = new Contra()
+            Clave aBorrar = new Clave()
             {
-                UsuarioContra = usuarioContra,
+                UsuarioClave = usuarioContra,
                 Sitio = paginaContra
             };
 
@@ -846,9 +846,9 @@ namespace TestsObligatorio
             String usuarioContra = "222222";
             String paginaContra = "www.ort.edu.uy";
 
-            Contra aBorrar = new Contra()
+            Clave aBorrar = new Clave()
             {
-                UsuarioContra = usuarioContra,
+                UsuarioClave = usuarioContra,
                 Sitio =paginaContra
             };
 
@@ -873,11 +873,11 @@ namespace TestsObligatorio
             String usuarioContra = "222222";
             String paginaContra = "www.ort.edu.uy";
 
-            Contra contraABorrar = new Contra()
+            Clave contraABorrar = new Clave()
             {
-                UsuarioContra = usuarioContra,
+                UsuarioClave = usuarioContra,
                 Sitio = paginaContra,
-                Clave = "12345AbC$"
+                Codigo = "12345AbC$"
             };
 
             Categoria buscadora = new Categoria()
@@ -887,9 +887,9 @@ namespace TestsObligatorio
 
             usuario.AgregarContra(contraABorrar, buscadora);
 
-            Contra aBorrar = new Contra()
+            Clave aBorrar = new Clave()
             {
-                UsuarioContra = usuarioContra,
+                UsuarioClave = usuarioContra,
                 Sitio = paginaContra
             };
 
@@ -915,19 +915,19 @@ namespace TestsObligatorio
             String usuarioContra = "222222";
             String paginaContra = "www.ort.edu.uy";
 
-            Contra contraABorrar = new Contra()
+            Clave contraABorrar = new Clave()
             {
-                UsuarioContra = usuarioContra,
+                UsuarioClave = usuarioContra,
                 Sitio = paginaContra,
-                Clave = "12345AbC$"
+                Codigo = "12345AbC$"
             };
 
 
-            Contra contraADejar = new Contra()
+            Clave contraADejar = new Clave()
             {
-                UsuarioContra = "OtraContra",
+                UsuarioClave = "OtraContra",
                 Sitio = "sitioContraADejar.com",
-                Clave = "12345AbC$"
+                Codigo = "12345AbC$"
             };
 
             Categoria buscadora = new Categoria()
@@ -938,9 +938,9 @@ namespace TestsObligatorio
             usuario.AgregarContra(contraABorrar, buscadora);
             usuario.AgregarContra(contraADejar, buscadora);
 
-            Contra aBorrar = new Contra()
+            Clave aBorrar = new Clave()
             {
-                UsuarioContra = usuarioContra,
+                UsuarioClave = usuarioContra,
                 Sitio = paginaContra
             };
             usuario.BorrarContra(aBorrar);
@@ -962,19 +962,19 @@ namespace TestsObligatorio
 
             usuario.AgregarCategoria(categoria);
 
-            Contra contraAGuardar = new Contra()
+            Clave contraAGuardar = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
 
             usuario.AgregarContra(contraAGuardar, categoria);
 
-            Contra contraBuscadora = new Contra()
+            Clave contraBuscadora = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                UsuarioContra = "Roberto"
+                UsuarioClave = "Roberto"
             };
 
             Assert.AreEqual(contraAGuardar, usuario.GetContra(contraBuscadora));
@@ -996,26 +996,26 @@ namespace TestsObligatorio
 
             usuario.AgregarCategoria(categoria);
 
-            Contra contra1 = new Contra()
+            Clave contra1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
             usuario.AgregarContra(contra1, categoria);
 
-            Contra contra2 = new Contra()
+            Clave contra2 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Luis88"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Luis88"
             };
             usuario.AgregarContra(contra2, categoria);
 
-            Contra contraBuscadora = new Contra()
+            Clave contraBuscadora = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                UsuarioContra = "Roberto"
+                UsuarioClave = "Roberto"
             };
 
             Assert.AreEqual(contra1, usuario.GetContra(contraBuscadora)); ;
@@ -1037,26 +1037,26 @@ namespace TestsObligatorio
 
             usuario.AgregarCategoria(categoria);
 
-            Contra contra1 = new Contra()
+            Clave contra1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
             usuario.AgregarContra(contra1, categoria);
 
-            Contra contra2 = new Contra()
+            Clave contra2 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Luis88"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Luis88"
             };
             usuario.AgregarContra(contra2, categoria);
 
-            Contra contraBuscadora = new Contra()
+            Clave contraBuscadora = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                UsuarioContra = "Luis88"
+                UsuarioClave = "Luis88"
             };
 
             Assert.AreEqual(contra2, usuario.GetContra(contraBuscadora)); ;
@@ -1078,21 +1078,21 @@ namespace TestsObligatorio
 
             usuario.AgregarCategoria(categoria);
 
-            Contra contra1 = new Contra()
+            Clave contra1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
             usuario.AgregarContra(contra1, categoria);
 
-            Contra contraBuscadora = new Contra()
+            Clave contraBuscadora = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                UsuarioContra = "Roberto"
+                UsuarioClave = "Roberto"
             };
 
-            Assert.AreEqual(contra1.Clave, usuario.GetContra(contraBuscadora).Clave);
+            Assert.AreEqual(contra1.Codigo, usuario.GetContra(contraBuscadora).Codigo);
         }
 
         [TestMethod]
@@ -1104,10 +1104,10 @@ namespace TestsObligatorio
                 Nombre = "Usuario1"
             };
 
-            Contra contraBuscadora = new Contra()
+            Clave contraBuscadora = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                UsuarioContra = "Luis123"
+                UsuarioClave = "Luis123"
             };
             Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.GetContra(contraBuscadora));
         }
@@ -1124,19 +1124,19 @@ namespace TestsObligatorio
             string paginaContraModificar = "www.ort.edu.uy";
             string claveContraModificar = "1234AbC$";
 
-            Contra contra = new Contra()
+            Clave contra = new Clave()
             {
-                UsuarioContra = usuarioContraModificar,
+                UsuarioClave = usuarioContraModificar,
                 Sitio = paginaContraModificar,
-                Clave = claveContraModificar
+                Codigo = claveContraModificar
             };
 
             string usuarioContraInexistente = "12345@";
             string paginaContraInexistente = "www.ort.edu.uy";
 
-            Contra buscadora = new Contra()
+            Clave buscadora = new Clave()
             {
-                UsuarioContra = usuarioContraInexistente,
+                UsuarioClave = usuarioContraInexistente,
                 Sitio = paginaContraInexistente
             };
 
@@ -1176,30 +1176,30 @@ namespace TestsObligatorio
             string paginaContraModificar = "www.ort.edu.uy";
             string claveContraModificar = "1234AbC$";
 
-            Contra contraVieja = new Contra()
+            Clave contraVieja = new Clave()
             {
-                UsuarioContra = usuarioContraModificar,
+                UsuarioClave = usuarioContraModificar,
                 Sitio = paginaContraModificar,
-                Clave = claveContraModificar,
+                Codigo = claveContraModificar,
                 Nota = ""
             };
-            categoria.AgregarContra(contraVieja);
+            categoria.AgregarClave(contraVieja);
 
             string usuarioContraNueva = "user543";
             string paginaContraNueva = "aulas.edu.uy";
             string claveContraNueva = "1234A@C$";
 
-            Contra contraNueva = new Contra()
+            Clave contraNueva = new Clave()
             {
-                UsuarioContra = usuarioContraNueva,
+                UsuarioClave = usuarioContraNueva,
                 Sitio = paginaContraNueva,
-                Clave = claveContraNueva,
+                Codigo = claveContraNueva,
                 Nota = ""
             };
 
-            Contra buscadora = new Contra()
+            Clave buscadora = new Clave()
             {
-                UsuarioContra = usuarioContraModificar,
+                UsuarioClave = usuarioContraModificar,
                 Sitio = paginaContraModificar
             };
 
@@ -1235,36 +1235,36 @@ namespace TestsObligatorio
             string paginaContra1 = "www.ort.edu.uy";
             string claveContra1 = "11111111";
 
-            Contra contra1 = new Contra()
+            Clave contra1 = new Clave()
             {
-                UsuarioContra = usuarioContra1,
+                UsuarioClave = usuarioContra1,
                 Sitio = paginaContra1,
-                Clave = claveContra1,
+                Codigo = claveContra1,
                 Nota = ""
             };
 
-            categoria.AgregarContra(contra1);
+            categoria.AgregarClave(contra1);
 
             string usuarioContra2 = "22222222";
             string paginaContra2 = "aulas.edu.uy";
             string claveContra2 = "22222222";
 
-            Contra contra2 = new Contra()
+            Clave contra2 = new Clave()
             {
-                UsuarioContra = usuarioContra2,
+                UsuarioClave = usuarioContra2,
                 Sitio = paginaContra2,
-                Clave = claveContra2,
+                Codigo = claveContra2,
                 Nota = "Tiene Nota"
 
             };
 
-            categoria.AgregarContra(contra2);
+            categoria.AgregarClave(contra2);
 
-            Contra duplicada = new Contra()
+            Clave duplicada = new Clave()
             {
-                UsuarioContra = usuarioContra2,
+                UsuarioClave = usuarioContra2,
                 Sitio = paginaContra2,
-                Clave = "33333333",
+                Codigo = "33333333",
                 Nota = "Otra Nota"
             };
 
@@ -1304,11 +1304,11 @@ namespace TestsObligatorio
             string paginaContra1 = "www.ort.edu.uy";
             string claveContra1 = "1234AbC$";
 
-            Contra mover = new Contra()
+            Clave mover = new Clave()
             {
-                UsuarioContra = usuarioContra1,
+                UsuarioClave = usuarioContra1,
                 Sitio = paginaContra1,
-                Clave = claveContra1
+                Codigo = claveContra1
             };
 
             usuario.AgregarContra(mover,categoria);
@@ -1342,11 +1342,11 @@ namespace TestsObligatorio
             usuario.AgregarCategoria(trabajo);
 
 
-            Contra vieja = new Contra()
+            Clave vieja = new Clave()
             {
-                UsuarioContra = "11111111",
+                UsuarioClave = "11111111",
                 Sitio = "ort.edu.uy",
-                Clave = "11111111",
+                Codigo = "11111111",
                 Nota = "1111"
             };
 
@@ -1355,11 +1355,11 @@ namespace TestsObligatorio
             string usuarioNueva = "22222222";
             string sitioNueva = "aulas.ort.edu.uy";
 
-            Contra nueva = new Contra()
+            Clave nueva = new Clave()
             {
-                UsuarioContra = usuarioNueva,
+                UsuarioClave = usuarioNueva,
                 Sitio = sitioNueva,
-                Clave = "22222222",
+                Codigo = "22222222",
                 Nota = "2222"
             };
 
@@ -1374,20 +1374,20 @@ namespace TestsObligatorio
 
             usuario.ModificarContra(parametros);
 
-            Contra buscadora = new Contra()
+            Clave buscadora = new Clave()
             {
-                UsuarioContra = usuarioNueva,
+                UsuarioClave = usuarioNueva,
                 Sitio = sitioNueva
             };
 
-            Contra resultado = usuario.GetContra(buscadora);
+            Clave resultado = usuario.GetContra(buscadora);
 
             Categoria categoriaFinal = usuario.GetCategoriaClave(buscadora);
 
             bool igualSitio = resultado.Sitio == nueva.Sitio;
-            bool igualUsuario = resultado.UsuarioContra == nueva.UsuarioContra;
+            bool igualUsuario = resultado.UsuarioClave == nueva.UsuarioClave;
             bool igualNota = resultado.Nota == nueva.Nota;
-            bool igualClave = resultado.Clave == nueva.Clave;
+            bool igualClave = resultado.Codigo == nueva.Codigo;
 
             bool igualesDatos = igualSitio && igualUsuario && igualNota && igualClave;
             bool igualCategoria = trabajo == categoriaFinal;
@@ -1410,28 +1410,28 @@ namespace TestsObligatorio
 
             usuario.AgregarCategoria(categoria1);
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
-            categoria1.AgregarContra(clave1);
-            Contra clave2 = new Contra()
+            categoria1.AgregarClave(clave1);
+            Clave clave2 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Luis88"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Luis88"
             };
-            categoria1.AgregarContra(clave2);
+            categoria1.AgregarClave(clave2);
 
-            List<Contra> claves = new List<Contra>
+            List<Clave> claves = new List<Clave>
             {
                 clave1,
                 clave2
             };
 
-            List<Contra> getListaClaves = usuario.GetListaClaves();
+            List<Clave> getListaClaves = usuario.GetListaClaves();
 
             bool getListaClavesContieneLasClaves = getListaClaves.All(claves.Contains);
             bool lasClavesContieneGetListaClaves = claves.All(getListaClaves.Contains);
@@ -1461,37 +1461,37 @@ namespace TestsObligatorio
 
             usuario.AgregarCategoria(categoria2);
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
-            categoria1.AgregarContra(clave1);
-            Contra clave2 = new Contra()
+            categoria1.AgregarClave(clave1);
+            Clave clave2 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Luis88"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Luis88"
             };
-            categoria1.AgregarContra(clave2);
+            categoria1.AgregarClave(clave2);
 
-            Contra clave3 = new Contra()
+            Clave clave3 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave3",
-                UsuarioContra = "Hernesto"
+                Codigo = "EstaEsUnaClave3",
+                UsuarioClave = "Hernesto"
             };
-            categoria2.AgregarContra(clave3);
-            Contra clave4 = new Contra()
+            categoria2.AgregarClave(clave3);
+            Clave clave4 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Peepo"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Peepo"
             };
-            categoria2.AgregarContra(clave4);
+            categoria2.AgregarClave(clave4);
 
-            List<Contra> claves = new List<Contra>
+            List<Clave> claves = new List<Clave>
             {
                 clave1,
                 clave2,
@@ -1499,7 +1499,7 @@ namespace TestsObligatorio
                 clave4
             };
 
-            List<Contra> getListaClaves = usuario.GetListaClaves();
+            List<Clave> getListaClaves = usuario.GetListaClaves();
 
             bool getListaClavesContieneLasClaves = getListaClaves.All(claves.Contains);
             bool lasClavesContieneGetListaClaves = claves.All(getListaClaves.Contains);
@@ -1522,25 +1522,25 @@ namespace TestsObligatorio
 
             usuario.AgregarCategoria(categoria1);
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
-            categoria1.AgregarContra(clave1);
-            Contra clave2 = new Contra()
+            categoria1.AgregarClave(clave1);
+            Clave clave2 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Luis88"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Luis88"
             };
-            categoria1.AgregarContra(clave2);
+            categoria1.AgregarClave(clave2);
 
 
-            List<Contra> getListaClaves = usuario.GetListaClaves();
+            List<Clave> getListaClaves = usuario.GetListaClaves();
             int cantidadRojas = 0;
-            foreach(Contra clave in getListaClaves)
+            foreach(Clave clave in getListaClaves)
             {
                 if (clave.GetNivelSeguridad() == "rojo") cantidadRojas ++;
             }
@@ -1563,26 +1563,26 @@ namespace TestsObligatorio
 
             usuario.AgregarCategoria(categoria1);
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
-            categoria1.AgregarContra(clave1);
-            Contra clave2 = new Contra()
+            categoria1.AgregarClave(clave1);
+            Clave clave2 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Luis88"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Luis88"
             };
-            categoria1.AgregarContra(clave2);
+            categoria1.AgregarClave(clave2);
 
 
-            List<Contra> getListaClaves = usuario.GetListaClaves();
+            List<Clave> getListaClaves = usuario.GetListaClaves();
             string color = "verde claro";
             int cantidadColor = 0;
-            foreach (Contra clave in getListaClaves)
+            foreach (Clave clave in getListaClaves)
             {
                 if (clave.GetNivelSeguridad() == color) cantidadColor++;
             }
@@ -1610,11 +1610,11 @@ namespace TestsObligatorio
                 Nombre = "Usuario2"
             };
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
             usuario1.AgregarContra(clave1, categoria1);
 
@@ -1654,11 +1654,11 @@ namespace TestsObligatorio
                 Nombre = "Usuario2"
             };
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
 
             usuario1.AgregarContra(clave1, categoria1);
@@ -1695,11 +1695,11 @@ namespace TestsObligatorio
                 Nombre = "Usuario2"
             };
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
             usuario1.AgregarContra(clave1, categoria1);
 
@@ -1734,17 +1734,17 @@ namespace TestsObligatorio
             };
             usuario2.AgregarCategoria(categoria1);
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
-            Contra clave2 = new Contra()
+            Clave clave2 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave2",
-                UsuarioContra = "Hernesto"
+                Codigo = "EstaEsUnaClave2",
+                UsuarioClave = "Hernesto"
             };
 
             usuario1.AgregarContra(clave1, categoria1);
@@ -1801,11 +1801,11 @@ namespace TestsObligatorio
             };
             usuario2.AgregarCategoria(categoria1);
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
 
             ClaveCompartida claveACompartir1 = new ClaveCompartida()
@@ -1838,11 +1838,11 @@ namespace TestsObligatorio
             };
             usuario2.AgregarCategoria(categoria1);
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
             usuario1.AgregarContra(clave1, categoria1);
 
@@ -1870,11 +1870,11 @@ namespace TestsObligatorio
                 Nombre = "Usuario2"
             };
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
             usuario1.AgregarContra(clave1, categoria1);
 
@@ -1909,17 +1909,17 @@ namespace TestsObligatorio
             };
             usuario2.AgregarCategoria(categoria1);
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
-            Contra clave2 = new Contra()
+            Clave clave2 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave2",
-                UsuarioContra = "Hernesto"
+                Codigo = "EstaEsUnaClave2",
+                UsuarioClave = "Hernesto"
             };
 
             usuario1.AgregarContra(clave1, categoria1);
@@ -1964,18 +1964,18 @@ namespace TestsObligatorio
             };
             usuario2.AgregarCategoria(categoria1);
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
 
-            Contra claveNoCompartida = new Contra()
+            Clave claveNoCompartida = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Hernesto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Hernesto"
             };
 
             usuario1.AgregarContra(claveNoCompartida, categoria1);
@@ -2018,18 +2018,18 @@ namespace TestsObligatorio
             };
             usuario2.AgregarCategoria(categoria1);
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
 
-            Contra claveNoCompartida = new Contra()
+            Clave claveNoCompartida = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Hernesto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Hernesto"
             };
 
             usuario1.AgregarContra(claveNoCompartida, categoria1);
@@ -2068,18 +2068,18 @@ namespace TestsObligatorio
             };
             usuario2.AgregarCategoria(categoria1);
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
 
-            Contra claveNoCompartida = new Contra()
+            Clave claveNoCompartida = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Hernesto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Hernesto"
             };
 
             usuario1.AgregarContra(claveNoCompartida, categoria1);
@@ -2131,11 +2131,11 @@ namespace TestsObligatorio
             };
             usuario3.AgregarCategoria(categoria1);
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
 
             usuario1.AgregarContra(clave1, categoria1);
@@ -2178,11 +2178,11 @@ namespace TestsObligatorio
             };
             usuario2.AgregarCategoria(categoria1);
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
 
             usuario1.AgregarContra(clave1, categoria1);
@@ -2227,11 +2227,11 @@ namespace TestsObligatorio
             };
             usuario3.AgregarCategoria(categoria1);
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
 
             usuario1.AgregarContra(clave1, categoria1);
@@ -2284,11 +2284,11 @@ namespace TestsObligatorio
             };
             usuario3.AgregarCategoria(categoria1);
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
 
             usuario1.AgregarContra(clave1, categoria1);
@@ -2348,29 +2348,29 @@ namespace TestsObligatorio
 
             usuario.AgregarCategoria(categoria1);
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave12@",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave12@",
+                UsuarioClave = "Roberto"
             };
-            categoria1.AgregarContra(clave1);
+            categoria1.AgregarClave(clave1);
 
-            Contra clave2 = new Contra()
+            Clave clave2 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "clave",
-                UsuarioContra = "Luis88"
+                Codigo = "clave",
+                UsuarioClave = "Luis88"
             };
-            categoria1.AgregarContra(clave2);
+            categoria1.AgregarClave(clave2);
 
-            List<Contra> clavesVerdes = new List<Contra>
+            List<Clave> clavesVerdes = new List<Clave>
             {
                 clave1
             };
 
             const string verdeOscuro = "verde oscuro";
-            List<Contra> getListaClavesVerdes = usuario.GetListaClavesColor(verdeOscuro);
+            List<Clave> getListaClavesVerdes = usuario.GetListaClavesColor(verdeOscuro);
 
             bool getListaClavesContieneLasClavesVerdes = getListaClavesVerdes.All(clavesVerdes.Contains);
             bool clavesVerdesContieneListaClavesVerdes = clavesVerdes.All(getListaClavesVerdes.Contains);
@@ -2400,30 +2400,30 @@ namespace TestsObligatorio
 
             usuario.AgregarCategoria(categoria2);
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "estaesunaclave",
-                UsuarioContra = "Roberto"
+                Codigo = "estaesunaclave",
+                UsuarioClave = "Roberto"
             };
-            categoria1.AgregarContra(clave1);
+            categoria1.AgregarClave(clave1);
 
-            Contra clave2 = new Contra()
+            Clave clave2 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "ESTAESUNACLAVE",
-                UsuarioContra = "Luis88"
+                Codigo = "ESTAESUNACLAVE",
+                UsuarioClave = "Luis88"
             };
-            categoria2.AgregarContra(clave2);
+            categoria2.AgregarClave(clave2);
 
-            List<Contra> clavesAmarillas = new List<Contra>
+            List<Clave> clavesAmarillas = new List<Clave>
             {
                 clave1,
                 clave2
             };
 
             const string amarillo = "amarillo";
-            List<Contra> getListaClavesAmarillas = usuario.GetListaClavesColor(amarillo);
+            List<Clave> getListaClavesAmarillas = usuario.GetListaClavesColor(amarillo);
 
             bool getListaClavesContieneLasClavesVerdes = getListaClavesAmarillas.All(clavesAmarillas.Contains);
             bool clavesVerdesContieneListaClavesVerdes = clavesAmarillas.All(getListaClavesAmarillas.Contains);
@@ -2448,11 +2448,11 @@ namespace TestsObligatorio
             usuario.AgregarCategoria(categoria1);
 
 
-            Contra buscadora = new Contra()
+            Clave buscadora = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "estaesunaclave",
-                UsuarioContra = "Roberto"
+                Codigo = "estaesunaclave",
+                UsuarioClave = "Roberto"
             };
 
             Assert.ThrowsException<ObjetoInexistenteException>(() => usuario.GetCategoriaClave(buscadora));
@@ -2481,21 +2481,21 @@ namespace TestsObligatorio
 
             usuario.AgregarCategoria(facultad);
 
-            Contra agregar = new Contra()
+            Clave agregar = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "estaesunaclave",
-                UsuarioContra = "Roberto"
+                Codigo = "estaesunaclave",
+                UsuarioClave = "Roberto"
 
             };
 
             usuario.AgregarContra(agregar, facultad);
 
-            Contra buscadora = new Contra()
+            Clave buscadora = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "estaesunaclave",
-                UsuarioContra = "Roberto"
+                Codigo = "estaesunaclave",
+                UsuarioClave = "Roberto"
             };
 
             Assert.AreEqual(facultad, usuario.GetCategoriaClave(buscadora));
@@ -2521,11 +2521,11 @@ namespace TestsObligatorio
                 Nombre = "Usuario2"
             };
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
             usuario1.AgregarContra(clave1, categoria1);
 
@@ -2566,18 +2566,18 @@ namespace TestsObligatorio
                 Nombre = "Usuario2"
             };
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
 
-            Contra clave2 = new Contra()
+            Clave clave2 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave2",
-                UsuarioContra = "Hernesto"
+                Codigo = "EstaEsUnaClave2",
+                UsuarioClave = "Hernesto"
             };
 
             usuario1.AgregarContra(clave1, categoria1);
@@ -2622,18 +2622,18 @@ namespace TestsObligatorio
                 ContraMaestra = "123456789"
             };
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
 
-            Contra clave2 = new Contra()
+            Clave clave2 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave2",
-                UsuarioContra = "Hernesto"
+                Codigo = "EstaEsUnaClave2",
+                UsuarioClave = "Hernesto"
             };
 
             usuario1.AgregarContra(clave1, categoria1);
@@ -2660,11 +2660,11 @@ namespace TestsObligatorio
                 ContraMaestra = "ClaveDiferente"
             };
 
-            Contra claveBuscadora = new Contra
+            Clave claveBuscadora = new Clave
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaDiferente",
-                UsuarioContra = "Hernesto"
+                Codigo = "EstaEsUnaDiferente",
+                UsuarioClave = "Hernesto"
             };
 
             ClaveCompartida buscadora = new ClaveCompartida()
@@ -2696,11 +2696,11 @@ namespace TestsObligatorio
                 Nombre = "Usuario2"
             };
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
             usuario1.AgregarContra(clave1, categoria1);
 
@@ -2741,18 +2741,18 @@ namespace TestsObligatorio
                 Nombre = "Usuario2"
             };
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
 
-            Contra clave2 = new Contra()
+            Clave clave2 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave2",
-                UsuarioContra = "Hernesto"
+                Codigo = "EstaEsUnaClave2",
+                UsuarioClave = "Hernesto"
             };
 
             usuario1.AgregarContra(clave1, categoria1);
@@ -2797,18 +2797,18 @@ namespace TestsObligatorio
                 Nombre = "Usuario2",
             };
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
 
-            Contra clave2 = new Contra()
+            Clave clave2 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave2",
-                UsuarioContra = "Hernesto"
+                Codigo = "EstaEsUnaClave2",
+                UsuarioClave = "Hernesto"
             };
 
             usuario1.AgregarContra(clave1, categoria1);
@@ -2835,11 +2835,11 @@ namespace TestsObligatorio
                 ContraMaestra = "ClaveDiferente"
             };
 
-            Contra claveBuscadora = new Contra
+            Clave claveBuscadora = new Clave
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaDiferente",
-                UsuarioContra = "Hernesto"
+                Codigo = "EstaEsUnaDiferente",
+                UsuarioClave = "Hernesto"
             };
 
             ClaveCompartida buscadora = new ClaveCompartida()
@@ -4038,35 +4038,35 @@ namespace TestsObligatorio
 
             usuario.AgregarCategoria(categoria2);
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
-            categoria1.AgregarContra(clave1);
-            Contra clave2 = new Contra()
+            categoria1.AgregarClave(clave1);
+            Clave clave2 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Luis88"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Luis88"
             };
-            categoria1.AgregarContra(clave2);
+            categoria1.AgregarClave(clave2);
 
-            Contra clave3 = new Contra()
+            Clave clave3 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave3",
-                UsuarioContra = "Hernesto"
+                Codigo = "EstaEsUnaClave3",
+                UsuarioClave = "Hernesto"
             };
-            categoria2.AgregarContra(clave3);
-            Contra clave4 = new Contra()
+            categoria2.AgregarClave(clave3);
+            Clave clave4 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Peepo"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Peepo"
             };
-            categoria2.AgregarContra(clave4);
+            categoria2.AgregarClave(clave4);
 
             List<string> dataBreach = new List<string>();
 
@@ -4097,47 +4097,47 @@ namespace TestsObligatorio
 
             usuario.AgregarCategoria(categoria2);
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
-            categoria1.AgregarContra(clave1);
-            Contra clave2 = new Contra()
+            categoria1.AgregarClave(clave1);
+            Clave clave2 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave2",
-                UsuarioContra = "Luis88"
+                Codigo = "EstaEsUnaClave2",
+                UsuarioClave = "Luis88"
             };
-            categoria1.AgregarContra(clave2);
+            categoria1.AgregarClave(clave2);
 
-            Contra clave3 = new Contra()
+            Clave clave3 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave3",
-                UsuarioContra = "Hernesto"
+                Codigo = "EstaEsUnaClave3",
+                UsuarioClave = "Hernesto"
             };
-            categoria2.AgregarContra(clave3);
-            Contra clave4 = new Contra()
+            categoria2.AgregarClave(clave3);
+            Clave clave4 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave4",
-                UsuarioContra = "Peepo"
+                Codigo = "EstaEsUnaClave4",
+                UsuarioClave = "Peepo"
             };
-            categoria2.AgregarContra(clave4);
+            categoria2.AgregarClave(clave4);
 
             List<string> dataBreach = new List<string>() {
                 "EstaEsUnaClave1",
                 "EstaEsUnaClave4"
             };
 
-            List<Contra> esperadas = new List<Contra>() {
+            List<Clave> esperadas = new List<Clave>() {
                 clave1,
                 clave4
             };
 
-            List<Contra> retorno = usuario.GetContrasDataBreach(dataBreach);
+            List<Clave> retorno = usuario.GetContrasDataBreach(dataBreach);
 
             bool esperadasContieneRetorno = retorno.All(esperadas.Contains);
             bool retornoContieneEsperadas = esperadas.All(retorno.Contains);
@@ -4167,35 +4167,35 @@ namespace TestsObligatorio
 
             usuario.AgregarCategoria(categoria2);
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
-            categoria1.AgregarContra(clave1);
-            Contra clave2 = new Contra()
+            categoria1.AgregarClave(clave1);
+            Clave clave2 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave2",
-                UsuarioContra = "Luis88"
+                Codigo = "EstaEsUnaClave2",
+                UsuarioClave = "Luis88"
             };
-            categoria1.AgregarContra(clave2);
+            categoria1.AgregarClave(clave2);
 
-            Contra clave3 = new Contra()
+            Clave clave3 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave3",
-                UsuarioContra = "Hernesto"
+                Codigo = "EstaEsUnaClave3",
+                UsuarioClave = "Hernesto"
             };
-            categoria2.AgregarContra(clave3);
-            Contra clave4 = new Contra()
+            categoria2.AgregarClave(clave3);
+            Clave clave4 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave4",
-                UsuarioContra = "Peepo"
+                Codigo = "EstaEsUnaClave4",
+                UsuarioClave = "Peepo"
             };
-            categoria2.AgregarContra(clave4);
+            categoria2.AgregarClave(clave4);
 
             List<string> dataBreach = new List<string>() {
                 "ContraNoContenida",
@@ -4203,11 +4203,11 @@ namespace TestsObligatorio
                 "EstaEsUnaClave3"
             };
 
-            List<Contra> esperadas = new List<Contra>() {
+            List<Clave> esperadas = new List<Clave>() {
                 clave3
             };
 
-            List<Contra> retorno = usuario.GetContrasDataBreach(dataBreach);
+            List<Clave> retorno = usuario.GetContrasDataBreach(dataBreach);
 
             bool esperadasContieneRetorno = retorno.All(esperadas.Contains);
             bool retornoContieneEsperadas = esperadas.All(retorno.Contains);

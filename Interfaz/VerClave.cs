@@ -13,10 +13,10 @@ namespace Interfaz
 {
     public partial class VerClave : UserControl
     {
-        private Contra _claveAMostrar;
+        private Clave _claveAMostrar;
         private Usuario _usuarioActual;
 
-        public VerClave(Contra claveAMostrar, Usuario usuarioActual)
+        public VerClave(Clave claveAMostrar, Usuario usuarioActual)
         {
             InitializeComponent();
             _claveAMostrar = claveAMostrar;
@@ -29,8 +29,8 @@ namespace Interfaz
             Categoria categoriaAMostrar = _usuarioActual.GetCategoriaClave(_claveAMostrar);
             string nombreCateogiraAMostrar = categoriaAMostrar.Nombre;
             string sitioAMostrar = _claveAMostrar.Sitio;
-            string usuarioAMostrar = _claveAMostrar.UsuarioContra;
-            string codigoAMostrar = _claveAMostrar.Clave;
+            string usuarioAMostrar = _claveAMostrar.UsuarioClave;
+            string codigoAMostrar = _claveAMostrar.Codigo;
             string notaAMostrar = _claveAMostrar.Nota;
 
             this.labelCategoriaAMostrar.Text = nombreCateogiraAMostrar;

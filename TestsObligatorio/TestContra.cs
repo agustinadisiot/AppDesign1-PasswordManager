@@ -13,79 +13,79 @@ namespace TestsObligatorio
         [TestMethod]
         public void ContraGetUsuarioCorrecto()
         {
-            Contra contra = new Contra()
+            Clave contra = new Clave()
             {
-                UsuarioContra = "juan@gmail.com"
+                UsuarioClave = "juan@gmail.com"
             };
-            Assert.AreEqual("juan@gmail.com", contra.UsuarioContra);
+            Assert.AreEqual("juan@gmail.com", contra.UsuarioClave);
         }
 
         [TestMethod]
         public void ContraGetUsuarioCambiado()
         {
-            Contra contra = new Contra()
+            Clave contra = new Clave()
             {
-                UsuarioContra = "juan@gmail.com"
+                UsuarioClave = "juan@gmail.com"
             };
-            Assert.AreEqual("juan@gmail.com", contra.UsuarioContra);
-            contra.UsuarioContra = "pedro@gmail.com";
-            Assert.AreEqual("pedro@gmail.com", contra.UsuarioContra);
+            Assert.AreEqual("juan@gmail.com", contra.UsuarioClave);
+            contra.UsuarioClave = "pedro@gmail.com";
+            Assert.AreEqual("pedro@gmail.com", contra.UsuarioClave);
         }
 
         [TestMethod]
         public void ContraLargoUsuarioMenorA5()
         {
-            Contra contra = new Contra();
-            Assert.ThrowsException<LargoIncorrectoException>(() => contra.UsuarioContra = "A");
+            Clave contra = new Clave();
+            Assert.ThrowsException<LargoIncorrectoException>(() => contra.UsuarioClave = "A");
         }
 
         [TestMethod]
         public void ContraLargoUsuarioMayorA25()
         {
-            Contra contra = new Contra();
-            Assert.ThrowsException<LargoIncorrectoException>(() => contra.UsuarioContra = "12345678901234567890123456");
+            Clave contra = new Clave();
+            Assert.ThrowsException<LargoIncorrectoException>(() => contra.UsuarioClave = "12345678901234567890123456");
         }
 
         [TestMethod]
         public void ContraGetClaveCorrecta()
         {
-            Contra contra = new Contra()
+            Clave contra = new Clave()
             {
-                Clave = "123456"
+                Codigo = "123456"
             };
-            Assert.AreEqual("123456", contra.Clave);
+            Assert.AreEqual("123456", contra.Codigo);
         }
 
         [TestMethod]
         public void ContraGetClaveCambiada()
         {
-            Contra contra = new Contra()
+            Clave contra = new Clave()
             {
-                Clave = "123456"
+                Codigo = "123456"
             };
-            Assert.AreEqual("123456", contra.Clave);
-            contra.Clave = "claveNueva";
-            Assert.AreEqual("claveNueva", contra.Clave);
+            Assert.AreEqual("123456", contra.Codigo);
+            contra.Codigo = "claveNueva";
+            Assert.AreEqual("claveNueva", contra.Codigo);
         }
 
         [TestMethod]
         public void ContraLargoClaveMenorA5()
         {
-            Contra contra = new Contra();
-            Assert.ThrowsException<LargoIncorrectoException>(() => contra.Clave = "A");
+            Clave contra = new Clave();
+            Assert.ThrowsException<LargoIncorrectoException>(() => contra.Codigo = "A");
         }
 
         [TestMethod]
         public void ContraLargoClaveMayorA25()
         {
-            Contra contra = new Contra();
-            Assert.ThrowsException<LargoIncorrectoException>(() => contra.Clave = "12345678901234567890123456");
+            Clave contra = new Clave();
+            Assert.ThrowsException<LargoIncorrectoException>(() => contra.Codigo = "12345678901234567890123456");
         }
 
         [TestMethod]
         public void ContraGetSitioCorrecto()
         {
-            Contra contra = new Contra()
+            Clave contra = new Clave()
             {
                 Sitio = "Netflix.com"
             };
@@ -95,7 +95,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void ContraGetSitioCambiado()
         {
-            Contra contra = new Contra()
+            Clave contra = new Clave()
             {
                 Sitio = "Netflix.com"
             };
@@ -107,21 +107,21 @@ namespace TestsObligatorio
         [TestMethod]
         public void ContraLargoSitioMenorA3()
         {
-            Contra contra = new Contra();
+            Clave contra = new Clave();
             Assert.ThrowsException<LargoIncorrectoException>(() => contra.Sitio = "A");
         }
 
         [TestMethod]
         public void ContraLargoSitioMayorA25()
         {
-            Contra contra = new Contra();
+            Clave contra = new Clave();
             Assert.ThrowsException<LargoIncorrectoException>(() => contra.Sitio = "sitioconmasde25caracteres.com");
         }
 
         [TestMethod]
         public void ContraGetNotaCorrecta()
         {
-            Contra contra = new Contra()
+            Clave contra = new Clave()
             {
                 Nota = "Hola"
             };
@@ -131,7 +131,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void ContraGetNotaCambiada()
         {
-            Contra contra = new Contra()
+            Clave contra = new Clave()
             {
                 Nota = "Hola"
             };
@@ -143,7 +143,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void ContraLargoNotaMayorA250()
         {
-            Contra contra = new Contra();
+            Clave contra = new Clave();
             string notaDemasiadoLarga = "";
             for (int i = 0; i < 251; i++) notaDemasiadoLarga += "C";
             Assert.ThrowsException<LargoIncorrectoException>(() => contra.Nota = notaDemasiadoLarga);
@@ -152,9 +152,9 @@ namespace TestsObligatorio
         [TestMethod]
         public void ContraNivelSeguridadMenorOchoChars()
         {
-            Contra contra = new Contra
+            Clave contra = new Clave
             {
-                Clave = "clave1"
+                Codigo = "clave1"
             };
             Assert.AreEqual("rojo", contra.GetNivelSeguridad());
         }
@@ -162,9 +162,9 @@ namespace TestsObligatorio
         [TestMethod]
         public void ContraNivelSeguridadEntreOchoYCatorceChars()
         {
-            Contra contra = new Contra
+            Clave contra = new Clave
             {
-                Clave = "clave212345"
+                Codigo = "clave212345"
             };
             Assert.AreEqual("naranja", contra.GetNivelSeguridad());
         }
@@ -172,9 +172,9 @@ namespace TestsObligatorio
         [TestMethod]
         public void ContraNivelSeguridadMayorACatorceSoloMay()
         {
-            Contra contra = new Contra
+            Clave contra = new Clave
             {
-                Clave = "CLAVESOLOMAYUSCULAS"
+                Codigo = "CLAVESOLOMAYUSCULAS"
             };
             Assert.AreEqual("amarillo", contra.GetNivelSeguridad());
         }
@@ -182,9 +182,9 @@ namespace TestsObligatorio
         [TestMethod]
         public void ContraNivelSeguridadMayorACatorceSoloMin()
         {
-            Contra contra = new Contra
+            Clave contra = new Clave
             {
-                Clave = "clavesolominusculas"
+                Codigo = "clavesolominusculas"
             };
             Assert.AreEqual("amarillo", contra.GetNivelSeguridad());
         }
@@ -192,9 +192,9 @@ namespace TestsObligatorio
         [TestMethod]
         public void ContraNivelSeguridadMayorACatorceConMayYMin()
         {
-            Contra contra = new Contra
+            Clave contra = new Clave
             {
-                Clave = "ClaveConMayYMin"
+                Codigo = "ClaveConMayYMin"
             };
             Assert.AreEqual("verde claro", contra.GetNivelSeguridad());
         }
@@ -202,9 +202,9 @@ namespace TestsObligatorio
         [TestMethod]
         public void ContraNivelSeguridadMayorACatorceConMayMinNumYSim()
         {
-            Contra contra = new Contra
+            Clave contra = new Clave
             {
-                Clave = "ClaveConMayYMin14@#"
+                Codigo = "ClaveConMayYMin14@#"
             };
             Assert.AreEqual("verde oscuro", contra.GetNivelSeguridad());
         }
@@ -212,9 +212,9 @@ namespace TestsObligatorio
         [TestMethod]
         public void ContraNivelSeguridadMayorACatorceConMayMinNumYSimEnUltimoChar()
         {
-            Contra contra = new Contra
+            Clave contra = new Clave
             {
-                Clave = "claveconmayymiN14@"
+                Codigo = "claveconmayymiN14@"
             };
             Assert.AreEqual("verde oscuro", contra.GetNivelSeguridad());
         }
@@ -222,15 +222,15 @@ namespace TestsObligatorio
         [TestMethod]
         public void ContraEqualsMismoSitioYUsuario()
         {
-            Contra contra1 = new Contra()
+            Clave contra1 = new Clave()
             {
                 Sitio = "ort.edu.uy",
-                UsuarioContra = "UsuarioORT"
+                UsuarioClave = "UsuarioORT"
             };
-            Contra contra2 = new Contra()
+            Clave contra2 = new Clave()
             {
                 Sitio = "ort.edu.uy",
-                UsuarioContra = "UsuarioORT"
+                UsuarioClave = "UsuarioORT"
             };
             Assert.AreEqual(contra1, contra2);
         }
@@ -238,15 +238,15 @@ namespace TestsObligatorio
         [TestMethod]
         public void ContraEqualsDiferenteSitioYMismoUsuario()
         {
-            Contra contra1 = new Contra()
+            Clave contra1 = new Clave()
             {
                 Sitio = "ort.edu.uy",
-                UsuarioContra = "UsuarioORT"
+                UsuarioClave = "UsuarioORT"
             };
-            Contra contra2 = new Contra()
+            Clave contra2 = new Clave()
             {
                 Sitio = "aulas.edu.uy",
-                UsuarioContra = "UsuarioORT"
+                UsuarioClave = "UsuarioORT"
             };
             Assert.AreNotEqual(contra1, contra2);
         }
@@ -254,15 +254,15 @@ namespace TestsObligatorio
         [TestMethod]
         public void ContraEqualsMismoSitioYDiferenteUsuario()
         {
-            Contra contra1 = new Contra()
+            Clave contra1 = new Clave()
             {
                 Sitio = "ort.edu.uy",
-                UsuarioContra = "Usuario123"
+                UsuarioClave = "Usuario123"
             };
-            Contra contra2 = new Contra()
+            Clave contra2 = new Clave()
             {
                 Sitio = "ort.edu.uy",
-                UsuarioContra = "Usuario789" 
+                UsuarioClave = "Usuario789" 
             };
             Assert.AreNotEqual(contra1, contra2);
         }
@@ -270,22 +270,22 @@ namespace TestsObligatorio
         [TestMethod]
         public void ContraEqualsConNull()
         {
-            Contra contra1 = new Contra()
+            Clave contra1 = new Clave()
             {
                 Sitio = "ort.edu.uy",
-                UsuarioContra = "Usuario123"
+                UsuarioClave = "Usuario123"
             };
-            Contra contra2 = null;
+            Clave contra2 = null;
             Assert.ThrowsException<ObjetoIncompletoException>(() => contra1.Equals(contra2)) ;
         }
 
         [TestMethod]
         public void ContraEqualsConString()
         {
-            Contra contra = new Contra()
+            Clave contra = new Clave()
             {
                 Sitio = "ort.edu.uy",
-                UsuarioContra = "Usuario123"
+                UsuarioClave = "Usuario123"
             };
             String falsaContra = "falsaContra"; 
             Assert.ThrowsException<ObjetoIncorrectoException>(() => contra.Equals(falsaContra));
@@ -294,15 +294,15 @@ namespace TestsObligatorio
         [TestMethod]
         public void ContraEqualsConMayYMin()
         {
-            Contra contra1 = new Contra()
+            Clave contra1 = new Clave()
             {
                 Sitio = "Ort.Edu.Uy",
-                UsuarioContra = "UsuarioORT"
+                UsuarioClave = "UsuarioORT"
             };
-            Contra contra2 = new Contra()
+            Clave contra2 = new Clave()
             {
                 Sitio = "oRt.eDu.uY",
-                UsuarioContra = "UsuarioORT"
+                UsuarioClave = "UsuarioORT"
             };
             Assert.AreEqual(contra1, contra2);
         }
@@ -310,7 +310,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void ContraGetFechaModificacionNuevaContra() {
 
-            Contra evaluar = new Contra();
+            Clave evaluar = new Clave();
 
             DateTime actual = new System.DateTime().Date;
             Assert.AreEqual(actual, evaluar.FechaModificacion);
@@ -320,12 +320,12 @@ namespace TestsObligatorio
         public void ContraGetFechaModificacionContraVieja()
         {
 
-            Contra evaluar = new Contra() {
-                Clave = "12345ABCD"
+            Clave evaluar = new Clave() {
+                Codigo = "12345ABCD"
             };
             evaluar.FechaModificacion = new DateTime(2000, 1, 1);
 
-            evaluar.Clave = "ContraNueva";
+            evaluar.Codigo = "ContraNueva";
             DateTime actual = System.DateTime.Now.Date;
             Assert.AreEqual(actual, evaluar.FechaModificacion);
         }
@@ -347,7 +347,7 @@ namespace TestsObligatorio
                 IncluirSimbolos = false
             };
 
-            Contra random = new Contra();
+            Clave random = new Clave();
             Assert.ThrowsException<ClaveGeneradaVaciaException>(() => random.GenerarClave(parametros));
         }
 
@@ -363,9 +363,9 @@ namespace TestsObligatorio
                 IncluirSimbolos = false
             };
 
-            Contra random = new Contra();
+            Clave random = new Clave();
             random.GenerarClave(parametros);
-            string resultado = random.Clave;
+            string resultado = random.Codigo;
             bool esSoloMayuscula = resultado.All(caracter => VerificadoraString.EsMayuscula(caracter));
             Assert.IsTrue(esSoloMayuscula);
         }
@@ -382,9 +382,9 @@ namespace TestsObligatorio
                 IncluirSimbolos = false
             };
 
-            Contra random = new Contra();
+            Clave random = new Clave();
             random.GenerarClave(parametros);
-            string resultado = random.Clave;
+            string resultado = random.Codigo;
             Assert.AreEqual(10, resultado.Length);
         }
 
@@ -400,9 +400,9 @@ namespace TestsObligatorio
                 IncluirSimbolos = true
             };
 
-            Contra random = new Contra();
+            Clave random = new Clave();
             random.GenerarClave(parametros);
-            string resultado = random.Clave;
+            string resultado = random.Codigo;
             bool contieneMayusculas = resultado.Any(caracter => VerificadoraString.EsMayuscula(caracter));
             bool contieneMinusculas = resultado.Any(caracter => VerificadoraString.EsMinuscula(caracter));
             bool contieneNumeros = resultado.Any(caracter => VerificadoraString.EsNumero(caracter));
@@ -423,9 +423,9 @@ namespace TestsObligatorio
                 IncluirSimbolos = true
             };
 
-            Contra random = new Contra();
+            Clave random = new Clave();
             random.GenerarClave(parametros);
-            string resultado = random.Clave;
+            string resultado = random.Codigo;
             bool contieneMayusculas = resultado.Any(caracter => VerificadoraString.EsMayuscula(caracter));
             bool contieneMinusculas = resultado.Any(caracter => VerificadoraString.EsMinuscula(caracter));
             bool contieneNumeros = resultado.Any(caracter => VerificadoraString.EsNumero(caracter));

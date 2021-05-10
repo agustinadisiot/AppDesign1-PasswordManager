@@ -14,9 +14,9 @@ namespace Interfaz.InterfacesClaves
     public partial class ModificarClave : UserControl
     {
         private Usuario _actual;
-        private Contra _vieja;
+        private Clave _vieja;
 
-        public ModificarClave(Usuario usuario, Contra contra)
+        public ModificarClave(Usuario usuario, Clave contra)
         {
             this._actual = usuario;
             this._vieja = contra;
@@ -31,10 +31,10 @@ namespace Interfaz.InterfacesClaves
         }
 
         private void CargarInputsConClave() {
-            this.inputContra.Text = this._vieja.Clave;
+            this.inputContra.Text = this._vieja.Codigo;
             this.inputNota.Text = this._vieja.Nota;
             this.inputSitio.Text = this._vieja.Sitio;
-            this.inputUsuario.Text = this._vieja.UsuarioContra;
+            this.inputUsuario.Text = this._vieja.UsuarioClave;
         }
 
         private void CargarComboBox()
@@ -73,13 +73,13 @@ namespace Interfaz.InterfacesClaves
 
             try
             {
-                DateTime modificacion = (this._vieja.Clave == this.inputContra.Text) ? this._vieja.FechaModificacion : System.DateTime.Now.Date;
+                DateTime modificacion = (this._vieja.Codigo == this.inputContra.Text) ? this._vieja.FechaModificacion : System.DateTime.Now.Date;
 
-                Contra nueva = new Contra()
+                Clave nueva = new Clave()
                 {
-                    UsuarioContra = this.inputUsuario.Text,
+                    UsuarioClave = this.inputUsuario.Text,
                     Sitio = this.inputSitio.Text,
-                    Clave = this.inputContra.Text,
+                    Codigo = this.inputContra.Text,
                     Nota = this.inputNota.Text,
                     FechaModificacion = modificacion
                 };
@@ -117,7 +117,7 @@ namespace Interfaz.InterfacesClaves
 
         private void botonGenerar_Click(object sender, EventArgs e)
         {
-            Contra generador = new Contra();
+            Clave generador = new Clave();
             ClaveAGenerar parametros = new ClaveAGenerar()
             {
                 Largo = (int)this.spinnerLargo.Value,
@@ -137,7 +137,7 @@ namespace Interfaz.InterfacesClaves
             {
                 this.labelErrores.Text = "Por lo menos un tipo de caracter debe ser elegido.";
             };
-            this.inputContra.Text = generador.Clave;
+            this.inputContra.Text = generador.Codigo;
         }
 
         private void botonCancelar_Click(object sender, EventArgs e)

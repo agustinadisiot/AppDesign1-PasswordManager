@@ -31,12 +31,12 @@ namespace Interfaz
 
             foreach (ClaveCompartida claveCompartidaActual in listaClavesCompartidasConmigo)
             {
-                Contra claveQueSeComparte = claveCompartidaActual.Clave;
+                Clave claveQueSeComparte = claveCompartidaActual.Clave;
                 Usuario usuarioQueComparte = claveCompartidaActual.Usuario;
 
                 string nombreUsuarioQueComparte = usuarioQueComparte.Nombre;
                 string sitioClaveQueSeComparte = claveQueSeComparte.Sitio;
-                string usuarioClaveQueSeComparte = claveQueSeComparte.UsuarioContra;
+                string usuarioClaveQueSeComparte = claveQueSeComparte.UsuarioClave;
 
                 this.tablaClavesCompartidas.Rows.Add(nombreUsuarioQueComparte, sitioClaveQueSeComparte, usuarioClaveQueSeComparte);
             }
@@ -54,10 +54,10 @@ namespace Interfaz
                 string sitioClaveAMostrar = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 string usuarioClaveAMostrar = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                Contra claveBuscadora = new Contra
+                Clave claveBuscadora = new Clave
                 {
                     Sitio = sitioClaveAMostrar,
-                    UsuarioContra = usuarioClaveAMostrar
+                    UsuarioClave = usuarioClaveAMostrar
                 };
 
                 Usuario usuarioBuscador = new Usuario()
@@ -69,9 +69,9 @@ namespace Interfaz
             }
         }
 
-        public delegate void AbrirVerClave_Handler(Contra buscadora, Usuario usuarioActual);
+        public delegate void AbrirVerClave_Handler(Clave buscadora, Usuario usuarioActual);
         public event AbrirVerClave_Handler AbrirVerClave_Event;
-        private void AbrirVerClave(Contra buscadora, Usuario usuarioActual)
+        private void AbrirVerClave(Clave buscadora, Usuario usuarioActual)
         {
             if (this.AbrirVerClave_Event != null)
                 this.AbrirVerClave_Event(buscadora, usuarioActual);

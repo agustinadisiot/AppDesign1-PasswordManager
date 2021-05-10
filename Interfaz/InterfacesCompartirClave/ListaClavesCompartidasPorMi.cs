@@ -32,12 +32,12 @@ namespace Interfaz.InterfacesCompartirClave
 
             foreach (ClaveCompartida claveCompartidaActual in listaClavesCompartidasPorMi)
             {
-                Contra claveQueSeComparte = claveCompartidaActual.Clave;
+                Clave claveQueSeComparte = claveCompartidaActual.Clave;
                 Usuario usuarioQueComparte = claveCompartidaActual.Usuario;
 
                 string nombreUsuarioAQuienSeComparte = usuarioQueComparte.Nombre;
                 string sitioClaveQueSeComparte = claveQueSeComparte.Sitio;
-                string usuarioClaveQueSeComparte = claveQueSeComparte.UsuarioContra;
+                string usuarioClaveQueSeComparte = claveQueSeComparte.UsuarioClave;
 
                 this.tablaClavesCompartidas.Rows.Add(nombreUsuarioAQuienSeComparte, sitioClaveQueSeComparte, usuarioClaveQueSeComparte);
             }
@@ -67,10 +67,10 @@ namespace Interfaz.InterfacesCompartirClave
                 string sitioClaveDejarDeCompartir = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 string usuarioClaveDejarDeCompartir = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                Contra claveBuscadora = new Contra
+                Clave claveBuscadora = new Clave
                 {
                     Sitio = sitioClaveDejarDeCompartir,
-                    UsuarioContra = usuarioClaveDejarDeCompartir
+                    UsuarioClave = usuarioClaveDejarDeCompartir
                 };
 
                 Usuario usuarioBuscador = new Usuario
@@ -102,19 +102,19 @@ namespace Interfaz.InterfacesCompartirClave
                 string sitioClaveAMostrar = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 string usuarioClaveAMostrar = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                Contra buscadora = new Contra
+                Clave buscadora = new Clave
                 {
                     Sitio = sitioClaveAMostrar,
-                    UsuarioContra = usuarioClaveAMostrar
+                    UsuarioClave = usuarioClaveAMostrar
                 };
 
                 AbrirVerClave(buscadora, _usuarioActual);
             }
         }
 
-        public delegate void AbrirVerClave_Handler(Contra buscadora, Usuario usuarioActual);
+        public delegate void AbrirVerClave_Handler(Clave buscadora, Usuario usuarioActual);
         public event AbrirVerClave_Handler AbrirVerClave_Event;
-        private void AbrirVerClave(Contra buscadora, Usuario usuarioActual)
+        private void AbrirVerClave(Clave buscadora, Usuario usuarioActual)
         {
             if (this.AbrirVerClave_Event != null)
                 this.AbrirVerClave_Event(buscadora, usuarioActual);

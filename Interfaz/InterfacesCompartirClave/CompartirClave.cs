@@ -14,7 +14,7 @@ namespace Interfaz
     public partial class CompartirClave : UserControl
     {
         private Usuario _usuarioActual;
-        private Contra _claveACompartir;
+        private Clave _claveACompartir;
         private AdminContras _administrador;
 
         public CompartirClave(ClaveCompartida aCompartir, AdminContras administrador)
@@ -47,7 +47,7 @@ namespace Interfaz
             }
 
             string sitioClaveACompartir = _claveACompartir.Sitio;
-            string usuarioClaveACompartir = _claveACompartir.UsuarioContra;
+            string usuarioClaveACompartir = _claveACompartir.UsuarioClave;
 
             this.labelSitioAMostrar.Text = sitioClaveACompartir;
             this.labelUsuarioAMostrar.Text = usuarioClaveACompartir;

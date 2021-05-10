@@ -15,7 +15,7 @@ namespace Interfaz.InterfacesClaves
     public partial class IngresoYListaDataBreach : UserControl
     {
         private Usuario _usuarioActual;
-        private List<Contra> _claves;
+        private List<Clave> _claves;
         private List<Tarjeta> _tarjetas;
         private List<string> _dataBreach;
 
@@ -61,11 +61,11 @@ namespace Interfaz.InterfacesClaves
         {
             this.tablaClaves.Rows.Clear();
 
-            foreach (Contra claveActual in this._claves)
+            foreach (Clave claveActual in this._claves)
             {
                 string nombreCategoria = this._usuarioActual.GetCategoriaClave(claveActual).Nombre;
                 string sitio = claveActual.Sitio;
-                string usuario = claveActual.UsuarioContra;
+                string usuario = claveActual.UsuarioClave;
                 DateTime ultimaModificacion = claveActual.FechaModificacion;
                 this.tablaClaves.Rows.Add(nombreCategoria, sitio, usuario, ultimaModificacion);
             }
@@ -137,10 +137,10 @@ namespace Interfaz.InterfacesClaves
                 sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                Contra aModificar = new Contra()
+                Clave aModificar = new Clave()
                 {
                     Sitio = sitioClave,
-                    UsuarioContra = usuarioClave
+                    UsuarioClave = usuarioClave
                 };
 
                 this.ProcesarIngresos();
@@ -149,9 +149,9 @@ namespace Interfaz.InterfacesClaves
             }
         }
 
-        public delegate void ModificarClaveDataBreach_Handler(Contra claveAModificar, List<string> dataBreach);
+        public delegate void ModificarClaveDataBreach_Handler(Clave claveAModificar, List<string> dataBreach);
         public event ModificarClaveDataBreach_Handler ModificarClaveDataBreach_Event;
-        public void irAModificarClave(Contra claveAModificar)
+        public void irAModificarClave(Clave claveAModificar)
         {
             if (this.ModificarClaveDataBreach_Event != null)
                 this.ModificarClaveDataBreach_Event(claveAModificar, this._dataBreach);

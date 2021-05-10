@@ -70,10 +70,10 @@ namespace Interfaz
 
                 try
                 {
-                    Contra nueva = new Contra()
+                    Clave nueva = new Clave()
                     {
-                        UsuarioContra = this.inputUsuario.Text,
-                        Clave = this.inputContra.Text,
+                        UsuarioClave = this.inputUsuario.Text,
+                        Codigo = this.inputContra.Text,
                         Nota = this.inputNota.Text,
                         Sitio = this.inputSitio.Text,
                         FechaModificacion = System.DateTime.Now.Date
@@ -104,7 +104,7 @@ namespace Interfaz
         private void botonGenerar_Click(object sender, EventArgs e)
         {
 
-            Contra generador = new Contra();
+            Clave generador = new Clave();
             ClaveAGenerar parametros = new ClaveAGenerar()
             {
                 Largo = (int)this.spinnerLargo.Value,
@@ -123,7 +123,7 @@ namespace Interfaz
             catch (ClaveGeneradaVaciaException) {
                 this.labelErrores.Text = "Por lo menos un tipo de caracter debe ser elegido.";
             };
-            this.inputContra.Text = generador.Clave;
+            this.inputContra.Text = generador.Codigo;
         }
 
 

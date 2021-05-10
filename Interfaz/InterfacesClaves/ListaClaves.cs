@@ -32,13 +32,13 @@ namespace Interfaz
         private void CargarTabla()
         {
             this.tablaClaves.Rows.Clear();
-            List<Contra> listaClaves = this._usuarioActual.GetListaClaves();
+            List<Clave> listaClaves = this._usuarioActual.GetListaClaves();
 
-            foreach (Contra claveActual in listaClaves)
+            foreach (Clave claveActual in listaClaves)
             {
                 string nombreCategoria = this._usuarioActual.GetCategoriaClave(claveActual).Nombre;
                 string sitio = claveActual.Sitio;
-                string usuario = claveActual.UsuarioContra;
+                string usuario = claveActual.UsuarioClave;
                 DateTime ultimaModificacion = claveActual.FechaModificacion;
                 this.tablaClaves.Rows.Add(nombreCategoria, sitio, usuario, ultimaModificacion);
             }
@@ -57,9 +57,9 @@ namespace Interfaz
                 string usuarioClaveBorrar = Convert.ToString(selectedRow.Cells["Usuario"].Value);
                 string sitioClaveBorrar = Convert.ToString(selectedRow.Cells["Sitio"].Value);
 
-                Contra buscadora = new Contra()
+                Clave buscadora = new Clave()
                 {
-                    UsuarioContra = usuarioClaveBorrar,
+                    UsuarioClave = usuarioClaveBorrar,
                     Sitio = sitioClaveBorrar
                 };
                 this._usuarioActual.BorrarContra(buscadora);
@@ -82,10 +82,10 @@ namespace Interfaz
                 string sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 string usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                Contra claveACompartir = new Contra()
+                Clave claveACompartir = new Clave()
                 {
                     Sitio = sitioClave,
-                    UsuarioContra = usuarioClave
+                    UsuarioClave = usuarioClave
                 };
 
                 Usuario compartidor = this._usuarioActual;
@@ -124,10 +124,10 @@ namespace Interfaz
                 sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                Contra aModificar = new Contra()
+                Clave aModificar = new Clave()
                 {
                     Sitio = sitioClave,
-                    UsuarioContra = usuarioClave
+                    UsuarioClave = usuarioClave
                 };
 
                 irAModificarClave(aModificar);
@@ -136,9 +136,9 @@ namespace Interfaz
 
 
 
-        public delegate void AbrirModificarClave_Handler(Contra claveAModificar);
+        public delegate void AbrirModificarClave_Handler(Clave claveAModificar);
         public event AbrirModificarClave_Handler AbrirModificarClave_Event;
-        public void irAModificarClave(Contra claveAModificar)
+        public void irAModificarClave(Clave claveAModificar)
         {
             if (this.AbrirModificarClave_Event != null)
                 this.AbrirModificarClave_Event(claveAModificar);
@@ -161,9 +161,9 @@ namespace Interfaz
         }
 
 
-        public delegate void AbrirVerClave_Handler(Contra buscadora, Usuario usuarioActual);
+        public delegate void AbrirVerClave_Handler(Clave buscadora, Usuario usuarioActual);
         public event AbrirVerClave_Handler AbrirVerClave_Event;
-        private void AbrirVerClave(Contra buscadora, Usuario usuarioActual)
+        private void AbrirVerClave(Clave buscadora, Usuario usuarioActual)
         {
             if (this.AbrirVerClave_Event != null)
                 this.AbrirVerClave_Event(buscadora, usuarioActual);
@@ -181,10 +181,10 @@ namespace Interfaz
                 string sitioClaveAMostrar = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 string usuarioClaveAMostrar = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                Contra buscadora = new Contra
+                Clave buscadora = new Clave
                 {
                     Sitio = sitioClaveAMostrar,
-                    UsuarioContra = usuarioClaveAMostrar
+                    UsuarioClave = usuarioClaveAMostrar
                 };
 
                 AbrirVerClave(buscadora, _usuarioActual);

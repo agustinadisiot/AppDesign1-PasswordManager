@@ -77,18 +77,18 @@ namespace Interfaz
 
             usuarioPrueba.AgregarTarjeta(tarjetaPrueba2, personal);
 
-            Contra clavePrueba1 = new Contra()
+            Clave clavePrueba1 = new Clave()
             {
                 Sitio = "www.ort.edu.uy",
-                UsuarioContra = "usuarioClave1",
-                Clave = "12345678"
+                UsuarioClave = "usuarioClave1",
+                Codigo = "12345678"
             };
 
-            Contra clavePrueba2 = new Contra()
+            Clave clavePrueba2 = new Clave()
             {
                 Sitio = "www.netflix.com",
-                UsuarioContra = "usuarioClave2",
-                Clave = "12345678"
+                UsuarioClave = "usuarioClave2",
+                Codigo = "12345678"
             };
 
             clavePrueba1.FechaModificacion = new DateTime(2000, 1, 1);
@@ -263,7 +263,7 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(listaTarjetas);
         }
 
-        protected void AbrirVerClave_Handler(Contra buscadora, Usuario usuarioABuscar)
+        protected void AbrirVerClave_Handler(Clave buscadora, Usuario usuarioABuscar)
         {
             foreach (Control p in this.panelPrincipal.Controls)
             {
@@ -271,7 +271,7 @@ namespace Interfaz
             }
 
             Usuario usuarioAMostrar = this._administrador.GetUsuario(usuarioABuscar);
-            Contra claveAMostrar = usuarioAMostrar.GetContra(buscadora);
+            Clave claveAMostrar = usuarioAMostrar.GetContra(buscadora);
             VerClave verClaveSeleccionada = new VerClave(claveAMostrar, usuarioAMostrar);
             verClaveSeleccionada.SalirDeVerClave_Event += this.SalirDeVerClave_Handler;
             this.panelPrincipal.Controls.Clear();
@@ -279,12 +279,12 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(verClaveSeleccionada);
         }
 
-        private void ModificarClaveDataBreach_Event(Contra buscadora, List<string> dataBreach) {
+        private void ModificarClaveDataBreach_Event(Clave buscadora, List<string> dataBreach) {
             this._ultimoDataBreach = dataBreach;
             this.AbrirModificarClave_Event(buscadora);
         }
 
-        private void AbrirModificarClave_Event(Contra buscadora)
+        private void AbrirModificarClave_Event(Clave buscadora)
         {
 
             foreach (Control p in this.panelPrincipal.Controls)
@@ -292,7 +292,7 @@ namespace Interfaz
                 this._panelAVolverModificarClave = p.GetType();
             }
 
-            Contra modificar = this._usuarioActual.GetContra(buscadora);
+            Clave modificar = this._usuarioActual.GetContra(buscadora);
             ModificarClave modificarClave = new ModificarClave(this._usuarioActual, modificar);
             modificarClave.CerrarModificarClave_Event += CerrarModificarClave_Event;
 

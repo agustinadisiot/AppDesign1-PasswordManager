@@ -9,7 +9,7 @@ namespace Obligatorio
     public class ClaveCompartida
     {
         public Usuario Usuario { get; set; }
-        public Contra Clave { get; set; }
+        public Clave Clave { get; set; }
 
         public override bool Equals(object objeto)
         {

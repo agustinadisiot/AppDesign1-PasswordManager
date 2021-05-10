@@ -28,17 +28,17 @@ namespace Obligatorio
             };
             usuario2.AgregarCategoria(categoria1);
 
-            Contra clave1 = new Contra()
+            Clave clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave1",
-                UsuarioContra = "Roberto"
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
             };
-            Contra clave2 = new Contra()
+            Clave clave2 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Clave = "EstaEsUnaClave2",
-                UsuarioContra = "Hernesto"
+                Codigo = "EstaEsUnaClave2",
+                UsuarioClave = "Hernesto"
             };
 
             usuario1.AgregarContra(clave1, categoria1);

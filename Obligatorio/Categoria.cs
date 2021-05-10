@@ -6,7 +6,7 @@ namespace Obligatorio
 {
     public class Categoria
     {
-        private List<Contra> _contras;
+        private List<Clave> _claves;
         private List<Tarjeta> _tarjetas;
         private string _nombre;
         private const int _largoNombreMinimo = 3;
@@ -14,7 +14,7 @@ namespace Obligatorio
 
         public Categoria()
         {
-            _contras = new List<Contra>();
+            _claves = new List<Clave>();
             _tarjetas = new List<Tarjeta>();
         }
 
@@ -25,53 +25,53 @@ namespace Obligatorio
         }
 
 
-        public bool EsListaContrasVacia()
+        public bool EsListaClavesVacia()
         {
-            bool noHayContras = (this._contras.Count == 0);
+            bool noHayContras = (this._claves.Count == 0);
             return noHayContras;
         }
 
-        public void AgregarContra(Contra contraIngresada)
+        public void AgregarClave(Clave claveIngresada)
         {
-            bool noTieneSitio = (contraIngresada.Sitio == null),
-                 noTieneClave = (contraIngresada.Clave == null),
-                 noTieneUsuario = (contraIngresada.UsuarioContra == null);
+            bool noTieneSitio = (claveIngresada.Sitio == null),
+                 noTieneClave = (claveIngresada.Codigo == null),
+                 noTieneUsuario = (claveIngresada.UsuarioClave == null);
 
 
             if (noTieneSitio || noTieneClave || noTieneUsuario ) throw new ObjetoIncompletoException();
-            if (this.YaExisteContra(contraIngresada)) throw new ObjetoYaExistenteException();
-            this._contras.Add(contraIngresada);
+            if (this.YaExisteClave(claveIngresada)) throw new ObjetoYaExistenteException();
+            this._claves.Add(claveIngresada);
         }
 
-        public void BorrarContra(Contra contraABorrar)
+        public void BorrarClave(Clave claveABorrar)
         {
-            if (this.EsListaContrasVacia()) {
+            if (this.EsListaClavesVacia()) {
                 throw new ObjetoInexistenteException();
             }
-            if (!this.YaExisteContra(contraABorrar)) {
+            if (!this.YaExisteClave(claveABorrar)) {
                 throw new ObjetoInexistenteException();
             }
-            this._contras.Remove(contraABorrar);
+            this._claves.Remove(claveABorrar);
         }
 
-        public Contra GetContra(Contra aBuscar)
+        public Clave GetClave(Clave aBuscar)
         {
-            if (this.EsListaContrasVacia()) {
+            if (this.EsListaClavesVacia()) {
                 throw new ObjetoInexistenteException();
             }
 
-            Predicate<Contra> buscadorContra = (Contra contra) => 
+            Predicate<Clave> buscadorContra = (Clave clave) => 
             {
-                return contra.Equals(aBuscar);
+                return clave.Equals(aBuscar);
             };
 
-            Contra retorno = this._contras.Find(buscadorContra);
+            Clave retorno = this._claves.Find(buscadorContra);
             return retorno != null ? retorno : throw new ObjetoInexistenteException();
         }
 
-        public List<Contra> GetListaContras()
+        public List<Clave> GetListaClaves()
         {
-            return this._contras;
+            return this._claves;
         }
 
         public override bool Equals(object objeto)
@@ -120,9 +120,9 @@ namespace Obligatorio
             return this._tarjetas;
         }
 
-        public bool YaExisteContra(Contra aBuscar)
+        public bool YaExisteClave(Clave aBuscar)
         {
-            return (this._contras.Contains(aBuscar));
+            return (this._claves.Contains(aBuscar));
         }
 
         public bool YaExisteTarjeta(Tarjeta aBuscar)
@@ -157,25 +157,25 @@ namespace Obligatorio
             aModificar.Vencimiento = tarjetaNueva.Vencimiento;
         }
 
-        public void ModificarContra(Contra contraVieja, Contra contraNueva)
+        public void ModificarClave(Clave claveVieja, Clave claveNueva)
         {
-            bool igualSitioyUsuario = contraVieja.Equals(contraNueva);
+            bool igualSitioyUsuario = claveVieja.Equals(claveNueva);
 
-            if (!this.YaExisteContra(contraVieja)) throw new ObjetoInexistenteException();
-            if (!igualSitioyUsuario && this.YaExisteContra(contraNueva)) throw new ObjetoYaExistenteException();
+            if (!this.YaExisteClave(claveVieja)) throw new ObjetoInexistenteException();
+            if (!igualSitioyUsuario && this.YaExisteClave(claveNueva)) throw new ObjetoYaExistenteException();
 
-            Contra aModificar = this.GetContra(contraVieja);
-            aModificar.UsuarioContra = contraNueva.UsuarioContra;
-            aModificar.Sitio = contraNueva.Sitio;
-            aModificar.Nota = contraNueva.Nota;
-            if (aModificar.Clave != contraNueva.Clave) {
-                aModificar.Clave = contraNueva.Clave;
+            Clave aModificar = this.GetClave(claveVieja);
+            aModificar.UsuarioClave = claveNueva.UsuarioClave;
+            aModificar.Sitio = claveNueva.Sitio;
+            aModificar.Nota = claveNueva.Nota;
+            if (aModificar.Codigo != claveNueva.Codigo) {
+                aModificar.Codigo = claveNueva.Codigo;
             }
         }
 
-        public List<Contra> GetListaClavesColor(string color)
+        public List<Clave> GetListaClavesColor(string color)
         {
-            List<Contra> todasLasClaves = this.GetListaContras();
+            List<Clave> todasLasClaves = this.GetListaClaves();
             return todasLasClaves.FindAll(buscadora => buscadora.GetNivelSeguridad() == color);
         }
     }

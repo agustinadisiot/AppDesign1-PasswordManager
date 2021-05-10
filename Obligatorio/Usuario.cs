@@ -91,23 +91,23 @@ namespace Obligatorio
             return this._categorias.Any(buscadora => buscadora.Equals(aBuscar));
         }
 
-        public bool YaExisteContra(Contra contra)
+        public bool YaExisteContra(Clave contra)
         {
-            return this._categorias.Any(catBuscadora => catBuscadora.YaExisteContra(contra));
+            return this._categorias.Any(catBuscadora => catBuscadora.YaExisteClave(contra));
         }
 
-        public void AgregarContra(Contra contra, Categoria buscadora)
+        public void AgregarContra(Clave contra, Categoria buscadora)
         {
 
             bool noTieneSitio = (contra.Sitio == null),
-                 noTieneClave = (contra.Clave == null),
-                 noTieneUsuario = (contra.UsuarioContra == null);
+                 noTieneClave = (contra.Codigo == null),
+                 noTieneUsuario = (contra.UsuarioClave == null);
 
             if (noTieneSitio || noTieneClave || noTieneUsuario) throw new ObjetoIncompletoException();
             
             if(this.YaExisteContra(contra)) throw new ObjetoYaExistenteException();
 
-            this.GetCategoria(buscadora).AgregarContra(contra);
+            this.GetCategoria(buscadora).AgregarClave(contra);
         }
 
         public bool YaExisteTarjeta(Tarjeta tarjeta)
@@ -129,7 +129,7 @@ namespace Obligatorio
             this.GetCategoria(categoria).AgregarTarjeta(tarjeta);
         }
 
-        public void BorrarContra(Contra aBorrar)
+        public void BorrarContra(Clave aBorrar)
         {
             if (this.EsListaCategoriasVacia()) {
                 throw new CategoriaInexistenteException();
@@ -145,8 +145,8 @@ namespace Obligatorio
                 this.DejarDeCompartir(aDejarDeCompartir);
             }
 
-            Categoria contieneContraABorrar = this._categorias.First(categoria => categoria.YaExisteContra(aBorrar));
-            contieneContraABorrar.BorrarContra(aBorrar);
+            Categoria contieneContraABorrar = this._categorias.First(categoria => categoria.YaExisteClave(aBorrar));
+            contieneContraABorrar.BorrarClave(aBorrar);
         }
 
         public List<Categoria> GetListaCategorias()
@@ -154,15 +154,15 @@ namespace Obligatorio
             return this._categorias;
         }
 
-        public Contra GetContra(Contra contraBuscadora)
+        public Clave GetContra(Clave contraBuscadora)
         {
             if (!YaExisteContra(contraBuscadora)) throw new ObjetoInexistenteException();
 
             foreach (Categoria categoria in this._categorias)
             {
-                if (categoria.YaExisteContra(contraBuscadora))
+                if (categoria.YaExisteClave(contraBuscadora))
                 {
-                    return categoria.GetContra(contraBuscadora);
+                    return categoria.GetClave(contraBuscadora);
                 }
                
             }
@@ -203,8 +203,8 @@ namespace Obligatorio
 
         public void ModificarContra(ClaveAModificar modificar)
         {
-            Contra contraVieja = this.GetContra(modificar.ClaveVieja);
-            Contra contraNueva = modificar.ClaveNueva;
+            Clave contraVieja = this.GetContra(modificar.ClaveVieja);
+            Clave contraNueva = modificar.ClaveNueva;
 
             if (!contraVieja.Equals(contraNueva) && this.YaExisteContra(contraNueva)) {
                 throw new ObjetoYaExistenteException();
@@ -215,13 +215,13 @@ namespace Obligatorio
 
             if (categoriaVieja.Equals(categoriaNueva))
             {
-                categoriaVieja.ModificarContra(contraVieja, contraNueva);
+                categoriaVieja.ModificarClave(contraVieja, contraNueva);
             }
             else {
-                categoriaVieja.BorrarContra(contraVieja);
+                categoriaVieja.BorrarClave(contraVieja);
 
-                categoriaNueva.AgregarContra(contraVieja);
-                categoriaNueva.ModificarContra(contraVieja, contraNueva);
+                categoriaNueva.AgregarClave(contraVieja);
+                categoriaNueva.ModificarClave(contraVieja, contraNueva);
             }
         }
 
@@ -250,13 +250,13 @@ namespace Obligatorio
         }
 
 
-        public List<Contra> GetListaClaves()
+        public List<Clave> GetListaClaves()
         {
-            List<Contra> claves = new List<Contra>();
+            List<Clave> claves = new List<Clave>();
 
             foreach(Categoria categoria in this._categorias)
             {
-               claves.AddRange(categoria.GetListaContras());
+               claves.AddRange(categoria.GetListaClaves());
             }
 
             return claves;
@@ -277,7 +277,7 @@ namespace Obligatorio
         {
 
             Usuario usuarioACompartir = aCompartir.Usuario;
-            Contra claveACompartir = aCompartir.Clave;
+            Clave claveACompartir = aCompartir.Clave;
 
             if (this.CompartidasPorMi.Contains(aCompartir)) throw new ObjetoYaExistenteException();
 
@@ -306,11 +306,11 @@ namespace Obligatorio
             return this.GetListaClavesColor(color).Count;
         }
 
-        public List<Contra> GetContrasDataBreach(List<String> dataBreach)
+        public List<Clave> GetContrasDataBreach(List<String> dataBreach)
         {
-            List<Contra> completa = this.GetListaClaves();
+            List<Clave> completa = this.GetListaClaves();
             
-            return completa.FindAll(buscadora=> dataBreach.Contains(buscadora.Clave));
+            return completa.FindAll(buscadora=> dataBreach.Contains(buscadora.Codigo));
         }
 
         public List<Tarjeta> GetTarjetasDataBreach(List<string> dataBreach)
@@ -338,7 +338,7 @@ namespace Obligatorio
         public void DejarDeCompartir(ClaveCompartida aDejarDeCompartir)
         {
             Usuario usuarioADejarDeCompartir = aDejarDeCompartir.Usuario;
-            Contra claveADejarDeCompartir = this.GetContra(aDejarDeCompartir.Clave);
+            Clave claveADejarDeCompartir = this.GetContra(aDejarDeCompartir.Clave);
 
             if (!claveADejarDeCompartir.EsCompartida) throw new ObjetoInexistenteException();
 
@@ -366,9 +366,9 @@ namespace Obligatorio
 
         }
 
-        public List<Contra> GetListaClavesColor(string color)
+        public List<Clave> GetListaClavesColor(string color)
         {
-            List<Contra> todasLasClaves = this.GetListaClaves();
+            List<Clave> todasLasClaves = this.GetListaClaves();
             return todasLasClaves.FindAll(buscadora => buscadora.GetNivelSeguridad()==color);
         }
 
@@ -386,13 +386,13 @@ namespace Obligatorio
 
         }
 
-        public Categoria GetCategoriaClave(Contra buscadora)
+        public Categoria GetCategoriaClave(Clave buscadora)
         {
             List<Categoria> categorias = this.GetListaCategorias();
 
             foreach (Categoria actual in categorias)
             {
-                if (actual.YaExisteContra(buscadora))
+                if (actual.YaExisteClave(buscadora))
                 {
                     return actual;
                 }
