@@ -109,7 +109,7 @@ namespace Interfaz
             this.labelTitulo.Location = new System.Drawing.Point(93, 43);
             this.labelTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(240, 25);
+            this.labelTitulo.Size = new System.Drawing.Size(301, 31);
             this.labelTitulo.TabIndex = 17;
             this.labelTitulo.Text = "Listado de Contraseñas";
             // 
@@ -175,7 +175,7 @@ namespace Interfaz
             // 
             // ListaClaves
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.botonModificar);
             this.Controls.Add(this.botonEliminar);
@@ -188,6 +188,7 @@ namespace Interfaz
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ListaClaves";
             this.Size = new System.Drawing.Size(1071, 677);
+            this.Load += new System.EventHandler(this.ListaClaves_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablaClaves)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
