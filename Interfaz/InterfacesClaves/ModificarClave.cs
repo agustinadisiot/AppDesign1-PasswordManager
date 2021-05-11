@@ -117,8 +117,7 @@ namespace Interfaz.InterfacesClaves
 
         private void botonGenerar_Click(object sender, EventArgs e)
         {
-            Clave generador = new Clave();
-            ClaveAGenerar parametros = new ClaveAGenerar()
+            GeneradoraClaves generadora = new GeneradoraClaves()
             {
                 Largo = (int)this.spinnerLargo.Value,
                 IncluirMayusculas = this.checkBoxMayusculas.Checked,
@@ -131,13 +130,13 @@ namespace Interfaz.InterfacesClaves
 
             try
             {
-                generador.GenerarClave(parametros);
+                string resultado = generadora.Generar();
+                this.inputContra.Text = resultado;
             }
             catch (ClaveGeneradaVaciaException)
             {
                 this.labelErrores.Text = "Por lo menos un tipo de caracter debe ser elegido.";
             };
-            this.inputContra.Text = generador.Codigo;
         }
 
         private void botonCancelar_Click(object sender, EventArgs e)
