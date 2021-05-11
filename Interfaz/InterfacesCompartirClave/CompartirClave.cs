@@ -101,6 +101,9 @@ namespace Interfaz
             }
         }
 
-        
+        private void labelUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
