@@ -168,7 +168,8 @@ namespace TestsObligatorio
             {
                 Codigo = "clave212345"
             };
-            Assert.AreEqual("naranja", clave.GetNivelSeguridad());
+            ColorNivelSeguridad color = new ColorNivelSeguridad();
+            Assert.AreEqual(color.Naranja, clave.GetNivelSeguridad());
         }
 
         [TestMethod]
