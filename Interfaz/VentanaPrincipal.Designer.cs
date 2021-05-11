@@ -67,6 +67,7 @@ namespace Interfaz
             this.botonCerrarSesion.Name = "botonCerrarSesion";
             this.botonCerrarSesion.Size = new System.Drawing.Size(201, 63);
             this.botonCerrarSesion.TabIndex = 7;
+            this.botonCerrarSesion.TabStop = false;
             this.botonCerrarSesion.Text = "Cerrar Sesion";
             this.botonCerrarSesion.UseVisualStyleBackColor = true;
             this.botonCerrarSesion.Click += new System.EventHandler(this.botonCerrarSesion_Click);
