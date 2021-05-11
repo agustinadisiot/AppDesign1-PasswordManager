@@ -37,7 +37,7 @@ namespace Interfaz
             this.labelSitioAMostrar.Text = sitioAMostrar;
             this.labelUsuarioAMostrar.Text = usuarioAMostrar;
             this.labelClaveAMostrar.Text = codigoAMostrar;
-            this.labelNotasAMostrar.Text = notaAMostrar;
+            this.inputNota.Text = notaAMostrar;
 
         }
 

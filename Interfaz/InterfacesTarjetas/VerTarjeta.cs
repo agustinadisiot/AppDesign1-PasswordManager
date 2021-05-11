@@ -35,7 +35,7 @@ namespace Interfaz.InterfacesTarjetas
             this.labelMostrarCategoria.Text = categoria.Nombre;
             this.labelMostrarCodigo.Text = this._mostrar.Codigo;
             this.labelMostrarNombre.Text = this._mostrar.Nombre;
-            this.labelMostrarNotas.Text = this._mostrar.Nota;
+            this.inputNota.Text = this._mostrar.Nota;
             this.labelMostrarNumero.Text = this._mostrar.Numero;
             this.labelMostrarTipo.Text = this._mostrar.Tipo;
             this.labelMostrarVencimiento.Text = this._mostrar.Vencimiento.ToString();

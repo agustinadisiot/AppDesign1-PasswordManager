@@ -40,7 +40,7 @@ namespace Interfaz
             this.labelSitioAMostrar = new System.Windows.Forms.Label();
             this.labelUsuarioAMostrar = new System.Windows.Forms.Label();
             this.labelClaveAMostrar = new System.Windows.Forms.Label();
-            this.labelNotasAMostrar = new System.Windows.Forms.Label();
+            this.inputNota = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // labelContra
@@ -69,7 +69,7 @@ namespace Interfaz
             // 
             this.botonVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.botonVolver.Location = new System.Drawing.Point(764, 591);
-            this.botonVolver.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.botonVolver.Margin = new System.Windows.Forms.Padding(2);
             this.botonVolver.Name = "botonVolver";
             this.botonVolver.Size = new System.Drawing.Size(144, 37);
             this.botonVolver.TabIndex = 48;
@@ -172,25 +172,26 @@ namespace Interfaz
             this.labelClaveAMostrar.Size = new System.Drawing.Size(248, 29);
             this.labelClaveAMostrar.TabIndex = 57;
             // 
-            // labelNotasAMostrar
+            // inputNota
             // 
-            this.labelNotasAMostrar.AutoEllipsis = true;
-            this.labelNotasAMostrar.AutoSize = true;
-            this.labelNotasAMostrar.BackColor = System.Drawing.Color.White;
-            this.labelNotasAMostrar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelNotasAMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelNotasAMostrar.Location = new System.Drawing.Point(476, 330);
-            this.labelNotasAMostrar.MaximumSize = new System.Drawing.Size(432, 250);
-            this.labelNotasAMostrar.MinimumSize = new System.Drawing.Size(432, 154);
-            this.labelNotasAMostrar.Name = "labelNotasAMostrar";
-            this.labelNotasAMostrar.Size = new System.Drawing.Size(432, 154);
-            this.labelNotasAMostrar.TabIndex = 58;
+            this.inputNota.BackColor = System.Drawing.Color.White;
+            this.inputNota.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inputNota.Location = new System.Drawing.Point(476, 333);
+            this.inputNota.Margin = new System.Windows.Forms.Padding(2);
+            this.inputNota.MaxLength = 250;
+            this.inputNota.MinimumSize = new System.Drawing.Size(4, 5);
+            this.inputNota.Multiline = true;
+            this.inputNota.Name = "inputNota";
+            this.inputNota.ReadOnly = true;
+            this.inputNota.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.inputNota.Size = new System.Drawing.Size(432, 154);
+            this.inputNota.TabIndex = 65;
             // 
             // VerClave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.labelNotasAMostrar);
+            this.Controls.Add(this.inputNota);
             this.Controls.Add(this.labelClaveAMostrar);
             this.Controls.Add(this.labelUsuarioAMostrar);
             this.Controls.Add(this.labelSitioAMostrar);
@@ -222,6 +223,6 @@ namespace Interfaz
         private System.Windows.Forms.Label labelSitioAMostrar;
         private System.Windows.Forms.Label labelUsuarioAMostrar;
         private System.Windows.Forms.Label labelClaveAMostrar;
-        private System.Windows.Forms.Label labelNotasAMostrar;
+        private System.Windows.Forms.TextBox inputNota;
     }
 }
