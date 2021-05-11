@@ -1,8 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Dominio;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 
 namespace TestsObligatorio
