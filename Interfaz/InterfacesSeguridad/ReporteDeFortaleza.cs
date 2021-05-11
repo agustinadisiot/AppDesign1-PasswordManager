@@ -142,13 +142,13 @@ namespace Interfaz.InterfacesSeguridad
                     UsuarioClave = usuarioClave
                 };
 
-                irAModificarClave(aModificar);
+                IrAModificarClave(aModificar);
             }
         }
 
         public delegate void AbrirModificarClave_Handler(Clave claveAModificar);
         public event AbrirModificarClave_Handler AbrirModificarClave_Event;
-        public void irAModificarClave(Clave claveAModificar)
+        public void IrAModificarClave(Clave claveAModificar)
         {
             if (this.AbrirModificarClave_Event != null)
                 this.AbrirModificarClave_Event(claveAModificar);

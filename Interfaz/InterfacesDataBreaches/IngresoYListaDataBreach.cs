@@ -145,13 +145,13 @@ namespace Interfaz.InterfacesClaves
 
                 this.ProcesarIngresos();
 
-                irAModificarClave(aModificar);
+                IrAModificarClave(aModificar);
             }
         }
 
         public delegate void ModificarClaveDataBreach_Handler(Clave claveAModificar, List<string> dataBreach);
         public event ModificarClaveDataBreach_Handler ModificarClaveDataBreach_Event;
-        public void irAModificarClave(Clave claveAModificar)
+        public void IrAModificarClave(Clave claveAModificar)
         {
             if (this.ModificarClaveDataBreach_Event != null)
                 this.ModificarClaveDataBreach_Event(claveAModificar, this._dataBreach);

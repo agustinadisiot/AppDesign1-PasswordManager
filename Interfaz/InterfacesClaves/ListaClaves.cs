@@ -43,8 +43,6 @@ namespace Interfaz
             }
         }
 
-
-
         private void CerrarConfirmacion_Handler(bool acepto)
         {
             bool haySeleccionada = this.tablaClaves.SelectedCells.Count > 0;
@@ -68,7 +66,7 @@ namespace Interfaz
 
         private void botonAgregar_Click(object sender, EventArgs e)
         {
-            irACrearClave();
+            IrACrearClave();
         }
 
         private void botonCompartir_Click(object sender, EventArgs e)
@@ -95,7 +93,7 @@ namespace Interfaz
                     Clave = claveACompartir
                 };
 
-                irACompartirClave(aCompartir);
+                IrACompartirClave(aCompartir);
             }
 
         }
@@ -129,43 +127,8 @@ namespace Interfaz
                     UsuarioClave = usuarioClave
                 };
 
-                irAModificarClave(aModificar);
+                IrAModificarClave(aModificar);
             }
-        }
-
-
-
-        public delegate void AbrirModificarClave_Handler(Clave claveAModificar);
-        public event AbrirModificarClave_Handler AbrirModificarClave_Event;
-        public void irAModificarClave(Clave claveAModificar)
-        {
-            if (this.AbrirModificarClave_Event != null)
-                this.AbrirModificarClave_Event(claveAModificar);
-        }
-
-        public delegate void AbrirCrearClave_Handler();
-        public event AbrirCrearClave_Handler AbrirCrearClave_Event;
-        public void irACrearClave()
-        {
-            if (this.AbrirCrearClave_Event != null)
-                this.AbrirCrearClave_Event();
-        }
-
-        public delegate void AbrirCompartirClave_Handler(ClaveCompartida aCompartir);
-        public event AbrirCompartirClave_Handler AbrirCompartirClave_Event;
-        public void irACompartirClave(ClaveCompartida aCompartir)
-        {
-            if (this.AbrirCompartirClave_Event != null)
-                this.AbrirCompartirClave_Event(aCompartir);
-        }
-
-
-        public delegate void AbrirVerClave_Handler(Clave buscadora, Usuario usuarioActual);
-        public event AbrirVerClave_Handler AbrirVerClave_Event;
-        private void AbrirVerClave(Clave buscadora, Usuario usuarioActual)
-        {
-            if (this.AbrirVerClave_Event != null)
-                this.AbrirVerClave_Event(buscadora, usuarioActual);
         }
 
         private void botonVer_Click(object sender, EventArgs e)
@@ -190,5 +153,37 @@ namespace Interfaz
             }
         }
 
+        public delegate void AbrirModificarClave_Handler(Clave claveAModificar);
+        public event AbrirModificarClave_Handler AbrirModificarClave_Event;
+        public void IrAModificarClave(Clave claveAModificar)
+        {
+            if (this.AbrirModificarClave_Event != null)
+                this.AbrirModificarClave_Event(claveAModificar);
+        }
+
+        public delegate void AbrirCrearClave_Handler();
+        public event AbrirCrearClave_Handler AbrirCrearClave_Event;
+        public void IrACrearClave()
+        {
+            if (this.AbrirCrearClave_Event != null)
+                this.AbrirCrearClave_Event();
+        }
+
+        public delegate void AbrirCompartirClave_Handler(ClaveCompartida aCompartir);
+        public event AbrirCompartirClave_Handler AbrirCompartirClave_Event;
+        public void IrACompartirClave(ClaveCompartida aCompartir)
+        {
+            if (this.AbrirCompartirClave_Event != null)
+                this.AbrirCompartirClave_Event(aCompartir);
+        }
+
+
+        public delegate void AbrirVerClave_Handler(Clave buscadora, Usuario usuarioActual);
+        public event AbrirVerClave_Handler AbrirVerClave_Event;
+        private void AbrirVerClave(Clave buscadora, Usuario usuarioActual)
+        {
+            if (this.AbrirVerClave_Event != null)
+                this.AbrirVerClave_Event(buscadora, usuarioActual);
+        }
     }
 }

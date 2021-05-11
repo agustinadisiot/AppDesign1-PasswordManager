@@ -39,7 +39,7 @@ namespace Interfaz
                 {
                     _usuarioActual.AgregarCategoria(nuevaCategoria);
 
-                    volverAListaCategorias();
+                    VolverAListaCategorias();
                 }
                 catch
                 {
@@ -55,12 +55,12 @@ namespace Interfaz
 
         private void botonCancelar_Click(object sender, EventArgs e)
         {
-            volverAListaCategorias();
+            VolverAListaCategorias();
         }
 
         public delegate void AbrirListaCategorias_Handler();
         public event AbrirListaCategorias_Handler AbrirListaCategorias_Event;
-        public void volverAListaCategorias()
+        public void VolverAListaCategorias()
         {
             if (this.AbrirListaCategorias_Event != null)
                 this.AbrirListaCategorias_Event();

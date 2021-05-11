@@ -19,8 +19,6 @@ namespace Interfaz
         {
             this._administrador = administrador;
             InitializeComponent();
-
-
         }
 
         private void IniciarSesion_Load(object sender, EventArgs e)
@@ -65,15 +63,11 @@ namespace Interfaz
 
 
         public delegate void IniciarSesion_Handler(Usuario actual);
-
         public event IniciarSesion_Handler IniciarSesion_Event;
-
         private void EnviarIniciarSesion(Usuario aIniciar) {
             if (this.IniciarSesion_Event != null)
                 this.IniciarSesion_Event(aIniciar);
         }
-
-
 
         private void botonCrearUsuario_Click(object sender, EventArgs e)
         {

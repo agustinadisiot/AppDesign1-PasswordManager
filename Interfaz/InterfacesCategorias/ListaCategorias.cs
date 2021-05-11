@@ -42,7 +42,7 @@ namespace Interfaz
 
         public delegate void AbrirModificarCategoria_Handler(Categoria catActual);
         public event AbrirModificarCategoria_Handler AbrirModificarCategorias_Event;
-        public void irAModificarCategoria(Categoria catActual)
+        public void IrAModificarCategoria(Categoria catActual)
         {
             if (this.AbrirModificarCategorias_Event != null)
                 this.AbrirModificarCategorias_Event(catActual);
@@ -50,7 +50,7 @@ namespace Interfaz
 
         public delegate void AbrirAgregarCategorias_Handler();
         public event AbrirAgregarCategorias_Handler AbrirAgregarCategorias_Event;
-        public void irAAgregarCategoria()
+        public void IrAAgregarCategoria()
         {
             if (this.AbrirAgregarCategorias_Event != null)
                 this.AbrirAgregarCategorias_Event();
@@ -74,13 +74,13 @@ namespace Interfaz
                     Nombre = nombreCat
                 };
 
-                irAModificarCategoria(aModificar);
+                IrAModificarCategoria(aModificar);
             }
         }
 
         private void botonAgregar_Click(object sender, EventArgs e)
         {
-            irAAgregarCategoria();
+            IrAAgregarCategoria();
         }
 
     }
