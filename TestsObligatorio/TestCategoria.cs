@@ -853,9 +853,9 @@ namespace TestsObligatorio
                 Nombre = "Personal"
             };
 
+            ColorNivelSeguridad color = new ColorNivelSeguridad();
             int cantidadRojas = 0;
-            const string rojo = "rojo";
-            Assert.AreEqual(cantidadRojas, categoria.GetListaClavesColor(rojo).Count);
+            Assert.AreEqual(cantidadRojas, categoria.GetListaClavesColor(color.Rojo).Count);
         }
 
         [TestMethod]
@@ -886,8 +886,8 @@ namespace TestsObligatorio
                 clave1
             };
 
-            const string verdeOscuro = "verde oscuro";
-            List<Clave> getListaClavesVerdes = categoria1.GetListaClavesColor(verdeOscuro);
+            ColorNivelSeguridad color = new ColorNivelSeguridad();
+            List<Clave> getListaClavesVerdes = categoria1.GetListaClavesColor(color.VerdeOscuro);
 
             bool getListaClavesContieneLasClavesVerdes = getListaClavesVerdes.All(clavesVerdes.Contains);
             bool clavesVerdesContieneListaClavesVerdes = clavesVerdes.All(getListaClavesVerdes.Contains);

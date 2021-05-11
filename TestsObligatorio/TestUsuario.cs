@@ -1539,12 +1539,13 @@ namespace TestsObligatorio
 
             List<Clave> getListaClaves = usuario.GetListaClaves();
             int cantidadRojas = 0;
-            foreach(Clave clave in getListaClaves)
+            ColorNivelSeguridad color = new ColorNivelSeguridad();
+            foreach (Clave clave in getListaClaves)
             {
-                if (clave.GetNivelSeguridad() == "rojo") cantidadRojas ++;
+                if (clave.GetNivelSeguridad() == color.Rojo) cantidadRojas ++;
             }
 
-            Assert.AreEqual(cantidadRojas, usuario.GetCantidadColor("rojo"));
+            Assert.AreEqual(cantidadRojas, usuario.GetCantidadColor(color.Rojo));
         }
 
         [TestMethod]
@@ -1579,7 +1580,8 @@ namespace TestsObligatorio
 
 
             List<Clave> getListaClaves = usuario.GetListaClaves();
-            string color = "verde claro";
+            ColorNivelSeguridad colores = new ColorNivelSeguridad();
+            string color = colores.VerdeClaro;
             int cantidadColor = 0;
             foreach (Clave clave in getListaClaves)
             {
@@ -2323,8 +2325,8 @@ namespace TestsObligatorio
             };
 
             int cantidadRojas = 0;
-            const string rojo = "rojo";
-            Assert.AreEqual(cantidadRojas, usuario.GetListaClavesColor(rojo).Count);
+            ColorNivelSeguridad color = new ColorNivelSeguridad();
+            Assert.AreEqual(cantidadRojas, usuario.GetListaClavesColor(color.Rojo).Count);
         }
 
         [TestMethod]
@@ -2363,8 +2365,8 @@ namespace TestsObligatorio
                 clave1
             };
 
-            const string verdeOscuro = "verde oscuro";
-            List<Clave> getListaClavesVerdes = usuario.GetListaClavesColor(verdeOscuro);
+            ColorNivelSeguridad color = new ColorNivelSeguridad();
+            List<Clave> getListaClavesVerdes = usuario.GetListaClavesColor(color.VerdeOscuro);
 
             bool getListaClavesContieneLasClavesVerdes = getListaClavesVerdes.All(clavesVerdes.Contains);
             bool clavesVerdesContieneListaClavesVerdes = clavesVerdes.All(getListaClavesVerdes.Contains);
@@ -2416,8 +2418,8 @@ namespace TestsObligatorio
                 clave2
             };
 
-            const string amarillo = "amarillo";
-            List<Clave> getListaClavesAmarillas = usuario.GetListaClavesColor(amarillo);
+            ColorNivelSeguridad color = new ColorNivelSeguridad();
+            List<Clave> getListaClavesAmarillas = usuario.GetListaClavesColor(color.Amarillo);
 
             bool getListaClavesContieneLasClavesVerdes = getListaClavesAmarillas.All(clavesAmarillas.Contains);
             bool clavesVerdesContieneListaClavesVerdes = clavesAmarillas.All(getListaClavesAmarillas.Contains);
