@@ -20,7 +20,7 @@ namespace Interfaz
         {
             this.CargarComboBox();
             this.labelErrores.Text = "";
-
+            this.datePickerVencimiento.CustomFormat = "MM '/' yyyy";
 
         }
 

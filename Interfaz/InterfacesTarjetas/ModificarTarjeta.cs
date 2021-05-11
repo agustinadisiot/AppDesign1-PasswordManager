@@ -22,6 +22,7 @@ namespace Interfaz
             this.CargarComboBox();
             this.CargarInputsConTarjeta();
             this.labelErrores.Text = "";
+            this.datePickerVencimiento.CustomFormat = "MM '/' yyyy";
         }
 
         private void CargarInputsConTarjeta() {
