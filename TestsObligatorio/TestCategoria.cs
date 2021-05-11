@@ -937,7 +937,6 @@ namespace TestsObligatorio
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria.AgregarTarjeta(tarjeta1);
-            Assert.AreEqual(false, categoria.EsListaTarjetasVacia());
             Tarjeta tarjeta2= new Tarjeta()
             {
                 Nombre = "Prex",
@@ -1323,7 +1322,6 @@ namespace TestsObligatorio
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria.AgregarTarjeta(tarjeta);
-            Assert.IsTrue(categoria.YaExisteTarjeta(tarjeta));
 
             Tarjeta aBorrar = new Tarjeta()
             {
@@ -1351,7 +1349,6 @@ namespace TestsObligatorio
                 Vencimiento = new DateTime(2025, 7, 1)
             };
             categoria.AgregarTarjeta(tarjeta);
-            Assert.IsTrue(categoria.YaExisteTarjeta(tarjeta));
 
             Tarjeta aBorrar = new Tarjeta()
             {
