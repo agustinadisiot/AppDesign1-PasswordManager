@@ -71,7 +71,7 @@ namespace Interfaz
             this.inputNota.Name = "inputNota";
             this.inputNota.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.inputNota.Size = new System.Drawing.Size(432, 154);
-            this.inputNota.TabIndex = 46;
+            this.inputNota.TabIndex = 7;
             // 
             // labelNotas
             // 
@@ -101,7 +101,7 @@ namespace Interfaz
             this.datePickerVencimiento.Location = new System.Drawing.Point(458, 376);
             this.datePickerVencimiento.Name = "datePickerVencimiento";
             this.datePickerVencimiento.Size = new System.Drawing.Size(248, 20);
-            this.datePickerVencimiento.TabIndex = 43;
+            this.datePickerVencimiento.TabIndex = 6;
             // 
             // comboBoxCategorias
             // 
@@ -111,7 +111,7 @@ namespace Interfaz
             this.comboBoxCategorias.Location = new System.Drawing.Point(458, 156);
             this.comboBoxCategorias.Name = "comboBoxCategorias";
             this.comboBoxCategorias.Size = new System.Drawing.Size(248, 28);
-            this.comboBoxCategorias.TabIndex = 42;
+            this.comboBoxCategorias.TabIndex = 1;
             // 
             // labelCategoria
             // 
@@ -144,7 +144,7 @@ namespace Interfaz
             this.inputCodigo.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputCodigo.Name = "inputCodigo";
             this.inputCodigo.Size = new System.Drawing.Size(248, 29);
-            this.inputCodigo.TabIndex = 39;
+            this.inputCodigo.TabIndex = 5;
             // 
             // labelNumero
             // 
@@ -166,7 +166,7 @@ namespace Interfaz
             this.inputNumero.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputNumero.Name = "inputNumero";
             this.inputNumero.Size = new System.Drawing.Size(248, 29);
-            this.inputNumero.TabIndex = 37;
+            this.inputNumero.TabIndex = 4;
             // 
             // botonCancelar
             // 
@@ -175,7 +175,7 @@ namespace Interfaz
             this.botonCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.botonCancelar.Name = "botonCancelar";
             this.botonCancelar.Size = new System.Drawing.Size(144, 37);
-            this.botonCancelar.TabIndex = 36;
+            this.botonCancelar.TabIndex = 9;
             this.botonCancelar.Text = "Cancelar";
             this.botonCancelar.UseVisualStyleBackColor = true;
             this.botonCancelar.Click += new System.EventHandler(this.botonCancelar_Click);
@@ -200,7 +200,7 @@ namespace Interfaz
             this.inputTipo.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputTipo.Name = "inputTipo";
             this.inputTipo.Size = new System.Drawing.Size(248, 29);
-            this.inputTipo.TabIndex = 34;
+            this.inputTipo.TabIndex = 3;
             // 
             // labelNombre
             // 
@@ -222,7 +222,7 @@ namespace Interfaz
             this.inputNombre.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputNombre.Name = "inputNombre";
             this.inputNombre.Size = new System.Drawing.Size(248, 29);
-            this.inputNombre.TabIndex = 32;
+            this.inputNombre.TabIndex = 2;
             // 
             // botonModificar
             // 
@@ -231,7 +231,7 @@ namespace Interfaz
             this.botonModificar.Margin = new System.Windows.Forms.Padding(2);
             this.botonModificar.Name = "botonModificar";
             this.botonModificar.Size = new System.Drawing.Size(144, 37);
-            this.botonModificar.TabIndex = 31;
+            this.botonModificar.TabIndex = 8;
             this.botonModificar.Text = "Modificar";
             this.botonModificar.UseVisualStyleBackColor = true;
             this.botonModificar.Click += new System.EventHandler(this.botonModificar_Click);

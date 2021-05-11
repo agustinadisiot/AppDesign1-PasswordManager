@@ -59,7 +59,7 @@ namespace Interfaz.InterfacesCompartirClave
             this.CompartidaA,
             this.Sitio,
             this.Usuario});
-            this.tablaClavesCompartidas.Location = new System.Drawing.Point(70, 25);
+            this.tablaClavesCompartidas.Location = new System.Drawing.Point(65, 25);
             this.tablaClavesCompartidas.Margin = new System.Windows.Forms.Padding(4);
             this.tablaClavesCompartidas.MultiSelect = false;
             this.tablaClavesCompartidas.Name = "tablaClavesCompartidas";

@@ -71,7 +71,7 @@ namespace Interfaz.InterfacesClaves
             this.tablaClaves.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tablaClaves.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaClaves.Size = new System.Drawing.Size(503, 218);
-            this.tablaClaves.TabIndex = 24;
+            this.tablaClaves.TabIndex = 3;
             // 
             // Categoria
             // 
@@ -116,7 +116,7 @@ namespace Interfaz.InterfacesClaves
             this.botonModificarClave.Margin = new System.Windows.Forms.Padding(4);
             this.botonModificarClave.Name = "botonModificarClave";
             this.botonModificarClave.Size = new System.Drawing.Size(115, 28);
-            this.botonModificarClave.TabIndex = 30;
+            this.botonModificarClave.TabIndex = 4;
             this.botonModificarClave.Text = "Modificar Contraseña";
             this.botonModificarClave.UseVisualStyleBackColor = true;
             this.botonModificarClave.Click += new System.EventHandler(this.botonModificar_Click);
@@ -159,7 +159,7 @@ namespace Interfaz.InterfacesClaves
             this.tablaTarjetas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tablaTarjetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaTarjetas.Size = new System.Drawing.Size(618, 288);
-            this.tablaTarjetas.TabIndex = 31;
+            this.tablaTarjetas.TabIndex = 5;
             // 
             // Catregoria
             // 
@@ -220,7 +220,7 @@ namespace Interfaz.InterfacesClaves
             this.botonVerificar.Margin = new System.Windows.Forms.Padding(2);
             this.botonVerificar.Name = "botonVerificar";
             this.botonVerificar.Size = new System.Drawing.Size(144, 37);
-            this.botonVerificar.TabIndex = 34;
+            this.botonVerificar.TabIndex = 2;
             this.botonVerificar.Text = "Verificar";
             this.botonVerificar.UseVisualStyleBackColor = true;
             this.botonVerificar.Click += new System.EventHandler(this.botonVerificar_Click);
@@ -233,7 +233,7 @@ namespace Interfaz.InterfacesClaves
             this.inputDatos.Name = "inputDatos";
             this.inputDatos.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.inputDatos.Size = new System.Drawing.Size(266, 444);
-            this.inputDatos.TabIndex = 33;
+            this.inputDatos.TabIndex = 1;
             // 
             // IngresoYListaDataBreach
             // 

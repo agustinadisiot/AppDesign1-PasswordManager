@@ -130,7 +130,7 @@ namespace Interfaz
             this.botonEliminar.Location = new System.Drawing.Point(830, 636);
             this.botonEliminar.Name = "botonEliminar";
             this.botonEliminar.Size = new System.Drawing.Size(86, 23);
-            this.botonEliminar.TabIndex = 1;
+            this.botonEliminar.TabIndex = 3;
             this.botonEliminar.Text = "Eliminar";
             this.botonEliminar.UseVisualStyleBackColor = true;
             this.botonEliminar.Click += new System.EventHandler(this.botonEliminar_Click);
@@ -140,7 +140,7 @@ namespace Interfaz
             this.botonModificar.Location = new System.Drawing.Point(922, 636);
             this.botonModificar.Name = "botonModificar";
             this.botonModificar.Size = new System.Drawing.Size(86, 23);
-            this.botonModificar.TabIndex = 2;
+            this.botonModificar.TabIndex = 4;
             this.botonModificar.Text = "Modificar";
             this.botonModificar.UseVisualStyleBackColor = true;
             this.botonModificar.Click += new System.EventHandler(this.botonModificar_Click);
@@ -150,7 +150,7 @@ namespace Interfaz
             this.buttonAgregar.Location = new System.Drawing.Point(738, 636);
             this.buttonAgregar.Name = "buttonAgregar";
             this.buttonAgregar.Size = new System.Drawing.Size(86, 23);
-            this.buttonAgregar.TabIndex = 3;
+            this.buttonAgregar.TabIndex = 2;
             this.buttonAgregar.Text = "Agregar";
             this.buttonAgregar.UseVisualStyleBackColor = true;
             this.buttonAgregar.Click += new System.EventHandler(this.buttonAgregar_Click);
@@ -170,7 +170,7 @@ namespace Interfaz
             this.buttonVer.Location = new System.Drawing.Point(646, 636);
             this.buttonVer.Name = "buttonVer";
             this.buttonVer.Size = new System.Drawing.Size(86, 23);
-            this.buttonVer.TabIndex = 5;
+            this.buttonVer.TabIndex = 1;
             this.buttonVer.Text = "Ver";
             this.buttonVer.UseVisualStyleBackColor = true;
             this.buttonVer.Click += new System.EventHandler(this.buttonVer_Click);

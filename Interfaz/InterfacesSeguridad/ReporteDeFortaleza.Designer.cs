@@ -50,7 +50,7 @@ namespace Interfaz.InterfacesSeguridad
             this.botonGrafica.Location = new System.Drawing.Point(47, 431);
             this.botonGrafica.Name = "botonGrafica";
             this.botonGrafica.Size = new System.Drawing.Size(123, 50);
-            this.botonGrafica.TabIndex = 6;
+            this.botonGrafica.TabIndex = 5;
             this.botonGrafica.Text = "Grafica";
             this.botonGrafica.UseVisualStyleBackColor = true;
             this.botonGrafica.Click += new System.EventHandler(this.botonGrafica_Click);
@@ -74,7 +74,7 @@ namespace Interfaz.InterfacesSeguridad
             this.TablaReporte.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.TablaReporte.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.TablaReporte.Size = new System.Drawing.Size(228, 190);
-            this.TablaReporte.TabIndex = 5;
+            this.TablaReporte.TabIndex = 1;
             // 
             // Color
             // 
@@ -99,7 +99,7 @@ namespace Interfaz.InterfacesSeguridad
             this.botonModificar.Margin = new System.Windows.Forms.Padding(4);
             this.botonModificar.Name = "botonModificar";
             this.botonModificar.Size = new System.Drawing.Size(100, 26);
-            this.botonModificar.TabIndex = 26;
+            this.botonModificar.TabIndex = 4;
             this.botonModificar.Text = "Modificar";
             this.botonModificar.UseVisualStyleBackColor = true;
             this.botonModificar.Click += new System.EventHandler(this.botonModificar_Click);
@@ -137,7 +137,7 @@ namespace Interfaz.InterfacesSeguridad
             this.tablaClaves.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tablaClaves.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaClaves.Size = new System.Drawing.Size(503, 369);
-            this.tablaClaves.TabIndex = 24;
+            this.tablaClaves.TabIndex = 2;
             // 
             // Categoria
             // 
@@ -182,7 +182,7 @@ namespace Interfaz.InterfacesSeguridad
             this.botonVer.Margin = new System.Windows.Forms.Padding(4);
             this.botonVer.Name = "botonVer";
             this.botonVer.Size = new System.Drawing.Size(100, 28);
-            this.botonVer.TabIndex = 27;
+            this.botonVer.TabIndex = 3;
             this.botonVer.Text = "Ver";
             this.botonVer.UseVisualStyleBackColor = true;
             this.botonVer.Click += new System.EventHandler(this.botonVer_Click);

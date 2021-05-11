@@ -129,10 +129,10 @@ namespace Interfaz.InterfacesTarjetas
             // 
             this.botonVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.botonVolver.Location = new System.Drawing.Point(764, 591);
-            this.botonVolver.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.botonVolver.Margin = new System.Windows.Forms.Padding(2);
             this.botonVolver.Name = "botonVolver";
             this.botonVolver.Size = new System.Drawing.Size(144, 37);
-            this.botonVolver.TabIndex = 54;
+            this.botonVolver.TabIndex = 8;
             this.botonVolver.Text = "Volver";
             this.botonVolver.UseVisualStyleBackColor = true;
             this.botonVolver.Click += new System.EventHandler(this.botonVolver_Click);
@@ -180,7 +180,7 @@ namespace Interfaz.InterfacesTarjetas
             this.labelMostrarCategoria.MinimumSize = new System.Drawing.Size(248, 29);
             this.labelMostrarCategoria.Name = "labelMostrarCategoria";
             this.labelMostrarCategoria.Size = new System.Drawing.Size(248, 29);
-            this.labelMostrarCategoria.TabIndex = 66;
+            this.labelMostrarCategoria.TabIndex = 1;
             // 
             // labelMostrarNombre
             // 
@@ -193,7 +193,7 @@ namespace Interfaz.InterfacesTarjetas
             this.labelMostrarNombre.MinimumSize = new System.Drawing.Size(248, 29);
             this.labelMostrarNombre.Name = "labelMostrarNombre";
             this.labelMostrarNombre.Size = new System.Drawing.Size(248, 29);
-            this.labelMostrarNombre.TabIndex = 67;
+            this.labelMostrarNombre.TabIndex = 2;
             // 
             // labelMostrarTipo
             // 
@@ -206,7 +206,7 @@ namespace Interfaz.InterfacesTarjetas
             this.labelMostrarTipo.MinimumSize = new System.Drawing.Size(248, 29);
             this.labelMostrarTipo.Name = "labelMostrarTipo";
             this.labelMostrarTipo.Size = new System.Drawing.Size(248, 29);
-            this.labelMostrarTipo.TabIndex = 68;
+            this.labelMostrarTipo.TabIndex = 3;
             // 
             // labelMostrarNumero
             // 
@@ -219,7 +219,7 @@ namespace Interfaz.InterfacesTarjetas
             this.labelMostrarNumero.MinimumSize = new System.Drawing.Size(248, 29);
             this.labelMostrarNumero.Name = "labelMostrarNumero";
             this.labelMostrarNumero.Size = new System.Drawing.Size(248, 29);
-            this.labelMostrarNumero.TabIndex = 69;
+            this.labelMostrarNumero.TabIndex = 4;
             // 
             // labelMostrarCodigo
             // 
@@ -232,7 +232,7 @@ namespace Interfaz.InterfacesTarjetas
             this.labelMostrarCodigo.MinimumSize = new System.Drawing.Size(248, 29);
             this.labelMostrarCodigo.Name = "labelMostrarCodigo";
             this.labelMostrarCodigo.Size = new System.Drawing.Size(248, 29);
-            this.labelMostrarCodigo.TabIndex = 70;
+            this.labelMostrarCodigo.TabIndex = 5;
             // 
             // labelMostrarVencimiento
             // 
@@ -245,7 +245,7 @@ namespace Interfaz.InterfacesTarjetas
             this.labelMostrarVencimiento.MinimumSize = new System.Drawing.Size(248, 29);
             this.labelMostrarVencimiento.Name = "labelMostrarVencimiento";
             this.labelMostrarVencimiento.Size = new System.Drawing.Size(248, 29);
-            this.labelMostrarVencimiento.TabIndex = 71;
+            this.labelMostrarVencimiento.TabIndex = 6;
             // 
             // inputNota
             // 
@@ -260,7 +260,7 @@ namespace Interfaz.InterfacesTarjetas
             this.inputNota.ReadOnly = true;
             this.inputNota.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.inputNota.Size = new System.Drawing.Size(432, 154);
-            this.inputNota.TabIndex = 73;
+            this.inputNota.TabIndex = 7;
             // 
             // VerTarjeta
             // 
