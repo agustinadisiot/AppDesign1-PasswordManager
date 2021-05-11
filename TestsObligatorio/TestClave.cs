@@ -338,23 +338,22 @@ namespace TestsObligatorio
         [TestMethod]
         public void ClaveGeneradaVacia()
         {
-            ClaveAGenerar parametros = new ClaveAGenerar()
+            GeneradoraClaves generadora = new GeneradoraClaves() 
             {
-                Largo = 10,
                 IncluirMayusculas = false,
                 IncluirMinusculas = false,
                 IncluirNumeros = false,
-                IncluirSimbolos = false
+                IncluirSimbolos = false,
+                Largo = 10
             };
 
-            Clave random = new Clave();
-            Assert.ThrowsException<ClaveGeneradaVaciaException>(() => random.GenerarClave(parametros));
+            Assert.ThrowsException<ClaveGeneradaVaciaException>(() => generadora.Generar());
         }
 
         [TestMethod]
         public void ClaveGeneradaSoloMayusculas()
         {
-            ClaveAGenerar parametros = new ClaveAGenerar()
+            GeneradoraClaves generadora = new GeneradoraClaves()
             {
                 Largo = 5,
                 IncluirMayusculas = true,
@@ -363,8 +362,10 @@ namespace TestsObligatorio
                 IncluirSimbolos = false
             };
 
-            Clave random = new Clave();
-            random.GenerarClave(parametros);
+            Clave random = new Clave()
+            {
+                Codigo = generadora.Generar()
+            };
             string resultado = random.Codigo;
             bool esSoloMayuscula = resultado.All(caracter => VerificadoraString.EsMayuscula(caracter));
             Assert.IsTrue(esSoloMayuscula);
@@ -373,7 +374,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void ClaveGeneradaLargoCorrecto()
         {
-            ClaveAGenerar parametros = new ClaveAGenerar()
+            GeneradoraClaves generadora = new GeneradoraClaves()
             {
                 Largo = 10,
                 IncluirMayusculas = true,
@@ -382,8 +383,9 @@ namespace TestsObligatorio
                 IncluirSimbolos = false
             };
 
-            Clave random = new Clave();
-            random.GenerarClave(parametros);
+            Clave random = new Clave() {
+                Codigo = generadora.Generar()
+            };
             string resultado = random.Codigo;
             Assert.AreEqual(10, resultado.Length);
         }
@@ -391,7 +393,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void ClaveGeneradaIncluyendoTodo()
         {
-            ClaveAGenerar parametros = new ClaveAGenerar()
+            GeneradoraClaves generadora = new GeneradoraClaves()
             {
                 Largo = 10,
                 IncluirMayusculas = true,
@@ -400,8 +402,10 @@ namespace TestsObligatorio
                 IncluirSimbolos = true
             };
 
-            Clave random = new Clave();
-            random.GenerarClave(parametros);
+            Clave random = new Clave()
+            {
+                Codigo = generadora.Generar()
+            };
             string resultado = random.Codigo;
             bool contieneMayusculas = resultado.Any(caracter => VerificadoraString.EsMayuscula(caracter));
             bool contieneMinusculas = resultado.Any(caracter => VerificadoraString.EsMinuscula(caracter));
@@ -414,7 +418,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void ClaveGeneradaIncluyendoSimbolosMinusculas()
         {
-            ClaveAGenerar parametros = new ClaveAGenerar()
+            GeneradoraClaves generadora = new GeneradoraClaves()
             {
                 Largo = 15,
                 IncluirMayusculas = false,
@@ -423,8 +427,10 @@ namespace TestsObligatorio
                 IncluirSimbolos = true
             };
 
-            Clave random = new Clave();
-            random.GenerarClave(parametros);
+            Clave random = new Clave()
+            {
+                Codigo = generadora.Generar()
+            };
             string resultado = random.Codigo;
             bool contieneMayusculas = resultado.Any(caracter => VerificadoraString.EsMayuscula(caracter));
             bool contieneMinusculas = resultado.Any(caracter => VerificadoraString.EsMinuscula(caracter));

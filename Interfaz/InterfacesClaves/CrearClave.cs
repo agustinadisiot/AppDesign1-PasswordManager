@@ -103,27 +103,31 @@ namespace Interfaz
 
         private void botonGenerar_Click(object sender, EventArgs e)
         {
+            try {
+                GeneradoraClaves generadora = new GeneradoraClaves()
+                {
+                    Largo = (int)this.spinnerLargo.Value,
+                    IncluirMayusculas = this.checkBoxMayusculas.Checked,
+                    IncluirMinusculas = this.checkBoxMinusculas.Checked,
+                    IncluirNumeros = this.checkBoxNumeros.Checked,
+                    IncluirSimbolos = this.checkBoxSimbolos.Checked
+                };
 
-            Clave generador = new Clave();
-            ClaveAGenerar parametros = new ClaveAGenerar()
-            {
-                Largo = (int)this.spinnerLargo.Value,
-                IncluirMayusculas = this.checkBoxMayusculas.Checked,
-                IncluirMinusculas = this.checkBoxMinusculas.Checked,
-                IncluirNumeros = this.checkBoxNumeros.Checked,
-                IncluirSimbolos = this.checkBoxSimbolos.Checked
-            };
+                this.inputContra.Text = "";
 
-            this.inputContra.Text = "";
-
-            try
-            {
-                generador.GenerarClave(parametros);
+                try
+                {
+                    string resultado = generadora.Generar();
+                    this.inputContra.Text = resultado;
+                }
+                catch (ClaveGeneradaVaciaException)
+                {
+                    this.labelErrores.Text = "Por lo menos un tipo de caracter debe ser elegido.";
+                };
             }
-            catch (ClaveGeneradaVaciaException) {
-                this.labelErrores.Text = "Por lo menos un tipo de caracter debe ser elegido.";
-            };
-            this.inputContra.Text = generador.Codigo;
+            catch (LargoIncorrectoException) {
+                this.labelErrores.Text = "El largo de una clave debe ser entre 5 a 25 caracteres.";
+            }
         }
 
 
