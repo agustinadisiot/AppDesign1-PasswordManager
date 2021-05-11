@@ -15,7 +15,7 @@ namespace TestsObligatorio
         public void AdministradorEsListaUsuariosVaciaAlPrincipio()
         {
             Administrador administrador = new Administrador();
-            Assert.AreEqual(true, administrador.EsListaUsuariosVacia());
+            Assert.IsTrue(administrador.EsListaUsuariosVacia());
         }
 
         [TestMethod]
@@ -27,7 +27,7 @@ namespace TestsObligatorio
                 Nombre = "Roberto"
             };
             administrador.AgregarUsuario(usuario);
-            Assert.AreEqual(false, administrador.EsListaUsuariosVacia());
+            Assert.IsFalse(administrador.EsListaUsuariosVacia());
         }
 
         [TestMethod]
@@ -60,13 +60,12 @@ namespace TestsObligatorio
                 Nombre = "Roberto"
             };
             administrador.AgregarUsuario(usuario);
-            Assert.AreEqual(false, administrador.EsListaUsuariosVacia());
             Usuario usuario2 = new Usuario
             {
                 Nombre = "Pedro"
             };
             administrador.AgregarUsuario(usuario2);
-            Assert.AreEqual(false, administrador.EsListaUsuariosVacia());
+            Assert.IsFalse(administrador.EsListaUsuariosVacia());
         }
 
         [TestMethod]
