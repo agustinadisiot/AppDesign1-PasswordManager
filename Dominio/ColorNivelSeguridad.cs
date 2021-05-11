@@ -1,6 +1,6 @@
 ﻿namespace Dominio
 {
-    class ColorNivelSeguridad
+    public class ColorNivelSeguridad
     {
         public string Rojo { get { return "rojo";} }
         public string Naranja { get { return "naranja";} }

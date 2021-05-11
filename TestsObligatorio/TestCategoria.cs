@@ -854,9 +854,9 @@ namespace TestsObligatorio
                 Nombre = "Personal"
             };
 
+            ColorNivelSeguridad color = new ColorNivelSeguridad();
             int cantidadRojas = 0;
-            const string rojo = "rojo";
-            Assert.AreEqual(cantidadRojas, categoria.GetListaClavesColor(rojo).Count);
+            Assert.AreEqual(cantidadRojas, categoria.GetListaClavesColor(color.Rojo).Count);
         }
 
         [TestMethod]
