@@ -47,9 +47,10 @@ namespace Interfaz
             // 
             this.labelContra.AutoSize = true;
             this.labelContra.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelContra.Location = new System.Drawing.Point(296, 353);
+            this.labelContra.Location = new System.Drawing.Point(222, 287);
+            this.labelContra.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelContra.Name = "labelContra";
-            this.labelContra.Size = new System.Drawing.Size(142, 29);
+            this.labelContra.Size = new System.Drawing.Size(111, 24);
             this.labelContra.TabIndex = 52;
             this.labelContra.Text = "Contraseña:";
             // 
@@ -57,19 +58,20 @@ namespace Interfaz
             // 
             this.labelCategoria.AutoSize = true;
             this.labelCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelCategoria.Location = new System.Drawing.Point(296, 191);
+            this.labelCategoria.Location = new System.Drawing.Point(222, 155);
+            this.labelCategoria.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCategoria.Name = "labelCategoria";
-            this.labelCategoria.Size = new System.Drawing.Size(124, 29);
+            this.labelCategoria.Size = new System.Drawing.Size(95, 24);
             this.labelCategoria.TabIndex = 49;
             this.labelCategoria.Text = "Categoria:";
             // 
             // botonVolver
             // 
             this.botonVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.botonVolver.Location = new System.Drawing.Point(1019, 727);
-            this.botonVolver.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.botonVolver.Location = new System.Drawing.Point(764, 591);
+            this.botonVolver.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.botonVolver.Name = "botonVolver";
-            this.botonVolver.Size = new System.Drawing.Size(192, 46);
+            this.botonVolver.Size = new System.Drawing.Size(144, 37);
             this.botonVolver.TabIndex = 48;
             this.botonVolver.Text = "Volver";
             this.botonVolver.UseVisualStyleBackColor = true;
@@ -79,9 +81,10 @@ namespace Interfaz
             // 
             this.labelUsuario.AutoSize = true;
             this.labelUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelUsuario.Location = new System.Drawing.Point(296, 300);
+            this.labelUsuario.Location = new System.Drawing.Point(222, 244);
+            this.labelUsuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelUsuario.Name = "labelUsuario";
-            this.labelUsuario.Size = new System.Drawing.Size(102, 29);
+            this.labelUsuario.Size = new System.Drawing.Size(79, 24);
             this.labelUsuario.TabIndex = 47;
             this.labelUsuario.Text = "Usuario:";
             // 
@@ -89,9 +92,10 @@ namespace Interfaz
             // 
             this.labelSitio.AutoSize = true;
             this.labelSitio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelSitio.Location = new System.Drawing.Point(296, 247);
+            this.labelSitio.Location = new System.Drawing.Point(222, 201);
+            this.labelSitio.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelSitio.Name = "labelSitio";
-            this.labelSitio.Size = new System.Drawing.Size(117, 29);
+            this.labelSitio.Size = new System.Drawing.Size(90, 24);
             this.labelSitio.TabIndex = 45;
             this.labelSitio.Text = "Sitio/App:";
             // 
@@ -99,10 +103,9 @@ namespace Interfaz
             // 
             this.labelTitulo.AutoSize = true;
             this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
-            this.labelTitulo.Location = new System.Drawing.Point(409, 60);
-            this.labelTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelTitulo.Location = new System.Drawing.Point(307, 49);
             this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(280, 42);
+            this.labelTitulo.Size = new System.Drawing.Size(223, 36);
             this.labelTitulo.TabIndex = 43;
             this.labelTitulo.Text = "Ver Contraseña";
             // 
@@ -110,9 +113,10 @@ namespace Interfaz
             // 
             this.labelNota.AutoSize = true;
             this.labelNota.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelNota.Location = new System.Drawing.Point(296, 406);
+            this.labelNota.Location = new System.Drawing.Point(222, 330);
+            this.labelNota.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelNota.Name = "labelNota";
-            this.labelNota.Size = new System.Drawing.Size(82, 29);
+            this.labelNota.Size = new System.Drawing.Size(63, 24);
             this.labelNota.TabIndex = 54;
             this.labelNota.Text = "Notas:";
             // 
@@ -122,12 +126,11 @@ namespace Interfaz
             this.labelCategoriaAMostrar.BackColor = System.Drawing.Color.White;
             this.labelCategoriaAMostrar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelCategoriaAMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.labelCategoriaAMostrar.Location = new System.Drawing.Point(635, 190);
-            this.labelCategoriaAMostrar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelCategoriaAMostrar.MaximumSize = new System.Drawing.Size(330, 35);
-            this.labelCategoriaAMostrar.MinimumSize = new System.Drawing.Size(330, 35);
+            this.labelCategoriaAMostrar.Location = new System.Drawing.Point(476, 154);
+            this.labelCategoriaAMostrar.MaximumSize = new System.Drawing.Size(248, 29);
+            this.labelCategoriaAMostrar.MinimumSize = new System.Drawing.Size(248, 29);
             this.labelCategoriaAMostrar.Name = "labelCategoriaAMostrar";
-            this.labelCategoriaAMostrar.Size = new System.Drawing.Size(330, 35);
+            this.labelCategoriaAMostrar.Size = new System.Drawing.Size(248, 29);
             this.labelCategoriaAMostrar.TabIndex = 0;
             // 
             // labelSitioAMostrar
@@ -136,12 +139,11 @@ namespace Interfaz
             this.labelSitioAMostrar.BackColor = System.Drawing.Color.White;
             this.labelSitioAMostrar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelSitioAMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.labelSitioAMostrar.Location = new System.Drawing.Point(635, 247);
-            this.labelSitioAMostrar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelSitioAMostrar.MaximumSize = new System.Drawing.Size(330, 35);
-            this.labelSitioAMostrar.MinimumSize = new System.Drawing.Size(330, 35);
+            this.labelSitioAMostrar.Location = new System.Drawing.Point(476, 201);
+            this.labelSitioAMostrar.MaximumSize = new System.Drawing.Size(248, 29);
+            this.labelSitioAMostrar.MinimumSize = new System.Drawing.Size(248, 29);
             this.labelSitioAMostrar.Name = "labelSitioAMostrar";
-            this.labelSitioAMostrar.Size = new System.Drawing.Size(330, 35);
+            this.labelSitioAMostrar.Size = new System.Drawing.Size(248, 29);
             this.labelSitioAMostrar.TabIndex = 55;
             // 
             // labelUsuarioAMostrar
@@ -150,12 +152,11 @@ namespace Interfaz
             this.labelUsuarioAMostrar.BackColor = System.Drawing.Color.White;
             this.labelUsuarioAMostrar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelUsuarioAMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.labelUsuarioAMostrar.Location = new System.Drawing.Point(635, 300);
-            this.labelUsuarioAMostrar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelUsuarioAMostrar.MaximumSize = new System.Drawing.Size(330, 35);
-            this.labelUsuarioAMostrar.MinimumSize = new System.Drawing.Size(330, 35);
+            this.labelUsuarioAMostrar.Location = new System.Drawing.Point(476, 244);
+            this.labelUsuarioAMostrar.MaximumSize = new System.Drawing.Size(248, 29);
+            this.labelUsuarioAMostrar.MinimumSize = new System.Drawing.Size(248, 29);
             this.labelUsuarioAMostrar.Name = "labelUsuarioAMostrar";
-            this.labelUsuarioAMostrar.Size = new System.Drawing.Size(330, 35);
+            this.labelUsuarioAMostrar.Size = new System.Drawing.Size(248, 29);
             this.labelUsuarioAMostrar.TabIndex = 56;
             // 
             // labelClaveAMostrar
@@ -164,31 +165,30 @@ namespace Interfaz
             this.labelClaveAMostrar.BackColor = System.Drawing.Color.White;
             this.labelClaveAMostrar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelClaveAMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.labelClaveAMostrar.Location = new System.Drawing.Point(635, 353);
-            this.labelClaveAMostrar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelClaveAMostrar.MaximumSize = new System.Drawing.Size(330, 35);
-            this.labelClaveAMostrar.MinimumSize = new System.Drawing.Size(330, 35);
+            this.labelClaveAMostrar.Location = new System.Drawing.Point(476, 287);
+            this.labelClaveAMostrar.MaximumSize = new System.Drawing.Size(248, 29);
+            this.labelClaveAMostrar.MinimumSize = new System.Drawing.Size(248, 29);
             this.labelClaveAMostrar.Name = "labelClaveAMostrar";
-            this.labelClaveAMostrar.Size = new System.Drawing.Size(330, 35);
+            this.labelClaveAMostrar.Size = new System.Drawing.Size(248, 29);
             this.labelClaveAMostrar.TabIndex = 57;
             // 
             // labelNotasAMostrar
             // 
+            this.labelNotasAMostrar.AutoEllipsis = true;
             this.labelNotasAMostrar.AutoSize = true;
             this.labelNotasAMostrar.BackColor = System.Drawing.Color.White;
             this.labelNotasAMostrar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelNotasAMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelNotasAMostrar.Location = new System.Drawing.Point(635, 406);
-            this.labelNotasAMostrar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelNotasAMostrar.MaximumSize = new System.Drawing.Size(575, 189);
-            this.labelNotasAMostrar.MinimumSize = new System.Drawing.Size(575, 189);
+            this.labelNotasAMostrar.Location = new System.Drawing.Point(476, 330);
+            this.labelNotasAMostrar.MaximumSize = new System.Drawing.Size(432, 250);
+            this.labelNotasAMostrar.MinimumSize = new System.Drawing.Size(432, 154);
             this.labelNotasAMostrar.Name = "labelNotasAMostrar";
-            this.labelNotasAMostrar.Size = new System.Drawing.Size(575, 189);
+            this.labelNotasAMostrar.Size = new System.Drawing.Size(432, 154);
             this.labelNotasAMostrar.TabIndex = 58;
             // 
             // VerClave
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.labelNotasAMostrar);
             this.Controls.Add(this.labelClaveAMostrar);
@@ -202,9 +202,8 @@ namespace Interfaz
             this.Controls.Add(this.labelUsuario);
             this.Controls.Add(this.labelSitio);
             this.Controls.Add(this.labelTitulo);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "VerClave";
-            this.Size = new System.Drawing.Size(1428, 833);
+            this.Size = new System.Drawing.Size(1071, 677);
             this.ResumeLayout(false);
             this.PerformLayout();
 

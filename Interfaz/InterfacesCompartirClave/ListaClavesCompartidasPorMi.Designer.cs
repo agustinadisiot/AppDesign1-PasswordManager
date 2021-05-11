@@ -67,6 +67,7 @@ namespace Interfaz.InterfacesCompartirClave
             this.tablaClavesCompartidas.RowHeadersVisible = false;
             this.tablaClavesCompartidas.RowHeadersWidth = 51;
             this.tablaClavesCompartidas.RowTemplate.Height = 24;
+            this.tablaClavesCompartidas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tablaClavesCompartidas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaClavesCompartidas.Size = new System.Drawing.Size(380, 337);
             this.tablaClavesCompartidas.TabIndex = 3;

@@ -68,6 +68,7 @@ namespace Interfaz.InterfacesClaves
             this.tablaClaves.RowHeadersVisible = false;
             this.tablaClaves.RowHeadersWidth = 51;
             this.tablaClaves.RowTemplate.Height = 24;
+            this.tablaClaves.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tablaClaves.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaClaves.Size = new System.Drawing.Size(503, 218);
             this.tablaClaves.TabIndex = 24;
@@ -155,6 +156,7 @@ namespace Interfaz.InterfacesClaves
             this.tablaTarjetas.RowHeadersVisible = false;
             this.tablaTarjetas.RowHeadersWidth = 51;
             this.tablaTarjetas.RowTemplate.Height = 24;
+            this.tablaTarjetas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tablaTarjetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaTarjetas.Size = new System.Drawing.Size(618, 288);
             this.tablaTarjetas.TabIndex = 31;

@@ -69,6 +69,7 @@ namespace Interfaz
             this.inputNota.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputNota.Multiline = true;
             this.inputNota.Name = "inputNota";
+            this.inputNota.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.inputNota.Size = new System.Drawing.Size(432, 154);
             this.inputNota.TabIndex = 46;
             // 

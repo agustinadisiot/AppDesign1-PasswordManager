@@ -71,6 +71,7 @@ namespace Interfaz.InterfacesSeguridad
             this.TablaReporte.ReadOnly = true;
             this.TablaReporte.RowHeadersVisible = false;
             this.TablaReporte.RowHeadersWidth = 22;
+            this.TablaReporte.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.TablaReporte.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.TablaReporte.Size = new System.Drawing.Size(228, 190);
             this.TablaReporte.TabIndex = 5;
@@ -133,6 +134,7 @@ namespace Interfaz.InterfacesSeguridad
             this.tablaClaves.RowHeadersVisible = false;
             this.tablaClaves.RowHeadersWidth = 51;
             this.tablaClaves.RowTemplate.Height = 24;
+            this.tablaClaves.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tablaClaves.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaClaves.Size = new System.Drawing.Size(503, 369);
             this.tablaClaves.TabIndex = 24;

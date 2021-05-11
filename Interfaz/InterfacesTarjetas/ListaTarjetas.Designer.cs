@@ -68,6 +68,7 @@ namespace Interfaz
             this.tablaTarjetas.RowHeadersVisible = false;
             this.tablaTarjetas.RowHeadersWidth = 51;
             this.tablaTarjetas.RowTemplate.Height = 24;
+            this.tablaTarjetas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tablaTarjetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaTarjetas.Size = new System.Drawing.Size(1010, 557);
             this.tablaTarjetas.TabIndex = 0;
