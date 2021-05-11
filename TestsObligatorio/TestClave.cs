@@ -179,7 +179,8 @@ namespace TestsObligatorio
             {
                 Codigo = "CLAVESOLOMAYUSCULAS"
             };
-            Assert.AreEqual("amarillo", clave.GetNivelSeguridad());
+            ColorNivelSeguridad color = new ColorNivelSeguridad();
+            Assert.AreEqual(color.Amarillo, clave.GetNivelSeguridad());
         }
 
         [TestMethod]
