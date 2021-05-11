@@ -26,7 +26,6 @@ namespace TestsObligatorio
             {
                 Nombre = "Visa Gold"
             };
-            Assert.AreEqual("Visa Gold", tarjeta.Nombre);
             tarjeta.Nombre = "American";
             Assert.AreEqual("American", tarjeta.Nombre);
         }
@@ -62,7 +61,6 @@ namespace TestsObligatorio
             {
                 Tipo = "Visa"
             };
-            Assert.AreEqual("Visa", tarjeta.Tipo);
             tarjeta.Tipo = "MasterCard";
             Assert.AreEqual("MasterCard", tarjeta.Tipo);
         }
@@ -98,7 +96,6 @@ namespace TestsObligatorio
             {
                 Numero = "1234567812345678"
             };
-            Assert.AreEqual("1234567812345678", tarjeta.Numero);
             tarjeta.Numero = "8765432187654321";
             Assert.AreEqual("8765432187654321", tarjeta.Numero);
         }
@@ -148,7 +145,6 @@ namespace TestsObligatorio
             {
                 Codigo = "123"
             };
-            Assert.AreEqual("123", tarjeta.Codigo);
             tarjeta.Codigo = "3241";
             Assert.AreEqual("3241", tarjeta.Codigo);
         }
@@ -196,7 +192,6 @@ namespace TestsObligatorio
             Tarjeta tarjeta = new Tarjeta();
             DateTime date1 = new DateTime(2025, 7, 1);
             tarjeta.Vencimiento = date1;
-            Assert.AreEqual("07/2025", tarjeta.Vencimiento.ToString("MM/yyyy", CultureInfo.InvariantCulture));
             DateTime date2 = new DateTime(2023, 8, 1);
             tarjeta.Vencimiento = date2;
             Assert.AreEqual("08/2023", tarjeta.Vencimiento.ToString("MM/yyyy", CultureInfo.InvariantCulture));
@@ -219,7 +214,6 @@ namespace TestsObligatorio
             {
                 Nota = "Limite 400k UYU"
             };
-            Assert.AreEqual("Limite 400k UYU", tarjeta.Nota);
             tarjeta.Nota = "Nota nueva";
             Assert.AreEqual("Nota nueva", tarjeta.Nota);
         }

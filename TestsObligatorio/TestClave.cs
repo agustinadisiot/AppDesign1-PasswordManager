@@ -25,7 +25,6 @@ namespace TestsObligatorio
             {
                 UsuarioClave = "juan@gmail.com"
             };
-            Assert.AreEqual("juan@gmail.com", clave.UsuarioClave);
             clave.UsuarioClave = "pedro@gmail.com";
             Assert.AreEqual("pedro@gmail.com", clave.UsuarioClave);
         }
@@ -61,7 +60,6 @@ namespace TestsObligatorio
             {
                 Codigo = "123456"
             };
-            Assert.AreEqual("123456", clave.Codigo);
             clave.Codigo = "claveNueva";
             Assert.AreEqual("claveNueva", clave.Codigo);
         }
@@ -97,7 +95,6 @@ namespace TestsObligatorio
             {
                 Sitio = "Netflix.com"
             };
-            Assert.AreEqual("Netflix.com", clave.Sitio);
             clave.Sitio = "youtube.com";
             Assert.AreEqual("youtube.com", clave.Sitio);
         }
@@ -133,7 +130,6 @@ namespace TestsObligatorio
             {
                 Nota = "Hola"
             };
-            Assert.AreEqual("Hola", clave.Nota);
             clave.Nota = "notaNueva";
             Assert.AreEqual("notaNueva", clave.Nota);
         }
