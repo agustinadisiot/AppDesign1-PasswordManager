@@ -744,7 +744,7 @@ namespace TestsObligatorio
             };
 
             categoria.ModificarClave(claveVieja, claveNueva);
-            Assert.AreEqual(claveNueva, buscadora);
+            Assert.AreEqual(claveVieja, buscadora);
         }
 
         [TestMethod]
