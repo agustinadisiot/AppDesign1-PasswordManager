@@ -122,11 +122,12 @@ namespace Dominio
 
         private int GenerarPosicion(bool[] ocupado)
         {
-            int pos = this._aleatorio.Next(this.Largo);
-            while (ocupado[pos])
+            int pos;
+            do
             {
                 pos = this._aleatorio.Next(this.Largo);
-            }
+
+            } while (ocupado[pos]);
             return pos;
         }
 
