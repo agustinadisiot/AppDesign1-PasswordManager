@@ -53,6 +53,7 @@ namespace Interfaz.InterfacesClaves
 
         private void CargarTablaClaves()
         {
+            string formatoFecha = "MM/dd/yyyy";
             this.tablaClaves.Rows.Clear();
 
             foreach (Clave claveActual in this._claves)
@@ -60,14 +61,14 @@ namespace Interfaz.InterfacesClaves
                 string nombreCategoria = this._usuarioActual.GetCategoriaClave(claveActual).Nombre;
                 string sitio = claveActual.Sitio;
                 string usuario = claveActual.UsuarioClave;
-                DateTime ultimaModificacion = claveActual.FechaModificacion;
+                string ultimaModificacion = claveActual.FechaModificacion.ToString(formatoFecha);
                 this.tablaClaves.Rows.Add(nombreCategoria, sitio, usuario, ultimaModificacion);
             }
         }
 
         private void CargarTablaTarjetas()
         {
-
+            string formatoFecha = "MM/dd/yyyy";
             this.tablaTarjetas.Rows.Clear();
 
 
@@ -78,7 +79,7 @@ namespace Interfaz.InterfacesClaves
                 string tipo = tarjetaActual.Tipo;
                 string numeroCompleto = tarjetaActual.Numero;
                 string numeroOculto = OcultarTarjeta(tarjetaActual);
-                string vencimiento = tarjetaActual.Vencimiento.ToString();
+                string vencimiento = tarjetaActual.Vencimiento.ToString(formatoFecha);
 
                 this.tablaTarjetas.Rows.Add(categoriaActual, nombre, tipo, numeroOculto, numeroCompleto, vencimiento);
             }

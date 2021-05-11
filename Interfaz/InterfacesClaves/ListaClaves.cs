@@ -24,6 +24,7 @@ namespace Interfaz
 
         private void CargarTabla()
         {
+            string formatoFecha = "MM/dd/yyyy";
             this.tablaClaves.Rows.Clear();
             List<Clave> listaClaves = this._usuarioActual.GetListaClaves();
 
@@ -32,7 +33,7 @@ namespace Interfaz
                 string nombreCategoria = this._usuarioActual.GetCategoriaClave(claveActual).Nombre;
                 string sitio = claveActual.Sitio;
                 string usuario = claveActual.UsuarioClave;
-                DateTime ultimaModificacion = claveActual.FechaModificacion;
+                string ultimaModificacion = claveActual.FechaModificacion.ToString(formatoFecha);
                 this.tablaClaves.Rows.Add(nombreCategoria, sitio, usuario, ultimaModificacion);
             }
         }

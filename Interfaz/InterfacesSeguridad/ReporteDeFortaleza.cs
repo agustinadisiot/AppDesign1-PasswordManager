@@ -48,7 +48,7 @@ namespace Interfaz.InterfacesSeguridad
                     string nombreCategoria = this._usuarioActual.GetCategoriaClave(claveActual).Nombre;
                     string sitio = claveActual.Sitio;
                     string usuario = claveActual.UsuarioClave;
-                    DateTime ultimaModificacion = claveActual.FechaModificacion;
+                    string ultimaModificacion = claveActual.FechaModificacion.ToString("MM/dd/yyyy");
                     this.tablaClaves.Rows.Add(nombreCategoria, sitio, usuario, ultimaModificacion);
                 }
             }
