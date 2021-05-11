@@ -51,8 +51,10 @@ namespace Interfaz
             this.botonAgregar = new System.Windows.Forms.Button();
             this.groupBoxClave = new System.Windows.Forms.GroupBox();
             this.labelErrores = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.spinnerLargo)).BeginInit();
             this.groupBoxClave.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBoxCategorias
@@ -60,7 +62,7 @@ namespace Interfaz
             this.comboBoxCategorias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCategorias.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.comboBoxCategorias.FormattingEnabled = true;
-            this.comboBoxCategorias.Location = new System.Drawing.Point(183, 49);
+            this.comboBoxCategorias.Location = new System.Drawing.Point(370, 116);
             this.comboBoxCategorias.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxCategorias.Name = "comboBoxCategorias";
             this.comboBoxCategorias.Size = new System.Drawing.Size(200, 24);
@@ -70,7 +72,7 @@ namespace Interfaz
             // 
             this.labelCategoria.AutoSize = true;
             this.labelCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.labelCategoria.Location = new System.Drawing.Point(5, 52);
+            this.labelCategoria.Location = new System.Drawing.Point(193, 119);
             this.labelCategoria.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCategoria.Name = "labelCategoria";
             this.labelCategoria.Size = new System.Drawing.Size(69, 17);
@@ -81,7 +83,7 @@ namespace Interfaz
             // 
             this.labelUsuario.AutoSize = true;
             this.labelUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.labelUsuario.Location = new System.Drawing.Point(5, 123);
+            this.labelUsuario.Location = new System.Drawing.Point(193, 190);
             this.labelUsuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelUsuario.Name = "labelUsuario";
             this.labelUsuario.Size = new System.Drawing.Size(57, 17);
@@ -91,7 +93,7 @@ namespace Interfaz
             // inputUsuario
             // 
             this.inputUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.inputUsuario.Location = new System.Drawing.Point(182, 120);
+            this.inputUsuario.Location = new System.Drawing.Point(370, 187);
             this.inputUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.inputUsuario.MaxLength = 25;
             this.inputUsuario.MinimumSize = new System.Drawing.Size(4, 5);
@@ -103,7 +105,7 @@ namespace Interfaz
             // 
             this.labelSitio.AutoSize = true;
             this.labelSitio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.labelSitio.Location = new System.Drawing.Point(5, 88);
+            this.labelSitio.Location = new System.Drawing.Point(193, 155);
             this.labelSitio.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelSitio.Name = "labelSitio";
             this.labelSitio.Size = new System.Drawing.Size(35, 17);
@@ -113,7 +115,7 @@ namespace Interfaz
             // inputSitio
             // 
             this.inputSitio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.inputSitio.Location = new System.Drawing.Point(182, 85);
+            this.inputSitio.Location = new System.Drawing.Point(370, 152);
             this.inputSitio.Margin = new System.Windows.Forms.Padding(2);
             this.inputSitio.MaxLength = 25;
             this.inputSitio.MinimumSize = new System.Drawing.Size(4, 5);
@@ -124,10 +126,11 @@ namespace Interfaz
             // labelTitulo
             // 
             this.labelTitulo.AutoSize = true;
-            this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.labelTitulo.Location = new System.Drawing.Point(3, 10);
+            this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
+            this.labelTitulo.ForeColor = System.Drawing.Color.White;
+            this.labelTitulo.Location = new System.Drawing.Point(377, 32);
             this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(182, 25);
+            this.labelTitulo.Size = new System.Drawing.Size(249, 36);
             this.labelTitulo.TabIndex = 28;
             this.labelTitulo.Text = "Crear Contraseña";
             // 
@@ -146,7 +149,7 @@ namespace Interfaz
             // 
             this.labelContra.AutoSize = true;
             this.labelContra.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.labelContra.Location = new System.Drawing.Point(5, 156);
+            this.labelContra.Location = new System.Drawing.Point(193, 223);
             this.labelContra.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelContra.Name = "labelContra";
             this.labelContra.Size = new System.Drawing.Size(81, 17);
@@ -192,7 +195,7 @@ namespace Interfaz
             // 
             this.labelNota.AutoSize = true;
             this.labelNota.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.labelNota.Location = new System.Drawing.Point(2, 474);
+            this.labelNota.Location = new System.Drawing.Point(191, 516);
             this.labelNota.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelNota.Name = "labelNota";
             this.labelNota.Size = new System.Drawing.Size(45, 17);
@@ -202,14 +205,14 @@ namespace Interfaz
             // inputNota
             // 
             this.inputNota.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inputNota.Location = new System.Drawing.Point(182, 474);
+            this.inputNota.Location = new System.Drawing.Point(371, 516);
             this.inputNota.Margin = new System.Windows.Forms.Padding(2);
             this.inputNota.MaxLength = 250;
             this.inputNota.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputNota.Multiline = true;
             this.inputNota.Name = "inputNota";
             this.inputNota.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.inputNota.Size = new System.Drawing.Size(355, 110);
+            this.inputNota.Size = new System.Drawing.Size(358, 110);
             this.inputNota.TabIndex = 5;
             // 
             // checkBoxMayusculas
@@ -262,7 +265,7 @@ namespace Interfaz
             // 
             // botonGenerar
             // 
-            this.botonGenerar.Location = new System.Drawing.Point(279, 261);
+            this.botonGenerar.Location = new System.Drawing.Point(279, 250);
             this.botonGenerar.Name = "botonGenerar";
             this.botonGenerar.Size = new System.Drawing.Size(75, 23);
             this.botonGenerar.TabIndex = 50;
@@ -272,7 +275,7 @@ namespace Interfaz
             // 
             // botonCancelar
             // 
-            this.botonCancelar.Location = new System.Drawing.Point(363, 605);
+            this.botonCancelar.Location = new System.Drawing.Point(552, 637);
             this.botonCancelar.Name = "botonCancelar";
             this.botonCancelar.Size = new System.Drawing.Size(75, 23);
             this.botonCancelar.TabIndex = 7;
@@ -282,7 +285,7 @@ namespace Interfaz
             // 
             // botonAgregar
             // 
-            this.botonAgregar.Location = new System.Drawing.Point(462, 605);
+            this.botonAgregar.Location = new System.Drawing.Point(650, 637);
             this.botonAgregar.Name = "botonAgregar";
             this.botonAgregar.Size = new System.Drawing.Size(75, 23);
             this.botonAgregar.TabIndex = 6;
@@ -292,7 +295,7 @@ namespace Interfaz
             // 
             // groupBoxClave
             // 
-            this.groupBoxClave.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.groupBoxClave.BackColor = System.Drawing.Color.White;
             this.groupBoxClave.Controls.Add(this.labelLargo);
             this.groupBoxClave.Controls.Add(this.inputContra);
             this.groupBoxClave.Controls.Add(this.spinnerLargo);
@@ -301,11 +304,11 @@ namespace Interfaz
             this.groupBoxClave.Controls.Add(this.checkBoxSimbolos);
             this.groupBoxClave.Controls.Add(this.checkBoxMinusculas);
             this.groupBoxClave.Controls.Add(this.checkBoxNumeros);
-            this.groupBoxClave.Location = new System.Drawing.Point(182, 156);
+            this.groupBoxClave.Location = new System.Drawing.Point(370, 223);
             this.groupBoxClave.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxClave.Name = "groupBoxClave";
             this.groupBoxClave.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxClave.Size = new System.Drawing.Size(359, 289);
+            this.groupBoxClave.Size = new System.Drawing.Size(359, 278);
             this.groupBoxClave.TabIndex = 4;
             this.groupBoxClave.TabStop = false;
             this.groupBoxClave.Text = "Contraseña";
@@ -314,17 +317,29 @@ namespace Interfaz
             // 
             this.labelErrores.AutoSize = true;
             this.labelErrores.ForeColor = System.Drawing.Color.Red;
-            this.labelErrores.Location = new System.Drawing.Point(563, 610);
+            this.labelErrores.Location = new System.Drawing.Point(752, 642);
             this.labelErrores.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelErrores.Name = "labelErrores";
             this.labelErrores.Size = new System.Drawing.Size(62, 13);
             this.labelErrores.TabIndex = 54;
             this.labelErrores.Text = "labelErrores";
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.panel1.Controls.Add(this.labelTitulo);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1002, 100);
+            this.panel1.TabIndex = 55;
+            // 
             // CrearClave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.labelErrores);
             this.Controls.Add(this.groupBoxClave);
             this.Controls.Add(this.botonAgregar);
@@ -338,14 +353,15 @@ namespace Interfaz
             this.Controls.Add(this.inputUsuario);
             this.Controls.Add(this.labelSitio);
             this.Controls.Add(this.inputSitio);
-            this.Controls.Add(this.labelTitulo);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CrearClave";
-            this.Size = new System.Drawing.Size(1014, 681);
+            this.Size = new System.Drawing.Size(1002, 681);
             this.Load += new System.EventHandler(this.CrearClave_Load);
             ((System.ComponentModel.ISupportInitialize)(this.spinnerLargo)).EndInit();
             this.groupBoxClave.ResumeLayout(false);
             this.groupBoxClave.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -374,5 +390,6 @@ namespace Interfaz
         private System.Windows.Forms.Button botonAgregar;
         private System.Windows.Forms.GroupBox groupBoxClave;
         private System.Windows.Forms.Label labelErrores;
+        private System.Windows.Forms.Panel panel1;
     }
 }
