@@ -53,7 +53,7 @@ namespace Interfaz.InterfacesClaves
 
         private void CargarTablaClaves()
         {
-            string formatoFecha = "MM/dd/yyyy";
+            string formatoFecha = "dd'/'MM'/'yyyy";
             this.tablaClaves.Rows.Clear();
 
             foreach (Clave claveActual in this._claves)
@@ -68,7 +68,7 @@ namespace Interfaz.InterfacesClaves
 
         private void CargarTablaTarjetas()
         {
-            string formatoFecha = "MM/dd/yyyy";
+            string formatoFecha = "dd'/'MM'/'yyyy";
             this.tablaTarjetas.Rows.Clear();
 
 

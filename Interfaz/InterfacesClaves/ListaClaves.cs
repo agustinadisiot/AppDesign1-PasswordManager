@@ -24,7 +24,7 @@ namespace Interfaz
 
         private void CargarTabla()
         {
-            string formatoFecha = "MM/dd/yyyy";
+            string formatoFecha = "dd'/'MM'/'yyyy";
             this.tablaClaves.Rows.Clear();
             List<Clave> listaClaves = this._usuarioActual.GetListaClaves();
 

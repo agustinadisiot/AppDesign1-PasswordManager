@@ -33,7 +33,7 @@ namespace Interfaz.InterfacesSeguridad
 
         private void CargarTablaClaves()
         {
-            
+            string formatoFecha = "dd'/'MM'/'yyyy";
             this.tablaClaves.Rows.Clear();
             if (this.TablaReporte.SelectedCells.Count > 0)
             {
@@ -48,7 +48,7 @@ namespace Interfaz.InterfacesSeguridad
                     string nombreCategoria = this._usuarioActual.GetCategoriaClave(claveActual).Nombre;
                     string sitio = claveActual.Sitio;
                     string usuario = claveActual.UsuarioClave;
-                    string ultimaModificacion = claveActual.FechaModificacion.ToString("MM/dd/yyyy");
+                    string ultimaModificacion = claveActual.FechaModificacion.ToString(formatoFecha);
                     this.tablaClaves.Rows.Add(nombreCategoria, sitio, usuario, ultimaModificacion);
                 }
             }
