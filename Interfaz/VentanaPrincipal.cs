@@ -115,21 +115,39 @@ namespace Interfaz
 
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(iniciarSesion);
+            this.ResetearColoresBotonesDrawer();
+        }
+
+        private void ResetearColoresBotonesDrawer() {
+            this.botonListaCategorias.BackColor = Color.FromArgb(51, 51, 51);
+            this.botonListaClaves.BackColor = Color.FromArgb(51, 51, 51);
+            this.botonClavesQueComparto.BackColor = Color.FromArgb(51, 51, 51);
+            this.botonClavesQueMeComparten.BackColor = Color.FromArgb(51, 51, 51);
+            this.botonListaTarjetas.BackColor = Color.FromArgb(51, 51, 51);
+            this.botonReporteFortaleza.BackColor = Color.FromArgb(51, 51, 51);
+            this.botonDataBreaches.BackColor = Color.FromArgb(51, 51, 51);
         }
 
         private void botonListaCategorias_Click(object sender, EventArgs e)
         {
+            this.ResetearColoresBotonesDrawer();
+            this.botonListaCategorias.BackColor = Color.FromArgb(138, 138, 138);
+
             this.AbrirListaCategorias_Handler();
         }
 
         private void botonListaClaves_Click(object sender, EventArgs e)
         {
+            this.ResetearColoresBotonesDrawer();
+            this.botonListaClaves.BackColor = Color.FromArgb(138, 138, 138);
+            
             this.AbrirListaClaves_Handler();
-
         }
 
         private void botonListaTarjetas_Click(object sender, EventArgs e)
         {
+            this.ResetearColoresBotonesDrawer();
+            this.botonListaTarjetas.BackColor = Color.FromArgb(138, 138, 138);
             this.AbrirListaTarjetas_Handler();
         }
 
@@ -144,21 +162,29 @@ namespace Interfaz
 
         private void botonClavesQueMeComparten_Click(object sender, EventArgs e)
         {
+            this.ResetearColoresBotonesDrawer();
+            this.botonClavesQueMeComparten.BackColor = Color.FromArgb(138, 138, 138);
             AbrirListaClavesCompartidasConmigo_Handler();
         }
 
         private void botonClavesQueComparto_Click(object sender, EventArgs e)
         {
+            this.ResetearColoresBotonesDrawer();
+            this.botonClavesQueComparto.BackColor = Color.FromArgb(138, 138, 138);
             AbrirListaClavesCompartidasPorMi_Handler();
         }
 
         private void botonReporteFortaleza_Click(object sender, EventArgs e)
         {
+            this.ResetearColoresBotonesDrawer();
+            this.botonReporteFortaleza.BackColor = Color.FromArgb(138, 138, 138);
             AbrirReporteFortaleza_Handler();
         }
 
         private void botonDataBreaches_Click(object sender, EventArgs e)
         {
+            this.ResetearColoresBotonesDrawer();
+            this.botonDataBreaches.BackColor = Color.FromArgb(138, 138, 138);
             this.AbrirDataBreaches_Handler(null);
         }
 
@@ -167,6 +193,7 @@ namespace Interfaz
         {
             if (acepto)
             {
+                this.ResetearColoresBotonesDrawer();
                 IniciarSesion iniciarSesion = new IniciarSesion(this._administrador);
                 iniciarSesion.IniciarSesion_Event += IniciarSesion_Handler;
                 iniciarSesion.AbrirCrearUsuario_Event += this.AbrirCrearUsuario_Handler;
@@ -191,8 +218,9 @@ namespace Interfaz
             this.panelDrawer.Visible = true;
 
             this.panelPrincipal.Controls.Clear();
-
             this.panelPrincipal.Controls.Add(listaCategorias);
+            this.botonListaCategorias.BackColor = Color.FromArgb(137, 137, 137);
+            
         }
 
         private void AbrirCrearUsuario_Handler()
