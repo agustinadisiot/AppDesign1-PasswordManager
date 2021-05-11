@@ -190,7 +190,8 @@ namespace TestsObligatorio
             {
                 Codigo = "clavesolominusculas"
             };
-            Assert.AreEqual("amarillo", clave.GetNivelSeguridad());
+            ColorNivelSeguridad color = new ColorNivelSeguridad();
+            Assert.AreEqual(color.Amarillo, clave.GetNivelSeguridad());
         }
 
         [TestMethod]
@@ -200,7 +201,8 @@ namespace TestsObligatorio
             {
                 Codigo = "ClaveConMayYMin"
             };
-            Assert.AreEqual("verde claro", clave.GetNivelSeguridad());
+            ColorNivelSeguridad color = new ColorNivelSeguridad();
+            Assert.AreEqual(color.VerdeClaro, clave.GetNivelSeguridad());
         }
 
         [TestMethod]
@@ -210,7 +212,8 @@ namespace TestsObligatorio
             {
                 Codigo = "ClaveConMayYMin14@#"
             };
-            Assert.AreEqual("verde oscuro", clave.GetNivelSeguridad());
+            ColorNivelSeguridad color = new ColorNivelSeguridad();
+            Assert.AreEqual(color.VerdeOscuro, clave.GetNivelSeguridad());
         }
 
         [TestMethod]
@@ -220,7 +223,8 @@ namespace TestsObligatorio
             {
                 Codigo = "claveconmayymiN14@"
             };
-            Assert.AreEqual("verde oscuro", clave.GetNivelSeguridad());
+            ColorNivelSeguridad color = new ColorNivelSeguridad();
+            Assert.AreEqual(color.VerdeOscuro, clave.GetNivelSeguridad());
         }
 
         [TestMethod]
