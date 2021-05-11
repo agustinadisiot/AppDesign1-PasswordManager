@@ -27,7 +27,6 @@ namespace TestsObligatorio
             {
                 Nombre = "Trabajo"
             };
-            Assert.AreEqual("Trabajo", categoria.Nombre);
             categoria.Nombre = "Facultad";
             Assert.AreEqual("Facultad", categoria.Nombre);
         }
@@ -249,7 +248,9 @@ namespace TestsObligatorio
                 clave2
             };
 
-            Assert.AreEqual(true, claves.SequenceEqual(categoria1.GetListaClaves())); ;
+            List<Clave> retorno = categoria1.GetListaClaves();
+
+            Assert.AreEqual(true, claves.All(retorno.Contains)); ;
         }
 
         [TestMethod]
@@ -434,7 +435,6 @@ namespace TestsObligatorio
             };
 
             categoria.AgregarClave(clave);
-            Assert.IsTrue(categoria.YaExisteClave(clave));
 
             categoria.BorrarClave(clave);
             Assert.IsFalse(categoria.YaExisteClave(clave));
