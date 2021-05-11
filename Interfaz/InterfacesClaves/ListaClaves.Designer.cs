@@ -30,17 +30,19 @@ namespace Interfaz
         private void InitializeComponent()
         {
             this.tablaClaves = new System.Windows.Forms.DataGridView();
-            this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sitio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UltimaModificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelTitulo = new System.Windows.Forms.Label();
             this.botonAgregar = new System.Windows.Forms.Button();
             this.botonVer = new System.Windows.Forms.Button();
             this.botonCompartir = new System.Windows.Forms.Button();
             this.botonEliminar = new System.Windows.Forms.Button();
             this.botonModificar = new System.Windows.Forms.Button();
+            this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sitio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UltimaModificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.tablaClaves)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tablaClaves
@@ -49,13 +51,14 @@ namespace Interfaz
             this.tablaClaves.AllowUserToDeleteRows = false;
             this.tablaClaves.AllowUserToResizeColumns = false;
             this.tablaClaves.AllowUserToResizeRows = false;
+            this.tablaClaves.BackgroundColor = System.Drawing.Color.White;
             this.tablaClaves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaClaves.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Categoria,
             this.Sitio,
             this.Usuario,
             this.UltimaModificacion});
-            this.tablaClaves.Location = new System.Drawing.Point(100, 78);
+            this.tablaClaves.Location = new System.Drawing.Point(98, 133);
             this.tablaClaves.Margin = new System.Windows.Forms.Padding(4);
             this.tablaClaves.Name = "tablaClaves";
             this.tablaClaves.ReadOnly = true;
@@ -64,60 +67,25 @@ namespace Interfaz
             this.tablaClaves.RowTemplate.Height = 24;
             this.tablaClaves.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tablaClaves.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tablaClaves.Size = new System.Drawing.Size(608, 369);
+            this.tablaClaves.Size = new System.Drawing.Size(805, 369);
             this.tablaClaves.TabIndex = 0;
-            // 
-            // Categoria
-            // 
-            this.Categoria.HeaderText = "Categoria";
-            this.Categoria.MinimumWidth = 6;
-            this.Categoria.Name = "Categoria";
-            this.Categoria.ReadOnly = true;
-            this.Categoria.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Categoria.Width = 125;
-            // 
-            // Sitio
-            // 
-            this.Sitio.HeaderText = "Sitio";
-            this.Sitio.MinimumWidth = 6;
-            this.Sitio.Name = "Sitio";
-            this.Sitio.ReadOnly = true;
-            this.Sitio.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Sitio.Width = 125;
-            // 
-            // Usuario
-            // 
-            this.Usuario.HeaderText = "Usuario";
-            this.Usuario.MinimumWidth = 6;
-            this.Usuario.Name = "Usuario";
-            this.Usuario.ReadOnly = true;
-            this.Usuario.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Usuario.Width = 125;
-            // 
-            // UltimaModificacion
-            // 
-            this.UltimaModificacion.HeaderText = "Ultima Modificacion";
-            this.UltimaModificacion.MinimumWidth = 6;
-            this.UltimaModificacion.Name = "UltimaModificacion";
-            this.UltimaModificacion.ReadOnly = true;
-            this.UltimaModificacion.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.UltimaModificacion.Width = 125;
             // 
             // labelTitulo
             // 
             this.labelTitulo.AutoSize = true;
-            this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.labelTitulo.Location = new System.Drawing.Point(93, 43);
+            this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
+            this.labelTitulo.ForeColor = System.Drawing.Color.White;
+            this.labelTitulo.Location = new System.Drawing.Point(337, 32);
             this.labelTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(240, 25);
+            this.labelTitulo.Size = new System.Drawing.Size(329, 36);
             this.labelTitulo.TabIndex = 17;
             this.labelTitulo.Text = "Listado de Contraseñas";
             // 
             // botonAgregar
             // 
             this.botonAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.botonAgregar.Location = new System.Drawing.Point(519, 467);
+            this.botonAgregar.Location = new System.Drawing.Point(527, 524);
             this.botonAgregar.Margin = new System.Windows.Forms.Padding(4);
             this.botonAgregar.Name = "botonAgregar";
             this.botonAgregar.Size = new System.Drawing.Size(100, 28);
@@ -129,7 +97,7 @@ namespace Interfaz
             // botonVer
             // 
             this.botonVer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.botonVer.Location = new System.Drawing.Point(248, 467);
+            this.botonVer.Location = new System.Drawing.Point(256, 524);
             this.botonVer.Margin = new System.Windows.Forms.Padding(4);
             this.botonVer.Name = "botonVer";
             this.botonVer.Size = new System.Drawing.Size(100, 28);
@@ -141,7 +109,7 @@ namespace Interfaz
             // botonCompartir
             // 
             this.botonCompartir.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.botonCompartir.Location = new System.Drawing.Point(386, 467);
+            this.botonCompartir.Location = new System.Drawing.Point(394, 524);
             this.botonCompartir.Margin = new System.Windows.Forms.Padding(4);
             this.botonCompartir.Name = "botonCompartir";
             this.botonCompartir.Size = new System.Drawing.Size(100, 28);
@@ -153,7 +121,7 @@ namespace Interfaz
             // botonEliminar
             // 
             this.botonEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.botonEliminar.Location = new System.Drawing.Point(657, 467);
+            this.botonEliminar.Location = new System.Drawing.Point(665, 524);
             this.botonEliminar.Margin = new System.Windows.Forms.Padding(4);
             this.botonEliminar.Name = "botonEliminar";
             this.botonEliminar.Size = new System.Drawing.Size(100, 28);
@@ -165,7 +133,7 @@ namespace Interfaz
             // botonModificar
             // 
             this.botonModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.botonModificar.Location = new System.Drawing.Point(795, 467);
+            this.botonModificar.Location = new System.Drawing.Point(803, 524);
             this.botonModificar.Margin = new System.Windows.Forms.Padding(4);
             this.botonModificar.Name = "botonModificar";
             this.botonModificar.Size = new System.Drawing.Size(100, 28);
@@ -174,40 +142,88 @@ namespace Interfaz
             this.botonModificar.UseVisualStyleBackColor = true;
             this.botonModificar.Click += new System.EventHandler(this.botonModificar_Click);
             // 
+            // Categoria
+            // 
+            this.Categoria.HeaderText = "Categoria";
+            this.Categoria.MinimumWidth = 6;
+            this.Categoria.Name = "Categoria";
+            this.Categoria.ReadOnly = true;
+            this.Categoria.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Categoria.Width = 200;
+            // 
+            // Sitio
+            // 
+            this.Sitio.HeaderText = "Sitio";
+            this.Sitio.MinimumWidth = 6;
+            this.Sitio.Name = "Sitio";
+            this.Sitio.ReadOnly = true;
+            this.Sitio.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Sitio.Width = 200;
+            // 
+            // Usuario
+            // 
+            this.Usuario.HeaderText = "Usuario";
+            this.Usuario.MinimumWidth = 6;
+            this.Usuario.Name = "Usuario";
+            this.Usuario.ReadOnly = true;
+            this.Usuario.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Usuario.Width = 200;
+            // 
+            // UltimaModificacion
+            // 
+            this.UltimaModificacion.HeaderText = "Ultima Modificacion";
+            this.UltimaModificacion.MinimumWidth = 6;
+            this.UltimaModificacion.Name = "UltimaModificacion";
+            this.UltimaModificacion.ReadOnly = true;
+            this.UltimaModificacion.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.UltimaModificacion.Width = 200;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.panel1.Controls.Add(this.labelTitulo);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1002, 100);
+            this.panel1.TabIndex = 24;
+            // 
             // ListaClaves
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.botonModificar);
             this.Controls.Add(this.botonEliminar);
             this.Controls.Add(this.botonCompartir);
             this.Controls.Add(this.botonVer);
             this.Controls.Add(this.botonAgregar);
-            this.Controls.Add(this.labelTitulo);
             this.Controls.Add(this.tablaClaves);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ListaClaves";
-            this.Size = new System.Drawing.Size(1071, 677);
+            this.Size = new System.Drawing.Size(1002, 681);
             this.Load += new System.EventHandler(this.ListaClaves_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablaClaves)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.DataGridView tablaClaves;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Categoria;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Sitio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Usuario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UltimaModificacion;
         private System.Windows.Forms.Label labelTitulo;
         private System.Windows.Forms.Button botonAgregar;
         private System.Windows.Forms.Button botonVer;
         private System.Windows.Forms.Button botonCompartir;
         private System.Windows.Forms.Button botonEliminar;
         private System.Windows.Forms.Button botonModificar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Categoria;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sitio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Usuario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UltimaModificacion;
+        private System.Windows.Forms.Panel panel1;
     }
 }

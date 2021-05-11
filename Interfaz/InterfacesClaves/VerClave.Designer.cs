@@ -41,6 +41,8 @@ namespace Interfaz
             this.labelUsuarioAMostrar = new System.Windows.Forms.Label();
             this.labelClaveAMostrar = new System.Windows.Forms.Label();
             this.inputNota = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelContra
@@ -103,7 +105,8 @@ namespace Interfaz
             // 
             this.labelTitulo.AutoSize = true;
             this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
-            this.labelTitulo.Location = new System.Drawing.Point(307, 49);
+            this.labelTitulo.ForeColor = System.Drawing.Color.White;
+            this.labelTitulo.Location = new System.Drawing.Point(424, 32);
             this.labelTitulo.Name = "labelTitulo";
             this.labelTitulo.Size = new System.Drawing.Size(223, 36);
             this.labelTitulo.TabIndex = 43;
@@ -187,10 +190,22 @@ namespace Interfaz
             this.inputNota.Size = new System.Drawing.Size(432, 154);
             this.inputNota.TabIndex = 4;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.panel1.Controls.Add(this.labelTitulo);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1071, 100);
+            this.panel1.TabIndex = 55;
+            // 
             // VerClave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.inputNota);
             this.Controls.Add(this.labelClaveAMostrar);
             this.Controls.Add(this.labelUsuarioAMostrar);
@@ -202,9 +217,10 @@ namespace Interfaz
             this.Controls.Add(this.botonVolver);
             this.Controls.Add(this.labelUsuario);
             this.Controls.Add(this.labelSitio);
-            this.Controls.Add(this.labelTitulo);
             this.Name = "VerClave";
             this.Size = new System.Drawing.Size(1071, 677);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -224,5 +240,6 @@ namespace Interfaz
         private System.Windows.Forms.Label labelUsuarioAMostrar;
         private System.Windows.Forms.Label labelClaveAMostrar;
         private System.Windows.Forms.TextBox inputNota;
+        private System.Windows.Forms.Panel panel1;
     }
 }

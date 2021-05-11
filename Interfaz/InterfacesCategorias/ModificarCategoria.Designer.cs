@@ -35,13 +35,15 @@ namespace Interfaz
             this.textNombreCategoria = new System.Windows.Forms.TextBox();
             this.labelModificarCategoria = new System.Windows.Forms.Label();
             this.labelErrores = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // botonCancelar
             // 
-            this.botonCancelar.Location = new System.Drawing.Point(154, 146);
+            this.botonCancelar.Location = new System.Drawing.Point(324, 397);
             this.botonCancelar.Name = "botonCancelar";
-            this.botonCancelar.Size = new System.Drawing.Size(75, 23);
+            this.botonCancelar.Size = new System.Drawing.Size(123, 34);
             this.botonCancelar.TabIndex = 19;
             this.botonCancelar.Text = "Cancelar";
             this.botonCancelar.UseVisualStyleBackColor = true;
@@ -49,9 +51,9 @@ namespace Interfaz
             // 
             // botonAceptar
             // 
-            this.botonAceptar.Location = new System.Drawing.Point(237, 146);
+            this.botonAceptar.Location = new System.Drawing.Point(509, 397);
             this.botonAceptar.Name = "botonAceptar";
-            this.botonAceptar.Size = new System.Drawing.Size(75, 23);
+            this.botonAceptar.Size = new System.Drawing.Size(123, 34);
             this.botonAceptar.TabIndex = 18;
             this.botonAceptar.Text = "Aceptar";
             this.botonAceptar.UseVisualStyleBackColor = true;
@@ -61,7 +63,7 @@ namespace Interfaz
             // 
             this.labelNombreCategoria.AutoSize = true;
             this.labelNombreCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNombreCategoria.Location = new System.Drawing.Point(26, 105);
+            this.labelNombreCategoria.Location = new System.Drawing.Point(309, 302);
             this.labelNombreCategoria.Name = "labelNombreCategoria";
             this.labelNombreCategoria.Size = new System.Drawing.Size(65, 20);
             this.labelNombreCategoria.TabIndex = 17;
@@ -69,7 +71,7 @@ namespace Interfaz
             // 
             // textNombreCategoria
             // 
-            this.textNombreCategoria.Location = new System.Drawing.Point(144, 107);
+            this.textNombreCategoria.Location = new System.Drawing.Point(427, 304);
             this.textNombreCategoria.Name = "textNombreCategoria";
             this.textNombreCategoria.Size = new System.Drawing.Size(168, 20);
             this.textNombreCategoria.TabIndex = 16;
@@ -77,10 +79,11 @@ namespace Interfaz
             // labelModificarCategoria
             // 
             this.labelModificarCategoria.AutoSize = true;
-            this.labelModificarCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelModificarCategoria.Location = new System.Drawing.Point(25, 28);
+            this.labelModificarCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
+            this.labelModificarCategoria.ForeColor = System.Drawing.Color.White;
+            this.labelModificarCategoria.Location = new System.Drawing.Point(365, 32);
             this.labelModificarCategoria.Name = "labelModificarCategoria";
-            this.labelModificarCategoria.Size = new System.Drawing.Size(199, 25);
+            this.labelModificarCategoria.Size = new System.Drawing.Size(273, 36);
             this.labelModificarCategoria.TabIndex = 15;
             this.labelModificarCategoria.Text = "Modificar Categoria";
             // 
@@ -88,24 +91,37 @@ namespace Interfaz
             // 
             this.labelErrores.AutoSize = true;
             this.labelErrores.ForeColor = System.Drawing.Color.Red;
-            this.labelErrores.Location = new System.Drawing.Point(141, 267);
+            this.labelErrores.Location = new System.Drawing.Point(672, 408);
             this.labelErrores.Name = "labelErrores";
             this.labelErrores.Size = new System.Drawing.Size(64, 13);
             this.labelErrores.TabIndex = 20;
             this.labelErrores.Text = "MostrarError";
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.panel1.Controls.Add(this.labelModificarCategoria);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1002, 100);
+            this.panel1.TabIndex = 21;
+            // 
             // ModificarCategoria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.labelErrores);
             this.Controls.Add(this.botonCancelar);
             this.Controls.Add(this.botonAceptar);
             this.Controls.Add(this.labelNombreCategoria);
             this.Controls.Add(this.textNombreCategoria);
-            this.Controls.Add(this.labelModificarCategoria);
             this.Name = "ModificarCategoria";
-            this.Size = new System.Drawing.Size(559, 459);
+            this.Size = new System.Drawing.Size(1002, 681);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -119,5 +135,6 @@ namespace Interfaz
         private System.Windows.Forms.TextBox textNombreCategoria;
         private System.Windows.Forms.Label labelModificarCategoria;
         private System.Windows.Forms.Label labelErrores;
+        private System.Windows.Forms.Panel panel1;
     }
 }
