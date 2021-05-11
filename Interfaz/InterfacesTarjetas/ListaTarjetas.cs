@@ -26,18 +26,18 @@ namespace Interfaz
 
         private void CargarTabla() {
 
+            string formatoTarjeta = "MM/dd/yyyy";
             this.tablaTarjetas.Rows.Clear();
 
             List<Tarjeta> listaTarjeta = this._usuarioActual.GetListaTarjetas();
 
             foreach (Tarjeta tarjetaActual in listaTarjeta) {
-
                 string categoriaActual = this._usuarioActual.GetCategoriaTarjeta(tarjetaActual).Nombre;
                 string nombre = tarjetaActual.Nombre;
                 string tipo = tarjetaActual.Tipo;
                 string numeroCompleto = tarjetaActual.Numero;
                 string numeroOculto = OcultarTarjeta(tarjetaActual);
-                string vencimiento = tarjetaActual.Vencimiento.ToString();
+                string vencimiento = tarjetaActual.Vencimiento.ToString(formatoTarjeta);
 
                 this.tablaTarjetas.Rows.Add(categoriaActual, nombre, tipo, numeroOculto, numeroCompleto, vencimiento);
             }
