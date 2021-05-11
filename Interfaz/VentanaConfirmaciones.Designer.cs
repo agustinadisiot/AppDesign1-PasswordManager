@@ -50,7 +50,7 @@ namespace Interfaz
             this.botonAceptar.Location = new System.Drawing.Point(209, 92);
             this.botonAceptar.Name = "botonAceptar";
             this.botonAceptar.Size = new System.Drawing.Size(99, 32);
-            this.botonAceptar.TabIndex = 15;
+            this.botonAceptar.TabIndex = 0;
             this.botonAceptar.Text = "Aceptar";
             this.botonAceptar.UseVisualStyleBackColor = true;
             this.botonAceptar.Click += new System.EventHandler(this.botonAceptar_Click);
@@ -60,7 +60,7 @@ namespace Interfaz
             this.botonCancelar.Location = new System.Drawing.Point(64, 92);
             this.botonCancelar.Name = "botonCancelar";
             this.botonCancelar.Size = new System.Drawing.Size(99, 32);
-            this.botonCancelar.TabIndex = 16;
+            this.botonCancelar.TabIndex = 1;
             this.botonCancelar.Text = "Cancelar";
             this.botonCancelar.UseVisualStyleBackColor = true;
             this.botonCancelar.Click += new System.EventHandler(this.botonCancelar_Click);

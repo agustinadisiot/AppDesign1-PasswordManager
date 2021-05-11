@@ -63,10 +63,10 @@ namespace Interfaz
             // 
             this.botonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.botonCancelar.Location = new System.Drawing.Point(663, 563);
-            this.botonCancelar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.botonCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.botonCancelar.Name = "botonCancelar";
             this.botonCancelar.Size = new System.Drawing.Size(144, 37);
-            this.botonCancelar.TabIndex = 18;
+            this.botonCancelar.TabIndex = 9;
             this.botonCancelar.Text = "Cancelar";
             this.botonCancelar.UseVisualStyleBackColor = true;
             this.botonCancelar.Click += new System.EventHandler(this.botonCancelar_Click);
@@ -86,12 +86,12 @@ namespace Interfaz
             // 
             this.inputTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.inputTipo.Location = new System.Drawing.Point(375, 213);
-            this.inputTipo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.inputTipo.Margin = new System.Windows.Forms.Padding(2);
             this.inputTipo.MaxLength = 25;
             this.inputTipo.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputTipo.Name = "inputTipo";
             this.inputTipo.Size = new System.Drawing.Size(248, 29);
-            this.inputTipo.TabIndex = 16;
+            this.inputTipo.TabIndex = 3;
             // 
             // labelNombre
             // 
@@ -108,21 +108,21 @@ namespace Interfaz
             // 
             this.inputNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.inputNombre.Location = new System.Drawing.Point(375, 170);
-            this.inputNombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.inputNombre.Margin = new System.Windows.Forms.Padding(2);
             this.inputNombre.MaxLength = 25;
             this.inputNombre.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputNombre.Name = "inputNombre";
             this.inputNombre.Size = new System.Drawing.Size(248, 29);
-            this.inputNombre.TabIndex = 14;
+            this.inputNombre.TabIndex = 2;
             // 
             // botonCrear
             // 
             this.botonCrear.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.botonCrear.Location = new System.Drawing.Point(479, 563);
-            this.botonCrear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.botonCrear.Margin = new System.Windows.Forms.Padding(2);
             this.botonCrear.Name = "botonCrear";
             this.botonCrear.Size = new System.Drawing.Size(144, 37);
-            this.botonCrear.TabIndex = 13;
+            this.botonCrear.TabIndex = 8;
             this.botonCrear.Text = "Crear Tarjeta";
             this.botonCrear.UseVisualStyleBackColor = true;
             this.botonCrear.Click += new System.EventHandler(this.botonCrear_Click);
@@ -142,12 +142,12 @@ namespace Interfaz
             // 
             this.inputCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.inputCodigo.Location = new System.Drawing.Point(375, 299);
-            this.inputCodigo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.inputCodigo.Margin = new System.Windows.Forms.Padding(2);
             this.inputCodigo.MaxLength = 25;
             this.inputCodigo.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputCodigo.Name = "inputCodigo";
             this.inputCodigo.Size = new System.Drawing.Size(248, 29);
-            this.inputCodigo.TabIndex = 21;
+            this.inputCodigo.TabIndex = 5;
             // 
             // labelNumero
             // 
@@ -164,12 +164,12 @@ namespace Interfaz
             // 
             this.inputNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.inputNumero.Location = new System.Drawing.Point(375, 256);
-            this.inputNumero.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.inputNumero.Margin = new System.Windows.Forms.Padding(2);
             this.inputNumero.MaxLength = 25;
             this.inputNumero.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputNumero.Name = "inputNumero";
             this.inputNumero.Size = new System.Drawing.Size(248, 29);
-            this.inputNumero.TabIndex = 19;
+            this.inputNumero.TabIndex = 4;
             // 
             // labelCategoria
             // 
@@ -190,7 +190,7 @@ namespace Interfaz
             this.comboBoxCategorias.Location = new System.Drawing.Point(375, 127);
             this.comboBoxCategorias.Name = "comboBoxCategorias";
             this.comboBoxCategorias.Size = new System.Drawing.Size(248, 28);
-            this.comboBoxCategorias.TabIndex = 24;
+            this.comboBoxCategorias.TabIndex = 1;
             // 
             // datePickerVencimiento
             // 
@@ -198,7 +198,7 @@ namespace Interfaz
             this.datePickerVencimiento.Location = new System.Drawing.Point(375, 347);
             this.datePickerVencimiento.Name = "datePickerVencimiento";
             this.datePickerVencimiento.Size = new System.Drawing.Size(248, 20);
-            this.datePickerVencimiento.TabIndex = 25;
+            this.datePickerVencimiento.TabIndex = 6;
             // 
             // labelVencimiento
             // 
@@ -226,14 +226,14 @@ namespace Interfaz
             // 
             this.inputNota.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.inputNota.Location = new System.Drawing.Point(375, 382);
-            this.inputNota.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.inputNota.Margin = new System.Windows.Forms.Padding(2);
             this.inputNota.MaxLength = 25;
             this.inputNota.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputNota.Multiline = true;
             this.inputNota.Name = "inputNota";
             this.inputNota.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.inputNota.Size = new System.Drawing.Size(432, 154);
-            this.inputNota.TabIndex = 28;
+            this.inputNota.TabIndex = 7;
             // 
             // labelErrores
             // 

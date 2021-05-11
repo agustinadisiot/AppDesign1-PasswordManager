@@ -72,7 +72,7 @@ namespace Interfaz
             this.botonVolver.Margin = new System.Windows.Forms.Padding(2);
             this.botonVolver.Name = "botonVolver";
             this.botonVolver.Size = new System.Drawing.Size(144, 37);
-            this.botonVolver.TabIndex = 48;
+            this.botonVolver.TabIndex = 5;
             this.botonVolver.Text = "Volver";
             this.botonVolver.UseVisualStyleBackColor = true;
             this.botonVolver.Click += new System.EventHandler(this.botonVolver_Click);
@@ -144,7 +144,7 @@ namespace Interfaz
             this.labelSitioAMostrar.MinimumSize = new System.Drawing.Size(248, 29);
             this.labelSitioAMostrar.Name = "labelSitioAMostrar";
             this.labelSitioAMostrar.Size = new System.Drawing.Size(248, 29);
-            this.labelSitioAMostrar.TabIndex = 55;
+            this.labelSitioAMostrar.TabIndex = 1;
             // 
             // labelUsuarioAMostrar
             // 
@@ -157,7 +157,7 @@ namespace Interfaz
             this.labelUsuarioAMostrar.MinimumSize = new System.Drawing.Size(248, 29);
             this.labelUsuarioAMostrar.Name = "labelUsuarioAMostrar";
             this.labelUsuarioAMostrar.Size = new System.Drawing.Size(248, 29);
-            this.labelUsuarioAMostrar.TabIndex = 56;
+            this.labelUsuarioAMostrar.TabIndex = 2;
             // 
             // labelClaveAMostrar
             // 
@@ -170,7 +170,7 @@ namespace Interfaz
             this.labelClaveAMostrar.MinimumSize = new System.Drawing.Size(248, 29);
             this.labelClaveAMostrar.Name = "labelClaveAMostrar";
             this.labelClaveAMostrar.Size = new System.Drawing.Size(248, 29);
-            this.labelClaveAMostrar.TabIndex = 57;
+            this.labelClaveAMostrar.TabIndex = 3;
             // 
             // inputNota
             // 
@@ -185,7 +185,7 @@ namespace Interfaz
             this.inputNota.ReadOnly = true;
             this.inputNota.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.inputNota.Size = new System.Drawing.Size(432, 154);
-            this.inputNota.TabIndex = 65;
+            this.inputNota.TabIndex = 4;
             // 
             // VerClave
             // 

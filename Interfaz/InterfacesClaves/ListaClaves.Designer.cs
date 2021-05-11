@@ -121,7 +121,7 @@ namespace Interfaz
             this.botonAgregar.Margin = new System.Windows.Forms.Padding(4);
             this.botonAgregar.Name = "botonAgregar";
             this.botonAgregar.Size = new System.Drawing.Size(100, 28);
-            this.botonAgregar.TabIndex = 19;
+            this.botonAgregar.TabIndex = 3;
             this.botonAgregar.Text = "Agregar";
             this.botonAgregar.UseVisualStyleBackColor = true;
             this.botonAgregar.Click += new System.EventHandler(this.botonAgregar_Click);
@@ -133,7 +133,7 @@ namespace Interfaz
             this.botonVer.Margin = new System.Windows.Forms.Padding(4);
             this.botonVer.Name = "botonVer";
             this.botonVer.Size = new System.Drawing.Size(100, 28);
-            this.botonVer.TabIndex = 20;
+            this.botonVer.TabIndex = 1;
             this.botonVer.Text = "Ver";
             this.botonVer.UseVisualStyleBackColor = true;
             this.botonVer.Click += new System.EventHandler(this.botonVer_Click);
@@ -145,7 +145,7 @@ namespace Interfaz
             this.botonCompartir.Margin = new System.Windows.Forms.Padding(4);
             this.botonCompartir.Name = "botonCompartir";
             this.botonCompartir.Size = new System.Drawing.Size(100, 28);
-            this.botonCompartir.TabIndex = 21;
+            this.botonCompartir.TabIndex = 2;
             this.botonCompartir.Text = "Compartir";
             this.botonCompartir.UseVisualStyleBackColor = true;
             this.botonCompartir.Click += new System.EventHandler(this.botonCompartir_Click);
@@ -157,7 +157,7 @@ namespace Interfaz
             this.botonEliminar.Margin = new System.Windows.Forms.Padding(4);
             this.botonEliminar.Name = "botonEliminar";
             this.botonEliminar.Size = new System.Drawing.Size(100, 28);
-            this.botonEliminar.TabIndex = 22;
+            this.botonEliminar.TabIndex = 4;
             this.botonEliminar.Text = "Eliminar";
             this.botonEliminar.UseVisualStyleBackColor = true;
             this.botonEliminar.Click += new System.EventHandler(this.botonEliminar_Click);

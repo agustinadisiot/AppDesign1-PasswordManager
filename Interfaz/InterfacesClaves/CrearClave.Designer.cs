@@ -64,7 +64,7 @@ namespace Interfaz
             this.comboBoxCategorias.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxCategorias.Name = "comboBoxCategorias";
             this.comboBoxCategorias.Size = new System.Drawing.Size(200, 24);
-            this.comboBoxCategorias.TabIndex = 35;
+            this.comboBoxCategorias.TabIndex = 1;
             // 
             // labelCategoria
             // 
@@ -97,7 +97,7 @@ namespace Interfaz
             this.inputUsuario.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputUsuario.Name = "inputUsuario";
             this.inputUsuario.Size = new System.Drawing.Size(201, 23);
-            this.inputUsuario.TabIndex = 31;
+            this.inputUsuario.TabIndex = 3;
             // 
             // labelSitio
             // 
@@ -119,7 +119,7 @@ namespace Interfaz
             this.inputSitio.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputSitio.Name = "inputSitio";
             this.inputSitio.Size = new System.Drawing.Size(200, 23);
-            this.inputSitio.TabIndex = 29;
+            this.inputSitio.TabIndex = 2;
             // 
             // labelTitulo
             // 
@@ -162,7 +162,7 @@ namespace Interfaz
             this.inputContra.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputContra.Name = "inputContra";
             this.inputContra.Size = new System.Drawing.Size(351, 23);
-            this.inputContra.TabIndex = 37;
+            this.inputContra.TabIndex = 4;
             // 
             // spinnerLargo
             // 
@@ -210,7 +210,7 @@ namespace Interfaz
             this.inputNota.Name = "inputNota";
             this.inputNota.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.inputNota.Size = new System.Drawing.Size(355, 110);
-            this.inputNota.TabIndex = 44;
+            this.inputNota.TabIndex = 5;
             // 
             // checkBoxMayusculas
             // 
@@ -275,7 +275,7 @@ namespace Interfaz
             this.botonCancelar.Location = new System.Drawing.Point(363, 605);
             this.botonCancelar.Name = "botonCancelar";
             this.botonCancelar.Size = new System.Drawing.Size(75, 23);
-            this.botonCancelar.TabIndex = 51;
+            this.botonCancelar.TabIndex = 7;
             this.botonCancelar.Text = "Cancelar";
             this.botonCancelar.UseVisualStyleBackColor = true;
             this.botonCancelar.Click += new System.EventHandler(this.botonCancelar_Click);
@@ -285,7 +285,7 @@ namespace Interfaz
             this.botonAgregar.Location = new System.Drawing.Point(462, 605);
             this.botonAgregar.Name = "botonAgregar";
             this.botonAgregar.Size = new System.Drawing.Size(75, 23);
-            this.botonAgregar.TabIndex = 52;
+            this.botonAgregar.TabIndex = 6;
             this.botonAgregar.Text = "Agregar";
             this.botonAgregar.UseVisualStyleBackColor = true;
             this.botonAgregar.Click += new System.EventHandler(this.botonAgregar_Click);
@@ -306,7 +306,7 @@ namespace Interfaz
             this.groupBoxClave.Name = "groupBoxClave";
             this.groupBoxClave.Padding = new System.Windows.Forms.Padding(2);
             this.groupBoxClave.Size = new System.Drawing.Size(359, 289);
-            this.groupBoxClave.TabIndex = 53;
+            this.groupBoxClave.TabIndex = 4;
             this.groupBoxClave.TabStop = false;
             this.groupBoxClave.Text = "Contraseña";
             // 

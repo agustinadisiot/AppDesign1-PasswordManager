@@ -46,7 +46,7 @@ namespace Interfaz
             this.botonIniciar.Margin = new System.Windows.Forms.Padding(2);
             this.botonIniciar.Name = "botonIniciar";
             this.botonIniciar.Size = new System.Drawing.Size(149, 32);
-            this.botonIniciar.TabIndex = 0;
+            this.botonIniciar.TabIndex = 3;
             this.botonIniciar.Text = "Iniciar Sesion";
             this.botonIniciar.UseVisualStyleBackColor = true;
             this.botonIniciar.Click += new System.EventHandler(this.botonIniciar_Click);
@@ -70,7 +70,7 @@ namespace Interfaz
             this.labelUsuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelUsuario.Name = "labelUsuario";
             this.labelUsuario.Size = new System.Drawing.Size(147, 24);
-            this.labelUsuario.TabIndex = 2;
+            this.labelUsuario.TabIndex = 6;
             this.labelUsuario.Text = "Ingresar Usuario";
             // 
             // labelContra
@@ -94,7 +94,7 @@ namespace Interfaz
             this.inputContra.Name = "inputContra";
             this.inputContra.PasswordChar = '*';
             this.inputContra.Size = new System.Drawing.Size(248, 29);
-            this.inputContra.TabIndex = 3;
+            this.inputContra.TabIndex = 2;
             // 
             // labelTitulo
             // 
@@ -114,7 +114,7 @@ namespace Interfaz
             this.botonCrearUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.botonCrearUsuario.Name = "botonCrearUsuario";
             this.botonCrearUsuario.Size = new System.Drawing.Size(144, 37);
-            this.botonCrearUsuario.TabIndex = 6;
+            this.botonCrearUsuario.TabIndex = 4;
             this.botonCrearUsuario.Text = "Crear Usuario";
             this.botonCrearUsuario.UseVisualStyleBackColor = true;
             this.botonCrearUsuario.Click += new System.EventHandler(this.botonCrearUsuario_Click);

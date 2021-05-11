@@ -45,21 +45,20 @@ namespace Interfaz
             // 
             this.labelTitulo.AutoSize = true;
             this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
-            this.labelTitulo.Location = new System.Drawing.Point(409, 60);
-            this.labelTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelTitulo.Location = new System.Drawing.Point(307, 49);
             this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(384, 42);
+            this.labelTitulo.Size = new System.Drawing.Size(305, 36);
             this.labelTitulo.TabIndex = 18;
             this.labelTitulo.Text = "Compartir Contraseña";
             // 
             // botonCancelar
             // 
             this.botonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.botonCancelar.Location = new System.Drawing.Point(719, 727);
-            this.botonCancelar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.botonCancelar.Location = new System.Drawing.Point(539, 591);
+            this.botonCancelar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.botonCancelar.Name = "botonCancelar";
-            this.botonCancelar.Size = new System.Drawing.Size(192, 46);
-            this.botonCancelar.TabIndex = 24;
+            this.botonCancelar.Size = new System.Drawing.Size(144, 37);
+            this.botonCancelar.TabIndex = 5;
             this.botonCancelar.Text = "Cancelar";
             this.botonCancelar.UseVisualStyleBackColor = true;
             this.botonCancelar.Click += new System.EventHandler(this.botonCancelar_Click);
@@ -68,9 +67,10 @@ namespace Interfaz
             // 
             this.labelUsuario.AutoSize = true;
             this.labelUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelUsuario.Location = new System.Drawing.Point(296, 300);
+            this.labelUsuario.Location = new System.Drawing.Point(222, 244);
+            this.labelUsuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelUsuario.Name = "labelUsuario";
-            this.labelUsuario.Size = new System.Drawing.Size(96, 29);
+            this.labelUsuario.Size = new System.Drawing.Size(74, 24);
             this.labelUsuario.TabIndex = 23;
             this.labelUsuario.Text = "Usuario";
             // 
@@ -78,9 +78,10 @@ namespace Interfaz
             // 
             this.labelSitio.AutoSize = true;
             this.labelSitio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelSitio.Location = new System.Drawing.Point(296, 247);
+            this.labelSitio.Location = new System.Drawing.Point(222, 201);
+            this.labelSitio.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelSitio.Name = "labelSitio";
-            this.labelSitio.Size = new System.Drawing.Size(61, 29);
+            this.labelSitio.Size = new System.Drawing.Size(45, 24);
             this.labelSitio.TabIndex = 21;
             this.labelSitio.Text = "Sitio";
             // 
@@ -88,9 +89,10 @@ namespace Interfaz
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label1.Location = new System.Drawing.Point(296, 191);
+            this.label1.Location = new System.Drawing.Point(222, 155);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(164, 29);
+            this.label1.Size = new System.Drawing.Size(128, 24);
             this.label1.TabIndex = 25;
             this.label1.Text = "Compartir con";
             // 
@@ -99,20 +101,20 @@ namespace Interfaz
             this.comboCompartir.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboCompartir.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.comboCompartir.FormattingEnabled = true;
-            this.comboCompartir.Location = new System.Drawing.Point(635, 190);
-            this.comboCompartir.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboCompartir.Location = new System.Drawing.Point(476, 154);
+            this.comboCompartir.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboCompartir.Name = "comboCompartir";
-            this.comboCompartir.Size = new System.Drawing.Size(329, 37);
-            this.comboCompartir.TabIndex = 26;
+            this.comboCompartir.Size = new System.Drawing.Size(248, 32);
+            this.comboCompartir.TabIndex = 1;
             // 
             // botonAceptar
             // 
             this.botonAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.botonAceptar.Location = new System.Drawing.Point(1019, 727);
-            this.botonAceptar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.botonAceptar.Location = new System.Drawing.Point(764, 591);
+            this.botonAceptar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.botonAceptar.Name = "botonAceptar";
-            this.botonAceptar.Size = new System.Drawing.Size(192, 46);
-            this.botonAceptar.TabIndex = 27;
+            this.botonAceptar.Size = new System.Drawing.Size(144, 37);
+            this.botonAceptar.TabIndex = 4;
             this.botonAceptar.Text = "Aceptar";
             this.botonAceptar.UseVisualStyleBackColor = true;
             this.botonAceptar.Click += new System.EventHandler(this.botonAceptar_Click);
@@ -123,12 +125,13 @@ namespace Interfaz
             this.labelSitioAMostrar.BackColor = System.Drawing.Color.White;
             this.labelSitioAMostrar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelSitioAMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.labelSitioAMostrar.Location = new System.Drawing.Point(635, 247);
-            this.labelSitioAMostrar.MaximumSize = new System.Drawing.Size(330, 35);
-            this.labelSitioAMostrar.MinimumSize = new System.Drawing.Size(330, 35);
+            this.labelSitioAMostrar.Location = new System.Drawing.Point(476, 201);
+            this.labelSitioAMostrar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelSitioAMostrar.MaximumSize = new System.Drawing.Size(248, 29);
+            this.labelSitioAMostrar.MinimumSize = new System.Drawing.Size(248, 29);
             this.labelSitioAMostrar.Name = "labelSitioAMostrar";
-            this.labelSitioAMostrar.Size = new System.Drawing.Size(330, 35);
-            this.labelSitioAMostrar.TabIndex = 28;
+            this.labelSitioAMostrar.Size = new System.Drawing.Size(248, 29);
+            this.labelSitioAMostrar.TabIndex = 2;
             // 
             // labelUsuarioAMostrar
             // 
@@ -136,27 +139,27 @@ namespace Interfaz
             this.labelUsuarioAMostrar.BackColor = System.Drawing.Color.White;
             this.labelUsuarioAMostrar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelUsuarioAMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.labelUsuarioAMostrar.Location = new System.Drawing.Point(635, 300);
-            this.labelUsuarioAMostrar.MaximumSize = new System.Drawing.Size(330, 35);
-            this.labelUsuarioAMostrar.MinimumSize = new System.Drawing.Size(330, 35);
+            this.labelUsuarioAMostrar.Location = new System.Drawing.Point(476, 244);
+            this.labelUsuarioAMostrar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelUsuarioAMostrar.MaximumSize = new System.Drawing.Size(248, 29);
+            this.labelUsuarioAMostrar.MinimumSize = new System.Drawing.Size(248, 29);
             this.labelUsuarioAMostrar.Name = "labelUsuarioAMostrar";
-            this.labelUsuarioAMostrar.Size = new System.Drawing.Size(330, 35);
-            this.labelUsuarioAMostrar.TabIndex = 29;
+            this.labelUsuarioAMostrar.Size = new System.Drawing.Size(248, 29);
+            this.labelUsuarioAMostrar.TabIndex = 3;
             // 
             // labelErrores
             // 
             this.labelErrores.AutoSize = true;
             this.labelErrores.ForeColor = System.Drawing.Color.Red;
-            this.labelErrores.Location = new System.Drawing.Point(217, 746);
-            this.labelErrores.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelErrores.Location = new System.Drawing.Point(163, 606);
             this.labelErrores.Name = "labelErrores";
-            this.labelErrores.Size = new System.Drawing.Size(88, 17);
+            this.labelErrores.Size = new System.Drawing.Size(64, 13);
             this.labelErrores.TabIndex = 30;
             this.labelErrores.Text = "MostrarError";
             // 
             // CompartirClave
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.labelErrores);
             this.Controls.Add(this.labelUsuarioAMostrar);
@@ -168,9 +171,9 @@ namespace Interfaz
             this.Controls.Add(this.labelUsuario);
             this.Controls.Add(this.labelSitio);
             this.Controls.Add(this.labelTitulo);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "CompartirClave";
-            this.Size = new System.Drawing.Size(1428, 833);
+            this.Size = new System.Drawing.Size(1071, 677);
             this.Load += new System.EventHandler(this.CompartirClave_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

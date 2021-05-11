@@ -70,7 +70,7 @@ namespace Interfaz
             this.inputContra.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputContra.Name = "inputContra";
             this.inputContra.Size = new System.Drawing.Size(248, 29);
-            this.inputContra.TabIndex = 9;
+            this.inputContra.TabIndex = 2;
             // 
             // labelUsuario
             // 
@@ -92,7 +92,7 @@ namespace Interfaz
             this.inputUsuario.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputUsuario.Name = "inputUsuario";
             this.inputUsuario.Size = new System.Drawing.Size(248, 29);
-            this.inputUsuario.TabIndex = 7;
+            this.inputUsuario.TabIndex = 1;
             // 
             // botonCrear
             // 
@@ -101,7 +101,7 @@ namespace Interfaz
             this.botonCrear.Margin = new System.Windows.Forms.Padding(2);
             this.botonCrear.Name = "botonCrear";
             this.botonCrear.Size = new System.Drawing.Size(149, 32);
-            this.botonCrear.TabIndex = 6;
+            this.botonCrear.TabIndex = 3;
             this.botonCrear.Text = "Crear Usuario";
             this.botonCrear.UseVisualStyleBackColor = true;
             this.botonCrear.Click += new System.EventHandler(this.botonCrear_Click);
@@ -113,7 +113,7 @@ namespace Interfaz
             this.botonCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.botonCancelar.Name = "botonCancelar";
             this.botonCancelar.Size = new System.Drawing.Size(144, 37);
-            this.botonCancelar.TabIndex = 12;
+            this.botonCancelar.TabIndex = 4;
             this.botonCancelar.Text = "Cancelar";
             this.botonCancelar.UseVisualStyleBackColor = true;
             this.botonCancelar.Click += new System.EventHandler(this.botonCancelar_Click);
