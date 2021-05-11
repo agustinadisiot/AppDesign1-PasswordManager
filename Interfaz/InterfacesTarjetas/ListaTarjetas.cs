@@ -59,7 +59,6 @@ namespace Interfaz
 
         }
 
-
         private void buttonAgregar_Click(object sender, EventArgs e)
         {
             this.AbrirCrearTarjeta(e);
@@ -133,24 +132,24 @@ namespace Interfaz
         }
 
 
-        public delegate void AbrirCrearTarjeta_Handler();
-        public event AbrirCrearTarjeta_Handler AbrirCrearTarjeta_Event;
+        public delegate void AbrirCrearTarjeta_Delegate();
+        public event AbrirCrearTarjeta_Delegate AbrirCrearTarjeta_Event;
         private void AbrirCrearTarjeta(EventArgs e)
         {
             if (this.AbrirCrearTarjeta_Event != null)
                 this.AbrirCrearTarjeta_Event();
         }
 
-        public delegate void AbrirModificarTarjeta_Handler(Tarjeta modificar);
-        public event AbrirModificarTarjeta_Handler AbrirModificarTarjeta_Event;
+        public delegate void AbrirModificarTarjeta_Delegate(Tarjeta modificar);
+        public event AbrirModificarTarjeta_Delegate AbrirModificarTarjeta_Event;
         private void AbrirModificarTarjeta(Tarjeta modificar)
         {
             if (this.AbrirModificarTarjeta_Event != null)
                 this.AbrirModificarTarjeta_Event(modificar);
         }
 
-        public delegate void AbrirVerTarjeta_Handler(Tarjeta modificar);
-        public event AbrirVerTarjeta_Handler AbrirVerTarjeta_Event;
+        public delegate void AbrirVerTarjeta_Delegate(Tarjeta modificar);
+        public event AbrirVerTarjeta_Delegate AbrirVerTarjeta_Event;
         private void AbrirVerTarjeta(Tarjeta ver)
         {
             if (this.AbrirVerTarjeta_Event != null)

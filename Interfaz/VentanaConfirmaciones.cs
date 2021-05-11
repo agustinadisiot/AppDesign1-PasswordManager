@@ -30,8 +30,8 @@ namespace Interfaz
             CerrarConfirmacion(aceptar);
         }
 
-        public delegate void cerrarConfirmacion_Handler(bool acepto);
-        public event cerrarConfirmacion_Handler CerrarConfirmacion_Event;
+        public delegate void cerrarConfirmacion_Delegate(bool acepto);
+        public event cerrarConfirmacion_Delegate CerrarConfirmacion_Event;
         public void CerrarConfirmacion(bool acepto)
         {
             if (this.CerrarConfirmacion_Event != null)

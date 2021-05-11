@@ -61,21 +61,21 @@ namespace Interfaz
             }
         }
 
-
-        public delegate void IniciarSesion_Handler(Usuario actual);
-        public event IniciarSesion_Handler IniciarSesion_Event;
-        private void EnviarIniciarSesion(Usuario aIniciar) {
-            if (this.IniciarSesion_Event != null)
-                this.IniciarSesion_Event(aIniciar);
-        }
-
         private void botonCrearUsuario_Click(object sender, EventArgs e)
         {
             this.EnviarAbrirCrearUsuario();
         }
 
-        public delegate void AbrirCrearUsuario_Handler();
-        public event AbrirCrearUsuario_Handler AbrirCrearUsuario_Event;
+
+        public delegate void IniciarSesion_Delegate(Usuario actual);
+        public event IniciarSesion_Delegate IniciarSesion_Event;
+        private void EnviarIniciarSesion(Usuario aIniciar) {
+            if (this.IniciarSesion_Event != null)
+                this.IniciarSesion_Event(aIniciar);
+        }
+
+        public delegate void AbrirCrearUsuario_Delegate();
+        public event AbrirCrearUsuario_Delegate AbrirCrearUsuario_Event;
         private void EnviarAbrirCrearUsuario() {
             if (this.AbrirCrearUsuario_Event != null)
                 this.AbrirCrearUsuario_Event();

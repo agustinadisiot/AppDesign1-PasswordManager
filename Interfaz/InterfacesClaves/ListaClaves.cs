@@ -153,24 +153,24 @@ namespace Interfaz
             }
         }
 
-        public delegate void AbrirModificarClave_Handler(Clave claveAModificar);
-        public event AbrirModificarClave_Handler AbrirModificarClave_Event;
+        public delegate void AbrirModificarClave_Delegate(Clave claveAModificar);
+        public event AbrirModificarClave_Delegate AbrirModificarClave_Event;
         public void IrAModificarClave(Clave claveAModificar)
         {
             if (this.AbrirModificarClave_Event != null)
                 this.AbrirModificarClave_Event(claveAModificar);
         }
 
-        public delegate void AbrirCrearClave_Handler();
-        public event AbrirCrearClave_Handler AbrirCrearClave_Event;
+        public delegate void AbrirCrearClave_Delegate();
+        public event AbrirCrearClave_Delegate AbrirCrearClave_Event;
         public void IrACrearClave()
         {
             if (this.AbrirCrearClave_Event != null)
                 this.AbrirCrearClave_Event();
         }
 
-        public delegate void AbrirCompartirClave_Handler(ClaveCompartida aCompartir);
-        public event AbrirCompartirClave_Handler AbrirCompartirClave_Event;
+        public delegate void AbrirCompartirClave_Delegate(ClaveCompartida aCompartir);
+        public event AbrirCompartirClave_Delegate AbrirCompartirClave_Event;
         public void IrACompartirClave(ClaveCompartida aCompartir)
         {
             if (this.AbrirCompartirClave_Event != null)
@@ -178,8 +178,8 @@ namespace Interfaz
         }
 
 
-        public delegate void AbrirVerClave_Handler(Clave buscadora, Usuario usuarioActual);
-        public event AbrirVerClave_Handler AbrirVerClave_Event;
+        public delegate void AbrirVerClave_Delegate(Clave buscadora, Usuario usuarioActual);
+        public event AbrirVerClave_Delegate AbrirVerClave_Event;
         private void AbrirVerClave(Clave buscadora, Usuario usuarioActual)
         {
             if (this.AbrirVerClave_Event != null)

@@ -58,8 +58,8 @@ namespace Interfaz
             }
         }
 
-        public delegate void AbrirListaCategorias_Handler();
-        public event AbrirListaCategorias_Handler AbrirListaCategorias_Event;
+        public delegate void AbrirListaCategorias_Delegate();
+        public event AbrirListaCategorias_Delegate AbrirListaCategorias_Event;
         public void VolverAListaCategorias()
         {
             if (this.AbrirListaCategorias_Event != null)

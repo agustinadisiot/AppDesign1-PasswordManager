@@ -146,8 +146,8 @@ namespace Interfaz.InterfacesClaves
         }
         
 
-        public delegate void CerrarModificarClave_Handler();
-        public event CerrarModificarClave_Handler CerrarModificarClave_Event;
+        public delegate void CerrarModificarClave_Delegate();
+        public event CerrarModificarClave_Delegate CerrarModificarClave_Event;
         private void CerrarModificarClave()
         {
             if (this.CerrarModificarClave_Event != null)

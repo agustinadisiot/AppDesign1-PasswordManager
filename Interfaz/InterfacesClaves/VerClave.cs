@@ -46,8 +46,8 @@ namespace Interfaz
             VolverAListaClaves();
         }
 
-        public delegate void SalirDeVerClave_Handler();
-        public event SalirDeVerClave_Handler SalirDeVerClave_Event;
+        public delegate void SalirDeVerClave_Delegate();
+        public event SalirDeVerClave_Delegate SalirDeVerClave_Event;
         public void VolverAListaClaves()
         {
             if (this.SalirDeVerClave_Event != null)

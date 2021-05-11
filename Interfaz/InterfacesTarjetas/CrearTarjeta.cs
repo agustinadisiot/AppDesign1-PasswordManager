@@ -30,7 +30,6 @@ namespace Interfaz
 
         }
 
-
         private void CargarComboBox() {
             this.comboBoxCategorias.Items.Clear();
             List<Categoria> lista = this._actual.GetListaCategorias();
@@ -98,22 +97,19 @@ namespace Interfaz
             
         }
 
-
         private string LeerComboBox() {
             string nombre = (string) this.comboBoxCategorias.SelectedItem;
 
             return nombre;
         }
 
-
         private void botonCancelar_Click(object sender, EventArgs e)
         {
             this.VolverAListaTarjetas();
         }
 
-
-        public delegate void AbrirListaTarjetas_Handler();
-        public event AbrirListaTarjetas_Handler AbrirListaTarjetas_Event;
+        public delegate void AbrirListaTarjetas_Delegate();
+        public event AbrirListaTarjetas_Delegate AbrirListaTarjetas_Event;
         private void VolverAListaTarjetas()
         {
             if (this.AbrirListaTarjetas_Event != null)

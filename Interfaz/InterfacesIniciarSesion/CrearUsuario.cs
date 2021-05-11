@@ -57,8 +57,8 @@ namespace Interfaz
             this.EnviarSalirCrearUsuario();
         }
 
-        public delegate void SalirCrearUsuario_Handler();
-        public event SalirCrearUsuario_Handler AbrirIniciarSesion_Event;
+        public delegate void SalirCrearUsuario_Delegate();
+        public event SalirCrearUsuario_Delegate AbrirIniciarSesion_Event;
         private void EnviarSalirCrearUsuario()
         {
             if (this.AbrirIniciarSesion_Event != null)

@@ -40,16 +40,16 @@ namespace Interfaz
             this.CargarTabla();
         }
 
-        public delegate void AbrirModificarCategoria_Handler(Categoria catActual);
-        public event AbrirModificarCategoria_Handler AbrirModificarCategorias_Event;
+        public delegate void AbrirModificarCategoria_Delegate(Categoria catActual);
+        public event AbrirModificarCategoria_Delegate AbrirModificarCategorias_Event;
         public void IrAModificarCategoria(Categoria catActual)
         {
             if (this.AbrirModificarCategorias_Event != null)
                 this.AbrirModificarCategorias_Event(catActual);
         }
 
-        public delegate void AbrirAgregarCategorias_Handler();
-        public event AbrirAgregarCategorias_Handler AbrirAgregarCategorias_Event;
+        public delegate void AbrirAgregarCategorias_Delegate();
+        public event AbrirAgregarCategorias_Delegate AbrirAgregarCategorias_Event;
         public void IrAAgregarCategoria()
         {
             if (this.AbrirAgregarCategorias_Event != null)

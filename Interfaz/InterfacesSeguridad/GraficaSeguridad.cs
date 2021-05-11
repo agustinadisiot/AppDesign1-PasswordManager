@@ -68,9 +68,8 @@ namespace Interfaz
             this.AbrirReporteFortaleza();
         }
 
-
-        public delegate void AbrirReporteFortaleza_Handler();
-        public event AbrirReporteFortaleza_Handler AbrirReporteFortaleza_Event;
+        public delegate void AbrirReporteFortaleza_Delegate();
+        public event AbrirReporteFortaleza_Delegate AbrirReporteFortaleza_Event;
         public void AbrirReporteFortaleza()
         {
             if (this.AbrirReporteFortaleza_Event != null)

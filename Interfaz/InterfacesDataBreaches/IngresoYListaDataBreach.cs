@@ -106,7 +106,6 @@ namespace Interfaz.InterfacesClaves
 
         }
 
-
         private void botonVerificar_Click(object sender, EventArgs e)
         {
             this.ProcesarIngresos();
@@ -114,7 +113,6 @@ namespace Interfaz.InterfacesClaves
             this.CargarTablaClaves();
             this.CargarTablaTarjetas();
         }
-
 
         private void ProcesarIngresos()
         {
@@ -124,7 +122,6 @@ namespace Interfaz.InterfacesClaves
 
             this._dataBreach = verificar;
         }
-
 
         private void botonModificar_Click(object sender, EventArgs e)
         {
@@ -149,8 +146,8 @@ namespace Interfaz.InterfacesClaves
             }
         }
 
-        public delegate void ModificarClaveDataBreach_Handler(Clave claveAModificar, List<string> dataBreach);
-        public event ModificarClaveDataBreach_Handler ModificarClaveDataBreach_Event;
+        public delegate void ModificarClaveDataBreach_Delegate(Clave claveAModificar, List<string> dataBreach);
+        public event ModificarClaveDataBreach_Delegate ModificarClaveDataBreach_Event;
         public void IrAModificarClave(Clave claveAModificar)
         {
             if (this.ModificarClaveDataBreach_Event != null)

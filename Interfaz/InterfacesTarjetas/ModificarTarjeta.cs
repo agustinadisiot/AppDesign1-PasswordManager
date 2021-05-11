@@ -120,8 +120,8 @@ namespace Interfaz
             return nombre;
         }
 
-        public delegate void AbrirListaTarjetas_Handler();
-        public event AbrirListaTarjetas_Handler AbrirListaTarjetas_Event;
+        public delegate void AbrirListaTarjetas_Delegate();
+        public event AbrirListaTarjetas_Delegate AbrirListaTarjetas_Event;
         private void VolverAListaTarjetas()
         {
             if (this.AbrirListaTarjetas_Event != null)

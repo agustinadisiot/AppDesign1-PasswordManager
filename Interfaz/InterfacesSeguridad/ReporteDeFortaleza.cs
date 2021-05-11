@@ -87,8 +87,8 @@ namespace Interfaz.InterfacesSeguridad
             AbrirGrafica();
         }
 
-        public delegate void AbrirGrafica_Handler();
-        public event AbrirGrafica_Handler AbrirGrafica_Event;
+        public delegate void AbrirGrafica_Delegate();
+        public event AbrirGrafica_Delegate AbrirGrafica_Event;
         public void AbrirGrafica()
         {
             if (this.AbrirGrafica_Event != null)
@@ -116,8 +116,8 @@ namespace Interfaz.InterfacesSeguridad
             }
         }
 
-        public delegate void AbrirVerClave_Handler(Clave buscadora, Usuario usuarioActual);
-        public event AbrirVerClave_Handler AbrirVerClave_Event;
+        public delegate void AbrirVerClave_Delegate(Clave buscadora, Usuario usuarioActual);
+        public event AbrirVerClave_Delegate AbrirVerClave_Event;
         private void AbrirVerClave(Clave buscadora, Usuario usuarioActual)
         {
             if (this.AbrirVerClave_Event != null)
@@ -146,8 +146,8 @@ namespace Interfaz.InterfacesSeguridad
             }
         }
 
-        public delegate void AbrirModificarClave_Handler(Clave claveAModificar);
-        public event AbrirModificarClave_Handler AbrirModificarClave_Event;
+        public delegate void AbrirModificarClave_Delegate(Clave claveAModificar);
+        public event AbrirModificarClave_Delegate AbrirModificarClave_Event;
         public void IrAModificarClave(Clave claveAModificar)
         {
             if (this.AbrirModificarClave_Event != null)

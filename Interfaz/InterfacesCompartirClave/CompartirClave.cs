@@ -54,8 +54,8 @@ namespace Interfaz
 
         }
 
-        public delegate void AbrirListaClaves_Handler();
-        public event AbrirListaClaves_Handler AbrirListaClaves_Event;
+        public delegate void AbrirListaClaves_Delegate();
+        public event AbrirListaClaves_Delegate AbrirListaClaves_Event;
         public void VolverAListaClaves()
         {
             if (this.AbrirListaClaves_Event != null)

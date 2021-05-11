@@ -112,8 +112,8 @@ namespace Interfaz.InterfacesCompartirClave
             }
         }
 
-        public delegate void AbrirVerClave_Handler(Clave buscadora, Usuario usuarioActual);
-        public event AbrirVerClave_Handler AbrirVerClave_Event;
+        public delegate void AbrirVerClave_Delegate(Clave buscadora, Usuario usuarioActual);
+        public event AbrirVerClave_Delegate AbrirVerClave_Event;
         private void AbrirVerClave(Clave buscadora, Usuario usuarioActual)
         {
             if (this.AbrirVerClave_Event != null)
