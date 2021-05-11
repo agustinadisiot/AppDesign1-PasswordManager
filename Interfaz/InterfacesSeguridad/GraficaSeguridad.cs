@@ -27,39 +27,33 @@ namespace Interfaz
 
         public void CargarGrafica() 
         {
-            const string rojo = "rojo",
-                   naranja = "naranja",
-                   amarillo = "amarillo",
-                   verdeClaro = "verde claro",
-                   verdeOscuro = "verde oscuro";
+            ColorNivelSeguridad color = new ColorNivelSeguridad();
 
-
-            grafica.Series.Add(rojo);
-            grafica.Series[rojo].Color = Color.Red;
-            grafica.Series.Add(naranja);
-            grafica.Series[naranja].Color = Color.Orange;
-            grafica.Series.Add(amarillo);
-            grafica.Series[amarillo].Color = Color.Yellow;
-            grafica.Series.Add(verdeClaro);
-            grafica.Series[verdeClaro].Color = Color.LightGreen;
-            grafica.Series.Add(verdeOscuro);
-            grafica.Series[verdeOscuro].Color = Color.DarkGreen;
-
+            grafica.Series.Add(color.Rojo);
+            grafica.Series[color.Rojo].Color = Color.Red;
+            grafica.Series.Add(color.Naranja);
+            grafica.Series[color.Naranja].Color = Color.Orange;
+            grafica.Series.Add(color.Amarillo);
+            grafica.Series[color.Amarillo].Color = Color.Yellow;
+            grafica.Series.Add(color.VerdeClaro);
+            grafica.Series[color.VerdeClaro].Color = Color.LightGreen;
+            grafica.Series.Add(color.VerdeOscuro);
+            grafica.Series[color.VerdeOscuro].Color = Color.DarkGreen;
 
             List<Categoria> listaCategorias = this._actual.GetListaCategorias();
 
             foreach (Categoria categoria in listaCategorias) {
-                int cantidadRojo = categoria.GetListaClavesColor(rojo).Count;
-                int cantidadNaranja = categoria.GetListaClavesColor(naranja).Count;
-                int cantidadAmarillo = categoria.GetListaClavesColor(amarillo).Count;
-                int cantidadVerdeClaro = categoria.GetListaClavesColor(verdeClaro).Count;
-                int cantidadVerdeOscuro = categoria.GetListaClavesColor(verdeOscuro).Count;
+                int cantidadRojo = categoria.GetListaClavesColor(color.Rojo).Count;
+                int cantidadNaranja = categoria.GetListaClavesColor(color.Naranja).Count;
+                int cantidadAmarillo = categoria.GetListaClavesColor(color.Amarillo).Count;
+                int cantidadVerdeClaro = categoria.GetListaClavesColor(color.VerdeClaro).Count;
+                int cantidadVerdeOscuro = categoria.GetListaClavesColor(color.VerdeOscuro).Count;
 
-                grafica.Series[rojo].Points.AddXY(categoria.Nombre, cantidadRojo);
-                grafica.Series[naranja].Points.AddXY(categoria.Nombre, cantidadNaranja);
-                grafica.Series[amarillo].Points.AddXY(categoria.Nombre, cantidadAmarillo);
-                grafica.Series[verdeClaro].Points.AddXY(categoria.Nombre, cantidadVerdeClaro);
-                grafica.Series[verdeOscuro].Points.AddXY(categoria.Nombre, cantidadVerdeOscuro);
+                grafica.Series[color.Rojo].Points.AddXY(categoria.Nombre, cantidadRojo);
+                grafica.Series[color.Naranja].Points.AddXY(categoria.Nombre, cantidadNaranja);
+                grafica.Series[color.Amarillo].Points.AddXY(categoria.Nombre, cantidadAmarillo);
+                grafica.Series[color.VerdeClaro].Points.AddXY(categoria.Nombre, cantidadVerdeClaro);
+                grafica.Series[color.VerdeOscuro].Points.AddXY(categoria.Nombre, cantidadVerdeOscuro);
             }
         }
 
