@@ -108,7 +108,7 @@ namespace Dominio
             if (this.GetType() != objeto.GetType()) throw new ObjetoIncorrectoException();
             Clave aIgualar = (Clave)objeto;
             bool mismoSitio = aIgualar.Sitio.ToUpper() == this.Sitio.ToUpper();
-            bool mismoUsuario = aIgualar.UsuarioClave == this.UsuarioClave;
+            bool mismoUsuario = aIgualar.UsuarioClave.ToUpper() == this.UsuarioClave.ToUpper();
             return (mismoSitio && mismoUsuario);
         }
 

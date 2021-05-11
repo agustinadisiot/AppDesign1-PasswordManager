@@ -328,6 +328,21 @@ namespace TestsObligatorio
             Assert.AreEqual(actual, evaluar.FechaModificacion);
         }
 
+
+        [TestMethod]
+        public void ClaveUsuarioInsensitive() {
+            Clave mayusculas = new Clave()
+            {
+                UsuarioClave = "AAAAA",
+                Sitio = "ORT.EDU.UY"
+            };
+            Clave minusculas = new Clave()
+            {
+                UsuarioClave = "aaaaa",
+                Sitio = "ort.edu.uy"
+            };
+            Assert.AreEqual(minusculas, mayusculas);
+        }
     }
 
     [TestClass]
