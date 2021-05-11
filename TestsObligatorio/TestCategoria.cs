@@ -887,8 +887,8 @@ namespace TestsObligatorio
                 clave1
             };
 
-            const string verdeOscuro = "verde oscuro";
-            List<Clave> getListaClavesVerdes = categoria1.GetListaClavesColor(verdeOscuro);
+            ColorNivelSeguridad color = new ColorNivelSeguridad();
+            List<Clave> getListaClavesVerdes = categoria1.GetListaClavesColor(color.VerdeOscuro);
 
             bool getListaClavesContieneLasClavesVerdes = getListaClavesVerdes.All(clavesVerdes.Contains);
             bool clavesVerdesContieneListaClavesVerdes = clavesVerdes.All(getListaClavesVerdes.Contains);
