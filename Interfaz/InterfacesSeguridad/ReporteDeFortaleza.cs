@@ -62,23 +62,19 @@ namespace Interfaz.InterfacesSeguridad
 
         private void CargarTablaReporte()
         {
-            const string rojo = "rojo",
-                naranja = "naranja",
-                amarillo = "amarillo",
-                verdeClaro = "verde claro",
-                verdeOscuro = "verde oscuro";
+            ColorNivelSeguridad color = new ColorNivelSeguridad();
 
-            int cantidadRojos = _usuarioActual.GetCantidadColor(rojo);
-            int cantidadNaranja = _usuarioActual.GetCantidadColor(naranja);
-            int cantidadAmarillo = _usuarioActual.GetCantidadColor(amarillo);
-            int cantidadVerdeClaro = _usuarioActual.GetCantidadColor(verdeClaro);
-            int cantidadVerdeOscuro = _usuarioActual.GetCantidadColor(verdeOscuro);
+            int cantidadRojos = _usuarioActual.GetCantidadColor(color.Rojo);
+            int cantidadNaranja = _usuarioActual.GetCantidadColor(color.Naranja);
+            int cantidadAmarillo = _usuarioActual.GetCantidadColor(color.Amarillo);
+            int cantidadVerdeClaro = _usuarioActual.GetCantidadColor(color.VerdeClaro);
+            int cantidadVerdeOscuro = _usuarioActual.GetCantidadColor(color.VerdeOscuro);
 
-            this.TablaReporte.Rows.Add(rojo, cantidadRojos);
-            this.TablaReporte.Rows.Add(naranja, cantidadNaranja);
-            this.TablaReporte.Rows.Add(amarillo, cantidadAmarillo);
-            this.TablaReporte.Rows.Add(verdeClaro, cantidadVerdeClaro);
-            this.TablaReporte.Rows.Add(verdeOscuro, cantidadVerdeOscuro);
+            this.TablaReporte.Rows.Add(color.Rojo, cantidadRojos);
+            this.TablaReporte.Rows.Add(color.Naranja, cantidadNaranja);
+            this.TablaReporte.Rows.Add(color.Amarillo, cantidadAmarillo);
+            this.TablaReporte.Rows.Add(color.VerdeClaro, cantidadVerdeClaro);
+            this.TablaReporte.Rows.Add(color.VerdeOscuro, cantidadVerdeOscuro);
 
         }
 
