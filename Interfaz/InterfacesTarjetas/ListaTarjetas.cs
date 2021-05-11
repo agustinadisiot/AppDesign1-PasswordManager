@@ -20,7 +20,7 @@ namespace Interfaz
 
         private void CargarTabla() {
 
-            string formatoTarjeta = "dd'/'MM'/'yyyy";
+            string formatoTarjeta = "MM'/'yyyy";
             this.tablaTarjetas.Rows.Clear();
 
             List<Tarjeta> listaTarjeta = this._usuarioActual.GetListaTarjetas();

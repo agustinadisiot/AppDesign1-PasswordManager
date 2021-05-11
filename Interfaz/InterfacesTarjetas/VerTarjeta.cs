@@ -23,7 +23,7 @@ namespace Interfaz.InterfacesTarjetas
         }
 
         private void CargarDatos() {
-            string formatoFecha = "dd'/'MM'/'yyyy";
+            string formatoFecha = "MM'/'yyyy";
             Categoria categoria = this._usuario.GetCategoriaTarjeta(this._mostrar);
 
             this.labelMostrarCategoria.Text = categoria.Nombre;

@@ -68,7 +68,7 @@ namespace Interfaz.InterfacesClaves
 
         private void CargarTablaTarjetas()
         {
-            string formatoFecha = "dd'/'MM'/'yyyy";
+            string formatoFecha = "MM'/'yyyy";
             this.tablaTarjetas.Rows.Clear();
 
 
