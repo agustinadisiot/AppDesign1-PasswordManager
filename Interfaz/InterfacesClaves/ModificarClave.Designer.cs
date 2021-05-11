@@ -331,7 +331,7 @@ namespace Interfaz.InterfacesClaves
             this.panel1.ForeColor = System.Drawing.Color.White;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1014, 100);
+            this.panel1.Size = new System.Drawing.Size(1002, 100);
             this.panel1.TabIndex = 69;
             // 
             // ModificarClave
@@ -354,7 +354,7 @@ namespace Interfaz.InterfacesClaves
             this.Controls.Add(this.labelSitio);
             this.Controls.Add(this.inputSitio);
             this.Name = "ModificarClave";
-            this.Size = new System.Drawing.Size(1014, 681);
+            this.Size = new System.Drawing.Size(1002, 681);
             this.Load += new System.EventHandler(this.ModificarClave_Load);
             this.groupBoxClave.ResumeLayout(false);
             this.groupBoxClave.PerformLayout();

@@ -30,16 +30,16 @@ namespace Interfaz
         private void InitializeComponent()
         {
             this.tablaClaves = new System.Windows.Forms.DataGridView();
+            this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sitio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UltimaModificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelTitulo = new System.Windows.Forms.Label();
             this.botonAgregar = new System.Windows.Forms.Button();
             this.botonVer = new System.Windows.Forms.Button();
             this.botonCompartir = new System.Windows.Forms.Button();
             this.botonEliminar = new System.Windows.Forms.Button();
             this.botonModificar = new System.Windows.Forms.Button();
-            this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sitio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UltimaModificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.tablaClaves)).BeginInit();
             this.panel1.SuspendLayout();
@@ -69,78 +69,6 @@ namespace Interfaz
             this.tablaClaves.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaClaves.Size = new System.Drawing.Size(805, 369);
             this.tablaClaves.TabIndex = 0;
-            // 
-            // labelTitulo
-            // 
-            this.labelTitulo.AutoSize = true;
-            this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
-            this.labelTitulo.ForeColor = System.Drawing.Color.White;
-            this.labelTitulo.Location = new System.Drawing.Point(337, 32);
-            this.labelTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(329, 36);
-            this.labelTitulo.TabIndex = 17;
-            this.labelTitulo.Text = "Listado de Contraseñas";
-            // 
-            // botonAgregar
-            // 
-            this.botonAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.botonAgregar.Location = new System.Drawing.Point(527, 524);
-            this.botonAgregar.Margin = new System.Windows.Forms.Padding(4);
-            this.botonAgregar.Name = "botonAgregar";
-            this.botonAgregar.Size = new System.Drawing.Size(100, 28);
-            this.botonAgregar.TabIndex = 3;
-            this.botonAgregar.Text = "Agregar";
-            this.botonAgregar.UseVisualStyleBackColor = true;
-            this.botonAgregar.Click += new System.EventHandler(this.botonAgregar_Click);
-            // 
-            // botonVer
-            // 
-            this.botonVer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.botonVer.Location = new System.Drawing.Point(256, 524);
-            this.botonVer.Margin = new System.Windows.Forms.Padding(4);
-            this.botonVer.Name = "botonVer";
-            this.botonVer.Size = new System.Drawing.Size(100, 28);
-            this.botonVer.TabIndex = 1;
-            this.botonVer.Text = "Ver";
-            this.botonVer.UseVisualStyleBackColor = true;
-            this.botonVer.Click += new System.EventHandler(this.botonVer_Click);
-            // 
-            // botonCompartir
-            // 
-            this.botonCompartir.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.botonCompartir.Location = new System.Drawing.Point(394, 524);
-            this.botonCompartir.Margin = new System.Windows.Forms.Padding(4);
-            this.botonCompartir.Name = "botonCompartir";
-            this.botonCompartir.Size = new System.Drawing.Size(100, 28);
-            this.botonCompartir.TabIndex = 2;
-            this.botonCompartir.Text = "Compartir";
-            this.botonCompartir.UseVisualStyleBackColor = true;
-            this.botonCompartir.Click += new System.EventHandler(this.botonCompartir_Click);
-            // 
-            // botonEliminar
-            // 
-            this.botonEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.botonEliminar.Location = new System.Drawing.Point(665, 524);
-            this.botonEliminar.Margin = new System.Windows.Forms.Padding(4);
-            this.botonEliminar.Name = "botonEliminar";
-            this.botonEliminar.Size = new System.Drawing.Size(100, 28);
-            this.botonEliminar.TabIndex = 4;
-            this.botonEliminar.Text = "Eliminar";
-            this.botonEliminar.UseVisualStyleBackColor = true;
-            this.botonEliminar.Click += new System.EventHandler(this.botonEliminar_Click);
-            // 
-            // botonModificar
-            // 
-            this.botonModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.botonModificar.Location = new System.Drawing.Point(803, 524);
-            this.botonModificar.Margin = new System.Windows.Forms.Padding(4);
-            this.botonModificar.Name = "botonModificar";
-            this.botonModificar.Size = new System.Drawing.Size(100, 28);
-            this.botonModificar.TabIndex = 23;
-            this.botonModificar.Text = "Modificar";
-            this.botonModificar.UseVisualStyleBackColor = true;
-            this.botonModificar.Click += new System.EventHandler(this.botonModificar_Click);
             // 
             // Categoria
             // 
@@ -178,6 +106,78 @@ namespace Interfaz
             this.UltimaModificacion.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.UltimaModificacion.Width = 200;
             // 
+            // labelTitulo
+            // 
+            this.labelTitulo.AutoSize = true;
+            this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
+            this.labelTitulo.ForeColor = System.Drawing.Color.White;
+            this.labelTitulo.Location = new System.Drawing.Point(337, 32);
+            this.labelTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelTitulo.Name = "labelTitulo";
+            this.labelTitulo.Size = new System.Drawing.Size(329, 36);
+            this.labelTitulo.TabIndex = 17;
+            this.labelTitulo.Text = "Listado de Contraseñas";
+            // 
+            // botonAgregar
+            // 
+            this.botonAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+            this.botonAgregar.Location = new System.Drawing.Point(587, 519);
+            this.botonAgregar.Margin = new System.Windows.Forms.Padding(4);
+            this.botonAgregar.Name = "botonAgregar";
+            this.botonAgregar.Size = new System.Drawing.Size(100, 28);
+            this.botonAgregar.TabIndex = 3;
+            this.botonAgregar.Text = "Agregar";
+            this.botonAgregar.UseVisualStyleBackColor = true;
+            this.botonAgregar.Click += new System.EventHandler(this.botonAgregar_Click);
+            // 
+            // botonVer
+            // 
+            this.botonVer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+            this.botonVer.Location = new System.Drawing.Point(371, 519);
+            this.botonVer.Margin = new System.Windows.Forms.Padding(4);
+            this.botonVer.Name = "botonVer";
+            this.botonVer.Size = new System.Drawing.Size(100, 28);
+            this.botonVer.TabIndex = 1;
+            this.botonVer.Text = "Ver";
+            this.botonVer.UseVisualStyleBackColor = true;
+            this.botonVer.Click += new System.EventHandler(this.botonVer_Click);
+            // 
+            // botonCompartir
+            // 
+            this.botonCompartir.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+            this.botonCompartir.Location = new System.Drawing.Point(479, 519);
+            this.botonCompartir.Margin = new System.Windows.Forms.Padding(4);
+            this.botonCompartir.Name = "botonCompartir";
+            this.botonCompartir.Size = new System.Drawing.Size(100, 28);
+            this.botonCompartir.TabIndex = 2;
+            this.botonCompartir.Text = "Compartir";
+            this.botonCompartir.UseVisualStyleBackColor = true;
+            this.botonCompartir.Click += new System.EventHandler(this.botonCompartir_Click);
+            // 
+            // botonEliminar
+            // 
+            this.botonEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+            this.botonEliminar.Location = new System.Drawing.Point(803, 519);
+            this.botonEliminar.Margin = new System.Windows.Forms.Padding(4);
+            this.botonEliminar.Name = "botonEliminar";
+            this.botonEliminar.Size = new System.Drawing.Size(100, 28);
+            this.botonEliminar.TabIndex = 4;
+            this.botonEliminar.Text = "Eliminar";
+            this.botonEliminar.UseVisualStyleBackColor = true;
+            this.botonEliminar.Click += new System.EventHandler(this.botonEliminar_Click);
+            // 
+            // botonModificar
+            // 
+            this.botonModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+            this.botonModificar.Location = new System.Drawing.Point(695, 519);
+            this.botonModificar.Margin = new System.Windows.Forms.Padding(4);
+            this.botonModificar.Name = "botonModificar";
+            this.botonModificar.Size = new System.Drawing.Size(100, 28);
+            this.botonModificar.TabIndex = 23;
+            this.botonModificar.Text = "Modificar";
+            this.botonModificar.UseVisualStyleBackColor = true;
+            this.botonModificar.Click += new System.EventHandler(this.botonModificar_Click);
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
@@ -192,6 +192,7 @@ namespace Interfaz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.botonModificar);
             this.Controls.Add(this.botonEliminar);

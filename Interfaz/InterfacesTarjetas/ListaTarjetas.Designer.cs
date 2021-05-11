@@ -30,18 +30,20 @@ namespace Interfaz
         private void InitializeComponent()
         {
             this.tablaTarjetas = new System.Windows.Forms.DataGridView();
+            this.botonEliminar = new System.Windows.Forms.Button();
+            this.botonModificar = new System.Windows.Forms.Button();
+            this.buttonAgregar = new System.Windows.Forms.Button();
+            this.labelTitulo = new System.Windows.Forms.Label();
+            this.buttonVer = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.Catregoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TarjetaMostrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TarjetaCompleta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Vencimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.botonEliminar = new System.Windows.Forms.Button();
-            this.botonModificar = new System.Windows.Forms.Button();
-            this.buttonAgregar = new System.Windows.Forms.Button();
-            this.labelTitulo = new System.Windows.Forms.Label();
-            this.buttonVer = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTarjetas)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tablaTarjetas
@@ -52,6 +54,7 @@ namespace Interfaz
             this.tablaTarjetas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tablaTarjetas.BackgroundColor = System.Drawing.Color.White;
             this.tablaTarjetas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaTarjetas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Catregoria,
@@ -60,7 +63,7 @@ namespace Interfaz
             this.TarjetaMostrada,
             this.TarjetaCompleta,
             this.Vencimiento});
-            this.tablaTarjetas.Location = new System.Drawing.Point(2, 74);
+            this.tablaTarjetas.Location = new System.Drawing.Point(2, 105);
             this.tablaTarjetas.Margin = new System.Windows.Forms.Padding(2);
             this.tablaTarjetas.MultiSelect = false;
             this.tablaTarjetas.Name = "tablaTarjetas";
@@ -70,8 +73,69 @@ namespace Interfaz
             this.tablaTarjetas.RowTemplate.Height = 24;
             this.tablaTarjetas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tablaTarjetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tablaTarjetas.Size = new System.Drawing.Size(1010, 557);
+            this.tablaTarjetas.Size = new System.Drawing.Size(997, 499);
             this.tablaTarjetas.TabIndex = 0;
+            // 
+            // botonEliminar
+            // 
+            this.botonEliminar.Location = new System.Drawing.Point(891, 619);
+            this.botonEliminar.Name = "botonEliminar";
+            this.botonEliminar.Size = new System.Drawing.Size(108, 30);
+            this.botonEliminar.TabIndex = 3;
+            this.botonEliminar.Text = "Eliminar";
+            this.botonEliminar.UseVisualStyleBackColor = true;
+            this.botonEliminar.Click += new System.EventHandler(this.botonEliminar_Click);
+            // 
+            // botonModificar
+            // 
+            this.botonModificar.Location = new System.Drawing.Point(777, 619);
+            this.botonModificar.Name = "botonModificar";
+            this.botonModificar.Size = new System.Drawing.Size(108, 30);
+            this.botonModificar.TabIndex = 4;
+            this.botonModificar.Text = "Modificar";
+            this.botonModificar.UseVisualStyleBackColor = true;
+            this.botonModificar.Click += new System.EventHandler(this.botonModificar_Click);
+            // 
+            // buttonAgregar
+            // 
+            this.buttonAgregar.Location = new System.Drawing.Point(663, 619);
+            this.buttonAgregar.Name = "buttonAgregar";
+            this.buttonAgregar.Size = new System.Drawing.Size(108, 30);
+            this.buttonAgregar.TabIndex = 2;
+            this.buttonAgregar.Text = "Agregar";
+            this.buttonAgregar.UseVisualStyleBackColor = true;
+            this.buttonAgregar.Click += new System.EventHandler(this.buttonAgregar_Click);
+            // 
+            // labelTitulo
+            // 
+            this.labelTitulo.AutoSize = true;
+            this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
+            this.labelTitulo.ForeColor = System.Drawing.Color.White;
+            this.labelTitulo.Location = new System.Drawing.Point(405, 32);
+            this.labelTitulo.Name = "labelTitulo";
+            this.labelTitulo.Size = new System.Drawing.Size(192, 36);
+            this.labelTitulo.TabIndex = 4;
+            this.labelTitulo.Text = "Lista Tarjetas";
+            // 
+            // buttonVer
+            // 
+            this.buttonVer.Location = new System.Drawing.Point(549, 619);
+            this.buttonVer.Name = "buttonVer";
+            this.buttonVer.Size = new System.Drawing.Size(108, 30);
+            this.buttonVer.TabIndex = 1;
+            this.buttonVer.Text = "Ver";
+            this.buttonVer.UseVisualStyleBackColor = true;
+            this.buttonVer.Click += new System.EventHandler(this.buttonVer_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.panel1.Controls.Add(this.labelTitulo);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1002, 100);
+            this.panel1.TabIndex = 5;
             // 
             // Catregoria
             // 
@@ -80,7 +144,7 @@ namespace Interfaz
             this.Catregoria.Name = "Catregoria";
             this.Catregoria.ReadOnly = true;
             this.Catregoria.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Catregoria.Width = 125;
+            this.Catregoria.Width = 200;
             // 
             // Nombre
             // 
@@ -89,7 +153,7 @@ namespace Interfaz
             this.Nombre.Name = "Nombre";
             this.Nombre.ReadOnly = true;
             this.Nombre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Nombre.Width = 125;
+            this.Nombre.Width = 200;
             // 
             // Tipo
             // 
@@ -98,7 +162,7 @@ namespace Interfaz
             this.Tipo.Name = "Tipo";
             this.Tipo.ReadOnly = true;
             this.Tipo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Tipo.Width = 125;
+            this.Tipo.Width = 200;
             // 
             // TarjetaMostrada
             // 
@@ -107,7 +171,7 @@ namespace Interfaz
             this.TarjetaMostrada.Name = "TarjetaMostrada";
             this.TarjetaMostrada.ReadOnly = true;
             this.TarjetaMostrada.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.TarjetaMostrada.Width = 300;
+            this.TarjetaMostrada.Width = 200;
             // 
             // TarjetaCompleta
             // 
@@ -123,74 +187,25 @@ namespace Interfaz
             this.Vencimiento.Name = "Vencimiento";
             this.Vencimiento.ReadOnly = true;
             this.Vencimiento.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Vencimiento.Width = 125;
-            // 
-            // botonEliminar
-            // 
-            this.botonEliminar.Location = new System.Drawing.Point(830, 636);
-            this.botonEliminar.Name = "botonEliminar";
-            this.botonEliminar.Size = new System.Drawing.Size(86, 23);
-            this.botonEliminar.TabIndex = 3;
-            this.botonEliminar.Text = "Eliminar";
-            this.botonEliminar.UseVisualStyleBackColor = true;
-            this.botonEliminar.Click += new System.EventHandler(this.botonEliminar_Click);
-            // 
-            // botonModificar
-            // 
-            this.botonModificar.Location = new System.Drawing.Point(922, 636);
-            this.botonModificar.Name = "botonModificar";
-            this.botonModificar.Size = new System.Drawing.Size(86, 23);
-            this.botonModificar.TabIndex = 4;
-            this.botonModificar.Text = "Modificar";
-            this.botonModificar.UseVisualStyleBackColor = true;
-            this.botonModificar.Click += new System.EventHandler(this.botonModificar_Click);
-            // 
-            // buttonAgregar
-            // 
-            this.buttonAgregar.Location = new System.Drawing.Point(738, 636);
-            this.buttonAgregar.Name = "buttonAgregar";
-            this.buttonAgregar.Size = new System.Drawing.Size(86, 23);
-            this.buttonAgregar.TabIndex = 2;
-            this.buttonAgregar.Text = "Agregar";
-            this.buttonAgregar.UseVisualStyleBackColor = true;
-            this.buttonAgregar.Click += new System.EventHandler(this.buttonAgregar_Click);
-            // 
-            // labelTitulo
-            // 
-            this.labelTitulo.AutoSize = true;
-            this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitulo.Location = new System.Drawing.Point(3, 36);
-            this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(142, 25);
-            this.labelTitulo.TabIndex = 4;
-            this.labelTitulo.Text = "Lista Tarjetas";
-            // 
-            // buttonVer
-            // 
-            this.buttonVer.Location = new System.Drawing.Point(646, 636);
-            this.buttonVer.Name = "buttonVer";
-            this.buttonVer.Size = new System.Drawing.Size(86, 23);
-            this.buttonVer.TabIndex = 1;
-            this.buttonVer.Text = "Ver";
-            this.buttonVer.UseVisualStyleBackColor = true;
-            this.buttonVer.Click += new System.EventHandler(this.buttonVer_Click);
+            this.Vencimiento.Width = 200;
             // 
             // ListaTarjetas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.buttonVer);
-            this.Controls.Add(this.labelTitulo);
             this.Controls.Add(this.buttonAgregar);
             this.Controls.Add(this.botonModificar);
             this.Controls.Add(this.botonEliminar);
             this.Controls.Add(this.tablaTarjetas);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ListaTarjetas";
-            this.Size = new System.Drawing.Size(1014, 681);
+            this.Size = new System.Drawing.Size(1002, 681);
             ((System.ComponentModel.ISupportInitialize)(this.tablaTarjetas)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -201,12 +216,13 @@ namespace Interfaz
         private System.Windows.Forms.Button botonModificar;
         private System.Windows.Forms.Button buttonAgregar;
         private System.Windows.Forms.Label labelTitulo;
+        private System.Windows.Forms.Button buttonVer;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Catregoria;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn TarjetaMostrada;
         private System.Windows.Forms.DataGridViewTextBoxColumn TarjetaCompleta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Vencimiento;
-        private System.Windows.Forms.Button buttonVer;
     }
 }
