@@ -1540,12 +1540,13 @@ namespace TestsObligatorio
 
             List<Clave> getListaClaves = usuario.GetListaClaves();
             int cantidadRojas = 0;
-            foreach(Clave clave in getListaClaves)
+            ColorNivelSeguridad color = new ColorNivelSeguridad();
+            foreach (Clave clave in getListaClaves)
             {
-                if (clave.GetNivelSeguridad() == "rojo") cantidadRojas ++;
+                if (clave.GetNivelSeguridad() == color.Rojo) cantidadRojas ++;
             }
 
-            Assert.AreEqual(cantidadRojas, usuario.GetCantidadColor("rojo"));
+            Assert.AreEqual(cantidadRojas, usuario.GetCantidadColor(color.Rojo));
         }
 
         [TestMethod]
@@ -1580,7 +1581,8 @@ namespace TestsObligatorio
 
 
             List<Clave> getListaClaves = usuario.GetListaClaves();
-            string color = "verde claro";
+            ColorNivelSeguridad colores = new ColorNivelSeguridad();
+            string color = colores.VerdeClaro;
             int cantidadColor = 0;
             foreach (Clave clave in getListaClaves)
             {
