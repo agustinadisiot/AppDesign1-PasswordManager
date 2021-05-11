@@ -72,15 +72,10 @@ namespace Dominio
         {
             const int largoRojoMaximo = 7;
             const int largoNaranjaMaximo = 13;
-
-            string rojo = "rojo",
-                naranja = "naranja",
-                amarillo = "amarillo",
-                verdeClaro = "verde claro",
-                verdeOscuro = "verde oscuro";
-
-            if (this.Codigo.Length <= largoRojoMaximo) return rojo;
-            if(this.Codigo.Length <= largoNaranjaMaximo) return naranja;
+            ColorNivelSeguridad color = new ColorNivelSeguridad();
+         
+            if (this.Codigo.Length <= largoRojoMaximo) return color.Rojo;
+            if(this.Codigo.Length <= largoNaranjaMaximo) return color.Naranja;
 
             bool tieneMin = false,
                 tieneMay = false,
@@ -96,11 +91,11 @@ namespace Dominio
                     tieneNum = tieneNum || VerificadoraString.EsNumero(caracter);
                     tieneSim = tieneSim || VerificadoraString.EsSimbolo(caracter);
                 }
-                else return verdeOscuro;
+                else return color.VerdeOscuro;
             }
-            if(tieneMin && tieneMay) return (tieneNum && tieneSim) ? verdeOscuro : verdeClaro;
+            if(tieneMin && tieneMay) return (tieneNum && tieneSim) ? color.VerdeOscuro : color.VerdeClaro;
 
-            return amarillo;   
+            return color.Amarillo;   
         }
 
         public override bool Equals(object objeto)
