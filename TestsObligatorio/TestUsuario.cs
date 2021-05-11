@@ -26,7 +26,6 @@ namespace TestsObligatorio
             {
                 Nombre = "Roberto"
             };
-            Assert.AreEqual("Roberto", usuario.Nombre);
             usuario.Nombre = "Hernesto";
             Assert.AreEqual("Hernesto", usuario.Nombre);
         }
@@ -72,10 +71,8 @@ namespace TestsObligatorio
             {
                 ClaveMaestra = "Hola12345"
             };
-            Assert.AreEqual(true, usuario.ValidarIgualClaveMaestra("Hola12345"));
 
             usuario.ClaveMaestra = "Chau109876";
-            Assert.AreEqual(false, usuario.ValidarIgualClaveMaestra("Hola12345"));
             Assert.AreEqual(true, usuario.ValidarIgualClaveMaestra("Chau109876"));
         }
 
@@ -125,7 +122,6 @@ namespace TestsObligatorio
                 Nombre = "Trabajo"
             };
             usuario.AgregarCategoria(categoria);
-            Assert.AreEqual(false, usuario.EsListaCategoriasVacia());
             Categoria categoria2 = new Categoria()
             {
                 Nombre = "Personal"
@@ -451,7 +447,10 @@ namespace TestsObligatorio
                 primera,
                 segunda
             };
-            Assert.AreEqual(true, categorias.SequenceEqual(usuario.GetListaCategorias())); ;
+
+            List<Categoria> resultado = usuario.GetListaCategorias();
+
+            Assert.AreEqual(true, categorias.All(resultado.Contains)); ;
         }
 
     }
