@@ -65,7 +65,7 @@ namespace Interfaz
             // botonCancelar
             // 
             this.botonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.botonCancelar.Location = new System.Drawing.Point(700, 563);
+            this.botonCancelar.Location = new System.Drawing.Point(516, 563);
             this.botonCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.botonCancelar.Name = "botonCancelar";
             this.botonCancelar.Size = new System.Drawing.Size(144, 37);
@@ -121,7 +121,7 @@ namespace Interfaz
             // botonCrear
             // 
             this.botonCrear.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.botonCrear.Location = new System.Drawing.Point(516, 563);
+            this.botonCrear.Location = new System.Drawing.Point(700, 563);
             this.botonCrear.Margin = new System.Windows.Forms.Padding(2);
             this.botonCrear.Name = "botonCrear";
             this.botonCrear.Size = new System.Drawing.Size(144, 37);
