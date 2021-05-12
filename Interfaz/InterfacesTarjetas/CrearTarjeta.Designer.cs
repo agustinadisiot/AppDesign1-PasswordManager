@@ -230,7 +230,7 @@ namespace Interfaz
             this.inputNota.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.inputNota.Location = new System.Drawing.Point(412, 382);
             this.inputNota.Margin = new System.Windows.Forms.Padding(2);
-            this.inputNota.MaxLength = 25;
+            this.inputNota.MaxLength = 250;
             this.inputNota.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputNota.Multiline = true;
             this.inputNota.Name = "inputNota";
