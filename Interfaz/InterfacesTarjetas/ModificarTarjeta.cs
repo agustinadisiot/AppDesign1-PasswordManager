@@ -90,20 +90,20 @@ namespace Interfaz
                 }
                 catch (ObjetoYaExistenteException)
                 {
-                    this.labelErrores.Text = "Ya existe la Tarjeta a la que se intento modificar.";
+                    this.labelErrores.Text = "Error: Ya existe la Tarjeta a la que se intento modificar.";
                 }
                 catch (CategoriaInexistenteException)
                 {
-                    this.labelErrores.Text = "No existe la categoria a la que se intento cambiar.";
+                    this.labelErrores.Text = "Error: No existe la categoria a la que se intento cambiar.";
                 }
                 catch (ObjetoInexistenteException)
                 {
-                    this.labelErrores.Text = "No existe la tarjeta original.";
+                    this.labelErrores.Text = "Error: No existe la tarjeta original.";
                 }
             }
             catch (Exception)
             {
-                this.labelErrores.Text = "Hay un error en los datos ingresados.";
+                this.labelErrores.Text = "Error: Datos ingresados incorrectos.";
             }
 
         }

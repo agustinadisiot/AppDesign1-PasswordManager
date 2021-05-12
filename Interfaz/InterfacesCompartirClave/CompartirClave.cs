@@ -93,11 +93,11 @@ namespace Interfaz
                 }
                 catch (Exception)
                 {
-                    this.labelErrores.Text = "Contraseña ya compartida.";
+                    this.labelErrores.Text = "Error: Contraseña ya compartida.";
                 }
             }
             else {
-                this.labelErrores.Text = "Debe elegir un usuario al cual compartir.";
+                this.labelErrores.Text = "Error: Debe elegir un usuario al cual compartir.";
             }
         }
 

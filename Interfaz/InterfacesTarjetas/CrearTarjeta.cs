@@ -75,17 +75,17 @@ namespace Interfaz
                     catch (Exception)
                     {
 
-                        this.labelErrores.Text = "Ya existe la Tarjeta que se intento agregar.";
+                        this.labelErrores.Text = "Error: Ya existe la Tarjeta que se intento agregar.";
 
                     }
                 }
                 catch (Exception)
                 {
-                    this.labelErrores.Text = "Hay un error en los datos ingresados";
+                    this.labelErrores.Text = "Error: Datos ingresados incorrectos.";
                 }
             }
             else {
-                this.labelErrores.Text = "Debe elegir una categoria";
+                this.labelErrores.Text = "Error: Debe elegir una categoria";
             }
 
             

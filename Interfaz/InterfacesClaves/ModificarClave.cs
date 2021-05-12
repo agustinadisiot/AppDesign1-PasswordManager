@@ -91,20 +91,20 @@ namespace Interfaz.InterfacesClaves
                 }
                 catch (ObjetoYaExistenteException)
                 {
-                    this.labelErrores.Text = "Ya existe la contraseña a la que se intento modificar.";
+                    this.labelErrores.Text = "Error: Ya existe la contraseña a la que se intento modificar.";
                 }
                 catch (CategoriaInexistenteException)
                 {
-                    this.labelErrores.Text = "No existe la categoria a la que se intento cambiar.";
+                    this.labelErrores.Text = "Error: No existe la categoria a la que se intento cambiar.";
                 }
                 catch (ObjetoInexistenteException)
                 {
-                    this.labelErrores.Text = "No existe la contraseña original.";
+                    this.labelErrores.Text = "Error: No existe la contraseña original.";
                 }
             }
             catch (Exception)
             {
-                this.labelErrores.Text = "Hay un error en los datos ingresados.";
+                this.labelErrores.Text = "Error: Datos ingresados incorrectos.";
             }
 
         }
@@ -129,7 +129,7 @@ namespace Interfaz.InterfacesClaves
             }
             catch (ClaveGeneradaVaciaException)
             {
-                this.labelErrores.Text = "Por lo menos un tipo de caracter debe ser elegido.";
+                this.labelErrores.Text = "Error: Se debe elegir por lo menos un tipo de caracter.";
             };
         }
 

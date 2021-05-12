@@ -38,17 +38,17 @@ namespace Interfaz
                         this.EnviarIniciarSesion(verdadero);
                     }
                     else {
-                        this.labelErrores.Text = "La contraseña es incorrecta.";
+                        this.labelErrores.Text = "Error: La contraseña es incorrecta.";
                     }
 
                 }
                 catch (Exception) {
-                    this.labelErrores.Text = "No existe el Usuario.";
+                    this.labelErrores.Text = "Error: No existe el Usuario.";
                 }
 
             }
             catch (Exception) {
-                this.labelErrores.Text = "Los datos ingresados contienen un error.";
+                this.labelErrores.Text = "Error: Datos ingresados incorrectos.";
             }
         }
 

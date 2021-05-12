@@ -35,12 +35,12 @@ namespace Interfaz
                     this.EnviarSalirCrearUsuario();
                 }
                 catch (Exception) {
-                    this.labelErrores.Text = "Ya existe el Usuario";
+                    this.labelErrores.Text = "Error: Ya existe el Usuario";
                 }
 
             }
             catch (Exception) {
-                this.labelErrores.Text = "El nombre o contraseña no cumplen las restricciones.";
+                this.labelErrores.Text = "Error: Datos ingresados incorrectos.";
             }
 
         }
