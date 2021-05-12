@@ -23,8 +23,6 @@ namespace Interfaz
         {
             try
             {
-
-
                 Usuario iniciar = new Usuario()
                 {
                     Nombre = this.inputUsuario.Text,

@@ -39,12 +39,14 @@ namespace Interfaz
             this.botonListaClaves = new System.Windows.Forms.Button();
             this.botonListaCategorias = new System.Windows.Forms.Button();
             this.panelPrincipal = new System.Windows.Forms.Panel();
+            this.labelUsuarioActual = new System.Windows.Forms.Label();
             this.panelDrawer.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelDrawer
             // 
             this.panelDrawer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.panelDrawer.Controls.Add(this.labelUsuarioActual);
             this.panelDrawer.Controls.Add(this.botonCerrarSesion);
             this.panelDrawer.Controls.Add(this.botonDataBreaches);
             this.panelDrawer.Controls.Add(this.botonReporteFortaleza);
@@ -201,6 +203,21 @@ namespace Interfaz
             this.panelPrincipal.Size = new System.Drawing.Size(1002, 681);
             this.panelPrincipal.TabIndex = 1;
             // 
+            // labelUsuarioActual
+            // 
+            this.labelUsuarioActual.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelUsuarioActual.AutoSize = true;
+            this.labelUsuarioActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUsuarioActual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(189)))), ((int)(((byte)(223)))));
+            this.labelUsuarioActual.Location = new System.Drawing.Point(6, 9);
+            this.labelUsuarioActual.MaximumSize = new System.Drawing.Size(190, 90);
+            this.labelUsuarioActual.MinimumSize = new System.Drawing.Size(190, 90);
+            this.labelUsuarioActual.Name = "labelUsuarioActual";
+            this.labelUsuarioActual.Size = new System.Drawing.Size(190, 90);
+            this.labelUsuarioActual.TabIndex = 8;
+            this.labelUsuarioActual.Text = "UsuarioActual";
+            this.labelUsuarioActual.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // VentanaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -217,6 +234,7 @@ namespace Interfaz
             this.Text = "Ventana Principal";
             this.Load += new System.EventHandler(this.VentanaPrincipal_Load);
             this.panelDrawer.ResumeLayout(false);
+            this.panelDrawer.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -233,6 +251,7 @@ namespace Interfaz
         private System.Windows.Forms.Button botonClavesQueComparto;
         private System.Windows.Forms.Button botonListaClaves;
         private System.Windows.Forms.Button botonCerrarSesion;
+        private System.Windows.Forms.Label labelUsuarioActual;
     }
 }
 

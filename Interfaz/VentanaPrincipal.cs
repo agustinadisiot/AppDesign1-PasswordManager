@@ -202,10 +202,6 @@ namespace Interfaz
                 this.panelPrincipal.Controls.Clear();
                 panelPrincipal.Controls.Add(iniciarSesion);
             }
-            else
-            {
-
-            }
         }
 
         private void IniciarSesion_Handler(Usuario aIngresar)
@@ -216,6 +212,8 @@ namespace Interfaz
             listaCategorias.AbrirModificarCategorias_Event += AbrirModificarCategorias_Handler;
 
             this.panelDrawer.Visible = true;
+
+            this.labelUsuarioActual.Text = _usuarioActual.Nombre;
 
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(listaCategorias);
