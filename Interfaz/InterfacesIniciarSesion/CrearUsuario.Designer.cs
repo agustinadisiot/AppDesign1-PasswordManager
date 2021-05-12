@@ -126,6 +126,7 @@ namespace Interfaz
             this.labelErrores.AutoSize = true;
             this.labelErrores.ForeColor = System.Drawing.Color.Red;
             this.labelErrores.Location = new System.Drawing.Point(779, 375);
+            this.labelErrores.MaximumSize = new System.Drawing.Size(222, 90);
             this.labelErrores.Name = "labelErrores";
             this.labelErrores.Size = new System.Drawing.Size(64, 13);
             this.labelErrores.TabIndex = 17;

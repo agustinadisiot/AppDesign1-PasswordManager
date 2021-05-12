@@ -61,12 +61,15 @@ namespace Interfaz.InterfacesClaves
             // 
             this.labelErrores.AutoSize = true;
             this.labelErrores.ForeColor = System.Drawing.Color.Red;
-            this.labelErrores.Location = new System.Drawing.Point(755, 642);
+            this.labelErrores.Location = new System.Drawing.Point(754, 570);
             this.labelErrores.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelErrores.MaximumSize = new System.Drawing.Size(222, 90);
+            this.labelErrores.MinimumSize = new System.Drawing.Size(222, 90);
             this.labelErrores.Name = "labelErrores";
-            this.labelErrores.Size = new System.Drawing.Size(62, 13);
+            this.labelErrores.Size = new System.Drawing.Size(222, 90);
             this.labelErrores.TabIndex = 68;
             this.labelErrores.Text = "labelErrores";
+            this.labelErrores.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBoxClave
             // 
