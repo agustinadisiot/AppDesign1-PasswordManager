@@ -29,7 +29,9 @@ namespace Interfaz
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentanaPrincipal));
             this.panelDrawer = new System.Windows.Forms.Panel();
+            this.labelUsuarioActual = new System.Windows.Forms.Label();
             this.botonCerrarSesion = new System.Windows.Forms.Button();
             this.botonDataBreaches = new System.Windows.Forms.Button();
             this.botonReporteFortaleza = new System.Windows.Forms.Button();
@@ -39,7 +41,6 @@ namespace Interfaz
             this.botonListaClaves = new System.Windows.Forms.Button();
             this.botonListaCategorias = new System.Windows.Forms.Button();
             this.panelPrincipal = new System.Windows.Forms.Panel();
-            this.labelUsuarioActual = new System.Windows.Forms.Label();
             this.panelDrawer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,6 +62,21 @@ namespace Interfaz
             this.panelDrawer.Name = "panelDrawer";
             this.panelDrawer.Size = new System.Drawing.Size(201, 681);
             this.panelDrawer.TabIndex = 0;
+            // 
+            // labelUsuarioActual
+            // 
+            this.labelUsuarioActual.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelUsuarioActual.AutoSize = true;
+            this.labelUsuarioActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUsuarioActual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(189)))), ((int)(((byte)(223)))));
+            this.labelUsuarioActual.Location = new System.Drawing.Point(6, 9);
+            this.labelUsuarioActual.MaximumSize = new System.Drawing.Size(190, 90);
+            this.labelUsuarioActual.MinimumSize = new System.Drawing.Size(190, 90);
+            this.labelUsuarioActual.Name = "labelUsuarioActual";
+            this.labelUsuarioActual.Size = new System.Drawing.Size(190, 90);
+            this.labelUsuarioActual.TabIndex = 8;
+            this.labelUsuarioActual.Text = "UsuarioActual";
+            this.labelUsuarioActual.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // botonCerrarSesion
             // 
@@ -203,21 +219,6 @@ namespace Interfaz
             this.panelPrincipal.Size = new System.Drawing.Size(1002, 681);
             this.panelPrincipal.TabIndex = 1;
             // 
-            // labelUsuarioActual
-            // 
-            this.labelUsuarioActual.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelUsuarioActual.AutoSize = true;
-            this.labelUsuarioActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUsuarioActual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(189)))), ((int)(((byte)(223)))));
-            this.labelUsuarioActual.Location = new System.Drawing.Point(6, 9);
-            this.labelUsuarioActual.MaximumSize = new System.Drawing.Size(190, 90);
-            this.labelUsuarioActual.MinimumSize = new System.Drawing.Size(190, 90);
-            this.labelUsuarioActual.Name = "labelUsuarioActual";
-            this.labelUsuarioActual.Size = new System.Drawing.Size(190, 90);
-            this.labelUsuarioActual.TabIndex = 8;
-            this.labelUsuarioActual.Text = "UsuarioActual";
-            this.labelUsuarioActual.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // VentanaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -227,6 +228,7 @@ namespace Interfaz
             this.Controls.Add(this.panelPrincipal);
             this.Controls.Add(this.panelDrawer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
