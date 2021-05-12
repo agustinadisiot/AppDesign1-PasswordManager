@@ -179,10 +179,10 @@ namespace Interfaz.InterfacesTarjetas
             this.labelMostrarCategoria.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelMostrarCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelMostrarCategoria.Location = new System.Drawing.Point(412, 125);
-            this.labelMostrarCategoria.MaximumSize = new System.Drawing.Size(248, 29);
-            this.labelMostrarCategoria.MinimumSize = new System.Drawing.Size(248, 29);
+            this.labelMostrarCategoria.MaximumSize = new System.Drawing.Size(432, 29);
+            this.labelMostrarCategoria.MinimumSize = new System.Drawing.Size(432, 29);
             this.labelMostrarCategoria.Name = "labelMostrarCategoria";
-            this.labelMostrarCategoria.Size = new System.Drawing.Size(248, 29);
+            this.labelMostrarCategoria.Size = new System.Drawing.Size(432, 29);
             this.labelMostrarCategoria.TabIndex = 1;
             // 
             // labelMostrarNombre
@@ -192,10 +192,10 @@ namespace Interfaz.InterfacesTarjetas
             this.labelMostrarNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelMostrarNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelMostrarNombre.Location = new System.Drawing.Point(412, 172);
-            this.labelMostrarNombre.MaximumSize = new System.Drawing.Size(248, 29);
-            this.labelMostrarNombre.MinimumSize = new System.Drawing.Size(248, 29);
+            this.labelMostrarNombre.MaximumSize = new System.Drawing.Size(432, 29);
+            this.labelMostrarNombre.MinimumSize = new System.Drawing.Size(432, 29);
             this.labelMostrarNombre.Name = "labelMostrarNombre";
-            this.labelMostrarNombre.Size = new System.Drawing.Size(248, 29);
+            this.labelMostrarNombre.Size = new System.Drawing.Size(432, 29);
             this.labelMostrarNombre.TabIndex = 2;
             // 
             // labelMostrarTipo
@@ -205,10 +205,10 @@ namespace Interfaz.InterfacesTarjetas
             this.labelMostrarTipo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelMostrarTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelMostrarTipo.Location = new System.Drawing.Point(412, 215);
-            this.labelMostrarTipo.MaximumSize = new System.Drawing.Size(248, 29);
-            this.labelMostrarTipo.MinimumSize = new System.Drawing.Size(248, 29);
+            this.labelMostrarTipo.MaximumSize = new System.Drawing.Size(432, 29);
+            this.labelMostrarTipo.MinimumSize = new System.Drawing.Size(432, 29);
             this.labelMostrarTipo.Name = "labelMostrarTipo";
-            this.labelMostrarTipo.Size = new System.Drawing.Size(248, 29);
+            this.labelMostrarTipo.Size = new System.Drawing.Size(432, 29);
             this.labelMostrarTipo.TabIndex = 3;
             // 
             // labelMostrarNumero
@@ -218,10 +218,10 @@ namespace Interfaz.InterfacesTarjetas
             this.labelMostrarNumero.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelMostrarNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelMostrarNumero.Location = new System.Drawing.Point(412, 258);
-            this.labelMostrarNumero.MaximumSize = new System.Drawing.Size(248, 29);
-            this.labelMostrarNumero.MinimumSize = new System.Drawing.Size(248, 29);
+            this.labelMostrarNumero.MaximumSize = new System.Drawing.Size(432, 29);
+            this.labelMostrarNumero.MinimumSize = new System.Drawing.Size(432, 29);
             this.labelMostrarNumero.Name = "labelMostrarNumero";
-            this.labelMostrarNumero.Size = new System.Drawing.Size(248, 29);
+            this.labelMostrarNumero.Size = new System.Drawing.Size(432, 29);
             this.labelMostrarNumero.TabIndex = 4;
             // 
             // labelMostrarCodigo
@@ -231,10 +231,10 @@ namespace Interfaz.InterfacesTarjetas
             this.labelMostrarCodigo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelMostrarCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelMostrarCodigo.Location = new System.Drawing.Point(412, 301);
-            this.labelMostrarCodigo.MaximumSize = new System.Drawing.Size(248, 29);
-            this.labelMostrarCodigo.MinimumSize = new System.Drawing.Size(248, 29);
+            this.labelMostrarCodigo.MaximumSize = new System.Drawing.Size(432, 29);
+            this.labelMostrarCodigo.MinimumSize = new System.Drawing.Size(432, 29);
             this.labelMostrarCodigo.Name = "labelMostrarCodigo";
-            this.labelMostrarCodigo.Size = new System.Drawing.Size(248, 29);
+            this.labelMostrarCodigo.Size = new System.Drawing.Size(432, 29);
             this.labelMostrarCodigo.TabIndex = 5;
             // 
             // labelMostrarVencimiento
@@ -244,10 +244,10 @@ namespace Interfaz.InterfacesTarjetas
             this.labelMostrarVencimiento.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelMostrarVencimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelMostrarVencimiento.Location = new System.Drawing.Point(412, 344);
-            this.labelMostrarVencimiento.MaximumSize = new System.Drawing.Size(248, 29);
-            this.labelMostrarVencimiento.MinimumSize = new System.Drawing.Size(248, 29);
+            this.labelMostrarVencimiento.MaximumSize = new System.Drawing.Size(432, 29);
+            this.labelMostrarVencimiento.MinimumSize = new System.Drawing.Size(432, 29);
             this.labelMostrarVencimiento.Name = "labelMostrarVencimiento";
-            this.labelMostrarVencimiento.Size = new System.Drawing.Size(248, 29);
+            this.labelMostrarVencimiento.Size = new System.Drawing.Size(432, 29);
             this.labelMostrarVencimiento.TabIndex = 6;
             // 
             // inputNota
