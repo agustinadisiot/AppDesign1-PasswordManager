@@ -131,6 +131,23 @@ namespace TestsObligatorio
         }
 
         [TestMethod]
+        public void AdministradorPedirUsuarioSinMayuscula()
+        {
+            Administrador administrador = new Administrador();
+            Usuario usuario = new Usuario
+            {
+                Nombre = "Roberto"
+            };
+            administrador.AgregarUsuario(usuario);
+
+            Usuario aBuscar = new Usuario
+            {
+                Nombre = "roberto"
+            };
+            Assert.AreEqual(usuario, administrador.GetUsuario(aBuscar));
+        }
+
+        [TestMethod]
         public void AdministradorPedirUsuarioInexistente()
         {
             Administrador administrador = new Administrador();

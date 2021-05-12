@@ -27,10 +27,8 @@ namespace Dominio
 
         public Usuario GetUsuario(Usuario aBuscar)
         {
-            Predicate<Usuario> buscadorNombre = (Usuario usuario) => { return usuario.Nombre == aBuscar.Nombre; };
-            
-            Usuario retorno = this._usuarios.Find(buscadorNombre);
-            return retorno != null ? retorno : throw new ObjetoInexistenteException();
+            if (!this.YaExisteUsuario(aBuscar)) throw new ObjetoInexistenteException();
+            return this._usuarios.First(aBuscar.Equals);
         }
 
         public bool YaExisteUsuario(Usuario buscador)
