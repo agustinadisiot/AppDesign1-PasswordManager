@@ -29,8 +29,8 @@ namespace Interfaz
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.grafica = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.labelTitulo = new System.Windows.Forms.Label();
             this.botonVolver = new System.Windows.Forms.Button();
@@ -41,10 +41,10 @@ namespace Interfaz
             // 
             // grafica
             // 
-            chartArea2.Name = "ChartArea1";
-            this.grafica.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.grafica.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.grafica.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.grafica.Legends.Add(legend1);
             this.grafica.Location = new System.Drawing.Point(64, 106);
             this.grafica.Name = "grafica";
             this.grafica.Size = new System.Drawing.Size(873, 469);
@@ -60,7 +60,7 @@ namespace Interfaz
             this.labelTitulo.Name = "labelTitulo";
             this.labelTitulo.Size = new System.Drawing.Size(255, 36);
             this.labelTitulo.TabIndex = 29;
-            this.labelTitulo.Text = "Grafica Seguridad";
+            this.labelTitulo.Text = "Gráfica Seguridad";
             // 
             // botonVolver
             // 
