@@ -41,9 +41,10 @@ namespace Interfaz
             // 
             // botonCancelar
             // 
-            this.botonCancelar.Location = new System.Drawing.Point(324, 397);
+            this.botonCancelar.Location = new System.Drawing.Point(432, 489);
+            this.botonCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.botonCancelar.Name = "botonCancelar";
-            this.botonCancelar.Size = new System.Drawing.Size(123, 34);
+            this.botonCancelar.Size = new System.Drawing.Size(164, 42);
             this.botonCancelar.TabIndex = 19;
             this.botonCancelar.Text = "Cancelar";
             this.botonCancelar.UseVisualStyleBackColor = true;
@@ -51,9 +52,10 @@ namespace Interfaz
             // 
             // botonAceptar
             // 
-            this.botonAceptar.Location = new System.Drawing.Point(509, 397);
+            this.botonAceptar.Location = new System.Drawing.Point(679, 489);
+            this.botonAceptar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.botonAceptar.Name = "botonAceptar";
-            this.botonAceptar.Size = new System.Drawing.Size(123, 34);
+            this.botonAceptar.Size = new System.Drawing.Size(164, 42);
             this.botonAceptar.TabIndex = 18;
             this.botonAceptar.Text = "Aceptar";
             this.botonAceptar.UseVisualStyleBackColor = true;
@@ -63,17 +65,19 @@ namespace Interfaz
             // 
             this.labelNombreCategoria.AutoSize = true;
             this.labelNombreCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNombreCategoria.Location = new System.Drawing.Point(309, 302);
+            this.labelNombreCategoria.Location = new System.Drawing.Point(412, 372);
+            this.labelNombreCategoria.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNombreCategoria.Name = "labelNombreCategoria";
-            this.labelNombreCategoria.Size = new System.Drawing.Size(65, 20);
+            this.labelNombreCategoria.Size = new System.Drawing.Size(81, 25);
             this.labelNombreCategoria.TabIndex = 17;
             this.labelNombreCategoria.Text = "Nombre";
             // 
             // textNombreCategoria
             // 
-            this.textNombreCategoria.Location = new System.Drawing.Point(427, 304);
+            this.textNombreCategoria.Location = new System.Drawing.Point(569, 374);
+            this.textNombreCategoria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textNombreCategoria.Name = "textNombreCategoria";
-            this.textNombreCategoria.Size = new System.Drawing.Size(168, 20);
+            this.textNombreCategoria.Size = new System.Drawing.Size(223, 22);
             this.textNombreCategoria.TabIndex = 16;
             // 
             // labelModificarCategoria
@@ -81,20 +85,22 @@ namespace Interfaz
             this.labelModificarCategoria.AutoSize = true;
             this.labelModificarCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.labelModificarCategoria.ForeColor = System.Drawing.Color.White;
-            this.labelModificarCategoria.Location = new System.Drawing.Point(365, 32);
+            this.labelModificarCategoria.Location = new System.Drawing.Point(487, 39);
+            this.labelModificarCategoria.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelModificarCategoria.Name = "labelModificarCategoria";
-            this.labelModificarCategoria.Size = new System.Drawing.Size(273, 36);
+            this.labelModificarCategoria.Size = new System.Drawing.Size(341, 42);
             this.labelModificarCategoria.TabIndex = 15;
-            this.labelModificarCategoria.Text = "Modificar Categoria";
+            this.labelModificarCategoria.Text = "Modificar Categoría";
             // 
             // labelErrores
             // 
             this.labelErrores.AutoSize = true;
             this.labelErrores.ForeColor = System.Drawing.Color.Red;
-            this.labelErrores.Location = new System.Drawing.Point(672, 408);
-            this.labelErrores.MaximumSize = new System.Drawing.Size(222, 90);
+            this.labelErrores.Location = new System.Drawing.Point(896, 502);
+            this.labelErrores.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelErrores.MaximumSize = new System.Drawing.Size(296, 111);
             this.labelErrores.Name = "labelErrores";
-            this.labelErrores.Size = new System.Drawing.Size(64, 13);
+            this.labelErrores.Size = new System.Drawing.Size(88, 17);
             this.labelErrores.TabIndex = 20;
             this.labelErrores.Text = "MostrarError";
             // 
@@ -104,13 +110,14 @@ namespace Interfaz
             this.panel1.Controls.Add(this.labelModificarCategoria);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1002, 100);
+            this.panel1.Size = new System.Drawing.Size(1336, 123);
             this.panel1.TabIndex = 21;
             // 
             // ModificarCategoria
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
@@ -119,8 +126,9 @@ namespace Interfaz
             this.Controls.Add(this.botonAceptar);
             this.Controls.Add(this.labelNombreCategoria);
             this.Controls.Add(this.textNombreCategoria);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ModificarCategoria";
-            this.Size = new System.Drawing.Size(1002, 681);
+            this.Size = new System.Drawing.Size(1336, 838);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

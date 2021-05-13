@@ -63,8 +63,8 @@ namespace Interfaz
             this.TarjetaMostrada,
             this.TarjetaCompleta,
             this.Vencimiento});
-            this.tablaTarjetas.Location = new System.Drawing.Point(2, 105);
-            this.tablaTarjetas.Margin = new System.Windows.Forms.Padding(2);
+            this.tablaTarjetas.Location = new System.Drawing.Point(3, 129);
+            this.tablaTarjetas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tablaTarjetas.MultiSelect = false;
             this.tablaTarjetas.Name = "tablaTarjetas";
             this.tablaTarjetas.ReadOnly = true;
@@ -73,14 +73,15 @@ namespace Interfaz
             this.tablaTarjetas.RowTemplate.Height = 24;
             this.tablaTarjetas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tablaTarjetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tablaTarjetas.Size = new System.Drawing.Size(997, 499);
+            this.tablaTarjetas.Size = new System.Drawing.Size(1329, 614);
             this.tablaTarjetas.TabIndex = 0;
             // 
             // botonEliminar
             // 
-            this.botonEliminar.Location = new System.Drawing.Point(891, 619);
+            this.botonEliminar.Location = new System.Drawing.Point(1188, 762);
+            this.botonEliminar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.botonEliminar.Name = "botonEliminar";
-            this.botonEliminar.Size = new System.Drawing.Size(108, 30);
+            this.botonEliminar.Size = new System.Drawing.Size(144, 37);
             this.botonEliminar.TabIndex = 3;
             this.botonEliminar.Text = "Eliminar";
             this.botonEliminar.UseVisualStyleBackColor = true;
@@ -88,9 +89,10 @@ namespace Interfaz
             // 
             // botonModificar
             // 
-            this.botonModificar.Location = new System.Drawing.Point(777, 619);
+            this.botonModificar.Location = new System.Drawing.Point(1036, 762);
+            this.botonModificar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.botonModificar.Name = "botonModificar";
-            this.botonModificar.Size = new System.Drawing.Size(108, 30);
+            this.botonModificar.Size = new System.Drawing.Size(144, 37);
             this.botonModificar.TabIndex = 4;
             this.botonModificar.Text = "Modificar";
             this.botonModificar.UseVisualStyleBackColor = true;
@@ -98,9 +100,10 @@ namespace Interfaz
             // 
             // buttonAgregar
             // 
-            this.buttonAgregar.Location = new System.Drawing.Point(663, 619);
+            this.buttonAgregar.Location = new System.Drawing.Point(884, 762);
+            this.buttonAgregar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonAgregar.Name = "buttonAgregar";
-            this.buttonAgregar.Size = new System.Drawing.Size(108, 30);
+            this.buttonAgregar.Size = new System.Drawing.Size(144, 37);
             this.buttonAgregar.TabIndex = 2;
             this.buttonAgregar.Text = "Agregar";
             this.buttonAgregar.UseVisualStyleBackColor = true;
@@ -111,17 +114,19 @@ namespace Interfaz
             this.labelTitulo.AutoSize = true;
             this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.labelTitulo.ForeColor = System.Drawing.Color.White;
-            this.labelTitulo.Location = new System.Drawing.Point(405, 32);
+            this.labelTitulo.Location = new System.Drawing.Point(540, 39);
+            this.labelTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(192, 36);
+            this.labelTitulo.Size = new System.Drawing.Size(242, 42);
             this.labelTitulo.TabIndex = 4;
             this.labelTitulo.Text = "Lista Tarjetas";
             // 
             // buttonVer
             // 
-            this.buttonVer.Location = new System.Drawing.Point(549, 619);
+            this.buttonVer.Location = new System.Drawing.Point(732, 762);
+            this.buttonVer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonVer.Name = "buttonVer";
-            this.buttonVer.Size = new System.Drawing.Size(108, 30);
+            this.buttonVer.Size = new System.Drawing.Size(144, 37);
             this.buttonVer.TabIndex = 1;
             this.buttonVer.Text = "Ver";
             this.buttonVer.UseVisualStyleBackColor = true;
@@ -133,13 +138,14 @@ namespace Interfaz
             this.panel1.Controls.Add(this.labelTitulo);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1002, 100);
+            this.panel1.Size = new System.Drawing.Size(1336, 123);
             this.panel1.TabIndex = 5;
             // 
             // Catregoria
             // 
-            this.Catregoria.HeaderText = "Categoria";
+            this.Catregoria.HeaderText = "Categoría";
             this.Catregoria.MinimumWidth = 6;
             this.Catregoria.Name = "Catregoria";
             this.Catregoria.ReadOnly = true;
@@ -176,9 +182,11 @@ namespace Interfaz
             // TarjetaCompleta
             // 
             this.TarjetaCompleta.HeaderText = "TarjetaCompleta";
+            this.TarjetaCompleta.MinimumWidth = 6;
             this.TarjetaCompleta.Name = "TarjetaCompleta";
             this.TarjetaCompleta.ReadOnly = true;
             this.TarjetaCompleta.Visible = false;
+            this.TarjetaCompleta.Width = 125;
             // 
             // Vencimiento
             // 
@@ -191,7 +199,7 @@ namespace Interfaz
             // 
             // ListaTarjetas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.buttonVer);
@@ -199,9 +207,9 @@ namespace Interfaz
             this.Controls.Add(this.botonModificar);
             this.Controls.Add(this.botonEliminar);
             this.Controls.Add(this.tablaTarjetas);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ListaTarjetas";
-            this.Size = new System.Drawing.Size(1002, 681);
+            this.Size = new System.Drawing.Size(1336, 838);
             ((System.ComponentModel.ISupportInitialize)(this.tablaTarjetas)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

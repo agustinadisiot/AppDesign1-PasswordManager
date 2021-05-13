@@ -79,7 +79,7 @@ namespace Interfaz
                     catch (ObjetoYaExistenteException)
                     {
 
-                        this.labelErrores.Text = "Error: Ya existe la contraseña que se intento agregar.";
+                        this.labelErrores.Text = "Error: Ya existe la contraseña que se intentó agregar.";
 
                     }
                 }
@@ -89,7 +89,7 @@ namespace Interfaz
                 }
             }
             else {
-                this.labelErrores.Text = "Error: Debe elegir una categoria.";
+                this.labelErrores.Text = "Error: Debe elegir una categoría.";
             }
         }
 
@@ -114,7 +114,7 @@ namespace Interfaz
                 }
                 catch (ClaveGeneradaVaciaException)
                 {
-                    this.labelErrores.Text = "Error: Se debe elegir por lo menos un tipo de caracter.";
+                    this.labelErrores.Text = "Error: Se debe elegir por lo menos un tipo de carácter.";
                 };
             }
             catch (LargoIncorrectoException) {

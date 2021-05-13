@@ -40,14 +40,14 @@ namespace Interfaz
                 }
                 catch
                 {
-                    this.labelErrores.Text = "Error: Ya existe una categoria con el mismo nombre.";
+                    this.labelErrores.Text = "Error: Ya existe una categoría con el mismo nombre.";
                 }
                 
 
             }
             catch (Exception)
             {
-                this.labelErrores.Text = "Error: El largo del nombre de la categoria no puede ser menor a 3 ni mayor a 15.";
+                this.labelErrores.Text = "Error: El largo del nombre de la categoría no puede ser menor a 3 ni mayor a 15.";
             }
         }
 

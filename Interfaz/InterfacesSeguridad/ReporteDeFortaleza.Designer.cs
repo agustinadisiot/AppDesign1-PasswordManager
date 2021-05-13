@@ -29,7 +29,7 @@ namespace Interfaz.InterfacesSeguridad
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.botonGrafica = new System.Windows.Forms.Button();
             this.TablaReporte = new System.Windows.Forms.DataGridView();
             this.Color = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,9 +50,10 @@ namespace Interfaz.InterfacesSeguridad
             // 
             // botonGrafica
             // 
-            this.botonGrafica.Location = new System.Drawing.Point(22, 567);
+            this.botonGrafica.Location = new System.Drawing.Point(29, 698);
+            this.botonGrafica.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.botonGrafica.Name = "botonGrafica";
-            this.botonGrafica.Size = new System.Drawing.Size(143, 38);
+            this.botonGrafica.Size = new System.Drawing.Size(191, 47);
             this.botonGrafica.TabIndex = 5;
             this.botonGrafica.Text = "Grafica";
             this.botonGrafica.UseVisualStyleBackColor = true;
@@ -69,24 +70,25 @@ namespace Interfaz.InterfacesSeguridad
             this.TablaReporte.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Color,
             this.CantidadClaves});
-            this.TablaReporte.Location = new System.Drawing.Point(22, 123);
+            this.TablaReporte.Location = new System.Drawing.Point(29, 151);
+            this.TablaReporte.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TablaReporte.MultiSelect = false;
             this.TablaReporte.Name = "TablaReporte";
             this.TablaReporte.ReadOnly = true;
             this.TablaReporte.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.TablaReporte.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.TablaReporte.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.TablaReporte.RowHeadersVisible = false;
             this.TablaReporte.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.TablaReporte.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.TablaReporte.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.TablaReporte.Size = new System.Drawing.Size(228, 146);
+            this.TablaReporte.Size = new System.Drawing.Size(304, 180);
             this.TablaReporte.TabIndex = 1;
             // 
             // Color
@@ -101,17 +103,19 @@ namespace Interfaz.InterfacesSeguridad
             // CantidadClaves
             // 
             this.CantidadClaves.HeaderText = "Cantidad de Contraseñas";
+            this.CantidadClaves.MinimumWidth = 6;
             this.CantidadClaves.Name = "CantidadClaves";
             this.CantidadClaves.ReadOnly = true;
             this.CantidadClaves.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CantidadClaves.Width = 125;
             // 
             // botonModificar
             // 
             this.botonModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.botonModificar.Location = new System.Drawing.Point(615, 567);
-            this.botonModificar.Margin = new System.Windows.Forms.Padding(4);
+            this.botonModificar.Location = new System.Drawing.Point(820, 698);
+            this.botonModificar.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.botonModificar.Name = "botonModificar";
-            this.botonModificar.Size = new System.Drawing.Size(143, 38);
+            this.botonModificar.Size = new System.Drawing.Size(191, 47);
             this.botonModificar.TabIndex = 4;
             this.botonModificar.Text = "Modificar";
             this.botonModificar.UseVisualStyleBackColor = true;
@@ -122,10 +126,10 @@ namespace Interfaz.InterfacesSeguridad
             this.labelTitulo.AutoSize = true;
             this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.labelTitulo.ForeColor = System.Drawing.Color.White;
-            this.labelTitulo.Location = new System.Drawing.Point(353, 32);
-            this.labelTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelTitulo.Location = new System.Drawing.Point(471, 39);
+            this.labelTitulo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(297, 36);
+            this.labelTitulo.Size = new System.Drawing.Size(375, 42);
             this.labelTitulo.TabIndex = 25;
             this.labelTitulo.Text = "Reporte De Fortaleza";
             // 
@@ -142,8 +146,8 @@ namespace Interfaz.InterfacesSeguridad
             this.Sitio,
             this.Usuario,
             this.UltimaModificacion});
-            this.tablaClaves.Location = new System.Drawing.Point(286, 123);
-            this.tablaClaves.Margin = new System.Windows.Forms.Padding(4);
+            this.tablaClaves.Location = new System.Drawing.Point(381, 151);
+            this.tablaClaves.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.tablaClaves.Name = "tablaClaves";
             this.tablaClaves.ReadOnly = true;
             this.tablaClaves.RowHeadersVisible = false;
@@ -151,16 +155,16 @@ namespace Interfaz.InterfacesSeguridad
             this.tablaClaves.RowTemplate.Height = 24;
             this.tablaClaves.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tablaClaves.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tablaClaves.Size = new System.Drawing.Size(623, 424);
+            this.tablaClaves.Size = new System.Drawing.Size(831, 522);
             this.tablaClaves.TabIndex = 2;
             // 
             // botonVer
             // 
             this.botonVer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.botonVer.Location = new System.Drawing.Point(766, 567);
-            this.botonVer.Margin = new System.Windows.Forms.Padding(4);
+            this.botonVer.Location = new System.Drawing.Point(1021, 698);
+            this.botonVer.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.botonVer.Name = "botonVer";
-            this.botonVer.Size = new System.Drawing.Size(143, 38);
+            this.botonVer.Size = new System.Drawing.Size(191, 47);
             this.botonVer.TabIndex = 3;
             this.botonVer.Text = "Ver";
             this.botonVer.UseVisualStyleBackColor = true;
@@ -172,13 +176,14 @@ namespace Interfaz.InterfacesSeguridad
             this.panel1.Controls.Add(this.labelTitulo);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1002, 100);
+            this.panel1.Size = new System.Drawing.Size(1336, 123);
             this.panel1.TabIndex = 26;
             // 
             // Categoria
             // 
-            this.Categoria.HeaderText = "Categoria";
+            this.Categoria.HeaderText = "Categoría";
             this.Categoria.MinimumWidth = 6;
             this.Categoria.Name = "Categoria";
             this.Categoria.ReadOnly = true;
@@ -214,7 +219,7 @@ namespace Interfaz.InterfacesSeguridad
             // 
             // ReporteDeFortaleza
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
@@ -223,8 +228,9 @@ namespace Interfaz.InterfacesSeguridad
             this.Controls.Add(this.tablaClaves);
             this.Controls.Add(this.botonGrafica);
             this.Controls.Add(this.TablaReporte);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ReporteDeFortaleza";
-            this.Size = new System.Drawing.Size(1002, 681);
+            this.Size = new System.Drawing.Size(1336, 838);
             this.Load += new System.EventHandler(this.ReporteDeFortaleza_Load);
             ((System.ComponentModel.ISupportInitialize)(this.TablaReporte)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaClaves)).EndInit();
