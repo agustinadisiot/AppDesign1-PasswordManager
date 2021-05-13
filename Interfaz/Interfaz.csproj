@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7F9C2327-0E2B-4DF3-B7E7-19BD9EFEA930}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Interfaz</RootNamespace>
+    <AssemblyName>Interfaz</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>IconoDA1.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="InterfacesDataBreaches\IngresoYListaDataBreach.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesDataBreaches\IngresoYListaDataBreach.Designer.cs">
+      <DependentUpon>IngresoYListaDataBreach.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InterfacesSeguridad\GraficaSeguridad.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesSeguridad\GraficaSeguridad.Designer.cs">
+      <DependentUpon>GraficaSeguridad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InterfacesClaves\ModificarClave.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesClaves\ModificarClave.Designer.cs">
+      <DependentUpon>ModificarClave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InterfacesCompartirClave\CompartirClave.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesCompartirClave\CompartirClave.designer.cs">
+      <DependentUpon>CompartirClave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InterfacesClaves\CrearClave.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesClaves\CrearClave.Designer.cs">
+      <DependentUpon>CrearClave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InterfacesCompartirClave\ListaClavesCompartidasPorMi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesCompartirClave\ListaClavesCompartidasPorMi.Designer.cs">
+      <DependentUpon>ListaClavesCompartidasPorMi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InterfacesSeguridad\ReporteDeFortaleza.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesSeguridad\ReporteDeFortaleza.Designer.cs">
+      <DependentUpon>ReporteDeFortaleza.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InterfacesTarjetas\CrearTarjeta.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesTarjetas\CrearTarjeta.Designer.cs">
+      <DependentUpon>CrearTarjeta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InterfacesCategorias\AgregarCategoria.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesCategorias\AgregarCategoria.Designer.cs">
+      <DependentUpon>AgregarCategoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InterfacesIniciarSesion\CrearUsuario.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesIniciarSesion\CrearUsuario.Designer.cs">
+      <DependentUpon>CrearUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InterfacesCategorias\ListaCategorias.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesCategorias\ListaCategorias.Designer.cs">
+      <DependentUpon>ListaCategorias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InterfacesClaves\ListaClaves.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesClaves\ListaClaves.Designer.cs">
+      <DependentUpon>ListaClaves.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InterfacesTarjetas\ListaTarjetas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesTarjetas\ListaTarjetas.Designer.cs">
+      <DependentUpon>ListaTarjetas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InterfacesCategorias\ModificarCategoria.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesCategorias\ModificarCategoria.Designer.cs">
+      <DependentUpon>ModificarCategoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InterfacesTarjetas\ModificarTarjeta.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesTarjetas\ModificarTarjeta.Designer.cs">
+      <DependentUpon>ModificarTarjeta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InterfacesCompartirClave\ListaClavesCompartidasConmigo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesCompartirClave\ListaClavesCompartidasConmigo.Designer.cs">
+      <DependentUpon>ListaClavesCompartidasConmigo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InterfacesTarjetas\VerTarjeta.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesTarjetas\VerTarjeta.Designer.cs">
+      <DependentUpon>VerTarjeta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VentanaConfirmaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VentanaConfirmaciones.Designer.cs">
+      <DependentUpon>VentanaConfirmaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VentanaPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VentanaPrincipal.Designer.cs">
+      <DependentUpon>VentanaPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InterfacesIniciarSesion\IniciarSesion.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesIniciarSesion\IniciarSesion.Designer.cs">
+      <DependentUpon>IniciarSesion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="InterfacesClaves\VerClave.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesClaves\VerClave.Designer.cs">
+      <DependentUpon>VerClave.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="InterfacesCategorias\AgregarCategoria.resx">
+      <DependentUpon>AgregarCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesDataBreaches\IngresoYListaDataBreach.resx">
+      <DependentUpon>IngresoYListaDataBreach.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesClaves\ModificarClave.resx">
+      <DependentUpon>ModificarClave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesCompartirClave\CompartirClave.resx">
+      <DependentUpon>CompartirClave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesClaves\CrearClave.resx">
+      <DependentUpon>CrearClave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesCompartirClave\ListaClavesCompartidasPorMi.resx">
+      <DependentUpon>ListaClavesCompartidasPorMi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesSeguridad\GraficaSeguridad.resx">
+      <DependentUpon>GraficaSeguridad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesSeguridad\ReporteDeFortaleza.resx">
+      <DependentUpon>ReporteDeFortaleza.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesTarjetas\CrearTarjeta.resx">
+      <DependentUpon>CrearTarjeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesIniciarSesion\CrearUsuario.resx">
+      <DependentUpon>CrearUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesCategorias\ListaCategorias.resx">
+      <DependentUpon>ListaCategorias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesClaves\ListaClaves.resx">
+      <DependentUpon>ListaClaves.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesTarjetas\ListaTarjetas.resx">
+      <DependentUpon>ListaTarjetas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesTarjetas\ModificarTarjeta.resx">
+      <DependentUpon>ModificarTarjeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesCategorias\ModificarCategoria.resx">
+      <DependentUpon>ModificarCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesCompartirClave\ListaClavesCompartidasConmigo.resx">
+      <DependentUpon>ListaClavesCompartidasConmigo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesTarjetas\VerTarjeta.resx">
+      <DependentUpon>VerTarjeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VentanaConfirmaciones.resx">
+      <DependentUpon>VentanaConfirmaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VentanaPrincipal.resx">
+      <DependentUpon>VentanaPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesIniciarSesion\IniciarSesion.resx">
+      <DependentUpon>IniciarSesion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="InterfacesClaves\VerClave.resx">
+      <DependentUpon>VerClave.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dominio\Dominio.csproj">
+      <Project>{A2333956-836C-42AB-AD9B-DBBA96727E27}</Project>
+      <Name>Dominio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="IconoDA1.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
