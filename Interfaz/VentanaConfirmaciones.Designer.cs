@@ -29,6 +29,7 @@ namespace Interfaz
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentanaConfirmaciones));
             this.labelTextoDeConfirmacion = new System.Windows.Forms.Label();
             this.botonAceptar = new System.Windows.Forms.Button();
             this.botonCancelar = new System.Windows.Forms.Button();
@@ -74,11 +75,12 @@ namespace Interfaz
             this.Controls.Add(this.botonAceptar);
             this.Controls.Add(this.labelTextoDeConfirmacion);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "VentanaConfirmaciones";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "VentanaConfirmaciones";
+            this.Text = "Confirmar";
             this.ResumeLayout(false);
             this.PerformLayout();
 
