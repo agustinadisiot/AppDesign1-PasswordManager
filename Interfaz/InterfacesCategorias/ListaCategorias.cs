@@ -13,7 +13,6 @@ namespace Interfaz
         {
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;
-            this._administrador = administradorAgregar;
         }
 
         private void CargarTabla()

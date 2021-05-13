@@ -207,7 +207,7 @@ namespace Interfaz
         private void IniciarSesion_Handler(Usuario aIngresar)
         {
             this._usuarioActual = aIngresar;
-            ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual, this._administrador);
+            ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual);
             listaCategorias.AbrirAgregarCategorias_Event += AbrirAgregarCategorias_Handler;
             listaCategorias.AbrirModificarCategorias_Event += AbrirModificarCategorias_Handler;
 
@@ -243,7 +243,7 @@ namespace Interfaz
         protected void AbrirListaCategorias_Handler()
         {
 
-            ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual, this._administrador);
+            ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual);
             listaCategorias.AbrirAgregarCategorias_Event += AbrirAgregarCategorias_Handler;
             listaCategorias.AbrirModificarCategorias_Event += AbrirModificarCategorias_Handler;
 
@@ -255,7 +255,7 @@ namespace Interfaz
         protected void AbrirAgregarCategorias_Handler()
         {
 
-            AgregarCategoria agregarCategoria = new AgregarCategoria(this._usuarioActual, this._administrador);
+            AgregarCategoria agregarCategoria = new AgregarCategoria(this._usuarioActual);
             agregarCategoria.AbrirListaCategorias_Event += AbrirListaCategorias_Handler;
 
             this.panelPrincipal.Controls.Clear();
@@ -338,7 +338,7 @@ namespace Interfaz
 
         protected void AbrirCrearClave_Handler()
         {
-            CrearClave crearClave = new CrearClave(this._usuarioActual, this._administrador);
+            CrearClave crearClave = new CrearClave(this._usuarioActual);
             crearClave.AbrirListaClaves_Event += this.AbrirListaClaves_Handler;
 
             this.panelPrincipal.Controls.Clear();
