@@ -8,13 +8,11 @@ namespace Interfaz
     public partial class CrearClave : UserControl
     {
         private Usuario _usuarioActual;
-        private Administrador _administrador;
 
-        public CrearClave(Usuario usuarioAgregar, Administrador administradorAgregar)
+        public CrearClave(Usuario usuarioAgregar)
         {
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;
-            this._administrador = administradorAgregar;
         }
 
         private void CrearClave_Load(object sender, EventArgs e)

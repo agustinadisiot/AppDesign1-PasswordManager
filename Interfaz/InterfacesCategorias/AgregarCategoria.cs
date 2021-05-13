@@ -6,14 +6,12 @@ namespace Interfaz
 {
     public partial class AgregarCategoria : UserControl
     {
-        private Administrador _administrador;
         private Usuario _usuarioActual;
 
-        public AgregarCategoria(Usuario usuarioAgregar, Administrador administradorAgregar)
+        public AgregarCategoria(Usuario usuarioAgregar)
         {
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;
-            this._administrador = administradorAgregar;
             this.labelErrores.Text = "";
         }
 
