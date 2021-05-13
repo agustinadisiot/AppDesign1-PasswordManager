@@ -8,13 +8,11 @@ namespace Interfaz
     public partial class ListaClaves : UserControl
     {
         private Usuario _usuarioActual;
-        private Administrador _administrador;
 
-        public ListaClaves(Usuario usuarioAgregar, Administrador administradorAgregar)
+        public ListaClaves(Usuario usuarioAgregar)
         {
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;
-            this._administrador = administradorAgregar;
         }
 
         private void ListaClaves_Load(object sender, EventArgs e)

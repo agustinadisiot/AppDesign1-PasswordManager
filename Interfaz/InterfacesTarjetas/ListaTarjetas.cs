@@ -8,13 +8,11 @@ namespace Interfaz
     public partial class ListaTarjetas : UserControl
     {
         private Usuario _usuarioActual;
-        private Administrador _administrador;
 
-        public ListaTarjetas(Usuario usuarioAgregar, Administrador administradorAgregar)
+        public ListaTarjetas(Usuario usuarioAgregar)
         {
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;
-            this._administrador = administradorAgregar;
             this.CargarTabla();
         }
 

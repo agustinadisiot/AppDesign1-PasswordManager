@@ -277,7 +277,7 @@ namespace Interfaz
         {
             this.panelPrincipal.Controls.Clear();
 
-            ListaTarjetas listaTarjetas = new ListaTarjetas(this._usuarioActual, this._administrador);
+            ListaTarjetas listaTarjetas = new ListaTarjetas(this._usuarioActual);
             listaTarjetas.AbrirCrearTarjeta_Event += this.AbrirCrearTarjeta_Handler;
             listaTarjetas.AbrirModificarTarjeta_Event += this.AbrirModificarTarjeta_Handler;
             listaTarjetas.AbrirVerTarjeta_Event += this.AbrirVerTarjeta_Handler;
@@ -380,7 +380,7 @@ namespace Interfaz
 
         protected void AbrirListaClaves_Handler()
         {
-            ListaClaves listaClaves = new ListaClaves(this._usuarioActual, this._administrador);
+            ListaClaves listaClaves = new ListaClaves(this._usuarioActual);
             listaClaves.AbrirCrearClave_Event += this.AbrirCrearClave_Handler;
             listaClaves.AbrirModificarClave_Event += this.AbrirModificarClave_Event;
             listaClaves.AbrirCompartirClave_Event += this.AbrirCompartirClave_Handler;
