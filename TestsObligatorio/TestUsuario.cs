@@ -1061,7 +1061,7 @@ namespace TestsObligatorio
         }
 
         [TestMethod]
-        public void UsuarioaGetClaveATravezDeClaveSinClave()
+        public void UsuarioaGetClaveATravesDeClaveSinClave()
         {
 
             Usuario usuario = new Usuario()
@@ -3358,7 +3358,7 @@ namespace TestsObligatorio
         }
 
         [TestMethod]
-        public void UsuarioGetTarjetaATravezDeClaveSinCodigo()
+        public void UsuarioGetTarjetaATravesDeClaveSinCodigo()
         {
             Usuario usuario = new Usuario()
             {
