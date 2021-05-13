@@ -61,12 +61,11 @@ namespace Interfaz.InterfacesClaves
             // 
             this.labelErrores.AutoSize = true;
             this.labelErrores.ForeColor = System.Drawing.Color.Red;
-            this.labelErrores.Location = new System.Drawing.Point(754, 570);
-            this.labelErrores.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelErrores.MaximumSize = new System.Drawing.Size(222, 90);
-            this.labelErrores.MinimumSize = new System.Drawing.Size(222, 90);
+            this.labelErrores.Location = new System.Drawing.Point(1005, 702);
+            this.labelErrores.MaximumSize = new System.Drawing.Size(296, 111);
+            this.labelErrores.MinimumSize = new System.Drawing.Size(296, 111);
             this.labelErrores.Name = "labelErrores";
-            this.labelErrores.Size = new System.Drawing.Size(222, 90);
+            this.labelErrores.Size = new System.Drawing.Size(296, 111);
             this.labelErrores.TabIndex = 68;
             this.labelErrores.Text = "labelErrores";
             this.labelErrores.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -82,11 +81,11 @@ namespace Interfaz.InterfacesClaves
             this.groupBoxClave.Controls.Add(this.checkBoxSimbolos);
             this.groupBoxClave.Controls.Add(this.checkBoxMinusculas);
             this.groupBoxClave.Controls.Add(this.checkBoxNumeros);
-            this.groupBoxClave.Location = new System.Drawing.Point(370, 222);
-            this.groupBoxClave.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBoxClave.Location = new System.Drawing.Point(493, 273);
+            this.groupBoxClave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxClave.Name = "groupBoxClave";
-            this.groupBoxClave.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxClave.Size = new System.Drawing.Size(359, 286);
+            this.groupBoxClave.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBoxClave.Size = new System.Drawing.Size(479, 352);
             this.groupBoxClave.TabIndex = 4;
             this.groupBoxClave.TabStop = false;
             this.groupBoxClave.Text = "Contraseña";
@@ -95,29 +94,28 @@ namespace Interfaz.InterfacesClaves
             // 
             this.labelLargo.AutoSize = true;
             this.labelLargo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.labelLargo.Location = new System.Drawing.Point(4, 69);
-            this.labelLargo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelLargo.Location = new System.Drawing.Point(5, 85);
             this.labelLargo.Name = "labelLargo";
-            this.labelLargo.Size = new System.Drawing.Size(45, 17);
+            this.labelLargo.Size = new System.Drawing.Size(52, 20);
             this.labelLargo.TabIndex = 40;
             this.labelLargo.Text = "Largo";
             // 
             // inputContra
             // 
             this.inputContra.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.inputContra.Location = new System.Drawing.Point(4, 24);
-            this.inputContra.Margin = new System.Windows.Forms.Padding(2);
+            this.inputContra.Location = new System.Drawing.Point(5, 30);
+            this.inputContra.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.inputContra.MaxLength = 25;
             this.inputContra.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputContra.Name = "inputContra";
-            this.inputContra.Size = new System.Drawing.Size(351, 23);
+            this.inputContra.Size = new System.Drawing.Size(467, 26);
             this.inputContra.TabIndex = 4;
             // 
             // spinnerLargo
             // 
             this.spinnerLargo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.spinnerLargo.Location = new System.Drawing.Point(53, 67);
-            this.spinnerLargo.Margin = new System.Windows.Forms.Padding(2);
+            this.spinnerLargo.Location = new System.Drawing.Point(71, 82);
+            this.spinnerLargo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.spinnerLargo.Maximum = new decimal(new int[] {
             25,
             0,
@@ -129,7 +127,7 @@ namespace Interfaz.InterfacesClaves
             0,
             0});
             this.spinnerLargo.Name = "spinnerLargo";
-            this.spinnerLargo.Size = new System.Drawing.Size(68, 23);
+            this.spinnerLargo.Size = new System.Drawing.Size(91, 26);
             this.spinnerLargo.TabIndex = 41;
             this.spinnerLargo.Value = new decimal(new int[] {
             25,
@@ -139,9 +137,10 @@ namespace Interfaz.InterfacesClaves
             // 
             // botonGenerar
             // 
-            this.botonGenerar.Location = new System.Drawing.Point(279, 258);
+            this.botonGenerar.Location = new System.Drawing.Point(372, 318);
+            this.botonGenerar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.botonGenerar.Name = "botonGenerar";
-            this.botonGenerar.Size = new System.Drawing.Size(75, 23);
+            this.botonGenerar.Size = new System.Drawing.Size(100, 28);
             this.botonGenerar.TabIndex = 50;
             this.botonGenerar.Text = "Generar";
             this.botonGenerar.UseVisualStyleBackColor = true;
@@ -151,10 +150,10 @@ namespace Interfaz.InterfacesClaves
             // 
             this.checkBoxMayusculas.AutoSize = true;
             this.checkBoxMayusculas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.checkBoxMayusculas.Location = new System.Drawing.Point(8, 111);
-            this.checkBoxMayusculas.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBoxMayusculas.Location = new System.Drawing.Point(11, 137);
+            this.checkBoxMayusculas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBoxMayusculas.Name = "checkBoxMayusculas";
-            this.checkBoxMayusculas.Size = new System.Drawing.Size(178, 21);
+            this.checkBoxMayusculas.Size = new System.Drawing.Size(211, 24);
             this.checkBoxMayusculas.TabIndex = 46;
             this.checkBoxMayusculas.Text = "Mayúsculas (A, B, C, ...)";
             this.checkBoxMayusculas.UseVisualStyleBackColor = true;
@@ -163,10 +162,10 @@ namespace Interfaz.InterfacesClaves
             // 
             this.checkBoxSimbolos.AutoSize = true;
             this.checkBoxSimbolos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.checkBoxSimbolos.Location = new System.Drawing.Point(8, 210);
-            this.checkBoxSimbolos.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBoxSimbolos.Location = new System.Drawing.Point(11, 258);
+            this.checkBoxSimbolos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBoxSimbolos.Name = "checkBoxSimbolos";
-            this.checkBoxSimbolos.Size = new System.Drawing.Size(160, 21);
+            this.checkBoxSimbolos.Size = new System.Drawing.Size(187, 24);
             this.checkBoxSimbolos.TabIndex = 49;
             this.checkBoxSimbolos.Text = "Símbolos (@, [, $, ...)";
             this.checkBoxSimbolos.UseVisualStyleBackColor = true;
@@ -175,10 +174,10 @@ namespace Interfaz.InterfacesClaves
             // 
             this.checkBoxMinusculas.AutoSize = true;
             this.checkBoxMinusculas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.checkBoxMinusculas.Location = new System.Drawing.Point(8, 145);
-            this.checkBoxMinusculas.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBoxMinusculas.Location = new System.Drawing.Point(11, 178);
+            this.checkBoxMinusculas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBoxMinusculas.Name = "checkBoxMinusculas";
-            this.checkBoxMinusculas.Size = new System.Drawing.Size(170, 21);
+            this.checkBoxMinusculas.Size = new System.Drawing.Size(199, 24);
             this.checkBoxMinusculas.TabIndex = 47;
             this.checkBoxMinusculas.Text = "Minúsculas (a, b, c, ...)";
             this.checkBoxMinusculas.UseVisualStyleBackColor = true;
@@ -187,19 +186,20 @@ namespace Interfaz.InterfacesClaves
             // 
             this.checkBoxNumeros.AutoSize = true;
             this.checkBoxNumeros.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.checkBoxNumeros.Location = new System.Drawing.Point(8, 178);
-            this.checkBoxNumeros.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBoxNumeros.Location = new System.Drawing.Point(11, 219);
+            this.checkBoxNumeros.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBoxNumeros.Name = "checkBoxNumeros";
-            this.checkBoxNumeros.Size = new System.Drawing.Size(158, 21);
+            this.checkBoxNumeros.Size = new System.Drawing.Size(182, 24);
             this.checkBoxNumeros.TabIndex = 48;
             this.checkBoxNumeros.Text = "Numeros (1, 2, 3, ...)";
             this.checkBoxNumeros.UseVisualStyleBackColor = true;
             // 
             // botonModificar
             // 
-            this.botonModificar.Location = new System.Drawing.Point(654, 637);
+            this.botonModificar.Location = new System.Drawing.Point(872, 784);
+            this.botonModificar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.botonModificar.Name = "botonModificar";
-            this.botonModificar.Size = new System.Drawing.Size(75, 23);
+            this.botonModificar.Size = new System.Drawing.Size(100, 28);
             this.botonModificar.TabIndex = 6;
             this.botonModificar.Text = "Modificar";
             this.botonModificar.UseVisualStyleBackColor = true;
@@ -207,9 +207,10 @@ namespace Interfaz.InterfacesClaves
             // 
             // botonCancelar
             // 
-            this.botonCancelar.Location = new System.Drawing.Point(555, 637);
+            this.botonCancelar.Location = new System.Drawing.Point(740, 784);
+            this.botonCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.botonCancelar.Name = "botonCancelar";
-            this.botonCancelar.Size = new System.Drawing.Size(75, 23);
+            this.botonCancelar.Size = new System.Drawing.Size(100, 28);
             this.botonCancelar.TabIndex = 7;
             this.botonCancelar.Text = "Cancelar";
             this.botonCancelar.UseVisualStyleBackColor = true;
@@ -218,24 +219,23 @@ namespace Interfaz.InterfacesClaves
             // inputNota
             // 
             this.inputNota.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inputNota.Location = new System.Drawing.Point(370, 522);
-            this.inputNota.Margin = new System.Windows.Forms.Padding(2);
+            this.inputNota.Location = new System.Drawing.Point(493, 642);
+            this.inputNota.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.inputNota.MaxLength = 250;
             this.inputNota.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputNota.Multiline = true;
             this.inputNota.Name = "inputNota";
             this.inputNota.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.inputNota.Size = new System.Drawing.Size(359, 110);
+            this.inputNota.Size = new System.Drawing.Size(477, 134);
             this.inputNota.TabIndex = 5;
             // 
             // labelNota
             // 
             this.labelNota.AutoSize = true;
             this.labelNota.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.labelNota.Location = new System.Drawing.Point(190, 522);
-            this.labelNota.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelNota.Location = new System.Drawing.Point(253, 642);
             this.labelNota.Name = "labelNota";
-            this.labelNota.Size = new System.Drawing.Size(45, 17);
+            this.labelNota.Size = new System.Drawing.Size(53, 20);
             this.labelNota.TabIndex = 63;
             this.labelNota.Text = "Notas";
             // 
@@ -243,10 +243,9 @@ namespace Interfaz.InterfacesClaves
             // 
             this.labelContra.AutoSize = true;
             this.labelContra.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.labelContra.Location = new System.Drawing.Point(193, 222);
-            this.labelContra.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelContra.Location = new System.Drawing.Point(257, 273);
             this.labelContra.Name = "labelContra";
-            this.labelContra.Size = new System.Drawing.Size(81, 17);
+            this.labelContra.Size = new System.Drawing.Size(95, 20);
             this.labelContra.TabIndex = 62;
             this.labelContra.Text = "Contraseña";
             // 
@@ -255,74 +254,72 @@ namespace Interfaz.InterfacesClaves
             this.comboBoxCategorias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCategorias.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.comboBoxCategorias.FormattingEnabled = true;
-            this.comboBoxCategorias.Location = new System.Drawing.Point(370, 115);
-            this.comboBoxCategorias.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxCategorias.Location = new System.Drawing.Point(493, 142);
+            this.comboBoxCategorias.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBoxCategorias.Name = "comboBoxCategorias";
-            this.comboBoxCategorias.Size = new System.Drawing.Size(201, 24);
+            this.comboBoxCategorias.Size = new System.Drawing.Size(267, 28);
             this.comboBoxCategorias.TabIndex = 1;
             // 
             // labelCategoria
             // 
             this.labelCategoria.AutoSize = true;
             this.labelCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.labelCategoria.Location = new System.Drawing.Point(193, 118);
-            this.labelCategoria.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelCategoria.Location = new System.Drawing.Point(257, 145);
             this.labelCategoria.Name = "labelCategoria";
-            this.labelCategoria.Size = new System.Drawing.Size(69, 17);
+            this.labelCategoria.Size = new System.Drawing.Size(81, 20);
             this.labelCategoria.TabIndex = 60;
-            this.labelCategoria.Text = "Categoria";
+            this.labelCategoria.Text = "Categoría";
             // 
             // labelUsuario
             // 
             this.labelUsuario.AutoSize = true;
             this.labelUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.labelUsuario.Location = new System.Drawing.Point(193, 189);
-            this.labelUsuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelUsuario.Location = new System.Drawing.Point(257, 233);
             this.labelUsuario.Name = "labelUsuario";
-            this.labelUsuario.Size = new System.Drawing.Size(57, 17);
+            this.labelUsuario.Size = new System.Drawing.Size(67, 20);
             this.labelUsuario.TabIndex = 59;
             this.labelUsuario.Text = "Usuario";
             // 
             // inputUsuario
             // 
             this.inputUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.inputUsuario.Location = new System.Drawing.Point(370, 186);
-            this.inputUsuario.Margin = new System.Windows.Forms.Padding(2);
+            this.inputUsuario.Location = new System.Drawing.Point(493, 229);
+            this.inputUsuario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.inputUsuario.MaxLength = 25;
             this.inputUsuario.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputUsuario.Name = "inputUsuario";
-            this.inputUsuario.Size = new System.Drawing.Size(201, 23);
+            this.inputUsuario.Size = new System.Drawing.Size(267, 26);
             this.inputUsuario.TabIndex = 3;
             // 
             // labelSitio
             // 
             this.labelSitio.AutoSize = true;
             this.labelSitio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.labelSitio.Location = new System.Drawing.Point(193, 154);
-            this.labelSitio.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelSitio.Location = new System.Drawing.Point(257, 190);
             this.labelSitio.Name = "labelSitio";
-            this.labelSitio.Size = new System.Drawing.Size(35, 17);
+            this.labelSitio.Size = new System.Drawing.Size(42, 20);
             this.labelSitio.TabIndex = 57;
             this.labelSitio.Text = "Sitio";
             // 
             // inputSitio
             // 
             this.inputSitio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.inputSitio.Location = new System.Drawing.Point(370, 151);
-            this.inputSitio.Margin = new System.Windows.Forms.Padding(2);
+            this.inputSitio.Location = new System.Drawing.Point(493, 186);
+            this.inputSitio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.inputSitio.MaxLength = 25;
             this.inputSitio.MinimumSize = new System.Drawing.Size(4, 5);
             this.inputSitio.Name = "inputSitio";
-            this.inputSitio.Size = new System.Drawing.Size(200, 23);
+            this.inputSitio.Size = new System.Drawing.Size(265, 26);
             this.inputSitio.TabIndex = 2;
             // 
             // labelTitulo
             // 
             this.labelTitulo.AutoSize = true;
             this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
-            this.labelTitulo.Location = new System.Drawing.Point(358, 32);
+            this.labelTitulo.Location = new System.Drawing.Point(477, 39);
+            this.labelTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(298, 36);
+            this.labelTitulo.Size = new System.Drawing.Size(373, 42);
             this.labelTitulo.TabIndex = 55;
             this.labelTitulo.Text = "Modificar Contraseña";
             // 
@@ -333,13 +330,14 @@ namespace Interfaz.InterfacesClaves
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.ForeColor = System.Drawing.Color.White;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1002, 100);
+            this.panel1.Size = new System.Drawing.Size(1336, 123);
             this.panel1.TabIndex = 69;
             // 
             // ModificarClave
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
@@ -356,8 +354,9 @@ namespace Interfaz.InterfacesClaves
             this.Controls.Add(this.inputUsuario);
             this.Controls.Add(this.labelSitio);
             this.Controls.Add(this.inputSitio);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ModificarClave";
-            this.Size = new System.Drawing.Size(1002, 681);
+            this.Size = new System.Drawing.Size(1336, 838);
             this.Load += new System.EventHandler(this.ModificarClave_Load);
             this.groupBoxClave.ResumeLayout(false);
             this.groupBoxClave.PerformLayout();

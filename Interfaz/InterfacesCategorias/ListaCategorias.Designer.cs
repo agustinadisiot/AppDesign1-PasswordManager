@@ -49,20 +49,22 @@ namespace Interfaz
             this.TablaCategorias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TablaCategorias.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Categorias});
-            this.TablaCategorias.Location = new System.Drawing.Point(355, 144);
+            this.TablaCategorias.Location = new System.Drawing.Point(473, 177);
+            this.TablaCategorias.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TablaCategorias.Name = "TablaCategorias";
             this.TablaCategorias.ReadOnly = true;
             this.TablaCategorias.RowHeadersVisible = false;
             this.TablaCategorias.RowHeadersWidth = 22;
             this.TablaCategorias.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TablaCategorias.Size = new System.Drawing.Size(204, 300);
+            this.TablaCategorias.Size = new System.Drawing.Size(272, 369);
             this.TablaCategorias.TabIndex = 0;
             // 
             // botonModificar
             // 
-            this.botonModificar.Location = new System.Drawing.Point(619, 410);
+            this.botonModificar.Location = new System.Drawing.Point(825, 505);
+            this.botonModificar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.botonModificar.Name = "botonModificar";
-            this.botonModificar.Size = new System.Drawing.Size(123, 34);
+            this.botonModificar.Size = new System.Drawing.Size(164, 42);
             this.botonModificar.TabIndex = 2;
             this.botonModificar.Text = "Modificar";
             this.botonModificar.UseVisualStyleBackColor = true;
@@ -70,9 +72,10 @@ namespace Interfaz
             // 
             // botonAgregar
             // 
-            this.botonAgregar.Location = new System.Drawing.Point(619, 367);
+            this.botonAgregar.Location = new System.Drawing.Point(825, 452);
+            this.botonAgregar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.botonAgregar.Name = "botonAgregar";
-            this.botonAgregar.Size = new System.Drawing.Size(123, 34);
+            this.botonAgregar.Size = new System.Drawing.Size(164, 42);
             this.botonAgregar.TabIndex = 3;
             this.botonAgregar.Text = "Agregar";
             this.botonAgregar.UseVisualStyleBackColor = true;
@@ -83,11 +86,12 @@ namespace Interfaz
             this.labelListadoCategorias.AutoSize = true;
             this.labelListadoCategorias.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.labelListadoCategorias.ForeColor = System.Drawing.Color.White;
-            this.labelListadoCategorias.Location = new System.Drawing.Point(349, 32);
+            this.labelListadoCategorias.Location = new System.Drawing.Point(465, 39);
+            this.labelListadoCategorias.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelListadoCategorias.Name = "labelListadoCategorias";
-            this.labelListadoCategorias.Size = new System.Drawing.Size(304, 36);
+            this.labelListadoCategorias.Size = new System.Drawing.Size(382, 42);
             this.labelListadoCategorias.TabIndex = 4;
-            this.labelListadoCategorias.Text = "Listado de Categorias";
+            this.labelListadoCategorias.Text = "Listado de Categorías";
             // 
             // panel1
             // 
@@ -95,13 +99,14 @@ namespace Interfaz
             this.panel1.Controls.Add(this.labelListadoCategorias);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1002, 100);
+            this.panel1.Size = new System.Drawing.Size(1336, 123);
             this.panel1.TabIndex = 5;
             // 
             // Categorias
             // 
-            this.Categorias.HeaderText = "Categorias";
+            this.Categorias.HeaderText = "Categorías";
             this.Categorias.MinimumWidth = 6;
             this.Categorias.Name = "Categorias";
             this.Categorias.ReadOnly = true;
@@ -110,15 +115,16 @@ namespace Interfaz
             // 
             // ListaCategorias
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.botonAgregar);
             this.Controls.Add(this.botonModificar);
             this.Controls.Add(this.TablaCategorias);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ListaCategorias";
-            this.Size = new System.Drawing.Size(1002, 681);
+            this.Size = new System.Drawing.Size(1336, 838);
             this.Load += new System.EventHandler(this.ListaCategorias_Load);
             ((System.ComponentModel.ISupportInitialize)(this.TablaCategorias)).EndInit();
             this.panel1.ResumeLayout(false);

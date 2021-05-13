@@ -148,7 +148,6 @@ namespace Interfaz.InterfacesClaves
             if (this.ModificarClaveDataBreach_Event != null)
                 this.ModificarClaveDataBreach_Event(claveAModificar, this._dataBreach);
         }
-
         
     }
 }

@@ -30,10 +30,6 @@ namespace Interfaz
         private void InitializeComponent()
         {
             this.tablaClaves = new System.Windows.Forms.DataGridView();
-            this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sitio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UltimaModificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelTitulo = new System.Windows.Forms.Label();
             this.botonAgregar = new System.Windows.Forms.Button();
             this.botonVer = new System.Windows.Forms.Button();
@@ -41,6 +37,10 @@ namespace Interfaz
             this.botonEliminar = new System.Windows.Forms.Button();
             this.botonModificar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sitio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UltimaModificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tablaClaves)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -70,42 +70,6 @@ namespace Interfaz
             this.tablaClaves.Size = new System.Drawing.Size(805, 369);
             this.tablaClaves.TabIndex = 0;
             // 
-            // Categoria
-            // 
-            this.Categoria.HeaderText = "Categoria";
-            this.Categoria.MinimumWidth = 6;
-            this.Categoria.Name = "Categoria";
-            this.Categoria.ReadOnly = true;
-            this.Categoria.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Categoria.Width = 200;
-            // 
-            // Sitio
-            // 
-            this.Sitio.HeaderText = "Sitio";
-            this.Sitio.MinimumWidth = 6;
-            this.Sitio.Name = "Sitio";
-            this.Sitio.ReadOnly = true;
-            this.Sitio.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Sitio.Width = 200;
-            // 
-            // Usuario
-            // 
-            this.Usuario.HeaderText = "Usuario";
-            this.Usuario.MinimumWidth = 6;
-            this.Usuario.Name = "Usuario";
-            this.Usuario.ReadOnly = true;
-            this.Usuario.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Usuario.Width = 200;
-            // 
-            // UltimaModificacion
-            // 
-            this.UltimaModificacion.HeaderText = "Ultima Modificacion";
-            this.UltimaModificacion.MinimumWidth = 6;
-            this.UltimaModificacion.Name = "UltimaModificacion";
-            this.UltimaModificacion.ReadOnly = true;
-            this.UltimaModificacion.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.UltimaModificacion.Width = 200;
-            // 
             // labelTitulo
             // 
             this.labelTitulo.AutoSize = true;
@@ -114,7 +78,7 @@ namespace Interfaz
             this.labelTitulo.Location = new System.Drawing.Point(337, 32);
             this.labelTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(329, 36);
+            this.labelTitulo.Size = new System.Drawing.Size(414, 42);
             this.labelTitulo.TabIndex = 17;
             this.labelTitulo.Text = "Listado de Contraseñas";
             // 
@@ -188,9 +152,45 @@ namespace Interfaz
             this.panel1.Size = new System.Drawing.Size(1002, 100);
             this.panel1.TabIndex = 24;
             // 
+            // Categoria
+            // 
+            this.Categoria.HeaderText = "Categoría";
+            this.Categoria.MinimumWidth = 6;
+            this.Categoria.Name = "Categoria";
+            this.Categoria.ReadOnly = true;
+            this.Categoria.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Categoria.Width = 200;
+            // 
+            // Sitio
+            // 
+            this.Sitio.HeaderText = "Sitio";
+            this.Sitio.MinimumWidth = 6;
+            this.Sitio.Name = "Sitio";
+            this.Sitio.ReadOnly = true;
+            this.Sitio.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Sitio.Width = 200;
+            // 
+            // Usuario
+            // 
+            this.Usuario.HeaderText = "Usuario";
+            this.Usuario.MinimumWidth = 6;
+            this.Usuario.Name = "Usuario";
+            this.Usuario.ReadOnly = true;
+            this.Usuario.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Usuario.Width = 200;
+            // 
+            // UltimaModificacion
+            // 
+            this.UltimaModificacion.HeaderText = "Ultima Modificacion";
+            this.UltimaModificacion.MinimumWidth = 6;
+            this.UltimaModificacion.Name = "UltimaModificacion";
+            this.UltimaModificacion.ReadOnly = true;
+            this.UltimaModificacion.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.UltimaModificacion.Width = 200;
+            // 
             // ListaClaves
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
@@ -221,10 +221,10 @@ namespace Interfaz
         private System.Windows.Forms.Button botonCompartir;
         private System.Windows.Forms.Button botonEliminar;
         private System.Windows.Forms.Button botonModificar;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Categoria;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sitio;
         private System.Windows.Forms.DataGridViewTextBoxColumn Usuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn UltimaModificacion;
-        private System.Windows.Forms.Panel panel1;
     }
 }
