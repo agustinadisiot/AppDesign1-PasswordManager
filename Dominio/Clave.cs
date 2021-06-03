@@ -66,37 +66,6 @@ namespace Dominio
             set { this._fechaModificacion = value; }
         }
 
-
-        public string GetNivelSeguridad()
-        {
-            const int largoRojoMaximo = 7;
-            const int largoNaranjaMaximo = 13;
-            ColorNivelSeguridad color = new ColorNivelSeguridad();
-         
-            if (this.Codigo.Length <= largoRojoMaximo) return color.Rojo;
-            if(this.Codigo.Length <= largoNaranjaMaximo) return color.Naranja;
-
-            bool tieneMin = false,
-                tieneMay = false,
-                tieneNum = false,
-                tieneSim = false;
-
-            foreach (char caracter in this.Codigo)
-            {
-                if (!tieneMay || !tieneMin || !tieneMin || !tieneSim)
-                {
-                    tieneMin = tieneMin || VerificadoraString.EsMinuscula(caracter);
-                    tieneMay = tieneMay || VerificadoraString.EsMayuscula(caracter);
-                    tieneNum = tieneNum || VerificadoraString.EsNumero(caracter);
-                    tieneSim = tieneSim || VerificadoraString.EsSimbolo(caracter);
-                }
-                else return color.VerdeOscuro;
-            }
-            if(tieneMin && tieneMay) return (tieneNum && tieneSim) ? color.VerdeOscuro : color.VerdeClaro;
-
-            return color.Amarillo;   
-        }
-
         public override bool Equals(object objeto)
         {
             if (objeto == null) throw new ObjetoIncompletoException();

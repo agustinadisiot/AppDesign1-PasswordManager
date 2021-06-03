@@ -151,8 +151,10 @@ namespace TestsObligatorio
                 Codigo = "clave1"
             };
 
+            NivelSeguridad nivelSeguridad = new NivelSeguridad();
             ColorNivelSeguridad color = new ColorNivelSeguridad();
-            Assert.AreEqual(color.Rojo, clave.GetNivelSeguridad());
+
+            Assert.AreEqual(color.Rojo, nivelSeguridad.GetNivelSeguridad(clave.Codigo));
         }
 
         [TestMethod]
@@ -162,8 +164,11 @@ namespace TestsObligatorio
             {
                 Codigo = "clave212345"
             };
+
+            NivelSeguridad nivelSeguridad = new NivelSeguridad();
             ColorNivelSeguridad color = new ColorNivelSeguridad();
-            Assert.AreEqual(color.Naranja, clave.GetNivelSeguridad());
+
+            Assert.AreEqual(color.Naranja, nivelSeguridad.GetNivelSeguridad(clave.Codigo));
         }
 
         [TestMethod]
@@ -173,8 +178,11 @@ namespace TestsObligatorio
             {
                 Codigo = "CLAVESOLOMAYUSCULAS"
             };
+
+            NivelSeguridad nivelSeguridad = new NivelSeguridad();
             ColorNivelSeguridad color = new ColorNivelSeguridad();
-            Assert.AreEqual(color.Amarillo, clave.GetNivelSeguridad());
+
+            Assert.AreEqual(color.Amarillo, nivelSeguridad.GetNivelSeguridad(clave.Codigo));
         }
 
         [TestMethod]
@@ -184,8 +192,11 @@ namespace TestsObligatorio
             {
                 Codigo = "clavesolominusculas"
             };
+
+            NivelSeguridad nivelSeguridad = new NivelSeguridad();
             ColorNivelSeguridad color = new ColorNivelSeguridad();
-            Assert.AreEqual(color.Amarillo, clave.GetNivelSeguridad());
+
+            Assert.AreEqual(color.Amarillo, nivelSeguridad.GetNivelSeguridad(clave.Codigo));
         }
 
         [TestMethod]
@@ -195,8 +206,11 @@ namespace TestsObligatorio
             {
                 Codigo = "ClaveConMayYMin"
             };
+
+            NivelSeguridad nivelSeguridad = new NivelSeguridad();
             ColorNivelSeguridad color = new ColorNivelSeguridad();
-            Assert.AreEqual(color.VerdeClaro, clave.GetNivelSeguridad());
+
+            Assert.AreEqual(color.VerdeClaro, nivelSeguridad.GetNivelSeguridad(clave.Codigo));
         }
 
         [TestMethod]
@@ -206,8 +220,11 @@ namespace TestsObligatorio
             {
                 Codigo = "ClaveConMayYMin14@#"
             };
+
+            NivelSeguridad nivelSeguridad = new NivelSeguridad();
             ColorNivelSeguridad color = new ColorNivelSeguridad();
-            Assert.AreEqual(color.VerdeOscuro, clave.GetNivelSeguridad());
+
+            Assert.AreEqual(color.VerdeOscuro, nivelSeguridad.GetNivelSeguridad(clave.Codigo));
         }
 
         [TestMethod]
@@ -217,8 +234,12 @@ namespace TestsObligatorio
             {
                 Codigo = "claveconmayymiN14@"
             };
+
+            NivelSeguridad nivelSeguridad = new NivelSeguridad();
             ColorNivelSeguridad color = new ColorNivelSeguridad();
-            Assert.AreEqual(color.VerdeOscuro, clave.GetNivelSeguridad());
+
+            Assert.AreEqual(color.VerdeOscuro, nivelSeguridad.GetNivelSeguridad(clave.Codigo)
+);
         }
 
         [TestMethod]

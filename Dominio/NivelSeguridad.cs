@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    class NivelSeguridad
+    public class NivelSeguridad
     {
         public string GetNivelSeguridad(String clave)
         {

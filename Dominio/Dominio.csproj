@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Categoria.cs" />
+    <Compile Include="NivelSeguridad.cs" />
     <Compile Include="ClaveAModificar.cs" />
     <Compile Include="ClaveCompartida.cs" />
     <Compile Include="Clave.cs" />
