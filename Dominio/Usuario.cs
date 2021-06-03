@@ -426,5 +426,17 @@ namespace Dominio
 
             return false;
         }
+
+        public bool EsClaveSegura(string aVerificar)
+        {
+            NivelSeguridad nivelSeguridad = new NivelSeguridad();
+            ColorNivelSeguridad color = new ColorNivelSeguridad();
+
+            if (nivelSeguridad.GetNivelSeguridad(aVerificar) == color.VerdeClaro)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

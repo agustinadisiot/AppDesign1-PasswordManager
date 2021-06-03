@@ -2948,6 +2948,46 @@ namespace TestsObligatorio
 
             Assert.AreEqual(true, usuario.EsClaveRepetida(aVerificar));
         }
+
+        [TestMethod]
+        public void UsuarioEsClaveSeguraSeguraVerdeClaro()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria);
+
+            string aVerificar = "ClaveVerdeClaro";
+
+            Assert.AreEqual(true, usuario.EsClaveSegura(aVerificar));
+        }
+
+        [TestMethod]
+        public void UsuarioEsClaveSeguraNoSegura()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria);
+
+            string aVerificar = "clavenosegura";
+
+            Assert.AreEqual(false, usuario.EsClaveSegura(aVerificar));
+        }
     }
 
     [TestClass]
