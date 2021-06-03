@@ -27,12 +27,22 @@ namespace TestsObligatorio
     [TestClass]
     public class TestUsuarioDataBreaches
     {
-        Usuario usuario;
+        private Usuario usuario;
+        private Clave clave1;
+        private Clave clave2;
+        private Clave clave3;
+        private Clave clave4;
+
+        [TestCleanup]
+        public void TearDown()
+        {
+
+        }
 
         [TestInitialize]
-        public void usuarioInit()
+        public void Setup()
         {
-            Usuario usuario = new Usuario()
+            usuario = new Usuario()
             {
                 Nombre = "Usuario1"
             };
@@ -51,47 +61,42 @@ namespace TestsObligatorio
 
             usuario.AgregarCategoria(categoria2);
 
-            Clave clave1 = new Clave()
+            clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
                 Codigo = "EstaEsUnaClave1",
                 UsuarioClave = "Roberto"
             };
             categoria1.AgregarClave(clave1);
-            Clave clave2 = new Clave()
+            clave2 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Codigo = "EstaEsUnaClave1",
+                Codigo = "EstaEsUnaClave2",
                 UsuarioClave = "Luis88"
             };
             categoria1.AgregarClave(clave2);
 
-            Clave clave3 = new Clave()
+            clave3 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
                 Codigo = "EstaEsUnaClave3",
                 UsuarioClave = "Hernesto"
             };
             categoria2.AgregarClave(clave3);
-            Clave clave4 = new Clave()
+            clave4 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
-                Codigo = "EstaEsUnaClave1",
+                Codigo = "EstaEsUnaClave4",
                 UsuarioClave = "Peepo"
             };
             categoria2.AgregarClave(clave4);
         }
 
-        [TestCleanup]
-        public void usuarioClean()
-        {
-            
-        }
+        
 
         [TestMethod]
-        public void UsuarioGetDataBreachVacioRetornaListaVacia()
+        public void UsuarioGetUltimoDataBreachVacioRetornaListaVacia()
         {
-            
             List<string> filtradas = new List<string>();
 
             usuario.agregarDataBreach(filtradas);
@@ -105,56 +110,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioGetDataBreachNoVacio()
         {
-            Usuario usuario = new Usuario()
-            {
-                Nombre = "Usuario1"
-            };
-
-            Categoria categoria1 = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            usuario.AgregarCategoria(categoria1);
-
-            Categoria categoria2 = new Categoria()
-            {
-                Nombre = "Estudio"
-            };
-
-            usuario.AgregarCategoria(categoria2);
-
-            Clave clave1 = new Clave()
-            {
-                Sitio = "web.whatsapp.com",
-                Codigo = "EstaEsUnaClave1",
-                UsuarioClave = "Roberto"
-            };
-            categoria1.AgregarClave(clave1);
-            Clave clave2 = new Clave()
-            {
-                Sitio = "web.whatsapp.com",
-                Codigo = "EstaEsUnaClave2",
-                UsuarioClave = "Luis88"
-            };
-            categoria1.AgregarClave(clave2);
-
-            Clave clave3 = new Clave()
-            {
-                Sitio = "web.whatsapp.com",
-                Codigo = "EstaEsUnaClave3",
-                UsuarioClave = "Hernesto"
-            };
-            categoria2.AgregarClave(clave3);
-            Clave clave4 = new Clave()
-            {
-                Sitio = "web.whatsapp.com",
-                Codigo = "EstaEsUnaClave4",
-                UsuarioClave = "Peepo"
-            };
-            categoria2.AgregarClave(clave4);
-
-            List<string> dataBreach = new List<string>() {
+            List<string> filtradas = new List<string>() {
                 "EstaEsUnaClave1",
                 "EstaEsUnaClave4"
             };
@@ -164,10 +120,12 @@ namespace TestsObligatorio
                 clave4
             };
 
-            List<Clave> retorno = usuario.GetClavesDataBreach(dataBreach);
+            usuario.agregarDataBreach(filtradas);
 
-            bool esperadasContieneRetorno = retorno.All(esperadas.Contains);
-            bool retornoContieneEsperadas = esperadas.All(retorno.Contains);
+            DataBreach resultadoBreach = usuario.GetUltimoDataBreach();
+
+            bool esperadasContieneRetorno = resultadoBreach.Claves.All(esperadas.Contains);
+            bool retornoContieneEsperadas = esperadas.All(resultadoBreach.Claves.Contains);
             Assert.IsTrue(esperadasContieneRetorno && retornoContieneEsperadas);
         }
 
