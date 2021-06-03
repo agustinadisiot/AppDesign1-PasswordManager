@@ -250,5 +250,36 @@ namespace TestsObligatorio
             Assert.IsTrue(mismoTiempo);
         }
 
+        [TestMethod]
+        public void UsuarioGetDataBreachViejo()
+        {
+            List<string> primerasFiltradas = new List<string>() {
+                "2222222222222222",
+                "OtraClave"
+            };
+
+            List<string> segundasFiltradas = new List<string>() {
+                "1111111111111111",
+                "UnaClave",
+                "3333 3333 3333 3333",
+                "4444 4444 4444 4444"
+            };
+
+            List<Tarjeta> esperadas = new List<Tarjeta>() {
+                tarjeta2
+            };
+
+            DateTime tiempoViejo = new DateTime(2000, 1, 1, 1, 0, 0);
+            DateTime tiempoNuevo = new DateTime(2000, 1, 1, 2, 0, 0);
+            usuario.agregarDataBreach(primerasFiltradas, tiempoViejo);
+            usuario.agregarDataBreach(segundasFiltradas, tiempoNuevo);
+
+            DataBreach resultado = usuario.GetDataBreach(tiempoViejo);
+
+            bool esperadasContieneRetorno = resultado.Tarjetas.All(esperadas.Contains);
+            bool retornoContieneEsperadas = esperadas.All(resultado.Tarjetas.Contains);
+            Assert.IsTrue(esperadasContieneRetorno&& retornoContieneEsperadas);
+        }
+
     }
 }

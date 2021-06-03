@@ -12,7 +12,6 @@ namespace Dominio
         private string _claveMaestra;
         private const int _largoNombreYClaveMinimo = 5;
         private const int _largoNombreYClaveMaximo = 25;
-        private DataBreach _ultimoDataBreach;
 
 
         public Usuario()
@@ -20,6 +19,7 @@ namespace Dominio
             this._categorias = new List<Categoria>();
             this.CompartidasConmigo = new List<ClaveCompartida>();
             this.CompartidasPorMi = new List<ClaveCompartida>();
+            this.DataBreaches = new List<DataBreach>();
         }
 
         public string Nombre 
@@ -35,6 +35,8 @@ namespace Dominio
         public List<ClaveCompartida> CompartidasPorMi { get; set; }
 
         public List<ClaveCompartida> CompartidasConmigo { get; set; }
+
+        public List<DataBreach> DataBreaches { get; set; }
 
         public bool ValidarIgualClaveMaestra(string claveMaestraUsuario)
         {
@@ -70,7 +72,7 @@ namespace Dominio
 
         public DataBreach GetUltimoDataBreach()
         {
-            return this._ultimoDataBreach;
+            return this.DataBreaches.LastOrDefault();
         }
 
         public void agregarDataBreach(List<string> filtradas, DateTime tiempoBreach)
@@ -81,7 +83,7 @@ namespace Dominio
                 Claves = this.GetClavesDataBreach(filtradas),
                 Fecha = tiempoBreach
             };
-            this._ultimoDataBreach = nuevoBreach;
+            this.DataBreaches.Add(nuevoBreach);
         }
 
         public override bool Equals(object objeto)
@@ -241,6 +243,11 @@ namespace Dominio
                 categoriaNueva.AgregarClave(claveVieja);
                 categoriaNueva.ModificarClave(claveVieja, claveNueva);
             }
+        }
+
+        public DataBreach GetDataBreach(DateTime tiempoViejo)
+        {
+            return this.DataBreaches.First(d=> d.Fecha == tiempoViejo);
         }
 
         public void ModificarTarjeta(TarjetaAModificar modificar)
