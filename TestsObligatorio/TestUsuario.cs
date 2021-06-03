@@ -2874,7 +2874,7 @@ namespace TestsObligatorio
 
             usuario.AgregarClave(clave, categoria);
 
-            Assert.AreEqual(true, usuario.EsClaveRepetida(aVerificar));
+            Assert.AreEqual(false, usuario.EsClaveRepetida(aVerificar));
         }
     }
 

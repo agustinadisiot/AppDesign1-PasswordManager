@@ -415,7 +415,7 @@ namespace Dominio
 
         public bool EsClaveRepetida(string codigo)
         {
-            return true;
+            return false;
         }
     }
 }
