@@ -2988,6 +2988,26 @@ namespace TestsObligatorio
 
             Assert.AreEqual(false, usuario.EsClaveSegura(aVerificar));
         }
+
+        [TestMethod]
+        public void UsuarioEsClaveSeguraSeguraVerdeOscuro()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria);
+
+            string aVerificar = "claveVerdeOscuroN14@";
+
+            Assert.AreEqual(true, usuario.EsClaveSegura(aVerificar));
+        }
     }
 
     [TestClass]

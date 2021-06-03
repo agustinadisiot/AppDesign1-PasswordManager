@@ -432,7 +432,8 @@ namespace Dominio
             NivelSeguridad nivelSeguridad = new NivelSeguridad();
             ColorNivelSeguridad color = new ColorNivelSeguridad();
 
-            if (nivelSeguridad.GetNivelSeguridad(aVerificar) == color.VerdeClaro)
+            string colorAVerificar = nivelSeguridad.GetNivelSeguridad(aVerificar);
+            if (colorAVerificar.Equals(color.VerdeClaro) || colorAVerificar.Equals(color.VerdeOscuro))
             {
                 return true;
             }
