@@ -27,9 +27,10 @@ namespace TestsObligatorio
     [TestClass]
     public class TestUsuarioDataBreaches
     {
+        Usuario usuario;
 
-        [TestMethod]
-        public void UsuarioGetDataBreachVacioRetornaListaVacia()
+        [TestInitialize]
+        public void usuarioInit()
         {
             Usuario usuario = new Usuario()
             {
@@ -79,11 +80,25 @@ namespace TestsObligatorio
                 UsuarioClave = "Peepo"
             };
             categoria2.AgregarClave(clave4);
+        }
 
-            List<string> dataBreach = new List<string>();
+        [TestCleanup]
+        public void usuarioClean()
+        {
+            
+        }
 
+        [TestMethod]
+        public void UsuarioGetDataBreachVacioRetornaListaVacia()
+        {
+            
+            List<string> filtradas = new List<string>();
 
-            Assert.AreEqual(0, usuario.GetClavesDataBreach(dataBreach).Count);
+            usuario.agregarDataBreach(filtradas);
+
+            DataBreach ultimo = usuario.GetUltimoDataBreach();
+
+            Assert.IsTrue(ultimo.Claves.Count == 0 && ultimo.Tarjetas.Count == 0);
         }
 
 

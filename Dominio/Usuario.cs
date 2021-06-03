@@ -12,6 +12,8 @@ namespace Dominio
         private string _claveMaestra;
         private const int _largoNombreYClaveMinimo = 5;
         private const int _largoNombreYClaveMaximo = 25;
+        private DataBreach _ultimoDataBreach;
+
 
         public Usuario()
         {
@@ -64,6 +66,21 @@ namespace Dominio
 
             Categoria retorno = this._categorias.Find(buscadorCategoria);
             return retorno != null ? retorno : throw new CategoriaInexistenteException();
+        }
+
+        public DataBreach GetUltimoDataBreach()
+        {
+            return this._ultimoDataBreach;
+        }
+
+        public void agregarDataBreach(List<string> filtradas)
+        {
+            DataBreach nuevoBreach = new DataBreach()
+            {
+                Tarjetas = this.GetTarjetasDataBreach(filtradas),
+                Claves = this.GetClavesDataBreach(filtradas)
+            };
+            this._ultimoDataBreach = nuevoBreach;
         }
 
         public override bool Equals(object objeto)
