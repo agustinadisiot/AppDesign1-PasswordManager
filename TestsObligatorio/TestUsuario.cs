@@ -2905,6 +2905,49 @@ namespace TestsObligatorio
 
             Assert.AreEqual(true, usuario.EsClaveRepetida(aVerificar));
         }
+
+        [TestMethod]
+        public void UsuarioEsClaveRepetidaVariasClavesDiferentesCategoriasSiRepetida()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            Categoria categoria2 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+            usuario.AgregarCategoria(categoria1);
+            usuario.AgregarCategoria(categoria2);
+
+            Clave clave1 = new Clave()
+            {
+                Sitio = "web.whatsapp.com",
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
+            };
+
+            Clave clave2 = new Clave()
+            {
+                Sitio = "web.Netflix.com",
+                Codigo = "EstaEsOtraClave",
+                UsuarioClave = "Roberto"
+            };
+
+            string aVerificar = "EstaEsOtraClave";
+
+            usuario.AgregarClave(clave1, categoria1);
+            usuario.AgregarClave(clave2, categoria2);
+
+            Assert.AreEqual(true, usuario.EsClaveRepetida(aVerificar));
+        }
     }
 
     [TestClass]

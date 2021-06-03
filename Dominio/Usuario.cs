@@ -415,10 +415,13 @@ namespace Dominio
 
         public bool EsClaveRepetida(string aVerificar)
         {
-            String codigo = this.GetListaClaves()[0].Codigo;
-            if (codigo.Equals(aVerificar))
+            List<Clave> clavesUsuario = this.GetListaClaves();
+            foreach (Clave claveAComparar in clavesUsuario)
             {
-                return true;
+                if (claveAComparar.Codigo.Equals(aVerificar))
+                {
+                    return true;
+                }
             }
 
             return false;
