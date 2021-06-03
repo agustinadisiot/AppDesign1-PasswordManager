@@ -442,7 +442,8 @@ namespace Dominio
 
         public void ClaveCumpleRequerimientos(string aVerificar)
         {
-            throw new ClaveDuplicadaException();
+            if (this.EsClaveRepetida(aVerificar)) throw new ClaveDuplicadaException();
+            if (!this.EsClaveSegura(aVerificar)) throw new ClaveNoSeguraException();
         }
     }
 }

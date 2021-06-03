@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Categoria.cs" />
     <Compile Include="Exceptions\ClaveDuplicadaException.cs" />
+    <Compile Include="Exceptions\ClaveNoSeguraException.cs" />
     <Compile Include="NivelSeguridad.cs" />
     <Compile Include="ClaveAModificar.cs" />
     <Compile Include="ClaveCompartida.cs" />
