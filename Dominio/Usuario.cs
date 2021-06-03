@@ -413,8 +413,14 @@ namespace Dominio
             return this.CompartidasConmigo.First(aBuscar => aBuscar.Equals(buscadora));
         }
 
-        public bool EsClaveRepetida(string codigo)
+        public bool EsClaveRepetida(string aVerificar)
         {
+            String codigo = this.GetListaClaves()[0].Codigo;
+            if (codigo.Equals(aVerificar))
+            {
+                return true;
+            }
+
             return false;
         }
     }
