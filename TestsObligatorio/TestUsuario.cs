@@ -2957,13 +2957,6 @@ namespace TestsObligatorio
                 Nombre = "Usuario1"
             };
 
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            usuario.AgregarCategoria(categoria);
-
             string aVerificar = "ClaveVerdeClaro";
 
             Assert.AreEqual(true, usuario.EsClaveSegura(aVerificar));
@@ -2976,13 +2969,6 @@ namespace TestsObligatorio
             {
                 Nombre = "Usuario1"
             };
-
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            usuario.AgregarCategoria(categoria);
 
             string aVerificar = "clavenosegura";
 
@@ -2997,6 +2983,21 @@ namespace TestsObligatorio
                 Nombre = "Usuario1"
             };
 
+            string aVerificar = "claveVerdeOscuroN14@";
+
+            Assert.AreEqual(true, usuario.EsClaveSegura(aVerificar));
+        }
+
+
+
+        [TestMethod]
+        public void UsuarioClaveCumpleRequerimientosNoCumplePorClaveDuplicada()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
             Categoria categoria = new Categoria()
             {
                 Nombre = "Personal"
@@ -3004,9 +3005,18 @@ namespace TestsObligatorio
 
             usuario.AgregarCategoria(categoria);
 
-            string aVerificar = "claveVerdeOscuroN14@";
+            Clave clave = new Clave()
+            {
+                Sitio = "web.whatsapp.com",
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
+            };
 
-            Assert.AreEqual(true, usuario.EsClaveSegura(aVerificar));
+            string aVerificar = "EstaEsUnaClave1";
+
+            usuario.AgregarClave(clave, categoria);
+
+            Assert.ThrowsException<ClaveDuplicadaException>(() => usuario.ClaveCumpleRequerimientos(aVerificar));
         }
     }
 

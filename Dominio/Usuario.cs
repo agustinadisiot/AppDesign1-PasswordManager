@@ -439,5 +439,10 @@ namespace Dominio
             }
             return false;
         }
+
+        public void ClaveCumpleRequerimientos(string aVerificar)
+        {
+            throw new ClaveDuplicadaException();
+        }
     }
 }
