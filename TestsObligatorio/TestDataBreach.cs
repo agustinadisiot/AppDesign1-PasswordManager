@@ -32,7 +32,9 @@ namespace TestsObligatorio
         private Clave clave2;
         private Clave clave3;
         private Clave clave4;
-
+        private Tarjeta tarjeta1;
+        private Tarjeta tarjeta2;
+        private Tarjeta tarjeta3;
         [TestCleanup]
         public void TearDown()
         {
@@ -90,9 +92,46 @@ namespace TestsObligatorio
                 UsuarioClave = "Peepo"
             };
             categoria2.AgregarClave(clave4);
+            
+            tarjeta1 = new Tarjeta()
+            {
+                Numero = "1111111111111111",
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Codigo = "321",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+            usuario.AgregarTarjeta(tarjeta1, categoria1);
+
+            tarjeta2 = new Tarjeta()
+            {
+                Numero = "2222222222222222",
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Codigo = "345",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+            usuario.AgregarTarjeta(tarjeta2, categoria2);
+
+            tarjeta3 = new Tarjeta()
+            {
+                Numero = "3333333333333333",
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Codigo = "345",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+            usuario.AgregarTarjeta(tarjeta3, categoria1);
+
         }
 
-        
+
 
         [TestMethod]
         public void UsuarioGetUltimoDataBreachVacioRetornaListaVacia()
@@ -108,7 +147,7 @@ namespace TestsObligatorio
 
 
         [TestMethod]
-        public void UsuarioGetDataBreachNoVacio()
+        public void UsuarioGetDataBreachNoVacioClaves()
         {
             List<string> filtradas = new List<string>() {
                 "EstaEsUnaClave1",
@@ -133,56 +172,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioGetDataBreachClavesNoExistentes()
         {
-            Usuario usuario = new Usuario()
-            {
-                Nombre = "Usuario1"
-            };
-
-            Categoria categoria1 = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            usuario.AgregarCategoria(categoria1);
-
-            Categoria categoria2 = new Categoria()
-            {
-                Nombre = "Estudio"
-            };
-
-            usuario.AgregarCategoria(categoria2);
-
-            Clave clave1 = new Clave()
-            {
-                Sitio = "web.whatsapp.com",
-                Codigo = "EstaEsUnaClave1",
-                UsuarioClave = "Roberto"
-            };
-            categoria1.AgregarClave(clave1);
-            Clave clave2 = new Clave()
-            {
-                Sitio = "web.whatsapp.com",
-                Codigo = "EstaEsUnaClave2",
-                UsuarioClave = "Luis88"
-            };
-            categoria1.AgregarClave(clave2);
-
-            Clave clave3 = new Clave()
-            {
-                Sitio = "web.whatsapp.com",
-                Codigo = "EstaEsUnaClave3",
-                UsuarioClave = "Hernesto"
-            };
-            categoria2.AgregarClave(clave3);
-            Clave clave4 = new Clave()
-            {
-                Sitio = "web.whatsapp.com",
-                Codigo = "EstaEsUnaClave4",
-                UsuarioClave = "Peepo"
-            };
-            categoria2.AgregarClave(clave4);
-
-            List<string> dataBreach = new List<string>() {
+            List<string> filtradas = new List<string>() {
                 "ClaveNoContenida",
                 "ClaveTampocoContenida",
                 "EstaEsUnaClave3"
@@ -192,10 +182,12 @@ namespace TestsObligatorio
                 clave3
             };
 
-            List<Clave> retorno = usuario.GetClavesDataBreach(dataBreach);
+            usuario.agregarDataBreach(filtradas);
 
-            bool esperadasContieneRetorno = retorno.All(esperadas.Contains);
-            bool retornoContieneEsperadas = esperadas.All(retorno.Contains);
+            DataBreach resultado = usuario.GetUltimoDataBreach();
+
+            bool esperadasContieneRetorno = resultado.Claves.All(esperadas.Contains);
+            bool retornoContieneEsperadas = esperadas.All(resultado.Claves.Contains);
             Assert.IsTrue(esperadasContieneRetorno && retornoContieneEsperadas);
         }
 
@@ -203,118 +195,20 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioGetTarjetasDataBreachVacio()
         {
+            List<string> filtradas = new List<string>();
 
-            Usuario usuario = new Usuario()
-            {
-                Nombre = "Usuario"
-            };
+            usuario.agregarDataBreach(filtradas);
 
-            Categoria trabajo = new Categoria()
-            {
-                Nombre = "Trabajo"
-            };
-
-            Categoria facultad = new Categoria()
-            {
-                Nombre = "Facultad"
-            };
-
-            usuario.AgregarCategoria(trabajo);
-            usuario.AgregarCategoria(facultad);
+            DataBreach resultado = usuario.GetUltimoDataBreach();
 
 
-
-            Tarjeta tarjeta1 = new Tarjeta()
-            {
-                Numero = "1111111111111111",
-                Nombre = "Prex",
-                Tipo = "Mastercard",
-                Codigo = "321",
-                Nota = "",
-                Vencimiento = new DateTime(2025, 7, 1)
-
-            };
-            usuario.AgregarTarjeta(tarjeta1, trabajo);
-
-            Tarjeta tarjeta2 = new Tarjeta()
-            {
-                Numero = "2222222222222222",
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Codigo = "345",
-                Nota = "",
-                Vencimiento = new DateTime(2025, 7, 1)
-
-            };
-            usuario.AgregarTarjeta(tarjeta2, facultad);
-
-
-            List<string> dataBreach = new List<string>();
-
-            Assert.AreEqual(0, usuario.GetTarjetasDataBreach(dataBreach).Count);
+            Assert.IsTrue(resultado.Tarjetas.Count == 0);
         }
 
         [TestMethod]
         public void UsuarioGetTarjetasDataBreachNoVacio()
         {
-
-            Usuario usuario = new Usuario()
-            {
-                Nombre = "Usuario"
-            };
-
-            Categoria trabajo = new Categoria()
-            {
-                Nombre = "Trabajo"
-            };
-
-            Categoria facultad = new Categoria()
-            {
-                Nombre = "Facultad"
-            };
-
-            usuario.AgregarCategoria(trabajo);
-            usuario.AgregarCategoria(facultad);
-
-
-
-            Tarjeta tarjeta1 = new Tarjeta()
-            {
-                Numero = "1111111111111111",
-                Nombre = "Prex",
-                Tipo = "Mastercard",
-                Codigo = "321",
-                Nota = "",
-                Vencimiento = new DateTime(2025, 7, 1)
-
-            };
-            usuario.AgregarTarjeta(tarjeta1, trabajo);
-
-            Tarjeta tarjeta2 = new Tarjeta()
-            {
-                Numero = "2222222222222222",
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Codigo = "345",
-                Nota = "",
-                Vencimiento = new DateTime(2025, 7, 1)
-
-            };
-            usuario.AgregarTarjeta(tarjeta2, facultad);
-
-            Tarjeta tarjeta3 = new Tarjeta()
-            {
-                Numero = "3333333333333333",
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Codigo = "345",
-                Nota = "",
-                Vencimiento = new DateTime(2025, 7, 1)
-
-            };
-            usuario.AgregarTarjeta(tarjeta3, facultad);
-
-            List<string> dataBreach = new List<string>() {
+            List<string> filtradas = new List<string>() {
                 "1111111111111111",
                 "UnaClave",
                 "3333 3333 3333 3333",
@@ -326,10 +220,13 @@ namespace TestsObligatorio
                 tarjeta3
             };
 
-            List<Tarjeta> retorno = usuario.GetTarjetasDataBreach(dataBreach);
+            usuario.agregarDataBreach(filtradas);
 
-            bool esperadasContieneRetorno = retorno.All(esperadas.Contains);
-            bool retornoContieneEsperadas = esperadas.All(retorno.Contains);
+            DataBreach resultado = usuario.GetUltimoDataBreach();
+
+
+            bool esperadasContieneRetorno = resultado.Tarjetas.All(esperadas.Contains);
+            bool retornoContieneEsperadas = esperadas.All(resultado.Tarjetas.Contains);
             Assert.IsTrue(esperadasContieneRetorno && retornoContieneEsperadas);
         }
     }
