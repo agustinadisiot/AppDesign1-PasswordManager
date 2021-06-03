@@ -412,5 +412,10 @@ namespace Dominio
             if (!this.CompartidasConmigo.Contains(buscadora)) throw new ObjetoInexistenteException();
             return this.CompartidasConmigo.First(aBuscar => aBuscar.Equals(buscadora));
         }
+
+        public bool EsClaveRepetida(string codigo)
+        {
+            return true;
+        }
     }
 }

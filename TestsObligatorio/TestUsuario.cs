@@ -2848,6 +2848,34 @@ namespace TestsObligatorio
             Assert.AreEqual(buscadora, usuario2.GetClaveCompartidaConmigo(buscadora));
         }
 
+        [TestMethod]
+        public void UsuarioEsClaveRepetidaNoRepetida()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "Usuario1"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            usuario.AgregarCategoria(categoria);
+
+            Clave clave = new Clave()
+            {
+                Sitio = "web.whatsapp.com",
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto"
+            };
+
+            string aVerificar = "ClaveNoRepetida";
+
+            usuario.AgregarClave(clave, categoria);
+
+            Assert.AreEqual(true, usuario.EsClaveRepetida(aVerificar));
+        }
     }
 
     [TestClass]
