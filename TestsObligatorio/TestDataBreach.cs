@@ -35,6 +35,7 @@ namespace TestsObligatorio
         private Tarjeta tarjeta1;
         private Tarjeta tarjeta2;
         private Tarjeta tarjeta3;
+        private DateTime tiempoActual;
         [TestCleanup]
         public void TearDown()
         {
@@ -44,6 +45,8 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
+            tiempoActual = DateTime.Now;
+
             usuario = new Usuario()
             {
                 Nombre = "Usuario1"
@@ -138,7 +141,7 @@ namespace TestsObligatorio
         {
             List<string> filtradas = new List<string>();
 
-            usuario.agregarDataBreach(filtradas);
+            usuario.agregarDataBreach(filtradas, tiempoActual);
 
             DataBreach ultimo = usuario.GetUltimoDataBreach();
 
@@ -159,7 +162,7 @@ namespace TestsObligatorio
                 clave4
             };
 
-            usuario.agregarDataBreach(filtradas);
+            usuario.agregarDataBreach(filtradas, tiempoActual);
 
             DataBreach resultadoBreach = usuario.GetUltimoDataBreach();
 
@@ -182,7 +185,7 @@ namespace TestsObligatorio
                 clave3
             };
 
-            usuario.agregarDataBreach(filtradas);
+            usuario.agregarDataBreach(filtradas, tiempoActual);
 
             DataBreach resultado = usuario.GetUltimoDataBreach();
 
@@ -197,7 +200,7 @@ namespace TestsObligatorio
         {
             List<string> filtradas = new List<string>();
 
-            usuario.agregarDataBreach(filtradas);
+            usuario.agregarDataBreach(filtradas, tiempoActual);
 
             DataBreach resultado = usuario.GetUltimoDataBreach();
 
@@ -220,14 +223,32 @@ namespace TestsObligatorio
                 tarjeta3
             };
 
-            usuario.agregarDataBreach(filtradas);
+            usuario.agregarDataBreach(filtradas, tiempoActual);
 
             DataBreach resultado = usuario.GetUltimoDataBreach();
-
 
             bool esperadasContieneRetorno = resultado.Tarjetas.All(esperadas.Contains);
             bool retornoContieneEsperadas = esperadas.All(resultado.Tarjetas.Contains);
             Assert.IsTrue(esperadasContieneRetorno && retornoContieneEsperadas);
         }
+
+        [TestMethod]
+        public void UsuarioGetFechaHoraDataBreach()
+        {
+            List<string> primerasFiltradas = new List<string>() {
+                "2222222222222222",
+                "OtraClave"
+            };
+
+            List<Tarjeta> esperadas = new List<Tarjeta>() {
+                tarjeta2
+            };
+            usuario.agregarDataBreach(primerasFiltradas, tiempoActual);
+            DataBreach resultado = usuario.GetUltimoDataBreach();
+            bool mismoTiempo = (resultado.Fecha == tiempoActual);
+
+            Assert.IsTrue(mismoTiempo);
+        }
+
     }
 }

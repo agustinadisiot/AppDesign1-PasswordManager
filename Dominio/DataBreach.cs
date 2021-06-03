@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Dominio
 {
@@ -13,5 +14,6 @@ namespace Dominio
         public List<Tarjeta> Tarjetas { get; set; }
 
         public List<Clave> Claves { get; set; }
+        public DateTime Fecha { get; set; }
     }
 }

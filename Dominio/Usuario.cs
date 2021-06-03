@@ -73,12 +73,13 @@ namespace Dominio
             return this._ultimoDataBreach;
         }
 
-        public void agregarDataBreach(List<string> filtradas)
+        public void agregarDataBreach(List<string> filtradas, DateTime tiempoBreach)
         {
             DataBreach nuevoBreach = new DataBreach()
             {
                 Tarjetas = this.GetTarjetasDataBreach(filtradas),
-                Claves = this.GetClavesDataBreach(filtradas)
+                Claves = this.GetClavesDataBreach(filtradas),
+                Fecha = tiempoBreach
             };
             this._ultimoDataBreach = nuevoBreach;
         }
