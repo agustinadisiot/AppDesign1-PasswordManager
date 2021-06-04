@@ -15,5 +15,6 @@ namespace Dominio
 
         public List<Clave> Claves { get; set; }
         public DateTime Fecha { get; set; }
+        public List<string> Filtradas { get; set; }
     }
 }

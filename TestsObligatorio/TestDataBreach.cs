@@ -266,5 +266,29 @@ namespace TestsObligatorio
             Assert.IsTrue(esperadasContieneRetorno&& retornoContieneEsperadas);
         }
 
+
+        [TestMethod]
+        public void GetFiltradasDataBreachViejo()
+        {
+            List<string> filtradas = new List<string>() {
+                "ClaveNoContenida",
+                "ClaveTampocoContenida",
+                "EstaEsUnaClave3"
+            };
+
+            List<string> esperadas = new List<string>() {
+                "ClaveNoContenida",
+                "ClaveTampocoContenida",
+                "EstaEsUnaClave3"
+            };
+
+            usuario.agregarDataBreach(filtradas, tiempoActual);
+            DataBreach resultado = usuario.GetUltimoDataBreach();
+
+            bool esperadasContieneRetorno = resultado.Filtradas.All(esperadas.Contains);
+            bool retornoContieneEsperadas = esperadas.All(resultado.Filtradas.Contains);
+            Assert.IsTrue(esperadasContieneRetorno && retornoContieneEsperadas);
+        }
+
     }
 }

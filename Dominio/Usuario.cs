@@ -81,6 +81,7 @@ namespace Dominio
             {
                 Tarjetas = this.GetTarjetasDataBreach(filtradas),
                 Claves = this.GetClavesDataBreach(filtradas),
+                Filtradas = filtradas,
                 Fecha = tiempoBreach
             };
             this.DataBreaches.Add(nuevoBreach);
