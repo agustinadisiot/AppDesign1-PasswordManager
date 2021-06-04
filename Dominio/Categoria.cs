@@ -175,7 +175,8 @@ namespace Dominio
         public List<Clave> GetListaClavesColor(string color)
         {
             List<Clave> todasLasClaves = this.GetListaClaves();
-            return todasLasClaves.FindAll(buscadora => buscadora.GetNivelSeguridad() == color);
+            NivelSeguridad nivelSeguridad = new NivelSeguridad();
+            return todasLasClaves.FindAll(buscadora => nivelSeguridad.GetNivelSeguridad(buscadora.Codigo) == color);
         }
     }
 }

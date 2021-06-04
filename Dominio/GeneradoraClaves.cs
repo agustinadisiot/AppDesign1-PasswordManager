@@ -111,7 +111,6 @@ namespace Dominio
                             break;
                         default:
                             throw new CaracterInesperadoException();
-                            break;
                     }
                 }
             }
@@ -183,7 +182,6 @@ namespace Dominio
                     break;
                 default:
                     throw new CaracterInesperadoException();
-                    break;
             }
             return resultado;
         }

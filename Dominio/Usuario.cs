@@ -394,7 +394,8 @@ namespace Dominio
         public List<Clave> GetListaClavesColor(string color)
         {
             List<Clave> todasLasClaves = this.GetListaClaves();
-            return todasLasClaves.FindAll(buscadora => buscadora.GetNivelSeguridad()==color);
+            NivelSeguridad nivelSeguridad = new NivelSeguridad();
+            return todasLasClaves.FindAll(buscadora => nivelSeguridad.GetNivelSeguridad(buscadora.Codigo)==color);
         }
 
         public Categoria GetCategoriaTarjeta(Tarjeta buscadora)
@@ -435,6 +436,39 @@ namespace Dominio
         {
             if (!this.CompartidasConmigo.Contains(buscadora)) throw new ObjetoInexistenteException();
             return this.CompartidasConmigo.First(aBuscar => aBuscar.Equals(buscadora));
+        }
+
+        public bool EsClaveRepetida(string aVerificar)
+        {
+            List<Clave> clavesUsuario = this.GetListaClaves();
+            foreach (Clave claveAComparar in clavesUsuario)
+            {
+                if (claveAComparar.Codigo.Equals(aVerificar))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool EsClaveSegura(string aVerificar)
+        {
+            NivelSeguridad nivelSeguridad = new NivelSeguridad();
+            ColorNivelSeguridad color = new ColorNivelSeguridad();
+
+            string colorAVerificar = nivelSeguridad.GetNivelSeguridad(aVerificar);
+            if (colorAVerificar.Equals(color.VerdeClaro) || colorAVerificar.Equals(color.VerdeOscuro))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void ClaveCumpleRequerimientos(string aVerificar)
+        {
+            if (this.EsClaveRepetida(aVerificar)) throw new ClaveDuplicadaException();
+            if (!this.EsClaveSegura(aVerificar)) throw new ClaveNoSeguraException();
         }
     }
 }
