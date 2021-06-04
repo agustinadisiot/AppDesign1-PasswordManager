@@ -9,22 +9,6 @@ using System.Threading.Tasks;
 namespace TestsObligatorio
 {
     [TestClass]
-    class TestDataBreach
-    {
-        [TestInitialize]
-        public void testInit() {
-
-        }
-
-        [TestCleanup]
-        public void testClean() {
-            
-        }
-
-    }
-
-
-    [TestClass]
     public class TestUsuarioDataBreaches
     {
         private Usuario usuario;
@@ -36,6 +20,7 @@ namespace TestsObligatorio
         private Tarjeta tarjeta2;
         private Tarjeta tarjeta3;
         private DateTime tiempoActual;
+
         [TestCleanup]
         public void TearDown()
         {
