@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,6 +38,29 @@ namespace TestsObligatorio
             Assert.ThrowsException<ArchivoNoExistenteException>(() => logicaDataBreach.LeerArchivo(direccion));
         }
 
+        [TestMethod]
+        public void LogicaDataBreachLeerArchivo()
+        {
+            string nombreArchivo = "test.txt";
+            using (StreamWriter streamWriter = new StreamWriter(nombreArchivo))
+            {
+                string linea = "clave1\tEstoEsUnaClave\t1234567890987634\tclaveDeNetflix";
+                streamWriter.WriteLine(linea);
+                streamWriter.Close();
+            }
+
+
+            List<string> datos = new List<string>
+            {
+                "clave1",
+                "EstoEsUnaClave",
+                "1234567890987634",
+                "claveDeNetflix"
+            };
+
+            LogicaDataBreach logicaDataBreach = new LogicaDataBreach();
+            Assert.IsTrue(datos.SequenceEqual(logicaDataBreach.LeerArchivo(nombreArchivo)));
+        }
     }
 
 

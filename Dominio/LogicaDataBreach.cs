@@ -13,9 +13,9 @@ namespace Dominio
         {
             try
             {
-                StreamReader sr = new StreamReader(direccion);
-                string linea = sr.ReadLine();
-                sr.Close();
+                StreamReader streamReader = new StreamReader(direccion);
+                string linea = streamReader.ReadLine();
+                streamReader.Close();
                 return this.SepararPorLineas(linea);
             }
             catch (Exception)
