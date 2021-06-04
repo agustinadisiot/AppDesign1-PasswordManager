@@ -9,6 +9,21 @@ using System.Threading.Tasks;
 namespace TestsObligatorio
 {
     [TestClass]
+    public class TestDataBreach {
+        [TestMethod]
+        public void DataBreachValoresNull() {
+            DataBreach nuevo = new DataBreach();
+
+            bool fechaNull = nuevo.Fecha == null;
+            bool tarjetasNull = nuevo.Tarjetas == null;
+            bool clavesNull = nuevo.Claves == null;
+            bool filtradasNull = nuevo.Filtradas == null;
+            Assert.IsFalse(fechaNull || tarjetasNull || clavesNull || filtradasNull );
+        }
+    
+    }
+
+    [TestClass]
     public class TestUsuarioDataBreaches
     {
         private Usuario usuario;
@@ -265,7 +280,6 @@ namespace TestsObligatorio
             bool retornoContieneEsperadas = esperadas.All(resultado.Tarjetas.Contains);
             Assert.IsTrue(esperadasContieneRetorno&& retornoContieneEsperadas);
         }
-
 
         [TestMethod]
         public void GetFiltradasDataBreachViejo()
