@@ -1457,14 +1457,10 @@ namespace TestsObligatorio
     public class TestUsuarioTarjeta
     {
         private Usuario usuario;
-        private Usuario usuario2;
-        private Usuario usuario3;
         private Categoria categoria1;
         private Categoria categoria2;
         private Tarjeta tarjeta1;
         private Tarjeta tarjeta2;
-        private Tarjeta tarjeta3;
-        private DateTime tiempoActual;
 
         [TestCleanup]
         public void TearDown()
@@ -1475,23 +1471,11 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
-            tiempoActual = DateTime.Now;
 
             usuario = new Usuario()
             {
                 Nombre = "Usuario1",
                 ClaveMaestra = "Hola12345"
-            };
-
-            usuario2 = new Usuario()
-            {
-                Nombre = "Usuario2",
-                ClaveMaestra = "Chau12345"
-            };
-
-            usuario3 = new Usuario()
-            {
-                Nombre = "Usuario3"
             };
 
             categoria1 = new Categoria()
@@ -1518,17 +1502,6 @@ namespace TestsObligatorio
             tarjeta2 = new Tarjeta()
             {
                 Numero = "2222222222222222",
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Codigo = "345",
-                Nota = "",
-                Vencimiento = new DateTime(2025, 7, 1)
-
-            };
-
-            tarjeta3 = new Tarjeta()
-            {
-                Numero = "3333333333333333",
                 Nombre = "Visa Gold",
                 Tipo = "Visa",
                 Codigo = "345",
