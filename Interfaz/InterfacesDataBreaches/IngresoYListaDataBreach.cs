@@ -148,6 +148,26 @@ namespace Interfaz.InterfacesClaves
             if (this.ModificarClaveDataBreach_Event != null)
                 this.ModificarClaveDataBreach_Event(claveAModificar, this._dataBreach);
         }
-        
+
+        private void botonCargar_Click(object sender, EventArgs e)
+        {
+            using(OpenFileDialog buscadorArchivo = new OpenFileDialog())
+            {
+                if(buscadorArchivo.ShowDialog() == DialogResult.OK)
+                {
+                    string direccion = buscadorArchivo.FileName;
+                    LogicaDataBreach logicaDataBreach = new LogicaDataBreach();
+                    try
+                    {
+                        this._dataBreach = logicaDataBreach.LeerArchivo(direccion);
+                        this.CargarInputDataBreach();
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                }
+            }
+        }
     }
 }
