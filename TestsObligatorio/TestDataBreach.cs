@@ -28,6 +28,15 @@ namespace TestsObligatorio
             Assert.IsTrue(datos.SequenceEqual(logicaDataBreach.SepararPorLineas(linea)));
         }
 
+        [TestMethod]
+        public void LogicaDataBreachLeerArchivoNoExistente()
+        {
+            string direccion = "direccionNoExistente.txt"; 
+
+            LogicaDataBreach logicaDataBreach = new LogicaDataBreach();
+            Assert.ThrowsException<ArchivoNoExistenteException>(() => logicaDataBreach.LeerArchivo(direccion));
+        }
+
     }
 
 
