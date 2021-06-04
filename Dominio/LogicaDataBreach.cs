@@ -15,21 +15,21 @@ namespace Dominio
             {
                 StreamReader sr = new StreamReader(direccion);
                 string linea = sr.ReadLine();
-                string[] clavesYTarjetas = linea.Split('\t');
-                List<string> dataBreach = new List<string>();
-                int cantidadClavesYTarjetas = clavesYTarjetas.Length;
-
-                for (int i = 0; i < cantidadClavesYTarjetas; i++)
-                {
-                    dataBreach.Add(clavesYTarjetas[i]);
-                }
                 sr.Close();
-                return dataBreach;
+                return this.SepararPorLineas(linea);
             }
             catch (Exception)
             {
                 throw new ArchivoNoExistenteException();
             }
+        }
+
+        public List<string> SepararPorLineas(string aSeparar)
+        {
+            char[] separadores = new char[] { '\t' };
+            string[] clavesYTarjetas = aSeparar.Split(separadores);
+            List<string> dataBreach = new List<string>(clavesYTarjetas);
+            return dataBreach;
         }
     }
 }

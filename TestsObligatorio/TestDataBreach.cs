@@ -9,16 +9,23 @@ using System.Threading.Tasks;
 namespace TestsObligatorio
 {
     [TestClass]
-    class TestDataBreach
+    public class TestDataBreach
     {
-        [TestInitialize]
-        public void testInit() {
+        [TestMethod]
+        public void LogicaDataBreachSepararPorLineas()
+        {
+            string linea = "clave1\tEstoEsUnaClave\t1234567890987634\tclaveDeNetflix";
 
-        }
+            List<string> datos = new List<string>
+            {
+                "clave1",
+                "EstoEsUnaClave",
+                "1234567890987634",
+                "claveDeNetflix"
+            };
 
-        [TestCleanup]
-        public void testClean() {
-            
+            LogicaDataBreach logicaDataBreach = new LogicaDataBreach();
+            Assert.IsTrue(datos.SequenceEqual(logicaDataBreach.SepararPorLineas(linea)));
         }
 
     }
