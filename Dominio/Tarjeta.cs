@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Dominio
 {
@@ -65,6 +68,29 @@ namespace Dominio
             if (objeto.GetType() != this.GetType()) throw new ObjetoIncorrectoException();
             Tarjeta aIgualar = (Tarjeta)objeto;
             return aIgualar.Numero == this.Numero;
+        }
+
+        public bool FueFiltrado(List<string> filtradas)
+        {
+            const int largoTarjetaSinEspacios = 16;
+            const string regexEspacio = @"\s+";
+            const string vacio = "";
+
+            List<string> potencialesTarjetas = new List<string>();
+
+            foreach (string potencial in filtradas)
+            {
+                string sinEspacio = Regex.Replace(potencial, regexEspacio, vacio);
+                bool esNumero = sinEspacio.All(caracter => VerificadoraString.EsNumero(caracter));
+                bool tieneLargoTarjeta = sinEspacio.Length == largoTarjetaSinEspacios;
+
+                if (esNumero && tieneLargoTarjeta)
+                {
+                    potencialesTarjetas.Add(sinEspacio);
+                }
+            }
+
+            return potencialesTarjetas.Contains(this.Numero);
         }
     }
 }

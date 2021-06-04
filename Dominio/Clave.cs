@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Dominio
 {
@@ -16,7 +17,7 @@ namespace Dominio
         private const int _largoSitioMaximo = 25;
         private const int _largoNotaMinimo = 0;
         private const int _largoNotaMaximo = 250;
-        
+
 
         public Clave()
         {
@@ -36,14 +37,16 @@ namespace Dominio
         }
 
 
-        private void CambioClave(string ingreso) {
+        private void CambioClave(string ingreso)
+        {
 
             try
             {
                 this._codigo = VerificadoraString.VerificarLargoEntreMinimoYMaximo(ingreso, _largoUsuarioYClaveMinimo, _largoUsuarioYClaveMaximo);
                 this.ActualizarFechaModificacion();
             }
-            catch (LargoIncorrectoException) {
+            catch (LargoIncorrectoException)
+            {
                 throw new LargoIncorrectoException();
             }
         }
@@ -81,5 +84,9 @@ namespace Dominio
             this._fechaModificacion = System.DateTime.Now.Date;
         }
 
+        public bool FueFiltrado(List<string> filtradas)
+        {
+            return filtradas.Contains(this.Codigo);
+        }
     }
 }

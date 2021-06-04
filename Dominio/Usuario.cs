@@ -77,10 +77,11 @@ namespace Dominio
 
         public void agregarDataBreach(List<string> filtradas, DateTime tiempoBreach)
         {
+            LogicaDataBreach logicaDataBreach = new LogicaDataBreach();
             DataBreach nuevoBreach = new DataBreach()
             {
-                Tarjetas = this.GetTarjetasDataBreach(filtradas),
-                Claves = this.GetClavesDataBreach(filtradas),
+                Tarjetas = logicaDataBreach.FiltrarTarjetas(filtradas, this.GetListaTarjetas()),
+                Claves = logicaDataBreach.FiltrarClaves(filtradas, this.GetListaClaves()),
                 Filtradas = filtradas,
                 Fecha = tiempoBreach
             };
@@ -332,34 +333,6 @@ namespace Dominio
             return this.GetListaClavesColor(color).Count;
         }
 
-        public List<Clave> GetClavesDataBreach(List<String> dataBreach)
-        {
-            List<Clave> completa = this.GetListaClaves();
-            
-            return completa.FindAll(buscadora=> dataBreach.Contains(buscadora.Codigo));
-        }
-
-        public List<Tarjeta> GetTarjetasDataBreach(List<string> dataBreach)
-        {
-            const int largoTarjetaSinEspacios = 16;
-            const string regexEspacio = @"\s+";
-            const string vacio = "";
-
-            List<string> potencialesTarjetas = new List<string>();
-
-            foreach (string potencial in dataBreach) {
-                string sinEspacio = Regex.Replace(potencial, regexEspacio, vacio);
-                bool esNumero = sinEspacio.All(caracter => VerificadoraString.EsNumero(caracter));
-                bool tieneLargoTarjeta = sinEspacio.Length == largoTarjetaSinEspacios;
-
-                if (esNumero && tieneLargoTarjeta) {
-                    potencialesTarjetas.Add(sinEspacio);
-                }
-            }
-            List<Tarjeta> completa = this.GetListaTarjetas();
-            return completa.FindAll(buscadora => potencialesTarjetas.Contains(buscadora.Numero));
-
-        }
 
         public void DejarDeCompartir(ClaveCompartida aDejarDeCompartir)
         {

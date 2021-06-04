@@ -26,10 +26,20 @@ namespace Dominio
 
         public List<string> SepararPorLineas(string aSeparar)
         {
-            char[] separadores = new char[] { '\t' };
-            string[] clavesYTarjetas = aSeparar.Split(separadores);
+            string[] separadores = new string[] { "\t", "\r\n", Environment.NewLine };
+            string[] clavesYTarjetas = aSeparar.Split(separadores, StringSplitOptions.None);
             List<string> dataBreach = new List<string>(clavesYTarjetas);
             return dataBreach;
+        }
+
+        public List<Clave> FiltrarClaves(List<String> dataBreach, List<Clave> controlar)
+        {
+            return controlar.FindAll(buscadora => buscadora.FueFiltrado(dataBreach));
+        }
+
+        public List<Tarjeta> FiltrarTarjetas(List<String> dataBreach, List<Tarjeta> controlar)
+        {
+            return controlar.FindAll(buscadora => buscadora.FueFiltrado(dataBreach));
         }
     }
 }

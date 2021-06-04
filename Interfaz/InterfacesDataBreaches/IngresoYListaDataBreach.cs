@@ -11,7 +11,7 @@ namespace Interfaz.InterfacesClaves
         private Usuario _usuarioActual;
         private List<Clave> _claves;
         private List<Tarjeta> _tarjetas;
-        private List<string> _dataBreach;
+        private List<string> _posiblesFiltradas;
 
         public IngresoYListaDataBreach(Usuario actual, List<string> dataBreach)
         {
@@ -19,33 +19,26 @@ namespace Interfaz.InterfacesClaves
             this._usuarioActual = actual;
             if (dataBreach != null)
             {
-                this._dataBreach = dataBreach;
+                this._posiblesFiltradas = dataBreach;
             }
             else {
-                this._dataBreach = new List<string>();
+                this._posiblesFiltradas = new List<string>();
             }
         }
 
         private void IngresoYListaDataBreach_Load(object sender, EventArgs e)
         {
-            if (this._dataBreach.Count>0) {
+            if (this._posiblesFiltradas.Count>0) {
                 this.CargarInputDataBreach();
-                this.AnalizarDataBreach();
-                this.CargarTablaClaves();
-                this.CargarTablaTarjetas();
+                this.mostrarDataBreach();
             }
         }
 
-        private void AnalizarDataBreach()
-        {
-            this._claves = this._usuarioActual.GetClavesDataBreach(this._dataBreach);
-            this._tarjetas = this._usuarioActual.GetTarjetasDataBreach(this._dataBreach);
-        }
 
         private void CargarInputDataBreach() {
             string mostrar = "";
 
-            foreach (string linea in this._dataBreach) {
+            foreach (string linea in this._posiblesFiltradas) {
                 mostrar += linea + Environment.NewLine;
             }
             this.inputDatos.Text = mostrar;
@@ -103,19 +96,16 @@ namespace Interfaz.InterfacesClaves
 
         private void botonVerificar_Click(object sender, EventArgs e)
         {
-            this.ProcesarIngresos();
-            this.AnalizarDataBreach();
-            this.CargarTablaClaves();
-            this.CargarTablaTarjetas();
+            this.mostrarDataBreach();
         }
 
-        private void ProcesarIngresos()
-        {
-            string ingreso = this.inputDatos.Text;
-
-            List<string> verificar = new List<string>(Regex.Split(ingreso, Environment.NewLine));
-
-            this._dataBreach = verificar;
+        private void mostrarDataBreach() {
+            LogicaDataBreach logicaDataBreach = new LogicaDataBreach();
+            this._posiblesFiltradas = logicaDataBreach.SepararPorLineas(this.inputDatos.Text);
+            this._claves = logicaDataBreach.FiltrarClaves(this._posiblesFiltradas, this._usuarioActual.GetListaClaves());
+            this._tarjetas = logicaDataBreach.FiltrarTarjetas(this._posiblesFiltradas, this._usuarioActual.GetListaTarjetas());
+            this.CargarTablaClaves();
+            this.CargarTablaTarjetas();
         }
 
         private void botonModificar_Click(object sender, EventArgs e)
@@ -135,8 +125,6 @@ namespace Interfaz.InterfacesClaves
                     UsuarioClave = usuarioClave
                 };
 
-                this.ProcesarIngresos();
-
                 IrAModificarClave(aModificar);
             }
         }
@@ -145,8 +133,11 @@ namespace Interfaz.InterfacesClaves
         public event ModificarClaveDataBreach_Delegate ModificarClaveDataBreach_Event;
         public void IrAModificarClave(Clave claveAModificar)
         {
+            LogicaDataBreach logicaDataBreach = new LogicaDataBreach();
+            List<string> filtradas = logicaDataBreach.SepararPorLineas(this.inputDatos.Text);
+
             if (this.ModificarClaveDataBreach_Event != null)
-                this.ModificarClaveDataBreach_Event(claveAModificar, this._dataBreach);
+                this.ModificarClaveDataBreach_Event(claveAModificar, filtradas);
         }
         
     }
