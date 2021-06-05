@@ -30,23 +30,25 @@ namespace Interfaz.InterfacesClaves
         private void InitializeComponent()
         {
             this.tablaClaves = new System.Windows.Forms.DataGridView();
-            this.botonModificarClave = new System.Windows.Forms.Button();
-            this.labelTitulo = new System.Windows.Forms.Label();
-            this.tablaTarjetas = new System.Windows.Forms.DataGridView();
-            this.botonVerificar = new System.Windows.Forms.Button();
-            this.inputDatos = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.labelDatos = new System.Windows.Forms.Label();
             this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sitio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UltimaModificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.botonModificarClave = new System.Windows.Forms.Button();
+            this.labelTitulo = new System.Windows.Forms.Label();
+            this.tablaTarjetas = new System.Windows.Forms.DataGridView();
             this.Catregoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TarjetaMostrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TarjetaCompleta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Vencimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.botonVerificar = new System.Windows.Forms.Button();
+            this.inputDatos = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.labelDatos = new System.Windows.Forms.Label();
+            this.botonCargar = new System.Windows.Forms.Button();
+            this.labelErrores = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tablaClaves)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTarjetas)).BeginInit();
             this.panel1.SuspendLayout();
@@ -66,7 +68,7 @@ namespace Interfaz.InterfacesClaves
             this.Usuario,
             this.UltimaModificacion});
             this.tablaClaves.Location = new System.Drawing.Point(432, 132);
-            this.tablaClaves.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.tablaClaves.Margin = new System.Windows.Forms.Padding(5);
             this.tablaClaves.Name = "tablaClaves";
             this.tablaClaves.ReadOnly = true;
             this.tablaClaves.RowHeadersVisible = false;
@@ -77,11 +79,47 @@ namespace Interfaz.InterfacesClaves
             this.tablaClaves.Size = new System.Drawing.Size(705, 287);
             this.tablaClaves.TabIndex = 3;
             // 
+            // Categoria
+            // 
+            this.Categoria.HeaderText = "Categoría";
+            this.Categoria.MinimumWidth = 6;
+            this.Categoria.Name = "Categoria";
+            this.Categoria.ReadOnly = true;
+            this.Categoria.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Categoria.Width = 133;
+            // 
+            // Sitio
+            // 
+            this.Sitio.HeaderText = "Sitio";
+            this.Sitio.MinimumWidth = 6;
+            this.Sitio.Name = "Sitio";
+            this.Sitio.ReadOnly = true;
+            this.Sitio.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Sitio.Width = 133;
+            // 
+            // Usuario
+            // 
+            this.Usuario.HeaderText = "Usuario";
+            this.Usuario.MinimumWidth = 6;
+            this.Usuario.Name = "Usuario";
+            this.Usuario.ReadOnly = true;
+            this.Usuario.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Usuario.Width = 133;
+            // 
+            // UltimaModificacion
+            // 
+            this.UltimaModificacion.HeaderText = "Ultima Modificacion";
+            this.UltimaModificacion.MinimumWidth = 6;
+            this.UltimaModificacion.Name = "UltimaModificacion";
+            this.UltimaModificacion.ReadOnly = true;
+            this.UltimaModificacion.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.UltimaModificacion.Width = 133;
+            // 
             // botonModificarClave
             // 
             this.botonModificarClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
             this.botonModificarClave.Location = new System.Drawing.Point(1148, 384);
-            this.botonModificarClave.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.botonModificarClave.Margin = new System.Windows.Forms.Padding(5);
             this.botonModificarClave.Name = "botonModificarClave";
             this.botonModificarClave.Size = new System.Drawing.Size(153, 34);
             this.botonModificarClave.TabIndex = 4;
@@ -130,87 +168,6 @@ namespace Interfaz.InterfacesClaves
             this.tablaTarjetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaTarjetas.Size = new System.Drawing.Size(869, 354);
             this.tablaTarjetas.TabIndex = 5;
-            // 
-            // botonVerificar
-            // 
-            this.botonVerificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.botonVerificar.Location = new System.Drawing.Point(199, 747);
-            this.botonVerificar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.botonVerificar.Name = "botonVerificar";
-            this.botonVerificar.Size = new System.Drawing.Size(192, 46);
-            this.botonVerificar.TabIndex = 2;
-            this.botonVerificar.Text = "Verificar";
-            this.botonVerificar.UseVisualStyleBackColor = true;
-            this.botonVerificar.Click += new System.EventHandler(this.botonVerificar_Click);
-            // 
-            // inputDatos
-            // 
-            this.inputDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inputDatos.Location = new System.Drawing.Point(36, 177);
-            this.inputDatos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.inputDatos.Multiline = true;
-            this.inputDatos.Name = "inputDatos";
-            this.inputDatos.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.inputDatos.Size = new System.Drawing.Size(353, 537);
-            this.inputDatos.TabIndex = 1;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.panel1.Controls.Add(this.labelTitulo);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1336, 123);
-            this.panel1.TabIndex = 26;
-            // 
-            // labelDatos
-            // 
-            this.labelDatos.AutoSize = true;
-            this.labelDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.labelDatos.Location = new System.Drawing.Point(29, 132);
-            this.labelDatos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelDatos.Name = "labelDatos";
-            this.labelDatos.Size = new System.Drawing.Size(322, 29);
-            this.labelDatos.TabIndex = 27;
-            this.labelDatos.Text = "Ingrese los datos a verificar";
-            // 
-            // Categoria
-            // 
-            this.Categoria.HeaderText = "Categoría";
-            this.Categoria.MinimumWidth = 6;
-            this.Categoria.Name = "Categoria";
-            this.Categoria.ReadOnly = true;
-            this.Categoria.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Categoria.Width = 133;
-            // 
-            // Sitio
-            // 
-            this.Sitio.HeaderText = "Sitio";
-            this.Sitio.MinimumWidth = 6;
-            this.Sitio.Name = "Sitio";
-            this.Sitio.ReadOnly = true;
-            this.Sitio.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Sitio.Width = 133;
-            // 
-            // Usuario
-            // 
-            this.Usuario.HeaderText = "Usuario";
-            this.Usuario.MinimumWidth = 6;
-            this.Usuario.Name = "Usuario";
-            this.Usuario.ReadOnly = true;
-            this.Usuario.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Usuario.Width = 133;
-            // 
-            // UltimaModificacion
-            // 
-            this.UltimaModificacion.HeaderText = "Ultima Modificacion";
-            this.UltimaModificacion.MinimumWidth = 6;
-            this.UltimaModificacion.Name = "UltimaModificacion";
-            this.UltimaModificacion.ReadOnly = true;
-            this.UltimaModificacion.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.UltimaModificacion.Width = 133;
             // 
             // Catregoria
             // 
@@ -266,11 +223,82 @@ namespace Interfaz.InterfacesClaves
             this.Vencimiento.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Vencimiento.Width = 133;
             // 
+            // botonVerificar
+            // 
+            this.botonVerificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.botonVerificar.Location = new System.Drawing.Point(224, 747);
+            this.botonVerificar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.botonVerificar.Name = "botonVerificar";
+            this.botonVerificar.Size = new System.Drawing.Size(167, 46);
+            this.botonVerificar.TabIndex = 2;
+            this.botonVerificar.Text = "Verificar";
+            this.botonVerificar.UseVisualStyleBackColor = true;
+            this.botonVerificar.Click += new System.EventHandler(this.botonVerificar_Click);
+            // 
+            // inputDatos
+            // 
+            this.inputDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inputDatos.Location = new System.Drawing.Point(36, 177);
+            this.inputDatos.Margin = new System.Windows.Forms.Padding(4);
+            this.inputDatos.Multiline = true;
+            this.inputDatos.Name = "inputDatos";
+            this.inputDatos.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.inputDatos.Size = new System.Drawing.Size(353, 537);
+            this.inputDatos.TabIndex = 1;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.panel1.Controls.Add(this.labelTitulo);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1336, 123);
+            this.panel1.TabIndex = 26;
+            // 
+            // labelDatos
+            // 
+            this.labelDatos.AutoSize = true;
+            this.labelDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.labelDatos.Location = new System.Drawing.Point(29, 132);
+            this.labelDatos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelDatos.Name = "labelDatos";
+            this.labelDatos.Size = new System.Drawing.Size(322, 29);
+            this.labelDatos.TabIndex = 27;
+            this.labelDatos.Text = "Ingrese los datos a verificar";
+            // 
+            // botonCargar
+            // 
+            this.botonCargar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.botonCargar.Location = new System.Drawing.Point(34, 747);
+            this.botonCargar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.botonCargar.Name = "botonCargar";
+            this.botonCargar.Size = new System.Drawing.Size(159, 46);
+            this.botonCargar.TabIndex = 28;
+            this.botonCargar.Text = "Cargar";
+            this.botonCargar.UseVisualStyleBackColor = true;
+            this.botonCargar.Click += new System.EventHandler(this.botonCargar_Click);
+            // 
+            // labelErrores
+            // 
+            this.labelErrores.AutoSize = true;
+            this.labelErrores.ForeColor = System.Drawing.Color.Red;
+            this.labelErrores.Location = new System.Drawing.Point(303, 810);
+            this.labelErrores.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelErrores.MaximumSize = new System.Drawing.Size(296, 111);
+            this.labelErrores.Name = "labelErrores";
+            this.labelErrores.Size = new System.Drawing.Size(88, 17);
+            this.labelErrores.TabIndex = 29;
+            this.labelErrores.Text = "MostrarError";
+            // 
             // IngresoYListaDataBreach
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.labelErrores);
+            this.Controls.Add(this.botonCargar);
             this.Controls.Add(this.labelDatos);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.botonVerificar);
@@ -278,7 +306,7 @@ namespace Interfaz.InterfacesClaves
             this.Controls.Add(this.tablaTarjetas);
             this.Controls.Add(this.tablaClaves);
             this.Controls.Add(this.botonModificarClave);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "IngresoYListaDataBreach";
             this.Size = new System.Drawing.Size(1336, 838);
             this.Load += new System.EventHandler(this.IngresoYListaDataBreach_Load);
@@ -311,5 +339,7 @@ namespace Interfaz.InterfacesClaves
         private System.Windows.Forms.DataGridViewTextBoxColumn TarjetaMostrada;
         private System.Windows.Forms.DataGridViewTextBoxColumn TarjetaCompleta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Vencimiento;
+        private System.Windows.Forms.Button botonCargar;
+        private System.Windows.Forms.Label labelErrores;
     }
 }

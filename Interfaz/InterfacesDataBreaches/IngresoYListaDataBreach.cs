@@ -24,6 +24,7 @@ namespace Interfaz.InterfacesClaves
             else {
                 this._posiblesFiltradas = new List<string>();
             }
+            this.labelErrores.Text = "";
         }
 
         private void IngresoYListaDataBreach_Load(object sender, EventArgs e)
@@ -139,6 +140,27 @@ namespace Interfaz.InterfacesClaves
             if (this.ModificarClaveDataBreach_Event != null)
                 this.ModificarClaveDataBreach_Event(claveAModificar, filtradas);
         }
-        
+
+        private void botonCargar_Click(object sender, EventArgs e)
+        {
+            using(OpenFileDialog buscadorArchivo = new OpenFileDialog())
+            {
+                buscadorArchivo.Filter = "Text|*.txt|All|*.*";
+                if (buscadorArchivo.ShowDialog() == DialogResult.OK)
+                {
+                    string direccion = buscadorArchivo.FileName;
+                    LogicaDataBreach logicaDataBreach = new LogicaDataBreach();
+                    try
+                    {
+                        this._dataBreach = logicaDataBreach.LeerArchivo(direccion);
+                        this.CargarInputDataBreach();
+                    }
+                    catch (Exception)
+                    {
+                        this.labelErrores.Text = "Error: No se logro cargar el archivo";
+                    }
+                }
+            }
+        }
     }
 }
