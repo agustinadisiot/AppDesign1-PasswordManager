@@ -22,6 +22,7 @@ namespace Dominio
         public Clave()
         {
             this.EsCompartida = false;
+            this._fechaModificacion = DateTime.Now.Date;
         }
 
         public string UsuarioClave
