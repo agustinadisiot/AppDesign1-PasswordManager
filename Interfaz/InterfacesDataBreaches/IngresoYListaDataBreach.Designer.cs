@@ -48,6 +48,7 @@ namespace Interfaz.InterfacesClaves
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelDatos = new System.Windows.Forms.Label();
             this.botonCargar = new System.Windows.Forms.Button();
+            this.labelErrores = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tablaClaves)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTarjetas)).BeginInit();
             this.panel1.SuspendLayout();
@@ -279,11 +280,24 @@ namespace Interfaz.InterfacesClaves
             this.botonCargar.UseVisualStyleBackColor = true;
             this.botonCargar.Click += new System.EventHandler(this.botonCargar_Click);
             // 
+            // labelErrores
+            // 
+            this.labelErrores.AutoSize = true;
+            this.labelErrores.ForeColor = System.Drawing.Color.Red;
+            this.labelErrores.Location = new System.Drawing.Point(303, 810);
+            this.labelErrores.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelErrores.MaximumSize = new System.Drawing.Size(296, 111);
+            this.labelErrores.Name = "labelErrores";
+            this.labelErrores.Size = new System.Drawing.Size(88, 17);
+            this.labelErrores.TabIndex = 29;
+            this.labelErrores.Text = "MostrarError";
+            // 
             // IngresoYListaDataBreach
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.labelErrores);
             this.Controls.Add(this.botonCargar);
             this.Controls.Add(this.labelDatos);
             this.Controls.Add(this.panel1);
@@ -326,5 +340,6 @@ namespace Interfaz.InterfacesClaves
         private System.Windows.Forms.DataGridViewTextBoxColumn TarjetaCompleta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Vencimiento;
         private System.Windows.Forms.Button botonCargar;
+        private System.Windows.Forms.Label labelErrores;
     }
 }

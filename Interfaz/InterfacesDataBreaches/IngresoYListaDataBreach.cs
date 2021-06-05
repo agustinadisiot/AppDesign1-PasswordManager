@@ -24,6 +24,7 @@ namespace Interfaz.InterfacesClaves
             else {
                 this._dataBreach = new List<string>();
             }
+            this.labelErrores.Text = "";
         }
 
         private void IngresoYListaDataBreach_Load(object sender, EventArgs e)
@@ -153,7 +154,8 @@ namespace Interfaz.InterfacesClaves
         {
             using(OpenFileDialog buscadorArchivo = new OpenFileDialog())
             {
-                if(buscadorArchivo.ShowDialog() == DialogResult.OK)
+                buscadorArchivo.Filter = "Text|*.txt|All|*.*";
+                if (buscadorArchivo.ShowDialog() == DialogResult.OK)
                 {
                     string direccion = buscadorArchivo.FileName;
                     LogicaDataBreach logicaDataBreach = new LogicaDataBreach();
@@ -164,7 +166,7 @@ namespace Interfaz.InterfacesClaves
                     }
                     catch (Exception)
                     {
-
+                        this.labelErrores.Text = "Error: No se logro cargar el archivo";
                     }
                 }
             }
