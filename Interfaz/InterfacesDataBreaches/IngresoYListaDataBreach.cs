@@ -152,7 +152,7 @@ namespace Interfaz.InterfacesClaves
                     LogicaDataBreach logicaDataBreach = new LogicaDataBreach();
                     try
                     {
-                        this._dataBreach = logicaDataBreach.LeerArchivo(direccion);
+                        this._posiblesFiltradas = logicaDataBreach.LeerArchivo(direccion);
                         this.CargarInputDataBreach();
                     }
                     catch (Exception)
