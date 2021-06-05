@@ -561,7 +561,6 @@ namespace TestsObligatorio
     public class TestCategoriaTarjeta
     {
         private Categoria categoria1;
-        private Categoria categoria2;
         private Tarjeta tarjeta1;
         private Tarjeta tarjeta2;
 
@@ -577,11 +576,6 @@ namespace TestsObligatorio
             categoria1 = new Categoria()
             {
                 Nombre = "Personal"
-            };
-
-            categoria2 = new Categoria()
-            {
-                Nombre = "Trabajo"
             };
 
             tarjeta1 = new Tarjeta()
