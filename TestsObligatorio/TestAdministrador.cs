@@ -10,60 +10,66 @@ namespace TestsObligatorio
     [TestClass]
     public class TestAdministrador
     {
+        private Administrador administrador;
+        private Usuario usuario1;
+        private Usuario usuario2;
+        private Usuario usuario3;
+
+        [TestCleanup]
+        public void TearDown()
+        {
+
+        }
+
+        [TestInitialize]
+        public void Setup()
+        {
+            administrador = new Administrador();
+
+            usuario1 = new Usuario
+            {
+                Nombre = "Roberto"
+            };
+
+            usuario2 = new Usuario
+            {
+                Nombre = "Pedro"
+            };
+
+            usuario3 = new Usuario();
+        }
 
         [TestMethod]
         public void AdministradorEsListaUsuariosVaciaAlPrincipio()
         {
-            Administrador administrador = new Administrador();
             Assert.IsTrue(administrador.EsListaUsuariosVacia());
         }
 
         [TestMethod]
         public void AdministradorEsListaUsuariosVaciaConUsuarios()
         {
-            Administrador administrador = new Administrador();
-            Usuario usuario = new Usuario
-            {
-                Nombre = "Roberto"
-            };
-            administrador.AgregarUsuario(usuario);
+            administrador.AgregarUsuario(usuario1);
             Assert.IsFalse(administrador.EsListaUsuariosVacia());
         }
 
         [TestMethod]
         public void AdministradorAgregarUsuarioSinNombre()
         {
-            Administrador administrador = new Administrador();
-            Usuario usuario = new Usuario();
-            Assert.ThrowsException<ObjetoIncompletoException>(() => administrador.AgregarUsuario(usuario));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => administrador.AgregarUsuario(usuario3));
         }
 
         [TestMethod]
         public void AdministradorAgregarUsuarioYaExistente()
         {
-            Administrador administrador = new Administrador();
-            Usuario usuario = new Usuario()
-            {
-                Nombre = "Roberto"
-            };
-            administrador.AgregarUsuario(usuario);
+            administrador.AgregarUsuario(usuario1);
 
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => administrador.AgregarUsuario(usuario));
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => administrador.AgregarUsuario(usuario1));
         }
 
         [TestMethod]
         public void AdministradorEsListaUsuariosVaciaConDosUsuarios()
         {
-            Administrador administrador = new Administrador();
-            Usuario usuario = new Usuario
-            {
-                Nombre = "Roberto"
-            };
-            administrador.AgregarUsuario(usuario);
-            Usuario usuario2 = new Usuario
-            {
-                Nombre = "Pedro"
-            };
+            administrador.AgregarUsuario(usuario1);
             administrador.AgregarUsuario(usuario2);
             Assert.IsFalse(administrador.EsListaUsuariosVacia());
         }
@@ -71,33 +77,19 @@ namespace TestsObligatorio
         [TestMethod]
         public void AdministradorPedirNombreUsuarioCorrecto()
         {
-            Administrador administrador = new Administrador();
-            Usuario usuario = new Usuario
-            {
-                Nombre = "Roberto"
-            };
-            administrador.AgregarUsuario(usuario);
+            administrador.AgregarUsuario(usuario1);
 
             Usuario aBuscar = new Usuario
             {
                 Nombre = "Roberto"
             };
-            Assert.AreEqual(usuario, administrador.GetUsuario(aBuscar));
+            Assert.AreEqual(usuario1, administrador.GetUsuario(aBuscar));
         }
 
         [TestMethod]
         public void AdministradorPedirUsuarioPrimeroConDosAgregados()
         {
-            Administrador administrador = new Administrador();
-            Usuario usuario = new Usuario
-            {
-                Nombre = "Roberto"
-            };
-            administrador.AgregarUsuario(usuario);
-            Usuario usuario2 = new Usuario
-            {
-                Nombre = "Pedro"
-            };
+            administrador.AgregarUsuario(usuario1);
             administrador.AgregarUsuario(usuario2);
 
             Usuario aBuscar = new Usuario
@@ -105,22 +97,13 @@ namespace TestsObligatorio
                 Nombre = "Roberto"
             };
 
-            Assert.AreEqual(usuario, administrador.GetUsuario(aBuscar));
+            Assert.AreEqual(usuario1, administrador.GetUsuario(aBuscar));
         }
 
         [TestMethod]
         public void AdministradorPedirUsuarioSegundoConDosAgregados()
         {
-            Administrador administrador = new Administrador();
-            Usuario usuario = new Usuario
-            {
-                Nombre = "Roberto"
-            };
-            administrador.AgregarUsuario(usuario);
-            Usuario usuario2 = new Usuario
-            {
-                Nombre = "Pedro"
-            };
+            administrador.AgregarUsuario(usuario1);
             administrador.AgregarUsuario(usuario2);
 
             Usuario aBuscar = new Usuario
@@ -133,33 +116,19 @@ namespace TestsObligatorio
         [TestMethod]
         public void AdministradorPedirUsuarioSinMayuscula()
         {
-            Administrador administrador = new Administrador();
-            Usuario usuario = new Usuario
-            {
-                Nombre = "Roberto"
-            };
-            administrador.AgregarUsuario(usuario);
+            administrador.AgregarUsuario(usuario1);
 
             Usuario aBuscar = new Usuario
             {
                 Nombre = "roberto"
             };
-            Assert.AreEqual(usuario, administrador.GetUsuario(aBuscar));
+            Assert.AreEqual(usuario1, administrador.GetUsuario(aBuscar));
         }
 
         [TestMethod]
         public void AdministradorPedirUsuarioInexistente()
         {
-            Administrador administrador = new Administrador();
-            Usuario usuario = new Usuario
-            {
-                Nombre = "Roberto"
-            };
-            administrador.AgregarUsuario(usuario);
-            Usuario usuario2 = new Usuario
-            {
-                Nombre = "Pedro"
-            };
+            administrador.AgregarUsuario(usuario1);
             administrador.AgregarUsuario(usuario2);
 
             Usuario inexistente = new Usuario
@@ -172,31 +141,17 @@ namespace TestsObligatorio
         [TestMethod]
         public void AdministradorVacioYaExisteUsuario()
         {
-            Administrador administrador = new Administrador();
-            Usuario buscador = new Usuario
-            {
-                Nombre = "Roberto"
-            };
-
-            Assert.IsFalse(administrador.YaExisteUsuario(buscador));
+            Assert.IsFalse(administrador.YaExisteUsuario(usuario1));
         }
 
         [TestMethod]
         public void AdministradorYaExisteUsuarioExistente()
         {
-            Administrador administrador = new Administrador();
-
-            Usuario agregar = new Usuario()
-            {
-                Nombre = "Roberto"
-            };
-            
+            administrador.AgregarUsuario(usuario1);
             Usuario buscador = new Usuario
             {
                 Nombre = "Roberto"
             };
-
-            administrador.AgregarUsuario(agregar);
 
             Assert.IsTrue(administrador.YaExisteUsuario(buscador));
         }
@@ -204,19 +159,11 @@ namespace TestsObligatorio
         [TestMethod]
         public void AdministradorNoVacioYaExisteUsuarioNoExistente()
         {
-            Administrador administrador = new Administrador();
-
-            Usuario agregar = new Usuario()
-            {
-                Nombre = "Agregar"
-            };
-
+            administrador.AgregarUsuario(usuario1);
             Usuario buscador = new Usuario
             {
                 Nombre = "Buscador"
             };
-
-            administrador.AgregarUsuario(agregar);
 
             Assert.IsFalse(administrador.YaExisteUsuario(buscador));
         }
@@ -224,38 +171,19 @@ namespace TestsObligatorio
         [TestMethod]
         public void AdministradorGetListaUsuariosVacia()
         {
-            Administrador administrador = new Administrador();
-
             Assert.IsNull(administrador.GetListaUsuarios());
         }
 
         [TestMethod]
         public void AdministradorGetListaUsuariosNoVacia()
         {
-            Administrador administrador = new Administrador();
-            Usuario usuario = new Usuario()
-            {
-                Nombre = "Usuario"
-            };
-            administrador.AgregarUsuario(usuario);
-
+            administrador.AgregarUsuario(usuario1);
             Assert.IsNotNull(administrador.GetListaUsuarios());
         }
 
         [TestMethod]
         public void AdministradorGetListaUsuariosEsIgual()
         {
-            Administrador administrador = new Administrador();
-            Usuario usuario1 = new Usuario()
-            {
-                Nombre = "Usuario1"
-            };
-
-            Usuario usuario2 = new Usuario()
-            {
-                Nombre = "Usuario2"
-            };
-
             administrador.AgregarUsuario(usuario1);
             administrador.AgregarUsuario(usuario2);
 
@@ -267,5 +195,4 @@ namespace TestsObligatorio
             Assert.AreEqual(true, usuariosComparar.SequenceEqual(administrador.GetListaUsuarios())); ;
         }
     }
-
 }
