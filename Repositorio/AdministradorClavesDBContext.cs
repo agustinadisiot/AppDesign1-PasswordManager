@@ -12,9 +12,10 @@ namespace Repositorio
     {
         public DbSet<Tarjeta> Tarjetas { get; set; }
         public AdministradorClavesDBContext() : base("name=ContextoAdministradorClaves") { }
-        /*protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Configurations.Add(new UsuarioTypeConfiguration());
-        }*/
+            modelBuilder.Configurations.Add(new TarjetaTypeConfiguration());
+        }
     }
 }
