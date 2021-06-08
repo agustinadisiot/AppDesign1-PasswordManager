@@ -10,7 +10,6 @@ namespace Dominio
         private string _sitio;
         private string _nota;
         private DateTime _fechaModificacion;
-        public bool EsCompartida;
         private const int _largoUsuarioYClaveMinimo = 5;
         private const int _largoUsuarioYClaveMaximo = 25;
         private const int _largoSitioMinimo = 3;
@@ -39,6 +38,7 @@ namespace Dominio
             set { CambioClave(value); }
         }
 
+        public bool EsCompartida { get; set; }
 
         private void CambioClave(string ingreso)
         {
