@@ -353,19 +353,5 @@ namespace TestsObligatorio
             bool retornoContieneEsperadas = esperadas.All(resultado.Filtradas.Contains);
             Assert.IsTrue(esperadasContieneRetorno && retornoContieneEsperadas);
         }
-
-        [TestMethod]
-        public void UsuarioAgregadoAlDataBreach() {
-            List<string> filtradas = new List<string>() {
-                "EstaEsUnaClave1",
-                "EstaEsUnaClave4"
-            };
-
-            usuario.agregarDataBreach(filtradas, tiempoActual);
-
-            DataBreach resultadoBreach = usuario.GetUltimoDataBreach();
-
-            Assert.AreEqual(usuario, resultadoBreach.Usuario);
-        }
     }
 }
