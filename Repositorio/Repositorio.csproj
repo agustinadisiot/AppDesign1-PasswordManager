@@ -56,6 +56,7 @@
     <Compile Include="DataAccessClave.cs" />
     <Compile Include="DataAccessDataBreach.cs" />
     <Compile Include="DataAccessTarjeta.cs" />
+    <Compile Include="DataBreachTypeConfiguration.cs" />
     <Compile Include="IDataAccess.cs" />
     <Compile Include="Migrations\202106081934262_CreadoDBContext.cs" />
     <Compile Include="Migrations\202106081934262_CreadoDBContext.designer.cs">
