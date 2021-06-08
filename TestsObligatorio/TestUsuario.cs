@@ -338,13 +338,6 @@ namespace TestsObligatorio
 
             Assert.AreEqual(true, categorias.All(resultado.Contains)); ;
         }
-
-
-        [TestMethod]
-        public void UsuarioAgregarCategoriaSeAgregaUsuarioACategoria() {
-            usuario.AgregarCategoria(categoria1);
-            Assert.AreEqual(usuario, categoria1.Usuario);
-        }
     }
 
     [TestClass]

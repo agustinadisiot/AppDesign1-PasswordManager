@@ -58,7 +58,6 @@ namespace Dominio
                     throw new ObjetoYaExistenteException();
                 }
                 this._categorias.Add(categoria);
-                categoria.Usuario = this;
             }  
         }
 
@@ -87,7 +86,6 @@ namespace Dominio
                 Fecha = tiempoBreach
             };
             this.DataBreaches.Add(nuevoBreach);
-            nuevoBreach.Usuario = this;
         }
 
         public override bool Equals(object objeto)

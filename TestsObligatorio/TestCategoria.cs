@@ -1028,46 +1028,4 @@ namespace TestsObligatorio
             Assert.IsTrue(modificoCorrecto);
         }
     }
-
-    [TestClass]
-    public class TestUsuarioDeCategoria
-    {
-        private Categoria categoria1;
-        private Usuario usuario1;
-        private Categoria categoria2;
-        private Usuario usuario2;
-
-        [TestInitialize]
-        public void Setup()
-        {
-            categoria1 = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            usuario1 = new Usuario()
-            {
-                Nombre = "Roberto",
-                ClaveMaestra = "12345ABCD"
-            };
-
-            categoria2 = new Categoria()
-            {
-                Nombre = "Facultad"
-            };
-
-            usuario2 = new Usuario()
-            {
-                Nombre = "Pedro",
-                ClaveMaestra = "12345ABCD"
-            };
-
-        }
-
-        [TestMethod]
-        public void pedirUsuarioACategoriaSi() {
-            categoria1.Usuario = usuario1;
-            Assert.AreEqual(usuario1, categoria1.Usuario);
-        }
-    }
 }
