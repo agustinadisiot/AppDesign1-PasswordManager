@@ -304,7 +304,8 @@ namespace Dominio
         public void CompartirClave(ClaveCompartida aCompartir)
         {
 
-            Usuario usuarioACompartir = aCompartir.Usuario;
+            Usuario usuarioDestino = aCompartir.Destino;
+            Usuario usuarioOriginal = aCompartir.Original;
             Clave claveACompartir = aCompartir.Clave;
 
             if (this.CompartidasPorMi.Contains(aCompartir)) throw new ObjetoYaExistenteException();
@@ -315,18 +316,14 @@ namespace Dominio
 
             ClaveCompartida guardar = new ClaveCompartida()
             {
-                Usuario = usuarioACompartir,
+                Original = usuarioOriginal,
+                Destino = usuarioDestino,
                 Clave = claveACompartir
             };
+
             this.CompartidasPorMi.Add(guardar);
 
-            ClaveCompartida enviar = new ClaveCompartida()
-            {
-                Usuario = this,
-                Clave = claveACompartir
-            };
-
-            usuarioACompartir.CompartidasConmigo.Add(enviar);
+            usuarioDestino.CompartidasConmigo.Add(guardar);
         }
 
         public int GetCantidadColor(string color)
@@ -337,32 +334,27 @@ namespace Dominio
 
         public void DejarDeCompartir(ClaveCompartida aDejarDeCompartir)
         {
-            Usuario usuarioADejarDeCompartir = aDejarDeCompartir.Usuario;
+            Usuario usuarioOriginal = aDejarDeCompartir.Original;
+            Usuario usuarioDestino = aDejarDeCompartir.Destino;
             Clave claveADejarDeCompartir = this.GetClave(aDejarDeCompartir.Clave);
 
             if (!claveADejarDeCompartir.EsCompartida) throw new ObjetoInexistenteException();
 
-            ClaveCompartida guardadaAEliminar = new ClaveCompartida()
+            ClaveCompartida aEliminar = new ClaveCompartida()
             {
-                Usuario = usuarioADejarDeCompartir,
+                Original = usuarioOriginal,
+                Destino = usuarioDestino,
                 Clave = claveADejarDeCompartir
             };
 
-            ClaveCompartida enviadaAEliminar = new ClaveCompartida()
-            {
-                Usuario = this,
-                Clave = claveADejarDeCompartir
-            };
+            if (!usuarioDestino.CompartidasConmigo.Contains(aEliminar)) throw new ObjetoInexistenteException();
 
-            if (!usuarioADejarDeCompartir.CompartidasConmigo.Contains(enviadaAEliminar)) throw new ObjetoInexistenteException();
+            this.CompartidasPorMi.Remove(aEliminar);
 
-            this.CompartidasPorMi.Remove(guardadaAEliminar);
-
-            usuarioADejarDeCompartir.CompartidasConmigo.Remove(enviadaAEliminar);
+            usuarioDestino.CompartidasConmigo.Remove(aEliminar);
 
             bool sigueCompartida = this.CompartidasPorMi.Any(buscadora => buscadora.Clave.Equals(claveADejarDeCompartir));
             if (!sigueCompartida) claveADejarDeCompartir.EsCompartida = false;
-
 
         }
 

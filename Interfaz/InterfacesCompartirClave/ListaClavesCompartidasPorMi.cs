@@ -27,7 +27,7 @@ namespace Interfaz.InterfacesCompartirClave
             foreach (ClaveCompartida claveCompartidaActual in listaClavesCompartidasPorMi)
             {
                 Clave claveQueSeComparte = claveCompartidaActual.Clave;
-                Usuario usuarioQueComparte = claveCompartidaActual.Usuario;
+                Usuario usuarioQueComparte = claveCompartidaActual.Destino;
 
                 string nombreUsuarioAQuienSeComparte = usuarioQueComparte.Nombre;
                 string sitioClaveQueSeComparte = claveQueSeComparte.Sitio;
@@ -74,8 +74,9 @@ namespace Interfaz.InterfacesCompartirClave
 
                 ClaveCompartida buscadora = new ClaveCompartida
                 {
+                    Original = this._usuarioActual,
                     Clave = claveBuscadora,
-                    Usuario = usuarioBuscador
+                    Destino = usuarioBuscador
                 };
 
                 ClaveCompartida aEliminar = this._usuarioActual.GetClaveCompartidaPorMi(buscadora);

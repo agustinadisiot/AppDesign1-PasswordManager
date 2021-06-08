@@ -14,7 +14,7 @@ namespace Interfaz
         public CompartirClave(ClaveCompartida aCompartir, Administrador administrador)
         {
             InitializeComponent();
-            this._usuarioActual = aCompartir.Usuario;
+            this._usuarioActual = aCompartir.Original;
             this._claveACompartir = aCompartir.Clave;
             this._administrador = administrador;
             
@@ -83,7 +83,8 @@ namespace Interfaz
 
                     ClaveCompartida claveACompartir = new ClaveCompartida()
                     {
-                        Usuario = usuarioACompartir,
+                        Original = this._usuarioActual,
+                        Destino = usuarioACompartir,
                         Clave = _claveACompartir
                     };
 

@@ -431,19 +431,22 @@ namespace TestsObligatorio
 
             claveCompartida = new ClaveCompartida()
             {
-                Usuario = usuario2,
+                Original = usuario,
+                Destino = usuario2,
                 Clave = clave1
             };
 
             claveCompartida2 = new ClaveCompartida()
             {
-                Usuario = usuario2,
+                Original = usuario,
+                Destino = usuario2,
                 Clave = clave2
             };
 
             claveCompartida3 = new ClaveCompartida()
             {
-                Usuario = usuario3,
+                Original = usuario,
+                Destino = usuario3,
                 Clave = clave1
             };
         }
@@ -969,7 +972,7 @@ namespace TestsObligatorio
 
             usuario.CompartirClave(claveCompartida);
 
-            Assert.AreEqual(usuario2.CompartidasConmigo[0].Usuario, usuario);
+            Assert.AreEqual(usuario2.CompartidasConmigo[0].Original, usuario);
         }
 
         [TestMethod]
@@ -986,13 +989,15 @@ namespace TestsObligatorio
 
             ClaveCompartida claveCompartidaAUsuario2_1 = new ClaveCompartida()
             {
-                Usuario = usuario,
+                Original = usuario,
+                Destino = usuario2,
                 Clave = clave1
             };
 
             ClaveCompartida claveCompartidaAUsuario2_2 = new ClaveCompartida()
             {
-                Usuario = usuario,
+                Original = usuario,
+                Destino = usuario2,
                 Clave = clave2
             };
 
@@ -1080,7 +1085,8 @@ namespace TestsObligatorio
 
             ClaveCompartida claveQueCompartieron = new ClaveCompartida()
             {
-                Usuario = usuario,
+                Original = usuario,
+                Destino = usuario2,
                 Clave = clave1
             };
 
@@ -1247,7 +1253,8 @@ namespace TestsObligatorio
 
             ClaveCompartida buscadora = new ClaveCompartida()
             {
-                Usuario = usuario2,
+                Original = usuario,
+                Destino = usuario2,
                 Clave = clave1
             };
 
@@ -1264,7 +1271,8 @@ namespace TestsObligatorio
             usuario.AgregarClave(clave2, categoria1);
             ClaveCompartida buscadora = new ClaveCompartida()
             {
-                Usuario = usuario2,
+                Original = usuario,
+                Destino = usuario2,
                 Clave = clave2
             };
 
@@ -1300,7 +1308,8 @@ namespace TestsObligatorio
 
             ClaveCompartida buscadora = new ClaveCompartida()
             {
-                Usuario = usuarioBuscador,
+                Original = usuario,
+                Destino = usuarioBuscador,
                 Clave = claveBuscadora
             };
 
@@ -1315,7 +1324,8 @@ namespace TestsObligatorio
 
             ClaveCompartida buscadora = new ClaveCompartida()
             {
-                Usuario = usuario,
+                Original = usuario,
+                Destino = usuario2,
                 Clave = clave1
             };
 
@@ -1333,7 +1343,8 @@ namespace TestsObligatorio
 
             ClaveCompartida buscadora = new ClaveCompartida()
             {
-                Usuario = usuario,
+                Original = usuario,
+                Destino = usuario2,
                 Clave = clave2
             };
 
@@ -1355,7 +1366,7 @@ namespace TestsObligatorio
 
             Usuario usuarioBuscador = new Usuario
             {
-                Nombre = "Usuario1",
+                Nombre = usuario.Nombre,
                 ClaveMaestra = "ClaveDiferente"
             };
 
@@ -1368,7 +1379,8 @@ namespace TestsObligatorio
 
             ClaveCompartida buscadora = new ClaveCompartida()
             {
-                Usuario = usuarioBuscador,
+                Destino = usuario2,
+                Original = usuarioBuscador,
                 Clave = claveBuscadora
             };
 
