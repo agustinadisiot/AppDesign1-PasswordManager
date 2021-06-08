@@ -23,6 +23,8 @@ namespace Dominio
             set { this._nombre = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreMinimo, _largoNombreMaximo); }
         }
 
+        public int Id { get; set; }
+
         public bool EsListaClavesVacia()
         {
             bool noHayClaves = (this._claves.Count == 0);

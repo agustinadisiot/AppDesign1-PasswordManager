@@ -20,6 +20,8 @@ namespace Dominio
         private const int _largoNotaMinimo = 0;
         private const int _largoNotaMaximo = 250;
 
+        public int Id { get; set; }
+
         public string Nombre 
         {
             get { return _nombre; }
@@ -51,9 +53,6 @@ namespace Dominio
             get { return this._nota; }
             set { this._nota = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNotaMinimo, _largoNotaMaximo); }
         }
-
-        public Usuario Usuario { get; set; }
-        public Categoria Categoria { get; set; }
 
         public static string VerificarStringDeNumerosYSuLargoEntreMinimoYMaximo(string ingreso, int minimo, int maximo)
         {

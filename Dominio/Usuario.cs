@@ -22,6 +22,7 @@ namespace Dominio
             this.DataBreaches = new List<DataBreach>();
         }
 
+        public int Id { get; set; }
         public string Nombre 
         {   get { return _nombre; }
             set { this._nombre = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreYClaveMinimo, _largoNombreYClaveMaximo); }

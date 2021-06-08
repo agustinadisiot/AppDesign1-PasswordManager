@@ -25,6 +25,8 @@ namespace Dominio
             this._fechaModificacion = DateTime.Now.Date;
         }
 
+        public int Id { get; set; }
+
         public string UsuarioClave
         {
             get { return _usuario; }

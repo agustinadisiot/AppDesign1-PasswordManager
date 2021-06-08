@@ -12,6 +12,8 @@ namespace Dominio
             this.Filtradas = new List<string>();
         }
 
+        public int Id { get; set; }
+
         public List<Tarjeta> Tarjetas { get; set; }
 
         public List<Clave> Claves { get; set; }
