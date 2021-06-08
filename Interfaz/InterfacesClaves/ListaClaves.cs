@@ -82,7 +82,7 @@ namespace Interfaz
 
                 ClaveCompartida aCompartir = new ClaveCompartida()
                 {
-                    Usuario = compartidor,
+                    Original= compartidor,
                     Clave = claveACompartir
                 };
 

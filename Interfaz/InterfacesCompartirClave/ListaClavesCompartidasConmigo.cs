@@ -26,7 +26,7 @@ namespace Interfaz
             foreach (ClaveCompartida claveCompartidaActual in listaClavesCompartidasConmigo)
             {
                 Clave claveQueSeComparte = claveCompartidaActual.Clave;
-                Usuario usuarioQueComparte = claveCompartidaActual.Usuario;
+                Usuario usuarioQueComparte = claveCompartidaActual.Original;
 
                 string nombreUsuarioQueComparte = usuarioQueComparte.Nombre;
                 string sitioClaveQueSeComparte = claveQueSeComparte.Sitio;
