@@ -2059,8 +2059,6 @@ namespace TestsObligatorio
 
             Assert.AreEqual(categoria1, usuario.GetCategoriaTarjeta(buscadora));
         }
-
-        
     }
 
 }
