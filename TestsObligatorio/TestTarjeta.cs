@@ -303,5 +303,13 @@ namespace TestsObligatorio
             usuario1.AgregarTarjeta(tarjeta1,categoria1);
             Assert.AreEqual(categoria1, tarjeta1.Categoria);
         }
+
+        [TestMethod]
+        public void AgregarTarjetaUsuarioAgregaUnUsuario()
+        {
+            usuario1.AgregarCategoria(categoria1);
+            usuario1.AgregarTarjeta(tarjeta1, categoria1);
+            Assert.AreEqual(usuario1, tarjeta1.Usuario);
+        }
     }
 }

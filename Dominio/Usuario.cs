@@ -151,6 +151,7 @@ namespace Dominio
             if (this.YaExisteTarjeta(tarjeta)) throw new ObjetoYaExistenteException();
 
             this.GetCategoria(categoria).AgregarTarjeta(tarjeta);
+            tarjeta.Usuario = this;
         }
 
         public void BorrarClave(Clave aBorrar)
