@@ -242,4 +242,44 @@ namespace TestsObligatorio
         }
 
     }
+
+    [TestClass]
+    public class TestUsuarioEnTarjeta
+    {
+        private Tarjeta tarjeta1;
+        private Usuario usuario1;
+        private Categoria categoria1;
+
+        [TestInitialize]
+        public void Setup()
+        {
+            tarjeta1 = new Tarjeta()
+            {
+                Numero = "1111111111111111",
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Codigo = "321",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+
+            usuario1 = new Usuario()
+            {
+                Nombre = "Roberto",
+                ClaveMaestra = "12345ABCD"
+            };
+
+            categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+        }
+
+        [TestMethod]
+        public void AgregarUsuarioEnTarjeta() {
+            tarjeta1.Usuario = usuario1;
+            Assert.AreEqual(usuario1,tarjeta1.Usuario);
+        }
+    }
 }

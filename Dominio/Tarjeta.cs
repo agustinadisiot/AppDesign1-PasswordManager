@@ -52,6 +52,8 @@ namespace Dominio
             set { this._nota = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNotaMinimo, _largoNotaMaximo); }
         }
 
+        public Usuario Usuario { get; set; }
+
         public static string VerificarStringDeNumerosYSuLargoEntreMinimoYMaximo(string ingreso, int minimo, int maximo)
         {
             if (ingreso.Length < minimo || ingreso.Length > maximo) throw new LargoIncorrectoException();
