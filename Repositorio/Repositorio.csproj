@@ -66,8 +66,13 @@
     <Compile Include="Migrations\202106082015393_ArregladoBorrarTarjeta.designer.cs">
       <DependentUpon>202106082015393_ArregladoBorrarTarjeta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106082029347_AgregadoTypeConfigurationTarjeta.cs" />
+    <Compile Include="Migrations\202106082029347_AgregadoTypeConfigurationTarjeta.designer.cs">
+      <DependentUpon>202106082029347_AgregadoTypeConfigurationTarjeta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TarjetaTypeConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -88,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106082015393_ArregladoBorrarTarjeta.resx">
       <DependentUpon>202106082015393_ArregladoBorrarTarjeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106082029347_AgregadoTypeConfigurationTarjeta.resx">
+      <DependentUpon>202106082029347_AgregadoTypeConfigurationTarjeta.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
