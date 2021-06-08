@@ -6,6 +6,7 @@
         public Usuario Destino { get; set; }
         public Clave Clave { get; set; }
 
+        public int Id { get; set; }
         public override bool Equals(object objeto)
         {
             if (objeto == null) throw new ObjetoIncompletoException();
