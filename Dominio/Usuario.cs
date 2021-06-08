@@ -58,6 +58,7 @@ namespace Dominio
                     throw new ObjetoYaExistenteException();
                 }
                 this._categorias.Add(categoria);
+                categoria.Usuario = this;
             }  
         }
 
