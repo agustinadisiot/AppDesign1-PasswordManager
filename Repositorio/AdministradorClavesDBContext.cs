@@ -12,6 +12,7 @@ namespace Repositorio
     {
         public DbSet<Tarjeta> Tarjetas { get; set; }
         public DbSet<Clave> Claves { get; set; }
+        public DbSet<DataBreach> DataBreaches { get; set; }
         public AdministradorClavesDBContext() : base("name=ContextoAdministradorClaves") { }
         
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

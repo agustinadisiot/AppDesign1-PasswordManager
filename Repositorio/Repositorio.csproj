@@ -54,6 +54,7 @@
     <Compile Include="AdministradorClavesDBContext.cs" />
     <Compile Include="ClaveTypeConfiguration.cs" />
     <Compile Include="DataAccessClave.cs" />
+    <Compile Include="DataAccessDataBreach.cs" />
     <Compile Include="DataAccessTarjeta.cs" />
     <Compile Include="IDataAccess.cs" />
     <Compile Include="Migrations\202106081934262_CreadoDBContext.cs" />
@@ -79,6 +80,10 @@
     <Compile Include="Migrations\202106082145359_AgregadoTypeConfigurationClave.cs" />
     <Compile Include="Migrations\202106082145359_AgregadoTypeConfigurationClave.designer.cs">
       <DependentUpon>202106082145359_AgregadoTypeConfigurationClave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106082222325_AgregadoDataAccessDataBreach.cs" />
+    <Compile Include="Migrations\202106082222325_AgregadoDataAccessDataBreach.designer.cs">
+      <DependentUpon>202106082222325_AgregadoDataAccessDataBreach.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106082145359_AgregadoTypeConfigurationClave.resx">
       <DependentUpon>202106082145359_AgregadoTypeConfigurationClave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106082222325_AgregadoDataAccessDataBreach.resx">
+      <DependentUpon>202106082222325_AgregadoDataAccessDataBreach.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
