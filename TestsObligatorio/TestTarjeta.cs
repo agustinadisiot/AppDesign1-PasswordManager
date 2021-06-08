@@ -281,5 +281,12 @@ namespace TestsObligatorio
             tarjeta1.Usuario = usuario1;
             Assert.AreEqual(usuario1,tarjeta1.Usuario);
         }
+
+        [TestMethod]
+        public void AgregarCategoriaEnTarjeta()
+        {
+            tarjeta1.Categoria = categoria1;
+            Assert.AreEqual(categoria1, tarjeta1.Categoria);
+        }
     }
 }

@@ -53,6 +53,7 @@ namespace Dominio
         }
 
         public Usuario Usuario { get; set; }
+        public Categoria Categoria { get; set; }
 
         public static string VerificarStringDeNumerosYSuLargoEntreMinimoYMaximo(string ingreso, int minimo, int maximo)
         {
