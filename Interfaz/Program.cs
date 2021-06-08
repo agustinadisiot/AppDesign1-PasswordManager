@@ -13,11 +13,12 @@ namespace Interfaz
         /// </summary>
         [STAThread]
         static void Main()
-        {
-            /*Application.EnableVisualStyles();
+        {   
+            
+            Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new VentanaPrincipal());*/
-
+            Application.Run(new VentanaPrincipal());
+            /*
             Tarjeta tarjeta1 = new Tarjeta()
             {
                 Numero = "1111111111111111",
@@ -48,7 +49,7 @@ namespace Interfaz
 
             daTarjeta.Agregar(tarjeta1);
             tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
-            Console.ReadLine();
+            Console.ReadLine();*/
         }
     }
 }
