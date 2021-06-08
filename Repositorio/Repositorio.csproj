@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdministradorClavesDBContext.cs" />
+    <Compile Include="ClaveTypeConfiguration.cs" />
     <Compile Include="DataAccessClave.cs" />
     <Compile Include="DataAccessTarjeta.cs" />
     <Compile Include="IDataAccess.cs" />
@@ -74,6 +75,10 @@
     <Compile Include="Migrations\202106082125423_AgregadoDataAccessClave.cs" />
     <Compile Include="Migrations\202106082125423_AgregadoDataAccessClave.designer.cs">
       <DependentUpon>202106082125423_AgregadoDataAccessClave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106082145359_AgregadoTypeConfigurationClave.cs" />
+    <Compile Include="Migrations\202106082145359_AgregadoTypeConfigurationClave.designer.cs">
+      <DependentUpon>202106082145359_AgregadoTypeConfigurationClave.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106082125423_AgregadoDataAccessClave.resx">
       <DependentUpon>202106082125423_AgregadoDataAccessClave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106082145359_AgregadoTypeConfigurationClave.resx">
+      <DependentUpon>202106082145359_AgregadoTypeConfigurationClave.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
