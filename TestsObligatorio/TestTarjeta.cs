@@ -295,5 +295,13 @@ namespace TestsObligatorio
             categoria1.AgregarTarjeta(tarjeta1);
             Assert.AreEqual(categoria1, tarjeta1.Categoria);
         }
+
+        [TestMethod]
+        public void AgregarTarjetaUsuarioAgregaUnaCategoria()
+        {
+            usuario1.AgregarCategoria(categoria1);
+            usuario1.AgregarTarjeta(tarjeta1,categoria1);
+            Assert.AreEqual(categoria1, tarjeta1.Categoria);
+        }
     }
 }
