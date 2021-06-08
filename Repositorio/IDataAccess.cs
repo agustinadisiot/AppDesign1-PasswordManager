@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Repositorio
 {
-    interface IDataAccess<T>
+    public interface IDataAccess<T>
     {
         T Get(int id);
         IEnumerable<T> GetTodos();

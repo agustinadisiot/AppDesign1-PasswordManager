@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Repositorio
 {
-    class DataAccessTarjeta : IDataAccess<Tarjeta>
+    public class DataAccessTarjeta : IDataAccess<Tarjeta>
     {
         public void Agregar(Tarjeta entity)
         {
@@ -23,7 +23,7 @@ namespace Repositorio
             using (var contexto = new AdministradorClavesDBContext())
             {
                 Tarjeta aEliminar = contexto.Tarjetas.FirstOrDefault(t => t.Id == entity.Id);
-                contexto.Tarjetas.Add(entity);
+                contexto.Tarjetas.Remove(aEliminar);
                 contexto.SaveChanges();
             }
         }

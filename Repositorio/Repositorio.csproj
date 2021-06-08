@@ -62,6 +62,10 @@
     <Compile Include="Migrations\202106081949599_DataAccessTarjeta.designer.cs">
       <DependentUpon>202106081949599_DataAccessTarjeta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106082015393_ArregladoBorrarTarjeta.cs" />
+    <Compile Include="Migrations\202106082015393_ArregladoBorrarTarjeta.designer.cs">
+      <DependentUpon>202106082015393_ArregladoBorrarTarjeta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -81,6 +85,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106081949599_DataAccessTarjeta.resx">
       <DependentUpon>202106081949599_DataAccessTarjeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106082015393_ArregladoBorrarTarjeta.resx">
+      <DependentUpon>202106082015393_ArregladoBorrarTarjeta.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
