@@ -9,7 +9,7 @@ namespace Dominio
 {
     public class LogicaDataBreach
     {
-        public List<string> LeerArchivo(string direccion)
+        public List<Filtrada> LeerArchivo(string direccion)
         {
             try
             {
@@ -24,20 +24,21 @@ namespace Dominio
             }
         }
 
-        public List<string> SepararPorLineas(string aSeparar)
+        public List<Filtrada> SepararPorLineas(string aSeparar)
         {
             string[] separadores = new string[] { "\t", "\r\n", Environment.NewLine };
             string[] clavesYTarjetas = aSeparar.Split(separadores, StringSplitOptions.None);
-            List<string> dataBreach = new List<string>(clavesYTarjetas);
+            List<string> dataBreachString = new List<string>(clavesYTarjetas);
+            List<Filtrada> dataBreach = dataBreachString.Select(s => new Filtrada(s)).ToList();
             return dataBreach;
         }
 
-        public List<Clave> FiltrarClaves(List<String> dataBreach, List<Clave> controlar)
+        public List<Clave> FiltrarClaves(List<Filtrada> dataBreach, List<Clave> controlar)
         {
             return controlar.FindAll(buscadora => buscadora.FueFiltrado(dataBreach));
         }
 
-        public List<Tarjeta> FiltrarTarjetas(List<String> dataBreach, List<Tarjeta> controlar)
+        public List<Tarjeta> FiltrarTarjetas(List<Filtrada> dataBreach, List<Tarjeta> controlar)
         {
             return controlar.FindAll(buscadora => buscadora.FueFiltrado(dataBreach));
         }

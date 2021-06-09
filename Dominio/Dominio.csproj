@@ -49,6 +49,7 @@
     <Compile Include="Categoria.cs" />
     <Compile Include="DataBreach.cs" />
     <Compile Include="Exceptions\ArchivoNoExistenteException.cs" />
+    <Compile Include="Filtrada.cs" />
     <Compile Include="LogicaDataBreach.cs" />
     <Compile Include="Exceptions\ClaveDuplicadaException.cs" />
     <Compile Include="Exceptions\ClaveNoSeguraException.cs" />

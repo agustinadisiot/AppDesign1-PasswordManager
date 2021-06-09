@@ -76,7 +76,7 @@ namespace Dominio
             return this.DataBreaches.LastOrDefault();
         }
 
-        public void agregarDataBreach(List<string> filtradas, DateTime tiempoBreach)
+        public void agregarDataBreach(List<Filtrada> filtradas, DateTime tiempoBreach)
         {
             LogicaDataBreach logicaDataBreach = new LogicaDataBreach();
             DataBreach nuevoBreach = new DataBreach()

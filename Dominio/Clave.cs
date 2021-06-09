@@ -87,9 +87,9 @@ namespace Dominio
             this._fechaModificacion = System.DateTime.Now.Date;
         }
 
-        public bool FueFiltrado(List<string> filtradas)
+        public bool FueFiltrado(List<Filtrada> filtradas)
         {
-            return filtradas.Contains(this.Codigo);
+            return filtradas.Exists(f => this.Codigo.Equals(f.Texto));
         }
     }
 }
