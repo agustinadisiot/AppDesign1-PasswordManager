@@ -13,10 +13,34 @@ namespace Repositorio
         public DataBreachTypeConfiguration()
         {
             this.HasKey(x => x.Id);
-            this.HasMany(x => x.Tarjetas).WithRequired();
-            this.HasMany(x => x.Claves).WithRequired();
-            this.HasMany(x => x.Filtradas).WithRequired();
+            /*this.HasMany(x => x.Tarjetas).WithRequired().HasForeignKey(t => t.Id).WillCascadeOnDelete();
+            this.HasRequired(x => x.Claves).WithMany().HasForeignKey(c => c.Id).WillCascadeOnDelete();
+            this.HasRequired(x => x.Filtradas).WithMany().HasForeignKey(f => f.Id).WillCascadeOnDelete();*/
             this.Property(x => x.Fecha).IsRequired();
+            this.HasMany<Tarjeta>(db => db.Tarjetas)
+                .WithMany(t => t.DataBreaches)
+                .Map(t =>
+                {
+                    t.MapLeftKey("DataBreachesRefId");
+                    t.MapRightKey("TarjetasRefId");
+                    t.ToTable("DataBreachTarjetas");
+                });
+            this.HasMany<Clave>(db => db.Claves)
+                .WithMany(c => c.DataBreaches)
+                .Map(c =>
+                {
+                    c.MapLeftKey("DataBreachesRefId");
+                    c.MapRightKey("ClavesRefId");
+                    c.ToTable("DataBreachClaves");
+                });
+            this.HasMany<Filtrada>(db => db.Filtradas)
+                .WithMany(f => f.DataBreaches)
+                .Map(f =>
+                {
+                    f.MapLeftKey("DataBreachesRefId");
+                    f.MapRightKey("FiltradasRefId");
+                    f.ToTable("DataBreachFiltradas");
+                });
         }
     }
 }

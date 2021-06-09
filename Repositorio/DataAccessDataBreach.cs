@@ -33,7 +33,7 @@ namespace Repositorio
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                return contexto.DataBreaches.FirstOrDefault(t => t.Id == id);
+                return contexto.DataBreaches.Include("Claves").Include("Filtradas").Include("Tarjetas").FirstOrDefault(t => t.Id == id);
             }
         }
 
@@ -41,7 +41,7 @@ namespace Repositorio
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                return contexto.DataBreaches.ToList();
+                return contexto.DataBreaches.Include("Claves").Include("Filtradas").Include("Tarjetas").ToList();
             }
         }
 

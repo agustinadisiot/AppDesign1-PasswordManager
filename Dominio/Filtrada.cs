@@ -1,7 +1,11 @@
-﻿namespace Dominio
+﻿using System.Collections.Generic;
+
+namespace Dominio
 {
     public class Filtrada
     {
+        public virtual ICollection<DataBreach> DataBreaches { get; set; }
+
         public int Id { get; set; }
 
         public string Texto { get; set; }

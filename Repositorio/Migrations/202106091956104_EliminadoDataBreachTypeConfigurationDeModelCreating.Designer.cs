@@ -7,13 +7,13 @@ namespace Repositorio.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AgregadoDataAccessDataBreach : IMigrationMetadata
+    public sealed partial class EliminadoDataBreachTypeConfigurationDeModelCreating : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AgregadoDataAccessDataBreach));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(EliminadoDataBreachTypeConfigurationDeModelCreating));
         
         string IMigrationMetadata.Id
         {
-            get { return "202106082222325_AgregadoDataAccessDataBreach"; }
+            get { return "202106091956104_EliminadoDataBreachTypeConfigurationDeModelCreating"; }
         }
         
         string IMigrationMetadata.Source
