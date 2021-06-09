@@ -22,6 +22,7 @@ namespace Repositorio
             modelBuilder.Configurations.Add(new TarjetaTypeConfiguration());
             modelBuilder.Configurations.Add(new ClaveTypeConfiguration());
             modelBuilder.Configurations.Add(new DataBreachTypeConfiguration());
+            modelBuilder.Configurations.Add(new FiltradaTypeConfiguration());
         }
     }
 }
