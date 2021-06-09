@@ -2,7 +2,10 @@
 {
     public class Filtrada
     {
+        public int Id { get; set; }
+
         public string Texto { get; set; }
+
         public Filtrada()
         {
         }
