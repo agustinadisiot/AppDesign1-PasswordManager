@@ -19,6 +19,7 @@ namespace Repositorio
         
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+
             modelBuilder.Configurations.Add(new TarjetaTypeConfiguration());
             modelBuilder.Configurations.Add(new ClaveTypeConfiguration());
             modelBuilder.Configurations.Add(new DataBreachTypeConfiguration());

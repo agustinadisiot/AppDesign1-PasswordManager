@@ -16,11 +16,11 @@ namespace Interfaz
         static void Main()
         {
 
-            /*
+/*
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new VentanaPrincipal());
-            */
+*/
 
 
             //Tarjetas
@@ -49,7 +49,7 @@ namespace Interfaz
             List<Tarjeta> tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
 
 
-            Tarjeta tarjetaModificar = new Tarjeta()
+            /*Tarjeta tarjetaModificar = new Tarjeta()
             {
                 Id = tarjetas.First().Id,
                 Numero = "3333333333333333",
@@ -58,20 +58,21 @@ namespace Interfaz
                 Codigo = "543",
                 Nota = "Cambio",
                 Vencimiento = new DateTime(2030, 7, 1)
-            };
+            };*/
 
-            /*foreach (Tarjeta tarjeta in tarjetas) {
+            foreach (Tarjeta tarjeta in tarjetas)
+            {
                 daTarjeta.Borrar(tarjeta);
-            }*/
+            }
 
             daTarjeta.Agregar(tarjeta2);
 
-            daTarjeta.Modificar(tarjetaModificar);
+            /*daTarjeta.Modificar(tarjetaModificar);*/
 
 
             tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
 
-/*
+
             //Claves
             Clave clave1 = new Clave()
             {
@@ -109,13 +110,13 @@ namespace Interfaz
                 "claveDeNetflix"
             };
 
-            DataAccessFiltrada daFiltradas = new DataAccessFiltrada();
+            DataAccessFiltrada daFiltrada = new DataAccessFiltrada();
 
-            List<Filtrada> borrarFiltradas = (List<Filtrada>)daFiltradas.GetTodos();
+            List<Filtrada> borrarFiltradas = (List<Filtrada>)daFiltrada.GetTodos();
 
             foreach (Filtrada filtrada in borrarFiltradas)
             {
-                daFiltradas.Borrar(filtrada);
+                daFiltrada.Borrar(filtrada);
             }
 
             List<Filtrada> datos = datosString.Select(s => new Filtrada(s)).ToList();
@@ -123,7 +124,7 @@ namespace Interfaz
             LogicaDataBreach logicaDataBreach = new LogicaDataBreach();
 
             DataAccessDataBreach daDataBreach = new DataAccessDataBreach();
-            List<DataBreach> dataBreaches = (List<DataBreach>) daDataBreach.GetTodos();
+            List<DataBreach> dataBreaches = (List<DataBreach>)daDataBreach.GetTodos();
 
             foreach (DataBreach db in dataBreaches)
             {
@@ -140,34 +141,70 @@ namespace Interfaz
             {
                 tarjeta2,
             };
+
             DataBreach dataBreach = new DataBreach()
             {
                 Fecha = DateTime.Now,
+                Claves = clavesFiltradas,
+                Tarjetas = tarjetasFiltradas,
                 Filtradas = datos
             };
 
+            List<Filtrada> filtradas;
+
+            dataBreaches = (List<DataBreach>)daDataBreach.GetTodos();
+            claves = (List<Clave>)daClave.GetTodos();
+            tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
+            filtradas = (List<Filtrada>)daFiltrada.GetTodos();
+
+            //0 DataBreaches
+            //1 Clave
+            //1 Tarjeta
+            //0 Filtradas
+
             daDataBreach.Agregar(dataBreach);
 
+            /* DataBreach dataBreach2 = daDataBreach.Get(dataBreach.Id);
 
-            using (var contexto = new AdministradorClavesDBContext())
+
+             Clave clave12 = daClave.Get(clave1.Id);
+
+             Tarjeta tarjeta22 = daTarjeta.Get(tarjeta2.Id);
+
+
+             dataBreach2.Claves.Add(clave12);
+             dataBreach2.Tarjetas.Add(tarjeta22);*/
+
+
+            /*using (var contexto = new AdministradorClavesDBContext())
             {
                 DataBreach dataBreach2 = daDataBreach.Get(dataBreach.Id);
+                
 
                 Clave clave12 = daClave.Get(clave1.Id);
-
+                
                 Tarjeta tarjeta22 = daTarjeta.Get(tarjeta2.Id);
+                
+
+                contexto.DataBreaches.Attach(dataBreach2);
+                contexto.Claves.Attach(clave12);
+                contexto.Tarjetas.Attach(tarjeta22);
 
                 dataBreach2.Claves.Add(clave12);
-
                 dataBreach2.Tarjetas.Add(tarjeta22);
 
-                daDataBreach.Modificar(dataBreach2);
-
                 contexto.SaveChanges();
-            }
+            }*/
 
-            dataBreaches = (List<DataBreach>)daDataBreach.GetTodos();*/
+            //1 DataBreaches
+            //1 Clave
+            //1 Tarjeta
+            //4 Filtradas
 
+            dataBreaches = (List<DataBreach>)daDataBreach.GetTodos();
+            claves = (List<Clave>)daClave.GetTodos();
+            tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
+            filtradas = (List<Filtrada>)daFiltrada.GetTodos();
             Console.ReadLine();
 
         }

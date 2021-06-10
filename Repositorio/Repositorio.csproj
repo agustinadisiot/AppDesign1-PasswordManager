@@ -84,29 +84,9 @@
     <Compile Include="Migrations\202106082145359_AgregadoTypeConfigurationClave.designer.cs">
       <DependentUpon>202106082145359_AgregadoTypeConfigurationClave.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202106091916233_AgregadoFiltradasYDataBreachADB.cs" />
-    <Compile Include="Migrations\202106091916233_AgregadoFiltradasYDataBreachADB.designer.cs">
-      <DependentUpon>202106091916233_AgregadoFiltradasYDataBreachADB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106091941107_ArregloIDs.cs" />
-    <Compile Include="Migrations\202106091941107_ArregloIDs.designer.cs">
-      <DependentUpon>202106091941107_ArregloIDs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106091956104_EliminadoDataBreachTypeConfigurationDeModelCreating.cs" />
-    <Compile Include="Migrations\202106091956104_EliminadoDataBreachTypeConfigurationDeModelCreating.designer.cs">
-      <DependentUpon>202106091956104_EliminadoDataBreachTypeConfigurationDeModelCreating.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106092048279_RelacionNaNDataBreach.cs" />
-    <Compile Include="Migrations\202106092048279_RelacionNaNDataBreach.designer.cs">
-      <DependentUpon>202106092048279_RelacionNaNDataBreach.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106092124288_IncluirTablasReferenciadasDataBreach.cs" />
-    <Compile Include="Migrations\202106092124288_IncluirTablasReferenciadasDataBreach.designer.cs">
-      <DependentUpon>202106092124288_IncluirTablasReferenciadasDataBreach.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106092128267_IncluirTablasReferenciadasGetTodosDataBreach.cs" />
-    <Compile Include="Migrations\202106092128267_IncluirTablasReferenciadasGetTodosDataBreach.designer.cs">
-      <DependentUpon>202106092128267_IncluirTablasReferenciadasGetTodosDataBreach.cs</DependentUpon>
+    <Compile Include="Migrations\202106100054267_AgregadosArchivosFaltantes.cs" />
+    <Compile Include="Migrations\202106100054267_AgregadosArchivosFaltantes.designer.cs">
+      <DependentUpon>202106100054267_AgregadosArchivosFaltantes.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -141,23 +121,8 @@
     <EmbeddedResource Include="Migrations\202106082145359_AgregadoTypeConfigurationClave.resx">
       <DependentUpon>202106082145359_AgregadoTypeConfigurationClave.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106091916233_AgregadoFiltradasYDataBreachADB.resx">
-      <DependentUpon>202106091916233_AgregadoFiltradasYDataBreachADB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106091941107_ArregloIDs.resx">
-      <DependentUpon>202106091941107_ArregloIDs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106091956104_EliminadoDataBreachTypeConfigurationDeModelCreating.resx">
-      <DependentUpon>202106091956104_EliminadoDataBreachTypeConfigurationDeModelCreating.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106092048279_RelacionNaNDataBreach.resx">
-      <DependentUpon>202106092048279_RelacionNaNDataBreach.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106092124288_IncluirTablasReferenciadasDataBreach.resx">
-      <DependentUpon>202106092124288_IncluirTablasReferenciadasDataBreach.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106092128267_IncluirTablasReferenciadasGetTodosDataBreach.resx">
-      <DependentUpon>202106092128267_IncluirTablasReferenciadasGetTodosDataBreach.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106100054267_AgregadosArchivosFaltantes.resx">
+      <DependentUpon>202106100054267_AgregadosArchivosFaltantes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
