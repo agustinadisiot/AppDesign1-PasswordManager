@@ -99,6 +99,7 @@ namespace Interfaz
             }
 
             daClave.Agregar(clave1);
+            daClave.Agregar(clave2);
             claves = (List<Clave>)daClave.GetTodos();
 
             //Filtradas
@@ -106,7 +107,6 @@ namespace Interfaz
             {
                 "clave1",
                 "EstoEsUnaClave1",
-                "2222222222222222",
                 "claveDeNetflix"
             };
 
@@ -118,6 +118,9 @@ namespace Interfaz
             {
                 daFiltrada.Borrar(filtrada);
             }
+
+            Filtrada noAgregada = new Filtrada("noAgregada");
+            daFiltrada.Agregar(noAgregada);
 
             List<Filtrada> datos = datosString.Select(s => new Filtrada(s)).ToList();
 
@@ -158,7 +161,7 @@ namespace Interfaz
             filtradas = (List<Filtrada>)daFiltrada.GetTodos();
 
             //0 DataBreaches
-            //1 Clave
+            //2 Clave
             //1 Tarjeta
             //0 Filtradas
 
@@ -197,14 +200,33 @@ namespace Interfaz
             }*/
 
             //1 DataBreaches
-            //1 Clave
+            //2 Clave
             //1 Tarjeta
             //4 Filtradas
-
             dataBreaches = (List<DataBreach>)daDataBreach.GetTodos();
             claves = (List<Clave>)daClave.GetTodos();
             tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
             filtradas = (List<Filtrada>)daFiltrada.GetTodos();
+
+            DataBreach dataBreach2 =new DataBreach() { Id = dataBreach.Id};
+            dataBreach2.Claves.Add(clave2);
+            dataBreach2.Filtradas.Add(new Filtrada(clave2.Codigo));
+            dataBreach2.Filtradas.Add(noAgregada);
+            daDataBreach.Modificar(dataBreach2);
+
+            //1 DataBreaches
+            //2 Clave
+            //1 Tarjeta
+            //5 Filtradas
+            dataBreaches = (List<DataBreach>)daDataBreach.GetTodos();
+            claves = (List<Clave>)daClave.GetTodos();
+            tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
+            filtradas = (List<Filtrada>)daFiltrada.GetTodos();
+
+            
+
+
+
             Console.ReadLine();
 
         }

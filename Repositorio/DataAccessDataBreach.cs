@@ -29,33 +29,23 @@ namespace Repositorio
                 entity.Tarjetas = tarjetas;
                 */
 
-                foreach (Tarjeta t in entity.Tarjetas)
+                foreach (Tarjeta tarjetaNueva in entity.Tarjetas)
                 {
                     try
                     {
-                        contexto.Tarjetas.Attach(t);
+                        contexto.Tarjetas.Attach(tarjetaNueva);
                     }
                     catch (Exception){};
                 }
 
-                foreach (Clave c in entity.Claves)
+                foreach (Clave claveNueva in entity.Claves)
                 {
                     try
                     {
-                        contexto.Claves.Attach(c);
+                        contexto.Claves.Attach(claveNueva);
                     }
                     catch (Exception){};
                 }
-
-                /*foreach (Filtrada f in entity.Filtradas)
-                {
-                    try
-                    {
-                        contexto.Filtradas.Attach(f);
-                    }
-                    catch (Exception){};
-                }*/
-
 
                 contexto.DataBreaches.Add(entity);
 
@@ -95,29 +85,80 @@ namespace Repositorio
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
+                //Pruebas nuestras
                 List<Clave> claves = new List<Clave>();
                 List<Tarjeta> tarjetas = new List<Tarjeta>();
                 List<Filtrada> filtradas = new List<Filtrada>();
+                //contexto.Entry(entity).State = System.Data.Entity.EntityState.Modified;
 
-                foreach (Tarjeta t in entity.Tarjetas) {
+                foreach (Tarjeta t in entity.Tarjetas)
+                {
                     contexto.Tarjetas.Attach(t);
+                    tarjetas.Add(t);
+
                 }
 
-                foreach (Clave c in entity.Claves) {
+                foreach (Clave c in entity.Claves)
+                {
                     contexto.Claves.Attach(c);
+                    claves.Add(c);
                 }
 
-                foreach (Filtrada f in entity.Filtradas) {
-                    contexto.Filtradas.Attach(f);
+                foreach (Filtrada f1 in entity.Filtradas)
+                {
+                    Filtrada fNueva = contexto.Filtradas.FirstOrDefault(f2 => f2.Id == f1.Id);
+
+                    if (fNueva != null)
+                    {
+                        contexto.Filtradas.Attach(fNueva);
+                    }
+                    filtradas.Add(f1);
                 }
 
-                DataBreach aModificar = contexto.DataBreaches.Find(entity.Id);
-                contexto.DataBreaches.Attach(aModificar);
-                aModificar.Claves = entity.Claves;
+
+
+                /*DataBreach aModificar = contexto.DataBreaches.FirstOrDefault(db => db.Id == entity.Id);
+                contexto.DataBreaches.Attach(aModificar);*/
+                //DataBreach aModificar = new DataBreach() { Id = entity.Id };
+
+
+                /*aModificar.Claves = entity.Claves;
                 aModificar.Tarjetas = entity.Tarjetas;
-                aModificar.Filtradas = entity.Filtradas;
+                aModificar.Filtradas = entity.Filtradas;*/
+
+                /*aModificar.Claves = claves;
+                aModificar.Tarjetas = tarjetas;
+                aModificar.Filtradas = filtradas;
+                aModificar.Fecha = entity.Fecha;*/
+
+                /* Metodo Attach veterinaria de mascota
+                DataBreach aModificar = contexto.DataBreaches.FirstOrDefault(db => db.Id == entity.Id);
+                contexto.DataBreaches.Attach(aModificar);
+                aModificar = entity;
+                contexto.SaveChanges();*/
+
+                /*Metodo de add una mascota
+                contexto.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+                contexto.SaveChanges();*/
+
+                /*DataBreach aModificar = contexto.DataBreaches.Find(entity.Id);
+                aModificar.Claves = claves;
+                aModificar.Tarjetas = tarjetas;
+                aModificar.Filtradas = filtradas;
                 aModificar.Fecha = entity.Fecha;
+                contexto.SaveChanges();*/
+
+                DataBreach aModificar = contexto.DataBreaches.SingleOrDefault(db => db.Id == entity.Id);
+
+                if (aModificar == null) {
+                    throw new ObjetoInexistenteException();
+                }
+
+                aModificar.Claves = claves;
+                aModificar.Tarjetas = tarjetas;
+                aModificar.Filtradas = filtradas;
                 contexto.SaveChanges();
+
             }
         }
 
