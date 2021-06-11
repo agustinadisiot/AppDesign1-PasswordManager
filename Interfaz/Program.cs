@@ -64,7 +64,7 @@ namespace Interfaz
             {
                 daTarjeta.Borrar(tarjeta);
             }
-
+            daTarjeta.Agregar(tarjeta1);
             daTarjeta.Agregar(tarjeta2);
 
             /*daTarjeta.Modificar(tarjetaModificar);*/
@@ -137,12 +137,12 @@ namespace Interfaz
             //DataBreach
             List<Clave> clavesFiltradas = new List<Clave>()
             {
-                clave1
+                daClave.Get(clave1.Id)
             };
 
             List<Tarjeta> tarjetasFiltradas = new List<Tarjeta>()
             {
-                tarjeta2,
+                daTarjeta.Get(tarjeta2.Id)
             };
 
             DataBreach dataBreach = new DataBreach()
@@ -208,12 +208,34 @@ namespace Interfaz
             tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
             filtradas = (List<Filtrada>)daFiltrada.GetTodos();
 
-            DataBreach dataBreach2 =new DataBreach() { Id = dataBreach.Id};
-            dataBreach2.Claves.Add(clave2);
-            dataBreach2.Filtradas.Add(new Filtrada(clave2.Codigo));
-            dataBreach2.Filtradas.Add(noAgregada);
-            daDataBreach.Modificar(dataBreach2);
+            DataBreach dataBreach2 = daDataBreach.Get(dataBreach.Id);
+            //new DataBreach() { Id = dataBreach.Id};
 
+            List<Tarjeta> tarjetasModificar = new List<Tarjeta>()
+            {
+                daTarjeta.Get(tarjeta1.Id)
+            };
+
+            //dataBreach2.Tarjetas.Add(tarjeta1);
+            /*dataBreach2.Filtradas.Add(new Filtrada(clave2.Codigo));
+            dataBreach2.Filtradas.Add(noAgregada);*/
+
+            dataBreach2.Tarjetas = tarjetasModificar;
+            dataBreach2.Fecha = new DateTime(2000,1,1);
+            daDataBreach.Modificar(dataBreach2);
+            DataBreach dataBreachDespues = daDataBreach.Get(dataBreach.Id);
+
+
+            Tarjeta aModificar = daTarjeta.Get(tarjeta2.Id);
+            aModificar.Nombre = "Agustina";
+            aModificar.Numero = "5555555555555555";
+            aModificar.Tipo = "cambio";
+            aModificar.Nota = "Colorin Colorado, esta tarjeta se ha cambiado.";
+            aModificar.Codigo = "333";
+            aModificar.Vencimiento = DateTime.Now;
+
+            daTarjeta.Modificar(aModificar);
+            Tarjeta tarjetaDespues = daTarjeta.Get(tarjeta2.Id);
             //1 DataBreaches
             //2 Clave
             //1 Tarjeta
@@ -222,11 +244,7 @@ namespace Interfaz
             claves = (List<Clave>)daClave.GetTodos();
             tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
             filtradas = (List<Filtrada>)daFiltrada.GetTodos();
-
             
-
-
-
             Console.ReadLine();
 
         }

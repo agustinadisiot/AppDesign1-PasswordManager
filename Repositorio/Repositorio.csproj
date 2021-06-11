@@ -88,6 +88,14 @@
     <Compile Include="Migrations\202106100054267_AgregadosArchivosFaltantes.designer.cs">
       <DependentUpon>202106100054267_AgregadosArchivosFaltantes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106102355058_CambioTarjetasDataBreachesAList.cs" />
+    <Compile Include="Migrations\202106102355058_CambioTarjetasDataBreachesAList.designer.cs">
+      <DependentUpon>202106102355058_CambioTarjetasDataBreachesAList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106102358105_AgregadaRelacionAmbosLadosTarjeta.cs" />
+    <Compile Include="Migrations\202106102358105_AgregadaRelacionAmbosLadosTarjeta.designer.cs">
+      <DependentUpon>202106102358105_AgregadaRelacionAmbosLadosTarjeta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TarjetaTypeConfiguration.cs" />
@@ -123,6 +131,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106100054267_AgregadosArchivosFaltantes.resx">
       <DependentUpon>202106100054267_AgregadosArchivosFaltantes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106102355058_CambioTarjetasDataBreachesAList.resx">
+      <DependentUpon>202106102355058_CambioTarjetasDataBreachesAList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106102358105_AgregadaRelacionAmbosLadosTarjeta.resx">
+      <DependentUpon>202106102358105_AgregadaRelacionAmbosLadosTarjeta.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

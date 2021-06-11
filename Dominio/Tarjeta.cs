@@ -20,7 +20,11 @@ namespace Dominio
         private const int _largoNotaMinimo = 0;
         private const int _largoNotaMaximo = 250;
 
-        public virtual ICollection<DataBreach> DataBreaches { get; set; }
+        public List<DataBreach> DataBreaches { get; set; }
+
+        public Tarjeta() {
+            this.DataBreaches = new List<DataBreach>();
+        }
 
         public int Id { get; set; }
 
