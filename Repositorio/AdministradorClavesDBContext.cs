@@ -25,6 +25,7 @@ namespace Repositorio
             modelBuilder.Configurations.Add(new ClaveTypeConfiguration());
             modelBuilder.Configurations.Add(new DataBreachTypeConfiguration());
             modelBuilder.Configurations.Add(new FiltradaTypeConfiguration());
+            modelBuilder.Configurations.Add(new CategoriaTypeConfiguration());
         }
     }
 }

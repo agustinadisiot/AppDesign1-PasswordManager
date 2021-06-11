@@ -22,6 +22,8 @@ namespace Dominio
 
         public List<DataBreach> DataBreaches { get; set; }
 
+        public Categoria Categoria { get; set; }
+
         public Tarjeta() {
             this.DataBreaches = new List<DataBreach>();
         }

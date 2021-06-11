@@ -19,6 +19,8 @@ namespace Dominio
 
         public List<DataBreach> DataBreaches { get; set; }
 
+        public Categoria Categoria { get; set; }
+
         public Clave()
         {
             this.EsCompartida = false;
