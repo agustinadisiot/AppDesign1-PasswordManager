@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Repositorio
 {
-    public class DataAccessDataBreach : IDataAccess<DataBreach>
+    public class DataAccessCategoria : IDataAccess<Categoria>
     {
 
-        public void Agregar(DataBreach entity)
+        public void Agregar(Categoria entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
@@ -20,7 +20,7 @@ namespace Repositorio
                     {
                         contexto.Tarjetas.Attach(tarjetaNueva);
                     }
-                    catch (Exception){};
+                    catch (Exception) { };
                 }
 
                 foreach (Clave claveNueva in entity.Claves)
@@ -29,50 +29,47 @@ namespace Repositorio
                     {
                         contexto.Claves.Attach(claveNueva);
                     }
-                    catch (Exception){};
+                    catch (Exception) { };
                 }
 
-                contexto.DataBreaches.Add(entity);
+                contexto.Categorias.Add(entity);
 
-
-                
                 contexto.SaveChanges();
             }
         }
 
-        public void Borrar(DataBreach entity)
+        public void Borrar(Categoria entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                DataBreach aEliminar = contexto.DataBreaches.FirstOrDefault(t => t.Id == entity.Id);
-                contexto.DataBreaches.Remove(aEliminar);
+                Categoria aEliminar = contexto.Categorias.FirstOrDefault(t => t.Id == entity.Id);
+                contexto.Categorias.Remove(aEliminar);
                 contexto.SaveChanges();
             }
         }
 
-        public DataBreach Get(int id)
+        public Categoria Get(int id)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                return contexto.DataBreaches.Include("Claves").Include("Filtradas").Include("Tarjetas").FirstOrDefault(t => t.Id == id);
+                return contexto.Categorias.Include("Claves").Include("Tarjetas").FirstOrDefault(t => t.Id == id);
             }
         }
 
-        public IEnumerable<DataBreach> GetTodos()
+        public IEnumerable<Categoria> GetTodos()
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                return contexto.DataBreaches.Include("Claves").Include("Filtradas").Include("Tarjetas").ToList();
+                return contexto.Categorias.Include("Claves").Include("Tarjetas").ToList();
             }
         }
 
-        public void Modificar(DataBreach entity)
+        public void Modificar(Categoria entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
                 List<Tarjeta> tarjetas = new List<Tarjeta>();
                 List<Clave> claves = new List<Clave>();
-                List<Filtrada> filtradas = new List<Filtrada>();
 
                 for (int i = 0; i < entity.Tarjetas.Count; i++)
                 {
@@ -104,34 +101,17 @@ namespace Repositorio
                     claves.Add(t);
                 }
 
-                for (int i = 0; i < entity.Filtradas.Count; i++)
-                {
-                    Filtrada t = entity.Filtradas.ElementAt(i);
-
-                    Filtrada nueva = contexto.Filtradas.FirstOrDefault(tNueva => tNueva.Id == t.Id);
-
-                    if (nueva != null)
-                    {
-                        t = nueva;
-                        contexto.Filtradas.Attach(t);
-                    }
-                    filtradas.Add(t);
-                }
-
-                DataBreach aModificar = contexto.DataBreaches
+                Categoria aModificar = contexto.Categorias
                         .Include("Claves")
-                        .Include("Filtradas")
                         .Include("Tarjetas")
                         .FirstOrDefault(db => db.Id == entity.Id);
 
-                contexto.DataBreaches.Attach(aModificar);
-                aModificar.Fecha = entity.Fecha;
+                contexto.Categorias.Attach(aModificar);
                 aModificar.Tarjetas = tarjetas;
                 aModificar.Claves = claves;
-                aModificar.Filtradas = filtradas;
+                aModificar.Nombre = entity.Nombre;
                 contexto.SaveChanges();
             }
         }
-
     }
 }

@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="AdministradorClavesDBContext.cs" />
     <Compile Include="ClaveTypeConfiguration.cs" />
+    <Compile Include="DataAccessCategoria.cs" />
     <Compile Include="DataAccessClave.cs" />
     <Compile Include="DataAccessDataBreach.cs" />
     <Compile Include="DataAccessFiltrada.cs" />

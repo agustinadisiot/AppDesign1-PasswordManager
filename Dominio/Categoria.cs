@@ -5,16 +5,16 @@ namespace Dominio
 {
     public class Categoria
     {
-        private List<Clave> _claves;
-        private List<Tarjeta> _tarjetas;
+       // private List<Clave> _claves;
+        //private List<Tarjeta> _tarjetas;
         private string _nombre;
         private const int _largoNombreMinimo = 3;
         private const int _largoNombreMaximo = 15;
 
         public Categoria()
         {
-            _claves = new List<Clave>();
-            _tarjetas = new List<Tarjeta>();
+            this.Claves = new List<Clave>();
+            this.Tarjetas = new List<Tarjeta>();
         }
 
         public string Nombre
@@ -25,9 +25,12 @@ namespace Dominio
 
         public int Id { get; set; }
 
+        public List<Clave> Claves { get; set; }
+        public List<Tarjeta> Tarjetas { get; set; }
+
         public bool EsListaClavesVacia()
         {
-            bool noHayClaves = (this._claves.Count == 0);
+            bool noHayClaves = (this.Claves.Count == 0);
             return noHayClaves;
         }
 
@@ -40,7 +43,7 @@ namespace Dominio
 
             if (noTieneSitio || noTieneClave || noTieneUsuario ) throw new ObjetoIncompletoException();
             if (this.YaExisteClave(claveIngresada)) throw new ObjetoYaExistenteException();
-            this._claves.Add(claveIngresada);
+            this.Claves.Add(claveIngresada);
         }
 
         public void BorrarClave(Clave claveABorrar)
@@ -51,7 +54,7 @@ namespace Dominio
             if (!this.YaExisteClave(claveABorrar)) {
                 throw new ObjetoInexistenteException();
             }
-            this._claves.Remove(claveABorrar);
+            this.Claves.Remove(claveABorrar);
         }
 
         public Clave GetClave(Clave aBuscar)
@@ -65,13 +68,13 @@ namespace Dominio
                 return clave.Equals(aBuscar);
             };
 
-            Clave retorno = this._claves.Find(buscadorClave);
+            Clave retorno = this.Claves.Find(buscadorClave);
             return retorno != null ? retorno : throw new ObjetoInexistenteException();
         }
 
         public List<Clave> GetListaClaves()
         {
-            return this._claves;
+            return this.Claves;
         }
 
         public override bool Equals(object objeto)
@@ -84,7 +87,7 @@ namespace Dominio
 
         public bool EsListaTarjetasVacia()
         {
-            bool noHayTarjetas = this._tarjetas.Count == 0;
+            bool noHayTarjetas = this.Tarjetas.Count == 0;
             return noHayTarjetas;
         }
 
@@ -100,7 +103,7 @@ namespace Dominio
 
             if (this.YaExisteTarjeta(tarjetaIngresada)) throw new ObjetoYaExistenteException();
            
-            this._tarjetas.Add(tarjetaIngresada);
+            this.Tarjetas.Add(tarjetaIngresada);
         }
 
         public Tarjeta GetTarjeta(Tarjeta aBuscar)
@@ -111,23 +114,23 @@ namespace Dominio
                 return tarjeta.Equals(aBuscar);
             };
 
-            Tarjeta retorno = this._tarjetas.Find(buscadorTarjeta);
+            Tarjeta retorno = this.Tarjetas.Find(buscadorTarjeta);
             return retorno != null ? retorno : throw new ObjetoInexistenteException();
         }
 
         public List<Tarjeta> GetListaTarjetas()
         {
-            return this._tarjetas;
+            return this.Tarjetas;
         }
 
         public bool YaExisteClave(Clave aBuscar)
         {
-            return (this._claves.Contains(aBuscar));
+            return (this.Claves.Contains(aBuscar));
         }
 
         public bool YaExisteTarjeta(Tarjeta aBuscar)
         {
-            return (this._tarjetas.Contains(aBuscar));
+            return (this.Tarjetas.Contains(aBuscar));
             
         }
 
@@ -138,7 +141,7 @@ namespace Dominio
             {
                 throw new ObjetoInexistenteException();
             }
-            this._tarjetas.Remove(aBorrar);
+            this.Tarjetas.Remove(aBorrar);
         }
 
         public void ModificarTarjeta(Tarjeta tarjetaVieja, Tarjeta tarjetaNueva)
