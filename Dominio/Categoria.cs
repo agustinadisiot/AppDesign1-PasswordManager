@@ -105,7 +105,6 @@ namespace Dominio
             if (this.YaExisteTarjeta(tarjetaIngresada)) throw new ObjetoYaExistenteException();
            
             this.Tarjetas.Add(tarjetaIngresada);
-            tarjetaIngresada.Categoria = this;
         }
 
         public Tarjeta GetTarjeta(Tarjeta aBuscar)
