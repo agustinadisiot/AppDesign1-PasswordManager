@@ -555,12 +555,6 @@ namespace TestsObligatorio
 
             Assert.IsTrue(getListaClavesContieneLasClavesVerdes && clavesVerdesContieneListaClavesVerdes);
         }
-
-        [TestMethod]
-        public void CategoriaAgregarClaveSeAgregaAClave() {
-            categoria1.AgregarClave(clave1);
-            Assert.AreEqual(categoria1, clave1.Categoria);
-        }
     }
 
     [TestClass]

@@ -62,17 +62,9 @@
     <Compile Include="DataBreachTypeConfiguration.cs" />
     <Compile Include="FiltradaTypeConfiguration.cs" />
     <Compile Include="IDataAccess.cs" />
-    <Compile Include="Migrations\202106112032113_DBCompletoHastaCategoria.cs" />
-    <Compile Include="Migrations\202106112032113_DBCompletoHastaCategoria.designer.cs">
-      <DependentUpon>202106112032113_DBCompletoHastaCategoria.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106112111426_ModificadoCategoriaTypeConfiguration.cs" />
-    <Compile Include="Migrations\202106112111426_ModificadoCategoriaTypeConfiguration.designer.cs">
-      <DependentUpon>202106112111426_ModificadoCategoriaTypeConfiguration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106112122014_EliminadoCategoriaDeTarjeta.cs" />
-    <Compile Include="Migrations\202106112122014_EliminadoCategoriaDeTarjeta.designer.cs">
-      <DependentUpon>202106112122014_EliminadoCategoriaDeTarjeta.cs</DependentUpon>
+    <Compile Include="Migrations\202106112245398_DBCompletoIncluyendoCategoria.cs" />
+    <Compile Include="Migrations\202106112245398_DBCompletoIncluyendoCategoria.designer.cs">
+      <DependentUpon>202106112245398_DBCompletoIncluyendoCategoria.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,14 +81,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202106112032113_DBCompletoHastaCategoria.resx">
-      <DependentUpon>202106112032113_DBCompletoHastaCategoria.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106112111426_ModificadoCategoriaTypeConfiguration.resx">
-      <DependentUpon>202106112111426_ModificadoCategoriaTypeConfiguration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106112122014_EliminadoCategoriaDeTarjeta.resx">
-      <DependentUpon>202106112122014_EliminadoCategoriaDeTarjeta.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106112245398_DBCompletoIncluyendoCategoria.resx">
+      <DependentUpon>202106112245398_DBCompletoIncluyendoCategoria.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

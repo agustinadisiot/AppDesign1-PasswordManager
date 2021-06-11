@@ -16,9 +16,7 @@ namespace Repositorio
             this.Property(x => x.Nombre).IsRequired();
             this.HasMany<Tarjeta>(ca => ca.Tarjetas);
 
-            this.HasMany<Clave>(ca => ca.Claves)
-                 .WithRequired(c => c.Categoria)
-                 .HasForeignKey<int>(c => c.CategoriaId);
+            this.HasMany<Clave>(ca => ca.Claves);
         }
     }
 }

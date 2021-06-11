@@ -7,13 +7,13 @@ namespace Repositorio.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class EliminadoCategoriaDeTarjeta : IMigrationMetadata
+    public sealed partial class DBCompletoIncluyendoCategoria : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(EliminadoCategoriaDeTarjeta));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DBCompletoIncluyendoCategoria));
         
         string IMigrationMetadata.Id
         {
-            get { return "202106112122014_EliminadoCategoriaDeTarjeta"; }
+            get { return "202106112245398_DBCompletoIncluyendoCategoria"; }
         }
         
         string IMigrationMetadata.Source

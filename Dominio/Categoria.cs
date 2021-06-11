@@ -44,7 +44,6 @@ namespace Dominio
             if (noTieneSitio || noTieneClave || noTieneUsuario ) throw new ObjetoIncompletoException();
             if (this.YaExisteClave(claveIngresada)) throw new ObjetoYaExistenteException();
             this.Claves.Add(claveIngresada);
-            claveIngresada.Categoria = this;
         }
 
         public void BorrarClave(Clave claveABorrar)

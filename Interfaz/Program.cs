@@ -94,7 +94,6 @@ namespace Interfaz
             };
 
             categoria1.AgregarClave(clave1);
-            categoria2.AgregarClave(clave2);
 
             DataAccessClave daClave = new DataAccessClave();
             List<Clave> claves = (List<Clave>)daClave.GetTodos();
@@ -225,7 +224,48 @@ namespace Interfaz
             claves = (List<Clave>)daClave.GetTodos();
             tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
             filtradas = (List<Filtrada>)daFiltrada.GetTodos();
-            
+
+
+            DataAccessCategoria daCategoria = new DataAccessCategoria();
+            List<Categoria> categorias;
+
+            List<Categoria> borrarCategoria = (List<Categoria>)daCategoria.GetTodos();
+
+            foreach (Categoria categoria in borrarCategoria)
+            {
+                daCategoria.Borrar(categoria);
+            }
+
+            daCategoria.Agregar(categoria1);
+
+
+            dataBreaches = (List<DataBreach>)daDataBreach.GetTodos();
+            claves = (List<Clave>)daClave.GetTodos();
+            tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
+            filtradas = (List<Filtrada>)daFiltrada.GetTodos();
+            categorias = (List<Categoria>)daCategoria.GetTodos();
+
+            Categoria categoriaAModificar = daCategoria.Get(categoria1.Id);
+
+            Clave clave3 = new Clave()
+            {
+                Sitio = "Clave3",
+                Codigo = "Clave3",
+                UsuarioClave = "Clave3",
+                Nota = "Nota de una clave3"
+            };
+
+            categoriaAModificar.BorrarClave(clave1);
+            daCategoria.Modificar(categoriaAModificar);
+
+            categoriaAModificar.AgregarClave(clave3);
+            daCategoria.Modificar(categoriaAModificar);
+
+            claves = (List<Clave>)daClave.GetTodos();
+            tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
+            filtradas = (List<Filtrada>)daFiltrada.GetTodos();
+            categorias = (List<Categoria>)daCategoria.GetTodos();
+
             Console.ReadLine();
 
         }

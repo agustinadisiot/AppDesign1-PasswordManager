@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class DBCompletoHastaCategoria : DbMigration
+    public partial class DBCompletoIncluyendoCategoria : DbMigration
     {
         public override void Up()
         {
@@ -21,17 +21,17 @@
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        CategoriaId = c.Int(nullable: false),
                         UsuarioClave = c.String(nullable: false, maxLength: 25),
                         Codigo = c.String(nullable: false, maxLength: 25),
                         EsCompartida = c.Boolean(nullable: false),
                         Sitio = c.String(nullable: false, maxLength: 25),
                         Nota = c.String(maxLength: 250),
                         FechaModificacion = c.DateTime(nullable: false),
+                        Categoria_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Categorias", t => t.CategoriaId, cascadeDelete: true)
-                .Index(t => t.CategoriaId);
+                .ForeignKey("dbo.Categorias", t => t.Categoria_Id)
+                .Index(t => t.Categoria_Id);
             
             CreateTable(
                 "dbo.DataBreaches",
@@ -56,17 +56,17 @@
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        CategoriaId = c.Int(nullable: false),
                         Nombre = c.String(maxLength: 25),
                         Tipo = c.String(maxLength: 25),
                         Numero = c.String(nullable: false, maxLength: 16),
                         Codigo = c.String(maxLength: 4),
                         Vencimiento = c.DateTime(nullable: false),
                         Nota = c.String(maxLength: 250),
+                        Categoria_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Categorias", t => t.CategoriaId, cascadeDelete: true)
-                .Index(t => t.CategoriaId);
+                .ForeignKey("dbo.Categorias", t => t.Categoria_Id)
+                .Index(t => t.Categoria_Id);
             
             CreateTable(
                 "dbo.DataBreachClaves",
@@ -111,8 +111,8 @@
         
         public override void Down()
         {
-            DropForeignKey("dbo.Tarjetas", "CategoriaId", "dbo.Categorias");
-            DropForeignKey("dbo.Claves", "CategoriaId", "dbo.Categorias");
+            DropForeignKey("dbo.Tarjetas", "Categoria_Id", "dbo.Categorias");
+            DropForeignKey("dbo.Claves", "Categoria_Id", "dbo.Categorias");
             DropForeignKey("dbo.DataBreachTarjetas", "TarjetasRefId", "dbo.Tarjetas");
             DropForeignKey("dbo.DataBreachTarjetas", "DataBreachesRefId", "dbo.DataBreaches");
             DropForeignKey("dbo.DataBreachFiltradas", "FiltradasRefId", "dbo.Filtradas");
@@ -125,8 +125,8 @@
             DropIndex("dbo.DataBreachFiltradas", new[] { "DataBreachesRefId" });
             DropIndex("dbo.DataBreachClaves", new[] { "ClavesRefId" });
             DropIndex("dbo.DataBreachClaves", new[] { "DataBreachesRefId" });
-            DropIndex("dbo.Tarjetas", new[] { "CategoriaId" });
-            DropIndex("dbo.Claves", new[] { "CategoriaId" });
+            DropIndex("dbo.Tarjetas", new[] { "Categoria_Id" });
+            DropIndex("dbo.Claves", new[] { "Categoria_Id" });
             DropTable("dbo.DataBreachTarjetas");
             DropTable("dbo.DataBreachFiltradas");
             DropTable("dbo.DataBreachClaves");

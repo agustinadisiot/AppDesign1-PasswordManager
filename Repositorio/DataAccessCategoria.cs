@@ -14,23 +14,41 @@ namespace Repositorio
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                foreach (Tarjeta tarjetaNueva in entity.Tarjetas)
+                List<Tarjeta> tarjetas = new List<Tarjeta>();
+                List<Clave> claves = new List<Clave>();
+
+                for (int i = 0; i < entity.Tarjetas.Count; i++)
                 {
-                    try
+                    Tarjeta t = entity.Tarjetas.ElementAt(i);
+
+                    Tarjeta nueva = contexto.Tarjetas.FirstOrDefault(tNueva => tNueva.Id == t.Id);
+
+                    if (nueva != null)
                     {
-                        contexto.Tarjetas.Attach(tarjetaNueva);
+                        t = nueva;
+                        contexto.Tarjetas.Attach(t);
                     }
-                    catch (Exception) { };
+
+                    tarjetas.Add(t);
                 }
 
-                foreach (Clave claveNueva in entity.Claves)
+
+                for (int i = 0; i < entity.Claves.Count; i++)
                 {
-                    try
+                    Clave t = entity.Claves.ElementAt(i);
+
+                    Clave nueva = contexto.Claves.FirstOrDefault(tNueva => tNueva.Id == t.Id);
+
+                    if (nueva != null)
                     {
-                        contexto.Claves.Attach(claveNueva);
+                        t = nueva;
+                        contexto.Claves.Attach(t);
                     }
-                    catch (Exception) { };
+                    claves.Add(t);
                 }
+
+                entity.Claves = claves;
+                entity.Tarjetas = tarjetas;
 
                 contexto.Categorias.Add(entity);
 
