@@ -180,8 +180,8 @@ namespace Repositorio
                 contexto.DataBreaches.Attach(aModificar);
                 aModificar.Fecha = entity.Fecha;
                 aModificar.Tarjetas = tarjetas;
-                /*aModificar.Claves = claves;
-                aModificar.Filtradas = filtradas;*/
+                aModificar.Claves = claves;
+                aModificar.Filtradas = filtradas;
                 contexto.SaveChanges();
             }
         }

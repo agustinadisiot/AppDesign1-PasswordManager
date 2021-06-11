@@ -216,9 +216,10 @@ namespace Interfaz
                 daTarjeta.Get(tarjeta1.Id)
             };
 
+
             //dataBreach2.Tarjetas.Add(tarjeta1);
-            /*dataBreach2.Filtradas.Add(new Filtrada(clave2.Codigo));
-            dataBreach2.Filtradas.Add(noAgregada);*/
+            dataBreach2.Filtradas.Add(new Filtrada(clave2.Codigo));
+            dataBreach2.Filtradas.Add(noAgregada);
 
             dataBreach2.Tarjetas = tarjetasModificar;
             dataBreach2.Fecha = new DateTime(2000,1,1);

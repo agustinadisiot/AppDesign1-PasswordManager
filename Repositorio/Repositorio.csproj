@@ -96,6 +96,10 @@
     <Compile Include="Migrations\202106102358105_AgregadaRelacionAmbosLadosTarjeta.designer.cs">
       <DependentUpon>202106102358105_AgregadaRelacionAmbosLadosTarjeta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106111916203_CambioAListEnClavesYFiltradas.cs" />
+    <Compile Include="Migrations\202106111916203_CambioAListEnClavesYFiltradas.designer.cs">
+      <DependentUpon>202106111916203_CambioAListEnClavesYFiltradas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TarjetaTypeConfiguration.cs" />
@@ -137,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106102358105_AgregadaRelacionAmbosLadosTarjeta.resx">
       <DependentUpon>202106102358105_AgregadaRelacionAmbosLadosTarjeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106111916203_CambioAListEnClavesYFiltradas.resx">
+      <DependentUpon>202106111916203_CambioAListEnClavesYFiltradas.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

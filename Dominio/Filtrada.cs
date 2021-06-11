@@ -4,7 +4,7 @@ namespace Dominio
 {
     public class Filtrada
     {
-        public virtual ICollection<DataBreach> DataBreaches { get; set; }
+        public virtual List<DataBreach> DataBreaches { get; set; }
 
         public int Id { get; set; }
 
@@ -12,11 +12,13 @@ namespace Dominio
 
         public Filtrada()
         {
+            this.DataBreaches = new List<DataBreach>();
         }
 
         public Filtrada(string texto)
         {
             this.Texto = texto;
+            this.DataBreaches = new List<DataBreach>();
         }
         public override string ToString()
         {
