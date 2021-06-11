@@ -27,13 +27,15 @@ namespace TestsObligatorio
         public void LogicaDataBreachSepararPorLineas()
         {
             string linea = "clave1\tEstoEsUnaClave\t1234567890987634\tclaveDeNetflix";
-            List<string> datos = new List<string>
+            List<string> datosString = new List<string>
             {
                 "clave1",
                 "EstoEsUnaClave",
                 "1234567890987634",
                 "claveDeNetflix"
             };
+
+            List<Filtrada> datos = datosString.Select(s => new Filtrada(s)).ToList();
 
             LogicaDataBreach logicaDataBreach = new LogicaDataBreach();
             Assert.IsTrue(datos.SequenceEqual(logicaDataBreach.SepararPorLineas(linea)));
@@ -59,7 +61,7 @@ namespace TestsObligatorio
                 streamWriter.Close();
             }
     
-            List<string> datos = new List<string>
+            List<string> datosString = new List<string>
             {
                 "clave1",
                 "EstoEsUnaClave",
@@ -67,8 +69,13 @@ namespace TestsObligatorio
                 "claveDeNetflix"
             };
 
+            List<Filtrada> datos = datosString.Select(s => new Filtrada(s)).ToList();
+
             LogicaDataBreach logicaDataBreach = new LogicaDataBreach();
-            Assert.IsTrue(datos.SequenceEqual(logicaDataBreach.LeerArchivo(nombreArchivo)));
+
+            List<Filtrada> archivoLeido = logicaDataBreach.LeerArchivo(nombreArchivo);
+
+            Assert.IsTrue(datos.SequenceEqual(archivoLeido));
         }
     }
 
@@ -189,7 +196,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioGetUltimoDataBreachVacioRetornaListaVacia()
         {
-            List<string> filtradas = new List<string>();
+            List<Filtrada> filtradas = new List<Filtrada>();
 
             usuario.agregarDataBreach(filtradas, tiempoActual);
 
@@ -202,7 +209,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioGetDataBreachNoVacioClaves()
         {
-            List<string> filtradas = new List<string>() {
+            List<string> filtradasString = new List<string>() {
                 "EstaEsUnaClave1",
                 "EstaEsUnaClave4"
             };
@@ -211,6 +218,8 @@ namespace TestsObligatorio
                 clave1,
                 clave4
             };
+
+            List<Filtrada> filtradas = filtradasString.Select(s => new Filtrada(s)).ToList();
 
             usuario.agregarDataBreach(filtradas, tiempoActual);
 
@@ -225,11 +234,13 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioGetDataBreachClavesNoExistentes()
         {
-            List<string> filtradas = new List<string>() {
+            List<string> filtradasString = new List<string>() {
                 "ClaveNoContenida",
                 "ClaveTampocoContenida",
                 "EstaEsUnaClave3"
             };
+
+            List<Filtrada> filtradas = filtradasString.Select(s => new Filtrada(s)).ToList();
 
             List<Clave> esperadas = new List<Clave>() {
                 clave3
@@ -248,7 +259,8 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioGetTarjetasDataBreachVacio()
         {
-            List<string> filtradas = new List<string>();
+            List<string> filtradasString = new List<string>();
+            List<Filtrada> filtradas = filtradasString.Select(s => new Filtrada(s)).ToList();
 
             usuario.agregarDataBreach(filtradas, tiempoActual);
 
@@ -261,12 +273,15 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioGetTarjetasDataBreachNoVacio()
         {
-            List<string> filtradas = new List<string>() {
+
+            List<string> filtradasString = new List<string>() {
                 "1111111111111111",
                 "UnaClave",
                 "3333 3333 3333 3333",
                 "4444 4444 4444 4444"
             };
+
+            List<Filtrada> filtradas = filtradasString.Select(s => new Filtrada(s)).ToList();
 
             List<Tarjeta> esperadas = new List<Tarjeta>() {
                 tarjeta1,
@@ -285,14 +300,20 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioGetFechaHoraDataBreach()
         {
-            List<string> primerasFiltradas = new List<string>() {
-                "2222222222222222",
-                "OtraClave"
+            Filtrada tarjetaFiltrada2 = new Filtrada
+            {
+                Texto = "2222222222222222"
+            };
+            Filtrada claveFiltrada2 = new Filtrada
+            {
+                Texto = "ClaveContenida2"
             };
 
-            List<Tarjeta> esperadas = new List<Tarjeta>() {
-                tarjeta2
+            List<Filtrada> primerasFiltradas = new List<Filtrada>() {
+                tarjetaFiltrada2,
+                claveFiltrada2
             };
+
             usuario.agregarDataBreach(primerasFiltradas, tiempoActual);
             DataBreach resultado = usuario.GetUltimoDataBreach();
             bool mismoTiempo = (resultado.Fecha == tiempoActual);
@@ -303,16 +324,42 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioGetDataBreachViejo()
         {
-            List<string> primerasFiltradas = new List<string>() {
-                "2222222222222222",
-                "OtraClave"
+
+            Filtrada tarjetaFiltrada1 = new Filtrada()
+            {
+                Texto = "1111111111111111"
+            };
+            Filtrada tarjetaFiltrada2 = new Filtrada
+            {
+                Texto = "2222222222222222"
+            };
+            Filtrada tarjetaFiltrada3 = new Filtrada
+            {
+                Texto = "3333 3333 3333 3333"
+            };
+            Filtrada tarjetaFiltrada4 = new Filtrada
+            {
+                Texto = "4444 4444 4444 4444"
+            };
+            Filtrada claveFiltrada2 = new Filtrada
+            {
+                Texto = "ClaveContenida2"
+            };
+            Filtrada claveFiltrada3 = new Filtrada
+            {
+                Texto = "EstaEsUnaClave3"
             };
 
-            List<string> segundasFiltradas = new List<string>() {
-                "1111111111111111",
-                "UnaClave",
-                "3333 3333 3333 3333",
-                "4444 4444 4444 4444"
+            List<Filtrada> primerasFiltradas = new List<Filtrada>() {
+                tarjetaFiltrada2,
+                claveFiltrada2
+            };
+
+            List<Filtrada> segundasFiltradas = new List<Filtrada>() {
+                tarjetaFiltrada1,
+                claveFiltrada3,
+                tarjetaFiltrada3,
+                tarjetaFiltrada4
             };
 
             List<Tarjeta> esperadas = new List<Tarjeta>() {
@@ -334,16 +381,29 @@ namespace TestsObligatorio
         [TestMethod]
         public void GetFiltradasDataBreachViejo()
         {
-            List<string> filtradas = new List<string>() {
-                "ClaveNoContenida",
-                "ClaveTampocoContenida",
-                "EstaEsUnaClave3"
+            Filtrada claveFiltrada1 = new Filtrada
+            {
+                Texto = "ClaveContenida1"
+            };
+            Filtrada claveFiltrada2 = new Filtrada
+            {
+                Texto = "ClaveContenida2"
+            };
+            Filtrada claveFiltrada3 = new Filtrada
+            {
+                Texto = "EstaEsUnaClave3"
             };
 
-            List<string> esperadas = new List<string>() {
-                "ClaveNoContenida",
-                "ClaveTampocoContenida",
-                "EstaEsUnaClave3"
+            List<Filtrada> filtradas = new List<Filtrada>() {
+                claveFiltrada1,
+                claveFiltrada2,
+                claveFiltrada3
+            };
+
+            List<Filtrada> esperadas = new List<Filtrada>() {
+                claveFiltrada1,
+                claveFiltrada2,
+                claveFiltrada3
             };
 
             usuario.agregarDataBreach(filtradas, tiempoActual);

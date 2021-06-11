@@ -20,6 +20,12 @@ namespace Dominio
         private const int _largoNotaMinimo = 0;
         private const int _largoNotaMaximo = 250;
 
+        public List<DataBreach> DataBreaches { get; set; }
+
+        public Tarjeta() {
+            this.DataBreaches = new List<DataBreach>();
+        }
+
         public int Id { get; set; }
 
         public string Nombre 
@@ -72,7 +78,7 @@ namespace Dominio
             return aIgualar.Numero == this.Numero;
         }
 
-        public bool FueFiltrado(List<string> filtradas)
+        public bool FueFiltrado(List<Filtrada> filtradas)
         {
             const int largoTarjetaSinEspacios = 16;
             const string regexEspacio = @"\s+";
@@ -80,9 +86,9 @@ namespace Dominio
 
             List<string> potencialesTarjetas = new List<string>();
 
-            foreach (string potencial in filtradas)
+            foreach (Filtrada potencial in filtradas)
             {
-                string sinEspacio = Regex.Replace(potencial, regexEspacio, vacio);
+                string sinEspacio = Regex.Replace(potencial.Texto, regexEspacio, vacio);
                 bool esNumero = sinEspacio.All(caracter => VerificadoraString.EsNumero(caracter));
                 bool tieneLargoTarjeta = sinEspacio.Length == largoTarjetaSinEspacios;
 

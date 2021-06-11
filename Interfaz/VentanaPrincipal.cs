@@ -17,7 +17,7 @@ namespace Interfaz
         private Usuario _usuarioActual;
         private Type _panelAVolverVerClave;
         private Type _panelAVolverModificarClave;
-        private List<string> _ultimoDataBreach;
+        private List<Filtrada> _ultimoDataBreach;
 
         public VentanaPrincipal()
         {
@@ -223,7 +223,7 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(verClaveSeleccionada);
         }
 
-        private void ModificarClaveDataBreach_Event(Clave buscadora, List<string> dataBreach) {
+        private void ModificarClaveDataBreach_Event(Clave buscadora, List<Filtrada> dataBreach) {
             this._ultimoDataBreach = dataBreach;
             this.AbrirModificarClave_Event(buscadora);
         }
@@ -360,7 +360,7 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(verTarjeta);
         }
 
-        private void AbrirDataBreaches_Handler(List<string> dataBreach) {
+        private void AbrirDataBreaches_Handler(List<Filtrada> dataBreach) {
             IngresoYListaDataBreach panelDataBreach = new IngresoYListaDataBreach(this._usuarioActual, dataBreach);
             panelDataBreach.ModificarClaveDataBreach_Event += this.ModificarClaveDataBreach_Event;
             this.panelPrincipal.Controls.Clear();

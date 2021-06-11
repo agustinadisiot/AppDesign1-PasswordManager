@@ -11,9 +11,9 @@ namespace Interfaz.InterfacesClaves
         private Usuario _usuarioActual;
         private List<Clave> _claves;
         private List<Tarjeta> _tarjetas;
-        private List<string> _posiblesFiltradas;
+        private List<Filtrada> _posiblesFiltradas;
 
-        public IngresoYListaDataBreach(Usuario actual, List<string> dataBreach)
+        public IngresoYListaDataBreach(Usuario actual, List<Filtrada> dataBreach)
         {
             InitializeComponent();
             this._usuarioActual = actual;
@@ -22,7 +22,7 @@ namespace Interfaz.InterfacesClaves
                 this._posiblesFiltradas = dataBreach;
             }
             else {
-                this._posiblesFiltradas = new List<string>();
+                this._posiblesFiltradas = new List<Filtrada>();
             }
             this.labelErrores.Text = "";
         }
@@ -39,8 +39,8 @@ namespace Interfaz.InterfacesClaves
         private void CargarInputDataBreach() {
             string mostrar = "";
 
-            foreach (string linea in this._posiblesFiltradas) {
-                mostrar += linea + Environment.NewLine;
+            foreach (Filtrada linea in this._posiblesFiltradas) {
+                mostrar += linea.Texto + Environment.NewLine;
             }
             this.inputDatos.Text = mostrar;
         }
@@ -130,12 +130,12 @@ namespace Interfaz.InterfacesClaves
             }
         }
 
-        public delegate void ModificarClaveDataBreach_Delegate(Clave claveAModificar, List<string> dataBreach);
+        public delegate void ModificarClaveDataBreach_Delegate(Clave claveAModificar, List<Filtrada> dataBreach);
         public event ModificarClaveDataBreach_Delegate ModificarClaveDataBreach_Event;
         public void IrAModificarClave(Clave claveAModificar)
         {
             LogicaDataBreach logicaDataBreach = new LogicaDataBreach();
-            List<string> filtradas = logicaDataBreach.SepararPorLineas(this.inputDatos.Text);
+            List<Filtrada> filtradas = logicaDataBreach.SepararPorLineas(this.inputDatos.Text);
 
             if (this.ModificarClaveDataBreach_Event != null)
                 this.ModificarClaveDataBreach_Event(claveAModificar, filtradas);

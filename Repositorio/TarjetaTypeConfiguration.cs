@@ -18,6 +18,14 @@ namespace Repositorio
             this.Property(x => x.Tipo).HasMaxLength(25);
             this.Property(x => x.Codigo).HasMaxLength(4);
             this.Property(x => x.Nota).HasMaxLength(250);
+            this.HasMany<DataBreach>(t => t.DataBreaches)
+                .WithMany(db => db.Tarjetas)
+                .Map(db =>
+                {
+                    db.MapLeftKey("TarjetasRefId");
+                    db.MapRightKey("DataBreachesRefId");
+                    db.ToTable("DataBreachTarjetas");
+                });
         }
     }
 }

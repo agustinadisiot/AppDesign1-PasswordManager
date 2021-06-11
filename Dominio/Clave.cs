@@ -17,11 +17,13 @@ namespace Dominio
         private const int _largoNotaMinimo = 0;
         private const int _largoNotaMaximo = 250;
 
+        public List<DataBreach> DataBreaches { get; set; }
 
         public Clave()
         {
             this.EsCompartida = false;
             this._fechaModificacion = DateTime.Now.Date;
+            this.DataBreaches = new List<DataBreach>();
         }
 
         public int Id { get; set; }
@@ -87,9 +89,9 @@ namespace Dominio
             this._fechaModificacion = System.DateTime.Now.Date;
         }
 
-        public bool FueFiltrado(List<string> filtradas)
+        public bool FueFiltrado(List<Filtrada> filtradas)
         {
-            return filtradas.Contains(this.Codigo);
+            return filtradas.Exists(f => this.Codigo.Equals(f.Texto));
         }
     }
 }
