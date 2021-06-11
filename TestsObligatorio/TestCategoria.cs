@@ -1033,5 +1033,11 @@ namespace TestsObligatorio
 
             Assert.IsTrue(modificoCorrecto);
         }
+
+        [TestMethod]
+        public void CategoriaAgregarTarjetaAgregaCategoria() {
+            categoria1.AgregarTarjeta(tarjeta1);
+            Assert.AreEqual(categoria1, tarjeta1.Categoria);
+        }
     }
 }
