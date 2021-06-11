@@ -14,6 +14,7 @@ namespace Repositorio
         public DbSet<Clave> Claves { get; set; }
         public DbSet<DataBreach> DataBreaches { get; set; }
         public DbSet<Filtrada> Filtradas { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
 
         public AdministradorClavesDBContext() : base("name=ContextoAdministradorClaves") { }
         
@@ -24,6 +25,7 @@ namespace Repositorio
             modelBuilder.Configurations.Add(new ClaveTypeConfiguration());
             modelBuilder.Configurations.Add(new DataBreachTypeConfiguration());
             modelBuilder.Configurations.Add(new FiltradaTypeConfiguration());
+            modelBuilder.Configurations.Add(new CategoriaTypeConfiguration());
         }
     }
 }

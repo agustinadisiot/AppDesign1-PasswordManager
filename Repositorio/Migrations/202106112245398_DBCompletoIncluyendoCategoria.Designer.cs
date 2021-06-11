@@ -7,13 +7,13 @@ namespace Repositorio.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AgregadaRelacionAmbosLadosTarjeta : IMigrationMetadata
+    public sealed partial class DBCompletoIncluyendoCategoria : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AgregadaRelacionAmbosLadosTarjeta));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DBCompletoIncluyendoCategoria));
         
         string IMigrationMetadata.Id
         {
-            get { return "202106102358105_AgregadaRelacionAmbosLadosTarjeta"; }
+            get { return "202106112245398_DBCompletoIncluyendoCategoria"; }
         }
         
         string IMigrationMetadata.Source

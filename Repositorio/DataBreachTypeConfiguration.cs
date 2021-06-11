@@ -13,9 +13,6 @@ namespace Repositorio
         public DataBreachTypeConfiguration()
         {
             this.HasKey(x => x.Id);
-            /*this.HasMany(x => x.Tarjetas).WithRequired().HasForeignKey(t => t.Id).WillCascadeOnDelete();
-            this.HasRequired(x => x.Claves).WithMany().HasForeignKey(c => c.Id).WillCascadeOnDelete();
-            this.HasRequired(x => x.Filtradas).WithMany().HasForeignKey(f => f.Id).WillCascadeOnDelete();*/
             this.Property(x => x.Fecha).IsRequired();
             this.HasMany<Tarjeta>(db => db.Tarjetas)
                 .WithMany(t => t.DataBreaches)

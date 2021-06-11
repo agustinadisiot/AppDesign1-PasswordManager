@@ -52,7 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdministradorClavesDBContext.cs" />
+    <Compile Include="CategoriaTypeConfiguration.cs" />
     <Compile Include="ClaveTypeConfiguration.cs" />
+    <Compile Include="DataAccessCategoria.cs" />
     <Compile Include="DataAccessClave.cs" />
     <Compile Include="DataAccessDataBreach.cs" />
     <Compile Include="DataAccessFiltrada.cs" />
@@ -60,45 +62,9 @@
     <Compile Include="DataBreachTypeConfiguration.cs" />
     <Compile Include="FiltradaTypeConfiguration.cs" />
     <Compile Include="IDataAccess.cs" />
-    <Compile Include="Migrations\202106081934262_CreadoDBContext.cs" />
-    <Compile Include="Migrations\202106081934262_CreadoDBContext.designer.cs">
-      <DependentUpon>202106081934262_CreadoDBContext.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106081949599_DataAccessTarjeta.cs" />
-    <Compile Include="Migrations\202106081949599_DataAccessTarjeta.designer.cs">
-      <DependentUpon>202106081949599_DataAccessTarjeta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106082015393_ArregladoBorrarTarjeta.cs" />
-    <Compile Include="Migrations\202106082015393_ArregladoBorrarTarjeta.designer.cs">
-      <DependentUpon>202106082015393_ArregladoBorrarTarjeta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106082029347_AgregadoTypeConfigurationTarjeta.cs" />
-    <Compile Include="Migrations\202106082029347_AgregadoTypeConfigurationTarjeta.designer.cs">
-      <DependentUpon>202106082029347_AgregadoTypeConfigurationTarjeta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106082125423_AgregadoDataAccessClave.cs" />
-    <Compile Include="Migrations\202106082125423_AgregadoDataAccessClave.designer.cs">
-      <DependentUpon>202106082125423_AgregadoDataAccessClave.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106082145359_AgregadoTypeConfigurationClave.cs" />
-    <Compile Include="Migrations\202106082145359_AgregadoTypeConfigurationClave.designer.cs">
-      <DependentUpon>202106082145359_AgregadoTypeConfigurationClave.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106100054267_AgregadosArchivosFaltantes.cs" />
-    <Compile Include="Migrations\202106100054267_AgregadosArchivosFaltantes.designer.cs">
-      <DependentUpon>202106100054267_AgregadosArchivosFaltantes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106102355058_CambioTarjetasDataBreachesAList.cs" />
-    <Compile Include="Migrations\202106102355058_CambioTarjetasDataBreachesAList.designer.cs">
-      <DependentUpon>202106102355058_CambioTarjetasDataBreachesAList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106102358105_AgregadaRelacionAmbosLadosTarjeta.cs" />
-    <Compile Include="Migrations\202106102358105_AgregadaRelacionAmbosLadosTarjeta.designer.cs">
-      <DependentUpon>202106102358105_AgregadaRelacionAmbosLadosTarjeta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106111916203_CambioAListEnClavesYFiltradas.cs" />
-    <Compile Include="Migrations\202106111916203_CambioAListEnClavesYFiltradas.designer.cs">
-      <DependentUpon>202106111916203_CambioAListEnClavesYFiltradas.cs</DependentUpon>
+    <Compile Include="Migrations\202106112245398_DBCompletoIncluyendoCategoria.cs" />
+    <Compile Include="Migrations\202106112245398_DBCompletoIncluyendoCategoria.designer.cs">
+      <DependentUpon>202106112245398_DBCompletoIncluyendoCategoria.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -115,35 +81,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202106081934262_CreadoDBContext.resx">
-      <DependentUpon>202106081934262_CreadoDBContext.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106081949599_DataAccessTarjeta.resx">
-      <DependentUpon>202106081949599_DataAccessTarjeta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106082015393_ArregladoBorrarTarjeta.resx">
-      <DependentUpon>202106082015393_ArregladoBorrarTarjeta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106082029347_AgregadoTypeConfigurationTarjeta.resx">
-      <DependentUpon>202106082029347_AgregadoTypeConfigurationTarjeta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106082125423_AgregadoDataAccessClave.resx">
-      <DependentUpon>202106082125423_AgregadoDataAccessClave.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106082145359_AgregadoTypeConfigurationClave.resx">
-      <DependentUpon>202106082145359_AgregadoTypeConfigurationClave.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106100054267_AgregadosArchivosFaltantes.resx">
-      <DependentUpon>202106100054267_AgregadosArchivosFaltantes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106102355058_CambioTarjetasDataBreachesAList.resx">
-      <DependentUpon>202106102355058_CambioTarjetasDataBreachesAList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106102358105_AgregadaRelacionAmbosLadosTarjeta.resx">
-      <DependentUpon>202106102358105_AgregadaRelacionAmbosLadosTarjeta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106111916203_CambioAListEnClavesYFiltradas.resx">
-      <DependentUpon>202106111916203_CambioAListEnClavesYFiltradas.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106112245398_DBCompletoIncluyendoCategoria.resx">
+      <DependentUpon>202106112245398_DBCompletoIncluyendoCategoria.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

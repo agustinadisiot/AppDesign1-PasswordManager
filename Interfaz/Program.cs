@@ -22,6 +22,15 @@ namespace Interfaz
             Application.Run(new VentanaPrincipal());
 */
 
+            Categoria categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            Categoria categoria2 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
 
             //Tarjetas
             Tarjeta tarjeta1 = new Tarjeta()
@@ -45,30 +54,24 @@ namespace Interfaz
                 Vencimiento = new DateTime(2025, 7, 1)
             };
 
+            
+
+
             DataAccessTarjeta daTarjeta = new DataAccessTarjeta();
             List<Tarjeta> tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
 
 
-            /*Tarjeta tarjetaModificar = new Tarjeta()
-            {
-                Id = tarjetas.First().Id,
-                Numero = "3333333333333333",
-                Nombre = "MasterCard",
-                Tipo = "Cambio",
-                Codigo = "543",
-                Nota = "Cambio",
-                Vencimiento = new DateTime(2030, 7, 1)
-            };*/
 
             foreach (Tarjeta tarjeta in tarjetas)
             {
                 daTarjeta.Borrar(tarjeta);
             }
+
+            categoria1.AgregarTarjeta(tarjeta1);
+            categoria2.AgregarTarjeta(tarjeta2);
+
             daTarjeta.Agregar(tarjeta1);
             daTarjeta.Agregar(tarjeta2);
-
-            /*daTarjeta.Modificar(tarjetaModificar);*/
-
 
             tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
 
@@ -90,8 +93,12 @@ namespace Interfaz
                 Nota = "Nota de una clave"
             };
 
+            categoria1.AgregarClave(clave1);
+
             DataAccessClave daClave = new DataAccessClave();
             List<Clave> claves = (List<Clave>)daClave.GetTodos();
+
+            tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
 
             foreach (Clave clave in claves)
             {
@@ -100,7 +107,10 @@ namespace Interfaz
 
             daClave.Agregar(clave1);
             daClave.Agregar(clave2);
+
             claves = (List<Clave>)daClave.GetTodos();
+            tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
+
 
             //Filtradas
             List<string> datosString = new List<string>
@@ -160,49 +170,8 @@ namespace Interfaz
             tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
             filtradas = (List<Filtrada>)daFiltrada.GetTodos();
 
-            //0 DataBreaches
-            //2 Clave
-            //1 Tarjeta
-            //0 Filtradas
-
             daDataBreach.Agregar(dataBreach);
 
-            /* DataBreach dataBreach2 = daDataBreach.Get(dataBreach.Id);
-
-
-             Clave clave12 = daClave.Get(clave1.Id);
-
-             Tarjeta tarjeta22 = daTarjeta.Get(tarjeta2.Id);
-
-
-             dataBreach2.Claves.Add(clave12);
-             dataBreach2.Tarjetas.Add(tarjeta22);*/
-
-
-            /*using (var contexto = new AdministradorClavesDBContext())
-            {
-                DataBreach dataBreach2 = daDataBreach.Get(dataBreach.Id);
-                
-
-                Clave clave12 = daClave.Get(clave1.Id);
-                
-                Tarjeta tarjeta22 = daTarjeta.Get(tarjeta2.Id);
-                
-
-                contexto.DataBreaches.Attach(dataBreach2);
-                contexto.Claves.Attach(clave12);
-                contexto.Tarjetas.Attach(tarjeta22);
-
-                dataBreach2.Claves.Add(clave12);
-                dataBreach2.Tarjetas.Add(tarjeta22);
-
-                contexto.SaveChanges();
-            }*/
-
-            //1 DataBreaches
-            //2 Clave
-            //1 Tarjeta
-            //4 Filtradas
             dataBreaches = (List<DataBreach>)daDataBreach.GetTodos();
             claves = (List<Clave>)daClave.GetTodos();
             tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
@@ -223,9 +192,19 @@ namespace Interfaz
 
             dataBreach2.Tarjetas = tarjetasModificar;
             dataBreach2.Fecha = new DateTime(2000,1,1);
+
+            dataBreaches = (List<DataBreach>)daDataBreach.GetTodos();
+            claves = (List<Clave>)daClave.GetTodos();
+            tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
+            filtradas = (List<Filtrada>)daFiltrada.GetTodos();
+
             daDataBreach.Modificar(dataBreach2);
             DataBreach dataBreachDespues = daDataBreach.Get(dataBreach.Id);
 
+            dataBreaches = (List<DataBreach>)daDataBreach.GetTodos();
+            claves = (List<Clave>)daClave.GetTodos();
+            tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
+            filtradas = (List<Filtrada>)daFiltrada.GetTodos();
 
             Tarjeta aModificar = daTarjeta.Get(tarjeta2.Id);
             aModificar.Nombre = "Agustina";
@@ -245,7 +224,48 @@ namespace Interfaz
             claves = (List<Clave>)daClave.GetTodos();
             tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
             filtradas = (List<Filtrada>)daFiltrada.GetTodos();
-            
+
+
+            DataAccessCategoria daCategoria = new DataAccessCategoria();
+            List<Categoria> categorias;
+
+            List<Categoria> borrarCategoria = (List<Categoria>)daCategoria.GetTodos();
+
+            foreach (Categoria categoria in borrarCategoria)
+            {
+                daCategoria.Borrar(categoria);
+            }
+
+            daCategoria.Agregar(categoria1);
+
+
+            dataBreaches = (List<DataBreach>)daDataBreach.GetTodos();
+            claves = (List<Clave>)daClave.GetTodos();
+            tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
+            filtradas = (List<Filtrada>)daFiltrada.GetTodos();
+            categorias = (List<Categoria>)daCategoria.GetTodos();
+
+            Categoria categoriaAModificar = daCategoria.Get(categoria1.Id);
+
+            Clave clave3 = new Clave()
+            {
+                Sitio = "Clave3",
+                Codigo = "Clave3",
+                UsuarioClave = "Clave3",
+                Nota = "Nota de una clave3"
+            };
+
+            categoriaAModificar.BorrarClave(clave1);
+            daCategoria.Modificar(categoriaAModificar);
+
+            categoriaAModificar.AgregarClave(clave3);
+            daCategoria.Modificar(categoriaAModificar);
+
+            claves = (List<Clave>)daClave.GetTodos();
+            tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
+            filtradas = (List<Filtrada>)daFiltrada.GetTodos();
+            categorias = (List<Categoria>)daCategoria.GetTodos();
+
             Console.ReadLine();
 
         }
