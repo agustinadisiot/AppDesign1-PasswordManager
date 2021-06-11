@@ -21,6 +21,8 @@ namespace Dominio
 
         public Categoria Categoria { get; set; }
 
+        public int CategoriaId { get; set; }
+
         public Clave()
         {
             this.EsCompartida = false;

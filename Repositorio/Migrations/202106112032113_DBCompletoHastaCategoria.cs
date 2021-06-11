@@ -3,10 +3,36 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AgregadosArchivosFaltantes : DbMigration
+    public partial class DBCompletoHastaCategoria : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Categorias",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Nombre = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Claves",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        CategoriaId = c.Int(nullable: false),
+                        UsuarioClave = c.String(nullable: false, maxLength: 25),
+                        Codigo = c.String(nullable: false, maxLength: 25),
+                        EsCompartida = c.Boolean(nullable: false),
+                        Sitio = c.String(nullable: false, maxLength: 25),
+                        Nota = c.String(maxLength: 250),
+                        FechaModificacion = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Categorias", t => t.CategoriaId, cascadeDelete: true)
+                .Index(t => t.CategoriaId);
+            
             CreateTable(
                 "dbo.DataBreaches",
                 c => new
@@ -24,6 +50,23 @@
                         Texto = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Tarjetas",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        CategoriaId = c.Int(nullable: false),
+                        Nombre = c.String(maxLength: 25),
+                        Tipo = c.String(maxLength: 25),
+                        Numero = c.String(nullable: false, maxLength: 16),
+                        Codigo = c.String(maxLength: 4),
+                        Vencimiento = c.DateTime(nullable: false),
+                        Nota = c.String(maxLength: 250),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Categorias", t => t.CategoriaId, cascadeDelete: true)
+                .Index(t => t.CategoriaId);
             
             CreateTable(
                 "dbo.DataBreachClaves",
@@ -68,6 +111,8 @@
         
         public override void Down()
         {
+            DropForeignKey("dbo.Tarjetas", "CategoriaId", "dbo.Categorias");
+            DropForeignKey("dbo.Claves", "CategoriaId", "dbo.Categorias");
             DropForeignKey("dbo.DataBreachTarjetas", "TarjetasRefId", "dbo.Tarjetas");
             DropForeignKey("dbo.DataBreachTarjetas", "DataBreachesRefId", "dbo.DataBreaches");
             DropForeignKey("dbo.DataBreachFiltradas", "FiltradasRefId", "dbo.Filtradas");
@@ -80,11 +125,16 @@
             DropIndex("dbo.DataBreachFiltradas", new[] { "DataBreachesRefId" });
             DropIndex("dbo.DataBreachClaves", new[] { "ClavesRefId" });
             DropIndex("dbo.DataBreachClaves", new[] { "DataBreachesRefId" });
+            DropIndex("dbo.Tarjetas", new[] { "CategoriaId" });
+            DropIndex("dbo.Claves", new[] { "CategoriaId" });
             DropTable("dbo.DataBreachTarjetas");
             DropTable("dbo.DataBreachFiltradas");
             DropTable("dbo.DataBreachClaves");
+            DropTable("dbo.Tarjetas");
             DropTable("dbo.Filtradas");
             DropTable("dbo.DataBreaches");
+            DropTable("dbo.Claves");
+            DropTable("dbo.Categorias");
         }
     }
 }
