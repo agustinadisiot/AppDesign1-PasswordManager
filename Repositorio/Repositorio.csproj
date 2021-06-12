@@ -67,9 +67,14 @@
     <Compile Include="Migrations\202106112245398_DBCompletoIncluyendoCategoria.designer.cs">
       <DependentUpon>202106112245398_DBCompletoIncluyendoCategoria.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106121345176_CreadoDataAccessUsuario.cs" />
+    <Compile Include="Migrations\202106121345176_CreadoDataAccessUsuario.designer.cs">
+      <DependentUpon>202106121345176_CreadoDataAccessUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TarjetaTypeConfiguration.cs" />
+    <Compile Include="UsuarioTypeConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -84,6 +89,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202106112245398_DBCompletoIncluyendoCategoria.resx">
       <DependentUpon>202106112245398_DBCompletoIncluyendoCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106121345176_CreadoDataAccessUsuario.resx">
+      <DependentUpon>202106121345176_CreadoDataAccessUsuario.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
