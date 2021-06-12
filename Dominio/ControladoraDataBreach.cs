@@ -1,46 +1,27 @@
-﻿using System;
+﻿using Negocio;
+using Repositorio;
+using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LogicaDeNegocio
 {
     public class ControladoraDataBreach
     {
-        public List<Filtrada> LeerArchivo(string direccion)
+        public void AgregarDataBreach(List<Filtrada> filtradas, DateTime tiempoBreach, Usuario contenedor)
         {
-            try
+            ControladoraFiltradas filtradora = new ControladoraFiltradas();
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+            DataBreach nuevoBreach = new DataBreach()
             {
-                StreamReader streamReader = new StreamReader(direccion);
-                string linea = streamReader.ReadLine();
-                streamReader.Close();
-                return this.SepararPorLineas(linea);
-            }
-            catch (Exception)
-            {
-                throw new ArchivoNoExistenteException();
-            }
-        }
+                Tarjetas = filtradora.FiltrarTarjetas(filtradas, controladoraUsuario.GetListaTarjetas(contenedor)),
+                Claves = filtradora.FiltrarClaves(filtradas, controladoraUsuario.GetListaTarjetas(contenedor)),
+                Filtradas = filtradas,
+                Fecha = tiempoBreach
+            };
+            contenedor.DataBreaches.Add(nuevoBreach);
 
-        public List<Filtrada> SepararPorLineas(string aSeparar)
-        {
-            string[] separadores = new string[] { "\t", "\r\n", Environment.NewLine };
-            string[] clavesYTarjetas = aSeparar.Split(separadores, StringSplitOptions.None);
-            List<string> dataBreachString = new List<string>(clavesYTarjetas);
-            List<Filtrada> dataBreach = dataBreachString.Select(s => new Filtrada(s)).ToList();
-            return dataBreach;
-        }
-
-        public List<ControladoraClave> FiltrarClaves(List<Filtrada> dataBreach, List<ControladoraClave> controlar)
-        {
-            return controlar.FindAll(buscadora => buscadora.FueFiltrado(dataBreach));
-        }
-
-        public List<ControladoraTarjeta> FiltrarTarjetas(List<Filtrada> dataBreach, List<ControladoraTarjeta> controlar)
-        {
-            return controlar.FindAll(buscadora => buscadora.FueFiltrado(dataBreach));
+            DataAccessUsuario acceso = new DataAccessUsuario();
+            acceso.Modificar(contenedor);
         }
     }
 }

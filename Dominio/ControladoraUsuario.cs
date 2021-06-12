@@ -19,7 +19,7 @@ namespace LogicaDeNegocio
             this.Categorias = new List<ControladoraCategoria>();
             this.CompartidasConmigo = new List<ClaveCompartida>();
             this.CompartidasPorMi = new List<ClaveCompartida>();
-            this.DataBreaches = new List<DataBreach>();
+            this.DataBreaches = new List<ControladoraDataBreach>();
         }
 
         public int Id { get; set; }
@@ -38,7 +38,7 @@ namespace LogicaDeNegocio
 
         public List<ClaveCompartida> CompartidasConmigo { get; set; }
 
-        public List<DataBreach> DataBreaches { get; set; }
+        public List<ControladoraDataBreach> DataBreaches { get; set; }
 
         public bool ValidarIgualClaveMaestra(string claveMaestraUsuario)
         {
@@ -72,15 +72,15 @@ namespace LogicaDeNegocio
             return retorno != null ? retorno : throw new CategoriaInexistenteException();
         }
 
-        public DataBreach GetUltimoDataBreach()
+        public ControladoraDataBreach GetUltimoDataBreach()
         {
             return this.DataBreaches.LastOrDefault();
         }
 
         public void agregarDataBreach(List<Filtrada> filtradas, DateTime tiempoBreach)
         {
-            ControladoraDataBreach logicaDataBreach = new ControladoraDataBreach();
-            DataBreach nuevoBreach = new DataBreach()
+            ControladoraFiltradas logicaDataBreach = new ControladoraFiltradas();
+            ControladoraDataBreach nuevoBreach = new ControladoraDataBreach()
             {
                 Tarjetas = logicaDataBreach.FiltrarTarjetas(filtradas, this.GetListaTarjetas()),
                 Claves = logicaDataBreach.FiltrarClaves(filtradas, this.GetListaClaves()),
@@ -249,7 +249,7 @@ namespace LogicaDeNegocio
             }
         }
 
-        public DataBreach GetDataBreach(DateTime tiempoViejo)
+        public ControladoraDataBreach GetDataBreach(DateTime tiempoViejo)
         {
             return this.DataBreaches.First(d=> d.Fecha == tiempoViejo);
         }
