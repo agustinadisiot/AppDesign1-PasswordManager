@@ -46,8 +46,8 @@ namespace Interfaz.InterfacesSeguridad
                 foreach (ControladoraClave claveActual in listaClaves)
                 {
                     string nombreCategoria = this._usuarioActual.GetCategoriaClave(claveActual).Nombre;
-                    string sitio = claveActual.Sitio;
-                    string usuario = claveActual.UsuarioClave;
+                    string sitio = claveActual.VerificarSitio;
+                    string usuario = claveActual.verificarUsuarioClave;
                     string ultimaModificacion = claveActual.FechaModificacion.ToString(formatoFecha);
                     this.tablaClaves.Rows.Add(nombreCategoria, sitio, usuario, ultimaModificacion);
                 }
@@ -98,8 +98,8 @@ namespace Interfaz.InterfacesSeguridad
 
                 ControladoraClave buscadora = new ControladoraClave
                 {
-                    Sitio = sitioClaveAMostrar,
-                    UsuarioClave = usuarioClaveAMostrar
+                    VerificarSitio = sitioClaveAMostrar,
+                    verificarUsuarioClave = usuarioClaveAMostrar
                 };
 
                 AbrirVerClave(buscadora, _usuarioActual);
@@ -128,8 +128,8 @@ namespace Interfaz.InterfacesSeguridad
 
                 ControladoraClave aModificar = new ControladoraClave()
                 {
-                    Sitio = sitioClave,
-                    UsuarioClave = usuarioClave
+                    VerificarSitio = sitioClave,
+                    verificarUsuarioClave = usuarioClave
                 };
 
                 IrAModificarClave(aModificar);

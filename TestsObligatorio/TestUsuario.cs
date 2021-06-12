@@ -394,32 +394,32 @@ namespace TestsObligatorio
 
             clave1 = new ControladoraClave()
             {
-                Sitio = "web.whatsapp.com",
+                VerificarSitio = "web.whatsapp.com",
                 Codigo = "EstaEsUnaClave1",
-                UsuarioClave = "Roberto",
-                Nota = ""
+                verificarUsuarioClave = "Roberto",
+                VerificarNota = ""
             };
 
             clave2 = new ControladoraClave()
             {
-                Sitio = "Netflix.com",
+                VerificarSitio = "Netflix.com",
                 Codigo = "EstaEsUnaClave2",
-                UsuarioClave = "Luis88",
-                Nota = "Nota de una clave"
+                verificarUsuarioClave = "Luis88",
+                VerificarNota = "Nota de una clave"
             };
 
             clave3 = new ControladoraClave()
             {
-                Sitio = "youtube.com",
+                VerificarSitio = "youtube.com",
                 Codigo = "codrojo",
-                UsuarioClave = "Hernesto"
+                verificarUsuarioClave = "Hernesto"
             };
 
             clave4 = new ControladoraClave()
             {
-                Sitio = "www.hbo.com",
+                VerificarSitio = "www.hbo.com",
                 Codigo = "EstaEsUnaClave4",
-                UsuarioClave = "Peepo"
+                verificarUsuarioClave = "Peepo"
             };
 
             claveCompartida = new ClaveCompartida()
@@ -451,8 +451,8 @@ namespace TestsObligatorio
             usuario.AgregarCategoria(categoria1);
             ControladoraClave claveIgual = new ControladoraClave()
             {
-                Sitio = clave1.Sitio,
-                UsuarioClave = clave1.UsuarioClave,
+                VerificarSitio = clave1.VerificarSitio,
+                verificarUsuarioClave = clave1.verificarUsuarioClave,
                 Codigo = clave1.Codigo
             };
             Assert.AreEqual(true, usuario.YaExisteClave(claveIgual));
@@ -465,8 +465,8 @@ namespace TestsObligatorio
             usuario.AgregarCategoria(categoria1);
             ControladoraClave claveDiferenteSitio = new ControladoraClave()
             {
-                Sitio = "www.youtube.com",
-                UsuarioClave = clave1.UsuarioClave,
+                VerificarSitio = "www.youtube.com",
+                verificarUsuarioClave = clave1.verificarUsuarioClave,
                 Codigo = clave1.Codigo
             };
             Assert.AreEqual(false, usuario.YaExisteClave(claveDiferenteSitio));
@@ -479,8 +479,8 @@ namespace TestsObligatorio
             usuario.AgregarCategoria(categoria1);
             ControladoraClave claveDiferenteUsuario = new ControladoraClave()
             {
-                Sitio = clave1.Sitio,
-                UsuarioClave = "222222",
+                VerificarSitio = clave1.VerificarSitio,
+                verificarUsuarioClave = "222222",
                 Codigo = clave1.Codigo
             };
             Assert.AreEqual(false, usuario.YaExisteClave(claveDiferenteUsuario));
@@ -493,8 +493,8 @@ namespace TestsObligatorio
             usuario.AgregarCategoria(categoria1);
             ControladoraClave claveDiferenteCodigo = new ControladoraClave()
             {
-                Sitio = clave1.Sitio,
-                UsuarioClave = clave1.UsuarioClave,
+                VerificarSitio = clave1.VerificarSitio,
+                verificarUsuarioClave = clave1.verificarUsuarioClave,
                 Codigo = "12345678"
             };
             Assert.AreEqual(true, usuario.YaExisteClave(claveDiferenteCodigo));
@@ -510,8 +510,8 @@ namespace TestsObligatorio
 
             ControladoraClave claveIgual = new ControladoraClave()
             {
-                Sitio = clave2.Sitio,
-                UsuarioClave = clave2.UsuarioClave,
+                VerificarSitio = clave2.VerificarSitio,
+                verificarUsuarioClave = clave2.verificarUsuarioClave,
                 Codigo = clave2.Codigo
             };
             Assert.AreEqual(true, usuario.YaExisteClave(claveIgual));
@@ -536,7 +536,7 @@ namespace TestsObligatorio
         {
             ControladoraClave claveSinSitio = new ControladoraClave()
             {
-                UsuarioClave = "111111",
+                verificarUsuarioClave = "111111",
                 Codigo = "12345678"
             };
             usuario.AgregarCategoria(categoria1);
@@ -554,8 +554,8 @@ namespace TestsObligatorio
         {
             ControladoraClave claveSinCodigo = new ControladoraClave()
             {
-                Sitio = "www.ort.edu.uy",
-                UsuarioClave = "111111"
+                VerificarSitio = "www.ort.edu.uy",
+                verificarUsuarioClave = "111111"
             };
 
             usuario.AgregarCategoria(categoria1);
@@ -573,7 +573,7 @@ namespace TestsObligatorio
         {
             ControladoraClave claveSinUsuario = new ControladoraClave()
             {
-                Sitio = "www.ort.edu.uy",
+                VerificarSitio = "www.ort.edu.uy",
                 Codigo = "12345678"
             };
             usuario.AgregarCategoria(categoria1);
@@ -636,8 +636,8 @@ namespace TestsObligatorio
 
             ControladoraClave aBorrar = new ControladoraClave()
             {
-                UsuarioClave = clave1.UsuarioClave,
-                Sitio = clave1.Sitio
+                verificarUsuarioClave = clave1.verificarUsuarioClave,
+                VerificarSitio = clave1.VerificarSitio
             };
 
             usuario.BorrarClave(aBorrar);
@@ -654,8 +654,8 @@ namespace TestsObligatorio
 
             ControladoraClave aBorrar = new ControladoraClave()
             {
-                UsuarioClave = clave1.UsuarioClave,
-                Sitio = clave1.Sitio
+                verificarUsuarioClave = clave1.verificarUsuarioClave,
+                VerificarSitio = clave1.VerificarSitio
             };
             usuario.BorrarClave(aBorrar);
             Assert.IsTrue(usuario.YaExisteClave(clave2));
@@ -669,8 +669,8 @@ namespace TestsObligatorio
 
             ControladoraClave claveBuscadora = new ControladoraClave()
             {
-                Sitio = clave1.Sitio,
-                UsuarioClave = clave1.UsuarioClave
+                VerificarSitio = clave1.VerificarSitio,
+                verificarUsuarioClave = clave1.verificarUsuarioClave
             };
 
             Assert.AreEqual(clave1, usuario.GetClave(claveBuscadora));
@@ -685,8 +685,8 @@ namespace TestsObligatorio
 
             ControladoraClave claveBuscadora = new ControladoraClave()
             {
-                Sitio = clave1.Sitio,
-                UsuarioClave = clave1.UsuarioClave
+                VerificarSitio = clave1.VerificarSitio,
+                verificarUsuarioClave = clave1.verificarUsuarioClave
             };
 
             Assert.AreEqual(clave1, usuario.GetClave(claveBuscadora)); ;
@@ -701,8 +701,8 @@ namespace TestsObligatorio
 
             ControladoraClave claveBuscadora = new ControladoraClave()
             {
-                Sitio = clave2.Sitio,
-                UsuarioClave = clave2.UsuarioClave
+                VerificarSitio = clave2.VerificarSitio,
+                verificarUsuarioClave = clave2.verificarUsuarioClave
             };
 
             Assert.AreEqual(clave2, usuario.GetClave(claveBuscadora)); ;
@@ -716,8 +716,8 @@ namespace TestsObligatorio
 
             ControladoraClave claveBuscadora = new ControladoraClave()
             {
-                Sitio = clave1.Sitio,
-                UsuarioClave = clave1.UsuarioClave
+                VerificarSitio = clave1.VerificarSitio,
+                verificarUsuarioClave = clave1.verificarUsuarioClave
             };
 
             Assert.AreEqual(clave1.Codigo, usuario.GetClave(claveBuscadora).Codigo);
@@ -751,8 +751,8 @@ namespace TestsObligatorio
 
             ControladoraClave buscadora = new ControladoraClave()
             {
-                UsuarioClave = clave1.UsuarioClave,
-                Sitio = clave1.Sitio
+                verificarUsuarioClave = clave1.verificarUsuarioClave,
+                VerificarSitio = clave1.VerificarSitio
             };
 
 
@@ -777,10 +777,10 @@ namespace TestsObligatorio
 
             ControladoraClave duplicada = new ControladoraClave()
             {
-                UsuarioClave = clave2.UsuarioClave,
-                Sitio = clave2.Sitio,
+                verificarUsuarioClave = clave2.verificarUsuarioClave,
+                VerificarSitio = clave2.VerificarSitio,
                 Codigo = "33333333",
-                Nota = "Otra Nota"
+                VerificarNota = "Otra Nota"
             };
 
             ClaveAModificar parametros = new ClaveAModificar()
@@ -830,17 +830,17 @@ namespace TestsObligatorio
 
             ControladoraClave buscadora = new ControladoraClave()
             {
-                UsuarioClave = clave2.UsuarioClave,
-                Sitio = clave2.Sitio
+                verificarUsuarioClave = clave2.verificarUsuarioClave,
+                VerificarSitio = clave2.VerificarSitio
             };
 
             ControladoraClave resultado = usuario.GetClave(buscadora);
 
             ControladoraCategoria categoriaFinal = usuario.GetCategoriaClave(buscadora);
 
-            bool igualSitio = resultado.Sitio == clave2.Sitio;
-            bool igualUsuario = resultado.UsuarioClave == clave2.UsuarioClave;
-            bool igualNota = resultado.Nota == clave2.Nota;
+            bool igualSitio = resultado.VerificarSitio == clave2.VerificarSitio;
+            bool igualUsuario = resultado.verificarUsuarioClave == clave2.verificarUsuarioClave;
+            bool igualNota = resultado.VerificarNota == clave2.VerificarNota;
             bool igualClave = resultado.Codigo == clave2.Codigo;
 
             bool igualesDatos = igualSitio && igualUsuario && igualNota && igualClave;
@@ -1184,17 +1184,17 @@ namespace TestsObligatorio
 
             ControladoraClave clave1 = new ControladoraClave()
             {
-                Sitio = "web.whatsapp.com",
+                VerificarSitio = "web.whatsapp.com",
                 Codigo = "estaesunaclave",
-                UsuarioClave = "Roberto"
+                verificarUsuarioClave = "Roberto"
             };
             categoria1.AgregarClave(clave1);
 
             ControladoraClave clave2 = new ControladoraClave()
             {
-                Sitio = "web.whatsapp.com",
+                VerificarSitio = "web.whatsapp.com",
                 Codigo = "ESTAESUNACLAVE",
-                UsuarioClave = "Luis88"
+                verificarUsuarioClave = "Luis88"
             };
             categoria2.AgregarClave(clave2);
 
@@ -1230,9 +1230,9 @@ namespace TestsObligatorio
 
             ControladoraClave buscadora = new ControladoraClave()
             {
-                Sitio = clave1.Sitio,
+                VerificarSitio = clave1.VerificarSitio,
                 Codigo = clave1.Codigo,
-                UsuarioClave = clave1.UsuarioClave
+                verificarUsuarioClave = clave1.verificarUsuarioClave
             };
 
             Assert.AreEqual(categoria2, usuario.GetCategoriaClave(buscadora));
@@ -1294,9 +1294,9 @@ namespace TestsObligatorio
 
             ControladoraClave claveBuscadora = new ControladoraClave
             {
-                Sitio = clave2.Sitio,
+                VerificarSitio = clave2.VerificarSitio,
                 Codigo = "EstaEsUnaDiferente",
-                UsuarioClave = clave2.UsuarioClave
+                verificarUsuarioClave = clave2.verificarUsuarioClave
             };
 
             ClaveCompartida buscadora = new ClaveCompartida()
@@ -1365,9 +1365,9 @@ namespace TestsObligatorio
 
             ControladoraClave claveBuscadora = new ControladoraClave
             {
-                Sitio = clave2.Sitio,
+                VerificarSitio = clave2.VerificarSitio,
                 Codigo = "EstaEsUnaDiferente",
-                UsuarioClave = clave2.UsuarioClave
+                verificarUsuarioClave = clave2.verificarUsuarioClave
             };
 
             ClaveCompartida buscadora = new ClaveCompartida()

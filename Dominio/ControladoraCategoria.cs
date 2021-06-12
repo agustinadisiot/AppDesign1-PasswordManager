@@ -36,9 +36,9 @@ namespace LogicaDeNegocio
 
         public void AgregarClave(ControladoraClave claveIngresada)
         {
-            bool noTieneSitio = (claveIngresada.Sitio == null),
+            bool noTieneSitio = (claveIngresada.VerificarSitio == null),
                  noTieneClave = (claveIngresada.Codigo == null),
-                 noTieneUsuario = (claveIngresada.UsuarioClave == null);
+                 noTieneUsuario = (claveIngresada.verificarUsuarioClave == null);
 
 
             if (noTieneSitio || noTieneClave || noTieneUsuario ) throw new ObjetoIncompletoException();
@@ -168,9 +168,9 @@ namespace LogicaDeNegocio
             if (!igualSitioyUsuario && this.YaExisteClave(claveNueva)) throw new ObjetoYaExistenteException();
 
             ControladoraClave aModificar = this.GetClave(claveVieja);
-            aModificar.UsuarioClave = claveNueva.UsuarioClave;
-            aModificar.Sitio = claveNueva.Sitio;
-            aModificar.Nota = claveNueva.Nota;
+            aModificar.verificarUsuarioClave = claveNueva.verificarUsuarioClave;
+            aModificar.VerificarSitio = claveNueva.VerificarSitio;
+            aModificar.VerificarNota = claveNueva.VerificarNota;
             if (aModificar.Codigo != claveNueva.Codigo) {
                 aModificar.Codigo = claveNueva.Codigo;
             }

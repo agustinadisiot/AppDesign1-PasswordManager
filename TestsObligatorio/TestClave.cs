@@ -21,14 +21,14 @@ namespace TestsObligatorio
         {
             clave1 = new ControladoraClave()
             {
-                Sitio = "ort.edu.uy",
-                UsuarioClave = "UsuarioORT"
+                VerificarSitio = "ort.edu.uy",
+                verificarUsuarioClave = "UsuarioORT"
             };
 
             clave2 = new ControladoraClave()
             {
-                Sitio = "youtube.com",
-                UsuarioClave = "UsuarioYoutube"
+                VerificarSitio = "youtube.com",
+                verificarUsuarioClave = "UsuarioYoutube"
             };
 
             menorA5 = "a";
@@ -50,27 +50,27 @@ namespace TestsObligatorio
         [TestMethod]
         public void ClaveGetUsuarioCorrecto()
         {
-            clave1.UsuarioClave = "juan@gmail.com";
-            Assert.AreEqual("juan@gmail.com", clave1.UsuarioClave);
+            clave1.verificarUsuarioClave = "juan@gmail.com";
+            Assert.AreEqual("juan@gmail.com", clave1.verificarUsuarioClave);
         }
 
         [TestMethod]
         public void ClaveGetUsuarioCambiado()
         {
-            clave1.UsuarioClave = "pedro@gmail.com";
-            Assert.AreEqual("pedro@gmail.com", clave1.UsuarioClave);
+            clave1.verificarUsuarioClave = "pedro@gmail.com";
+            Assert.AreEqual("pedro@gmail.com", clave1.verificarUsuarioClave);
         }
 
         [TestMethod]
         public void ClaveLargoUsuarioMenorA5()
         {
-            Assert.ThrowsException<LargoIncorrectoException>(() => clave1.UsuarioClave = menorA5);
+            Assert.ThrowsException<LargoIncorrectoException>(() => clave1.verificarUsuarioClave = menorA5);
         }
 
         [TestMethod]
         public void ClaveLargoUsuarioMayorA25()
         {
-            Assert.ThrowsException<LargoIncorrectoException>(() => clave1.UsuarioClave = mayorA25);
+            Assert.ThrowsException<LargoIncorrectoException>(() => clave1.verificarUsuarioClave = mayorA25);
         }
 
         [TestMethod]
@@ -103,43 +103,43 @@ namespace TestsObligatorio
         [TestMethod]
         public void ClaveGetSitioCorrecto()
         {
-            clave1.Sitio = "Netflix.com";
-            Assert.AreEqual("Netflix.com", clave1.Sitio);
+            clave1.VerificarSitio = "Netflix.com";
+            Assert.AreEqual("Netflix.com", clave1.VerificarSitio);
         }
 
         [TestMethod]
         public void ClaveGetSitioCambiado()
         {
-            clave1.Sitio = "Netflix.com";
-            clave1.Sitio = "youtube.com";
-            Assert.AreEqual("youtube.com", clave1.Sitio);
+            clave1.VerificarSitio = "Netflix.com";
+            clave1.VerificarSitio = "youtube.com";
+            Assert.AreEqual("youtube.com", clave1.VerificarSitio);
         }
 
         [TestMethod]
         public void ClaveLargoSitioMenorA3()
         {
-            Assert.ThrowsException<LargoIncorrectoException>(() => clave1.Sitio = "a");
+            Assert.ThrowsException<LargoIncorrectoException>(() => clave1.VerificarSitio = "a");
         }
 
         [TestMethod]
         public void ClaveLargoSitioMayorA25()
         {
-            Assert.ThrowsException<LargoIncorrectoException>(() => clave1.Sitio = mayorA25);
+            Assert.ThrowsException<LargoIncorrectoException>(() => clave1.VerificarSitio = mayorA25);
         }
 
         [TestMethod]
         public void ClaveGetNotaCorrecta()
         {
-            clave1.Nota = "Hola";
-            Assert.AreEqual("Hola", clave1.Nota);
+            clave1.VerificarNota = "Hola";
+            Assert.AreEqual("Hola", clave1.VerificarNota);
         }
 
         [TestMethod]
         public void ClaveGetNotaCambiada()
         {
-            clave1.Nota = "Hola";
-            clave1.Nota = "notaNueva";
-            Assert.AreEqual("notaNueva", clave1.Nota);
+            clave1.VerificarNota = "Hola";
+            clave1.VerificarNota = "notaNueva";
+            Assert.AreEqual("notaNueva", clave1.VerificarNota);
         }
 
         [TestMethod]
@@ -147,7 +147,7 @@ namespace TestsObligatorio
         {
             string notaMayorA250 = "";
             for (int i = 0; i < 251; i++) notaMayorA250 += "C";
-            Assert.ThrowsException<LargoIncorrectoException>(() => clave1.Nota = notaMayorA250);
+            Assert.ThrowsException<LargoIncorrectoException>(() => clave1.VerificarNota = notaMayorA250);
         }
 
         [TestMethod]
@@ -203,22 +203,22 @@ namespace TestsObligatorio
         [TestMethod]
         public void ClaveEqualsMismoSitioYUsuario()
         {
-            clave2.Sitio = clave1.Sitio;
-            clave2.UsuarioClave = clave1.UsuarioClave;
+            clave2.VerificarSitio = clave1.VerificarSitio;
+            clave2.verificarUsuarioClave = clave1.verificarUsuarioClave;
             Assert.AreEqual(clave1, clave2);
         }
 
         [TestMethod]
         public void ClaveEqualsDiferenteSitioYMismoUsuario()
         {
-            clave2.UsuarioClave = clave1.UsuarioClave;
+            clave2.verificarUsuarioClave = clave1.verificarUsuarioClave;
             Assert.AreNotEqual(clave1, clave2);
         }
 
         [TestMethod]
         public void ClaveEqualsMismoSitioYDiferenteUsuario()
         {
-            clave2.Sitio = clave1.Sitio;
+            clave2.VerificarSitio = clave1.VerificarSitio;
             Assert.AreNotEqual(clave1, clave2);
         }
 
@@ -240,8 +240,8 @@ namespace TestsObligatorio
         public void ClaveEqualsConMayYMin()
         {
 
-            clave2.Sitio = clave1.Sitio.ToUpper();
-            clave2.UsuarioClave = clave1.UsuarioClave.ToUpper();
+            clave2.VerificarSitio = clave1.VerificarSitio.ToUpper();
+            clave2.verificarUsuarioClave = clave1.verificarUsuarioClave.ToUpper();
             Assert.AreEqual(clave1, clave2);
         }
 
@@ -261,9 +261,9 @@ namespace TestsObligatorio
 
         [TestMethod]
         public void ClaveUsuarioClaveInsensitive() {
-            clave2.UsuarioClave = clave1.UsuarioClave.ToUpper();
-            clave2.Sitio = clave1.Sitio;
-            clave1.UsuarioClave = clave1.UsuarioClave.ToLower();
+            clave2.verificarUsuarioClave = clave1.verificarUsuarioClave.ToUpper();
+            clave2.VerificarSitio = clave1.VerificarSitio;
+            clave1.verificarUsuarioClave = clave1.verificarUsuarioClave.ToLower();
             Assert.AreEqual(clave1, clave2);
         }
     }

@@ -123,18 +123,18 @@ namespace TestsObligatorio
 
             clave1 = new ControladoraClave()
             {
-                Sitio = "web.whatsapp.com",
+                VerificarSitio = "web.whatsapp.com",
                 Codigo = "EstaEsUnaClave1",
-                UsuarioClave = "Roberto",
-                Nota = ""
+                verificarUsuarioClave = "Roberto",
+                VerificarNota = ""
             };
 
             clave2 = new ControladoraClave()
             {
-                Sitio = "Netflix.com",
+                VerificarSitio = "Netflix.com",
                 Codigo = "EstaEsUnaClave2",
-                UsuarioClave = "Luis88",
-                Nota = "Nota de una clave"
+                verificarUsuarioClave = "Luis88",
+                VerificarNota = "Nota de una clave"
             };
         }
 
@@ -166,8 +166,8 @@ namespace TestsObligatorio
             ControladoraClave claveSinSitio = new ControladoraClave()
             {
                 Codigo = clave1.Codigo,
-                UsuarioClave = clave1.UsuarioClave,
-                Nota = clave1.Nota
+                verificarUsuarioClave = clave1.verificarUsuarioClave,
+                VerificarNota = clave1.VerificarNota
             };
             Assert.ThrowsException<ObjetoIncompletoException>(() => categoria1.AgregarClave(claveSinSitio));
         }
@@ -177,9 +177,9 @@ namespace TestsObligatorio
         {
             ControladoraClave claveSinCodigo = new ControladoraClave()
             {
-                Sitio = clave1.Sitio,
-                UsuarioClave = clave1.UsuarioClave,
-                Nota = clave1.Nota
+                VerificarSitio = clave1.VerificarSitio,
+                verificarUsuarioClave = clave1.verificarUsuarioClave,
+                VerificarNota = clave1.VerificarNota
             };
             Assert.ThrowsException<ObjetoIncompletoException>(() => categoria1.AgregarClave(claveSinCodigo));
         }
@@ -189,9 +189,9 @@ namespace TestsObligatorio
         {
             ControladoraClave claveSinUsuario = new ControladoraClave()
             {
-                Sitio = clave1.Sitio,
+                VerificarSitio = clave1.VerificarSitio,
                 Codigo = clave1.Codigo,
-                Nota = clave1.Nota
+                VerificarNota = clave1.VerificarNota
             };
             Assert.ThrowsException<ObjetoIncompletoException>(() => categoria1.AgregarClave(claveSinUsuario));
         }
@@ -210,8 +210,8 @@ namespace TestsObligatorio
 
             ControladoraClave claveBuscadora = new ControladoraClave()
             {
-                Sitio = clave1.Sitio,
-                UsuarioClave = clave1.UsuarioClave
+                VerificarSitio = clave1.VerificarSitio,
+                verificarUsuarioClave = clave1.verificarUsuarioClave
             };
 
             Assert.AreEqual(clave1, categoria1.GetClave(claveBuscadora));
@@ -225,8 +225,8 @@ namespace TestsObligatorio
 
             ControladoraClave claveBuscadora = new ControladoraClave()
             {
-                Sitio = clave1.Sitio,
-                UsuarioClave = clave1.UsuarioClave
+                VerificarSitio = clave1.VerificarSitio,
+                verificarUsuarioClave = clave1.verificarUsuarioClave
             };
 
             Assert.AreEqual(clave1, categoria1.GetClave(claveBuscadora)); ;
@@ -240,8 +240,8 @@ namespace TestsObligatorio
 
             ControladoraClave claveBuscadora = new ControladoraClave()
             {
-                Sitio = clave2.Sitio,
-                UsuarioClave = clave2.UsuarioClave
+                VerificarSitio = clave2.VerificarSitio,
+                verificarUsuarioClave = clave2.verificarUsuarioClave
             };
 
             Assert.AreEqual(clave2, categoria1.GetClave(claveBuscadora)); ;
@@ -269,10 +269,10 @@ namespace TestsObligatorio
             categoria1.AgregarClave(clave1);
             ControladoraClave claveIgual = new ControladoraClave()
             {
-                Sitio = clave1.Sitio,
-                UsuarioClave = clave1.UsuarioClave,
+                VerificarSitio = clave1.VerificarSitio,
+                verificarUsuarioClave = clave1.verificarUsuarioClave,
                 Codigo = clave1.Codigo,
-                Nota = clave1.Nota
+                VerificarNota = clave1.VerificarNota
             };
             Assert.AreEqual(true, categoria1.YaExisteClave(claveIgual));
         }
@@ -283,10 +283,10 @@ namespace TestsObligatorio
             categoria1.AgregarClave(clave1);
             ControladoraClave claveDiferenteSitio = new ControladoraClave()
             {
-                Sitio = "www.youtube.com",
-                UsuarioClave = clave1.UsuarioClave,
+                VerificarSitio = "www.youtube.com",
+                verificarUsuarioClave = clave1.verificarUsuarioClave,
                 Codigo = clave1.Codigo,
-                Nota = clave1.Nota
+                VerificarNota = clave1.VerificarNota
             };
             Assert.AreEqual(false, categoria1.YaExisteClave(claveDiferenteSitio));
         }
@@ -297,10 +297,10 @@ namespace TestsObligatorio
             categoria1.AgregarClave(clave1);
             ControladoraClave claveDiferenteUsuario = new ControladoraClave()
             {
-                Sitio = clave1.Sitio,
-                UsuarioClave = "222222",
+                VerificarSitio = clave1.VerificarSitio,
+                verificarUsuarioClave = "222222",
                 Codigo = clave1.Codigo,
-                Nota = clave1.Nota
+                VerificarNota = clave1.VerificarNota
             };
             Assert.AreEqual(false, categoria1.YaExisteClave(claveDiferenteUsuario));
         }
@@ -311,10 +311,10 @@ namespace TestsObligatorio
             categoria1.AgregarClave(clave1);
             ControladoraClave claveDiferenteClave = new ControladoraClave()
             {
-                Sitio = clave1.Sitio,
-                UsuarioClave = clave1.UsuarioClave,
+                VerificarSitio = clave1.VerificarSitio,
+                verificarUsuarioClave = clave1.verificarUsuarioClave,
                 Codigo = "87654321",
-                Nota = clave1.Nota
+                VerificarNota = clave1.VerificarNota
             };
             Assert.AreEqual(true, categoria1.YaExisteClave(claveDiferenteClave));
         }
@@ -385,8 +385,8 @@ namespace TestsObligatorio
 
             ControladoraClave buscadora = new ControladoraClave()
             {
-                UsuarioClave = usuarioClaveInexistente,
-                Sitio = paginaClaveInexistente
+                verificarUsuarioClave = usuarioClaveInexistente,
+                VerificarSitio = paginaClaveInexistente
             };
 
             Assert.ThrowsException<ObjetoInexistenteException>(() => categoria1.ModificarClave(buscadora, clave1));
@@ -399,8 +399,8 @@ namespace TestsObligatorio
 
             ControladoraClave buscadora = new ControladoraClave()
             {
-                UsuarioClave = clave1.UsuarioClave,
-                Sitio = clave1.Sitio
+                verificarUsuarioClave = clave1.verificarUsuarioClave,
+                VerificarSitio = clave1.VerificarSitio
             };
 
             categoria1.ModificarClave(clave1, clave2);
@@ -416,8 +416,8 @@ namespace TestsObligatorio
 
             ControladoraClave duplicada = new ControladoraClave()
             {
-                UsuarioClave = clave2.UsuarioClave,
-                Sitio = clave2.Sitio,
+                verificarUsuarioClave = clave2.verificarUsuarioClave,
+                VerificarSitio = clave2.VerificarSitio,
                 Codigo = clave2.Codigo
             };
 
@@ -439,10 +439,10 @@ namespace TestsObligatorio
 
             ControladoraClave clave1 = new ControladoraClave()
             {
-                UsuarioClave = usuarioClaveVieja,
-                Sitio = paginaClaveVieja,
+                verificarUsuarioClave = usuarioClaveVieja,
+                VerificarSitio = paginaClaveVieja,
                 Codigo = claveClaveVieja,
-                Nota = ""
+                VerificarNota = ""
             };
 
             categoria.AgregarClave(clave1);
@@ -453,16 +453,16 @@ namespace TestsObligatorio
 
             ControladoraClave claveNueva = new ControladoraClave()
             {
-                UsuarioClave = usuarioClaveNueva,
-                Sitio = paginaClaveNueva,
+                verificarUsuarioClave = usuarioClaveNueva,
+                VerificarSitio = paginaClaveNueva,
                 Codigo = claveClaveNueva,
-                Nota = ""
+                VerificarNota = ""
             };
 
             ControladoraClave buscadora = new ControladoraClave()
             {
-                UsuarioClave = usuarioClaveNueva,
-                Sitio = paginaClaveNueva
+                verificarUsuarioClave = usuarioClaveNueva,
+                VerificarSitio = paginaClaveNueva
             };
 
             categoria.ModificarClave(clave1, claveNueva);
@@ -476,22 +476,22 @@ namespace TestsObligatorio
 
             ControladoraClave claveNueva = new ControladoraClave()
             {
-                UsuarioClave = clave1.UsuarioClave,
-                Sitio = clave1.Sitio,
+                verificarUsuarioClave = clave1.verificarUsuarioClave,
+                VerificarSitio = clave1.VerificarSitio,
                 Codigo = "CodigoNuevo",
-                Nota = "NotaNueva"
+                VerificarNota = "NotaNueva"
             };
 
             ControladoraClave buscadora = new ControladoraClave()
             {
-                UsuarioClave = clave1.UsuarioClave,
-                Sitio = clave1.Sitio
+                verificarUsuarioClave = clave1.verificarUsuarioClave,
+                VerificarSitio = clave1.VerificarSitio
             };
 
             categoria1.ModificarClave(buscadora, claveNueva);
 
             bool igualSitioYUsuario = clave1.Equals(claveNueva);
-            bool igualNota = clave1.Nota == claveNueva.Nota;
+            bool igualNota = clave1.VerificarNota == claveNueva.VerificarNota;
             bool igualCodigo = clave1.Codigo == claveNueva.Codigo;  
 
             Assert.IsTrue(igualSitioYUsuario && igualNota && igualCodigo);
@@ -506,22 +506,22 @@ namespace TestsObligatorio
 
             ControladoraClave claveNueva = new ControladoraClave()
             {
-                UsuarioClave = clave1.UsuarioClave,
-                Sitio = clave1.Sitio,
+                verificarUsuarioClave = clave1.verificarUsuarioClave,
+                VerificarSitio = clave1.VerificarSitio,
                 Codigo = "CodigoNuevo",
-                Nota = "NotaNueva"
+                VerificarNota = "NotaNueva"
             };
 
             ControladoraClave buscadora = new ControladoraClave()
             {
-                UsuarioClave = clave1.UsuarioClave,
-                Sitio = clave1.Sitio
+                verificarUsuarioClave = clave1.verificarUsuarioClave,
+                VerificarSitio = clave1.VerificarSitio
             };
 
             categoria1.ModificarClave(buscadora, claveNueva);
 
             bool igualSitioYUsuario = clave1.Equals(claveNueva);
-            bool igualNota = clave1.Nota == claveNueva.Nota;
+            bool igualNota = clave1.VerificarNota == claveNueva.VerificarNota;
             bool igualClave = clave1.Codigo == claveNueva.Codigo;
             bool distintaFecha = clave1.FechaModificacion == System.DateTime.Now.Date;
             Assert.IsTrue(igualSitioYUsuario && igualNota && igualClave && distintaFecha);

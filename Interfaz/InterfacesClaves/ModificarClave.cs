@@ -26,9 +26,9 @@ namespace Interfaz.InterfacesClaves
 
         private void CargarInputsConClave() {
             this.inputContra.Text = this._vieja.Codigo;
-            this.inputNota.Text = this._vieja.Nota;
-            this.inputSitio.Text = this._vieja.Sitio;
-            this.inputUsuario.Text = this._vieja.UsuarioClave;
+            this.inputNota.Text = this._vieja.VerificarNota;
+            this.inputSitio.Text = this._vieja.VerificarSitio;
+            this.inputUsuario.Text = this._vieja.verificarUsuarioClave;
         }
 
         private void CargarComboBox()
@@ -71,10 +71,10 @@ namespace Interfaz.InterfacesClaves
 
                 ControladoraClave nueva = new ControladoraClave()
                 {
-                    UsuarioClave = this.inputUsuario.Text,
-                    Sitio = this.inputSitio.Text,
+                    verificarUsuarioClave = this.inputUsuario.Text,
+                    VerificarSitio = this.inputSitio.Text,
                     Codigo = this.inputContra.Text,
-                    Nota = this.inputNota.Text,
+                    VerificarNota = this.inputNota.Text,
                     FechaModificacion = modificacion
                 };
                 try

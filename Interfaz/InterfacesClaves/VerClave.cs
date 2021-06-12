@@ -21,10 +21,10 @@ namespace Interfaz
         {
             ControladoraCategoria categoriaAMostrar = _usuarioActual.GetCategoriaClave(_claveAMostrar);
             string nombreCateogiraAMostrar = categoriaAMostrar.Nombre;
-            string sitioAMostrar = _claveAMostrar.Sitio;
-            string usuarioAMostrar = _claveAMostrar.UsuarioClave;
+            string sitioAMostrar = _claveAMostrar.VerificarSitio;
+            string usuarioAMostrar = _claveAMostrar.verificarUsuarioClave;
             string codigoAMostrar = _claveAMostrar.Codigo;
-            string notaAMostrar = _claveAMostrar.Nota;
+            string notaAMostrar = _claveAMostrar.VerificarNota;
 
             this.labelCategoriaAMostrar.Text = nombreCateogiraAMostrar;
             this.labelSitioAMostrar.Text = sitioAMostrar;

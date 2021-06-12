@@ -125,31 +125,31 @@ namespace TestsObligatorio
 
             clave1 = new ControladoraClave()
             {
-                Sitio = "web.whatsapp.com",
+                VerificarSitio = "web.whatsapp.com",
                 Codigo = "EstaEsUnaClave1",
-                UsuarioClave = "Roberto"
+                verificarUsuarioClave = "Roberto"
             };
             categoria1.AgregarClave(clave1);
             clave2 = new ControladoraClave()
             {
-                Sitio = "web.whatsapp.com",
+                VerificarSitio = "web.whatsapp.com",
                 Codigo = "EstaEsUnaClave2",
-                UsuarioClave = "Luis88"
+                verificarUsuarioClave = "Luis88"
             };
             categoria1.AgregarClave(clave2);
 
             clave3 = new ControladoraClave()
             {
-                Sitio = "web.whatsapp.com",
+                VerificarSitio = "web.whatsapp.com",
                 Codigo = "EstaEsUnaClave3",
-                UsuarioClave = "Hernesto"
+                verificarUsuarioClave = "Hernesto"
             };
             categoria2.AgregarClave(clave3);
             clave4 = new ControladoraClave()
             {
-                Sitio = "web.whatsapp.com",
+                VerificarSitio = "web.whatsapp.com",
                 Codigo = "EstaEsUnaClave4",
-                UsuarioClave = "Peepo"
+                verificarUsuarioClave = "Peepo"
             };
             categoria2.AgregarClave(clave4);
             

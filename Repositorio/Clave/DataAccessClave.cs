@@ -50,9 +50,9 @@ namespace Repositorio
             using (var contexto = new AdministradorClavesDBContext())
             {
                 ControladoraClave aModificar = contexto.Claves.Find(entity.Id);
-                aModificar.UsuarioClave = entity.UsuarioClave;
-                aModificar.Sitio = entity.Sitio;
-                aModificar.Nota = entity.Nota;
+                aModificar.verificarUsuarioClave = entity.verificarUsuarioClave;
+                aModificar.VerificarSitio = entity.VerificarSitio;
+                aModificar.VerificarNota = entity.VerificarNota;
                 if (aModificar.Codigo != entity.Codigo)
                 {
                     aModificar.Codigo = entity.Codigo;

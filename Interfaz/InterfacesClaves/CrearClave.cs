@@ -64,10 +64,10 @@ namespace Interfaz
                 {
                     ControladoraClave nueva = new ControladoraClave()
                     {
-                        UsuarioClave = this.inputUsuario.Text,
+                        verificarUsuarioClave = this.inputUsuario.Text,
                         Codigo = this.inputContra.Text,
-                        Nota = this.inputNota.Text,
-                        Sitio = this.inputSitio.Text,
+                        VerificarNota = this.inputNota.Text,
+                        VerificarSitio = this.inputSitio.Text,
                         FechaModificacion = System.DateTime.Now.Date
                     };
 

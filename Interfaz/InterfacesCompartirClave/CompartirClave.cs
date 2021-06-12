@@ -40,8 +40,8 @@ namespace Interfaz
                 }
             }
 
-            string sitioClaveACompartir = _claveACompartir.Sitio;
-            string usuarioClaveACompartir = _claveACompartir.UsuarioClave;
+            string sitioClaveACompartir = _claveACompartir.VerificarSitio;
+            string usuarioClaveACompartir = _claveACompartir.verificarUsuarioClave;
 
             this.labelSitioAMostrar.Text = sitioClaveACompartir;
             this.labelUsuarioAMostrar.Text = usuarioClaveACompartir;

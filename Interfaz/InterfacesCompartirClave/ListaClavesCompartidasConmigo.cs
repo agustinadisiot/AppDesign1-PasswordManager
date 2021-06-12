@@ -29,8 +29,8 @@ namespace Interfaz
                 ControladoraUsuario usuarioQueComparte = claveCompartidaActual.Original;
 
                 string nombreUsuarioQueComparte = usuarioQueComparte.Nombre;
-                string sitioClaveQueSeComparte = claveQueSeComparte.Sitio;
-                string usuarioClaveQueSeComparte = claveQueSeComparte.UsuarioClave;
+                string sitioClaveQueSeComparte = claveQueSeComparte.VerificarSitio;
+                string usuarioClaveQueSeComparte = claveQueSeComparte.verificarUsuarioClave;
 
                 this.tablaClavesCompartidas.Rows.Add(nombreUsuarioQueComparte, sitioClaveQueSeComparte, usuarioClaveQueSeComparte);
             }
@@ -50,8 +50,8 @@ namespace Interfaz
 
                 ControladoraClave claveBuscadora = new ControladoraClave
                 {
-                    Sitio = sitioClaveAMostrar,
-                    UsuarioClave = usuarioClaveAMostrar
+                    VerificarSitio = sitioClaveAMostrar,
+                    verificarUsuarioClave = usuarioClaveAMostrar
                 };
 
                 ControladoraUsuario usuarioBuscador = new ControladoraUsuario()

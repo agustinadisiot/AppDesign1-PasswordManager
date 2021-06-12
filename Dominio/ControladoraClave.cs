@@ -1,15 +1,11 @@
-﻿using System;
+﻿using Negocio;
+using System;
 using System.Collections.Generic;
 
 namespace LogicaDeNegocio
 {
     public class ControladoraClave
     {
-        private string _usuario;
-        private string _codigo;
-        private string _sitio;
-        private string _nota;
-        private DateTime _fechaModificacion;
         private const int _largoUsuarioYClaveMinimo = 5;
         private const int _largoUsuarioYClaveMaximo = 25;
         private const int _largoSitioMinimo = 3;
@@ -17,81 +13,49 @@ namespace LogicaDeNegocio
         private const int _largoNotaMinimo = 0;
         private const int _largoNotaMaximo = 250;
 
-        public List<DataBreach> DataBreaches { get; set; }
+        public void Modificar(Clave vieja, Clave nueva) {
+            this.Verificar(vieja);
+            this.Verificar(nueva);
 
-        public ControladoraClave()
-        {
-            this.EsCompartida = false;
-            this._fechaModificacion = DateTime.Now.Date;
-            this.DataBreaches = new List<DataBreach>();
         }
 
-        public int Id { get; set; }
-
-        public string UsuarioClave
+        public void Verificar(Clave aVerificar)
         {
-            get { return _usuario; }
-            set { this._usuario = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoUsuarioYClaveMinimo, _largoUsuarioYClaveMaximo); }
+            this.VerificarUsuarioClave(aVerificar);
+            this.VerificarCodigo(aVerificar);
+            this.VerificarSitio(aVerificar);
+            this.VerificarNota(aVerificar);
+            this.VerificarSitio(aVerificar);
         }
 
-        public string Codigo
+        public string VerificarUsuarioClave(Clave aVerificar)
         {
-            get { return _codigo; }
-            set { CambioClave(value); }
+            return VerificadoraString.VerificarLargoEntreMinimoYMaximo(aVerificar.UsuarioClave, _largoUsuarioYClaveMinimo, _largoUsuarioYClaveMaximo);
         }
 
-        public bool EsCompartida { get; set; }
-
-        public string Sitio
+        public void VerificarCodigo(Clave aVerificar)
         {
-            get { return _sitio; }
-            set { this._sitio = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoSitioMinimo, _largoSitioMaximo); }
+            VerificadoraString.VerificarLargoEntreMinimoYMaximo(aVerificar.Codigo, _largoUsuarioYClaveMinimo, _largoUsuarioYClaveMaximo);
         }
 
-        public string Nota
+        public void VerificarSitio(Clave aVerificar)
         {
-            get { return _nota; }
-            set { this._nota = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNotaMinimo, _largoNotaMaximo); }
+            VerificadoraString.VerificarLargoEntreMinimoYMaximo(aVerificar.Sitio, _largoSitioMinimo, _largoSitioMaximo);
         }
 
-        public DateTime FechaModificacion
+        public void VerificarNota(Clave aVerificar)
         {
-            get { return this._fechaModificacion; }
-            set { this._fechaModificacion = value; }
+            VerificadoraString.VerificarLargoEntreMinimoYMaximo(aVerificar.Nota, _largoNotaMinimo, _largoNotaMaximo);
         }
 
-        private void CambioClave(string ingreso)
+        private void ActualizarFechaModificacion(Clave aModificar)
         {
-
-            try
-            {
-                this._codigo = VerificadoraString.VerificarLargoEntreMinimoYMaximo(ingreso, _largoUsuarioYClaveMinimo, _largoUsuarioYClaveMaximo);
-                this.ActualizarFechaModificacion();
-            }
-            catch (LargoIncorrectoException)
-            {
-                throw new LargoIncorrectoException();
-            }
+             aModificar.FechaModificacion = System.DateTime.Now.Date;
         }
 
-        public override bool Equals(object objeto)
+        public bool FueFiltrado(Clave aVerificar, List<Filtrada> filtradas)
         {
-            if (objeto == null) throw new ObjetoIncompletoException();
-            if (this.GetType() != objeto.GetType()) throw new ObjetoIncorrectoException();
-            ControladoraClave aIgualar = (ControladoraClave)objeto;
-            bool mismoSitio = aIgualar.Sitio.ToUpper() == this.Sitio.ToUpper();
-            bool mismoUsuario = aIgualar.UsuarioClave.ToUpper() == this.UsuarioClave.ToUpper();
-            return (mismoSitio && mismoUsuario);
-        }
-
-        private void ActualizarFechaModificacion()
-        {
-            this._fechaModificacion = System.DateTime.Now.Date;
-        }
-
-        public bool FueFiltrado(List<Filtrada> filtradas)
-        {
-            return filtradas.Exists(f => this.Codigo.Equals(f.Texto));
+            return filtradas.Exists(f => aVerificar.Codigo.Equals(f.Texto));
         }
     }
 }

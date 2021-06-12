@@ -123,9 +123,9 @@ namespace LogicaDeNegocio
         public void AgregarClave(ControladoraClave clave, ControladoraCategoria buscadora)
         {
 
-            bool noTieneSitio = (clave.Sitio == null),
+            bool noTieneSitio = (clave.VerificarSitio == null),
                  noTieneClave = (clave.Codigo == null),
-                 noTieneUsuario = (clave.UsuarioClave == null);
+                 noTieneUsuario = (clave.verificarUsuarioClave == null);
 
             if (noTieneSitio || noTieneClave || noTieneUsuario) throw new ObjetoIncompletoException();
             

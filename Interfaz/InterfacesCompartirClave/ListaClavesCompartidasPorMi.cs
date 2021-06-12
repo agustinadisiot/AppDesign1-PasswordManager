@@ -30,8 +30,8 @@ namespace Interfaz.InterfacesCompartirClave
                 ControladoraUsuario usuarioQueComparte = claveCompartidaActual.Destino;
 
                 string nombreUsuarioAQuienSeComparte = usuarioQueComparte.Nombre;
-                string sitioClaveQueSeComparte = claveQueSeComparte.Sitio;
-                string usuarioClaveQueSeComparte = claveQueSeComparte.UsuarioClave;
+                string sitioClaveQueSeComparte = claveQueSeComparte.VerificarSitio;
+                string usuarioClaveQueSeComparte = claveQueSeComparte.verificarUsuarioClave;
 
                 this.tablaClavesCompartidas.Rows.Add(nombreUsuarioAQuienSeComparte, sitioClaveQueSeComparte, usuarioClaveQueSeComparte);
             }
@@ -63,8 +63,8 @@ namespace Interfaz.InterfacesCompartirClave
 
                 ControladoraClave claveBuscadora = new ControladoraClave
                 {
-                    Sitio = sitioClaveDejarDeCompartir,
-                    UsuarioClave = usuarioClaveDejarDeCompartir
+                    VerificarSitio = sitioClaveDejarDeCompartir,
+                    verificarUsuarioClave = usuarioClaveDejarDeCompartir
                 };
 
                 ControladoraUsuario usuarioBuscador = new ControladoraUsuario
@@ -99,8 +99,8 @@ namespace Interfaz.InterfacesCompartirClave
 
                 ControladoraClave buscadora = new ControladoraClave
                 {
-                    Sitio = sitioClaveAMostrar,
-                    UsuarioClave = usuarioClaveAMostrar
+                    VerificarSitio = sitioClaveAMostrar,
+                    verificarUsuarioClave = usuarioClaveAMostrar
                 };
 
                 AbrirVerClave(buscadora, _usuarioActual);
