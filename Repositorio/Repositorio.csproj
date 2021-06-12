@@ -65,13 +65,9 @@
     <Compile Include="DataBreachTypeConfiguration.cs" />
     <Compile Include="FiltradaTypeConfiguration.cs" />
     <Compile Include="IDataAccess.cs" />
-    <Compile Include="Migrations\202106112245398_DBCompletoIncluyendoCategoria.cs" />
-    <Compile Include="Migrations\202106112245398_DBCompletoIncluyendoCategoria.designer.cs">
-      <DependentUpon>202106112245398_DBCompletoIncluyendoCategoria.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106121345176_CreadoDataAccessUsuario.cs" />
-    <Compile Include="Migrations\202106121345176_CreadoDataAccessUsuario.designer.cs">
-      <DependentUpon>202106121345176_CreadoDataAccessUsuario.cs</DependentUpon>
+    <Compile Include="Migrations\202106121514219_CreadoDataAccessClaveCompartida.cs" />
+    <Compile Include="Migrations\202106121514219_CreadoDataAccessClaveCompartida.designer.cs">
+      <DependentUpon>202106121514219_CreadoDataAccessClaveCompartida.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,11 +85,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202106112245398_DBCompletoIncluyendoCategoria.resx">
-      <DependentUpon>202106112245398_DBCompletoIncluyendoCategoria.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106121345176_CreadoDataAccessUsuario.resx">
-      <DependentUpon>202106121345176_CreadoDataAccessUsuario.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106121514219_CreadoDataAccessClaveCompartida.resx">
+      <DependentUpon>202106121514219_CreadoDataAccessClaveCompartida.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

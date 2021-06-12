@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Repositorio
 {
-    class DataAccessClaveCompartida : IDataAccess<ClaveCompartida>
+    public class DataAccessClaveCompartida : IDataAccess<ClaveCompartida>
     {
         public void Agregar(ClaveCompartida entity)
         {
