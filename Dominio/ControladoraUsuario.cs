@@ -20,7 +20,9 @@ namespace LogicaDeNegocio
 
         public void Modificar(Usuario nueva)
         {
-            throw new NotImplementedException();
+            this.Verificar(nueva);
+            DataAccessUsuario acceso = new DataAccessUsuario();
+            acceso.Modificar(nueva);
         }
 
         public void VerificarNombre(Usuario aVerificar)
@@ -267,7 +269,6 @@ namespace LogicaDeNegocio
             }
         }
 
-
         public List<Clave> GetListaClaves(Usuario contenedor)
         {
             List<Clave> claves = new List<Clave>();
@@ -293,61 +294,10 @@ namespace LogicaDeNegocio
             return tarjetas;
         }
 
-        /*public void CompartirClave(ClaveCompartida aCompartir)
-        {
-            ControladoraUsuario usuarioDestino = aCompartir.Destino;
-            ControladoraUsuario usuarioOriginal = aCompartir.Original;
-            Clave claveACompartir = aCompartir.Clave;
-
-            if (this.CompartidasPorMi.Contains(aCompartir)) throw new ObjetoYaExistenteException();
-
-            claveACompartir = this.GetClave(claveACompartir);
-
-            claveACompartir.EsCompartida = true;
-
-            Negocio.ClaveCompartida guardar = new Negocio.ClaveCompartida()
-            {
-                Original = usuarioOriginal,
-                Destino = usuarioDestino,
-                Clave = claveACompartir
-            };
-
-            this.CompartidasPorMi.Add(guardar);
-
-            usuarioDestino.CompartidasConmigo.Add(guardar);
-        }*/
-
         public int GetCantidadColor(string color, Usuario contenedor)
         {
             return this.GetListaClavesColor(color, contenedor).Count;
         }
-
-
-        /*public void DejarDeCompartir(ClaveCompartida aDejarDeCompartir, Usuario contenedor)
-        {
-            ControladoraUsuario usuarioOriginal = aDejarDeCompartir.Original;
-            ControladoraUsuario usuarioDestino = aDejarDeCompartir.Destino;
-            Clave claveADejarDeCompartir = this.GetClave(aDejarDeCompartir.Clave);
-
-            if (!claveADejarDeCompartir.EsCompartida) throw new ObjetoInexistenteException();
-
-            Negocio.ClaveCompartida aEliminar = new Negocio.ClaveCompartida()
-            {
-                Original = usuarioOriginal,
-                Destino = usuarioDestino,
-                Clave = claveADejarDeCompartir
-            };
-
-            if (!usuarioDestino.CompartidasConmigo.Contains(aEliminar)) throw new ObjetoInexistenteException();
-
-            this.CompartidasPorMi.Remove(aEliminar);
-
-            usuarioDestino.CompartidasConmigo.Remove(aEliminar);
-
-            bool sigueCompartida = this.CompartidasPorMi.Any(buscadora => buscadora.Clave.Equals(claveADejarDeCompartir));
-            if (!sigueCompartida) claveADejarDeCompartir.EsCompartida = false;
-
-        }*/
 
         public List<Clave> GetListaClavesColor(string color, Usuario contenedor)
         {
