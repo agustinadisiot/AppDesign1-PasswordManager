@@ -1,4 +1,4 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -8,7 +8,7 @@ namespace Interfaz
     public partial class CompartirClave : UserControl
     {
         private Usuario _usuarioActual;
-        private Clave _claveACompartir;
+        private ControladoraClave _claveACompartir;
         private Administrador _administrador;
 
         public CompartirClave(ClaveCompartida aCompartir, Administrador administrador)

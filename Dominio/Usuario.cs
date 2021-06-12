@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Dominio
+namespace LogicaDeNegocio
 {
     public class Usuario
     {
@@ -115,12 +115,12 @@ namespace Dominio
             return this.Categorias.Any(buscadora => buscadora.Equals(aBuscar));
         }
 
-        public bool YaExisteClave(Clave clave)
+        public bool YaExisteClave(ControladoraClave clave)
         {
             return this.Categorias.Any(catBuscadora => catBuscadora.YaExisteClave(clave));
         }
 
-        public void AgregarClave(Clave clave, Categoria buscadora)
+        public void AgregarClave(ControladoraClave clave, Categoria buscadora)
         {
 
             bool noTieneSitio = (clave.Sitio == null),
@@ -153,7 +153,7 @@ namespace Dominio
             this.GetCategoria(categoria).AgregarTarjeta(tarjeta);
         }
 
-        public void BorrarClave(Clave aBorrar)
+        public void BorrarClave(ControladoraClave aBorrar)
         {
             if (this.EsListaCategoriasVacia()) {
                 throw new CategoriaInexistenteException();
@@ -178,7 +178,7 @@ namespace Dominio
             return this.Categorias;
         }
 
-        public Clave GetClave(Clave claveBuscadora)
+        public ControladoraClave GetClave(ControladoraClave claveBuscadora)
         {
             if (!YaExisteClave(claveBuscadora)) throw new ObjetoInexistenteException();
 
@@ -227,8 +227,8 @@ namespace Dominio
 
         public void ModificarClave(ClaveAModificar modificar)
         {
-            Clave claveVieja = this.GetClave(modificar.ClaveVieja);
-            Clave claveNueva = modificar.ClaveNueva;
+            ControladoraClave claveVieja = this.GetClave(modificar.ClaveVieja);
+            ControladoraClave claveNueva = modificar.ClaveNueva;
 
             if (!claveVieja.Equals(claveNueva) && this.YaExisteClave(claveNueva)) {
                 throw new ObjetoYaExistenteException();
@@ -279,9 +279,9 @@ namespace Dominio
         }
 
 
-        public List<Clave> GetListaClaves()
+        public List<ControladoraClave> GetListaClaves()
         {
-            List<Clave> claves = new List<Clave>();
+            List<ControladoraClave> claves = new List<ControladoraClave>();
 
             foreach(Categoria categoria in this.Categorias)
             {
@@ -307,7 +307,7 @@ namespace Dominio
 
             Usuario usuarioDestino = aCompartir.Destino;
             Usuario usuarioOriginal = aCompartir.Original;
-            Clave claveACompartir = aCompartir.Clave;
+            ControladoraClave claveACompartir = aCompartir.Clave;
 
             if (this.CompartidasPorMi.Contains(aCompartir)) throw new ObjetoYaExistenteException();
 
@@ -337,7 +337,7 @@ namespace Dominio
         {
             Usuario usuarioOriginal = aDejarDeCompartir.Original;
             Usuario usuarioDestino = aDejarDeCompartir.Destino;
-            Clave claveADejarDeCompartir = this.GetClave(aDejarDeCompartir.Clave);
+            ControladoraClave claveADejarDeCompartir = this.GetClave(aDejarDeCompartir.Clave);
 
             if (!claveADejarDeCompartir.EsCompartida) throw new ObjetoInexistenteException();
 
@@ -359,9 +359,9 @@ namespace Dominio
 
         }
 
-        public List<Clave> GetListaClavesColor(string color)
+        public List<ControladoraClave> GetListaClavesColor(string color)
         {
-            List<Clave> todasLasClaves = this.GetListaClaves();
+            List<ControladoraClave> todasLasClaves = this.GetListaClaves();
             NivelSeguridad nivelSeguridad = new NivelSeguridad();
             return todasLasClaves.FindAll(buscadora => nivelSeguridad.GetNivelSeguridad(buscadora.Codigo)==color);
         }
@@ -380,7 +380,7 @@ namespace Dominio
 
         }
 
-        public Categoria GetCategoriaClave(Clave buscadora)
+        public Categoria GetCategoriaClave(ControladoraClave buscadora)
         {
             List<Categoria> categorias = this.GetListaCategorias();
 
@@ -408,8 +408,8 @@ namespace Dominio
 
         public bool EsClaveRepetida(string aVerificar)
         {
-            List<Clave> clavesUsuario = this.GetListaClaves();
-            foreach (Clave claveAComparar in clavesUsuario)
+            List<ControladoraClave> clavesUsuario = this.GetListaClaves();
+            foreach (ControladoraClave claveAComparar in clavesUsuario)
             {
                 if (claveAComparar.Codigo.Equals(aVerificar))
                 {

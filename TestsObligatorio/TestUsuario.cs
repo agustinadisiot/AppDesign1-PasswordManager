@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Dominio;
+using LogicaDeNegocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -348,10 +348,10 @@ namespace TestsObligatorio
         private Usuario usuario3;
         private Categoria categoria1;
         private Categoria categoria2;
-        private Clave clave1;
-        private Clave clave2;
-        private Clave clave3;
-        private Clave clave4;
+        private ControladoraClave clave1;
+        private ControladoraClave clave2;
+        private ControladoraClave clave3;
+        private ControladoraClave clave4;
         private ClaveCompartida claveCompartida;
         private ClaveCompartida claveCompartida2;
         private ClaveCompartida claveCompartida3;
@@ -392,7 +392,7 @@ namespace TestsObligatorio
                 Nombre = "Trabajo"
             };
 
-            clave1 = new Clave()
+            clave1 = new ControladoraClave()
             {
                 Sitio = "web.whatsapp.com",
                 Codigo = "EstaEsUnaClave1",
@@ -400,7 +400,7 @@ namespace TestsObligatorio
                 Nota = ""
             };
 
-            clave2 = new Clave()
+            clave2 = new ControladoraClave()
             {
                 Sitio = "Netflix.com",
                 Codigo = "EstaEsUnaClave2",
@@ -408,14 +408,14 @@ namespace TestsObligatorio
                 Nota = "Nota de una clave"
             };
 
-            clave3 = new Clave()
+            clave3 = new ControladoraClave()
             {
                 Sitio = "youtube.com",
                 Codigo = "codrojo",
                 UsuarioClave = "Hernesto"
             };
 
-            clave4 = new Clave()
+            clave4 = new ControladoraClave()
             {
                 Sitio = "www.hbo.com",
                 Codigo = "EstaEsUnaClave4",
@@ -449,7 +449,7 @@ namespace TestsObligatorio
         {
             categoria1.AgregarClave(clave1);
             usuario.AgregarCategoria(categoria1);
-            Clave claveIgual = new Clave()
+            ControladoraClave claveIgual = new ControladoraClave()
             {
                 Sitio = clave1.Sitio,
                 UsuarioClave = clave1.UsuarioClave,
@@ -463,7 +463,7 @@ namespace TestsObligatorio
         {
             categoria1.AgregarClave(clave1);
             usuario.AgregarCategoria(categoria1);
-            Clave claveDiferenteSitio = new Clave()
+            ControladoraClave claveDiferenteSitio = new ControladoraClave()
             {
                 Sitio = "www.youtube.com",
                 UsuarioClave = clave1.UsuarioClave,
@@ -477,7 +477,7 @@ namespace TestsObligatorio
         {
             categoria1.AgregarClave(clave1);
             usuario.AgregarCategoria(categoria1);
-            Clave claveDiferenteUsuario = new Clave()
+            ControladoraClave claveDiferenteUsuario = new ControladoraClave()
             {
                 Sitio = clave1.Sitio,
                 UsuarioClave = "222222",
@@ -491,7 +491,7 @@ namespace TestsObligatorio
         {
             categoria1.AgregarClave(clave1);
             usuario.AgregarCategoria(categoria1);
-            Clave claveDiferenteCodigo = new Clave()
+            ControladoraClave claveDiferenteCodigo = new ControladoraClave()
             {
                 Sitio = clave1.Sitio,
                 UsuarioClave = clave1.UsuarioClave,
@@ -508,7 +508,7 @@ namespace TestsObligatorio
             categoria2.AgregarClave(clave2);
             usuario.AgregarCategoria(categoria2);
 
-            Clave claveIgual = new Clave()
+            ControladoraClave claveIgual = new ControladoraClave()
             {
                 Sitio = clave2.Sitio,
                 UsuarioClave = clave2.UsuarioClave,
@@ -534,7 +534,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioAgregarClaveSinSitioOAplicacion()
         {
-            Clave claveSinSitio = new Clave()
+            ControladoraClave claveSinSitio = new ControladoraClave()
             {
                 UsuarioClave = "111111",
                 Codigo = "12345678"
@@ -552,7 +552,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioAgregarClaveSinCodigo()
         {
-            Clave claveSinCodigo = new Clave()
+            ControladoraClave claveSinCodigo = new ControladoraClave()
             {
                 Sitio = "www.ort.edu.uy",
                 UsuarioClave = "111111"
@@ -571,7 +571,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioAgregarClaveSinUsuario()
         {
-            Clave claveSinUsuario = new Clave()
+            ControladoraClave claveSinUsuario = new ControladoraClave()
             {
                 Sitio = "www.ort.edu.uy",
                 Codigo = "12345678"
@@ -634,7 +634,7 @@ namespace TestsObligatorio
             usuario.AgregarCategoria(categoria1);
             usuario.AgregarClave(clave1, categoria1);
 
-            Clave aBorrar = new Clave()
+            ControladoraClave aBorrar = new ControladoraClave()
             {
                 UsuarioClave = clave1.UsuarioClave,
                 Sitio = clave1.Sitio
@@ -652,7 +652,7 @@ namespace TestsObligatorio
             usuario.AgregarClave(clave1, categoria1);
             usuario.AgregarClave(clave2, categoria1);
 
-            Clave aBorrar = new Clave()
+            ControladoraClave aBorrar = new ControladoraClave()
             {
                 UsuarioClave = clave1.UsuarioClave,
                 Sitio = clave1.Sitio
@@ -667,7 +667,7 @@ namespace TestsObligatorio
             usuario.AgregarCategoria(categoria1);
             usuario.AgregarClave(clave1, categoria1);
 
-            Clave claveBuscadora = new Clave()
+            ControladoraClave claveBuscadora = new ControladoraClave()
             {
                 Sitio = clave1.Sitio,
                 UsuarioClave = clave1.UsuarioClave
@@ -683,7 +683,7 @@ namespace TestsObligatorio
             usuario.AgregarClave(clave1, categoria1);
             usuario.AgregarClave(clave2, categoria1);
 
-            Clave claveBuscadora = new Clave()
+            ControladoraClave claveBuscadora = new ControladoraClave()
             {
                 Sitio = clave1.Sitio,
                 UsuarioClave = clave1.UsuarioClave
@@ -699,7 +699,7 @@ namespace TestsObligatorio
             usuario.AgregarClave(clave1, categoria1);
             usuario.AgregarClave(clave2, categoria1);
 
-            Clave claveBuscadora = new Clave()
+            ControladoraClave claveBuscadora = new ControladoraClave()
             {
                 Sitio = clave2.Sitio,
                 UsuarioClave = clave2.UsuarioClave
@@ -714,7 +714,7 @@ namespace TestsObligatorio
             usuario.AgregarCategoria(categoria1);
             usuario.AgregarClave(clave1, categoria1);
 
-            Clave claveBuscadora = new Clave()
+            ControladoraClave claveBuscadora = new ControladoraClave()
             {
                 Sitio = clave1.Sitio,
                 UsuarioClave = clave1.UsuarioClave
@@ -749,7 +749,7 @@ namespace TestsObligatorio
             usuario.AgregarCategoria(categoria1);
             categoria1.AgregarClave(clave1);
 
-            Clave buscadora = new Clave()
+            ControladoraClave buscadora = new ControladoraClave()
             {
                 UsuarioClave = clave1.UsuarioClave,
                 Sitio = clave1.Sitio
@@ -775,7 +775,7 @@ namespace TestsObligatorio
             categoria1.AgregarClave(clave1);
             categoria1.AgregarClave(clave2);
 
-            Clave duplicada = new Clave()
+            ControladoraClave duplicada = new ControladoraClave()
             {
                 UsuarioClave = clave2.UsuarioClave,
                 Sitio = clave2.Sitio,
@@ -828,13 +828,13 @@ namespace TestsObligatorio
 
             usuario.ModificarClave(parametros);
 
-            Clave buscadora = new Clave()
+            ControladoraClave buscadora = new ControladoraClave()
             {
                 UsuarioClave = clave2.UsuarioClave,
                 Sitio = clave2.Sitio
             };
 
-            Clave resultado = usuario.GetClave(buscadora);
+            ControladoraClave resultado = usuario.GetClave(buscadora);
 
             Categoria categoriaFinal = usuario.GetCategoriaClave(buscadora);
 
@@ -856,13 +856,13 @@ namespace TestsObligatorio
             categoria1.AgregarClave(clave1);
             categoria1.AgregarClave(clave2);
 
-            List<Clave> claves = new List<Clave>
+            List<ControladoraClave> claves = new List<ControladoraClave>
             {
                 clave1,
                 clave2
             };
 
-            List<Clave> getListaClaves = usuario.GetListaClaves();
+            List<ControladoraClave> getListaClaves = usuario.GetListaClaves();
 
             bool getListaClavesContieneLasClaves = getListaClaves.All(claves.Contains);
             bool lasClavesContieneGetListaClaves = claves.All(getListaClaves.Contains);
@@ -880,7 +880,7 @@ namespace TestsObligatorio
             categoria2.AgregarClave(clave3);
             categoria2.AgregarClave(clave4);
 
-            List<Clave> claves = new List<Clave>
+            List<ControladoraClave> claves = new List<ControladoraClave>
             {
                 clave1,
                 clave2,
@@ -888,7 +888,7 @@ namespace TestsObligatorio
                 clave4
             };
 
-            List<Clave> getListaClaves = usuario.GetListaClaves();
+            List<ControladoraClave> getListaClaves = usuario.GetListaClaves();
 
             bool getListaClavesContieneLasClaves = getListaClaves.All(claves.Contains);
             bool lasClavesContieneGetListaClaves = claves.All(getListaClaves.Contains);
@@ -903,11 +903,11 @@ namespace TestsObligatorio
             categoria1.AgregarClave(clave1);
             categoria1.AgregarClave(clave3);
 
-            List<Clave> getListaClaves = usuario.GetListaClaves();
+            List<ControladoraClave> getListaClaves = usuario.GetListaClaves();
             int cantidadRojas = 0;
             NivelSeguridad nivelSeguridad = new NivelSeguridad();
             ColorNivelSeguridad color = new ColorNivelSeguridad();
-            foreach (Clave clave in getListaClaves)
+            foreach (ControladoraClave clave in getListaClaves)
             {
                 if (nivelSeguridad.GetNivelSeguridad(clave.Codigo).Equals(color.Rojo)) cantidadRojas ++;
             }
@@ -923,12 +923,12 @@ namespace TestsObligatorio
             categoria1.AgregarClave(clave2);
 
 
-            List<Clave> getListaClaves = usuario.GetListaClaves();
+            List<ControladoraClave> getListaClaves = usuario.GetListaClaves();
             ColorNivelSeguridad colores = new ColorNivelSeguridad();
             NivelSeguridad nivelSeguridad = new NivelSeguridad();
             string color = colores.VerdeClaro;
             int cantidadColor = 0;
-            foreach (Clave clave in getListaClaves)
+            foreach (ControladoraClave clave in getListaClaves)
             {
                 if (nivelSeguridad.GetNivelSeguridad(clave.Codigo) == color) cantidadColor++;
             }
@@ -1162,13 +1162,13 @@ namespace TestsObligatorio
             categoria1.AgregarClave(clave1);
             categoria1.AgregarClave(clave2);
 
-            List<Clave> clavesVerdes = new List<Clave>
+            List<ControladoraClave> clavesVerdes = new List<ControladoraClave>
             {
                 clave1
             };
 
             ColorNivelSeguridad color = new ColorNivelSeguridad();
-            List<Clave> getListaClavesVerdes = usuario.GetListaClavesColor(color.VerdeOscuro);
+            List<ControladoraClave> getListaClavesVerdes = usuario.GetListaClavesColor(color.VerdeOscuro);
 
             bool getListaClavesContieneLasClavesVerdes = getListaClavesVerdes.All(clavesVerdes.Contains);
             bool clavesVerdesContieneListaClavesVerdes = clavesVerdes.All(getListaClavesVerdes.Contains);
@@ -1182,7 +1182,7 @@ namespace TestsObligatorio
             usuario.AgregarCategoria(categoria1);
             usuario.AgregarCategoria(categoria2);
 
-            Clave clave1 = new Clave()
+            ControladoraClave clave1 = new ControladoraClave()
             {
                 Sitio = "web.whatsapp.com",
                 Codigo = "estaesunaclave",
@@ -1190,7 +1190,7 @@ namespace TestsObligatorio
             };
             categoria1.AgregarClave(clave1);
 
-            Clave clave2 = new Clave()
+            ControladoraClave clave2 = new ControladoraClave()
             {
                 Sitio = "web.whatsapp.com",
                 Codigo = "ESTAESUNACLAVE",
@@ -1198,14 +1198,14 @@ namespace TestsObligatorio
             };
             categoria2.AgregarClave(clave2);
 
-            List<Clave> clavesAmarillas = new List<Clave>
+            List<ControladoraClave> clavesAmarillas = new List<ControladoraClave>
             {
                 clave1,
                 clave2
             };
 
             ColorNivelSeguridad color = new ColorNivelSeguridad();
-            List<Clave> getListaClavesAmarillas = usuario.GetListaClavesColor(color.Amarillo);
+            List<ControladoraClave> getListaClavesAmarillas = usuario.GetListaClavesColor(color.Amarillo);
 
             bool getListaClavesContieneLasClavesVerdes = getListaClavesAmarillas.All(clavesAmarillas.Contains);
             bool clavesVerdesContieneListaClavesVerdes = clavesAmarillas.All(getListaClavesAmarillas.Contains);
@@ -1228,7 +1228,7 @@ namespace TestsObligatorio
             usuario.AgregarCategoria(categoria2);
             usuario.AgregarClave(clave1, categoria2);
 
-            Clave buscadora = new Clave()
+            ControladoraClave buscadora = new ControladoraClave()
             {
                 Sitio = clave1.Sitio,
                 Codigo = clave1.Codigo,
@@ -1292,7 +1292,7 @@ namespace TestsObligatorio
                 ClaveMaestra = "ClaveDiferente"
             };
 
-            Clave claveBuscadora = new Clave
+            ControladoraClave claveBuscadora = new ControladoraClave
             {
                 Sitio = clave2.Sitio,
                 Codigo = "EstaEsUnaDiferente",
@@ -1363,7 +1363,7 @@ namespace TestsObligatorio
                 ClaveMaestra = "ClaveDiferente"
             };
 
-            Clave claveBuscadora = new Clave
+            ControladoraClave claveBuscadora = new ControladoraClave
             {
                 Sitio = clave2.Sitio,
                 Codigo = "EstaEsUnaDiferente",

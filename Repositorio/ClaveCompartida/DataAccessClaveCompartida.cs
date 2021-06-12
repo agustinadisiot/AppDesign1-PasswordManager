@@ -1,4 +1,4 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ namespace Repositorio
                 
                 Usuario original = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Original.Id);
                 Usuario destino = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Destino.Id);
-                Clave claveCompartida = contexto.Claves.FirstOrDefault(buscador => buscador.Id == entity.Clave.Id);
+                ControladoraClave claveCompartida = contexto.Claves.FirstOrDefault(buscador => buscador.Id == entity.Clave.Id);
 
                 if (original != null )
                 { 
@@ -81,7 +81,7 @@ namespace Repositorio
             {
                 Usuario original = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Original.Id);
                 Usuario destino = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Destino.Id);
-                Clave claveCompartida = contexto.Claves.FirstOrDefault(buscador => buscador.Id == entity.Clave.Id);
+                ControladoraClave claveCompartida = contexto.Claves.FirstOrDefault(buscador => buscador.Id == entity.Clave.Id);
 
                 if (original != null)
                 {

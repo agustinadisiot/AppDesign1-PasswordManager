@@ -1,4 +1,4 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
@@ -22,7 +22,7 @@ namespace Repositorio
                     t.MapRightKey("TarjetasRefId");
                     t.ToTable("DataBreachTarjetas");
                 });
-            this.HasMany<Clave>(db => db.Claves)
+            this.HasMany<ControladoraClave>(db => db.Claves)
                 .WithMany(c => c.DataBreaches)
                 .Map(c =>
                 {

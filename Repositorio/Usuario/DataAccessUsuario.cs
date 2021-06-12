@@ -1,4 +1,4 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -95,7 +95,7 @@ namespace Repositorio
             using (var contexto = new AdministradorClavesDBContext())
             {
                 List<Tarjeta> tarjetas = new List<Tarjeta>();
-                List<Clave> claves = new List<Clave>();
+                List<ControladoraClave> claves = new List<ControladoraClave>();
 
                 List<Categoria> categorias = new List<Categoria>();
                 List<DataBreach> dataBreaches = new List<DataBreach>();

@@ -1,4 +1,4 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ namespace Repositorio
             using (var contexto = new AdministradorClavesDBContext())
             {
                 List<Tarjeta> tarjetas = new List<Tarjeta>();
-                List<Clave> claves = new List<Clave>();
+                List<ControladoraClave> claves = new List<ControladoraClave>();
 
                 for (int i = 0; i < entity.Tarjetas.Count; i++)
                 {
@@ -35,9 +35,9 @@ namespace Repositorio
 
                 for (int i = 0; i < entity.Claves.Count; i++)
                 {
-                    Clave t = entity.Claves.ElementAt(i);
+                    ControladoraClave t = entity.Claves.ElementAt(i);
 
-                    Clave nueva = contexto.Claves.FirstOrDefault(tNueva => tNueva.Id == t.Id);
+                    ControladoraClave nueva = contexto.Claves.FirstOrDefault(tNueva => tNueva.Id == t.Id);
 
                     if (nueva != null)
                     {
@@ -87,7 +87,7 @@ namespace Repositorio
             using (var contexto = new AdministradorClavesDBContext())
             {
                 List<Tarjeta> tarjetas = new List<Tarjeta>();
-                List<Clave> claves = new List<Clave>();
+                List<ControladoraClave> claves = new List<ControladoraClave>();
 
                 for (int i = 0; i < entity.Tarjetas.Count; i++)
                 {
@@ -107,9 +107,9 @@ namespace Repositorio
 
                 for (int i = 0; i < entity.Claves.Count; i++)
                 {
-                    Clave t = entity.Claves.ElementAt(i);
+                    ControladoraClave t = entity.Claves.ElementAt(i);
 
-                    Clave nueva = contexto.Claves.FirstOrDefault(tNueva => tNueva.Id == t.Id);
+                    ControladoraClave nueva = contexto.Claves.FirstOrDefault(tNueva => tNueva.Id == t.Id);
 
                     if (nueva != null)
                     {

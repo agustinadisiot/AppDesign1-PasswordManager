@@ -1,4 +1,4 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
@@ -15,7 +15,7 @@ namespace Repositorio
             this.HasKey(x => x.Id);
             this.Property(x => x.Nombre).IsRequired();
             this.HasMany<Tarjeta>(ca => ca.Tarjetas);
-            this.HasMany<Clave>(ca => ca.Claves);
+            this.HasMany<ControladoraClave>(ca => ca.Claves);
         }
     }
 }

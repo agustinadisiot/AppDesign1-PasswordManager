@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dominio
+namespace LogicaDeNegocio
 {
     public class LogicaDataBreach
     {
@@ -33,7 +33,7 @@ namespace Dominio
             return dataBreach;
         }
 
-        public List<Clave> FiltrarClaves(List<Filtrada> dataBreach, List<Clave> controlar)
+        public List<ControladoraClave> FiltrarClaves(List<Filtrada> dataBreach, List<ControladoraClave> controlar)
         {
             return controlar.FindAll(buscadora => buscadora.FueFiltrado(dataBreach));
         }

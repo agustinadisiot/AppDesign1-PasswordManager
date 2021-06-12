@@ -1,4 +1,4 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -62,7 +62,7 @@ namespace Interfaz
 
                 try
                 {
-                    Clave nueva = new Clave()
+                    ControladoraClave nueva = new ControladoraClave()
                     {
                         UsuarioClave = this.inputUsuario.Text,
                         Codigo = this.inputContra.Text,

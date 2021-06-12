@@ -61,9 +61,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Dominio\Dominio.csproj">
+    <ProjectReference Include="..\Dominio\LogicaDeNegocio.csproj">
       <Project>{A2333956-836C-42AB-AD9B-DBBA96727E27}</Project>
-      <Name>Dominio</Name>
+      <Name>LogicaDeNegocio</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

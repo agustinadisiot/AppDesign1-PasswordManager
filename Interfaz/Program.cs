@@ -1,4 +1,4 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
 using Repositorio;
 using System;
 using System.Collections.Generic;
@@ -16,12 +16,12 @@ namespace Interfaz
         static void Main()
         {
 
-/*
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new VentanaPrincipal());
-*/
 
+/*
             Categoria categoria1 = new Categoria()
             {
                 Nombre = "Personal"
@@ -263,7 +263,7 @@ namespace Interfaz
             categorias = (List<Categoria>)daCategoria.GetTodos();
 
             Console.ReadLine();
-
+*/
         }
     }
 }

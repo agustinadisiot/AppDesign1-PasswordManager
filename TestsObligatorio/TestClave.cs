@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Dominio;
+using LogicaDeNegocio;
 using System;
 using System.Linq;
 
@@ -8,8 +8,8 @@ namespace TestsObligatorio
     [TestClass]
     public class TestClave
     {
-        private Clave clave1;
-        private Clave clave2;
+        private ControladoraClave clave1;
+        private ControladoraClave clave2;
         private string menorA5;
         private string mayorA25;
         private NivelSeguridad nivelSeguridad;
@@ -19,13 +19,13 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
-            clave1 = new Clave()
+            clave1 = new ControladoraClave()
             {
                 Sitio = "ort.edu.uy",
                 UsuarioClave = "UsuarioORT"
             };
 
-            clave2 = new Clave()
+            clave2 = new ControladoraClave()
             {
                 Sitio = "youtube.com",
                 UsuarioClave = "UsuarioYoutube"

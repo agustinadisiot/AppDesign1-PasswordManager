@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Dominio
+namespace LogicaDeNegocio
 {
     public class ClaveGeneradaVaciaException : Exception
     {

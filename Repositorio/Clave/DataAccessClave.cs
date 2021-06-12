@@ -1,4 +1,4 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Repositorio
 {
-    public class DataAccessClave : IDataAccess<Clave>
+    public class DataAccessClave : IDataAccess<ControladoraClave>
     {
 
-        public void Agregar(Clave entity)
+        public void Agregar(ControladoraClave entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
@@ -19,17 +19,17 @@ namespace Repositorio
             }
         }
 
-        public void Borrar(Clave entity)
+        public void Borrar(ControladoraClave entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                Clave aEliminar = contexto.Claves.FirstOrDefault(t => t.Id == entity.Id);
+                ControladoraClave aEliminar = contexto.Claves.FirstOrDefault(t => t.Id == entity.Id);
                 contexto.Claves.Remove(aEliminar);
                 contexto.SaveChanges();
             }
         }
 
-        public Clave Get(int id)
+        public ControladoraClave Get(int id)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
@@ -37,7 +37,7 @@ namespace Repositorio
             }
         }
 
-        public IEnumerable<Clave> GetTodos()
+        public IEnumerable<ControladoraClave> GetTodos()
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
@@ -45,11 +45,11 @@ namespace Repositorio
             }
         }
 
-        public void Modificar(Clave entity)
+        public void Modificar(ControladoraClave entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                Clave aModificar = contexto.Claves.Find(entity.Id);
+                ControladoraClave aModificar = contexto.Claves.Find(entity.Id);
                 aModificar.UsuarioClave = entity.UsuarioClave;
                 aModificar.Sitio = entity.Sitio;
                 aModificar.Nota = entity.Nota;

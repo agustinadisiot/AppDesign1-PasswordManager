@@ -1,4 +1,4 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -84,10 +84,10 @@ namespace TestsObligatorio
     public class TestUsuarioDataBreaches
     {
         private Usuario usuario;
-        private Clave clave1;
-        private Clave clave2;
-        private Clave clave3;
-        private Clave clave4;
+        private ControladoraClave clave1;
+        private ControladoraClave clave2;
+        private ControladoraClave clave3;
+        private ControladoraClave clave4;
         private Tarjeta tarjeta1;
         private Tarjeta tarjeta2;
         private Tarjeta tarjeta3;
@@ -123,14 +123,14 @@ namespace TestsObligatorio
 
             usuario.AgregarCategoria(categoria2);
 
-            clave1 = new Clave()
+            clave1 = new ControladoraClave()
             {
                 Sitio = "web.whatsapp.com",
                 Codigo = "EstaEsUnaClave1",
                 UsuarioClave = "Roberto"
             };
             categoria1.AgregarClave(clave1);
-            clave2 = new Clave()
+            clave2 = new ControladoraClave()
             {
                 Sitio = "web.whatsapp.com",
                 Codigo = "EstaEsUnaClave2",
@@ -138,14 +138,14 @@ namespace TestsObligatorio
             };
             categoria1.AgregarClave(clave2);
 
-            clave3 = new Clave()
+            clave3 = new ControladoraClave()
             {
                 Sitio = "web.whatsapp.com",
                 Codigo = "EstaEsUnaClave3",
                 UsuarioClave = "Hernesto"
             };
             categoria2.AgregarClave(clave3);
-            clave4 = new Clave()
+            clave4 = new ControladoraClave()
             {
                 Sitio = "web.whatsapp.com",
                 Codigo = "EstaEsUnaClave4",
@@ -214,7 +214,7 @@ namespace TestsObligatorio
                 "EstaEsUnaClave4"
             };
 
-            List<Clave> esperadas = new List<Clave>() {
+            List<ControladoraClave> esperadas = new List<ControladoraClave>() {
                 clave1,
                 clave4
             };
@@ -242,7 +242,7 @@ namespace TestsObligatorio
 
             List<Filtrada> filtradas = filtradasString.Select(s => new Filtrada(s)).ToList();
 
-            List<Clave> esperadas = new List<Clave>() {
+            List<ControladoraClave> esperadas = new List<ControladoraClave>() {
                 clave3
             };
 

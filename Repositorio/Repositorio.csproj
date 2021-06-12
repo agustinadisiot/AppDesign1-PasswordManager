@@ -79,9 +79,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Dominio\Dominio.csproj">
+    <ProjectReference Include="..\Dominio\LogicaDeNegocio.csproj">
       <Project>{a2333956-836c-42ab-ad9b-dbba96727e27}</Project>
-      <Name>Dominio</Name>
+      <Name>LogicaDeNegocio</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

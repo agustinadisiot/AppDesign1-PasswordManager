@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Dominio
+namespace LogicaDeNegocio
 {
-    public class Clave
+    public class ControladoraClave
     {
         private string _usuario;
         private string _codigo;
@@ -19,7 +19,7 @@ namespace Dominio
 
         public List<DataBreach> DataBreaches { get; set; }
 
-        public Clave()
+        public ControladoraClave()
         {
             this.EsCompartida = false;
             this._fechaModificacion = DateTime.Now.Date;
@@ -78,7 +78,7 @@ namespace Dominio
         {
             if (objeto == null) throw new ObjetoIncompletoException();
             if (this.GetType() != objeto.GetType()) throw new ObjetoIncorrectoException();
-            Clave aIgualar = (Clave)objeto;
+            ControladoraClave aIgualar = (ControladoraClave)objeto;
             bool mismoSitio = aIgualar.Sitio.ToUpper() == this.Sitio.ToUpper();
             bool mismoUsuario = aIgualar.UsuarioClave.ToUpper() == this.UsuarioClave.ToUpper();
             return (mismoSitio && mismoUsuario);

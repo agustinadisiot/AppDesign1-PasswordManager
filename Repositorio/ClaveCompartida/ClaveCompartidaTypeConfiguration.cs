@@ -1,4 +1,4 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
@@ -20,7 +20,7 @@ namespace Repositorio
             this.HasRequired<Usuario>(cc => cc.Destino)
                 .WithMany(u => u.CompartidasConmigo)
                 .HasForeignKey(cc => cc.DestinoId).WillCascadeOnDelete(false);
-            this.HasRequired<Clave>(cc => cc.Clave);
+            this.HasRequired<ControladoraClave>(cc => cc.Clave);
         }
     }
 }

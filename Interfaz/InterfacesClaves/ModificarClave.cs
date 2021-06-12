@@ -1,4 +1,4 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -8,9 +8,9 @@ namespace Interfaz.InterfacesClaves
     public partial class ModificarClave : UserControl
     {
         private Usuario _actual;
-        private Clave _vieja;
+        private ControladoraClave _vieja;
 
-        public ModificarClave(Usuario usuario, Clave clave)
+        public ModificarClave(Usuario usuario, ControladoraClave clave)
         {
             this._actual = usuario;
             this._vieja = clave;
@@ -69,7 +69,7 @@ namespace Interfaz.InterfacesClaves
             {
                 DateTime modificacion = (this._vieja.Codigo == this.inputContra.Text) ? this._vieja.FechaModificacion : System.DateTime.Now.Date;
 
-                Clave nueva = new Clave()
+                ControladoraClave nueva = new ControladoraClave()
                 {
                     UsuarioClave = this.inputUsuario.Text,
                     Sitio = this.inputSitio.Text,

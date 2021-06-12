@@ -1,4 +1,4 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Repositorio
 {
-    class ClaveTypeConfiguration : EntityTypeConfiguration<Clave>
+    class ClaveTypeConfiguration : EntityTypeConfiguration<ControladoraClave>
     {
         public ClaveTypeConfiguration()
         {

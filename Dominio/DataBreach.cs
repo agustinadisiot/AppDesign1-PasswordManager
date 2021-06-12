@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Dominio
+namespace LogicaDeNegocio
 {
     public class DataBreach
     {
         public DataBreach() {
             this.Tarjetas = new List<Tarjeta>();
-            this.Claves = new List<Clave>();
+            this.Claves = new List<ControladoraClave>();
             this.Fecha = DateTime.Now;
             this.Filtradas = new List<Filtrada>();
         }
@@ -16,7 +16,7 @@ namespace Dominio
 
         public List<Tarjeta> Tarjetas { get; set; }
 
-        public List<Clave> Claves { get; set; }
+        public List<ControladoraClave> Claves { get; set; }
         public DateTime Fecha { get; set; }
         public List<Filtrada> Filtradas { get; set; }
     }

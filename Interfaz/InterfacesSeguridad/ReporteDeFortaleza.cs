@@ -1,4 +1,4 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -41,9 +41,9 @@ namespace Interfaz.InterfacesSeguridad
                 DataGridViewRow selectedRow = TablaReporte.Rows[selectedrowindex];
                 string color = Convert.ToString(selectedRow.Cells["Color"].Value);
 
-                List<Clave> listaClaves = this._usuarioActual.GetListaClavesColor(color);
+                List<ControladoraClave> listaClaves = this._usuarioActual.GetListaClavesColor(color);
 
-                foreach (Clave claveActual in listaClaves)
+                foreach (ControladoraClave claveActual in listaClaves)
                 {
                     string nombreCategoria = this._usuarioActual.GetCategoriaClave(claveActual).Nombre;
                     string sitio = claveActual.Sitio;
@@ -96,7 +96,7 @@ namespace Interfaz.InterfacesSeguridad
                 string sitioClaveAMostrar = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 string usuarioClaveAMostrar = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                Clave buscadora = new Clave
+                ControladoraClave buscadora = new ControladoraClave
                 {
                     Sitio = sitioClaveAMostrar,
                     UsuarioClave = usuarioClaveAMostrar
@@ -106,9 +106,9 @@ namespace Interfaz.InterfacesSeguridad
             }
         }
 
-        public delegate void AbrirVerClave_Delegate(Clave buscadora, Usuario usuarioActual);
+        public delegate void AbrirVerClave_Delegate(ControladoraClave buscadora, Usuario usuarioActual);
         public event AbrirVerClave_Delegate AbrirVerClave_Event;
-        private void AbrirVerClave(Clave buscadora, Usuario usuarioActual)
+        private void AbrirVerClave(ControladoraClave buscadora, Usuario usuarioActual)
         {
             if (this.AbrirVerClave_Event != null)
                 this.AbrirVerClave_Event(buscadora, usuarioActual);
@@ -126,7 +126,7 @@ namespace Interfaz.InterfacesSeguridad
                 sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                Clave aModificar = new Clave()
+                ControladoraClave aModificar = new ControladoraClave()
                 {
                     Sitio = sitioClave,
                     UsuarioClave = usuarioClave
@@ -136,9 +136,9 @@ namespace Interfaz.InterfacesSeguridad
             }
         }
 
-        public delegate void AbrirModificarClave_Delegate(Clave claveAModificar);
+        public delegate void AbrirModificarClave_Delegate(ControladoraClave claveAModificar);
         public event AbrirModificarClave_Delegate AbrirModificarClave_Event;
-        public void IrAModificarClave(Clave claveAModificar)
+        public void IrAModificarClave(ControladoraClave claveAModificar)
         {
             if (this.AbrirModificarClave_Event != null)
                 this.AbrirModificarClave_Event(claveAModificar);

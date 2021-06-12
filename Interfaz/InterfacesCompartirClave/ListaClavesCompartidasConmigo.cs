@@ -1,4 +1,4 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -25,7 +25,7 @@ namespace Interfaz
 
             foreach (ClaveCompartida claveCompartidaActual in listaClavesCompartidasConmigo)
             {
-                Clave claveQueSeComparte = claveCompartidaActual.Clave;
+                ControladoraClave claveQueSeComparte = claveCompartidaActual.Clave;
                 Usuario usuarioQueComparte = claveCompartidaActual.Original;
 
                 string nombreUsuarioQueComparte = usuarioQueComparte.Nombre;
@@ -48,7 +48,7 @@ namespace Interfaz
                 string sitioClaveAMostrar = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 string usuarioClaveAMostrar = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                Clave claveBuscadora = new Clave
+                ControladoraClave claveBuscadora = new ControladoraClave
                 {
                     Sitio = sitioClaveAMostrar,
                     UsuarioClave = usuarioClaveAMostrar
@@ -63,9 +63,9 @@ namespace Interfaz
             }
         }
 
-        public delegate void AbrirVerClave_Delegate(Clave buscadora, Usuario usuarioActual);
+        public delegate void AbrirVerClave_Delegate(ControladoraClave buscadora, Usuario usuarioActual);
         public event AbrirVerClave_Delegate AbrirVerClave_Event;
-        private void AbrirVerClave(Clave buscadora, Usuario usuarioActual)
+        private void AbrirVerClave(ControladoraClave buscadora, Usuario usuarioActual)
         {
             if (this.AbrirVerClave_Event != null)
                 this.AbrirVerClave_Event(buscadora, usuarioActual);

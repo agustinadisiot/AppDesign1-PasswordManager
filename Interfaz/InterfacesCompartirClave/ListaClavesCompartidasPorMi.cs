@@ -1,4 +1,4 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -26,7 +26,7 @@ namespace Interfaz.InterfacesCompartirClave
 
             foreach (ClaveCompartida claveCompartidaActual in listaClavesCompartidasPorMi)
             {
-                Clave claveQueSeComparte = claveCompartidaActual.Clave;
+                ControladoraClave claveQueSeComparte = claveCompartidaActual.Clave;
                 Usuario usuarioQueComparte = claveCompartidaActual.Destino;
 
                 string nombreUsuarioAQuienSeComparte = usuarioQueComparte.Nombre;
@@ -61,7 +61,7 @@ namespace Interfaz.InterfacesCompartirClave
                 string sitioClaveDejarDeCompartir = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 string usuarioClaveDejarDeCompartir = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                Clave claveBuscadora = new Clave
+                ControladoraClave claveBuscadora = new ControladoraClave
                 {
                     Sitio = sitioClaveDejarDeCompartir,
                     UsuarioClave = usuarioClaveDejarDeCompartir
@@ -97,7 +97,7 @@ namespace Interfaz.InterfacesCompartirClave
                 string sitioClaveAMostrar = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 string usuarioClaveAMostrar = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                Clave buscadora = new Clave
+                ControladoraClave buscadora = new ControladoraClave
                 {
                     Sitio = sitioClaveAMostrar,
                     UsuarioClave = usuarioClaveAMostrar
@@ -107,9 +107,9 @@ namespace Interfaz.InterfacesCompartirClave
             }
         }
 
-        public delegate void AbrirVerClave_Delegate(Clave buscadora, Usuario usuarioActual);
+        public delegate void AbrirVerClave_Delegate(ControladoraClave buscadora, Usuario usuarioActual);
         public event AbrirVerClave_Delegate AbrirVerClave_Event;
-        private void AbrirVerClave(Clave buscadora, Usuario usuarioActual)
+        private void AbrirVerClave(ControladoraClave buscadora, Usuario usuarioActual)
         {
             if (this.AbrirVerClave_Event != null)
                 this.AbrirVerClave_Event(buscadora, usuarioActual);

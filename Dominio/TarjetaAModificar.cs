@@ -1,4 +1,4 @@
-﻿namespace Dominio
+﻿namespace LogicaDeNegocio
 {
     public class TarjetaAModificar
     {

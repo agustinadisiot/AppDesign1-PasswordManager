@@ -2,7 +2,7 @@
 using Interfaz.InterfacesCompartirClave;
 using Interfaz.InterfacesSeguridad;
 using Interfaz.InterfacesTarjetas;
-using Dominio;
+using LogicaDeNegocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -207,7 +207,7 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(listaTarjetas);
         }
 
-        protected void AbrirVerClave_Handler(Clave buscadora, Usuario usuarioABuscar)
+        protected void AbrirVerClave_Handler(ControladoraClave buscadora, Usuario usuarioABuscar)
         {
             foreach (Control p in this.panelPrincipal.Controls)
             {
@@ -215,7 +215,7 @@ namespace Interfaz
             }
 
             Usuario usuarioAMostrar = this._administrador.GetUsuario(usuarioABuscar);
-            Clave claveAMostrar = usuarioAMostrar.GetClave(buscadora);
+            ControladoraClave claveAMostrar = usuarioAMostrar.GetClave(buscadora);
             VerClave verClaveSeleccionada = new VerClave(claveAMostrar, usuarioAMostrar);
             verClaveSeleccionada.SalirDeVerClave_Event += this.SalirDeVerClave_Handler;
             this.panelPrincipal.Controls.Clear();
@@ -223,12 +223,12 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(verClaveSeleccionada);
         }
 
-        private void ModificarClaveDataBreach_Event(Clave buscadora, List<Filtrada> dataBreach) {
+        private void ModificarClaveDataBreach_Event(ControladoraClave buscadora, List<Filtrada> dataBreach) {
             this._ultimoDataBreach = dataBreach;
             this.AbrirModificarClave_Event(buscadora);
         }
 
-        private void AbrirModificarClave_Event(Clave buscadora)
+        private void AbrirModificarClave_Event(ControladoraClave buscadora)
         {
 
             foreach (Control p in this.panelPrincipal.Controls)
@@ -236,7 +236,7 @@ namespace Interfaz
                 this._panelAVolverModificarClave = p.GetType();
             }
 
-            Clave modificar = this._usuarioActual.GetClave(buscadora);
+            ControladoraClave modificar = this._usuarioActual.GetClave(buscadora);
             ModificarClave modificarClave = new ModificarClave(this._usuarioActual, modificar);
             modificarClave.CerrarModificarClave_Event += CerrarModificarClave_Event;
 

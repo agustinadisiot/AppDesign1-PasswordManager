@@ -1,4 +1,4 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,7 +11,7 @@ namespace Repositorio
     public class AdministradorClavesDBContext : DbContext
     {
         public DbSet<Tarjeta> Tarjetas { get; set; }
-        public DbSet<Clave> Claves { get; set; }
+        public DbSet<ControladoraClave> Claves { get; set; }
         public DbSet<DataBreach> DataBreaches { get; set; }
         public DbSet<Filtrada> Filtradas { get; set; }
         public DbSet<Categoria> Categorias { get; set; }

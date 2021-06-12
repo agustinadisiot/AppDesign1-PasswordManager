@@ -1,4 +1,4 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -9,7 +9,7 @@ namespace Interfaz.InterfacesClaves
     public partial class IngresoYListaDataBreach : UserControl
     {
         private Usuario _usuarioActual;
-        private List<Clave> _claves;
+        private List<ControladoraClave> _claves;
         private List<Tarjeta> _tarjetas;
         private List<Filtrada> _posiblesFiltradas;
 
@@ -50,7 +50,7 @@ namespace Interfaz.InterfacesClaves
             string formatoFecha = "dd'/'MM'/'yyyy";
             this.tablaClaves.Rows.Clear();
 
-            foreach (Clave claveActual in this._claves)
+            foreach (ControladoraClave claveActual in this._claves)
             {
                 string nombreCategoria = this._usuarioActual.GetCategoriaClave(claveActual).Nombre;
                 string sitio = claveActual.Sitio;
@@ -120,7 +120,7 @@ namespace Interfaz.InterfacesClaves
                 sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                Clave aModificar = new Clave()
+                ControladoraClave aModificar = new ControladoraClave()
                 {
                     Sitio = sitioClave,
                     UsuarioClave = usuarioClave
@@ -130,9 +130,9 @@ namespace Interfaz.InterfacesClaves
             }
         }
 
-        public delegate void ModificarClaveDataBreach_Delegate(Clave claveAModificar, List<Filtrada> dataBreach);
+        public delegate void ModificarClaveDataBreach_Delegate(ControladoraClave claveAModificar, List<Filtrada> dataBreach);
         public event ModificarClaveDataBreach_Delegate ModificarClaveDataBreach_Event;
-        public void IrAModificarClave(Clave claveAModificar)
+        public void IrAModificarClave(ControladoraClave claveAModificar)
         {
             LogicaDataBreach logicaDataBreach = new LogicaDataBreach();
             List<Filtrada> filtradas = logicaDataBreach.SepararPorLineas(this.inputDatos.Text);

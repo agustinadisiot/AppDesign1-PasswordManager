@@ -1,4 +1,4 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
 using System;
 using System.Windows.Forms;
 
@@ -6,10 +6,10 @@ namespace Interfaz
 {
     public partial class VerClave : UserControl
     {
-        private Clave _claveAMostrar;
+        private ControladoraClave _claveAMostrar;
         private Usuario _usuarioActual;
 
-        public VerClave(Clave claveAMostrar, Usuario usuarioActual)
+        public VerClave(ControladoraClave claveAMostrar, Usuario usuarioActual)
         {
             InitializeComponent();
             _claveAMostrar = claveAMostrar;

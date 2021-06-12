@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Dominio
+namespace LogicaDeNegocio
 {
     public class Administrador
     {
