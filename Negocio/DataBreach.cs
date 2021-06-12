@@ -16,7 +16,7 @@ namespace Negocio
 
         public List<Tarjeta> Tarjetas { get; set; }
 
-        public List<ControladoraClave> Claves { get; set; }
+        public List<Clave> Claves { get; set; }
         public DateTime Fecha { get; set; }
         public List<Filtrada> Filtradas { get; set; }
     }

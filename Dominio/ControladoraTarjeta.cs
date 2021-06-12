@@ -9,11 +9,6 @@ namespace LogicaDeNegocio
 {
     public class ControladoraTarjeta : IControladora<Tarjeta>
     {
-        private string _nombre;
-        private string _tipo;
-        private string _numero;
-        private string _codigo;
-        private string _nota;
         private const int _largoNombreYTipoMinimo = 3;
         private const int _largoNombreYTipoMaximo = 25;
         private const int _largoNumeroMinimoYMaximo = 16;
