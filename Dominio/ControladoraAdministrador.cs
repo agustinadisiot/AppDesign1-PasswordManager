@@ -19,7 +19,7 @@ namespace LogicaDeNegocio
 
         public void AgregarUsuario(ControladoraUsuario usuario)
         {
-            if (usuario.Nombre == null)  throw new ObjetoIncompletoException();
+            if (usuario.VerificarNombre == null)  throw new ObjetoIncompletoException();
             if (this.YaExisteUsuario(usuario)) throw new ObjetoYaExistenteException();
             this._usuarios.Add(usuario);
             

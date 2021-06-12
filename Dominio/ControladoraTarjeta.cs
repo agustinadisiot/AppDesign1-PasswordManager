@@ -17,12 +17,10 @@ namespace LogicaDeNegocio
         private const int _largoNotaMinimo = 0;
         private const int _largoNotaMaximo = 250;
 
-        public void Modificar(Tarjeta vieja, Tarjeta nueva)
+        public void Modificar(Tarjeta nueva)
         {
-            this.Verificar(vieja);
             this.Verificar(nueva);
 
-            nueva.Id = vieja.Id;
             DataAccessTarjeta acceso = new DataAccessTarjeta();
             acceso.Modificar(nueva);
         }
@@ -69,7 +67,6 @@ namespace LogicaDeNegocio
             VerificadoraString.VerificarLargoEntreMinimoYMaximo(aVerificar.Nota, _largoNotaMinimo, _largoNotaMaximo);
         }
 
-
         public bool FueFiltrado(Tarjeta aVerificar, List<Filtrada> filtradas)
         {
             const int largoTarjetaSinEspacios = 16;
@@ -93,6 +90,10 @@ namespace LogicaDeNegocio
             return potencialesTarjetas.Contains(aVerificar.Numero);
         }
 
-        
+        public void Borrar(Tarjeta aBorrar) {
+            this.Verificar(aBorrar);
+            DataAccessTarjeta acceso = new DataAccessTarjeta();
+            acceso.Borrar(aBorrar);
+        }
     }
 }

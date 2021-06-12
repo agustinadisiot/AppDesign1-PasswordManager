@@ -1,313 +1,303 @@
-﻿using System;
+﻿using Negocio;
+using Repositorio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace LogicaDeNegocio
 {
-    public class ControladoraUsuario
+    public class ControladoraUsuario: IControladora<Usuario>
     {
-        private string _nombre;
-        private string _claveMaestra;
         private const int _largoNombreYClaveMinimo = 5;
         private const int _largoNombreYClaveMaximo = 25;
 
-        public List<ControladoraCategoria> Categorias { get; set; }
-
-        public ControladoraUsuario()
+        public void Verificar(Usuario aVerificar)
         {
-            this.Categorias = new List<ControladoraCategoria>();
-            this.CompartidasConmigo = new List<ClaveCompartida>();
-            this.CompartidasPorMi = new List<ClaveCompartida>();
-            this.DataBreaches = new List<ControladoraDataBreach>();
+            this.VerificarNombre(aVerificar);
+            this.VerificarClaveMaestra(aVerificar);
         }
 
-        public int Id { get; set; }
-
-        public string Nombre 
-        {   get { return _nombre; }
-            set { this._nombre = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreYClaveMinimo, _largoNombreYClaveMaximo); }
-        }
-
-        public string ClaveMaestra {
-            get { return this._claveMaestra; }
-            set { this._claveMaestra = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreYClaveMinimo, _largoNombreYClaveMaximo);}
-        }
-
-        public List<ClaveCompartida> CompartidasPorMi { get; set; }
-
-        public List<ClaveCompartida> CompartidasConmigo { get; set; }
-
-        public List<ControladoraDataBreach> DataBreaches { get; set; }
-
-        public bool ValidarIgualClaveMaestra(string claveMaestraUsuario)
+        public void Modificar(Usuario nueva)
         {
-            return claveMaestraUsuario == this.ClaveMaestra;
+            throw new NotImplementedException();
         }
 
-        public bool EsListaCategoriasVacia()
+        public void VerificarNombre(Usuario aVerificar)
+        {   
+            VerificadoraString.VerificarLargoEntreMinimoYMaximo(aVerificar.Nombre, _largoNombreYClaveMinimo, _largoNombreYClaveMaximo);
+        }
+
+        public void VerificarClaveMaestra(Usuario aVerificar)
         {
-            bool noAgregoCategorias = (this.Categorias.Count() == 0);
+            VerificadoraString.VerificarLargoEntreMinimoYMaximo(aVerificar.ClaveMaestra, _largoNombreYClaveMinimo, _largoNombreYClaveMaximo);
+        }
+
+        public bool EsIgualClaveMaestra(Usuario usuario1, Usuario usuario2)
+        {
+            return usuario1.ClaveMaestra == usuario2.ClaveMaestra;
+        }
+
+        public bool EsListaCategoriasVacia(Usuario contenedor)
+        {
+            bool noAgregoCategorias = (contenedor.Categorias.Count() == 0);
             return noAgregoCategorias;
         }
 
-        public void AgregarCategoria(ControladoraCategoria categoria)
+        public void AgregarCategoria(Categoria categoria, Usuario contenedor)
         {
-            if (categoria.VerificarNombre == null) throw new ObjetoIncompletoException();
-            else 
+            ControladoraCategoria controladoraCategoria = new ControladoraCategoria();
+            controladoraCategoria.Verificar(categoria);
+             if (this.YaExisteCategoria(categoria, contenedor))
             {
-                if (this.YaExisteCategoria(categoria)) {
-                    throw new ObjetoYaExistenteException();
-                }
-                this.Categorias.Add(categoria);
-            }  
+                throw new ObjetoYaExistenteException();
+            }
+             contenedor.Categorias.Add(categoria);
+
+            DataAccessUsuario acceso = new DataAccessUsuario();
+            acceso.Modificar(contenedor);
         }
 
-        public ControladoraCategoria GetCategoria(ControladoraCategoria aBuscar)
+        public Categoria GetCategoria(Categoria aBuscar, Usuario contenedor)
         {
-            Predicate<ControladoraCategoria> buscadorCategoria = (ControladoraCategoria categoria) =>
-            { return categoria.Equals(aBuscar); };
-
-            ControladoraCategoria retorno = this.Categorias.Find(buscadorCategoria);
+            Categoria retorno = contenedor.Categorias.Find(buscadora => buscadora.Equals(aBuscar));
             return retorno != null ? retorno : throw new CategoriaInexistenteException();
         }
 
-        public ControladoraDataBreach GetUltimoDataBreach()
+        public DataBreach GetUltimoDataBreach(Usuario contenedor)
         {
-            return this.DataBreaches.LastOrDefault();
+            return contenedor.DataBreaches.LastOrDefault();
         }
 
-        public void agregarDataBreach(List<Filtrada> filtradas, DateTime tiempoBreach)
-        {
-            ControladoraFiltradas logicaDataBreach = new ControladoraFiltradas();
-            ControladoraDataBreach nuevoBreach = new ControladoraDataBreach()
-            {
-                Tarjetas = logicaDataBreach.FiltrarTarjetas(filtradas, this.GetListaTarjetas()),
-                Claves = logicaDataBreach.FiltrarClaves(filtradas, this.GetListaClaves()),
-                Filtradas = filtradas,
-                Fecha = tiempoBreach
-            };
-            this.DataBreaches.Add(nuevoBreach);
-        }
-
-        public override bool Equals(object objeto)
-        {
-            if (objeto == null) throw new ObjetoIncompletoException();
-            if (objeto.GetType() != this.GetType()) throw new ObjetoIncorrectoException();
-            ControladoraUsuario aIgualar = (ControladoraUsuario)objeto;
-            return aIgualar.Nombre.ToUpper() == this.Nombre.ToUpper();
-        }
-
-        public void ModificarNombreCategoria(ControladoraCategoria vieja, ControladoraCategoria nueva)
+        /*public void ModificarNombreCategoria(Categoria vieja, Categoria nueva)
         {
             if (this.YaExisteCategoria(nueva))
             {
                 throw new ObjetoYaExistenteException();
             }
             else {
-                ControladoraCategoria aBuscar = this.GetCategoria(vieja);
+                Categoria aBuscar = this.GetCategoria(vieja);
                 aBuscar.VerificarNombre = nueva.VerificarNombre;
             }
+        }*/
+
+        public bool YaExisteCategoria(Categoria aBuscar, Usuario contenedor)
+        {
+            return contenedor.Categorias.Any(buscadora => buscadora.Equals(aBuscar));
         }
 
-        public bool YaExisteCategoria(ControladoraCategoria aBuscar)
+        public bool YaExisteClave(Clave clave, Usuario contenedor)
         {
-            return this.Categorias.Any(buscadora => buscadora.Equals(aBuscar));
+            ControladoraCategoria controladora = new ControladoraCategoria();
+            return contenedor.Categorias.Any(categoria => controladora.YaExisteClave(clave, categoria));
         }
 
-        public bool YaExisteClave(ControladoraClave clave)
+        public void AgregarClave(Clave clave, Categoria categoria, Usuario contenedor)
         {
-            return this.Categorias.Any(catBuscadora => catBuscadora.YaExisteClave(clave));
-        }
+            ControladoraClave controladoraClave = new ControladoraClave();
+            controladoraClave.Verificar(clave);
 
-        public void AgregarClave(ControladoraClave clave, ControladoraCategoria buscadora)
-        {
-
-            bool noTieneSitio = (clave.VerificarSitio == null),
-                 noTieneClave = (clave.Codigo == null),
-                 noTieneUsuario = (clave.verificarUsuarioClave == null);
-
-            if (noTieneSitio || noTieneClave || noTieneUsuario) throw new ObjetoIncompletoException();
             
-            if(this.YaExisteClave(clave)) throw new ObjetoYaExistenteException();
+            if (this.YaExisteClave(clave,contenedor)) throw new ObjetoYaExistenteException();
+            if (!this.YaExisteCategoria(categoria, contenedor)) throw new CategoriaInexistenteException();
 
-            this.GetCategoria(buscadora).AgregarClave(clave);
+            ControladoraCategoria controladoraCategoria = new ControladoraCategoria();
+            controladoraCategoria.Verificar(categoria);
+
+            controladoraCategoria.AgregarClave(clave, categoria);
+
+            DataAccessUsuario acceso = new DataAccessUsuario();
+            acceso.Modificar(contenedor);
         }
 
-        public bool YaExisteTarjeta(ControladoraTarjeta tarjeta)
+        public bool YaExisteTarjeta(Tarjeta tarjeta, Usuario contenedor)
         {
-            return this.Categorias.Any(catBuscadora => catBuscadora.YaExisteTarjeta(tarjeta));
+            ControladoraCategoria controladora = new ControladoraCategoria();
+            return contenedor.Categorias.Any(categoria => controladora.YaExisteTarjeta(tarjeta,categoria));
         }
 
-        public void AgregarTarjeta(ControladoraTarjeta tarjeta, ControladoraCategoria categoria)
+        public void AgregarTarjeta(Tarjeta tarjeta, Categoria categoria, Usuario contenedor)
         {
-            bool noTieneNombre = (tarjeta.VerificarNombre == null),
-            noTieneSitio = (tarjeta.VerificarTipo == null),
-            noTieneNumero = (tarjeta.Numero == null),
-            noTieneCodigo = (tarjeta.VerificarCodigo == null);
+            ControladoraTarjeta controladoraTarjeta = new ControladoraTarjeta();
+            controladoraTarjeta.Verificar(tarjeta);
 
-            if (noTieneNombre || noTieneSitio || noTieneNumero || noTieneCodigo) throw new ObjetoIncompletoException();
+            if (this.YaExisteTarjeta(tarjeta, contenedor)) throw new ObjetoYaExistenteException();
+            if (!this.YaExisteCategoria(categoria, contenedor)) throw new CategoriaInexistenteException();
 
-            if (this.YaExisteTarjeta(tarjeta)) throw new ObjetoYaExistenteException();
+            ControladoraCategoria controladoraCategoria = new ControladoraCategoria();
+            controladoraCategoria.Verificar(categoria);
 
-            this.GetCategoria(categoria).AgregarTarjeta(tarjeta);
+            controladoraCategoria.AgregarTarjeta(tarjeta, categoria);
+
+            DataAccessUsuario acceso = new DataAccessUsuario();
+            acceso.Modificar(contenedor);
         }
 
-        public void BorrarClave(ControladoraClave aBorrar)
+        public void BorrarClave(Clave aBorrar, Usuario contenedor)
         {
-            if (this.EsListaCategoriasVacia()) {
+            if (this.EsListaCategoriasVacia(contenedor)) {
                 throw new CategoriaInexistenteException();
             }
-            if (!this.YaExisteClave(aBorrar))
+            if (!this.YaExisteClave(aBorrar, contenedor))
             {
                 throw new ObjetoInexistenteException();
             }
 
-            List<ClaveCompartida> clavesCompartidas = this.CompartidasPorMi.FindAll(buscadora => buscadora.Clave.Equals(aBorrar));
+            List<ClaveCompartida> clavesCompartidas = contenedor.CompartidasPorMi.FindAll(buscadora => aBorrar.Equals(buscadora.Clave));
+
             foreach(ClaveCompartida aDejarDeCompartir in clavesCompartidas)
             {
-                this.DejarDeCompartir(aDejarDeCompartir);
+                //this.DejarDeCompartir(aDejarDeCompartir, contenedor);
             }
 
-            ControladoraCategoria contieneClaveABorrar = this.Categorias.First(categoria => categoria.YaExisteClave(aBorrar));
-            contieneClaveABorrar.BorrarClave(aBorrar);
+            ControladoraCategoria controladoraCategoria = new ControladoraCategoria();
+
+            Categoria contieneClaveABorrar = this.GetCategoriaClave(aBorrar, contenedor);
+            controladoraCategoria.BorrarClave(aBorrar, contieneClaveABorrar);
+
+            DataAccessUsuario acceso = new DataAccessUsuario();
+            acceso.Modificar(contenedor);
         }
 
-        public List<ControladoraCategoria> GetListaCategorias()
+        public List<Categoria> GetListaCategorias(Usuario contenedor)
         {
-            return this.Categorias;
+            return contenedor.Categorias;
         }
 
-        public ControladoraClave GetClave(ControladoraClave claveBuscadora)
+        public Clave GetClave(Clave claveBuscadora, Usuario contenedor)
         {
-            if (!YaExisteClave(claveBuscadora)) throw new ObjetoInexistenteException();
+            if (!this.YaExisteClave(claveBuscadora, contenedor)) throw new ObjetoInexistenteException();
 
-            foreach (ControladoraCategoria categoria in this.Categorias)
+
+            Categoria categoria = this.GetCategoriaClave(claveBuscadora, contenedor);
+
+            ControladoraCategoria controladora = new ControladoraCategoria();
+
+            return controladora.GetClave(claveBuscadora, categoria);
+        }
+
+        public Tarjeta GetTarjeta(Tarjeta tarjetaBuscadora, Usuario contenedor)
+        {
+            if (!this.YaExisteTarjeta(tarjetaBuscadora, contenedor)) throw new ObjetoInexistenteException();
+
+
+            Categoria categoria = this.GetCategoriaTarjeta(tarjetaBuscadora, contenedor);
+
+            ControladoraCategoria controladora = new ControladoraCategoria();
+
+            return controladora.GetTarjeta(tarjetaBuscadora, categoria);
+        }
+
+        public void BorrarTarjeta(Tarjeta aBorrar, Usuario contenedor)
+        {
+            if (this.EsListaCategoriasVacia(contenedor))
             {
-                if (categoria.YaExisteClave(claveBuscadora))
-                {
-                    return categoria.GetClave(claveBuscadora);
-                }
-               
-            }
-
-            throw new ObjetoInexistenteException();
-
-        }
-
-        public ControladoraTarjeta GetTarjeta(ControladoraTarjeta buscadora)
-        {
-            if (!YaExisteTarjeta(buscadora)) throw new ObjetoInexistenteException();
-
-            foreach (ControladoraCategoria categoria in this.Categorias)
-            {
-                if (categoria.YaExisteTarjeta(buscadora))
-                {
-                    return categoria.GetTarjeta(buscadora);
-                }
-
-            }
-
-            throw new ObjetoInexistenteException();
-        }
-
-        public void BorrarTarjeta(ControladoraTarjeta aBorrar)
-        {
-            if (this.EsListaCategoriasVacia()) {
                 throw new CategoriaInexistenteException();
             }
-
-            if (!this.YaExisteTarjeta(aBorrar)) {
+            if (!this.YaExisteTarjeta(aBorrar, contenedor))
+            {
                 throw new ObjetoInexistenteException();
             }
 
-            ControladoraCategoria contieneClaveABorrar = this.Categorias.First(categoria => categoria.YaExisteTarjeta(aBorrar));
-            contieneClaveABorrar.BorrarTarjeta(aBorrar);
+            ControladoraCategoria controladoraCategoria = new ControladoraCategoria();
+
+            Categoria contieneTarjetaABorrar = this.GetCategoriaTarjeta(aBorrar, contenedor);
+            controladoraCategoria.BorrarTarjeta(aBorrar, contieneTarjetaABorrar);
+
+            DataAccessUsuario acceso = new DataAccessUsuario();
+            acceso.Modificar(contenedor);
         }
 
-        public void ModificarClave(ClaveAModificar modificar)
+        public void ModificarClave(ClaveAModificar modificar, Usuario contenedor)
         {
-            ControladoraClave claveVieja = this.GetClave(modificar.ClaveVieja);
-            ControladoraClave claveNueva = modificar.ClaveNueva;
+            Clave claveVieja = this.GetClave(modificar.ClaveVieja, contenedor);
+            Clave claveNueva = modificar.ClaveNueva;
 
-            if (!claveVieja.Equals(claveNueva) && this.YaExisteClave(claveNueva)) {
+            if (!claveVieja.Equals(claveNueva) && this.YaExisteClave(claveNueva, contenedor)) {
                 throw new ObjetoYaExistenteException();
             }
 
-            ControladoraCategoria categoriaVieja = this.GetCategoria(modificar.CategoriaVieja);
-            ControladoraCategoria categoriaNueva = this.GetCategoria(modificar.CategoriaNueva);
+            Categoria categoriaVieja = this.GetCategoria(modificar.CategoriaVieja, contenedor);
+            Categoria categoriaNueva = this.GetCategoria(modificar.CategoriaNueva, contenedor);
+
+            ControladoraCategoria controladoraCategoria = new ControladoraCategoria();
 
             if (categoriaVieja.Equals(categoriaNueva))
             {
-                categoriaVieja.ModificarClave(claveVieja, claveNueva);
+                controladoraCategoria.ModificarClave(claveVieja, claveNueva, categoriaVieja);
             }
             else {
-                categoriaVieja.BorrarClave(claveVieja);
-
-                categoriaNueva.AgregarClave(claveVieja);
-                categoriaNueva.ModificarClave(claveVieja, claveNueva);
+                categoriaVieja.Claves.Remove(claveVieja);
+                controladoraCategoria.Modificar(categoriaVieja);
+                controladoraCategoria.AgregarClave(claveVieja,categoriaNueva);
+                controladoraCategoria.ModificarClave(claveVieja, claveNueva, categoriaNueva);
             }
+            DataAccessUsuario acceso = new DataAccessUsuario();
+            acceso.Modificar(contenedor);
         }
 
-        public ControladoraDataBreach GetDataBreach(DateTime tiempoViejo)
+        public DataBreach GetDataBreach(DateTime tiempoViejo, Usuario contenedor)
         {
-            return this.DataBreaches.First(d=> d.Fecha == tiempoViejo);
+            return contenedor.DataBreaches.First(d=> d.Fecha == tiempoViejo);
         }
 
-        public void ModificarTarjeta(TarjetaAModificar modificar)
+        public void ModificarTarjeta(TarjetaAModificar modificar, Usuario contenedor)
         {
-            ControladoraTarjeta tarjetaVieja = this.GetTarjeta(modificar.TarjetaVieja);
-            ControladoraTarjeta tarjetaNueva = modificar.TarjetaNueva;
+            Tarjeta tarjetaVieja = this.GetTarjeta(modificar.TarjetaVieja, contenedor);
+            Tarjeta tarjetaNueva = modificar.TarjetaNueva;
 
 
             bool cambioNumero = tarjetaVieja.Numero != tarjetaNueva.Numero;
-            if (cambioNumero && this.YaExisteTarjeta(tarjetaNueva)) throw new ObjetoYaExistenteException();
+            if (cambioNumero && this.YaExisteTarjeta(tarjetaNueva, contenedor)) throw new ObjetoYaExistenteException();
 
-            ControladoraCategoria categoriaVieja = this.GetCategoria(modificar.CategoriaVieja);
-            ControladoraCategoria categoriaNueva = this.GetCategoria(modificar.CategoriaNueva);
+            Categoria categoriaVieja = this.GetCategoria(modificar.CategoriaVieja, contenedor);
+            Categoria categoriaNueva = this.GetCategoria(modificar.CategoriaNueva, contenedor);
+
+            ControladoraCategoria controladoraCategoria = new ControladoraCategoria();
 
             if (categoriaNueva == categoriaVieja)
             {
-                categoriaVieja.ModificarTarjeta(tarjetaVieja, tarjetaNueva);
+                controladoraCategoria.ModificarTarjeta(tarjetaVieja, tarjetaNueva, categoriaVieja);
             }
             else {
-                categoriaVieja.BorrarTarjeta(tarjetaVieja);
-
-                categoriaNueva.AgregarTarjeta(tarjetaVieja);
-                categoriaNueva.ModificarTarjeta(tarjetaVieja, tarjetaNueva);
+                categoriaVieja.Tarjetas.Remove(tarjetaVieja);
+                controladoraCategoria.Modificar(categoriaVieja);
+                controladoraCategoria.AgregarTarjeta(tarjetaVieja,categoriaNueva);
+                controladoraCategoria.ModificarTarjeta(tarjetaVieja, tarjetaNueva,categoriaNueva);
             }
         }
 
 
-        public List<ControladoraClave> GetListaClaves()
+        public List<Clave> GetListaClaves(Usuario contenedor)
         {
-            List<ControladoraClave> claves = new List<ControladoraClave>();
-
-            foreach(ControladoraCategoria categoria in this.Categorias)
+            List<Clave> claves = new List<Clave>();
+            List<Categoria> categorias = this.GetListaCategorias(contenedor);
+            ControladoraCategoria controladoraCategoria = new ControladoraCategoria();
+            foreach(Categoria categoria in categorias)
             {
-               claves.AddRange(categoria.GetListaClaves());
+               claves.AddRange(controladoraCategoria.GetListaClaves(categoria));
             }
 
             return claves;
         }
 
-        public List<ControladoraTarjeta> GetListaTarjetas()
+        public List<Tarjeta> GetListaTarjetas(Usuario contenedor)
         {
-            List<ControladoraCategoria> categorias = this.GetListaCategorias();
-            List<ControladoraTarjeta> tarjetasUsuario = new List<ControladoraTarjeta>();
-            foreach(ControladoraCategoria categoria in categorias)
+            List<Tarjeta> tarjetas = new List<Tarjeta>();
+            List<Categoria> categorias = this.GetListaCategorias(contenedor);
+            ControladoraCategoria controladoraCategoria = new ControladoraCategoria();
+            foreach (Categoria categoria in categorias)
             {
-                tarjetasUsuario.AddRange(categoria.GetListaTarjetas());
+                tarjetas.AddRange(controladoraCategoria.GetListaTarjetas(categoria));
             }
-            return tarjetasUsuario;
+            return tarjetas;
         }
 
-        public void CompartirClave(ClaveCompartida aCompartir)
+        /*public void CompartirClave(ClaveCompartida aCompartir)
         {
-
             ControladoraUsuario usuarioDestino = aCompartir.Destino;
             ControladoraUsuario usuarioOriginal = aCompartir.Original;
-            ControladoraClave claveACompartir = aCompartir.Clave;
+            Clave claveACompartir = aCompartir.Clave;
 
             if (this.CompartidasPorMi.Contains(aCompartir)) throw new ObjetoYaExistenteException();
 
@@ -315,7 +305,7 @@ namespace LogicaDeNegocio
 
             claveACompartir.EsCompartida = true;
 
-            ClaveCompartida guardar = new ClaveCompartida()
+            Negocio.ClaveCompartida guardar = new Negocio.ClaveCompartida()
             {
                 Original = usuarioOriginal,
                 Destino = usuarioDestino,
@@ -325,23 +315,23 @@ namespace LogicaDeNegocio
             this.CompartidasPorMi.Add(guardar);
 
             usuarioDestino.CompartidasConmigo.Add(guardar);
-        }
+        }*/
 
-        public int GetCantidadColor(string color)
+        public int GetCantidadColor(string color, Usuario contenedor)
         {
-            return this.GetListaClavesColor(color).Count;
+            return this.GetListaClavesColor(color, contenedor).Count;
         }
 
 
-        public void DejarDeCompartir(ClaveCompartida aDejarDeCompartir)
+        /*public void DejarDeCompartir(ClaveCompartida aDejarDeCompartir, Usuario contenedor)
         {
             ControladoraUsuario usuarioOriginal = aDejarDeCompartir.Original;
             ControladoraUsuario usuarioDestino = aDejarDeCompartir.Destino;
-            ControladoraClave claveADejarDeCompartir = this.GetClave(aDejarDeCompartir.Clave);
+            Clave claveADejarDeCompartir = this.GetClave(aDejarDeCompartir.Clave);
 
             if (!claveADejarDeCompartir.EsCompartida) throw new ObjetoInexistenteException();
 
-            ClaveCompartida aEliminar = new ClaveCompartida()
+            Negocio.ClaveCompartida aEliminar = new Negocio.ClaveCompartida()
             {
                 Original = usuarioOriginal,
                 Destino = usuarioDestino,
@@ -357,36 +347,37 @@ namespace LogicaDeNegocio
             bool sigueCompartida = this.CompartidasPorMi.Any(buscadora => buscadora.Clave.Equals(claveADejarDeCompartir));
             if (!sigueCompartida) claveADejarDeCompartir.EsCompartida = false;
 
-        }
+        }*/
 
-        public List<ControladoraClave> GetListaClavesColor(string color)
+        public List<Clave> GetListaClavesColor(string color, Usuario contenedor)
         {
-            List<ControladoraClave> todasLasClaves = this.GetListaClaves();
+            List<Clave> todasLasClaves = this.GetListaClaves(contenedor);
             NivelSeguridad nivelSeguridad = new NivelSeguridad();
             return todasLasClaves.FindAll(buscadora => nivelSeguridad.GetNivelSeguridad(buscadora.Codigo)==color);
         }
 
-        public ControladoraCategoria GetCategoriaTarjeta(ControladoraTarjeta buscadora)
+        public Categoria GetCategoriaTarjeta(Tarjeta buscadora, Usuario contenedor)
         {
-            List<ControladoraCategoria> categorias = this.GetListaCategorias();
+            List<Categoria> categorias = this.GetListaCategorias(contenedor);
 
-            foreach (ControladoraCategoria actual in categorias) {
-                if (actual.YaExisteTarjeta(buscadora)) {
+            ControladoraCategoria controladoraCategoria = new ControladoraCategoria();
+
+            foreach (Categoria actual in categorias) {
+                if (controladoraCategoria.YaExisteTarjeta(buscadora, actual)) {
                     return actual;
                 }
             }
 
             throw new ObjetoInexistenteException();
-
         }
 
-        public ControladoraCategoria GetCategoriaClave(ControladoraClave buscadora)
+        public Categoria GetCategoriaClave(Clave buscadora, Usuario contenedor)
         {
-            List<ControladoraCategoria> categorias = this.GetListaCategorias();
-
-            foreach (ControladoraCategoria actual in categorias)
+            List<Categoria> categorias = this.GetListaCategorias(contenedor);
+            ControladoraCategoria controladoraCategoria = new ControladoraCategoria();
+            foreach (Categoria actual in categorias)
             {
-                if (actual.YaExisteClave(buscadora))
+                if (controladoraCategoria.YaExisteClave(buscadora, actual))
                 {
                     return actual;
                 }
@@ -394,49 +385,16 @@ namespace LogicaDeNegocio
             throw new ObjetoInexistenteException();
         }
 
-        public ClaveCompartida GetClaveCompartidaPorMi(ClaveCompartida buscadora)
+        public ClaveCompartida GetClaveCompartidaPorMi(ClaveCompartida buscadora, Usuario contenedor)
         {
-            if (!this.CompartidasPorMi.Contains(buscadora)) throw new ObjetoInexistenteException();
-            return this.CompartidasPorMi.First(aBuscar => aBuscar.Equals(buscadora));
+            if (!contenedor.CompartidasPorMi.Contains(buscadora)) throw new ObjetoInexistenteException();
+            return contenedor.CompartidasPorMi.First(aBuscar => aBuscar.Equals(buscadora));
         }
 
-        public ClaveCompartida GetClaveCompartidaConmigo(ClaveCompartida buscadora)
+        public ClaveCompartida GetClaveCompartidaConmigo(ClaveCompartida buscadora, Usuario contenedor)
         {
-            if (!this.CompartidasConmigo.Contains(buscadora)) throw new ObjetoInexistenteException();
-            return this.CompartidasConmigo.First(aBuscar => aBuscar.Equals(buscadora));
-        }
-
-        public bool EsClaveRepetida(string aVerificar)
-        {
-            List<ControladoraClave> clavesUsuario = this.GetListaClaves();
-            foreach (ControladoraClave claveAComparar in clavesUsuario)
-            {
-                if (claveAComparar.Codigo.Equals(aVerificar))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        public bool EsClaveSegura(string aVerificar)
-        {
-            NivelSeguridad nivelSeguridad = new NivelSeguridad();
-            ColorNivelSeguridad color = new ColorNivelSeguridad();
-
-            string colorAVerificar = nivelSeguridad.GetNivelSeguridad(aVerificar);
-            if (colorAVerificar.Equals(color.VerdeClaro) || colorAVerificar.Equals(color.VerdeOscuro))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public void ClaveCumpleRequerimientos(string aVerificar)
-        {
-            if (this.EsClaveRepetida(aVerificar)) throw new ClaveDuplicadaException();
-            if (!this.EsClaveSegura(aVerificar)) throw new ClaveNoSeguraException();
+            if (!contenedor.CompartidasConmigo.Contains(buscadora)) throw new ObjetoInexistenteException();
+            return contenedor.CompartidasConmigo.First(aBuscar => aBuscar.Equals(buscadora));
         }
     }
 }

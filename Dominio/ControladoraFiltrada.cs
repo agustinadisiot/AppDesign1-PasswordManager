@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LogicaDeNegocio
 {
-    public class ControladoraFiltradas
+    public class ControladoraFiltrada
     {
         public List<Filtrada> LeerArchivo(string direccion)
         {

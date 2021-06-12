@@ -7,7 +7,6 @@ namespace Negocio
 {
     public class Usuario
     {
-
         public List<Categoria> Categorias { get; set; }
 
         public Usuario()
@@ -23,6 +22,7 @@ namespace Negocio
         public string Nombre { get; set; }
 
         public string ClaveMaestra { get; set; }
+
         public List<ClaveCompartida> CompartidasPorMi { get; set; }
 
         public List<ClaveCompartida> CompartidasConmigo { get; set; }

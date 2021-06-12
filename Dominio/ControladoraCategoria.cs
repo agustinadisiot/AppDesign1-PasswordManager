@@ -15,12 +15,9 @@ namespace LogicaDeNegocio
             this.VerificarNombre(aVerificar);
         }
 
-        public void Modificar(Categoria vieja, Categoria nueva)
+        public void Modificar(Categoria nueva)
         {
-            this.Verificar(vieja);
             this.Verificar(nueva);
-
-            nueva.Id = vieja.Id;
             DataAccessCategoria acceso = new DataAccessCategoria();
             acceso.Modificar(nueva);
         }
@@ -59,6 +56,9 @@ namespace LogicaDeNegocio
             }
             categoriaIngresada.Claves.Remove(claveABorrar);
 
+            ControladoraClave controladoraClave = new ControladoraClave();
+            controladoraClave.Borrar(claveABorrar);
+
             DataAccessCategoria acceso = new DataAccessCategoria();
             acceso.Modificar(categoriaIngresada);
         }
@@ -87,7 +87,10 @@ namespace LogicaDeNegocio
             if (!igualSitioyUsuario && this.YaExisteClave(claveNueva, contenedora)) throw new ObjetoYaExistenteException();
 
             ControladoraClave controladoraClave = new ControladoraClave();
-            controladoraClave.Modificar(claveVieja, claveNueva);
+            controladoraClave.Modificar(claveNueva);
+
+            DataAccessCategoria acceso = new DataAccessCategoria();
+            acceso.Modificar(contenedora);
         }
 
         public List<Clave> GetListaClavesColor(string color, Categoria contenedora)
@@ -146,6 +149,10 @@ namespace LogicaDeNegocio
                 throw new ObjetoInexistenteException();
             }
             contenedora.Tarjetas.Remove(aBorrar);
+
+            ControladoraTarjeta controladoraTarjeta = new ControladoraTarjeta();
+            controladoraTarjeta.Borrar(aBorrar);
+
             DataAccessCategoria acceso = new DataAccessCategoria();
             acceso.Modificar(contenedora);
         }
@@ -159,7 +166,10 @@ namespace LogicaDeNegocio
             if (!igualNumero && this.YaExisteTarjeta(tarjetaNueva, contenedora)) throw new ObjetoYaExistenteException();
 
             ControladoraTarjeta controladoraTarjeta = new ControladoraTarjeta();
-            controladoraTarjeta.Modificar(tarjetaVieja, tarjetaNueva);
+            controladoraTarjeta.Modificar(tarjetaNueva);
+
+            DataAccessCategoria acceso = new DataAccessCategoria();
+            acceso.Modificar(contenedora);
         }
     }
 }

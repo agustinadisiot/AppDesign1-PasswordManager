@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,6 +37,33 @@ namespace LogicaDeNegocio
             if (tieneMin && tieneMay) return (tieneNum && tieneSim) ? color.VerdeOscuro : color.VerdeClaro;
 
             return color.Amarillo;
+        }
+
+        public bool EsClaveRepetida(string aVerificar, Usuario contenedor)
+        {
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+            List<Clave> clavesUsuario = controladoraUsuario.GetListaClaves(contenedor);
+
+            return clavesUsuario.Any(actual => actual.Codigo.Equals(aVerificar));
+        }
+
+        public bool EsClaveNivelSeguro(string aVerificar)
+        {
+            NivelSeguridad nivelSeguridad = new NivelSeguridad();
+            ColorNivelSeguridad color = new ColorNivelSeguridad();
+
+            string colorAVerificar = nivelSeguridad.GetNivelSeguridad(aVerificar);
+            if (colorAVerificar.Equals(color.VerdeClaro) || colorAVerificar.Equals(color.VerdeOscuro))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void ClaveCumpleRequerimientos(string aVerificar, Usuario contenedor)
+        {
+            if (this.EsClaveRepetida(aVerificar, contenedor)) throw new ClaveDuplicadaException();
+            if (!this.EsClaveNivelSeguro(aVerificar)) throw new ClaveNoSeguraException();
         }
     }
 }

@@ -10,6 +10,6 @@ namespace LogicaDeNegocio
     {
         void Verificar(T aVerificar);
 
-        void Modificar(T vieja, T nueva);
+        void Modificar(T nueva);
     }
 }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace LogicaDeNegocio
 {
-    public class ControladoraClave
+    public class ControladoraClave: IControladora<Clave>
     {
         private const int _largoUsuarioYClaveMinimo = 5;
         private const int _largoUsuarioYClaveMaximo = 25;
@@ -14,12 +14,11 @@ namespace LogicaDeNegocio
         private const int _largoNotaMinimo = 0;
         private const int _largoNotaMaximo = 250;
 
-        public void Modificar(Clave vieja, Clave nueva) {
-            this.Verificar(vieja);
+        public void Modificar(Clave nueva) {
             this.Verificar(nueva);
 
             DataAccessClave acceso = new DataAccessClave();
-            nueva.Id = vieja.Id;
+            Clave vieja = acceso.Get(nueva.Id);
             if (vieja.Codigo != nueva.Codigo)
             {
                 nueva.FechaModificacion = DateTime.Now.Date;
@@ -59,6 +58,12 @@ namespace LogicaDeNegocio
         public bool FueFiltrado(Clave aVerificar, List<Filtrada> filtradas)
         {
             return filtradas.Exists(f => aVerificar.Codigo.Equals(f.Texto));
+        }
+
+        public void Borrar(Clave aBorrar) {
+            this.Verificar(aBorrar);
+            DataAccessClave acceso = new DataAccessClave();
+            acceso.Borrar(aBorrar);
         }
     }
 }
