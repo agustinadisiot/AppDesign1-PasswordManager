@@ -14,7 +14,7 @@ namespace Repositorio
         {
             this.HasKey(x => x.Id);
             this.Property(x => x.Fecha).IsRequired();
-            this.HasMany<Tarjeta>(db => db.Tarjetas)
+            this.HasMany<ControladoraTarjeta>(db => db.Tarjetas)
                 .WithMany(t => t.DataBreaches)
                 .Map(t =>
                 {

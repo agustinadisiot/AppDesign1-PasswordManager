@@ -2,9 +2,9 @@
 {
     public class TarjetaAModificar
     {
-        public Tarjeta TarjetaVieja { get; set; }
-        public Tarjeta TarjetaNueva { get; set; }
-        public Categoria CategoriaVieja { get; set; }
-        public Categoria CategoriaNueva { get; set; }
+        public ControladoraTarjeta TarjetaVieja { get; set; }
+        public ControladoraTarjeta TarjetaNueva { get; set; }
+        public ControladoraCategoria CategoriaVieja { get; set; }
+        public ControladoraCategoria CategoriaNueva { get; set; }
     }
 }

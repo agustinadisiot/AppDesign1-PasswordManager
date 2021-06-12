@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace Repositorio
 {
-    public class DataAccessUsuario : IDataAccess<Usuario>
+    public class DataAccessUsuario : IDataAccess<ControladoraUsuario>
     {
 
-        public void Agregar(Usuario entity)
+        public void Agregar(ControladoraUsuario entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                List<Categoria> categorias = new List<Categoria>();
+                List<ControladoraCategoria> categorias = new List<ControladoraCategoria>();
                 List<DataBreach> dataBreaches = new List<DataBreach>();
 
                 for (int i = 0; i < entity.Categorias.Count; i++)
                 {
-                    Categoria categoria = entity.Categorias.ElementAt(i);
+                    ControladoraCategoria categoria = entity.Categorias.ElementAt(i);
 
-                    Categoria nueva = contexto.Categorias.FirstOrDefault(tNueva => tNueva.Id == categoria.Id);
+                    ControladoraCategoria nueva = contexto.Categorias.FirstOrDefault(tNueva => tNueva.Id == categoria.Id);
 
                     if (nueva != null)
                     {
@@ -55,17 +55,17 @@ namespace Repositorio
             }
         }
 
-        public void Borrar(Usuario entity)
+        public void Borrar(ControladoraUsuario entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                Usuario aEliminar = contexto.Usuarios.FirstOrDefault(t => t.Id == entity.Id);
+                ControladoraUsuario aEliminar = contexto.Usuarios.FirstOrDefault(t => t.Id == entity.Id);
                 contexto.Usuarios.Remove(aEliminar);
                 contexto.SaveChanges();
             }
         }
 
-        public Usuario Get(int id)
+        public ControladoraUsuario Get(int id)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
@@ -78,7 +78,7 @@ namespace Repositorio
             }
         }
 
-        public IEnumerable<Usuario> GetTodos()
+        public IEnumerable<ControladoraUsuario> GetTodos()
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
@@ -90,21 +90,21 @@ namespace Repositorio
             }
         }
 
-        public void Modificar(Usuario entity)
+        public void Modificar(ControladoraUsuario entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                List<Tarjeta> tarjetas = new List<Tarjeta>();
+                List<ControladoraTarjeta> tarjetas = new List<ControladoraTarjeta>();
                 List<ControladoraClave> claves = new List<ControladoraClave>();
 
-                List<Categoria> categorias = new List<Categoria>();
+                List<ControladoraCategoria> categorias = new List<ControladoraCategoria>();
                 List<DataBreach> dataBreaches = new List<DataBreach>();
 
                 for (int i = 0; i < entity.Categorias.Count; i++)
                 {
-                    Categoria categoria = entity.Categorias.ElementAt(i);
+                    ControladoraCategoria categoria = entity.Categorias.ElementAt(i);
 
-                    Categoria nueva = contexto.Categorias.FirstOrDefault(tNueva => tNueva.Id == categoria.Id);
+                    ControladoraCategoria nueva = contexto.Categorias.FirstOrDefault(tNueva => tNueva.Id == categoria.Id);
 
                     if (nueva != null)
                     {
@@ -129,7 +129,7 @@ namespace Repositorio
                     dataBreaches.Add(dataBreach);
                 }
 
-                Usuario aModificar = contexto.Usuarios
+                ControladoraUsuario aModificar = contexto.Usuarios
                         .Include("Categorias")
                         .Include("DataBreaches")
                         .Include("CompartidasConmigo")

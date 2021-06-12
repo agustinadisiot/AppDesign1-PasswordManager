@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace LogicaDeNegocio
+namespace Negocio
 {
     [Serializable]
     public class UsuarioInexistenteException : Exception

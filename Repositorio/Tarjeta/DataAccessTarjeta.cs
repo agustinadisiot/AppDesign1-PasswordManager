@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Repositorio
 {
-    public class DataAccessTarjeta : IDataAccess<Tarjeta>
+    public class DataAccessTarjeta : IDataAccess<ControladoraTarjeta>
     {
-        public void Agregar(Tarjeta entity)
+        public void Agregar(ControladoraTarjeta entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
@@ -18,17 +18,17 @@ namespace Repositorio
             }
         }
 
-        public void Borrar(Tarjeta entity)
+        public void Borrar(ControladoraTarjeta entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                Tarjeta aEliminar = contexto.Tarjetas.FirstOrDefault(t => t.Id == entity.Id);
+                ControladoraTarjeta aEliminar = contexto.Tarjetas.FirstOrDefault(t => t.Id == entity.Id);
                 contexto.Tarjetas.Remove(aEliminar);
                 contexto.SaveChanges();
             }
         }
 
-        public Tarjeta Get(int id)
+        public ControladoraTarjeta Get(int id)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
@@ -36,7 +36,7 @@ namespace Repositorio
             }
         }
 
-        public IEnumerable<Tarjeta> GetTodos()
+        public IEnumerable<ControladoraTarjeta> GetTodos()
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
@@ -44,11 +44,11 @@ namespace Repositorio
             }
         }
 
-        public void Modificar(Tarjeta entity)
+        public void Modificar(ControladoraTarjeta entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                Tarjeta aModificar = contexto.Tarjetas.Find(entity.Id);
+                ControladoraTarjeta aModificar = contexto.Tarjetas.Find(entity.Id);
                 aModificar.Nombre = entity.Nombre;
                 aModificar.Numero = entity.Numero;
                 aModificar.Tipo = entity.Tipo;

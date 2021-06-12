@@ -1,5 +1,5 @@
 ﻿using System;
-namespace LogicaDeNegocio
+namespace Negocio
 {
     public class ObjetoYaExistenteException : Exception
     {

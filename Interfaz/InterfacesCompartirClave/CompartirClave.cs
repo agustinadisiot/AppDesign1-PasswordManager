@@ -7,11 +7,11 @@ namespace Interfaz
 {
     public partial class CompartirClave : UserControl
     {
-        private Usuario _usuarioActual;
+        private ControladoraUsuario _usuarioActual;
         private ControladoraClave _claveACompartir;
-        private Administrador _administrador;
+        private ControladoraAdministrador _administrador;
 
-        public CompartirClave(ClaveCompartida aCompartir, Administrador administrador)
+        public CompartirClave(ClaveCompartida aCompartir, ControladoraAdministrador administrador)
         {
             InitializeComponent();
             this._usuarioActual = aCompartir.Original;
@@ -30,9 +30,9 @@ namespace Interfaz
         private void CargarComboBox()
         {
             this.comboCompartir.Items.Clear();
-            List<Usuario> lista = this._administrador.GetListaUsuarios();
+            List<ControladoraUsuario> lista = this._administrador.GetListaUsuarios();
 
-            foreach (Usuario actual in lista)
+            foreach (ControladoraUsuario actual in lista)
             {
                 if (!_usuarioActual.Equals(actual)) { 
                     string nombre = actual.Nombre;
@@ -74,12 +74,12 @@ namespace Interfaz
             {
                 try
                 {
-                    Usuario buscador = new Usuario()
+                    ControladoraUsuario buscador = new ControladoraUsuario()
                     {
                         Nombre = nombreUsuarioACompartir
                     };
 
-                    Usuario usuarioACompartir = this._administrador.GetUsuario(buscador);
+                    ControladoraUsuario usuarioACompartir = this._administrador.GetUsuario(buscador);
 
                     ClaveCompartida claveACompartir = new ClaveCompartida()
                     {

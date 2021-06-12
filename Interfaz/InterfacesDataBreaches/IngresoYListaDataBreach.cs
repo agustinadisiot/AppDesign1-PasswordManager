@@ -8,12 +8,12 @@ namespace Interfaz.InterfacesClaves
 {
     public partial class IngresoYListaDataBreach : UserControl
     {
-        private Usuario _usuarioActual;
+        private ControladoraUsuario _usuarioActual;
         private List<ControladoraClave> _claves;
-        private List<Tarjeta> _tarjetas;
+        private List<ControladoraTarjeta> _tarjetas;
         private List<Filtrada> _posiblesFiltradas;
 
-        public IngresoYListaDataBreach(Usuario actual, List<Filtrada> dataBreach)
+        public IngresoYListaDataBreach(ControladoraUsuario actual, List<Filtrada> dataBreach)
         {
             InitializeComponent();
             this._usuarioActual = actual;
@@ -66,7 +66,7 @@ namespace Interfaz.InterfacesClaves
             this.tablaTarjetas.Rows.Clear();
 
 
-            foreach (Tarjeta tarjetaActual in this._tarjetas)
+            foreach (ControladoraTarjeta tarjetaActual in this._tarjetas)
             {
                 string categoriaActual = this._usuarioActual.GetCategoriaTarjeta(tarjetaActual).Nombre;
                 string nombre = tarjetaActual.Nombre;
@@ -79,7 +79,7 @@ namespace Interfaz.InterfacesClaves
             }
         }
 
-        private string OcultarTarjeta(Tarjeta actual)
+        private string OcultarTarjeta(ControladoraTarjeta actual)
         {
 
             string numero = actual.Numero;
@@ -101,7 +101,7 @@ namespace Interfaz.InterfacesClaves
         }
 
         private void mostrarDataBreach() {
-            LogicaDataBreach logicaDataBreach = new LogicaDataBreach();
+            ControladoraDataBreach logicaDataBreach = new ControladoraDataBreach();
             this._posiblesFiltradas = logicaDataBreach.SepararPorLineas(this.inputDatos.Text);
             this._claves = logicaDataBreach.FiltrarClaves(this._posiblesFiltradas, this._usuarioActual.GetListaClaves());
             this._tarjetas = logicaDataBreach.FiltrarTarjetas(this._posiblesFiltradas, this._usuarioActual.GetListaTarjetas());
@@ -134,7 +134,7 @@ namespace Interfaz.InterfacesClaves
         public event ModificarClaveDataBreach_Delegate ModificarClaveDataBreach_Event;
         public void IrAModificarClave(ControladoraClave claveAModificar)
         {
-            LogicaDataBreach logicaDataBreach = new LogicaDataBreach();
+            ControladoraDataBreach logicaDataBreach = new ControladoraDataBreach();
             List<Filtrada> filtradas = logicaDataBreach.SepararPorLineas(this.inputDatos.Text);
 
             if (this.ModificarClaveDataBreach_Event != null)
@@ -149,7 +149,7 @@ namespace Interfaz.InterfacesClaves
                 if (buscadorArchivo.ShowDialog() == DialogResult.OK)
                 {
                     string direccion = buscadorArchivo.FileName;
-                    LogicaDataBreach logicaDataBreach = new LogicaDataBreach();
+                    ControladoraDataBreach logicaDataBreach = new ControladoraDataBreach();
                     try
                     {
                         this._posiblesFiltradas = logicaDataBreach.LeerArchivo(direccion);

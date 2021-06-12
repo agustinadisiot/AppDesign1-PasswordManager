@@ -6,9 +6,9 @@ namespace Interfaz
 {
     public partial class AgregarCategoria : UserControl
     {
-        private Usuario _usuarioActual;
+        private ControladoraUsuario _usuarioActual;
 
-        public AgregarCategoria(Usuario usuarioAgregar)
+        public AgregarCategoria(ControladoraUsuario usuarioAgregar)
         {
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;
@@ -20,7 +20,7 @@ namespace Interfaz
             string nombreCategoria = this.textNombreCategoria.Text;
             try
             {
-                Categoria nuevaCategoria = new Categoria
+                ControladoraCategoria nuevaCategoria = new ControladoraCategoria
                 {
                     Nombre = nombreCategoria
                 };

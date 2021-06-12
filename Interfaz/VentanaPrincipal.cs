@@ -13,15 +13,15 @@ namespace Interfaz
     public partial class VentanaPrincipal : Form
     {
 
-        private Administrador _administrador;
-        private Usuario _usuarioActual;
+        private ControladoraAdministrador _administrador;
+        private ControladoraUsuario _usuarioActual;
         private Type _panelAVolverVerClave;
         private Type _panelAVolverModificarClave;
         private List<Filtrada> _ultimoDataBreach;
 
         public VentanaPrincipal()
         {
-            this._administrador = new Administrador();
+            this._administrador = new ControladoraAdministrador();
 
             InitializeComponent();
 
@@ -127,7 +127,7 @@ namespace Interfaz
             }
         }
 
-        private void IniciarSesion_Handler(Usuario aIngresar)
+        private void IniciarSesion_Handler(ControladoraUsuario aIngresar)
         {
             this._usuarioActual = aIngresar;
             ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual);
@@ -186,7 +186,7 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(agregarCategoria);
         }
 
-        protected void AbrirModificarCategorias_Handler(Categoria aModificar)
+        protected void AbrirModificarCategorias_Handler(ControladoraCategoria aModificar)
         {
 
             ModificarCategoria modificarCategoria = new ModificarCategoria(aModificar, this._usuarioActual);
@@ -207,14 +207,14 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(listaTarjetas);
         }
 
-        protected void AbrirVerClave_Handler(ControladoraClave buscadora, Usuario usuarioABuscar)
+        protected void AbrirVerClave_Handler(ControladoraClave buscadora, ControladoraUsuario usuarioABuscar)
         {
             foreach (Control p in this.panelPrincipal.Controls)
             {
                 this._panelAVolverVerClave = p.GetType();
             }
 
-            Usuario usuarioAMostrar = this._administrador.GetUsuario(usuarioABuscar);
+            ControladoraUsuario usuarioAMostrar = this._administrador.GetUsuario(usuarioABuscar);
             ControladoraClave claveAMostrar = usuarioAMostrar.GetClave(buscadora);
             VerClave verClaveSeleccionada = new VerClave(claveAMostrar, usuarioAMostrar);
             verClaveSeleccionada.SalirDeVerClave_Event += this.SalirDeVerClave_Handler;
@@ -342,18 +342,18 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(crearTarjetas);
         }
 
-        protected void AbrirModificarTarjeta_Handler(Tarjeta buscadora)
+        protected void AbrirModificarTarjeta_Handler(ControladoraTarjeta buscadora)
         {
-            Tarjeta modificar = this._usuarioActual.GetTarjeta(buscadora);
+            ControladoraTarjeta modificar = this._usuarioActual.GetTarjeta(buscadora);
             ModificarTarjeta modificarTarjeta = new ModificarTarjeta(this._usuarioActual, modificar);
             modificarTarjeta.AbrirListaTarjetas_Event += this.AbrirListaTarjetas_Handler;
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(modificarTarjeta);
         }
 
-        private void AbrirVerTarjeta_Handler(Tarjeta buscadora)
+        private void AbrirVerTarjeta_Handler(ControladoraTarjeta buscadora)
         {
-            Tarjeta ver = this._usuarioActual.GetTarjeta(buscadora);
+            ControladoraTarjeta ver = this._usuarioActual.GetTarjeta(buscadora);
             VerTarjeta verTarjeta = new VerTarjeta(ver, this._usuarioActual);
             verTarjeta.AbrirListaTarjetas_Event += this.AbrirListaTarjetas_Handler;
             this.panelPrincipal.Controls.Clear();

@@ -1,10 +1,10 @@
-﻿namespace LogicaDeNegocio
+﻿namespace Negocio
 {
     public class ClaveCompartida
     {
-        public ControladoraUsuario Original { get; set; }
-        public ControladoraUsuario Destino { get; set; }
-        public ControladoraClave Clave { get; set; }
+        public Usuario Original { get; set; }
+        public Usuario Destino { get; set; }
+        public Clave Clave { get; set; }
         public int Id { get; set; }
         public int OriginalId { get; set; }
         public int DestinoId { get; set; }

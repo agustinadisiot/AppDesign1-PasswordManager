@@ -14,10 +14,10 @@ namespace Repositorio
         public ClaveCompartidaTypeConfiguration()
         {
             this.HasKey(x => x.Id);
-            this.HasRequired<Usuario>(cc => cc.Original)
+            this.HasRequired<ControladoraUsuario>(cc => cc.Original)
                 .WithMany(u => u.CompartidasPorMi)
                 .HasForeignKey(cc => cc.OriginalId).WillCascadeOnDelete(false);
-            this.HasRequired<Usuario>(cc => cc.Destino)
+            this.HasRequired<ControladoraUsuario>(cc => cc.Destino)
                 .WithMany(u => u.CompartidasConmigo)
                 .HasForeignKey(cc => cc.DestinoId).WillCascadeOnDelete(false);
             this.HasRequired<ControladoraClave>(cc => cc.Clave);

@@ -9,8 +9,8 @@ namespace TestsObligatorio
     [TestClass]
     public class TestCategoria
     {
-        private Categoria categoria1;
-        private Categoria categoria2;
+        private ControladoraCategoria categoria1;
+        private ControladoraCategoria categoria2;
 
         [TestCleanup]
         public void TearDown()
@@ -21,12 +21,12 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
-            categoria1 = new Categoria()
+            categoria1 = new ControladoraCategoria()
             {
                 Nombre = "Personal"
             };
 
-            categoria2 = new Categoria()
+            categoria2 = new ControladoraCategoria()
             {
                 Nombre = "Trabajo"
             };
@@ -61,7 +61,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void CategoriaEqualsMismoNombre()
         {
-            Categoria categoriaIgualNombre = new Categoria()
+            ControladoraCategoria categoriaIgualNombre = new ControladoraCategoria()
             {
                 Nombre = categoria1.Nombre
             };
@@ -77,7 +77,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void CategoriaEqualsMismoNombreConMayYMin()
         {
-            Categoria categoriaIgualNombreConMayYMin = new Categoria()
+            ControladoraCategoria categoriaIgualNombreConMayYMin = new ControladoraCategoria()
             {
                 Nombre = "personal"
             };
@@ -87,7 +87,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void CategoriaEqualsConNull()
         {
-            Categoria categoriaNull = null;
+            ControladoraCategoria categoriaNull = null;
             Assert.ThrowsException<ObjetoIncompletoException>(() => categoria1.Equals(categoriaNull));
         }
 
@@ -103,7 +103,7 @@ namespace TestsObligatorio
     [TestClass]
     public class TestCategoriaClaves
     {
-        private Categoria categoria1;
+        private ControladoraCategoria categoria1;
         private ControladoraClave clave1;
         private ControladoraClave clave2;
 
@@ -116,7 +116,7 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
-            categoria1 = new Categoria()
+            categoria1 = new ControladoraCategoria()
             {
                 Nombre = "Personal"
             };
@@ -428,7 +428,7 @@ namespace TestsObligatorio
         public void CategoriaModificarClaveAgregada()
         {
 
-            Categoria categoria = new Categoria()
+            ControladoraCategoria categoria = new ControladoraCategoria()
             {
                 Nombre = "Personal"
             };
@@ -560,9 +560,9 @@ namespace TestsObligatorio
     [TestClass]
     public class TestCategoriaTarjeta
     {
-        private Categoria categoria1;
-        private Tarjeta tarjeta1;
-        private Tarjeta tarjeta2;
+        private ControladoraCategoria categoria1;
+        private ControladoraTarjeta tarjeta1;
+        private ControladoraTarjeta tarjeta2;
 
         [TestCleanup]
         public void TearDown()
@@ -573,12 +573,12 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
-            categoria1 = new Categoria()
+            categoria1 = new ControladoraCategoria()
             {
                 Nombre = "Personal"
             };
 
-            tarjeta1 = new Tarjeta()
+            tarjeta1 = new ControladoraTarjeta()
             {
                 Numero = "1111111111111111",
                 Nombre = "Prex",
@@ -589,7 +589,7 @@ namespace TestsObligatorio
 
             };
 
-            tarjeta2 = new Tarjeta()
+            tarjeta2 = new ControladoraTarjeta()
             {
                 Numero = "2222222222222222",
                 Nombre = "Visa Gold",
@@ -626,8 +626,8 @@ namespace TestsObligatorio
         [TestMethod]
         public void CategoriaAgregarTarjetaSinNombre()
         {
-            Categoria categoria = new Categoria();
-            Tarjeta tarjetaSinNombre = new Tarjeta()
+            ControladoraCategoria categoria = new ControladoraCategoria();
+            ControladoraTarjeta tarjetaSinNombre = new ControladoraTarjeta()
             {
                 Tipo = tarjeta1.Tipo,
                 Numero = tarjeta1.Numero,
@@ -641,8 +641,8 @@ namespace TestsObligatorio
         [TestMethod]
         public void CategoriaAgregarTarjetaSinTipo()
         {
-            Categoria categoria = new Categoria();
-            Tarjeta tarjetaSinTipo = new Tarjeta()
+            ControladoraCategoria categoria = new ControladoraCategoria();
+            ControladoraTarjeta tarjetaSinTipo = new ControladoraTarjeta()
             {
                 Nombre = tarjeta1.Nombre,
                 Numero = tarjeta1.Numero,
@@ -656,8 +656,8 @@ namespace TestsObligatorio
         [TestMethod]
         public void CategoriaAgregarTarjetaSinNumero()
         {
-            Categoria categoria = new Categoria();
-            Tarjeta tarjetaSinNumero = new Tarjeta()
+            ControladoraCategoria categoria = new ControladoraCategoria();
+            ControladoraTarjeta tarjetaSinNumero = new ControladoraTarjeta()
             {
                 Nombre = tarjeta1.Nombre,
                 Tipo = tarjeta1.Tipo,
@@ -671,8 +671,8 @@ namespace TestsObligatorio
         [TestMethod]
         public void CategoriaAgregarTarjetaSinCodigo()
         {
-            Categoria categoria = new Categoria();
-            Tarjeta tarjetaSinCodigo = new Tarjeta()
+            ControladoraCategoria categoria = new ControladoraCategoria();
+            ControladoraTarjeta tarjetaSinCodigo = new ControladoraTarjeta()
             {
                 Nombre = tarjeta1.Nombre,
                 Tipo = tarjeta1.Tipo,
@@ -686,8 +686,8 @@ namespace TestsObligatorio
         [TestMethod]
         public void CategoriaAgregarTarjetaSinVencimiento()
         {
-            Categoria categoria = new Categoria();
-            Tarjeta tarjetaSinVencimiento = new Tarjeta()
+            ControladoraCategoria categoria = new ControladoraCategoria();
+            ControladoraTarjeta tarjetaSinVencimiento = new ControladoraTarjeta()
             {
                 Nombre = tarjeta1.Nombre,
                 Tipo = tarjeta1.Tipo,
@@ -703,7 +703,7 @@ namespace TestsObligatorio
         {
             categoria1.AgregarTarjeta(tarjeta1);
 
-            Tarjeta buscadora = new Tarjeta() 
+            ControladoraTarjeta buscadora = new ControladoraTarjeta() 
             { 
                 Numero = tarjeta1.Numero
             };
@@ -717,7 +717,7 @@ namespace TestsObligatorio
             categoria1.AgregarTarjeta(tarjeta1);
             categoria1.AgregarTarjeta(tarjeta2);
 
-            Tarjeta buscadora = new Tarjeta()
+            ControladoraTarjeta buscadora = new ControladoraTarjeta()
             {
                 Numero = tarjeta1.Numero
             };
@@ -731,7 +731,7 @@ namespace TestsObligatorio
             categoria1.AgregarTarjeta(tarjeta1);
             categoria1.AgregarTarjeta(tarjeta2);
 
-            Tarjeta buscadora = new Tarjeta()
+            ControladoraTarjeta buscadora = new ControladoraTarjeta()
             {
                 Numero = tarjeta2.Numero
             };
@@ -745,7 +745,7 @@ namespace TestsObligatorio
             categoria1.AgregarTarjeta(tarjeta1);
             categoria1.AgregarTarjeta(tarjeta2);
 
-            List<Tarjeta> tarjetas = new List<Tarjeta>
+            List<ControladoraTarjeta> tarjetas = new List<ControladoraTarjeta>
             {
                 tarjeta1,
                 tarjeta2
@@ -758,7 +758,7 @@ namespace TestsObligatorio
         public void CategoriaYaExisteTarjetaSiExistente()
         {
             categoria1.AgregarTarjeta(tarjeta1);
-            Tarjeta tarjetaIgual = new Tarjeta()
+            ControladoraTarjeta tarjetaIgual = new ControladoraTarjeta()
             {
                 Nombre = tarjeta1.Nombre,
                 Tipo = tarjeta1.Tipo,
@@ -774,7 +774,7 @@ namespace TestsObligatorio
         public void CategoriaYaExisteTarjetaDiferenteNumero()
         {
             categoria1.AgregarTarjeta(tarjeta1);
-            Tarjeta tarjetaDistintoNumero = new Tarjeta()
+            ControladoraTarjeta tarjetaDistintoNumero = new ControladoraTarjeta()
             {
                 Nombre = tarjeta1.Nombre,
                 Tipo = tarjeta1.Tipo,
@@ -790,7 +790,7 @@ namespace TestsObligatorio
         public void CategoriaYaExisteTarjetaDiferenteNombre()
         {
             categoria1.AgregarTarjeta(tarjeta1);
-            Tarjeta tarjetaDistintoNombre = new Tarjeta()
+            ControladoraTarjeta tarjetaDistintoNombre = new ControladoraTarjeta()
             {
                 Nombre = tarjeta2.Nombre,
                 Tipo = tarjeta1.Tipo,
@@ -806,7 +806,7 @@ namespace TestsObligatorio
         public void CategoriaYaExisteTarjetaDiferenteTipo()
         {
             categoria1.AgregarTarjeta(tarjeta1);
-            Tarjeta tarjetaDistintoTipo = new Tarjeta()
+            ControladoraTarjeta tarjetaDistintoTipo = new ControladoraTarjeta()
             {
                 Nombre = tarjeta1.Nombre,
                 Tipo = tarjeta2.Tipo,
@@ -822,7 +822,7 @@ namespace TestsObligatorio
         public void CategoriaYaExisteTarjetaDiferenteCodigo()
         {
             categoria1.AgregarTarjeta(tarjeta1);
-            Tarjeta tarjetaDistintoTipo = new Tarjeta()
+            ControladoraTarjeta tarjetaDistintoTipo = new ControladoraTarjeta()
             {
                 Nombre = tarjeta1.Nombre,
                 Tipo = tarjeta2.Tipo,
@@ -852,7 +852,7 @@ namespace TestsObligatorio
         {
             categoria1.AgregarTarjeta(tarjeta1);
 
-            Tarjeta aBorrar = new Tarjeta()
+            ControladoraTarjeta aBorrar = new ControladoraTarjeta()
             {
                 Numero = tarjeta1.Numero
             };
@@ -866,7 +866,7 @@ namespace TestsObligatorio
         {
             categoria1.AgregarTarjeta(tarjeta1);
 
-            Tarjeta aBorrar = new Tarjeta()
+            ControladoraTarjeta aBorrar = new ControladoraTarjeta()
             {
                 Numero = tarjeta1.Numero
             };
@@ -878,7 +878,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void CategoriaGetTarjetaBorrada()
         {
-            Tarjeta aBorrar = new Tarjeta()
+            ControladoraTarjeta aBorrar = new ControladoraTarjeta()
             {
                 Numero = tarjeta1.Numero
             };
@@ -886,7 +886,7 @@ namespace TestsObligatorio
             categoria1.AgregarTarjeta(tarjeta1);
             categoria1.BorrarTarjeta(aBorrar);
 
-            Tarjeta buscadora = new Tarjeta()
+            ControladoraTarjeta buscadora = new ControladoraTarjeta()
             {
                 Numero = tarjeta1.Numero
             };
@@ -897,12 +897,12 @@ namespace TestsObligatorio
         [TestMethod]
         public void CategoriaDosTarjetasGetTarjetaBorrada()
         {
-            Tarjeta buscadora = new Tarjeta()
+            ControladoraTarjeta buscadora = new ControladoraTarjeta()
             {
                 Numero = tarjeta1.Numero
             };
 
-            Tarjeta aBorrar = new Tarjeta()
+            ControladoraTarjeta aBorrar = new ControladoraTarjeta()
             {
                 Numero = tarjeta1.Numero
             };
@@ -920,7 +920,7 @@ namespace TestsObligatorio
 
             string numeroTarjeta = "1234567890876543";
 
-            Tarjeta aBorrar = new Tarjeta()
+            ControladoraTarjeta aBorrar = new ControladoraTarjeta()
             {
                 Numero = numeroTarjeta
             };
@@ -932,7 +932,7 @@ namespace TestsObligatorio
         public void CategoriaYaExisteTarjetaDiferenteVencimiento()
         {
             categoria1.AgregarTarjeta(tarjeta1);
-            Tarjeta tarjetaDistintoTipo = new Tarjeta()
+            ControladoraTarjeta tarjetaDistintoTipo = new ControladoraTarjeta()
             {
                 Nombre = tarjeta1.Nombre,
                 Tipo = tarjeta2.Tipo,
@@ -948,7 +948,7 @@ namespace TestsObligatorio
         public void CategoriaAlModificarTarjetaAgregadaLaTarjetaViejaDejaDeExistir()
         {
             categoria1.AgregarTarjeta(tarjeta1);
-            Tarjeta buscadora = new Tarjeta()
+            ControladoraTarjeta buscadora = new ControladoraTarjeta()
             {
                 Numero = tarjeta1.Numero
             };
@@ -963,7 +963,7 @@ namespace TestsObligatorio
 
             string numeroTarjetaInexistente = "1234567890876543";
 
-            Tarjeta buscadora = new Tarjeta()
+            ControladoraTarjeta buscadora = new ControladoraTarjeta()
             {
                 Numero = numeroTarjetaInexistente
             };
@@ -977,7 +977,7 @@ namespace TestsObligatorio
             categoria1.AgregarTarjeta(tarjeta1);
             categoria1.AgregarTarjeta(tarjeta2);
 
-            Tarjeta duplicada = new Tarjeta()
+            ControladoraTarjeta duplicada = new ControladoraTarjeta()
             {
                 Nombre = tarjeta2.Nombre,
                 Tipo = tarjeta2.Tipo,
@@ -995,7 +995,7 @@ namespace TestsObligatorio
         {
             categoria1.AgregarTarjeta(tarjeta1);
 
-            Tarjeta buscadora = new Tarjeta()
+            ControladoraTarjeta buscadora = new ControladoraTarjeta()
             {
                 Numero = tarjeta2.Numero
             };
@@ -1009,7 +1009,7 @@ namespace TestsObligatorio
         {
             categoria1.AgregarTarjeta(tarjeta1);
 
-            Tarjeta buscadora = new Tarjeta()
+            ControladoraTarjeta buscadora = new ControladoraTarjeta()
             {
                 Numero = this.tarjeta1.Numero
             };

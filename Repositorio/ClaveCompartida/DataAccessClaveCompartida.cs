@@ -14,8 +14,8 @@ namespace Repositorio
             using (var contexto = new AdministradorClavesDBContext())
             {
                 
-                Usuario original = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Original.Id);
-                Usuario destino = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Destino.Id);
+                ControladoraUsuario original = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Original.Id);
+                ControladoraUsuario destino = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Destino.Id);
                 ControladoraClave claveCompartida = contexto.Claves.FirstOrDefault(buscador => buscador.Id == entity.Clave.Id);
 
                 if (original != null )
@@ -79,8 +79,8 @@ namespace Repositorio
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                Usuario original = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Original.Id);
-                Usuario destino = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Destino.Id);
+                ControladoraUsuario original = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Original.Id);
+                ControladoraUsuario destino = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Destino.Id);
                 ControladoraClave claveCompartida = contexto.Claves.FirstOrDefault(buscador => buscador.Id == entity.Clave.Id);
 
                 if (original != null)

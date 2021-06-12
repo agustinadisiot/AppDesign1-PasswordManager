@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace LogicaDeNegocio
+namespace Negocio
 {
-    public class ControladoraClave
+    public class Clave
     {
         private string _usuario;
         private string _codigo;
@@ -19,7 +22,7 @@ namespace LogicaDeNegocio
 
         public List<DataBreach> DataBreaches { get; set; }
 
-        public ControladoraClave()
+        public Clave()
         {
             this.EsCompartida = false;
             this._fechaModificacion = DateTime.Now.Date;
@@ -58,40 +61,6 @@ namespace LogicaDeNegocio
         {
             get { return this._fechaModificacion; }
             set { this._fechaModificacion = value; }
-        }
-
-        private void CambioClave(string ingreso)
-        {
-
-            try
-            {
-                this._codigo = VerificadoraString.VerificarLargoEntreMinimoYMaximo(ingreso, _largoUsuarioYClaveMinimo, _largoUsuarioYClaveMaximo);
-                this.ActualizarFechaModificacion();
-            }
-            catch (LargoIncorrectoException)
-            {
-                throw new LargoIncorrectoException();
-            }
-        }
-
-        public override bool Equals(object objeto)
-        {
-            if (objeto == null) throw new ObjetoIncompletoException();
-            if (this.GetType() != objeto.GetType()) throw new ObjetoIncorrectoException();
-            ControladoraClave aIgualar = (ControladoraClave)objeto;
-            bool mismoSitio = aIgualar.Sitio.ToUpper() == this.Sitio.ToUpper();
-            bool mismoUsuario = aIgualar.UsuarioClave.ToUpper() == this.UsuarioClave.ToUpper();
-            return (mismoSitio && mismoUsuario);
-        }
-
-        private void ActualizarFechaModificacion()
-        {
-            this._fechaModificacion = System.DateTime.Now.Date;
-        }
-
-        public bool FueFiltrado(List<Filtrada> filtradas)
-        {
-            return filtradas.Exists(f => this.Codigo.Equals(f.Texto));
         }
     }
 }

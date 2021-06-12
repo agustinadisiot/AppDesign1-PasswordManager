@@ -6,9 +6,9 @@ namespace Interfaz
 {
     public partial class IniciarSesion : UserControl
     {
-        private Administrador _administrador;
+        private ControladoraAdministrador _administrador;
 
-        public IniciarSesion(Administrador administrador)
+        public IniciarSesion(ControladoraAdministrador administrador)
         {
             this._administrador = administrador;
             InitializeComponent();
@@ -23,7 +23,7 @@ namespace Interfaz
         {
             try
             {
-                Usuario iniciar = new Usuario()
+                ControladoraUsuario iniciar = new ControladoraUsuario()
                 {
                     Nombre = this.inputUsuario.Text,
                     ClaveMaestra = this.inputContra.Text
@@ -31,7 +31,7 @@ namespace Interfaz
 
                 try {
                     
-                    Usuario verdadero = this._administrador.GetUsuario(iniciar);
+                    ControladoraUsuario verdadero = this._administrador.GetUsuario(iniciar);
                     if (verdadero.ClaveMaestra == iniciar.ClaveMaestra)
                     {
                        
@@ -58,9 +58,9 @@ namespace Interfaz
         }
 
 
-        public delegate void IniciarSesion_Delegate(Usuario actual);
+        public delegate void IniciarSesion_Delegate(ControladoraUsuario actual);
         public event IniciarSesion_Delegate IniciarSesion_Event;
-        private void EnviarIniciarSesion(Usuario aIniciar) {
+        private void EnviarIniciarSesion(ControladoraUsuario aIniciar) {
             if (this.IniciarSesion_Event != null)
                 this.IniciarSesion_Event(aIniciar);
         }

@@ -7,9 +7,9 @@ namespace Interfaz.InterfacesSeguridad
 {
     public partial class ReporteDeFortaleza : UserControl
     {
-        private Usuario _usuarioActual;
+        private ControladoraUsuario _usuarioActual;
 
-        public ReporteDeFortaleza(Usuario actual)
+        public ReporteDeFortaleza(ControladoraUsuario actual)
         {
             InitializeComponent();
             _usuarioActual = actual;
@@ -106,9 +106,9 @@ namespace Interfaz.InterfacesSeguridad
             }
         }
 
-        public delegate void AbrirVerClave_Delegate(ControladoraClave buscadora, Usuario usuarioActual);
+        public delegate void AbrirVerClave_Delegate(ControladoraClave buscadora, ControladoraUsuario usuarioActual);
         public event AbrirVerClave_Delegate AbrirVerClave_Event;
-        private void AbrirVerClave(ControladoraClave buscadora, Usuario usuarioActual)
+        private void AbrirVerClave(ControladoraClave buscadora, ControladoraUsuario usuarioActual)
         {
             if (this.AbrirVerClave_Event != null)
                 this.AbrirVerClave_Event(buscadora, usuarioActual);

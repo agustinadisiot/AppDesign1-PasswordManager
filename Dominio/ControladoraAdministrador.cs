@@ -4,12 +4,12 @@ using System.Linq;
 
 namespace LogicaDeNegocio
 {
-    public class Administrador
+    public class ControladoraAdministrador
     {
-        private List<Usuario> _usuarios;
+        private List<ControladoraUsuario> _usuarios;
 
-        public Administrador() {
-            this._usuarios = new List<Usuario>();
+        public ControladoraAdministrador() {
+            this._usuarios = new List<ControladoraUsuario>();
         }
 
         public bool EsListaUsuariosVacia()
@@ -17,7 +17,7 @@ namespace LogicaDeNegocio
             return this._usuarios.Count() == 0;
         }
 
-        public void AgregarUsuario(Usuario usuario)
+        public void AgregarUsuario(ControladoraUsuario usuario)
         {
             if (usuario.Nombre == null)  throw new ObjetoIncompletoException();
             if (this.YaExisteUsuario(usuario)) throw new ObjetoYaExistenteException();
@@ -25,18 +25,18 @@ namespace LogicaDeNegocio
             
         }
 
-        public Usuario GetUsuario(Usuario aBuscar)
+        public ControladoraUsuario GetUsuario(ControladoraUsuario aBuscar)
         {
             if (!this.YaExisteUsuario(aBuscar)) throw new ObjetoInexistenteException();
             return this._usuarios.First(aBuscar.Equals);
         }
 
-        public bool YaExisteUsuario(Usuario buscador)
+        public bool YaExisteUsuario(ControladoraUsuario buscador)
         {
             return this._usuarios.Contains(buscador);
         }
 
-        public List<Usuario> GetListaUsuarios()
+        public List<ControladoraUsuario> GetListaUsuarios()
         {
             if(this.EsListaUsuariosVacia()) return null;
             else { 

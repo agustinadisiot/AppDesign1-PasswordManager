@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace Repositorio
 {
-    public class DataAccessCategoria : IDataAccess<Categoria>
+    public class DataAccessCategoria : IDataAccess<ControladoraCategoria>
     {
 
-        public void Agregar(Categoria entity)
+        public void Agregar(ControladoraCategoria entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                List<Tarjeta> tarjetas = new List<Tarjeta>();
+                List<ControladoraTarjeta> tarjetas = new List<ControladoraTarjeta>();
                 List<ControladoraClave> claves = new List<ControladoraClave>();
 
                 for (int i = 0; i < entity.Tarjetas.Count; i++)
                 {
-                    Tarjeta t = entity.Tarjetas.ElementAt(i);
+                    ControladoraTarjeta t = entity.Tarjetas.ElementAt(i);
 
-                    Tarjeta nueva = contexto.Tarjetas.FirstOrDefault(tNueva => tNueva.Id == t.Id);
+                    ControladoraTarjeta nueva = contexto.Tarjetas.FirstOrDefault(tNueva => tNueva.Id == t.Id);
 
                     if (nueva != null)
                     {
@@ -56,17 +56,17 @@ namespace Repositorio
             }
         }
 
-        public void Borrar(Categoria entity)
+        public void Borrar(ControladoraCategoria entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                Categoria aEliminar = contexto.Categorias.FirstOrDefault(t => t.Id == entity.Id);
+                ControladoraCategoria aEliminar = contexto.Categorias.FirstOrDefault(t => t.Id == entity.Id);
                 contexto.Categorias.Remove(aEliminar);
                 contexto.SaveChanges();
             }
         }
 
-        public Categoria Get(int id)
+        public ControladoraCategoria Get(int id)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
@@ -74,7 +74,7 @@ namespace Repositorio
             }
         }
 
-        public IEnumerable<Categoria> GetTodos()
+        public IEnumerable<ControladoraCategoria> GetTodos()
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
@@ -82,18 +82,18 @@ namespace Repositorio
             }
         }
 
-        public void Modificar(Categoria entity)
+        public void Modificar(ControladoraCategoria entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                List<Tarjeta> tarjetas = new List<Tarjeta>();
+                List<ControladoraTarjeta> tarjetas = new List<ControladoraTarjeta>();
                 List<ControladoraClave> claves = new List<ControladoraClave>();
 
                 for (int i = 0; i < entity.Tarjetas.Count; i++)
                 {
-                    Tarjeta t = entity.Tarjetas.ElementAt(i);
+                    ControladoraTarjeta t = entity.Tarjetas.ElementAt(i);
 
-                    Tarjeta nueva = contexto.Tarjetas.FirstOrDefault(tNueva => tNueva.Id == t.Id);
+                    ControladoraTarjeta nueva = contexto.Tarjetas.FirstOrDefault(tNueva => tNueva.Id == t.Id);
 
                     if (nueva != null)
                     {
@@ -119,7 +119,7 @@ namespace Repositorio
                     claves.Add(t);
                 }
 
-                Categoria aModificar = contexto.Categorias
+                ControladoraCategoria aModificar = contexto.Categorias
                         .Include("Claves")
                         .Include("Tarjetas")
                         .FirstOrDefault(db => db.Id == entity.Id);

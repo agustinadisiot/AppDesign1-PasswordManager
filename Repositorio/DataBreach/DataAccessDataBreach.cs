@@ -14,7 +14,7 @@ namespace Repositorio
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                foreach (Tarjeta tarjetaNueva in entity.Tarjetas)
+                foreach (ControladoraTarjeta tarjetaNueva in entity.Tarjetas)
                 {
                     try
                     {
@@ -70,15 +70,15 @@ namespace Repositorio
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                List<Tarjeta> tarjetas = new List<Tarjeta>();
+                List<ControladoraTarjeta> tarjetas = new List<ControladoraTarjeta>();
                 List<ControladoraClave> claves = new List<ControladoraClave>();
                 List<Filtrada> filtradas = new List<Filtrada>();
 
                 for (int i = 0; i < entity.Tarjetas.Count; i++)
                 {
-                    Tarjeta t = entity.Tarjetas.ElementAt(i);
+                    ControladoraTarjeta t = entity.Tarjetas.ElementAt(i);
 
-                    Tarjeta nueva = contexto.Tarjetas.FirstOrDefault(tNueva => tNueva.Id == t.Id);
+                    ControladoraTarjeta nueva = contexto.Tarjetas.FirstOrDefault(tNueva => tNueva.Id == t.Id);
 
                     if (nueva != null)
                     {

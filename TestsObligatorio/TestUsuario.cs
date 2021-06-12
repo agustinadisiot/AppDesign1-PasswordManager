@@ -10,7 +10,7 @@ namespace TestsObligatorio
     [TestClass]
     public class TestUsuario
     {
-        private Usuario usuario;
+        private ControladoraUsuario usuario;
 
         [TestCleanup]
         public void TearDown()
@@ -21,7 +21,7 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
-            usuario = new Usuario()
+            usuario = new ControladoraUsuario()
             {
                 Nombre = "Usuario1",
                 ClaveMaestra = "Hola12345"
@@ -88,9 +88,9 @@ namespace TestsObligatorio
     [TestClass]
     public class TestUsuarioCategoria
     {
-        private Usuario usuario;
-        private Categoria categoria1;
-        private Categoria categoria2;
+        private ControladoraUsuario usuario;
+        private ControladoraCategoria categoria1;
+        private ControladoraCategoria categoria2;
 
         [TestCleanup]
         public void TearDown()
@@ -102,18 +102,18 @@ namespace TestsObligatorio
         public void Setup()
         {
 
-            usuario = new Usuario()
+            usuario = new ControladoraUsuario()
             {
                 Nombre = "Usuario1",
                 ClaveMaestra = "Hola12345"
             };
 
-            categoria1 = new Categoria()
+            categoria1 = new ControladoraCategoria()
             {
                 Nombre = "Personal"
             };
 
-            categoria2 = new Categoria()
+            categoria2 = new ControladoraCategoria()
             {
                 Nombre = "Trabajo"
             };
@@ -143,7 +143,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioAgregarCategoriaVacia()
         {
-            Categoria categoria = new Categoria();
+            ControladoraCategoria categoria = new ControladoraCategoria();
             Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.AgregarCategoria(categoria));
         }
 
@@ -152,7 +152,7 @@ namespace TestsObligatorio
         {
             usuario.AgregarCategoria(categoria1);
 
-            Categoria buscadora = new Categoria()
+            ControladoraCategoria buscadora = new ControladoraCategoria()
             {
                 Nombre = categoria1.Nombre
             };
@@ -165,7 +165,7 @@ namespace TestsObligatorio
             usuario.AgregarCategoria(categoria1);
             usuario.AgregarCategoria(categoria2);
 
-            Categoria buscadora = new Categoria()
+            ControladoraCategoria buscadora = new ControladoraCategoria()
             {
                 Nombre = categoria1.Nombre
             };
@@ -179,7 +179,7 @@ namespace TestsObligatorio
             usuario.AgregarCategoria(categoria1);
             usuario.AgregarCategoria(categoria2);
 
-            Categoria buscadora = new Categoria()
+            ControladoraCategoria buscadora = new ControladoraCategoria()
             {
                 Nombre = categoria2.Nombre
             };
@@ -191,7 +191,7 @@ namespace TestsObligatorio
         public void UsuarioAgregarCategoriaYaExistente()
         {
             usuario.AgregarCategoria(categoria1);
-            Categoria categoria2 = new Categoria()
+            ControladoraCategoria categoria2 = new ControladoraCategoria()
             {
                 Nombre = categoria1.Nombre
             };
@@ -203,7 +203,7 @@ namespace TestsObligatorio
         public void UsuarioYaExisteCategoriaSiExistente()
         {
             usuario.AgregarCategoria(categoria1);
-            Categoria categoria2 = new Categoria()
+            ControladoraCategoria categoria2 = new ControladoraCategoria()
             {
                 Nombre = categoria1.Nombre
             };
@@ -213,7 +213,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioYaExisteCategoriaNoExistente()
         {
-            Usuario usuario = new Usuario();
+            ControladoraUsuario usuario = new ControladoraUsuario();
             usuario.AgregarCategoria(categoria1);
             Assert.AreEqual(false, usuario.YaExisteCategoria(categoria2));
         }
@@ -221,7 +221,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioEqualsMismoNombreYClave()
         {
-            Usuario usuario2 = new Usuario()
+            ControladoraUsuario usuario2 = new ControladoraUsuario()
             {
                 Nombre = usuario.Nombre
             };
@@ -231,7 +231,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioEqualsDiferenteNombreYMismaClave()
         {
-            Usuario usuario2 = new Usuario()
+            ControladoraUsuario usuario2 = new ControladoraUsuario()
             {
                 Nombre = "Usuario789"
             };
@@ -241,7 +241,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioEqualsConNull()
         {
-            Usuario usuario2 = null;
+            ControladoraUsuario usuario2 = null;
             Assert.ThrowsException<ObjetoIncompletoException>(() => usuario.Equals(usuario2));
         }
 
@@ -255,7 +255,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioEqualsMismoNombreMayusculaYMinusucula()
         {
-            Usuario usuario2 = new Usuario()
+            ControladoraUsuario usuario2 = new ControladoraUsuario()
             {
                 Nombre = "uSUARio1"
             };
@@ -267,7 +267,7 @@ namespace TestsObligatorio
         {
             usuario.AgregarCategoria(categoria1);
 
-            Categoria copia = new Categoria()
+            ControladoraCategoria copia = new ControladoraCategoria()
             {
                 Nombre = categoria1.Nombre
             };
@@ -281,7 +281,7 @@ namespace TestsObligatorio
         {
             usuario.AgregarCategoria(categoria1);
 
-            Categoria categoriaNoAgregada = new Categoria()
+            ControladoraCategoria categoriaNoAgregada = new ControladoraCategoria()
             {
                 Nombre = "Facultad"
             };
@@ -295,11 +295,11 @@ namespace TestsObligatorio
             usuario.AgregarCategoria(categoria1);
             usuario.AgregarCategoria(categoria2);
 
-            Categoria modificarVieja = new Categoria()
+            ControladoraCategoria modificarVieja = new ControladoraCategoria()
             {
                 Nombre = categoria1.Nombre
             };
-            Categoria modificarNueva = new Categoria()
+            ControladoraCategoria modificarNueva = new ControladoraCategoria()
             {
                 Nombre = categoria2.Nombre
             };
@@ -328,13 +328,13 @@ namespace TestsObligatorio
             usuario.AgregarCategoria(categoria1);
             usuario.AgregarCategoria(categoria2);
 
-            List<Categoria> categorias = new List<Categoria>
+            List<ControladoraCategoria> categorias = new List<ControladoraCategoria>
             {
                 categoria1,
                 categoria2
             };
 
-            List<Categoria> resultado = usuario.GetListaCategorias();
+            List<ControladoraCategoria> resultado = usuario.GetListaCategorias();
 
             Assert.AreEqual(true, categorias.All(resultado.Contains)); ;
         }
@@ -343,11 +343,11 @@ namespace TestsObligatorio
     [TestClass]
     public class TestUsuarioClave
     {
-        private Usuario usuario;
-        private Usuario usuario2;
-        private Usuario usuario3;
-        private Categoria categoria1;
-        private Categoria categoria2;
+        private ControladoraUsuario usuario;
+        private ControladoraUsuario usuario2;
+        private ControladoraUsuario usuario3;
+        private ControladoraCategoria categoria1;
+        private ControladoraCategoria categoria2;
         private ControladoraClave clave1;
         private ControladoraClave clave2;
         private ControladoraClave clave3;
@@ -365,29 +365,29 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
-            usuario = new Usuario()
+            usuario = new ControladoraUsuario()
             {
                 Nombre = "Usuario1",
                 ClaveMaestra = "Hola12345"
             };
 
-            usuario2 = new Usuario()
+            usuario2 = new ControladoraUsuario()
             {
                 Nombre = "Usuario2",
                 ClaveMaestra = "Chau12345"
             };
 
-            usuario3 = new Usuario()
+            usuario3 = new ControladoraUsuario()
             {
                 Nombre = "Usuario3"
             };
 
-            categoria1 = new Categoria()
+            categoria1 = new ControladoraCategoria()
             {
                 Nombre = "Personal"
             };
 
-            categoria2 = new Categoria()
+            categoria2 = new ControladoraCategoria()
             {
                 Nombre = "Trabajo"
             };
@@ -541,7 +541,7 @@ namespace TestsObligatorio
             };
             usuario.AgregarCategoria(categoria1);
 
-            Categoria buscadora = new Categoria()
+            ControladoraCategoria buscadora = new ControladoraCategoria()
             {
                 Nombre = categoria1.Nombre
             };
@@ -560,7 +560,7 @@ namespace TestsObligatorio
 
             usuario.AgregarCategoria(categoria1);
 
-            Categoria buscadora = new Categoria()
+            ControladoraCategoria buscadora = new ControladoraCategoria()
             {
                 Nombre = categoria1.Nombre
             };
@@ -578,7 +578,7 @@ namespace TestsObligatorio
             };
             usuario.AgregarCategoria(categoria1);
 
-            Categoria buscadora = new Categoria()
+            ControladoraCategoria buscadora = new ControladoraCategoria()
             {
                 Nombre = categoria1.Nombre
             };
@@ -591,7 +591,7 @@ namespace TestsObligatorio
         {
             usuario.AgregarCategoria(categoria1);
 
-            Categoria buscadora = new Categoria()
+            ControladoraCategoria buscadora = new ControladoraCategoria()
             {
                 Nombre = categoria1.Nombre
             };
@@ -605,7 +605,7 @@ namespace TestsObligatorio
         {
             usuario.AgregarCategoria(categoria1);
 
-            Categoria buscadora = new Categoria()
+            ControladoraCategoria buscadora = new ControladoraCategoria()
             {
                 Nombre = categoria1.Nombre
             };
@@ -836,7 +836,7 @@ namespace TestsObligatorio
 
             ControladoraClave resultado = usuario.GetClave(buscadora);
 
-            Categoria categoriaFinal = usuario.GetCategoriaClave(buscadora);
+            ControladoraCategoria categoriaFinal = usuario.GetCategoriaClave(buscadora);
 
             bool igualSitio = resultado.Sitio == clave2.Sitio;
             bool igualUsuario = resultado.UsuarioClave == clave2.UsuarioClave;
@@ -1286,7 +1286,7 @@ namespace TestsObligatorio
             usuario.CompartirClave(claveCompartida);
             usuario.CompartirClave(claveCompartida2);
 
-            Usuario usuarioBuscador = new Usuario
+            ControladoraUsuario usuarioBuscador = new ControladoraUsuario
             {
                 Nombre = "Usuario2",
                 ClaveMaestra = "ClaveDiferente"
@@ -1357,7 +1357,7 @@ namespace TestsObligatorio
             usuario.CompartirClave(claveCompartida);
             usuario.CompartirClave(claveCompartida2);
 
-            Usuario usuarioBuscador = new Usuario
+            ControladoraUsuario usuarioBuscador = new ControladoraUsuario
             {
                 Nombre = usuario.Nombre,
                 ClaveMaestra = "ClaveDiferente"
@@ -1467,11 +1467,11 @@ namespace TestsObligatorio
     [TestClass]
     public class TestUsuarioTarjeta
     {
-        private Usuario usuario;
-        private Categoria categoria1;
-        private Categoria categoria2;
-        private Tarjeta tarjeta1;
-        private Tarjeta tarjeta2;
+        private ControladoraUsuario usuario;
+        private ControladoraCategoria categoria1;
+        private ControladoraCategoria categoria2;
+        private ControladoraTarjeta tarjeta1;
+        private ControladoraTarjeta tarjeta2;
 
         [TestCleanup]
         public void TearDown()
@@ -1483,23 +1483,23 @@ namespace TestsObligatorio
         public void Setup()
         {
 
-            usuario = new Usuario()
+            usuario = new ControladoraUsuario()
             {
                 Nombre = "Usuario1",
                 ClaveMaestra = "Hola12345"
             };
 
-            categoria1 = new Categoria()
+            categoria1 = new ControladoraCategoria()
             {
                 Nombre = "Personal"
             };
 
-            categoria2 = new Categoria()
+            categoria2 = new ControladoraCategoria()
             {
                 Nombre = "Trabajo"
             };
 
-            tarjeta1 = new Tarjeta()
+            tarjeta1 = new ControladoraTarjeta()
             {
                 Numero = "1111111111111111",
                 Nombre = "Prex",
@@ -1510,7 +1510,7 @@ namespace TestsObligatorio
 
             };
 
-            tarjeta2 = new Tarjeta()
+            tarjeta2 = new ControladoraTarjeta()
             {
                 Numero = "2222222222222222",
                 Nombre = "Visa Gold",
@@ -1528,7 +1528,7 @@ namespace TestsObligatorio
         {
             categoria1.AgregarTarjeta(tarjeta1);
             usuario.AgregarCategoria(categoria1);
-            Tarjeta tarjetaIgual = new Tarjeta()
+            ControladoraTarjeta tarjetaIgual = new ControladoraTarjeta()
             {
                 Nombre = tarjeta1.Nombre,
                 Tipo = tarjeta1.Tipo,
@@ -1544,7 +1544,7 @@ namespace TestsObligatorio
         {
             categoria1.AgregarTarjeta(tarjeta1);
             usuario.AgregarCategoria(categoria1);
-            Tarjeta tarjetaDistintoNumero = new Tarjeta()
+            ControladoraTarjeta tarjetaDistintoNumero = new ControladoraTarjeta()
             {
                 Nombre = tarjeta1.Nombre,
                 Tipo = tarjeta1.Tipo,
@@ -1560,7 +1560,7 @@ namespace TestsObligatorio
         {
             categoria1.AgregarTarjeta(tarjeta1);
             usuario.AgregarCategoria(categoria1);
-            Tarjeta tarjetaDistintoNombre = new Tarjeta()
+            ControladoraTarjeta tarjetaDistintoNombre = new ControladoraTarjeta()
             {
                 Nombre = "Visa",
                 Tipo = tarjeta1.Tipo,
@@ -1576,7 +1576,7 @@ namespace TestsObligatorio
         {
             categoria1.AgregarTarjeta(tarjeta1);
             usuario.AgregarCategoria(categoria1);
-            Tarjeta tarjetaDistintoTipo = new Tarjeta()
+            ControladoraTarjeta tarjetaDistintoTipo = new ControladoraTarjeta()
             {
                 Nombre = tarjeta1.Nombre,
                 Numero = tarjeta1.Numero,
@@ -1592,7 +1592,7 @@ namespace TestsObligatorio
         {
             categoria1.AgregarTarjeta(tarjeta1);
             usuario.AgregarCategoria(categoria1);
-            Tarjeta tarjetaDistintoTipo = new Tarjeta()
+            ControladoraTarjeta tarjetaDistintoTipo = new ControladoraTarjeta()
             {
                 Nombre = tarjeta1.Nombre,
                 Tipo = tarjeta1.Tipo,
@@ -1608,7 +1608,7 @@ namespace TestsObligatorio
         {
             categoria1.AgregarTarjeta(tarjeta1);
             usuario.AgregarCategoria(categoria1);
-            Tarjeta tarjetaDistintoTipo = new Tarjeta()
+            ControladoraTarjeta tarjetaDistintoTipo = new ControladoraTarjeta()
             {
                 Nombre = tarjeta1.Nombre,
                 Tipo = tarjeta1.Tipo,
@@ -1627,7 +1627,7 @@ namespace TestsObligatorio
             categoria1.AgregarTarjeta(tarjeta2);
             usuario.AgregarCategoria(categoria2);
 
-            Tarjeta tarjetaIgual = new Tarjeta()
+            ControladoraTarjeta tarjetaIgual = new ControladoraTarjeta()
             {
                 Nombre = tarjeta2.Nombre,
                 Tipo = tarjeta2.Tipo,
@@ -1657,7 +1657,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioAgregarTarjetaSinNombre()
         {
-            Tarjeta tarjeta = new Tarjeta()
+            ControladoraTarjeta tarjeta = new ControladoraTarjeta()
             {
                 Tipo = tarjeta1.Tipo,
                 Numero = tarjeta1.Numero,
@@ -1671,7 +1671,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioAgregarTarjetaSinTipo()
         {
-            Tarjeta tarjeta = new Tarjeta()
+            ControladoraTarjeta tarjeta = new ControladoraTarjeta()
             {
                 Nombre = tarjeta1.Nombre,
                 Numero = tarjeta1.Numero,
@@ -1685,7 +1685,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioAgregarTarjetaSinNumero()
         {
-            Tarjeta tarjeta = new Tarjeta()
+            ControladoraTarjeta tarjeta = new ControladoraTarjeta()
             {
                 Nombre = tarjeta1.Nombre,
                 Tipo = tarjeta1.Tipo,
@@ -1699,7 +1699,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioAgregarTarjetaSinCodigo()
         {
-            Tarjeta tarjeta = new Tarjeta()
+            ControladoraTarjeta tarjeta = new ControladoraTarjeta()
             {
                 Nombre = tarjeta1.Nombre,
                 Tipo = tarjeta1.Tipo,
@@ -1725,7 +1725,7 @@ namespace TestsObligatorio
             usuario.AgregarTarjeta(tarjeta1, categoria1);
 
 
-            Categoria buscadora = new Categoria()
+            ControladoraCategoria buscadora = new ControladoraCategoria()
             {
                 Nombre = categoria1.Nombre
             };
@@ -1738,7 +1738,7 @@ namespace TestsObligatorio
             categoria1.AgregarTarjeta(tarjeta1);
             usuario.AgregarCategoria(categoria1);
 
-            Tarjeta buscadora = new Tarjeta()
+            ControladoraTarjeta buscadora = new ControladoraTarjeta()
             {
                 Nombre = tarjeta1.Nombre,
                 Tipo = tarjeta1.Tipo,
@@ -1762,7 +1762,7 @@ namespace TestsObligatorio
             categoria1.AgregarTarjeta(tarjeta1);
             usuario.AgregarCategoria(categoria1);
 
-            Tarjeta buscadora = new Tarjeta()
+            ControladoraTarjeta buscadora = new ControladoraTarjeta()
             {
                 Nombre = tarjeta1.Nombre,
                 Tipo = tarjeta1.Tipo,
@@ -1793,14 +1793,14 @@ namespace TestsObligatorio
         public void UsuarioYaExisteTarjetaBorrada()
         {
             usuario.AgregarCategoria(categoria1);
-            Categoria buscadora = new Categoria()
+            ControladoraCategoria buscadora = new ControladoraCategoria()
             {
                 Nombre = categoria1.Nombre
             };
 
             usuario.AgregarTarjeta(tarjeta1, buscadora);
 
-            Tarjeta aBorrar = new Tarjeta()
+            ControladoraTarjeta aBorrar = new ControladoraTarjeta()
             {
                 Numero = tarjeta1.Numero
             };
@@ -1815,7 +1815,7 @@ namespace TestsObligatorio
         {
             usuario.AgregarCategoria(categoria1);
 
-            Categoria buscadora = new Categoria()
+            ControladoraCategoria buscadora = new ControladoraCategoria()
             {
                 Nombre = categoria1.Nombre
             };
@@ -1823,7 +1823,7 @@ namespace TestsObligatorio
             usuario.AgregarTarjeta(tarjeta1, buscadora);
             usuario.AgregarTarjeta(tarjeta2, buscadora);
 
-            Tarjeta buscadoraBorrar = new Tarjeta()
+            ControladoraTarjeta buscadoraBorrar = new ControladoraTarjeta()
             {
                 Numero = tarjeta1.Numero
             };
@@ -1838,11 +1838,11 @@ namespace TestsObligatorio
             usuario.AgregarTarjeta(tarjeta1, categoria1);
 
 
-            Tarjeta tarjetaVieja = new Tarjeta()
+            ControladoraTarjeta tarjetaVieja = new ControladoraTarjeta()
             {
                 Numero = "2222222222222222"
             };
-            Tarjeta tarjetaNueva = new Tarjeta()
+            ControladoraTarjeta tarjetaNueva = new ControladoraTarjeta()
             {
                 Numero = "3333333333333333"
             };
@@ -1867,11 +1867,11 @@ namespace TestsObligatorio
             usuario.AgregarTarjeta(tarjeta2, categoria1);
 
 
-            Tarjeta tarjetaVieja = new Tarjeta()
+            ControladoraTarjeta tarjetaVieja = new ControladoraTarjeta()
             {
                 Numero = tarjeta1.Numero
             };
-            Tarjeta tarjetaNueva = new Tarjeta()
+            ControladoraTarjeta tarjetaNueva = new ControladoraTarjeta()
             {
                 Numero = tarjeta2.Numero
             };
@@ -1905,12 +1905,12 @@ namespace TestsObligatorio
 
             usuario.ModificarTarjeta(parametros);
 
-            Tarjeta buscadora = new Tarjeta()
+            ControladoraTarjeta buscadora = new ControladoraTarjeta()
             {
                 Numero = tarjeta2.Numero
             };
 
-            Tarjeta resultado = usuario.GetTarjeta(buscadora);
+            ControladoraTarjeta resultado = usuario.GetTarjeta(buscadora);
 
             bool igualNumero = tarjeta2.Numero == resultado.Numero;
             bool igualNombre = tarjeta2.Nombre == resultado.Nombre;
@@ -1945,7 +1945,7 @@ namespace TestsObligatorio
             usuario.AgregarCategoria(categoria1);
             usuario.AgregarCategoria(categoria2);
             
-            Tarjeta tarjeta1 = new Tarjeta()
+            ControladoraTarjeta tarjeta1 = new ControladoraTarjeta()
             {
                 Numero = "1111111111111111",
                 Nombre = "Prex",
@@ -1966,14 +1966,14 @@ namespace TestsObligatorio
 
             usuario.ModificarTarjeta(parametros);
 
-            Tarjeta buscadora = new Tarjeta()
+            ControladoraTarjeta buscadora = new ControladoraTarjeta()
             {
                 Numero = tarjeta2.Numero
             };
 
-            Tarjeta resultado = usuario.GetTarjeta(buscadora);
+            ControladoraTarjeta resultado = usuario.GetTarjeta(buscadora);
 
-            Categoria categoriaFinal = usuario.GetCategoriaTarjeta(buscadora);
+            ControladoraCategoria categoriaFinal = usuario.GetCategoriaTarjeta(buscadora);
 
             bool igualNumero = tarjeta2.Numero == resultado.Numero;
             bool igualNombre = tarjeta2.Nombre == resultado.Nombre;
@@ -2004,7 +2004,7 @@ namespace TestsObligatorio
             categoria1.AgregarTarjeta(tarjeta1);
             categoria1.AgregarTarjeta(tarjeta2);
 
-            List<Tarjeta> tarjetas = new List<Tarjeta>
+            List<ControladoraTarjeta> tarjetas = new List<ControladoraTarjeta>
             {
                 tarjeta1,
                 tarjeta2
@@ -2024,7 +2024,7 @@ namespace TestsObligatorio
             categoria1.AgregarTarjeta(tarjeta1);
             categoria2.AgregarTarjeta(tarjeta2);
 
-            List<Tarjeta> tarjetas = new List<Tarjeta>
+            List<ControladoraTarjeta> tarjetas = new List<ControladoraTarjeta>
             {
                 tarjeta1,
                 tarjeta2
@@ -2041,7 +2041,7 @@ namespace TestsObligatorio
             usuario.AgregarCategoria(categoria1);
 
            
-            Tarjeta buscadora = new Tarjeta()
+            ControladoraTarjeta buscadora = new ControladoraTarjeta()
             {
                 Numero = tarjeta1.Numero
             };
@@ -2057,7 +2057,7 @@ namespace TestsObligatorio
 
             usuario.AgregarTarjeta(tarjeta1, categoria1);
 
-            Tarjeta buscadora = new Tarjeta()
+            ControladoraTarjeta buscadora = new ControladoraTarjeta()
             {
                 Numero = tarjeta1.Numero
             };

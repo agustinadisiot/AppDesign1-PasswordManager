@@ -7,9 +7,9 @@ namespace Interfaz
     public partial class VerClave : UserControl
     {
         private ControladoraClave _claveAMostrar;
-        private Usuario _usuarioActual;
+        private ControladoraUsuario _usuarioActual;
 
-        public VerClave(ControladoraClave claveAMostrar, Usuario usuarioActual)
+        public VerClave(ControladoraClave claveAMostrar, ControladoraUsuario usuarioActual)
         {
             InitializeComponent();
             _claveAMostrar = claveAMostrar;
@@ -19,7 +19,7 @@ namespace Interfaz
 
         private void CargarDatos()
         {
-            Categoria categoriaAMostrar = _usuarioActual.GetCategoriaClave(_claveAMostrar);
+            ControladoraCategoria categoriaAMostrar = _usuarioActual.GetCategoriaClave(_claveAMostrar);
             string nombreCateogiraAMostrar = categoriaAMostrar.Nombre;
             string sitioAMostrar = _claveAMostrar.Sitio;
             string usuarioAMostrar = _claveAMostrar.UsuarioClave;

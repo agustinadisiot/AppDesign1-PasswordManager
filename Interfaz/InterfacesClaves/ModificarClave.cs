@@ -7,10 +7,10 @@ namespace Interfaz.InterfacesClaves
 {
     public partial class ModificarClave : UserControl
     {
-        private Usuario _actual;
+        private ControladoraUsuario _actual;
         private ControladoraClave _vieja;
 
-        public ModificarClave(Usuario usuario, ControladoraClave clave)
+        public ModificarClave(ControladoraUsuario usuario, ControladoraClave clave)
         {
             this._actual = usuario;
             this._vieja = clave;
@@ -34,16 +34,16 @@ namespace Interfaz.InterfacesClaves
         private void CargarComboBox()
         {
             this.comboBoxCategorias.Items.Clear();
-            List<Categoria> lista = this._actual.GetListaCategorias();
+            List<ControladoraCategoria> lista = this._actual.GetListaCategorias();
 
-            foreach (Categoria actual in lista)
+            foreach (ControladoraCategoria actual in lista)
             {
                 string nombre = actual.Nombre;
                 this.comboBoxCategorias.Items.Add(nombre);
 
             }
 
-            Categoria pertence = this._actual.GetCategoriaClave(this._vieja);
+            ControladoraCategoria pertence = this._actual.GetCategoriaClave(this._vieja);
 
             this.comboBoxCategorias.SelectedItem = pertence.Nombre;
 
@@ -59,7 +59,7 @@ namespace Interfaz.InterfacesClaves
 
         private void botonModificar_Click(object sender, EventArgs e)
         {
-            Categoria categoria = new Categoria()
+            ControladoraCategoria categoria = new ControladoraCategoria()
             {
                 Nombre = this.LeerComboBox()
             };

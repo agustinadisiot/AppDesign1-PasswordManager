@@ -6,10 +6,10 @@ namespace Interfaz.InterfacesTarjetas
 {
     public partial class VerTarjeta : UserControl
     {
-        private Tarjeta _mostrar;
-        private Usuario _usuario;
+        private ControladoraTarjeta _mostrar;
+        private ControladoraUsuario _usuario;
 
-        public VerTarjeta(Tarjeta ingreso, Usuario actual)
+        public VerTarjeta(ControladoraTarjeta ingreso, ControladoraUsuario actual)
         {
             this._mostrar = ingreso;
             this._usuario = actual;
@@ -24,7 +24,7 @@ namespace Interfaz.InterfacesTarjetas
 
         private void CargarDatos() {
             string formatoFecha = "MM '/' yyyy";
-            Categoria categoria = this._usuario.GetCategoriaTarjeta(this._mostrar);
+            ControladoraCategoria categoria = this._usuario.GetCategoriaTarjeta(this._mostrar);
 
             this.labelMostrarCategoria.Text = categoria.Nombre;
             this.labelMostrarCodigo.Text = this._mostrar.Codigo;

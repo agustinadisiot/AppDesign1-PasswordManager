@@ -6,10 +6,10 @@ namespace Interfaz
 {
     public partial class ModificarCategoria : UserControl
     {
-        private Categoria _categoriaActual;
-        private Usuario _usuarioActual;
+        private ControladoraCategoria _categoriaActual;
+        private ControladoraUsuario _usuarioActual;
 
-        public ModificarCategoria(Categoria categoriaAModificar, Usuario usuarioActual)
+        public ModificarCategoria(ControladoraCategoria categoriaAModificar, ControladoraUsuario usuarioActual)
         {
             InitializeComponent();
             _usuarioActual = usuarioActual;
@@ -27,7 +27,7 @@ namespace Interfaz
         {
             try 
             {
-                Categoria categoriaModificada = new Categoria()
+                ControladoraCategoria categoriaModificada = new ControladoraCategoria()
                 {
                     Nombre = this.textNombreCategoria.Text
                 };

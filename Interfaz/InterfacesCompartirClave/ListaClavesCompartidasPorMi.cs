@@ -7,10 +7,10 @@ namespace Interfaz.InterfacesCompartirClave
 {
     public partial class ListaClavesCompartidasPorMi : UserControl
     {
-        private Administrador _administrador;
-        private Usuario _usuarioActual;
+        private ControladoraAdministrador _administrador;
+        private ControladoraUsuario _usuarioActual;
 
-        public ListaClavesCompartidasPorMi(Usuario usuarioAgregar, Administrador administradorAgregar)
+        public ListaClavesCompartidasPorMi(ControladoraUsuario usuarioAgregar, ControladoraAdministrador administradorAgregar)
         {
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;
@@ -27,7 +27,7 @@ namespace Interfaz.InterfacesCompartirClave
             foreach (ClaveCompartida claveCompartidaActual in listaClavesCompartidasPorMi)
             {
                 ControladoraClave claveQueSeComparte = claveCompartidaActual.Clave;
-                Usuario usuarioQueComparte = claveCompartidaActual.Destino;
+                ControladoraUsuario usuarioQueComparte = claveCompartidaActual.Destino;
 
                 string nombreUsuarioAQuienSeComparte = usuarioQueComparte.Nombre;
                 string sitioClaveQueSeComparte = claveQueSeComparte.Sitio;
@@ -67,7 +67,7 @@ namespace Interfaz.InterfacesCompartirClave
                     UsuarioClave = usuarioClaveDejarDeCompartir
                 };
 
-                Usuario usuarioBuscador = new Usuario
+                ControladoraUsuario usuarioBuscador = new ControladoraUsuario
                 {
                     Nombre = nombreUsuarioDejarDeCompartir
                 };
@@ -107,9 +107,9 @@ namespace Interfaz.InterfacesCompartirClave
             }
         }
 
-        public delegate void AbrirVerClave_Delegate(ControladoraClave buscadora, Usuario usuarioActual);
+        public delegate void AbrirVerClave_Delegate(ControladoraClave buscadora, ControladoraUsuario usuarioActual);
         public event AbrirVerClave_Delegate AbrirVerClave_Event;
-        private void AbrirVerClave(ControladoraClave buscadora, Usuario usuarioActual)
+        private void AbrirVerClave(ControladoraClave buscadora, ControladoraUsuario usuarioActual)
         {
             if (this.AbrirVerClave_Event != null)
                 this.AbrirVerClave_Event(buscadora, usuarioActual);

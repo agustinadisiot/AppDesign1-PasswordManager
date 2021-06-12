@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace LogicaDeNegocio
+namespace Negocio
 {
-    public class ClaveNoSeguraException : Exception
+    public class ClaveDuplicadaException : Exception
     {
         private string message;
 
@@ -11,9 +11,9 @@ namespace LogicaDeNegocio
             get { return message; }
         }
 
-        public ClaveNoSeguraException()
+        public ClaveDuplicadaException()
         {
-            this.message = "La contraseña no es segura.";
+            this.message = "Ya has usado esta contraseña.";
         }
     }
 }

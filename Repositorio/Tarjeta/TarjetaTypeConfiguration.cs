@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Repositorio
 {
-    class TarjetaTypeConfiguration : EntityTypeConfiguration<Tarjeta>
+    class TarjetaTypeConfiguration : EntityTypeConfiguration<ControladoraTarjeta>
     {
         public TarjetaTypeConfiguration() {
             this.HasKey(x => x.Id);

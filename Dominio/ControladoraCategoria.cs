@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace LogicaDeNegocio
 {
-    public class Categoria
+    public class ControladoraCategoria
     {
        // private List<Clave> _claves;
         //private List<Tarjeta> _tarjetas;
@@ -11,10 +11,10 @@ namespace LogicaDeNegocio
         private const int _largoNombreMinimo = 3;
         private const int _largoNombreMaximo = 15;
 
-        public Categoria()
+        public ControladoraCategoria()
         {
             this.Claves = new List<ControladoraClave>();
-            this.Tarjetas = new List<Tarjeta>();
+            this.Tarjetas = new List<ControladoraTarjeta>();
         }
 
         public string Nombre
@@ -26,7 +26,7 @@ namespace LogicaDeNegocio
         public int Id { get; set; }
 
         public List<ControladoraClave> Claves { get; set; }
-        public List<Tarjeta> Tarjetas { get; set; }
+        public List<ControladoraTarjeta> Tarjetas { get; set; }
 
         public bool EsListaClavesVacia()
         {
@@ -81,7 +81,7 @@ namespace LogicaDeNegocio
         {
             if (objeto == null) throw new ObjetoIncompletoException();
             if (objeto.GetType() != this.GetType()) throw new ObjetoIncorrectoException();
-            Categoria aIgualar = (Categoria)objeto;
+            ControladoraCategoria aIgualar = (ControladoraCategoria)objeto;
             return aIgualar.Nombre.ToUpper() == this.Nombre.ToUpper();
         }
 
@@ -91,7 +91,7 @@ namespace LogicaDeNegocio
             return noHayTarjetas;
         }
 
-        public void AgregarTarjeta(Tarjeta tarjetaIngresada)
+        public void AgregarTarjeta(ControladoraTarjeta tarjetaIngresada)
         {
             bool noTieneNombre = (tarjetaIngresada.Nombre == null),
                 noTieneSitio = (tarjetaIngresada.Tipo == null),
@@ -106,19 +106,19 @@ namespace LogicaDeNegocio
             this.Tarjetas.Add(tarjetaIngresada);
         }
 
-        public Tarjeta GetTarjeta(Tarjeta aBuscar)
+        public ControladoraTarjeta GetTarjeta(ControladoraTarjeta aBuscar)
         {
             if (this.EsListaTarjetasVacia()) throw new ObjetoInexistenteException();
-            Predicate<Tarjeta> buscadorTarjeta = (Tarjeta tarjeta) =>
+            Predicate<ControladoraTarjeta> buscadorTarjeta = (ControladoraTarjeta tarjeta) =>
             {
                 return tarjeta.Equals(aBuscar);
             };
 
-            Tarjeta retorno = this.Tarjetas.Find(buscadorTarjeta);
+            ControladoraTarjeta retorno = this.Tarjetas.Find(buscadorTarjeta);
             return retorno != null ? retorno : throw new ObjetoInexistenteException();
         }
 
-        public List<Tarjeta> GetListaTarjetas()
+        public List<ControladoraTarjeta> GetListaTarjetas()
         {
             return this.Tarjetas;
         }
@@ -128,13 +128,13 @@ namespace LogicaDeNegocio
             return (this.Claves.Contains(aBuscar));
         }
 
-        public bool YaExisteTarjeta(Tarjeta aBuscar)
+        public bool YaExisteTarjeta(ControladoraTarjeta aBuscar)
         {
             return (this.Tarjetas.Contains(aBuscar));
             
         }
 
-        public void BorrarTarjeta(Tarjeta aBorrar)
+        public void BorrarTarjeta(ControladoraTarjeta aBorrar)
         {
 
             if (this.EsListaTarjetasVacia() || !this.YaExisteTarjeta(aBorrar))
@@ -144,14 +144,14 @@ namespace LogicaDeNegocio
             this.Tarjetas.Remove(aBorrar);
         }
 
-        public void ModificarTarjeta(Tarjeta tarjetaVieja, Tarjeta tarjetaNueva)
+        public void ModificarTarjeta(ControladoraTarjeta tarjetaVieja, ControladoraTarjeta tarjetaNueva)
         {
             bool igualNumero = tarjetaVieja.Equals(tarjetaNueva);
 
             if (!this.YaExisteTarjeta(tarjetaVieja)) throw new ObjetoInexistenteException();
             if (!igualNumero && this.YaExisteTarjeta(tarjetaNueva)) throw new ObjetoYaExistenteException();
 
-            Tarjeta aModificar = this.GetTarjeta(tarjetaVieja);
+            ControladoraTarjeta aModificar = this.GetTarjeta(tarjetaVieja);
             aModificar.Nombre = tarjetaNueva.Nombre;
             aModificar.Numero = tarjetaNueva.Numero;
             aModificar.Tipo = tarjetaNueva.Tipo;

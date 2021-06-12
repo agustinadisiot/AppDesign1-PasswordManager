@@ -5,18 +5,18 @@ using System.Text.RegularExpressions;
 
 namespace LogicaDeNegocio
 {
-    public class Usuario
+    public class ControladoraUsuario
     {
         private string _nombre;
         private string _claveMaestra;
         private const int _largoNombreYClaveMinimo = 5;
         private const int _largoNombreYClaveMaximo = 25;
 
-        public List<Categoria> Categorias { get; set; }
+        public List<ControladoraCategoria> Categorias { get; set; }
 
-        public Usuario()
+        public ControladoraUsuario()
         {
-            this.Categorias = new List<Categoria>();
+            this.Categorias = new List<ControladoraCategoria>();
             this.CompartidasConmigo = new List<ClaveCompartida>();
             this.CompartidasPorMi = new List<ClaveCompartida>();
             this.DataBreaches = new List<DataBreach>();
@@ -51,7 +51,7 @@ namespace LogicaDeNegocio
             return noAgregoCategorias;
         }
 
-        public void AgregarCategoria(Categoria categoria)
+        public void AgregarCategoria(ControladoraCategoria categoria)
         {
             if (categoria.Nombre == null) throw new ObjetoIncompletoException();
             else 
@@ -63,12 +63,12 @@ namespace LogicaDeNegocio
             }  
         }
 
-        public Categoria GetCategoria(Categoria aBuscar)
+        public ControladoraCategoria GetCategoria(ControladoraCategoria aBuscar)
         {
-            Predicate<Categoria> buscadorCategoria = (Categoria categoria) =>
+            Predicate<ControladoraCategoria> buscadorCategoria = (ControladoraCategoria categoria) =>
             { return categoria.Equals(aBuscar); };
 
-            Categoria retorno = this.Categorias.Find(buscadorCategoria);
+            ControladoraCategoria retorno = this.Categorias.Find(buscadorCategoria);
             return retorno != null ? retorno : throw new CategoriaInexistenteException();
         }
 
@@ -79,7 +79,7 @@ namespace LogicaDeNegocio
 
         public void agregarDataBreach(List<Filtrada> filtradas, DateTime tiempoBreach)
         {
-            LogicaDataBreach logicaDataBreach = new LogicaDataBreach();
+            ControladoraDataBreach logicaDataBreach = new ControladoraDataBreach();
             DataBreach nuevoBreach = new DataBreach()
             {
                 Tarjetas = logicaDataBreach.FiltrarTarjetas(filtradas, this.GetListaTarjetas()),
@@ -94,23 +94,23 @@ namespace LogicaDeNegocio
         {
             if (objeto == null) throw new ObjetoIncompletoException();
             if (objeto.GetType() != this.GetType()) throw new ObjetoIncorrectoException();
-            Usuario aIgualar = (Usuario)objeto;
+            ControladoraUsuario aIgualar = (ControladoraUsuario)objeto;
             return aIgualar.Nombre.ToUpper() == this.Nombre.ToUpper();
         }
 
-        public void ModificarNombreCategoria(Categoria vieja, Categoria nueva)
+        public void ModificarNombreCategoria(ControladoraCategoria vieja, ControladoraCategoria nueva)
         {
             if (this.YaExisteCategoria(nueva))
             {
                 throw new ObjetoYaExistenteException();
             }
             else {
-                Categoria aBuscar = this.GetCategoria(vieja);
+                ControladoraCategoria aBuscar = this.GetCategoria(vieja);
                 aBuscar.Nombre = nueva.Nombre;
             }
         }
 
-        public bool YaExisteCategoria(Categoria aBuscar)
+        public bool YaExisteCategoria(ControladoraCategoria aBuscar)
         {
             return this.Categorias.Any(buscadora => buscadora.Equals(aBuscar));
         }
@@ -120,7 +120,7 @@ namespace LogicaDeNegocio
             return this.Categorias.Any(catBuscadora => catBuscadora.YaExisteClave(clave));
         }
 
-        public void AgregarClave(ControladoraClave clave, Categoria buscadora)
+        public void AgregarClave(ControladoraClave clave, ControladoraCategoria buscadora)
         {
 
             bool noTieneSitio = (clave.Sitio == null),
@@ -134,12 +134,12 @@ namespace LogicaDeNegocio
             this.GetCategoria(buscadora).AgregarClave(clave);
         }
 
-        public bool YaExisteTarjeta(Tarjeta tarjeta)
+        public bool YaExisteTarjeta(ControladoraTarjeta tarjeta)
         {
             return this.Categorias.Any(catBuscadora => catBuscadora.YaExisteTarjeta(tarjeta));
         }
 
-        public void AgregarTarjeta(Tarjeta tarjeta, Categoria categoria)
+        public void AgregarTarjeta(ControladoraTarjeta tarjeta, ControladoraCategoria categoria)
         {
             bool noTieneNombre = (tarjeta.Nombre == null),
             noTieneSitio = (tarjeta.Tipo == null),
@@ -169,11 +169,11 @@ namespace LogicaDeNegocio
                 this.DejarDeCompartir(aDejarDeCompartir);
             }
 
-            Categoria contieneClaveABorrar = this.Categorias.First(categoria => categoria.YaExisteClave(aBorrar));
+            ControladoraCategoria contieneClaveABorrar = this.Categorias.First(categoria => categoria.YaExisteClave(aBorrar));
             contieneClaveABorrar.BorrarClave(aBorrar);
         }
 
-        public List<Categoria> GetListaCategorias()
+        public List<ControladoraCategoria> GetListaCategorias()
         {
             return this.Categorias;
         }
@@ -182,7 +182,7 @@ namespace LogicaDeNegocio
         {
             if (!YaExisteClave(claveBuscadora)) throw new ObjetoInexistenteException();
 
-            foreach (Categoria categoria in this.Categorias)
+            foreach (ControladoraCategoria categoria in this.Categorias)
             {
                 if (categoria.YaExisteClave(claveBuscadora))
                 {
@@ -195,11 +195,11 @@ namespace LogicaDeNegocio
 
         }
 
-        public Tarjeta GetTarjeta(Tarjeta buscadora)
+        public ControladoraTarjeta GetTarjeta(ControladoraTarjeta buscadora)
         {
             if (!YaExisteTarjeta(buscadora)) throw new ObjetoInexistenteException();
 
-            foreach (Categoria categoria in this.Categorias)
+            foreach (ControladoraCategoria categoria in this.Categorias)
             {
                 if (categoria.YaExisteTarjeta(buscadora))
                 {
@@ -211,7 +211,7 @@ namespace LogicaDeNegocio
             throw new ObjetoInexistenteException();
         }
 
-        public void BorrarTarjeta(Tarjeta aBorrar)
+        public void BorrarTarjeta(ControladoraTarjeta aBorrar)
         {
             if (this.EsListaCategoriasVacia()) {
                 throw new CategoriaInexistenteException();
@@ -221,7 +221,7 @@ namespace LogicaDeNegocio
                 throw new ObjetoInexistenteException();
             }
 
-            Categoria contieneClaveABorrar = this.Categorias.First(categoria => categoria.YaExisteTarjeta(aBorrar));
+            ControladoraCategoria contieneClaveABorrar = this.Categorias.First(categoria => categoria.YaExisteTarjeta(aBorrar));
             contieneClaveABorrar.BorrarTarjeta(aBorrar);
         }
 
@@ -234,8 +234,8 @@ namespace LogicaDeNegocio
                 throw new ObjetoYaExistenteException();
             }
 
-            Categoria categoriaVieja = this.GetCategoria(modificar.CategoriaVieja);
-            Categoria categoriaNueva = this.GetCategoria(modificar.CategoriaNueva);
+            ControladoraCategoria categoriaVieja = this.GetCategoria(modificar.CategoriaVieja);
+            ControladoraCategoria categoriaNueva = this.GetCategoria(modificar.CategoriaNueva);
 
             if (categoriaVieja.Equals(categoriaNueva))
             {
@@ -256,15 +256,15 @@ namespace LogicaDeNegocio
 
         public void ModificarTarjeta(TarjetaAModificar modificar)
         {
-            Tarjeta tarjetaVieja = this.GetTarjeta(modificar.TarjetaVieja);
-            Tarjeta tarjetaNueva = modificar.TarjetaNueva;
+            ControladoraTarjeta tarjetaVieja = this.GetTarjeta(modificar.TarjetaVieja);
+            ControladoraTarjeta tarjetaNueva = modificar.TarjetaNueva;
 
 
             bool cambioNumero = tarjetaVieja.Numero != tarjetaNueva.Numero;
             if (cambioNumero && this.YaExisteTarjeta(tarjetaNueva)) throw new ObjetoYaExistenteException();
 
-            Categoria categoriaVieja = this.GetCategoria(modificar.CategoriaVieja);
-            Categoria categoriaNueva = this.GetCategoria(modificar.CategoriaNueva);
+            ControladoraCategoria categoriaVieja = this.GetCategoria(modificar.CategoriaVieja);
+            ControladoraCategoria categoriaNueva = this.GetCategoria(modificar.CategoriaNueva);
 
             if (categoriaNueva == categoriaVieja)
             {
@@ -283,7 +283,7 @@ namespace LogicaDeNegocio
         {
             List<ControladoraClave> claves = new List<ControladoraClave>();
 
-            foreach(Categoria categoria in this.Categorias)
+            foreach(ControladoraCategoria categoria in this.Categorias)
             {
                claves.AddRange(categoria.GetListaClaves());
             }
@@ -291,11 +291,11 @@ namespace LogicaDeNegocio
             return claves;
         }
 
-        public List<Tarjeta> GetListaTarjetas()
+        public List<ControladoraTarjeta> GetListaTarjetas()
         {
-            List<Categoria> categorias = this.GetListaCategorias();
-            List<Tarjeta> tarjetasUsuario = new List<Tarjeta>();
-            foreach(Categoria categoria in categorias)
+            List<ControladoraCategoria> categorias = this.GetListaCategorias();
+            List<ControladoraTarjeta> tarjetasUsuario = new List<ControladoraTarjeta>();
+            foreach(ControladoraCategoria categoria in categorias)
             {
                 tarjetasUsuario.AddRange(categoria.GetListaTarjetas());
             }
@@ -305,8 +305,8 @@ namespace LogicaDeNegocio
         public void CompartirClave(ClaveCompartida aCompartir)
         {
 
-            Usuario usuarioDestino = aCompartir.Destino;
-            Usuario usuarioOriginal = aCompartir.Original;
+            ControladoraUsuario usuarioDestino = aCompartir.Destino;
+            ControladoraUsuario usuarioOriginal = aCompartir.Original;
             ControladoraClave claveACompartir = aCompartir.Clave;
 
             if (this.CompartidasPorMi.Contains(aCompartir)) throw new ObjetoYaExistenteException();
@@ -335,8 +335,8 @@ namespace LogicaDeNegocio
 
         public void DejarDeCompartir(ClaveCompartida aDejarDeCompartir)
         {
-            Usuario usuarioOriginal = aDejarDeCompartir.Original;
-            Usuario usuarioDestino = aDejarDeCompartir.Destino;
+            ControladoraUsuario usuarioOriginal = aDejarDeCompartir.Original;
+            ControladoraUsuario usuarioDestino = aDejarDeCompartir.Destino;
             ControladoraClave claveADejarDeCompartir = this.GetClave(aDejarDeCompartir.Clave);
 
             if (!claveADejarDeCompartir.EsCompartida) throw new ObjetoInexistenteException();
@@ -366,11 +366,11 @@ namespace LogicaDeNegocio
             return todasLasClaves.FindAll(buscadora => nivelSeguridad.GetNivelSeguridad(buscadora.Codigo)==color);
         }
 
-        public Categoria GetCategoriaTarjeta(Tarjeta buscadora)
+        public ControladoraCategoria GetCategoriaTarjeta(ControladoraTarjeta buscadora)
         {
-            List<Categoria> categorias = this.GetListaCategorias();
+            List<ControladoraCategoria> categorias = this.GetListaCategorias();
 
-            foreach (Categoria actual in categorias) {
+            foreach (ControladoraCategoria actual in categorias) {
                 if (actual.YaExisteTarjeta(buscadora)) {
                     return actual;
                 }
@@ -380,11 +380,11 @@ namespace LogicaDeNegocio
 
         }
 
-        public Categoria GetCategoriaClave(ControladoraClave buscadora)
+        public ControladoraCategoria GetCategoriaClave(ControladoraClave buscadora)
         {
-            List<Categoria> categorias = this.GetListaCategorias();
+            List<ControladoraCategoria> categorias = this.GetListaCategorias();
 
-            foreach (Categoria actual in categorias)
+            foreach (ControladoraCategoria actual in categorias)
             {
                 if (actual.YaExisteClave(buscadora))
                 {

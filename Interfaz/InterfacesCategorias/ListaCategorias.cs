@@ -7,9 +7,9 @@ namespace Interfaz
 {
     public partial class ListaCategorias : UserControl
     {
-        private Usuario _usuarioActual;
+        private ControladoraUsuario _usuarioActual;
 
-        public ListaCategorias(Usuario usuarioAgregar)
+        public ListaCategorias(ControladoraUsuario usuarioAgregar)
         {
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;
@@ -18,9 +18,9 @@ namespace Interfaz
         private void CargarTabla()
         {
 
-            List<Categoria> listaCategorias = this._usuarioActual.GetListaCategorias();
+            List<ControladoraCategoria> listaCategorias = this._usuarioActual.GetListaCategorias();
 
-            foreach (Categoria categoriaActual in listaCategorias)
+            foreach (ControladoraCategoria categoriaActual in listaCategorias)
             {
                 string nombreCategoria = categoriaActual.Nombre;
                 this.TablaCategorias.Rows.Add(nombreCategoria);
@@ -32,9 +32,9 @@ namespace Interfaz
             this.CargarTabla();
         }
 
-        public delegate void AbrirModificarCategoria_Delegate(Categoria catActual);
+        public delegate void AbrirModificarCategoria_Delegate(ControladoraCategoria catActual);
         public event AbrirModificarCategoria_Delegate AbrirModificarCategorias_Event;
-        public void IrAModificarCategoria(Categoria catActual)
+        public void IrAModificarCategoria(ControladoraCategoria catActual)
         {
             if (this.AbrirModificarCategorias_Event != null)
                 this.AbrirModificarCategorias_Event(catActual);
@@ -61,7 +61,7 @@ namespace Interfaz
                     nombreCat = Convert.ToString(selectedRow.Cells["Categorias"].Value);
                 }
 
-                Categoria aModificar = new Categoria
+                ControladoraCategoria aModificar = new ControladoraCategoria
                 {
                     Nombre = nombreCat
                 };

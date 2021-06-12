@@ -1,7 +1,7 @@
-﻿namespace LogicaDeNegocio
+﻿namespace Negocio
 {
     public class CategoriaInexistenteException : ObjetoInexistenteException
-    {
+    { 
 
         private string message;
 

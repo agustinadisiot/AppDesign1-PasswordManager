@@ -10,10 +10,10 @@ namespace TestsObligatorio
     [TestClass]
     public class TestAdministrador
     {
-        private Administrador administrador;
-        private Usuario usuario1;
-        private Usuario usuario2;
-        private Usuario usuario3;
+        private ControladoraAdministrador administrador;
+        private ControladoraUsuario usuario1;
+        private ControladoraUsuario usuario2;
+        private ControladoraUsuario usuario3;
 
         [TestCleanup]
         public void TearDown()
@@ -24,19 +24,19 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
-            administrador = new Administrador();
+            administrador = new ControladoraAdministrador();
 
-            usuario1 = new Usuario
+            usuario1 = new ControladoraUsuario
             {
                 Nombre = "Roberto"
             };
 
-            usuario2 = new Usuario
+            usuario2 = new ControladoraUsuario
             {
                 Nombre = "Pedro"
             };
 
-            usuario3 = new Usuario();
+            usuario3 = new ControladoraUsuario();
         }
 
         [TestMethod]
@@ -79,7 +79,7 @@ namespace TestsObligatorio
         {
             administrador.AgregarUsuario(usuario1);
 
-            Usuario aBuscar = new Usuario
+            ControladoraUsuario aBuscar = new ControladoraUsuario
             {
                 Nombre = "Roberto"
             };
@@ -92,7 +92,7 @@ namespace TestsObligatorio
             administrador.AgregarUsuario(usuario1);
             administrador.AgregarUsuario(usuario2);
 
-            Usuario aBuscar = new Usuario
+            ControladoraUsuario aBuscar = new ControladoraUsuario
             {
                 Nombre = "Roberto"
             };
@@ -106,7 +106,7 @@ namespace TestsObligatorio
             administrador.AgregarUsuario(usuario1);
             administrador.AgregarUsuario(usuario2);
 
-            Usuario aBuscar = new Usuario
+            ControladoraUsuario aBuscar = new ControladoraUsuario
             {
                 Nombre = "Pedro"
             };
@@ -118,7 +118,7 @@ namespace TestsObligatorio
         {
             administrador.AgregarUsuario(usuario1);
 
-            Usuario aBuscar = new Usuario
+            ControladoraUsuario aBuscar = new ControladoraUsuario
             {
                 Nombre = "roberto"
             };
@@ -131,7 +131,7 @@ namespace TestsObligatorio
             administrador.AgregarUsuario(usuario1);
             administrador.AgregarUsuario(usuario2);
 
-            Usuario inexistente = new Usuario
+            ControladoraUsuario inexistente = new ControladoraUsuario
             {
                 Nombre = "Ernesto"
             };
@@ -148,7 +148,7 @@ namespace TestsObligatorio
         public void AdministradorYaExisteUsuarioExistente()
         {
             administrador.AgregarUsuario(usuario1);
-            Usuario buscador = new Usuario
+            ControladoraUsuario buscador = new ControladoraUsuario
             {
                 Nombre = "Roberto"
             };
@@ -160,7 +160,7 @@ namespace TestsObligatorio
         public void AdministradorNoVacioYaExisteUsuarioNoExistente()
         {
             administrador.AgregarUsuario(usuario1);
-            Usuario buscador = new Usuario
+            ControladoraUsuario buscador = new ControladoraUsuario
             {
                 Nombre = "Buscador"
             };
@@ -187,7 +187,7 @@ namespace TestsObligatorio
             administrador.AgregarUsuario(usuario1);
             administrador.AgregarUsuario(usuario2);
 
-            List<Usuario> usuariosComparar = new List<Usuario>
+            List<ControladoraUsuario> usuariosComparar = new List<ControladoraUsuario>
             {
                 usuario1,
                 usuario2

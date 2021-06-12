@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Repositorio
 {
-    class CategoriaTypeConfiguration: EntityTypeConfiguration<Categoria>
+    class CategoriaTypeConfiguration: EntityTypeConfiguration<ControladoraCategoria>
     {
         public CategoriaTypeConfiguration()
         {
             this.HasKey(x => x.Id);
             this.Property(x => x.Nombre).IsRequired();
-            this.HasMany<Tarjeta>(ca => ca.Tarjetas);
+            this.HasMany<ControladoraTarjeta>(ca => ca.Tarjetas);
             this.HasMany<ControladoraClave>(ca => ca.Claves);
         }
     }

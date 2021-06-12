@@ -7,9 +7,9 @@ namespace Interfaz
 {
     public partial class CrearTarjeta : UserControl
     {
-        private Usuario _actual;
+        private ControladoraUsuario _actual;
 
-        public CrearTarjeta(Usuario aAgregar)
+        public CrearTarjeta(ControladoraUsuario aAgregar)
         {
             InitializeComponent();
 
@@ -26,9 +26,9 @@ namespace Interfaz
 
         private void CargarComboBox() {
             this.comboBoxCategorias.Items.Clear();
-            List<Categoria> lista = this._actual.GetListaCategorias();
+            List<ControladoraCategoria> lista = this._actual.GetListaCategorias();
 
-            foreach (Categoria actual in lista) {
+            foreach (ControladoraCategoria actual in lista) {
 
                 string nombre = actual.Nombre;
                 this.comboBoxCategorias.Items.Add(nombre);
@@ -41,7 +41,7 @@ namespace Interfaz
 
             if (valorComboBox != null)
             {
-                Categoria categoria = new Categoria()
+                ControladoraCategoria categoria = new ControladoraCategoria()
                 {
                     Nombre = valorComboBox
                 };
@@ -53,11 +53,11 @@ namespace Interfaz
                 DateTime vencimiento = this.datePickerVencimiento.Value;
                 string nota = this.inputNota.Text;
 
-                Tarjeta nueva = null;
+                ControladoraTarjeta nueva = null;
 
                 try
                 {
-                    nueva = new Tarjeta()
+                    nueva = new ControladoraTarjeta()
                     {
                         Nombre = nombre,
                         Tipo = tipo,

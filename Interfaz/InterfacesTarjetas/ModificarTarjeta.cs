@@ -7,10 +7,10 @@ namespace Interfaz
 {
     public partial class ModificarTarjeta : UserControl
     {
-        private Usuario _actual;
-        private Tarjeta _vieja;
+        private ControladoraUsuario _actual;
+        private ControladoraTarjeta _vieja;
 
-        public ModificarTarjeta(Usuario usuario, Tarjeta tarjeta )
+        public ModificarTarjeta(ControladoraUsuario usuario, ControladoraTarjeta tarjeta )
         {
             this._actual = usuario;
             this._vieja = tarjeta;
@@ -39,16 +39,16 @@ namespace Interfaz
         {
 
             this.comboBoxCategorias.Items.Clear();
-            List<Categoria> lista = this._actual.GetListaCategorias();
+            List<ControladoraCategoria> lista = this._actual.GetListaCategorias();
 
-            foreach (Categoria actual in lista)
+            foreach (ControladoraCategoria actual in lista)
             {
 
                 string nombre = actual.Nombre;
                 this.comboBoxCategorias.Items.Add(nombre);
             }
 
-            Categoria pertence = this._actual.GetCategoriaTarjeta(this._vieja);
+            ControladoraCategoria pertence = this._actual.GetCategoriaTarjeta(this._vieja);
 
             this.comboBoxCategorias.SelectedItem = pertence.Nombre;
         }
@@ -60,14 +60,14 @@ namespace Interfaz
 
         private void botonModificar_Click(object sender, EventArgs e)
         {
-            Categoria categoria = new Categoria()
+            ControladoraCategoria categoria = new ControladoraCategoria()
             {
                 Nombre = this.LeerComboBox()
             };
 
             try
             {
-                Tarjeta nueva = new Tarjeta()
+                ControladoraTarjeta nueva = new ControladoraTarjeta()
                 {
                     Nombre = this.inputNombre.Text,
                     Tipo = this.inputTipo.Text,

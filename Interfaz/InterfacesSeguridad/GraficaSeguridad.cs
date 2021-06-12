@@ -8,8 +8,8 @@ namespace Interfaz
 {
     public partial class GraficaSeguridad : UserControl
     {
-        private Usuario _actual;
-        public GraficaSeguridad(Usuario usuario)
+        private ControladoraUsuario _actual;
+        public GraficaSeguridad(ControladoraUsuario usuario)
         {
             this._actual = usuario;
             InitializeComponent();
@@ -35,9 +35,9 @@ namespace Interfaz
             grafica.Series.Add(color.VerdeOscuro);
             grafica.Series[color.VerdeOscuro].Color = Color.DarkGreen;
 
-            List<Categoria> listaCategorias = this._actual.GetListaCategorias();
+            List<ControladoraCategoria> listaCategorias = this._actual.GetListaCategorias();
 
-            foreach (Categoria categoria in listaCategorias) {
+            foreach (ControladoraCategoria categoria in listaCategorias) {
                 int cantidadRojo = categoria.GetListaClavesColor(color.Rojo).Count;
                 int cantidadNaranja = categoria.GetListaClavesColor(color.Naranja).Count;
                 int cantidadAmarillo = categoria.GetListaClavesColor(color.Amarillo).Count;

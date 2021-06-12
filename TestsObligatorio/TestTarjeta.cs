@@ -9,8 +9,8 @@ namespace TestsObligatorio
     [TestClass]
     public class TestTarjeta
     {
-        private Tarjeta tarjeta1;
-        private Tarjeta tarjeta2;
+        private ControladoraTarjeta tarjeta1;
+        private ControladoraTarjeta tarjeta2;
         private DateTime fecha1;
 
         [TestCleanup]
@@ -24,7 +24,7 @@ namespace TestsObligatorio
         {
             fecha1 = new DateTime(2022, 5, 9);
 
-            tarjeta1 = new Tarjeta()
+            tarjeta1 = new ControladoraTarjeta()
             {
                 Numero = "1111111111111111",
                 Nombre = "Prex",
@@ -35,7 +35,7 @@ namespace TestsObligatorio
 
             };
 
-            tarjeta2 = new Tarjeta()
+            tarjeta2 = new ControladoraTarjeta()
             {
                 Numero = "2222222222222222",
                 Nombre = "Visa Gold",
@@ -210,7 +210,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void TarjetaEqualsMismoNumero()
         {
-            Tarjeta tarjetaMismoNumero = new Tarjeta
+            ControladoraTarjeta tarjetaMismoNumero = new ControladoraTarjeta
             {
                 Numero = tarjeta1.Numero
             };
@@ -220,7 +220,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void TarjetaNotEqualsDiferenteNumero()
         {
-            Tarjeta tarjeta2 = new Tarjeta
+            ControladoraTarjeta tarjeta2 = new ControladoraTarjeta
             {
                 Numero = "6543210987654321"
             };
@@ -230,7 +230,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void TarjetaEqualsNull()
         {
-            Tarjeta tarjetaNULL = null;
+            ControladoraTarjeta tarjetaNULL = null;
             Assert.ThrowsException<ObjetoIncompletoException>(() => tarjeta1.Equals(tarjetaNULL));
         }
 
@@ -246,14 +246,14 @@ namespace TestsObligatorio
     [TestClass]
     public class TestUsuarioEnTarjeta
     {
-        private Tarjeta tarjeta1;
-        private Usuario usuario1;
-        private Categoria categoria1;
+        private ControladoraTarjeta tarjeta1;
+        private ControladoraUsuario usuario1;
+        private ControladoraCategoria categoria1;
 
         [TestInitialize]
         public void Setup()
         {
-            tarjeta1 = new Tarjeta()
+            tarjeta1 = new ControladoraTarjeta()
             {
                 Numero = "1111111111111111",
                 Nombre = "Prex",
@@ -264,13 +264,13 @@ namespace TestsObligatorio
 
             };
 
-            usuario1 = new Usuario()
+            usuario1 = new ControladoraUsuario()
             {
                 Nombre = "Roberto",
                 ClaveMaestra = "12345ABCD"
             };
 
-            categoria1 = new Categoria()
+            categoria1 = new ControladoraCategoria()
             {
                 Nombre = "Personal"
             };

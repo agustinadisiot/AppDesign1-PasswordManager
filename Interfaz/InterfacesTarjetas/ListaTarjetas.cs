@@ -7,9 +7,9 @@ namespace Interfaz
 {
     public partial class ListaTarjetas : UserControl
     {
-        private Usuario _usuarioActual;
+        private ControladoraUsuario _usuarioActual;
 
-        public ListaTarjetas(Usuario usuarioAgregar)
+        public ListaTarjetas(ControladoraUsuario usuarioAgregar)
         {
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;
@@ -21,9 +21,9 @@ namespace Interfaz
             string formatoTarjeta = "MM'/'yyyy";
             this.tablaTarjetas.Rows.Clear();
 
-            List<Tarjeta> listaTarjeta = this._usuarioActual.GetListaTarjetas();
+            List<ControladoraTarjeta> listaTarjeta = this._usuarioActual.GetListaTarjetas();
 
-            foreach (Tarjeta tarjetaActual in listaTarjeta) {
+            foreach (ControladoraTarjeta tarjetaActual in listaTarjeta) {
                 string categoriaActual = this._usuarioActual.GetCategoriaTarjeta(tarjetaActual).Nombre;
                 string nombre = tarjetaActual.Nombre;
                 string tipo = tarjetaActual.Tipo;
@@ -35,7 +35,7 @@ namespace Interfaz
             }
         }
 
-        private string OcultarTarjeta(Tarjeta actual)
+        private string OcultarTarjeta(ControladoraTarjeta actual)
         {
 
             string numero = actual.Numero;
@@ -66,7 +66,7 @@ namespace Interfaz
                 string numero = Convert.ToString(selectedRow.Cells["TarjetaCompleta"].Value);
 
 
-                Tarjeta buscadora = new Tarjeta()
+                ControladoraTarjeta buscadora = new ControladoraTarjeta()
                 {
                     Numero = numero
                 };
@@ -84,7 +84,7 @@ namespace Interfaz
                 string numero = Convert.ToString(selectedRow.Cells["TarjetaCompleta"].Value);
                 
                 
-                Tarjeta buscadora = new Tarjeta()
+                ControladoraTarjeta buscadora = new ControladoraTarjeta()
                 {
                     Numero = numero
                 };
@@ -114,7 +114,7 @@ namespace Interfaz
 
                 string numeroTarjetaBorrar = Convert.ToString(selectedRow.Cells["TarjetaCompleta"].Value);
 
-                Tarjeta buscadora = new Tarjeta()
+                ControladoraTarjeta buscadora = new ControladoraTarjeta()
                 {
                     Numero = numeroTarjetaBorrar
                 };
@@ -132,17 +132,17 @@ namespace Interfaz
                 this.AbrirCrearTarjeta_Event();
         }
 
-        public delegate void AbrirModificarTarjeta_Delegate(Tarjeta modificar);
+        public delegate void AbrirModificarTarjeta_Delegate(ControladoraTarjeta modificar);
         public event AbrirModificarTarjeta_Delegate AbrirModificarTarjeta_Event;
-        private void AbrirModificarTarjeta(Tarjeta modificar)
+        private void AbrirModificarTarjeta(ControladoraTarjeta modificar)
         {
             if (this.AbrirModificarTarjeta_Event != null)
                 this.AbrirModificarTarjeta_Event(modificar);
         }
 
-        public delegate void AbrirVerTarjeta_Delegate(Tarjeta modificar);
+        public delegate void AbrirVerTarjeta_Delegate(ControladoraTarjeta modificar);
         public event AbrirVerTarjeta_Delegate AbrirVerTarjeta_Event;
-        private void AbrirVerTarjeta(Tarjeta ver)
+        private void AbrirVerTarjeta(ControladoraTarjeta ver)
         {
             if (this.AbrirVerTarjeta_Event != null)
                 this.AbrirVerTarjeta_Event(ver);

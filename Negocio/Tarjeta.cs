@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace LogicaDeNegocio
+namespace Negocio
 {
     public class Tarjeta
     {

@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LogicaDeNegocio
+namespace Negocio
 {
     public class DataBreach
     {
         public DataBreach() {
-            this.Tarjetas = new List<ControladoraTarjeta>();
-            this.Claves = new List<ControladoraClave>();
+            this.Tarjetas = new List<Tarjeta>();
+            this.Claves = new List<Clave>();
             this.Fecha = DateTime.Now;
             this.Filtradas = new List<Filtrada>();
         }
 
         public int Id { get; set; }
 
-        public List<ControladoraTarjeta> Tarjetas { get; set; }
+        public List<Tarjeta> Tarjetas { get; set; }
 
         public List<ControladoraClave> Claves { get; set; }
         public DateTime Fecha { get; set; }

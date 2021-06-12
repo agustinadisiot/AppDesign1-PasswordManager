@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LogicaDeNegocio
 {
-    public class LogicaDataBreach
+    public class ControladoraDataBreach
     {
         public List<Filtrada> LeerArchivo(string direccion)
         {
@@ -38,7 +38,7 @@ namespace LogicaDeNegocio
             return controlar.FindAll(buscadora => buscadora.FueFiltrado(dataBreach));
         }
 
-        public List<Tarjeta> FiltrarTarjetas(List<Filtrada> dataBreach, List<Tarjeta> controlar)
+        public List<ControladoraTarjeta> FiltrarTarjetas(List<Filtrada> dataBreach, List<ControladoraTarjeta> controlar)
         {
             return controlar.FindAll(buscadora => buscadora.FueFiltrado(dataBreach));
         }

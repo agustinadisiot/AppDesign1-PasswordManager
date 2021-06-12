@@ -6,9 +6,9 @@ namespace Interfaz
 {
     public partial class CrearUsuario : UserControl
     {
-        private Administrador _administrador;
+        private ControladoraAdministrador _administrador;
 
-        public CrearUsuario(Administrador administradorActual)
+        public CrearUsuario(ControladoraAdministrador administradorActual)
         {
             InitializeComponent();
             this._administrador = administradorActual;
@@ -24,7 +24,7 @@ namespace Interfaz
 
             try
             {
-                Usuario agregar = new Usuario()
+                ControladoraUsuario agregar = new ControladoraUsuario()
                 {
                     Nombre = this.inputUsuario.Text,
                     ClaveMaestra = this.inputContra.Text

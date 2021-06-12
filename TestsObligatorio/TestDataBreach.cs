@@ -37,7 +37,7 @@ namespace TestsObligatorio
 
             List<Filtrada> datos = datosString.Select(s => new Filtrada(s)).ToList();
 
-            LogicaDataBreach logicaDataBreach = new LogicaDataBreach();
+            ControladoraDataBreach logicaDataBreach = new ControladoraDataBreach();
             Assert.IsTrue(datos.SequenceEqual(logicaDataBreach.SepararPorLineas(linea)));
         }
 
@@ -46,7 +46,7 @@ namespace TestsObligatorio
         {
             string direccion = "direccionNoExistente.txt"; 
 
-            LogicaDataBreach logicaDataBreach = new LogicaDataBreach();
+            ControladoraDataBreach logicaDataBreach = new ControladoraDataBreach();
             Assert.ThrowsException<ArchivoNoExistenteException>(() => logicaDataBreach.LeerArchivo(direccion));
         }
 
@@ -71,7 +71,7 @@ namespace TestsObligatorio
 
             List<Filtrada> datos = datosString.Select(s => new Filtrada(s)).ToList();
 
-            LogicaDataBreach logicaDataBreach = new LogicaDataBreach();
+            ControladoraDataBreach logicaDataBreach = new ControladoraDataBreach();
 
             List<Filtrada> archivoLeido = logicaDataBreach.LeerArchivo(nombreArchivo);
 
@@ -83,14 +83,14 @@ namespace TestsObligatorio
     [TestClass]
     public class TestUsuarioDataBreaches
     {
-        private Usuario usuario;
+        private ControladoraUsuario usuario;
         private ControladoraClave clave1;
         private ControladoraClave clave2;
         private ControladoraClave clave3;
         private ControladoraClave clave4;
-        private Tarjeta tarjeta1;
-        private Tarjeta tarjeta2;
-        private Tarjeta tarjeta3;
+        private ControladoraTarjeta tarjeta1;
+        private ControladoraTarjeta tarjeta2;
+        private ControladoraTarjeta tarjeta3;
         private DateTime tiempoActual;
 
         [TestCleanup]
@@ -104,19 +104,19 @@ namespace TestsObligatorio
         {
             tiempoActual = DateTime.Now;
 
-            usuario = new Usuario()
+            usuario = new ControladoraUsuario()
             {
                 Nombre = "Usuario1"
             };
 
-            Categoria categoria1 = new Categoria()
+            ControladoraCategoria categoria1 = new ControladoraCategoria()
             {
                 Nombre = "Personal"
             };
 
             usuario.AgregarCategoria(categoria1);
 
-            Categoria categoria2 = new Categoria()
+            ControladoraCategoria categoria2 = new ControladoraCategoria()
             {
                 Nombre = "Estudio"
             };
@@ -153,7 +153,7 @@ namespace TestsObligatorio
             };
             categoria2.AgregarClave(clave4);
             
-            tarjeta1 = new Tarjeta()
+            tarjeta1 = new ControladoraTarjeta()
             {
                 Numero = "1111111111111111",
                 Nombre = "Prex",
@@ -165,7 +165,7 @@ namespace TestsObligatorio
             };
             usuario.AgregarTarjeta(tarjeta1, categoria1);
 
-            tarjeta2 = new Tarjeta()
+            tarjeta2 = new ControladoraTarjeta()
             {
                 Numero = "2222222222222222",
                 Nombre = "Visa Gold",
@@ -177,7 +177,7 @@ namespace TestsObligatorio
             };
             usuario.AgregarTarjeta(tarjeta2, categoria2);
 
-            tarjeta3 = new Tarjeta()
+            tarjeta3 = new ControladoraTarjeta()
             {
                 Numero = "3333333333333333",
                 Nombre = "Visa Gold",
@@ -283,7 +283,7 @@ namespace TestsObligatorio
 
             List<Filtrada> filtradas = filtradasString.Select(s => new Filtrada(s)).ToList();
 
-            List<Tarjeta> esperadas = new List<Tarjeta>() {
+            List<ControladoraTarjeta> esperadas = new List<ControladoraTarjeta>() {
                 tarjeta1,
                 tarjeta3
             };
@@ -362,7 +362,7 @@ namespace TestsObligatorio
                 tarjetaFiltrada4
             };
 
-            List<Tarjeta> esperadas = new List<Tarjeta>() {
+            List<ControladoraTarjeta> esperadas = new List<ControladoraTarjeta>() {
                 tarjeta2
             };
 

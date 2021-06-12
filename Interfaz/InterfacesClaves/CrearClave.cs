@@ -7,9 +7,9 @@ namespace Interfaz
 {
     public partial class CrearClave : UserControl
     {
-        private Usuario _usuarioActual;
+        private ControladoraUsuario _usuarioActual;
 
-        public CrearClave(Usuario usuarioAgregar)
+        public CrearClave(ControladoraUsuario usuarioAgregar)
         {
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;
@@ -24,9 +24,9 @@ namespace Interfaz
         private void CargarComboBox()
         {
             this.comboBoxCategorias.Items.Clear();
-            List<Categoria> lista = this._usuarioActual.GetListaCategorias();
+            List<ControladoraCategoria> lista = this._usuarioActual.GetListaCategorias();
 
-            foreach (Categoria actual in lista)
+            foreach (ControladoraCategoria actual in lista)
             {
                 string nombre = actual.Nombre;
                 this.comboBoxCategorias.Items.Add(nombre);
@@ -53,7 +53,7 @@ namespace Interfaz
             string categoriaElegida = this.LeerComboBox();
             if (categoriaElegida != null)
             {
-                Categoria categoria = new Categoria()
+                ControladoraCategoria categoria = new ControladoraCategoria()
                 {
                     Nombre = this.LeerComboBox()
                 };

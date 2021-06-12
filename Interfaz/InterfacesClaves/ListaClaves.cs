@@ -7,9 +7,9 @@ namespace Interfaz
 {
     public partial class ListaClaves : UserControl
     {
-        private Usuario _usuarioActual;
+        private ControladoraUsuario _usuarioActual;
 
-        public ListaClaves(Usuario usuarioAgregar)
+        public ListaClaves(ControladoraUsuario usuarioAgregar)
         {
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;
@@ -78,7 +78,7 @@ namespace Interfaz
                     UsuarioClave = usuarioClave
                 };
 
-                Usuario compartidor = this._usuarioActual;
+                ControladoraUsuario compartidor = this._usuarioActual;
 
                 ClaveCompartida aCompartir = new ClaveCompartida()
                 {
@@ -171,9 +171,9 @@ namespace Interfaz
         }
 
 
-        public delegate void AbrirVerClave_Delegate(ControladoraClave buscadora, Usuario usuarioActual);
+        public delegate void AbrirVerClave_Delegate(ControladoraClave buscadora, ControladoraUsuario usuarioActual);
         public event AbrirVerClave_Delegate AbrirVerClave_Event;
-        private void AbrirVerClave(ControladoraClave buscadora, Usuario usuarioActual)
+        private void AbrirVerClave(ControladoraClave buscadora, ControladoraUsuario usuarioActual)
         {
             if (this.AbrirVerClave_Event != null)
                 this.AbrirVerClave_Event(buscadora, usuarioActual);

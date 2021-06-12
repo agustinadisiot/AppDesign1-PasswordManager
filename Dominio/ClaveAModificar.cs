@@ -4,7 +4,7 @@
     {
         public ControladoraClave ClaveVieja { get; set; }
         public ControladoraClave ClaveNueva { get; set; }
-        public Categoria CategoriaVieja { get; set; }
-        public Categoria CategoriaNueva { get; set; }
+        public ControladoraCategoria CategoriaVieja { get; set; }
+        public ControladoraCategoria CategoriaNueva { get; set; }
     }
 }
