@@ -1,4 +1,5 @@
 ﻿using Negocio;
+using Repositorio;
 using System;
 using System.Collections.Generic;
 
@@ -16,6 +17,19 @@ namespace LogicaDeNegocio
         public void Modificar(Clave vieja, Clave nueva) {
             this.Verificar(vieja);
             this.Verificar(nueva);
+
+            DataAccessClave acceso = new DataAccessClave();
+            Clave aModificar = acceso.Get(vieja.Id);
+            aModificar.UsuarioClave = nueva.UsuarioClave;
+            aModificar.Sitio = nueva.Sitio;
+            aModificar.Nota = nueva.Nota;
+
+            if (aModificar.Codigo != nueva.Codigo)
+            {
+                aModificar.Codigo = nueva.Codigo;
+                aModificar.FechaModificacion = DateTime.Now.Date;
+            }
+            acceso.Modificar(aModificar);
 
         }
 
@@ -46,11 +60,6 @@ namespace LogicaDeNegocio
         public void VerificarNota(Clave aVerificar)
         {
             VerificadoraString.VerificarLargoEntreMinimoYMaximo(aVerificar.Nota, _largoNotaMinimo, _largoNotaMaximo);
-        }
-
-        private void ActualizarFechaModificacion(Clave aModificar)
-        {
-             aModificar.FechaModificacion = System.DateTime.Now.Date;
         }
 
         public bool FueFiltrado(Clave aVerificar, List<Filtrada> filtradas)

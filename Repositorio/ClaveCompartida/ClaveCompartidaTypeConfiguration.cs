@@ -1,4 +1,4 @@
-﻿using LogicaDeNegocio;
+﻿using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
@@ -14,13 +14,13 @@ namespace Repositorio
         public ClaveCompartidaTypeConfiguration()
         {
             this.HasKey(x => x.Id);
-            this.HasRequired<ControladoraUsuario>(cc => cc.Original)
+            this.HasRequired<Usuario>(cc => cc.Original)
                 .WithMany(u => u.CompartidasPorMi)
                 .HasForeignKey(cc => cc.OriginalId).WillCascadeOnDelete(false);
-            this.HasRequired<ControladoraUsuario>(cc => cc.Destino)
+            this.HasRequired<Usuario>(cc => cc.Destino)
                 .WithMany(u => u.CompartidasConmigo)
                 .HasForeignKey(cc => cc.DestinoId).WillCascadeOnDelete(false);
-            this.HasRequired<ControladoraClave>(cc => cc.Clave);
+            this.HasRequired<Clave>(cc => cc.Clave);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using LogicaDeNegocio;
+﻿using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,12 +10,12 @@ namespace Repositorio
 {
     public class AdministradorClavesDBContext : DbContext
     {
-        public DbSet<ControladoraTarjeta> Tarjetas { get; set; }
-        public DbSet<ControladoraClave> Claves { get; set; }
+        public DbSet<Tarjeta> Tarjetas { get; set; }
+        public DbSet<Clave> Claves { get; set; }
         public DbSet<DataBreach> DataBreaches { get; set; }
         public DbSet<Filtrada> Filtradas { get; set; }
-        public DbSet<ControladoraCategoria> Categorias { get; set; }
-        public DbSet<ControladoraUsuario> Usuarios { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<ClaveCompartida> ClavesCompartidas { get; set; }
 
         public AdministradorClavesDBContext() : base("name=ContextoAdministradorClaves") { }

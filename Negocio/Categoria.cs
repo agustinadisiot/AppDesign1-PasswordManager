@@ -13,7 +13,7 @@ namespace Negocio
 
         public Categoria()
         {
-            this.Claves = new List<ControladoraClave>();
+            this.Claves = new List<Clave>();
             this.Tarjetas = new List<Tarjeta>();
         }
 
@@ -25,7 +25,7 @@ namespace Negocio
 
         public int Id { get; set; }
 
-        public List<ControladoraClave> Claves { get; set; }
+        public List<Clave> Claves { get; set; }
         public List<Tarjeta> Tarjetas { get; set; }
 
         public bool EsListaClavesVacia()
@@ -34,7 +34,7 @@ namespace Negocio
             return noHayClaves;
         }
 
-        public void AgregarClave(ControladoraClave claveIngresada)
+        public void AgregarClave(Clave claveIngresada)
         {
             bool noTieneSitio = (claveIngresada.Sitio == null),
                  noTieneClave = (claveIngresada.Codigo == null),
@@ -46,7 +46,7 @@ namespace Negocio
             this.Claves.Add(claveIngresada);
         }
 
-        public void BorrarClave(ControladoraClave claveABorrar)
+        public void BorrarClave(Clave claveABorrar)
         {
             if (this.EsListaClavesVacia()) {
                 throw new ObjetoInexistenteException();
@@ -57,22 +57,22 @@ namespace Negocio
             this.Claves.Remove(claveABorrar);
         }
 
-        public ControladoraClave GetClave(ControladoraClave aBuscar)
+        public Clave GetClave(Clave aBuscar)
         {
             if (this.EsListaClavesVacia()) {
                 throw new ObjetoInexistenteException();
             }
 
-            Predicate<ControladoraClave> buscadorClave = (ControladoraClave clave) => 
+            Predicate<Clave> buscadorClave = (Clave clave) => 
             {
                 return clave.Equals(aBuscar);
             };
 
-            ControladoraClave retorno = this.Claves.Find(buscadorClave);
+            Clave retorno = this.Claves.Find(buscadorClave);
             return retorno != null ? retorno : throw new ObjetoInexistenteException();
         }
 
-        public List<ControladoraClave> GetListaClaves()
+        public List<Clave> GetListaClaves()
         {
             return this.Claves;
         }
@@ -123,7 +123,7 @@ namespace Negocio
             return this.Tarjetas;
         }
 
-        public bool YaExisteClave(ControladoraClave aBuscar)
+        public bool YaExisteClave(Clave aBuscar)
         {
             return (this.Claves.Contains(aBuscar));
         }
@@ -160,14 +160,14 @@ namespace Negocio
             aModificar.Vencimiento = tarjetaNueva.Vencimiento;
         }
 
-        public void ModificarClave(ControladoraClave claveVieja, ControladoraClave claveNueva)
+        public void ModificarClave(Clave claveVieja, Clave claveNueva)
         {
             bool igualSitioyUsuario = claveVieja.Equals(claveNueva);
 
             if (!this.YaExisteClave(claveVieja)) throw new ObjetoInexistenteException();
             if (!igualSitioyUsuario && this.YaExisteClave(claveNueva)) throw new ObjetoYaExistenteException();
 
-            ControladoraClave aModificar = this.GetClave(claveVieja);
+            Clave aModificar = this.GetClave(claveVieja);
             aModificar.UsuarioClave = claveNueva.UsuarioClave;
             aModificar.Sitio = claveNueva.Sitio;
             aModificar.Nota = claveNueva.Nota;
@@ -176,9 +176,9 @@ namespace Negocio
             }
         }
 
-        public List<ControladoraClave> GetListaClavesColor(string color)
+        public List<Clave> GetListaClavesColor(string color)
         {
-            List<ControladoraClave> todasLasClaves = this.GetListaClaves();
+            List<Clave> todasLasClaves = this.GetListaClaves();
             NivelSeguridad nivelSeguridad = new NivelSeguridad();
             return todasLasClaves.FindAll(buscadora => nivelSeguridad.GetNivelSeguridad(buscadora.Codigo) == color);
         }

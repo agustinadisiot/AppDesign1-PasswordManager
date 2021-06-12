@@ -1,4 +1,4 @@
-﻿using LogicaDeNegocio;
+﻿using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace Repositorio
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                foreach (ControladoraTarjeta tarjetaNueva in entity.Tarjetas)
+                foreach (Tarjeta tarjetaNueva in entity.Tarjetas)
                 {
                     try
                     {
@@ -23,7 +23,7 @@ namespace Repositorio
                     catch (Exception){};
                 }
 
-                foreach (ControladoraClave claveNueva in entity.Claves)
+                foreach (Clave claveNueva in entity.Claves)
                 {
                     try
                     {
@@ -70,15 +70,15 @@ namespace Repositorio
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                List<ControladoraTarjeta> tarjetas = new List<ControladoraTarjeta>();
-                List<ControladoraClave> claves = new List<ControladoraClave>();
+                List<Tarjeta> tarjetas = new List<Tarjeta>();
+                List<Clave> claves = new List<Clave>();
                 List<Filtrada> filtradas = new List<Filtrada>();
 
                 for (int i = 0; i < entity.Tarjetas.Count; i++)
                 {
-                    ControladoraTarjeta t = entity.Tarjetas.ElementAt(i);
+                    Tarjeta t = entity.Tarjetas.ElementAt(i);
 
-                    ControladoraTarjeta nueva = contexto.Tarjetas.FirstOrDefault(tNueva => tNueva.Id == t.Id);
+                    Tarjeta nueva = contexto.Tarjetas.FirstOrDefault(tNueva => tNueva.Id == t.Id);
 
                     if (nueva != null)
                     {
@@ -92,9 +92,9 @@ namespace Repositorio
 
                 for (int i = 0; i < entity.Claves.Count; i++)
                 {
-                    ControladoraClave t = entity.Claves.ElementAt(i);
+                    Clave t = entity.Claves.ElementAt(i);
 
-                    ControladoraClave nueva = contexto.Claves.FirstOrDefault(tNueva => tNueva.Id == t.Id);
+                    Clave nueva = contexto.Claves.FirstOrDefault(tNueva => tNueva.Id == t.Id);
 
                     if (nueva != null)
                     {

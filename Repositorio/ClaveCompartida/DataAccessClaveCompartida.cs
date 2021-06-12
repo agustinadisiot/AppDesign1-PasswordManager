@@ -1,4 +1,4 @@
-﻿using LogicaDeNegocio;
+﻿using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +14,9 @@ namespace Repositorio
             using (var contexto = new AdministradorClavesDBContext())
             {
                 
-                ControladoraUsuario original = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Original.Id);
-                ControladoraUsuario destino = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Destino.Id);
-                ControladoraClave claveCompartida = contexto.Claves.FirstOrDefault(buscador => buscador.Id == entity.Clave.Id);
+                Usuario original = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Original.Id);
+                Usuario destino = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Destino.Id);
+                Clave claveCompartida = contexto.Claves.FirstOrDefault(buscador => buscador.Id == entity.Clave.Id);
 
                 if (original != null )
                 { 
@@ -79,9 +79,9 @@ namespace Repositorio
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                ControladoraUsuario original = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Original.Id);
-                ControladoraUsuario destino = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Destino.Id);
-                ControladoraClave claveCompartida = contexto.Claves.FirstOrDefault(buscador => buscador.Id == entity.Clave.Id);
+                Usuario original = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Original.Id);
+                Usuario destino = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Destino.Id);
+                Clave claveCompartida = contexto.Claves.FirstOrDefault(buscador => buscador.Id == entity.Clave.Id);
 
                 if (original != null)
                 {

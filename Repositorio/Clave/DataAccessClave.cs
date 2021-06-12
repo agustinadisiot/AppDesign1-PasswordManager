@@ -1,4 +1,4 @@
-﻿using LogicaDeNegocio;
+﻿using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Repositorio
 {
-    public class DataAccessClave : IDataAccess<ControladoraClave>
+    public class DataAccessClave : IDataAccess<Clave>
     {
 
-        public void Agregar(ControladoraClave entity)
+        public void Agregar(Clave entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
@@ -19,17 +19,17 @@ namespace Repositorio
             }
         }
 
-        public void Borrar(ControladoraClave entity)
+        public void Borrar(Clave entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                ControladoraClave aEliminar = contexto.Claves.FirstOrDefault(t => t.Id == entity.Id);
+                Clave aEliminar = contexto.Claves.FirstOrDefault(t => t.Id == entity.Id);
                 contexto.Claves.Remove(aEliminar);
                 contexto.SaveChanges();
             }
         }
 
-        public ControladoraClave Get(int id)
+        public Clave Get(int id)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
@@ -37,7 +37,7 @@ namespace Repositorio
             }
         }
 
-        public IEnumerable<ControladoraClave> GetTodos()
+        public IEnumerable<Clave> GetTodos()
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
@@ -45,11 +45,11 @@ namespace Repositorio
             }
         }
 
-        public void Modificar(ControladoraClave entity)
+        public void Modificar(Clave entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                ControladoraClave aModificar = contexto.Claves.Find(entity.Id);
+                Clave aModificar = contexto.Claves.Find(entity.Id);
                 aModificar.verificarUsuarioClave = entity.verificarUsuarioClave;
                 aModificar.VerificarSitio = entity.VerificarSitio;
                 aModificar.VerificarNota = entity.VerificarNota;

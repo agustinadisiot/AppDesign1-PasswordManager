@@ -1,4 +1,4 @@
-﻿using LogicaDeNegocio;
+﻿using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Repositorio
 {
-    class TarjetaTypeConfiguration : EntityTypeConfiguration<ControladoraTarjeta>
+    class TarjetaTypeConfiguration : EntityTypeConfiguration<Tarjeta>
     {
         public TarjetaTypeConfiguration() {
             this.HasKey(x => x.Id);

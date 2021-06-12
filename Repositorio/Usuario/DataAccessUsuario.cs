@@ -1,4 +1,4 @@
-﻿using LogicaDeNegocio;
+﻿using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace Repositorio
 {
-    public class DataAccessUsuario : IDataAccess<ControladoraUsuario>
+    public class DataAccessUsuario : IDataAccess<Usuario>
     {
 
-        public void Agregar(ControladoraUsuario entity)
+        public void Agregar(Usuario entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                List<ControladoraCategoria> categorias = new List<ControladoraCategoria>();
+                List<Categoria> categorias = new List<Categoria>();
                 List<DataBreach> dataBreaches = new List<DataBreach>();
 
                 for (int i = 0; i < entity.Categorias.Count; i++)
                 {
-                    ControladoraCategoria categoria = entity.Categorias.ElementAt(i);
+                    Categoria categoria = entity.Categorias.ElementAt(i);
 
-                    ControladoraCategoria nueva = contexto.Categorias.FirstOrDefault(tNueva => tNueva.Id == categoria.Id);
+                    Categoria nueva = contexto.Categorias.FirstOrDefault(tNueva => tNueva.Id == categoria.Id);
 
                     if (nueva != null)
                     {
@@ -55,17 +55,17 @@ namespace Repositorio
             }
         }
 
-        public void Borrar(ControladoraUsuario entity)
+        public void Borrar(Usuario entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                ControladoraUsuario aEliminar = contexto.Usuarios.FirstOrDefault(t => t.Id == entity.Id);
+                Usuario aEliminar = contexto.Usuarios.FirstOrDefault(t => t.Id == entity.Id);
                 contexto.Usuarios.Remove(aEliminar);
                 contexto.SaveChanges();
             }
         }
 
-        public ControladoraUsuario Get(int id)
+        public Usuario Get(int id)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
@@ -78,7 +78,7 @@ namespace Repositorio
             }
         }
 
-        public IEnumerable<ControladoraUsuario> GetTodos()
+        public IEnumerable<Usuario> GetTodos()
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
@@ -90,21 +90,21 @@ namespace Repositorio
             }
         }
 
-        public void Modificar(ControladoraUsuario entity)
+        public void Modificar(Usuario entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                List<ControladoraTarjeta> tarjetas = new List<ControladoraTarjeta>();
-                List<ControladoraClave> claves = new List<ControladoraClave>();
+                List<Tarjeta> tarjetas = new List<Tarjeta>();
+                List<Clave> claves = new List<Clave>();
 
-                List<ControladoraCategoria> categorias = new List<ControladoraCategoria>();
+                List<Categoria> categorias = new List<Categoria>();
                 List<DataBreach> dataBreaches = new List<DataBreach>();
 
                 for (int i = 0; i < entity.Categorias.Count; i++)
                 {
-                    ControladoraCategoria categoria = entity.Categorias.ElementAt(i);
+                    Categoria categoria = entity.Categorias.ElementAt(i);
 
-                    ControladoraCategoria nueva = contexto.Categorias.FirstOrDefault(tNueva => tNueva.Id == categoria.Id);
+                    Categoria nueva = contexto.Categorias.FirstOrDefault(tNueva => tNueva.Id == categoria.Id);
 
                     if (nueva != null)
                     {
@@ -129,7 +129,7 @@ namespace Repositorio
                     dataBreaches.Add(dataBreach);
                 }
 
-                ControladoraUsuario aModificar = contexto.Usuarios
+                Usuario aModificar = contexto.Usuarios
                         .Include("Categorias")
                         .Include("DataBreaches")
                         .Include("CompartidasConmigo")

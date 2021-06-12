@@ -1,4 +1,4 @@
-﻿using LogicaDeNegocio;
+﻿using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace Repositorio
 {
-    public class DataAccessCategoria : IDataAccess<ControladoraCategoria>
+    public class DataAccessCategoria : IDataAccess<Categoria>
     {
 
-        public void Agregar(ControladoraCategoria entity)
+        public void Agregar(Categoria entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                List<ControladoraTarjeta> tarjetas = new List<ControladoraTarjeta>();
-                List<ControladoraClave> claves = new List<ControladoraClave>();
+                List<Tarjeta> tarjetas = new List<Tarjeta>();
+                List<Clave> claves = new List<Clave>();
 
                 for (int i = 0; i < entity.Tarjetas.Count; i++)
                 {
-                    ControladoraTarjeta t = entity.Tarjetas.ElementAt(i);
+                    Tarjeta t = entity.Tarjetas.ElementAt(i);
 
-                    ControladoraTarjeta nueva = contexto.Tarjetas.FirstOrDefault(tNueva => tNueva.Id == t.Id);
+                    Tarjeta nueva = contexto.Tarjetas.FirstOrDefault(tNueva => tNueva.Id == t.Id);
 
                     if (nueva != null)
                     {
@@ -35,9 +35,9 @@ namespace Repositorio
 
                 for (int i = 0; i < entity.Claves.Count; i++)
                 {
-                    ControladoraClave t = entity.Claves.ElementAt(i);
+                    Clave t = entity.Claves.ElementAt(i);
 
-                    ControladoraClave nueva = contexto.Claves.FirstOrDefault(tNueva => tNueva.Id == t.Id);
+                    Clave nueva = contexto.Claves.FirstOrDefault(tNueva => tNueva.Id == t.Id);
 
                     if (nueva != null)
                     {
@@ -56,17 +56,17 @@ namespace Repositorio
             }
         }
 
-        public void Borrar(ControladoraCategoria entity)
+        public void Borrar(Categoria entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                ControladoraCategoria aEliminar = contexto.Categorias.FirstOrDefault(t => t.Id == entity.Id);
+                Categoria aEliminar = contexto.Categorias.FirstOrDefault(t => t.Id == entity.Id);
                 contexto.Categorias.Remove(aEliminar);
                 contexto.SaveChanges();
             }
         }
 
-        public ControladoraCategoria Get(int id)
+        public Categoria Get(int id)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
@@ -74,7 +74,7 @@ namespace Repositorio
             }
         }
 
-        public IEnumerable<ControladoraCategoria> GetTodos()
+        public IEnumerable<Categoria> GetTodos()
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
@@ -82,18 +82,18 @@ namespace Repositorio
             }
         }
 
-        public void Modificar(ControladoraCategoria entity)
+        public void Modificar(Categoria entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                List<ControladoraTarjeta> tarjetas = new List<ControladoraTarjeta>();
-                List<ControladoraClave> claves = new List<ControladoraClave>();
+                List<Tarjeta> tarjetas = new List<Tarjeta>();
+                List<Clave> claves = new List<Clave>();
 
                 for (int i = 0; i < entity.Tarjetas.Count; i++)
                 {
-                    ControladoraTarjeta t = entity.Tarjetas.ElementAt(i);
+                    Tarjeta t = entity.Tarjetas.ElementAt(i);
 
-                    ControladoraTarjeta nueva = contexto.Tarjetas.FirstOrDefault(tNueva => tNueva.Id == t.Id);
+                    Tarjeta nueva = contexto.Tarjetas.FirstOrDefault(tNueva => tNueva.Id == t.Id);
 
                     if (nueva != null)
                     {
@@ -107,9 +107,9 @@ namespace Repositorio
 
                 for (int i = 0; i < entity.Claves.Count; i++)
                 {
-                    ControladoraClave t = entity.Claves.ElementAt(i);
+                    Clave t = entity.Claves.ElementAt(i);
 
-                    ControladoraClave nueva = contexto.Claves.FirstOrDefault(tNueva => tNueva.Id == t.Id);
+                    Clave nueva = contexto.Claves.FirstOrDefault(tNueva => tNueva.Id == t.Id);
 
                     if (nueva != null)
                     {
@@ -119,7 +119,7 @@ namespace Repositorio
                     claves.Add(t);
                 }
 
-                ControladoraCategoria aModificar = contexto.Categorias
+                Categoria aModificar = contexto.Categorias
                         .Include("Claves")
                         .Include("Tarjetas")
                         .FirstOrDefault(db => db.Id == entity.Id);

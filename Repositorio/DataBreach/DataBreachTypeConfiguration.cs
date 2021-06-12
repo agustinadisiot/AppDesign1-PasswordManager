@@ -1,4 +1,4 @@
-﻿using LogicaDeNegocio;
+﻿using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
@@ -14,7 +14,7 @@ namespace Repositorio
         {
             this.HasKey(x => x.Id);
             this.Property(x => x.Fecha).IsRequired();
-            this.HasMany<ControladoraTarjeta>(db => db.Tarjetas)
+            this.HasMany<Tarjeta>(db => db.Tarjetas)
                 .WithMany(t => t.DataBreaches)
                 .Map(t =>
                 {
@@ -22,7 +22,7 @@ namespace Repositorio
                     t.MapRightKey("TarjetasRefId");
                     t.ToTable("DataBreachTarjetas");
                 });
-            this.HasMany<ControladoraClave>(db => db.Claves)
+            this.HasMany<Clave>(db => db.Claves)
                 .WithMany(c => c.DataBreaches)
                 .Map(c =>
                 {

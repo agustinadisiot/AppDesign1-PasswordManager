@@ -1,4 +1,4 @@
-﻿using LogicaDeNegocio;
+﻿using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Repositorio
 {
-    public class DataAccessTarjeta : IDataAccess<ControladoraTarjeta>
+    public class DataAccessTarjeta : IDataAccess<Tarjeta>
     {
-        public void Agregar(ControladoraTarjeta entity)
+        public void Agregar(Tarjeta entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
@@ -18,17 +18,17 @@ namespace Repositorio
             }
         }
 
-        public void Borrar(ControladoraTarjeta entity)
+        public void Borrar(Tarjeta entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                ControladoraTarjeta aEliminar = contexto.Tarjetas.FirstOrDefault(t => t.Id == entity.Id);
+                Tarjeta aEliminar = contexto.Tarjetas.FirstOrDefault(t => t.Id == entity.Id);
                 contexto.Tarjetas.Remove(aEliminar);
                 contexto.SaveChanges();
             }
         }
 
-        public ControladoraTarjeta Get(int id)
+        public Tarjeta Get(int id)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
@@ -36,7 +36,7 @@ namespace Repositorio
             }
         }
 
-        public IEnumerable<ControladoraTarjeta> GetTodos()
+        public IEnumerable<Tarjeta> GetTodos()
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
@@ -44,11 +44,11 @@ namespace Repositorio
             }
         }
 
-        public void Modificar(ControladoraTarjeta entity)
+        public void Modificar(Tarjeta entity)
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                ControladoraTarjeta aModificar = contexto.Tarjetas.Find(entity.Id);
+                Tarjeta aModificar = contexto.Tarjetas.Find(entity.Id);
                 aModificar.Nombre = entity.Nombre;
                 aModificar.Numero = entity.Numero;
                 aModificar.Tipo = entity.Tipo;

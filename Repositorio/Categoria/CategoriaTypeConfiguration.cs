@@ -1,4 +1,4 @@
-﻿using LogicaDeNegocio;
+﻿using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace Repositorio
 {
-    class CategoriaTypeConfiguration: EntityTypeConfiguration<ControladoraCategoria>
+    class CategoriaTypeConfiguration: EntityTypeConfiguration<Categoria>
     {
         public CategoriaTypeConfiguration()
         {
             this.HasKey(x => x.Id);
             this.Property(x => x.Nombre).IsRequired();
-            this.HasMany<ControladoraTarjeta>(ca => ca.Tarjetas);
-            this.HasMany<ControladoraClave>(ca => ca.Claves);
+            this.HasMany<Tarjeta>(ca => ca.Tarjetas);
+            this.HasMany<Clave>(ca => ca.Claves);
         }
     }
 }

@@ -83,6 +83,10 @@
       <Project>{a2333956-836c-42ab-ad9b-dbba96727e27}</Project>
       <Name>LogicaDeNegocio</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Negocio\Negocio.csproj">
+      <Project>{6F38306E-3FD3-401F-AF5D-0622B9596C0F}</Project>
+      <Name>Negocio</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202106121514219_CreadoDataAccessClaveCompartida.resx">
