@@ -10,8 +10,6 @@ namespace Repositorio
 {
     class UsuarioTypeConfiguration : EntityTypeConfiguration<Usuario>
     {
-        /*aModificar.CompartidasConmigo = entity.CompartidasConmigo;
-          aModificar.CompartidasPorMi = entity.CompartidasPorMi;*/
         public UsuarioTypeConfiguration()
         {
             this.HasKey(x => x.Id);
@@ -19,8 +17,8 @@ namespace Repositorio
             this.Property(x => x.ClaveMaestra).IsRequired();
             this.HasMany<Categoria>(usuario => usuario.Categorias);
             this.HasMany<DataBreach>(usuario => usuario.DataBreaches);
-
-            //this.HasMany<Clave>(ca => ca.Claves);
+            this.HasMany<ClaveCompartida>(usuario => usuario.CompartidasConmigo);
+            this.HasMany<ClaveCompartida>(usuario => usuario.CompartidasPorMi);
         }
     }
 }

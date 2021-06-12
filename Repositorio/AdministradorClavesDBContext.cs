@@ -16,6 +16,7 @@ namespace Repositorio
         public DbSet<Filtrada> Filtradas { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<ClaveCompartida> ClavesCompartidas { get; set; }
 
         public AdministradorClavesDBContext() : base("name=ContextoAdministradorClaves") { }
         
