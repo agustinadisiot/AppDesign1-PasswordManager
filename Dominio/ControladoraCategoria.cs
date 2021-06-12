@@ -1,186 +1,165 @@
-﻿using System;
+﻿using Negocio;
+using Repositorio;
+using System;
 using System.Collections.Generic;
 
 namespace LogicaDeNegocio
 {
-    public class ControladoraCategoria
+    public class ControladoraCategoria: IControladora<Categoria>
     {
-       // private List<Clave> _claves;
-        //private List<Tarjeta> _tarjetas;
-        private string _nombre;
         private const int _largoNombreMinimo = 3;
         private const int _largoNombreMaximo = 15;
 
-        public ControladoraCategoria()
+        public void Verificar(Categoria aVerificar)
         {
-            this.Claves = new List<ControladoraClave>();
-            this.Tarjetas = new List<ControladoraTarjeta>();
+            this.VerificarNombre(aVerificar);
         }
 
-        public string Nombre
+        public void Modificar(Categoria vieja, Categoria nueva)
         {
-            get { return _nombre; }
-            set { this._nombre = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreMinimo, _largoNombreMaximo); }
+            this.Verificar(vieja);
+            this.Verificar(nueva);
+
+            nueva.Id = vieja.Id;
+            DataAccessCategoria acceso = new DataAccessCategoria();
+            acceso.Modificar(nueva);
         }
 
-        public int Id { get; set; }
-
-        public List<ControladoraClave> Claves { get; set; }
-        public List<ControladoraTarjeta> Tarjetas { get; set; }
-
-        public bool EsListaClavesVacia()
+        public void VerificarNombre(Categoria aVerificar)
         {
-            bool noHayClaves = (this.Claves.Count == 0);
+            VerificadoraString.VerificarLargoEntreMinimoYMaximo(aVerificar.Nombre, _largoNombreMinimo, _largoNombreMaximo);
+        }
+
+        public bool EsListaClavesVacia(Categoria aVerificar)
+        {
+            bool noHayClaves = (aVerificar.Claves.Count == 0);
             return noHayClaves;
         }
 
-        public void AgregarClave(ControladoraClave claveIngresada)
+        public void AgregarClave(Clave claveIngresada, Categoria categoriaIngresada)
         {
-            bool noTieneSitio = (claveIngresada.VerificarSitio == null),
-                 noTieneClave = (claveIngresada.Codigo == null),
-                 noTieneUsuario = (claveIngresada.verificarUsuarioClave == null);
+            ControladoraClave controladoraClave = new ControladoraClave();
+            controladoraClave.Verificar(claveIngresada);
 
+            if (this.YaExisteClave(claveIngresada, categoriaIngresada)) throw new ObjetoYaExistenteException();
 
-            if (noTieneSitio || noTieneClave || noTieneUsuario ) throw new ObjetoIncompletoException();
-            if (this.YaExisteClave(claveIngresada)) throw new ObjetoYaExistenteException();
-            this.Claves.Add(claveIngresada);
+            categoriaIngresada.Claves.Add(claveIngresada);
+
+            DataAccessCategoria acceso = new DataAccessCategoria();
+            acceso.Modificar(categoriaIngresada);
         }
 
-        public void BorrarClave(ControladoraClave claveABorrar)
+        public void BorrarClave(Clave claveABorrar, Categoria categoriaIngresada)
         {
-            if (this.EsListaClavesVacia()) {
+            if (this.EsListaClavesVacia(categoriaIngresada)) {
                 throw new ObjetoInexistenteException();
             }
-            if (!this.YaExisteClave(claveABorrar)) {
+            if (!this.YaExisteClave(claveABorrar, categoriaIngresada)) {
                 throw new ObjetoInexistenteException();
             }
-            this.Claves.Remove(claveABorrar);
+            categoriaIngresada.Claves.Remove(claveABorrar);
+
+            DataAccessCategoria acceso = new DataAccessCategoria();
+            acceso.Modificar(categoriaIngresada);
         }
 
-        public ControladoraClave GetClave(ControladoraClave aBuscar)
+        public Clave GetClave(Clave aBuscar, Categoria categoriaIngresada)
         {
-            if (this.EsListaClavesVacia()) {
+            if (this.EsListaClavesVacia(categoriaIngresada)) {
                 throw new ObjetoInexistenteException();
             }
 
-            Predicate<ControladoraClave> buscadorClave = (ControladoraClave clave) => 
-            {
-                return clave.Equals(aBuscar);
-            };
 
-            ControladoraClave retorno = this.Claves.Find(buscadorClave);
+            Clave retorno = categoriaIngresada.Claves.Find(clave => clave.Equals(aBuscar));
             return retorno != null ? retorno : throw new ObjetoInexistenteException();
         }
 
-        public List<ControladoraClave> GetListaClaves()
+        public bool YaExisteClave(Clave aBuscar, Categoria contenedora)
         {
-            return this.Claves;
+            return (contenedora.Claves.Contains(aBuscar));
         }
 
-        public override bool Equals(object objeto)
-        {
-            if (objeto == null) throw new ObjetoIncompletoException();
-            if (objeto.GetType() != this.GetType()) throw new ObjetoIncorrectoException();
-            ControladoraCategoria aIgualar = (ControladoraCategoria)objeto;
-            return aIgualar.Nombre.ToUpper() == this.Nombre.ToUpper();
-        }
-
-        public bool EsListaTarjetasVacia()
-        {
-            bool noHayTarjetas = this.Tarjetas.Count == 0;
-            return noHayTarjetas;
-        }
-
-        public void AgregarTarjeta(ControladoraTarjeta tarjetaIngresada)
-        {
-            bool noTieneNombre = (tarjetaIngresada.VerificarNombre == null),
-                noTieneSitio = (tarjetaIngresada.VerificarTipo == null),
-                noTieneNumero = (tarjetaIngresada.Numero == null),
-                noTieneCodigo = (tarjetaIngresada.VerificarCodigo == null),
-                noTieneVencimiento = (tarjetaIngresada.Vencimiento.Equals(DateTime.MinValue));
-
-            if (noTieneNombre || noTieneSitio || noTieneNumero || noTieneCodigo || noTieneVencimiento) throw new ObjetoIncompletoException();
-
-            if (this.YaExisteTarjeta(tarjetaIngresada)) throw new ObjetoYaExistenteException();
-           
-            this.Tarjetas.Add(tarjetaIngresada);
-        }
-
-        public ControladoraTarjeta GetTarjeta(ControladoraTarjeta aBuscar)
-        {
-            if (this.EsListaTarjetasVacia()) throw new ObjetoInexistenteException();
-            Predicate<ControladoraTarjeta> buscadorTarjeta = (ControladoraTarjeta tarjeta) =>
-            {
-                return tarjeta.Equals(aBuscar);
-            };
-
-            ControladoraTarjeta retorno = this.Tarjetas.Find(buscadorTarjeta);
-            return retorno != null ? retorno : throw new ObjetoInexistenteException();
-        }
-
-        public List<ControladoraTarjeta> GetListaTarjetas()
-        {
-            return this.Tarjetas;
-        }
-
-        public bool YaExisteClave(ControladoraClave aBuscar)
-        {
-            return (this.Claves.Contains(aBuscar));
-        }
-
-        public bool YaExisteTarjeta(ControladoraTarjeta aBuscar)
-        {
-            return (this.Tarjetas.Contains(aBuscar));
-            
-        }
-
-        public void BorrarTarjeta(ControladoraTarjeta aBorrar)
-        {
-
-            if (this.EsListaTarjetasVacia() || !this.YaExisteTarjeta(aBorrar))
-            {
-                throw new ObjetoInexistenteException();
-            }
-            this.Tarjetas.Remove(aBorrar);
-        }
-
-        public void ModificarTarjeta(ControladoraTarjeta tarjetaVieja, ControladoraTarjeta tarjetaNueva)
-        {
-            bool igualNumero = tarjetaVieja.Equals(tarjetaNueva);
-
-            if (!this.YaExisteTarjeta(tarjetaVieja)) throw new ObjetoInexistenteException();
-            if (!igualNumero && this.YaExisteTarjeta(tarjetaNueva)) throw new ObjetoYaExistenteException();
-
-            ControladoraTarjeta aModificar = this.GetTarjeta(tarjetaVieja);
-            aModificar.VerificarNombre = tarjetaNueva.VerificarNombre;
-            aModificar.Numero = tarjetaNueva.Numero;
-            aModificar.VerificarTipo = tarjetaNueva.VerificarTipo;
-            aModificar.VerificarCodigo = tarjetaNueva.VerificarCodigo;
-            aModificar.VerificarNota = tarjetaNueva.VerificarNota;
-            aModificar.Vencimiento = tarjetaNueva.Vencimiento;
-        }
-
-        public void ModificarClave(ControladoraClave claveVieja, ControladoraClave claveNueva)
+        public void ModificarClave(Clave claveVieja, Clave claveNueva, Categoria contenedora)
         {
             bool igualSitioyUsuario = claveVieja.Equals(claveNueva);
 
-            if (!this.YaExisteClave(claveVieja)) throw new ObjetoInexistenteException();
-            if (!igualSitioyUsuario && this.YaExisteClave(claveNueva)) throw new ObjetoYaExistenteException();
+            if (!this.YaExisteClave(claveVieja, contenedora)) throw new ObjetoInexistenteException();
+            if (!igualSitioyUsuario && this.YaExisteClave(claveNueva, contenedora)) throw new ObjetoYaExistenteException();
 
-            ControladoraClave aModificar = this.GetClave(claveVieja);
-            aModificar.verificarUsuarioClave = claveNueva.verificarUsuarioClave;
-            aModificar.VerificarSitio = claveNueva.VerificarSitio;
-            aModificar.VerificarNota = claveNueva.VerificarNota;
-            if (aModificar.Codigo != claveNueva.Codigo) {
-                aModificar.Codigo = claveNueva.Codigo;
-            }
+            ControladoraClave controladoraClave = new ControladoraClave();
+            controladoraClave.Modificar(claveVieja, claveNueva);
         }
 
-        public List<ControladoraClave> GetListaClavesColor(string color)
+        public List<Clave> GetListaClavesColor(string color, Categoria contenedora)
         {
-            List<ControladoraClave> todasLasClaves = this.GetListaClaves();
+            List<Clave> todasLasClaves = this.GetListaClaves(contenedora);
             NivelSeguridad nivelSeguridad = new NivelSeguridad();
             return todasLasClaves.FindAll(buscadora => nivelSeguridad.GetNivelSeguridad(buscadora.Codigo) == color);
+        }
+
+        public List<Clave> GetListaClaves(Categoria categoria)
+        {
+            return categoria.Claves;
+        }
+
+        public bool EsListaTarjetasVacia(Categoria aVerificar)
+        {
+            bool noHayTarjetas = aVerificar.Tarjetas.Count == 0;
+            return noHayTarjetas;
+        }
+
+        public void AgregarTarjeta(Tarjeta tarjetaIngresada, Categoria categoriaIngresada)
+        {
+            ControladoraTarjeta controladoraTarjeta = new ControladoraTarjeta();
+
+            controladoraTarjeta.Verificar(tarjetaIngresada);
+
+            if (this.YaExisteTarjeta(tarjetaIngresada, categoriaIngresada)) throw new ObjetoYaExistenteException();
+           
+            categoriaIngresada.Tarjetas.Add(tarjetaIngresada);
+            DataAccessCategoria acceso = new DataAccessCategoria();
+            acceso.Modificar(categoriaIngresada);
+        }
+
+        public Tarjeta GetTarjeta(Tarjeta aBuscar, Categoria categoriaIngresada)
+        {
+            if (this.EsListaTarjetasVacia(categoriaIngresada)) throw new ObjetoInexistenteException();
+            
+            Tarjeta retorno = categoriaIngresada.Tarjetas.Find(tarjeta => tarjeta.Equals(aBuscar));
+            return retorno != null ? retorno : throw new ObjetoInexistenteException();
+        }
+
+        public List<Tarjeta> GetListaTarjetas(Categoria categoria)
+        {
+            return categoria.Tarjetas;
+        }
+        
+        public bool YaExisteTarjeta(Tarjeta aBuscar, Categoria aVerificar)
+        {
+            return (aVerificar.Tarjetas.Contains(aBuscar));
+        }
+
+        public void BorrarTarjeta(Tarjeta aBorrar, Categoria contenedora)
+        {
+            if (this.EsListaTarjetasVacia(contenedora) || !this.YaExisteTarjeta(aBorrar,contenedora))
+            {
+                throw new ObjetoInexistenteException();
+            }
+            contenedora.Tarjetas.Remove(aBorrar);
+            DataAccessCategoria acceso = new DataAccessCategoria();
+            acceso.Modificar(contenedora);
+        }
+
+        public void ModificarTarjeta(Tarjeta tarjetaVieja, Tarjeta tarjetaNueva, Categoria contenedora)
+        {
+
+            bool igualNumero = tarjetaVieja.Equals(tarjetaNueva);
+
+            if (!this.YaExisteTarjeta(tarjetaVieja, contenedora)) throw new ObjetoInexistenteException();
+            if (!igualNumero && this.YaExisteTarjeta(tarjetaNueva, contenedora)) throw new ObjetoYaExistenteException();
+
+            ControladoraTarjeta controladoraTarjeta = new ControladoraTarjeta();
+            controladoraTarjeta.Modificar(tarjetaVieja, tarjetaNueva);
         }
     }
 }

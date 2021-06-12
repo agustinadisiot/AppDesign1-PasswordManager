@@ -53,7 +53,7 @@ namespace LogicaDeNegocio
 
         public void AgregarCategoria(ControladoraCategoria categoria)
         {
-            if (categoria.Nombre == null) throw new ObjetoIncompletoException();
+            if (categoria.VerificarNombre == null) throw new ObjetoIncompletoException();
             else 
             {
                 if (this.YaExisteCategoria(categoria)) {
@@ -106,7 +106,7 @@ namespace LogicaDeNegocio
             }
             else {
                 ControladoraCategoria aBuscar = this.GetCategoria(vieja);
-                aBuscar.Nombre = nueva.Nombre;
+                aBuscar.VerificarNombre = nueva.VerificarNombre;
             }
         }
 
