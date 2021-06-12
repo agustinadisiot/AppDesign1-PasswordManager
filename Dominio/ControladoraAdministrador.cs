@@ -8,7 +8,6 @@ namespace LogicaDeNegocio
 {
     public class ControladoraAdministrador
     {
-
         public bool EsListaUsuariosVacia()
         {
             DataAccessUsuario acceso = new DataAccessUsuario();
@@ -47,7 +46,6 @@ namespace LogicaDeNegocio
             return usuarios;
         }
 
-
         public void CompartirClave(ClaveCompartida aCompartir)
         {
             DataAccessUsuario acceso = new DataAccessUsuario();
@@ -83,7 +81,6 @@ namespace LogicaDeNegocio
             usuarioDestino.CompartidasConmigo.Add(guardar);
             acceso.Modificar(usuarioDestino);
         }
-
 
         public void DejarDeCompartir(ClaveCompartida aDejarCompartir)
         {

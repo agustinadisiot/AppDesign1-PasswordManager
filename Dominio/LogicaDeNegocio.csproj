@@ -47,20 +47,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControladoraCategoria.cs" />
-    <Compile Include="DataBreach.cs" />
-    <Compile Include="Filtrada.cs" />
     <Compile Include="ControladoraDataBreach.cs" />
+    <Compile Include="ControladoraFiltrada.cs" />
     <Compile Include="IControladora.cs" />
     <Compile Include="NivelSeguridad.cs" />
-    <Compile Include="ClaveAModificar.cs" />
-    <Compile Include="ClaveCompartida.cs" />
     <Compile Include="ControladoraClave.cs" />
-    <Compile Include="ColorNivelSeguridad.cs" />
     <Compile Include="GeneradoraClaves.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ControladoraAdministrador.cs" />
     <Compile Include="ControladoraTarjeta.cs" />
-    <Compile Include="TarjetaAModificar.cs" />
     <Compile Include="ControladoraUsuario.cs" />
     <Compile Include="VerificadoraString.cs" />
   </ItemGroup>
