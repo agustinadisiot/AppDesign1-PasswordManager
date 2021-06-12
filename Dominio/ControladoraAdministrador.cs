@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Negocio;
+using Repositorio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,79 +8,96 @@ namespace LogicaDeNegocio
 {
     public class ControladoraAdministrador
     {
-        private List<ControladoraUsuario> _usuarios;
-
-        public ControladoraAdministrador() {
-            this._usuarios = new List<ControladoraUsuario>();
-        }
 
         public bool EsListaUsuariosVacia()
         {
-            return this._usuarios.Count() == 0;
+            DataAccessUsuario acceso = new DataAccessUsuario();
+            List<Usuario> usuarios = (List<Usuario>)acceso.GetTodos();
+            return usuarios.Count() == 0;
         }
 
-        public void AgregarUsuario(ControladoraUsuario usuario)
+        public void AgregarUsuario(Usuario usuario)
         {
-            if (usuario.VerificarNombre == null)  throw new ObjetoIncompletoException();
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+            controladoraUsuario.Verificar(usuario);
+
             if (this.YaExisteUsuario(usuario)) throw new ObjetoYaExistenteException();
-            this._usuarios.Add(usuario);
-            
+            DataAccessUsuario acceso = new DataAccessUsuario();
+            acceso.Agregar(usuario);
         }
 
-        public ControladoraUsuario GetUsuario(ControladoraUsuario aBuscar)
+        public Usuario GetUsuario(Usuario aBuscar)
         {
-            if (!this.YaExisteUsuario(aBuscar)) throw new ObjetoInexistenteException();
-            return this._usuarios.First(aBuscar.Equals);
+            DataAccessUsuario acceso = new DataAccessUsuario();
+            List<Usuario> usuarios = (List<Usuario>)acceso.GetTodos();
+            return usuarios.First(aBuscar.Equals);
         }
 
-        public bool YaExisteUsuario(ControladoraUsuario buscador)
+        public bool YaExisteUsuario(Usuario buscador)
         {
-            return this._usuarios.Contains(buscador);
+            DataAccessUsuario acceso = new DataAccessUsuario();
+            List<Usuario> usuarios = (List<Usuario>)acceso.GetTodos();
+            return usuarios.Contains(buscador);
         }
 
-        public List<ControladoraUsuario> GetListaUsuarios()
+        public List<Usuario> GetListaUsuarios()
         {
-            if(this.EsListaUsuariosVacia()) return null;
-            else { 
-                return this._usuarios;
+            DataAccessUsuario acceso = new DataAccessUsuario();
+            List<Usuario> usuarios = (List<Usuario>)acceso.GetTodos();
+            return usuarios;
+        }
+
+
+        public void CompartirClave(ClaveCompartida aCompartir)
+        {
+            DataAccessUsuario acceso = new DataAccessUsuario();
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+
+            Usuario usuarioOriginal = acceso.Get(aCompartir.Original.Id);
+            Usuario usuarioDestino = acceso.Get(aCompartir.Destino.Id);
+            Clave claveACompartir = controladoraUsuario.GetClave(aCompartir.Clave, usuarioOriginal);
+
+            if (usuarioOriginal == null || usuarioDestino == null) {
+                throw new UsuarioInexistenteException();
             }
-        }
 
+            if (claveACompartir == null) {
+                throw new ObjetoInexistenteException();
+            }
 
-        /*public void CompartirClave(ClaveCompartida aCompartir)
-        {
-            ControladoraUsuario usuarioDestino = aCompartir.Destino;
-            ControladoraUsuario usuarioOriginal = aCompartir.Original;
-            Clave claveACompartir = aCompartir.Clave;
+            if (usuarioOriginal.CompartidasPorMi.Contains(aCompartir)) throw new ObjetoYaExistenteException();
 
-            if (this.CompartidasPorMi.Contains(aCompartir)) throw new ObjetoYaExistenteException();
-
-            claveACompartir = this.GetClave(claveACompartir);
 
             claveACompartir.EsCompartida = true;
 
-            Negocio.ClaveCompartida guardar = new Negocio.ClaveCompartida()
+            ClaveCompartida guardar = new ClaveCompartida()
             {
                 Original = usuarioOriginal,
                 Destino = usuarioDestino,
                 Clave = claveACompartir
             };
 
-            this.CompartidasPorMi.Add(guardar);
+            usuarioOriginal.CompartidasPorMi.Add(guardar);
+            acceso.Modificar(usuarioOriginal);
 
             usuarioDestino.CompartidasConmigo.Add(guardar);
-        }*/
+            acceso.Modificar(usuarioDestino);
+        }
 
 
-        /*public void DejarDeCompartir(ClaveCompartida aDejarDeCompartir, Usuario contenedor)
+        public void DejarDeCompartir(ClaveCompartida aDejarCompartir)
         {
-            ControladoraUsuario usuarioOriginal = aDejarDeCompartir.Original;
-            ControladoraUsuario usuarioDestino = aDejarDeCompartir.Destino;
-            Clave claveADejarDeCompartir = this.GetClave(aDejarDeCompartir.Clave);
+            DataAccessUsuario acceso = new DataAccessUsuario();
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+            ControladoraClave controladoraClave = new ControladoraClave();
+
+            Usuario usuarioOriginal = acceso.Get(aDejarCompartir.Original.Id);
+            Usuario usuarioDestino = acceso.Get(aDejarCompartir.Destino.Id);
+            Clave claveADejarDeCompartir = controladoraUsuario.GetClave(aDejarCompartir.Clave, usuarioOriginal);
 
             if (!claveADejarDeCompartir.EsCompartida) throw new ObjetoInexistenteException();
 
-            Negocio.ClaveCompartida aEliminar = new Negocio.ClaveCompartida()
+            ClaveCompartida aEliminar = new ClaveCompartida()
             {
                 Original = usuarioOriginal,
                 Destino = usuarioDestino,
@@ -87,13 +106,17 @@ namespace LogicaDeNegocio
 
             if (!usuarioDestino.CompartidasConmigo.Contains(aEliminar)) throw new ObjetoInexistenteException();
 
-            this.CompartidasPorMi.Remove(aEliminar);
-
+            usuarioOriginal.CompartidasPorMi.Remove(aEliminar);
+            acceso.Modificar(usuarioOriginal);
             usuarioDestino.CompartidasConmigo.Remove(aEliminar);
+            acceso.Modificar(usuarioDestino);
+       
+            bool sigueCompartida = usuarioOriginal.CompartidasPorMi.Any(buscadora => buscadora.Clave.Equals(claveADejarDeCompartir));
+            if (!sigueCompartida) {
+                claveADejarDeCompartir.EsCompartida = false;
+                controladoraClave.Modificar(claveADejarDeCompartir);
+            }
 
-            bool sigueCompartida = this.CompartidasPorMi.Any(buscadora => buscadora.Clave.Equals(claveADejarDeCompartir));
-            if (!sigueCompartida) claveADejarDeCompartir.EsCompartida = false;
-
-        }*/
+        }
     }
 }
