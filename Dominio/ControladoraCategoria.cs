@@ -93,10 +93,10 @@ namespace LogicaDeNegocio
 
         public void AgregarTarjeta(ControladoraTarjeta tarjetaIngresada)
         {
-            bool noTieneNombre = (tarjetaIngresada.Nombre == null),
-                noTieneSitio = (tarjetaIngresada.Tipo == null),
+            bool noTieneNombre = (tarjetaIngresada.VerificarNombre == null),
+                noTieneSitio = (tarjetaIngresada.VerificarTipo == null),
                 noTieneNumero = (tarjetaIngresada.Numero == null),
-                noTieneCodigo = (tarjetaIngresada.Codigo == null),
+                noTieneCodigo = (tarjetaIngresada.VerificarCodigo == null),
                 noTieneVencimiento = (tarjetaIngresada.Vencimiento.Equals(DateTime.MinValue));
 
             if (noTieneNombre || noTieneSitio || noTieneNumero || noTieneCodigo || noTieneVencimiento) throw new ObjetoIncompletoException();
@@ -152,11 +152,11 @@ namespace LogicaDeNegocio
             if (!igualNumero && this.YaExisteTarjeta(tarjetaNueva)) throw new ObjetoYaExistenteException();
 
             ControladoraTarjeta aModificar = this.GetTarjeta(tarjetaVieja);
-            aModificar.Nombre = tarjetaNueva.Nombre;
+            aModificar.VerificarNombre = tarjetaNueva.VerificarNombre;
             aModificar.Numero = tarjetaNueva.Numero;
-            aModificar.Tipo = tarjetaNueva.Tipo;
-            aModificar.Codigo = tarjetaNueva.Codigo;
-            aModificar.Nota = tarjetaNueva.Nota;
+            aModificar.VerificarTipo = tarjetaNueva.VerificarTipo;
+            aModificar.VerificarCodigo = tarjetaNueva.VerificarCodigo;
+            aModificar.VerificarNota = tarjetaNueva.VerificarNota;
             aModificar.Vencimiento = tarjetaNueva.Vencimiento;
         }
 

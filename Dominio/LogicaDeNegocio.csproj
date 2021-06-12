@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A2333956-836C-42AB-AD9B-DBBA96727E27}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Dominio</RootNamespace>
-    <AssemblyName>Dominio</AssemblyName>
+    <RootNamespace>LogicaDeNegocio</RootNamespace>
+    <AssemblyName>LogicaDeNegocio</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -50,6 +50,7 @@
     <Compile Include="DataBreach.cs" />
     <Compile Include="Filtrada.cs" />
     <Compile Include="ControladoraDataBreach.cs" />
+    <Compile Include="IControladora.cs" />
     <Compile Include="NivelSeguridad.cs" />
     <Compile Include="ClaveAModificar.cs" />
     <Compile Include="ClaveCompartida.cs" />
@@ -70,6 +71,10 @@
     <ProjectReference Include="..\Negocio\Negocio.csproj">
       <Project>{6F38306E-3FD3-401F-AF5D-0622B9596C0F}</Project>
       <Name>Negocio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repositorio\Repositorio.csproj">
+      <Project>{ae07c9ed-3fef-430a-992f-3ea6caae216e}</Project>
+      <Name>Repositorio</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

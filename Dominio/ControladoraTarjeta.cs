@@ -1,11 +1,13 @@
-﻿using System;
+﻿using Negocio;
+using Repositorio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace LogicaDeNegocio
 {
-    public class ControladoraTarjeta
+    public class ControladoraTarjeta : IControladora<Tarjeta>
     {
         private string _nombre;
         private string _tipo;
@@ -20,65 +22,60 @@ namespace LogicaDeNegocio
         private const int _largoNotaMinimo = 0;
         private const int _largoNotaMaximo = 250;
 
-        public List<DataBreach> DataBreaches { get; set; }
+        public void Modificar(Tarjeta vieja, Tarjeta nueva)
+        {
+            this.Verificar(vieja);
+            this.Verificar(nueva);
 
-        public ControladoraTarjeta() {
-            this.DataBreaches = new List<DataBreach>();
+            nueva.Id = vieja.Id;
+            DataAccessTarjeta acceso = new DataAccessTarjeta();
+            acceso.Modificar(nueva);
         }
 
-        public int Id { get; set; }
-
-        public string Nombre 
+        public void Verificar(Tarjeta aVerificar)
         {
-            get { return _nombre; }
-            set { this._nombre = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreYTipoMinimo, _largoNombreYTipoMaximo); } 
+            this.VerificarNombre(aVerificar);
+            this.VerificarTipo(aVerificar);
+            this.VerificarNumero(aVerificar);
+            this.VerificarCodigo(aVerificar);
+            this.VerificarNota(aVerificar);
         }
 
-        public string Tipo
+        public void VerificarNombre(Tarjeta aVerificar)
         {
-            get { return _tipo; }
-            set { this._tipo = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreYTipoMinimo, _largoNombreYTipoMaximo); }
+            VerificadoraString.VerificarLargoEntreMinimoYMaximo(aVerificar.Nombre, _largoNombreYTipoMinimo, _largoNombreYTipoMaximo);
         }
 
-        public string Numero 
+        public void VerificarTipo(Tarjeta aVerificar)
         {
-            get { return this._numero; }
-            set { this._numero = VerificarStringDeNumerosYSuLargoEntreMinimoYMaximo(value, _largoNumeroMinimoYMaximo, _largoNumeroMinimoYMaximo); }
+            VerificadoraString.VerificarLargoEntreMinimoYMaximo(aVerificar.Tipo, _largoNombreYTipoMinimo, _largoNombreYTipoMaximo);
         }
 
-        public string Codigo
+        public void VerificarNumero(Tarjeta aVerificar)
         {
-            get { return this._codigo; }
-            set { this._codigo = VerificarStringDeNumerosYSuLargoEntreMinimoYMaximo(value, _largoCodigoMinimo, _largoCodigoMaximo); }
-        }
-
-        public DateTime Vencimiento { get; set; }
-
-        public string Nota 
-        {
-            get { return this._nota; }
-            set { this._nota = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNotaMinimo, _largoNotaMaximo); }
-        }
-
-        public static string VerificarStringDeNumerosYSuLargoEntreMinimoYMaximo(string ingreso, int minimo, int maximo)
-        {
-            if (ingreso.Length < minimo || ingreso.Length > maximo) throw new LargoIncorrectoException();
-            foreach (char caracter in ingreso)
+            VerificadoraString.VerificarLargoEntreMinimoYMaximo(aVerificar.Numero, _largoNumeroMinimoYMaximo, _largoNumeroMinimoYMaximo);
+            foreach (char caracter in aVerificar.Numero)
             {
                 if (!VerificadoraString.EsNumero(caracter)) throw new CaracterInesperadoException();
             }
-            return ingreso;
         }
 
-        public override bool Equals(object objeto)
+        public void VerificarCodigo(Tarjeta aVerificar)
         {
-            if (objeto == null) throw new ObjetoIncompletoException();
-            if (objeto.GetType() != this.GetType()) throw new ObjetoIncorrectoException();
-            ControladoraTarjeta aIgualar = (ControladoraTarjeta)objeto;
-            return aIgualar.Numero == this.Numero;
+            VerificadoraString.VerificarLargoEntreMinimoYMaximo(aVerificar.Codigo, _largoCodigoMinimo, _largoCodigoMaximo);
+            foreach (char caracter in aVerificar.Codigo)
+            {
+                if (!VerificadoraString.EsNumero(caracter)) throw new CaracterInesperadoException();
+            }
         }
 
-        public bool FueFiltrado(List<Filtrada> filtradas)
+        public void VerificarNota(Tarjeta aVerificar)
+        {
+            VerificadoraString.VerificarLargoEntreMinimoYMaximo(aVerificar.Nota, _largoNotaMinimo, _largoNotaMaximo);
+        }
+
+
+        public bool FueFiltrado(Tarjeta aVerificar, List<Filtrada> filtradas)
         {
             const int largoTarjetaSinEspacios = 16;
             const string regexEspacio = @"\s+";
@@ -98,7 +95,9 @@ namespace LogicaDeNegocio
                 }
             }
 
-            return potencialesTarjetas.Contains(this.Numero);
+            return potencialesTarjetas.Contains(aVerificar.Numero);
         }
+
+        
     }
 }

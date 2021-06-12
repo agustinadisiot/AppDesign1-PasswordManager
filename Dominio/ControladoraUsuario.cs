@@ -141,10 +141,10 @@ namespace LogicaDeNegocio
 
         public void AgregarTarjeta(ControladoraTarjeta tarjeta, ControladoraCategoria categoria)
         {
-            bool noTieneNombre = (tarjeta.Nombre == null),
-            noTieneSitio = (tarjeta.Tipo == null),
+            bool noTieneNombre = (tarjeta.VerificarNombre == null),
+            noTieneSitio = (tarjeta.VerificarTipo == null),
             noTieneNumero = (tarjeta.Numero == null),
-            noTieneCodigo = (tarjeta.Codigo == null);
+            noTieneCodigo = (tarjeta.VerificarCodigo == null);
 
             if (noTieneNombre || noTieneSitio || noTieneNumero || noTieneCodigo) throw new ObjetoIncompletoException();
 
