@@ -52,18 +52,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdministradorClavesDBContext.cs" />
-    <Compile Include="CategoriaTypeConfiguration.cs" />
-    <Compile Include="ClaveCompartidaTypeConfiguration.cs" />
-    <Compile Include="ClaveTypeConfiguration.cs" />
-    <Compile Include="DataAccessCategoria.cs" />
-    <Compile Include="DataAccessClave.cs" />
-    <Compile Include="DataAccessClaveCompartida.cs" />
-    <Compile Include="DataAccessDataBreach.cs" />
-    <Compile Include="DataAccessFiltrada.cs" />
-    <Compile Include="DataAccessTarjeta.cs" />
-    <Compile Include="DataAccessUsuario.cs" />
-    <Compile Include="DataBreachTypeConfiguration.cs" />
-    <Compile Include="FiltradaTypeConfiguration.cs" />
+    <Compile Include="Categoria\CategoriaTypeConfiguration.cs" />
+    <Compile Include="ClaveCompartida\ClaveCompartidaTypeConfiguration.cs" />
+    <Compile Include="Clave\ClaveTypeConfiguration.cs" />
+    <Compile Include="Categoria\DataAccessCategoria.cs" />
+    <Compile Include="Clave\DataAccessClave.cs" />
+    <Compile Include="ClaveCompartida\DataAccessClaveCompartida.cs" />
+    <Compile Include="DataBreach\DataAccessDataBreach.cs" />
+    <Compile Include="Filtrada\DataAccessFiltrada.cs" />
+    <Compile Include="Tarjeta\DataAccessTarjeta.cs" />
+    <Compile Include="Usuario\DataAccessUsuario.cs" />
+    <Compile Include="DataBreach\DataBreachTypeConfiguration.cs" />
+    <Compile Include="Filtrada\FiltradaTypeConfiguration.cs" />
     <Compile Include="IDataAccess.cs" />
     <Compile Include="Migrations\202106121514219_CreadoDataAccessClaveCompartida.cs" />
     <Compile Include="Migrations\202106121514219_CreadoDataAccessClaveCompartida.designer.cs">
@@ -71,8 +71,8 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TarjetaTypeConfiguration.cs" />
-    <Compile Include="UsuarioTypeConfiguration.cs" />
+    <Compile Include="Tarjeta\TarjetaTypeConfiguration.cs" />
+    <Compile Include="Usuario\UsuarioTypeConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
