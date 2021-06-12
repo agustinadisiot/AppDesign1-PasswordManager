@@ -216,10 +216,6 @@ namespace Interfaz
 
             daTarjeta.Modificar(aModificar);
             Tarjeta tarjetaDespues = daTarjeta.Get(tarjeta2.Id);
-            //1 DataBreaches
-            //2 Clave
-            //1 Tarjeta
-            //5 Filtradas
             dataBreaches = (List<DataBreach>)daDataBreach.GetTodos();
             claves = (List<Clave>)daClave.GetTodos();
             tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
