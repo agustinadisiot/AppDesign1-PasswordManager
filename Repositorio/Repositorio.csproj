@@ -59,6 +59,7 @@
     <Compile Include="DataAccessDataBreach.cs" />
     <Compile Include="DataAccessFiltrada.cs" />
     <Compile Include="DataAccessTarjeta.cs" />
+    <Compile Include="DataAccessUsuario.cs" />
     <Compile Include="DataBreachTypeConfiguration.cs" />
     <Compile Include="FiltradaTypeConfiguration.cs" />
     <Compile Include="IDataAccess.cs" />

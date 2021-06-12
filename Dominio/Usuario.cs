@@ -7,22 +7,23 @@ namespace Dominio
 {
     public class Usuario
     {
-        private List<Categoria> _categorias;
         private string _nombre;
         private string _claveMaestra;
         private const int _largoNombreYClaveMinimo = 5;
         private const int _largoNombreYClaveMaximo = 25;
 
+        public List<Categoria> Categorias { get; set; }
 
         public Usuario()
         {
-            this._categorias = new List<Categoria>();
+            this.Categorias = new List<Categoria>();
             this.CompartidasConmigo = new List<ClaveCompartida>();
             this.CompartidasPorMi = new List<ClaveCompartida>();
             this.DataBreaches = new List<DataBreach>();
         }
 
         public int Id { get; set; }
+
         public string Nombre 
         {   get { return _nombre; }
             set { this._nombre = VerificadoraString.VerificarLargoEntreMinimoYMaximo(value, _largoNombreYClaveMinimo, _largoNombreYClaveMaximo); }
@@ -46,7 +47,7 @@ namespace Dominio
 
         public bool EsListaCategoriasVacia()
         {
-            bool noAgregoCategorias = (this._categorias.Count() == 0);
+            bool noAgregoCategorias = (this.Categorias.Count() == 0);
             return noAgregoCategorias;
         }
 
@@ -58,7 +59,7 @@ namespace Dominio
                 if (this.YaExisteCategoria(categoria)) {
                     throw new ObjetoYaExistenteException();
                 }
-                this._categorias.Add(categoria);
+                this.Categorias.Add(categoria);
             }  
         }
 
@@ -67,7 +68,7 @@ namespace Dominio
             Predicate<Categoria> buscadorCategoria = (Categoria categoria) =>
             { return categoria.Equals(aBuscar); };
 
-            Categoria retorno = this._categorias.Find(buscadorCategoria);
+            Categoria retorno = this.Categorias.Find(buscadorCategoria);
             return retorno != null ? retorno : throw new CategoriaInexistenteException();
         }
 
@@ -111,12 +112,12 @@ namespace Dominio
 
         public bool YaExisteCategoria(Categoria aBuscar)
         {
-            return this._categorias.Any(buscadora => buscadora.Equals(aBuscar));
+            return this.Categorias.Any(buscadora => buscadora.Equals(aBuscar));
         }
 
         public bool YaExisteClave(Clave clave)
         {
-            return this._categorias.Any(catBuscadora => catBuscadora.YaExisteClave(clave));
+            return this.Categorias.Any(catBuscadora => catBuscadora.YaExisteClave(clave));
         }
 
         public void AgregarClave(Clave clave, Categoria buscadora)
@@ -135,7 +136,7 @@ namespace Dominio
 
         public bool YaExisteTarjeta(Tarjeta tarjeta)
         {
-            return this._categorias.Any(catBuscadora => catBuscadora.YaExisteTarjeta(tarjeta));
+            return this.Categorias.Any(catBuscadora => catBuscadora.YaExisteTarjeta(tarjeta));
         }
 
         public void AgregarTarjeta(Tarjeta tarjeta, Categoria categoria)
@@ -168,20 +169,20 @@ namespace Dominio
                 this.DejarDeCompartir(aDejarDeCompartir);
             }
 
-            Categoria contieneClaveABorrar = this._categorias.First(categoria => categoria.YaExisteClave(aBorrar));
+            Categoria contieneClaveABorrar = this.Categorias.First(categoria => categoria.YaExisteClave(aBorrar));
             contieneClaveABorrar.BorrarClave(aBorrar);
         }
 
         public List<Categoria> GetListaCategorias()
         {
-            return this._categorias;
+            return this.Categorias;
         }
 
         public Clave GetClave(Clave claveBuscadora)
         {
             if (!YaExisteClave(claveBuscadora)) throw new ObjetoInexistenteException();
 
-            foreach (Categoria categoria in this._categorias)
+            foreach (Categoria categoria in this.Categorias)
             {
                 if (categoria.YaExisteClave(claveBuscadora))
                 {
@@ -198,7 +199,7 @@ namespace Dominio
         {
             if (!YaExisteTarjeta(buscadora)) throw new ObjetoInexistenteException();
 
-            foreach (Categoria categoria in this._categorias)
+            foreach (Categoria categoria in this.Categorias)
             {
                 if (categoria.YaExisteTarjeta(buscadora))
                 {
@@ -220,7 +221,7 @@ namespace Dominio
                 throw new ObjetoInexistenteException();
             }
 
-            Categoria contieneClaveABorrar = this._categorias.First(categoria => categoria.YaExisteTarjeta(aBorrar));
+            Categoria contieneClaveABorrar = this.Categorias.First(categoria => categoria.YaExisteTarjeta(aBorrar));
             contieneClaveABorrar.BorrarTarjeta(aBorrar);
         }
 
@@ -282,7 +283,7 @@ namespace Dominio
         {
             List<Clave> claves = new List<Clave>();
 
-            foreach(Categoria categoria in this._categorias)
+            foreach(Categoria categoria in this.Categorias)
             {
                claves.AddRange(categoria.GetListaClaves());
             }
