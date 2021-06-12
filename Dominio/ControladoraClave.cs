@@ -19,18 +19,12 @@ namespace LogicaDeNegocio
             this.Verificar(nueva);
 
             DataAccessClave acceso = new DataAccessClave();
-            Clave aModificar = acceso.Get(vieja.Id);
-            aModificar.UsuarioClave = nueva.UsuarioClave;
-            aModificar.Sitio = nueva.Sitio;
-            aModificar.Nota = nueva.Nota;
-
-            if (aModificar.Codigo != nueva.Codigo)
+            nueva.Id = vieja.Id;
+            if (vieja.Codigo != nueva.Codigo)
             {
-                aModificar.Codigo = nueva.Codigo;
-                aModificar.FechaModificacion = DateTime.Now.Date;
+                nueva.FechaModificacion = DateTime.Now.Date;
             }
-            acceso.Modificar(aModificar);
-
+            acceso.Modificar(nueva);
         }
 
         public void Verificar(Clave aVerificar)
