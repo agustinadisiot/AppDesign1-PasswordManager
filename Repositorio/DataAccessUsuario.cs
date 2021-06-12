@@ -137,8 +137,6 @@ namespace Repositorio
                         .FirstOrDefault(db => db.Id == entity.Id);
 
                 contexto.Usuarios.Attach(aModificar);
-
-                //aModificar = entity;
                 aModificar.Categorias = categorias;
                 aModificar.DataBreaches = dataBreaches;
                 aModificar.Nombre = entity.Nombre;

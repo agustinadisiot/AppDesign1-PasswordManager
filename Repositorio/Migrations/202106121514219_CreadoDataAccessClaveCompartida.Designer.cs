@@ -7,13 +7,13 @@ namespace Repositorio.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class DBCompletoIncluyendoCategoria : IMigrationMetadata
+    public sealed partial class CreadoDataAccessClaveCompartida : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(DBCompletoIncluyendoCategoria));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CreadoDataAccessClaveCompartida));
         
         string IMigrationMetadata.Id
         {
-            get { return "202106112245398_DBCompletoIncluyendoCategoria"; }
+            get { return "202106121514219_CreadoDataAccessClaveCompartida"; }
         }
         
         string IMigrationMetadata.Source
