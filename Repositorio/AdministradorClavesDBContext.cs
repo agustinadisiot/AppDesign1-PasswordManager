@@ -28,7 +28,8 @@ namespace Repositorio
             modelBuilder.Configurations.Add(new DataBreachTypeConfiguration());
             modelBuilder.Configurations.Add(new FiltradaTypeConfiguration());
             modelBuilder.Configurations.Add(new CategoriaTypeConfiguration());
-            modelBuilder.Configurations.Add(new UsuarioTypeConfiguration()); 
+            modelBuilder.Configurations.Add(new UsuarioTypeConfiguration());
+            modelBuilder.Configurations.Add(new ClaveCompartidaTypeConfiguration());
         }
     }
 }
