@@ -14,24 +14,16 @@ namespace TestsObligatorio
     class TestSeguridadClave
     {
         private ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
-        private ControladoraCategoria controladoraCategoria = new ControladoraCategoria();
         private DataAccessUsuario accesoUsuario;
         private DataAccessCategoria accesoCategoria;
         private DataAccessClave accesoClave;
         private NivelSeguridad nivelSeguridad = new NivelSeguridad();
 
         private Usuario usuario;
-        private Usuario usuario2;
-        private Usuario usuario3;
         private Categoria categoria1;
         private Categoria categoria2;
         private Clave clave1;
         private Clave clave2;
-        private Clave clave3;
-        private Clave clave4;
-        private ClaveCompartida claveCompartida;
-        private ClaveCompartida claveCompartida2;
-        private ClaveCompartida claveCompartida3;
 
         [TestCleanup]
         public void TearDown()
@@ -70,18 +62,6 @@ namespace TestsObligatorio
                 Nombre = "Usuario1",
                 ClaveMaestra = "Hola12345"
             };
-
-            usuario2 = new Usuario()
-            {
-                Nombre = "Usuario2",
-                ClaveMaestra = "Chau12345"
-            };
-
-            usuario3 = new Usuario()
-            {
-                Nombre = "Usuario3"
-            };
-
             categoria1 = new Categoria()
             {
                 Nombre = "Personal"
@@ -106,41 +86,6 @@ namespace TestsObligatorio
                 Codigo = "EstaEsUnaClave2",
                 UsuarioClave = "Luis88",
                 Nota = "Nota de una clave"
-            };
-
-            clave3 = new Clave()
-            {
-                Sitio = "youtube.com",
-                Codigo = "codrojo",
-                UsuarioClave = "Hernesto"
-            };
-
-            clave4 = new Clave()
-            {
-                Sitio = "www.hbo.com",
-                Codigo = "EstaEsUnaClave4",
-                UsuarioClave = "Peepo"
-            };
-
-            claveCompartida = new ClaveCompartida()
-            {
-                Original = usuario,
-                Destino = usuario2,
-                Clave = clave1
-            };
-
-            claveCompartida2 = new ClaveCompartida()
-            {
-                Original = usuario,
-                Destino = usuario2,
-                Clave = clave2
-            };
-
-            claveCompartida3 = new ClaveCompartida()
-            {
-                Original = usuario,
-                Destino = usuario3,
-                Clave = clave1
             };
         }
 
