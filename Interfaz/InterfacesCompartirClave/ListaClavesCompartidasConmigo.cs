@@ -1,4 +1,5 @@
 ﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -7,14 +8,12 @@ namespace Interfaz
 {
     public partial class ListaClavesCompartidasConmigo : UserControl
     {
-        private ControladoraAdministrador _administrador;
-        private ControladoraUsuario _usuarioActual;
+        private Usuario _usuarioActual;
 
-        public ListaClavesCompartidasConmigo(ControladoraUsuario usuarioAgregar, ControladoraAdministrador administradorAgregar)
+        public ListaClavesCompartidasConmigo(Usuario usuarioAgregar)
         {
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;
-            this._administrador = administradorAgregar;
             this.CargarTabla();
         }
 
@@ -25,12 +24,12 @@ namespace Interfaz
 
             foreach (ClaveCompartida claveCompartidaActual in listaClavesCompartidasConmigo)
             {
-                ControladoraClave claveQueSeComparte = claveCompartidaActual.Clave;
-                ControladoraUsuario usuarioQueComparte = claveCompartidaActual.Original;
+                Clave claveQueSeComparte = claveCompartidaActual.Clave;
+                Usuario usuarioQueComparte = claveCompartidaActual.Original;
 
                 string nombreUsuarioQueComparte = usuarioQueComparte.Nombre;
-                string sitioClaveQueSeComparte = claveQueSeComparte.VerificarSitio;
-                string usuarioClaveQueSeComparte = claveQueSeComparte.verificarUsuarioClave;
+                string sitioClaveQueSeComparte = claveQueSeComparte.Sitio;
+                string usuarioClaveQueSeComparte = claveQueSeComparte.UsuarioClave;
 
                 this.tablaClavesCompartidas.Rows.Add(nombreUsuarioQueComparte, sitioClaveQueSeComparte, usuarioClaveQueSeComparte);
             }
@@ -48,13 +47,13 @@ namespace Interfaz
                 string sitioClaveAMostrar = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 string usuarioClaveAMostrar = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                ControladoraClave claveBuscadora = new ControladoraClave
+                Clave claveBuscadora = new Clave
                 {
-                    VerificarSitio = sitioClaveAMostrar,
-                    verificarUsuarioClave = usuarioClaveAMostrar
+                    Sitio = sitioClaveAMostrar,
+                    UsuarioClave = usuarioClaveAMostrar
                 };
 
-                ControladoraUsuario usuarioBuscador = new ControladoraUsuario()
+                Usuario usuarioBuscador = new Usuario()
                 {
                     Nombre = usuarioAMostrar
                 };
@@ -63,9 +62,9 @@ namespace Interfaz
             }
         }
 
-        public delegate void AbrirVerClave_Delegate(ControladoraClave buscadora, ControladoraUsuario usuarioActual);
+        public delegate void AbrirVerClave_Delegate(Clave buscadora, Usuario usuarioActual);
         public event AbrirVerClave_Delegate AbrirVerClave_Event;
-        private void AbrirVerClave(ControladoraClave buscadora, ControladoraUsuario usuarioActual)
+        private void AbrirVerClave(Clave buscadora, Usuario usuarioActual)
         {
             if (this.AbrirVerClave_Event != null)
                 this.AbrirVerClave_Event(buscadora, usuarioActual);

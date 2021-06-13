@@ -1,4 +1,5 @@
 ﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -7,17 +8,16 @@ namespace Interfaz
 {
     public partial class CompartirClave : UserControl
     {
-        private ControladoraUsuario _usuarioActual;
-        private ControladoraClave _claveACompartir;
-        private ControladoraAdministrador _administrador;
+        private Usuario _usuarioActual;
+        private Clave _claveACompartir;
+        private ControladoraAdministrador _controladoraAdministrador;
 
-        public CompartirClave(ClaveCompartida aCompartir, ControladoraAdministrador administrador)
+        public CompartirClave(ClaveCompartida aCompartir, Administrador administrador)
         {
             InitializeComponent();
             this._usuarioActual = aCompartir.Original;
             this._claveACompartir = aCompartir.Clave;
-            this._administrador = administrador;
-            
+            this._controladoraAdministrador = new ControladoraAdministrador();
         }
 
         private void CompartirClave_Load(object sender, EventArgs e)
@@ -30,9 +30,9 @@ namespace Interfaz
         private void CargarComboBox()
         {
             this.comboCompartir.Items.Clear();
-            List<ControladoraUsuario> lista = this._administrador.GetListaUsuarios();
+            List<Usuario> lista = this._controladoraAdministrador.GetListaUsuarios();
 
-            foreach (ControladoraUsuario actual in lista)
+            foreach (Usuario actual in lista)
             {
                 if (!_usuarioActual.Equals(actual)) { 
                     string nombre = actual.Nombre;
@@ -40,8 +40,8 @@ namespace Interfaz
                 }
             }
 
-            string sitioClaveACompartir = _claveACompartir.VerificarSitio;
-            string usuarioClaveACompartir = _claveACompartir.verificarUsuarioClave;
+            string sitioClaveACompartir = _claveACompartir.Sitio;
+            string usuarioClaveACompartir = _claveACompartir.UsuarioClave;
 
             this.labelSitioAMostrar.Text = sitioClaveACompartir;
             this.labelUsuarioAMostrar.Text = usuarioClaveACompartir;
@@ -74,12 +74,12 @@ namespace Interfaz
             {
                 try
                 {
-                    ControladoraUsuario buscador = new ControladoraUsuario()
+                    Usuario buscador = new Usuario()
                     {
                         Nombre = nombreUsuarioACompartir
                     };
 
-                    ControladoraUsuario usuarioACompartir = this._administrador.GetUsuario(buscador);
+                    Usuario usuarioACompartir = this._controladoraAdministrador.GetUsuario(buscador);
 
                     ClaveCompartida claveACompartir = new ClaveCompartida()
                     {
@@ -88,7 +88,7 @@ namespace Interfaz
                         Clave = _claveACompartir
                     };
 
-                    this._usuarioActual.CompartirClave(claveACompartir);
+                    this._controladoraAdministrador.CompartirClave(claveACompartir);
 
                     this.VolverAListaClaves();
                 }
@@ -100,11 +100,6 @@ namespace Interfaz
             else {
                 this.labelErrores.Text = "Error: Debe elegir un usuario al cual compartir.";
             }
-        }
-
-        private void labelUsuario_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
