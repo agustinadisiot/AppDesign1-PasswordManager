@@ -29,7 +29,7 @@ namespace Interfaz
 
         private void VentanaPrincipal_Load(object sender, EventArgs e)
         {
-            IniciarSesion iniciarSesion = new IniciarSesion(this._administrador);
+            IniciarSesion iniciarSesion = new IniciarSesion();
 
             this.panelDrawer.Visible = false;
 
@@ -117,7 +117,7 @@ namespace Interfaz
             if (acepto)
             {
                 this.ResetearColoresBotonesDrawer();
-                IniciarSesion iniciarSesion = new IniciarSesion(this._administrador);
+                IniciarSesion iniciarSesion = new IniciarSesion();
                 iniciarSesion.IniciarSesion_Event += IniciarSesion_Handler;
                 iniciarSesion.AbrirCrearUsuario_Event += this.AbrirCrearUsuario_Handler;
                 this.panelDrawer.Visible = false;
@@ -146,7 +146,7 @@ namespace Interfaz
 
         private void AbrirCrearUsuario_Handler()
         {
-            CrearUsuario crearUsuario = new CrearUsuario(this._administrador);
+            CrearUsuario crearUsuario = new CrearUsuario();
             crearUsuario.AbrirIniciarSesion_Event += AbrirIniciarSesion_Handler;
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(crearUsuario);
@@ -154,7 +154,7 @@ namespace Interfaz
 
         private void AbrirIniciarSesion_Handler()
         {
-            IniciarSesion iniciarSesion = new IniciarSesion(this._administrador);
+            IniciarSesion iniciarSesion = new IniciarSesion();
 
             iniciarSesion.IniciarSesion_Event += IniciarSesion_Handler;
             iniciarSesion.AbrirCrearUsuario_Event += AbrirCrearUsuario_Handler;
