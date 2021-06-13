@@ -1,4 +1,6 @@
-﻿namespace LogicaDeNegocio
+﻿using Negocio;
+
+namespace LogicaDeNegocio
 {
     public static class VerificadoraString
     {
