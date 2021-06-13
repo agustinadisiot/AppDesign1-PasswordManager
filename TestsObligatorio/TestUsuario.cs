@@ -313,46 +313,46 @@ namespace TestsObligatorio
             {
                 Nombre = categoria1.Nombre
             };
-            usuario.ModificarNombreCategoria(copia, categoria2);
-
-            Assert.AreEqual("Trabajo", categoria1.Nombre);
+            categoria2.Nombre = "Trabajo";
+            controladora.ModificarNombreCategoria(copia, categoria2, usuario);
+            Categoria resultado = controladora.GetCategoria(categoria2, usuario);
+            Assert.AreEqual("Trabajo", resultado);
         }
 
         [TestMethod]
         public void UsuarioModificarNombreCategoriaNoExistente()
         {
-            usuario.AgregarCategoria(categoria1);
-
-            ControladoraCategoria categoriaNoAgregada = new ControladoraCategoria()
+            controladora.AgregarCategoria(categoria1, usuario);
+            Categoria categoriaNoAgregada = new Categoria()
             {
                 Nombre = "Facultad"
             };
 
-            Assert.ThrowsException<CategoriaInexistenteException>(() => usuario.ModificarNombreCategoria(categoriaNoAgregada, categoria2));
+            Assert.ThrowsException<CategoriaInexistenteException>(() => controladora.ModificarNombreCategoria(categoriaNoAgregada, categoria2, usuario));
         }
 
         [TestMethod]
         public void UsuarioModificarNombreCategoriaANombreExistente()
         {
-            usuario.AgregarCategoria(categoria1);
-            usuario.AgregarCategoria(categoria2);
+            controladora.AgregarCategoria(categoria1, usuario);
+            controladora.AgregarCategoria(categoria2, usuario);
 
-            ControladoraCategoria modificarVieja = new ControladoraCategoria()
+            Categoria modificarVieja = new Categoria()
             {
                 Nombre = categoria1.Nombre
             };
-            ControladoraCategoria modificarNueva = new ControladoraCategoria()
+            Categoria modificarNueva = new Categoria()
             {
                 Nombre = categoria2.Nombre
             };
 
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => usuario.ModificarNombreCategoria(modificarVieja, modificarNueva));
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => controladora.ModificarNombreCategoria(modificarVieja, modificarNueva, usuario));
         }
 
         [TestMethod]
         public void UsuarioGetListaCategoriasVacia()
         {
-            int cantCategorias = usuario.GetListaCategorias().Count();
+            int cantCategorias = controladora.GetListaCategorias(usuario).Count();
 
             Assert.IsTrue(cantCategorias == 0);
         }
@@ -360,23 +360,31 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioGetListaCategoriasNoVacia()
         {
-            usuario.AgregarCategoria(categoria1);
-            Assert.IsNotNull(usuario.GetListaCategorias());
+            controladora.AgregarCategoria(categoria1, usuario);
+            Assert.IsNotNull(controladora.GetListaCategorias(usuario));
+        }
+
+        [TestMethod]
+        public void UsuarioGetListaCategoriasNoVaciaCantidad()
+        {
+            controladora.AgregarCategoria(categoria1, usuario);
+            int cantCategorias = controladora.GetListaCategorias(usuario).Count();
+            Assert.IsTrue(cantCategorias>0);
         }
 
         [TestMethod]
         public void UsuarioGetListaCategoriasEsIgual()
         {
-            usuario.AgregarCategoria(categoria1);
-            usuario.AgregarCategoria(categoria2);
+            controladora.AgregarCategoria(categoria1, usuario);
+            controladora.AgregarCategoria(categoria2, usuario);
 
-            List<ControladoraCategoria> categorias = new List<ControladoraCategoria>
+            List<Categoria> categorias = new List<Categoria>
             {
                 categoria1,
                 categoria2
             };
 
-            List<ControladoraCategoria> resultado = usuario.GetListaCategorias();
+            List<Categoria> resultado = controladora.GetListaCategorias(usuario);
 
             Assert.AreEqual(true, categorias.All(resultado.Contains)); ;
         }
