@@ -132,7 +132,9 @@ namespace LogicaDeNegocio
             ControladoraCategoria controladoraCategoria = new ControladoraCategoria();
             controladoraCategoria.Verificar(categoria);
 
-            controladoraCategoria.AgregarTarjeta(tarjeta, categoria);
+            Categoria aAgregar = this.GetCategoria(categoria, contenedor);
+
+            controladoraCategoria.AgregarTarjeta(tarjeta, aAgregar);
 
             DataAccessUsuario acceso = new DataAccessUsuario();
             acceso.Modificar(contenedor);
