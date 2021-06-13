@@ -12,7 +12,7 @@ namespace Interfaz
         private Clave _claveACompartir;
         private ControladoraAdministrador _controladoraAdministrador;
 
-        public CompartirClave(ClaveCompartida aCompartir, Administrador administrador)
+        public CompartirClave(ClaveCompartida aCompartir)
         {
             InitializeComponent();
             this._usuarioActual = aCompartir.Original;

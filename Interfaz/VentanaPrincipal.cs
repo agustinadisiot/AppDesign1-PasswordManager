@@ -14,15 +14,16 @@ namespace Interfaz
     public partial class VentanaPrincipal : Form
     {
 
-        private ControladoraAdministrador _administrador;
+        private ControladoraAdministrador _controladoraAdministrador;
+        private ControladoraUsuario _controladoraUsuario;
         private Usuario _usuarioActual;
         private Type _panelAVolverVerClave;
         private Type _panelAVolverModificarClave;
 
         public VentanaPrincipal()
         {
-            this._administrador = new ControladoraAdministrador();
-
+            this._controladoraAdministrador = new ControladoraAdministrador();
+            this._controladoraUsuario = new ControladoraUsuario();
             InitializeComponent();
 
         }
@@ -214,8 +215,8 @@ namespace Interfaz
                 this._panelAVolverVerClave = p.GetType();
             }
 
-            Usuario usuarioAMostrar = this._administrador.GetUsuario(usuarioABuscar);
-            Clave claveAMostrar = usuarioAMostrar.GetClave(buscadora);
+            Usuario usuarioAMostrar = this._controladoraAdministrador.GetUsuario(usuarioABuscar);
+            Clave claveAMostrar = this._controladoraUsuario.GetClave(buscadora, this._usuarioActual);
             VerClave verClaveSeleccionada = new VerClave(claveAMostrar, usuarioAMostrar);
             verClaveSeleccionada.SalirDeVerClave_Event += this.SalirDeVerClave_Handler;
             this.panelPrincipal.Controls.Clear();
@@ -234,9 +235,7 @@ namespace Interfaz
             {
                 this._panelAVolverModificarClave = p.GetType();
             }
-
-            Clave modificar = this._usuarioActual.GetClave(buscadora);
-            Clave modificar = this._usuarioActual.GetClave(buscadora);
+            Clave modificar = this._controladoraUsuario.GetClave(buscadora, this._usuarioActual);
             ModificarClave modificarClave = new ModificarClave(this._usuarioActual, modificar);
             modificarClave.CerrarModificarClave_Event += CerrarModificarClave_Event;
 
@@ -270,7 +269,7 @@ namespace Interfaz
 
         protected void AbrirCompartirClave_Handler(ClaveCompartida aCompartir)
         {
-            CompartirClave compartirClave = new CompartirClave(aCompartir, this._administrador);
+            CompartirClave compartirClave = new CompartirClave(aCompartir);
             compartirClave.AbrirListaClaves_Event += this.AbrirListaClaves_Handler;
 
             this.panelPrincipal.Controls.Clear();
@@ -315,7 +314,7 @@ namespace Interfaz
         protected void AbrirListaClavesCompartidasConmigo_Handler()
         {
 
-            ListaClavesCompartidasConmigo listaClavesCompartidasConmigo = new ListaClavesCompartidasConmigo(this._usuarioActual, this._administrador);
+            ListaClavesCompartidasConmigo listaClavesCompartidasConmigo = new ListaClavesCompartidasConmigo(this._usuarioActual);
             listaClavesCompartidasConmigo.AbrirVerClave_Event += this.AbrirVerClave_Handler;
 
             this.panelPrincipal.Controls.Clear();
@@ -326,7 +325,7 @@ namespace Interfaz
         protected void AbrirListaClavesCompartidasPorMi_Handler()
         {
 
-            ListaClavesCompartidasPorMi listaClavesCompartidasPorMi = new ListaClavesCompartidasPorMi(this._usuarioActual, this._administrador);
+            ListaClavesCompartidasPorMi listaClavesCompartidasPorMi = new ListaClavesCompartidasPorMi(this._usuarioActual);
             listaClavesCompartidasPorMi.AbrirVerClave_Event += this.AbrirVerClave_Handler;
 
             this.panelPrincipal.Controls.Clear();
@@ -344,7 +343,7 @@ namespace Interfaz
 
         protected void AbrirModificarTarjeta_Handler(Tarjeta buscadora)
         {
-            Tarjeta modificar = this._usuarioActual.GetTarjeta(buscadora);
+            Tarjeta modificar = this._controladoraUsuario.GetTarjeta(buscadora, this._usuarioActual);
             ModificarTarjeta modificarTarjeta = new ModificarTarjeta(this._usuarioActual, modificar);
             modificarTarjeta.AbrirListaTarjetas_Event += this.AbrirListaTarjetas_Handler;
             this.panelPrincipal.Controls.Clear();
@@ -353,7 +352,7 @@ namespace Interfaz
 
         private void AbrirVerTarjeta_Handler(Tarjeta buscadora)
         {
-            Tarjeta ver = this._usuarioActual.GetTarjeta(buscadora);
+            Tarjeta ver = this._controladoraUsuario.GetTarjeta(buscadora, this._usuarioActual);
             VerTarjeta verTarjeta = new VerTarjeta(ver, this._usuarioActual);
             verTarjeta.AbrirListaTarjetas_Event += this.AbrirListaTarjetas_Handler;
             this.panelPrincipal.Controls.Clear();
