@@ -109,7 +109,9 @@ namespace LogicaDeNegocio
             ControladoraCategoria controladoraCategoria = new ControladoraCategoria();
             controladoraCategoria.Verificar(categoria);
 
-            controladoraCategoria.AgregarClave(clave, categoria);
+            Categoria aAgregar = this.GetCategoria(categoria, contenedor);
+
+            controladoraCategoria.AgregarClave(clave, aAgregar);
 
             DataAccessUsuario acceso = new DataAccessUsuario();
             acceso.Modificar(contenedor);
