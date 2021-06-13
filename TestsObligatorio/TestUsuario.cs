@@ -3,6 +3,8 @@ using LogicaDeNegocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Negocio;
+using Repositorio;
 
 namespace TestsObligatorio
 {
@@ -10,7 +12,10 @@ namespace TestsObligatorio
     [TestClass]
     public class TestUsuario
     {
-        private ControladoraUsuario usuario;
+        private ControladoraUsuario controladora;
+        private DataAccessUsuario acceso;
+
+        private Usuario usuario;
 
         [TestCleanup]
         public void TearDown()
@@ -21,7 +26,12 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
-            usuario = new ControladoraUsuario()
+            List<Usuario> aBorrar = (List<Usuario>)acceso.GetTodos();
+            foreach (Usuario actual in aBorrar) {
+                acceso.Borrar(actual);
+            }
+
+            usuario = new Usuario()
             {
                 Nombre = "Usuario1",
                 ClaveMaestra = "Hola12345"
@@ -44,53 +54,72 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioLargoNombreMenorA5()
         {
-            Assert.ThrowsException<LargoIncorrectoException>(() => usuario.Nombre = "A");
+            usuario.Nombre = "A";
+
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarNombre(usuario));
         }
 
         [TestMethod]
         public void UsuarioLargoNombreMayorA25()
         {
-            Assert.ThrowsException<LargoIncorrectoException>(() => usuario.Nombre = "12345678901234567890123456");
+            usuario.Nombre = "12345678901234567890123456";
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarNombre(usuario));
         }
 
         [TestMethod]
         public void UsuarioValidarClaveMaestra()
         {
-            Assert.AreEqual(true, usuario.ValidarIgualClaveMaestra("Hola12345"));
+            Usuario igualClave = new Usuario() {
+                ClaveMaestra = usuario.ClaveMaestra
+            };
+            Assert.AreEqual(true, controladora.EsIgualClaveMaestra(usuario, igualClave));
         }
 
         [TestMethod]
         public void UsuarioValidarClaveMaestraDiferente()
         {
-            Assert.AreEqual(false, usuario.ValidarIgualClaveMaestra("Diferente"));
+            Usuario diferenteClave = new Usuario()
+            {
+                ClaveMaestra = "Diferente"
+            };
+            Assert.AreEqual(true, controladora.EsIgualClaveMaestra(usuario, diferenteClave));
         }
 
         [TestMethod]
         public void UsuarioValidarClaveMaestraCambiada()
         {
+            Usuario igualClave = new Usuario()
+            {
+                ClaveMaestra = usuario.ClaveMaestra
+            };
             usuario.ClaveMaestra = "Chau109876";
-            Assert.AreEqual(true, usuario.ValidarIgualClaveMaestra("Chau109876"));
+            Assert.AreEqual(true, controladora.EsIgualClaveMaestra(usuario, igualClave));
         }
 
         [TestMethod]
         public void UsuarioLargoClaveMaestraMenorA5()
         {
-            Assert.ThrowsException<LargoIncorrectoException>(() => usuario.ClaveMaestra = "A");
+            usuario.ClaveMaestra = "A";
+            Assert.ThrowsException<LargoIncorrectoException>(() =>controladora.VerificarClaveMaestra(usuario));
         }
 
         [TestMethod]
         public void UsuarioLargoClaveMaestraMayorA25()
         {
-            Assert.ThrowsException<LargoIncorrectoException>(() => usuario.ClaveMaestra = "12345678901234567890123456");
+            usuario.ClaveMaestra = "12345678901234567890123456";
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarClaveMaestra(usuario));
         }
     }
 
     [TestClass]
     public class TestUsuarioCategoria
     {
-        private ControladoraUsuario usuario;
-        private ControladoraCategoria categoria1;
-        private ControladoraCategoria categoria2;
+        private ControladoraUsuario controladora;
+        private DataAccessUsuario acceso;
+
+        private Usuario usuario;
+        private Categoria categoria1;
+        private Categoria categoria2;
 
         [TestCleanup]
         public void TearDown()
@@ -101,6 +130,11 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
+            List<Usuario> aBorrar = (List<Usuario>)acceso.GetTodos();
+            foreach (Usuario actual in aBorrar)
+            {
+                acceso.Borrar(actual);
+            }
 
             usuario = new ControladoraUsuario()
             {
