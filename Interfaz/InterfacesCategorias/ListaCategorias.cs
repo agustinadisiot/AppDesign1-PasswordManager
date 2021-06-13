@@ -1,4 +1,5 @@
 ﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -7,20 +8,21 @@ namespace Interfaz
 {
     public partial class ListaCategorias : UserControl
     {
-        private ControladoraUsuario _usuarioActual;
+        private Usuario _usuarioActual;
+        private ControladoraUsuario _controladoraUsuario;
 
-        public ListaCategorias(ControladoraUsuario usuarioAgregar)
+        public ListaCategorias(Usuario usuarioAgregar)
         {
             InitializeComponent();
+            this._controladoraUsuario = new ControladoraUsuario();
             this._usuarioActual = usuarioAgregar;
         }
 
         private void CargarTabla()
         {
+            List<Categoria> listaCategorias = this._controladoraUsuario.GetListaCategorias(_usuarioActual);
 
-            List<ControladoraCategoria> listaCategorias = this._usuarioActual.GetListaCategorias();
-
-            foreach (ControladoraCategoria categoriaActual in listaCategorias)
+            foreach (Categoria categoriaActual in listaCategorias)
             {
                 string nombreCategoria = categoriaActual.Nombre;
                 this.TablaCategorias.Rows.Add(nombreCategoria);
@@ -32,9 +34,9 @@ namespace Interfaz
             this.CargarTabla();
         }
 
-        public delegate void AbrirModificarCategoria_Delegate(ControladoraCategoria catActual);
+        public delegate void AbrirModificarCategoria_Delegate(Categoria catActual);
         public event AbrirModificarCategoria_Delegate AbrirModificarCategorias_Event;
-        public void IrAModificarCategoria(ControladoraCategoria catActual)
+        public void IrAModificarCategoria(Categoria catActual)
         {
             if (this.AbrirModificarCategorias_Event != null)
                 this.AbrirModificarCategorias_Event(catActual);
@@ -61,7 +63,7 @@ namespace Interfaz
                     nombreCat = Convert.ToString(selectedRow.Cells["Categorias"].Value);
                 }
 
-                ControladoraCategoria aModificar = new ControladoraCategoria
+                Categoria aModificar = new Categoria
                 {
                     Nombre = nombreCat
                 };

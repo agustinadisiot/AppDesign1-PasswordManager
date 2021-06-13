@@ -1,4 +1,5 @@
 ﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Windows.Forms;
 
@@ -6,14 +7,16 @@ namespace Interfaz
 {
     public partial class ModificarCategoria : UserControl
     {
-        private ControladoraCategoria _categoriaActual;
-        private ControladoraUsuario _usuarioActual;
+        private Categoria _categoriaActual;
+        private Usuario _usuarioActual;
+        private ControladoraUsuario _controladoraUsuario;
 
-        public ModificarCategoria(ControladoraCategoria categoriaAModificar, ControladoraUsuario usuarioActual)
+        public ModificarCategoria(Categoria categoriaAModificar, Usuario usuarioActual)
         {
             InitializeComponent();
-            _usuarioActual = usuarioActual;
-            _categoriaActual = categoriaAModificar;
+            this._usuarioActual = usuarioActual;
+            this._categoriaActual = categoriaAModificar;
+            this._controladoraUsuario = new ControladoraUsuario();
             this.textNombreCategoria.Text = _categoriaActual.Nombre;
             this.labelErrores.Text = ""; 
         }
@@ -27,14 +30,14 @@ namespace Interfaz
         {
             try 
             {
-                ControladoraCategoria categoriaModificada = new ControladoraCategoria()
+                Categoria categoriaModificada = new Categoria()
                 {
                     Nombre = this.textNombreCategoria.Text
                 };
 
                 try
                 {
-                    _usuarioActual.ModificarNombreCategoria(_categoriaActual, categoriaModificada);
+                    this._controladoraUsuario.ModificarNombreCategoria(this._categoriaActual, categoriaModificada, this._usuarioActual);
 
                     VolverAListaCategorias();
                 }
