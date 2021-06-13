@@ -1,4 +1,5 @@
 ﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -8,30 +9,31 @@ namespace Interfaz.InterfacesClaves
 {
     public partial class IngresoYListaDataBreach : UserControl
     {
-        private ControladoraUsuario _usuarioActual;
-        private List<ControladoraClave> _claves;
-        private List<ControladoraTarjeta> _tarjetas;
-        private List<Filtrada> _posiblesFiltradas;
+        private ControladoraUsuario _controladoraUsuario;
+        private ControladoraDataBreach _controladoraDataBreach;
+        private Usuario _usuarioActual;
+        private DataBreach _dataBreach;
 
-        public IngresoYListaDataBreach(ControladoraUsuario actual, List<Filtrada> dataBreach)
+        public IngresoYListaDataBreach(Usuario actual, bool cargarUltimoDataBreach)
         {
             InitializeComponent();
+            this._controladoraUsuario = new ControladoraUsuario();
             this._usuarioActual = actual;
-            if (dataBreach != null)
+            if (cargarUltimoDataBreach)
             {
-                this._posiblesFiltradas = dataBreach;
+                this._dataBreach = this._controladoraUsuario.GetUltimoDataBreach(actual);
             }
             else {
-                this._posiblesFiltradas = new List<Filtrada>();
+                this._dataBreach = null;
             }
             this.labelErrores.Text = "";
         }
 
         private void IngresoYListaDataBreach_Load(object sender, EventArgs e)
         {
-            if (this._posiblesFiltradas.Count>0) {
+            if (this._dataBreach != null) {
                 this.CargarInputDataBreach();
-                this.mostrarDataBreach();
+                this.procesarDataBreach();
             }
         }
 
@@ -39,7 +41,7 @@ namespace Interfaz.InterfacesClaves
         private void CargarInputDataBreach() {
             string mostrar = "";
 
-            foreach (Filtrada linea in this._posiblesFiltradas) {
+            foreach (Filtrada linea in this._dataBreach.Filtradas) {
                 mostrar += linea.Texto + Environment.NewLine;
             }
             this.inputDatos.Text = mostrar;
@@ -50,11 +52,12 @@ namespace Interfaz.InterfacesClaves
             string formatoFecha = "dd'/'MM'/'yyyy";
             this.tablaClaves.Rows.Clear();
 
-            foreach (ControladoraClave claveActual in this._claves)
+            foreach (Clave claveActual in this._dataBreach.Claves)
             {
-                string nombreCategoria = this._usuarioActual.GetCategoriaClave(claveActual).Nombre;
-                string sitio = claveActual.VerificarSitio;
-                string usuario = claveActual.verificarUsuarioClave;
+                Categoria categoriaActual = this._controladoraUsuario.GetCategoriaClave(claveActual, this._usuarioActual);
+                string nombreCategoria = categoriaActual.Nombre;
+                string sitio = claveActual.Sitio;
+                string usuario = claveActual.UsuarioClave;
                 string ultimaModificacion = claveActual.FechaModificacion.ToString(formatoFecha);
                 this.tablaClaves.Rows.Add(nombreCategoria, sitio, usuario, ultimaModificacion);
             }
@@ -66,20 +69,21 @@ namespace Interfaz.InterfacesClaves
             this.tablaTarjetas.Rows.Clear();
 
 
-            foreach (ControladoraTarjeta tarjetaActual in this._tarjetas)
+            foreach (Tarjeta tarjetaActual in this._dataBreach.Tarjetas)
             {
-                string categoriaActual = this._usuarioActual.GetCategoriaTarjeta(tarjetaActual).Nombre;
+                Categoria categoriaActual = this._controladoraUsuario.GetCategoriaTarjeta(tarjetaActual, this._usuarioActual);
+                string nombreCategoria = categoriaActual.Nombre;
                 string nombre = tarjetaActual.Nombre;
                 string tipo = tarjetaActual.Tipo;
                 string numeroCompleto = tarjetaActual.Numero;
                 string numeroOculto = OcultarTarjeta(tarjetaActual);
                 string vencimiento = tarjetaActual.Vencimiento.ToString(formatoFecha);
 
-                this.tablaTarjetas.Rows.Add(categoriaActual, nombre, tipo, numeroOculto, numeroCompleto, vencimiento);
+                this.tablaTarjetas.Rows.Add(nombreCategoria, nombre, tipo, numeroOculto, numeroCompleto, vencimiento);
             }
         }
 
-        private string OcultarTarjeta(ControladoraTarjeta actual)
+        private string OcultarTarjeta(Tarjeta actual)
         {
 
             string numero = actual.Numero;
@@ -92,19 +96,19 @@ namespace Interfaz.InterfacesClaves
             tarjetaAMostrar += digitosFinales;
 
             return tarjetaAMostrar;
-
         }
 
         private void botonVerificar_Click(object sender, EventArgs e)
         {
-            this.mostrarDataBreach();
+            this.procesarDataBreach();
         }
 
-        private void mostrarDataBreach() {
-            ControladoraDataBreach logicaDataBreach = new ControladoraDataBreach();
-            this._posiblesFiltradas = logicaDataBreach.SepararPorLineas(this.inputDatos.Text);
-            this._claves = logicaDataBreach.FiltrarClaves(this._posiblesFiltradas, this._usuarioActual.GetListaClaves());
-            this._tarjetas = logicaDataBreach.FiltrarTarjetas(this._posiblesFiltradas, this._usuarioActual.GetListaTarjetas());
+        private void procesarDataBreach() {
+            ControladoraFiltrada controladoraFiltrada = new ControladoraFiltrada();
+            this._dataBreach = new DataBreach();
+            List<Filtrada> filtradas = controladoraFiltrada.SepararPorLineas(this.inputDatos.Text);
+            this._controladoraDataBreach.AgregarDataBreach(filtradas, DateTime.Now, this._usuarioActual);
+            this._dataBreach = this._controladoraUsuario.GetUltimoDataBreach(this._usuarioActual);
             this.CargarTablaClaves();
             this.CargarTablaTarjetas();
         }
@@ -120,25 +124,22 @@ namespace Interfaz.InterfacesClaves
                 sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                ControladoraClave aModificar = new ControladoraClave()
+                Clave aModificar = new Clave()
                 {
-                    VerificarSitio = sitioClave,
-                    verificarUsuarioClave = usuarioClave
+                    Sitio = sitioClave,
+                    UsuarioClave = usuarioClave
                 };
 
                 IrAModificarClave(aModificar);
             }
         }
 
-        public delegate void ModificarClaveDataBreach_Delegate(ControladoraClave claveAModificar, List<Filtrada> dataBreach);
+        public delegate void ModificarClaveDataBreach_Delegate(Clave claveAModificar);
         public event ModificarClaveDataBreach_Delegate ModificarClaveDataBreach_Event;
-        public void IrAModificarClave(ControladoraClave claveAModificar)
+        public void IrAModificarClave(Clave claveAModificar)
         {
-            ControladoraDataBreach logicaDataBreach = new ControladoraDataBreach();
-            List<Filtrada> filtradas = logicaDataBreach.SepararPorLineas(this.inputDatos.Text);
-
             if (this.ModificarClaveDataBreach_Event != null)
-                this.ModificarClaveDataBreach_Event(claveAModificar, filtradas);
+                this.ModificarClaveDataBreach_Event(claveAModificar);
         }
 
         private void botonCargar_Click(object sender, EventArgs e)
@@ -149,10 +150,10 @@ namespace Interfaz.InterfacesClaves
                 if (buscadorArchivo.ShowDialog() == DialogResult.OK)
                 {
                     string direccion = buscadorArchivo.FileName;
-                    ControladoraDataBreach logicaDataBreach = new ControladoraDataBreach();
+                    ControladoraFiltrada controladoraFiltrada = new ControladoraFiltrada();
                     try
                     {
-                        this._posiblesFiltradas = logicaDataBreach.LeerArchivo(direccion);
+                        this._dataBreach.Filtradas = controladoraFiltrada.LeerArchivo(direccion);
                         this.CargarInputDataBreach();
                     }
                     catch (Exception)

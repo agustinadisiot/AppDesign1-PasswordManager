@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
+using Negocio;
 
 namespace Interfaz
 {
@@ -14,10 +15,9 @@ namespace Interfaz
     {
 
         private ControladoraAdministrador _administrador;
-        private ControladoraUsuario _usuarioActual;
+        private Usuario _usuarioActual;
         private Type _panelAVolverVerClave;
         private Type _panelAVolverModificarClave;
-        private List<Filtrada> _ultimoDataBreach;
 
         public VentanaPrincipal()
         {
@@ -108,7 +108,7 @@ namespace Interfaz
         {
             this.ResetearColoresBotonesDrawer();
             this.botonDataBreaches.BackColor = Color.FromArgb(138, 138, 138);
-            this.AbrirDataBreaches_Handler(null);
+            this.AbrirDataBreaches_Handler(false);
         }
 
 
@@ -127,7 +127,7 @@ namespace Interfaz
             }
         }
 
-        private void IniciarSesion_Handler(ControladoraUsuario aIngresar)
+        private void IniciarSesion_Handler(Usuario aIngresar)
         {
             this._usuarioActual = aIngresar;
             ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual);
@@ -186,7 +186,7 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(agregarCategoria);
         }
 
-        protected void AbrirModificarCategorias_Handler(ControladoraCategoria aModificar)
+        protected void AbrirModificarCategorias_Handler(Categoria aModificar)
         {
 
             ModificarCategoria modificarCategoria = new ModificarCategoria(aModificar, this._usuarioActual);
@@ -207,15 +207,15 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(listaTarjetas);
         }
 
-        protected void AbrirVerClave_Handler(ControladoraClave buscadora, ControladoraUsuario usuarioABuscar)
+        protected void AbrirVerClave_Handler(Clave buscadora, Usuario usuarioABuscar)
         {
             foreach (Control p in this.panelPrincipal.Controls)
             {
                 this._panelAVolverVerClave = p.GetType();
             }
 
-            ControladoraUsuario usuarioAMostrar = this._administrador.GetUsuario(usuarioABuscar);
-            ControladoraClave claveAMostrar = usuarioAMostrar.GetClave(buscadora);
+            Usuario usuarioAMostrar = this._administrador.GetUsuario(usuarioABuscar);
+            Clave claveAMostrar = usuarioAMostrar.GetClave(buscadora);
             VerClave verClaveSeleccionada = new VerClave(claveAMostrar, usuarioAMostrar);
             verClaveSeleccionada.SalirDeVerClave_Event += this.SalirDeVerClave_Handler;
             this.panelPrincipal.Controls.Clear();
@@ -223,12 +223,11 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(verClaveSeleccionada);
         }
 
-        private void ModificarClaveDataBreach_Event(ControladoraClave buscadora, List<Filtrada> dataBreach) {
-            this._ultimoDataBreach = dataBreach;
+        private void ModificarClaveDataBreach_Event(Clave buscadora) {
             this.AbrirModificarClave_Event(buscadora);
         }
 
-        private void AbrirModificarClave_Event(ControladoraClave buscadora)
+        private void AbrirModificarClave_Event(Clave buscadora)
         {
 
             foreach (Control p in this.panelPrincipal.Controls)
@@ -236,7 +235,8 @@ namespace Interfaz
                 this._panelAVolverModificarClave = p.GetType();
             }
 
-            ControladoraClave modificar = this._usuarioActual.GetClave(buscadora);
+            Clave modificar = this._usuarioActual.GetClave(buscadora);
+            Clave modificar = this._usuarioActual.GetClave(buscadora);
             ModificarClave modificarClave = new ModificarClave(this._usuarioActual, modificar);
             modificarClave.CerrarModificarClave_Event += CerrarModificarClave_Event;
 
@@ -248,7 +248,7 @@ namespace Interfaz
             switch (this._panelAVolverModificarClave.Name)
             {
                 case "IngresoYListaDataBreach":
-                    this.AbrirDataBreaches_Handler(this._ultimoDataBreach);
+                    this.AbrirDataBreaches_Handler(true);
                     break;
                 case "ReporteDeFortaleza":
                     this.AbrirReporteFortaleza_Handler();
@@ -342,26 +342,26 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(crearTarjetas);
         }
 
-        protected void AbrirModificarTarjeta_Handler(ControladoraTarjeta buscadora)
+        protected void AbrirModificarTarjeta_Handler(Tarjeta buscadora)
         {
-            ControladoraTarjeta modificar = this._usuarioActual.GetTarjeta(buscadora);
+            Tarjeta modificar = this._usuarioActual.GetTarjeta(buscadora);
             ModificarTarjeta modificarTarjeta = new ModificarTarjeta(this._usuarioActual, modificar);
             modificarTarjeta.AbrirListaTarjetas_Event += this.AbrirListaTarjetas_Handler;
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(modificarTarjeta);
         }
 
-        private void AbrirVerTarjeta_Handler(ControladoraTarjeta buscadora)
+        private void AbrirVerTarjeta_Handler(Tarjeta buscadora)
         {
-            ControladoraTarjeta ver = this._usuarioActual.GetTarjeta(buscadora);
+            Tarjeta ver = this._usuarioActual.GetTarjeta(buscadora);
             VerTarjeta verTarjeta = new VerTarjeta(ver, this._usuarioActual);
             verTarjeta.AbrirListaTarjetas_Event += this.AbrirListaTarjetas_Handler;
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(verTarjeta);
         }
 
-        private void AbrirDataBreaches_Handler(List<Filtrada> dataBreach) {
-            IngresoYListaDataBreach panelDataBreach = new IngresoYListaDataBreach(this._usuarioActual, dataBreach);
+        private void AbrirDataBreaches_Handler(bool cargarUltimo) {
+            IngresoYListaDataBreach panelDataBreach = new IngresoYListaDataBreach(this._usuarioActual, cargarUltimo);
             panelDataBreach.ModificarClaveDataBreach_Event += this.ModificarClaveDataBreach_Event;
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(panelDataBreach);
