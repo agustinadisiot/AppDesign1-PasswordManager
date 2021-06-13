@@ -11,7 +11,7 @@ namespace TestsObligatorio
     [TestClass]
     public class TestClave
     {
-        private ControladoraClave controladora = new ControladoraClave();
+        private ControladoraClave controladora;
         private Clave clave1;
         private Clave clave2;
         private string menorA5;
@@ -19,16 +19,19 @@ namespace TestsObligatorio
         private NivelSeguridad nivelSeguridad;
         private ColorNivelSeguridad color;
         private DateTime tiempoActual;
-        private DataAccessClave accesoClave;
+        private DataAccessClave acceso;
 
         [TestInitialize]
         public void Setup()
         {
-            accesoClave = new DataAccessClave();
-            List<Clave> clavesABorrar = (List<Clave>)accesoClave.GetTodos();
+            List<Clave> clavesABorrar = (List<Clave>)acceso.GetTodos();
             foreach (Clave actual in clavesABorrar) {
-                accesoClave.Borrar(actual);
+                acceso.Borrar(actual);
             }
+
+            controladora = new ControladoraClave();
+
+            
 
             clave1 = new Clave()
             {

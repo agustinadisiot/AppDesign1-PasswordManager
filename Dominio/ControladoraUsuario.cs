@@ -71,20 +71,17 @@ namespace LogicaDeNegocio
             return contenedor.DataBreaches.LastOrDefault();
         }
 
-        public void ModificarNombreCategoria(Categoria vieja, Categoria nueva, Usuario contenedor)
+        /*public void ModificarNombreCategoria(Categoria vieja, Categoria nueva)
         {
-            if (this.YaExisteCategoria(nueva, contenedor))
+            if (this.YaExisteCategoria(nueva))
             {
                 throw new ObjetoYaExistenteException();
             }
-            else
-            {
-                Categoria aBuscar = this.GetCategoria(vieja, contenedor);
-                aBuscar.Nombre = nueva.Nombre;
-                ControladoraCategoria controladoraCategoria = new ControladoraCategoria();
-                controladoraCategoria.Modificar(aBuscar);
+            else {
+                Categoria aBuscar = this.GetCategoria(vieja);
+                aBuscar.VerificarNombre = nueva.VerificarNombre;
             }
-        }
+        }*/
 
         public bool YaExisteCategoria(Categoria aBuscar, Usuario contenedor)
         {
@@ -109,9 +106,7 @@ namespace LogicaDeNegocio
             ControladoraCategoria controladoraCategoria = new ControladoraCategoria();
             controladoraCategoria.Verificar(categoria);
 
-            Categoria aAgregar = this.GetCategoria(categoria, contenedor);
-
-            controladoraCategoria.AgregarClave(clave, aAgregar);
+            controladoraCategoria.AgregarClave(clave, categoria);
 
             DataAccessUsuario acceso = new DataAccessUsuario();
             acceso.Modificar(contenedor);
