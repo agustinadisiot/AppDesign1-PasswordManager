@@ -8,6 +8,57 @@ namespace LogicaDeNegocio
 {
     public class ControladoraAdministrador
     {
+        public void BorrarTodo() {
+            DataAccessClaveCompartida accesoClaveCompartida = new DataAccessClaveCompartida();
+            List<ClaveCompartida> claveCompartidasABorrar = (List<ClaveCompartida>)accesoClaveCompartida.GetTodos();
+            foreach (ClaveCompartida aBorrar in claveCompartidasABorrar)
+            {
+                accesoClaveCompartida.Borrar(aBorrar);
+            }
+
+            DataAccessTarjeta daTarjeta = new DataAccessTarjeta();
+            List<Tarjeta> tarjetas = (List<Tarjeta>)daTarjeta.GetTodos();
+            foreach (Tarjeta tarjeta in tarjetas)
+            {
+                daTarjeta.Borrar(tarjeta);
+            }
+
+            DataAccessClave daClave = new DataAccessClave();
+            List<Clave> claves = (List<Clave>)daClave.GetTodos();
+            foreach (Clave clave in claves)
+            {
+                daClave.Borrar(clave);
+            }
+
+            DataAccessFiltrada daFiltrada = new DataAccessFiltrada();
+            List<Filtrada> borrarFiltradas = (List<Filtrada>)daFiltrada.GetTodos();
+            foreach (Filtrada filtrada in borrarFiltradas)
+            {
+                daFiltrada.Borrar(filtrada);
+            }
+
+
+            DataAccessDataBreach daDataBreach = new DataAccessDataBreach();
+            List<DataBreach> dataBreaches = (List<DataBreach>)daDataBreach.GetTodos();
+            foreach (DataBreach db in dataBreaches)
+            {
+                daDataBreach.Borrar(db);
+            }
+
+            DataAccessCategoria accesoCategoria = new DataAccessCategoria();
+            List<Categoria> categoriasABorrar = (List<Categoria>)accesoCategoria.GetTodos();
+            foreach (Categoria aBorrar in categoriasABorrar)
+            {
+                accesoCategoria.Borrar(aBorrar);
+            }
+
+            DataAccessUsuario accesoUsuario = new DataAccessUsuario();
+            List<Usuario> usuariosABorrar = (List<Usuario>)accesoUsuario.GetTodos();
+            foreach (Usuario aBorrar in usuariosABorrar) {
+                accesoUsuario.Borrar(aBorrar);
+            }
+        }
+
         public bool EsListaUsuariosVacia()
         {
             DataAccessUsuario acceso = new DataAccessUsuario();

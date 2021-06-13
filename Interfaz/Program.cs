@@ -17,14 +17,14 @@ namespace Interfaz
         static void Main()
         {
 
-            /* AdministradorClavesDBContext administrador = new AdministradorClavesDBContext();
+            AdministradorClavesDBContext administrador = new AdministradorClavesDBContext();
 
-             Application.EnableVisualStyles();
-             Application.SetCompatibleTextRenderingDefault(false);
-             Application.Run(new VentanaPrincipal());*/
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new VentanaPrincipal());
 
 
-            Usuario usuario = new Usuario()
+            /*Usuario usuario = new Usuario()
             {
                 Nombre = "usuario",
                 ClaveMaestra = "12345ABCD"
@@ -59,8 +59,8 @@ namespace Interfaz
             controladoraAdministrador.AgregarUsuario(usuario1);
 
 
-            /*ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
-            controladoraUsuario.AgregarCategoria(categoria, usuario);*/
+            *//*ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+            controladoraUsuario.AgregarCategoria(categoria, usuario);*//*
 
             DataAccessCategoria dataAccessCategoria = new DataAccessCategoria();
             dataAccessCategoria.Agregar(categoria);
@@ -85,7 +85,7 @@ namespace Interfaz
             };
 
             DataAccessClaveCompartida dataAccessClaveCompartida = new DataAccessClaveCompartida();
-            dataAccessClaveCompartida.Agregar(aCompartir);
+            dataAccessClaveCompartida.Agregar(aCompartir);*/
 
 
 

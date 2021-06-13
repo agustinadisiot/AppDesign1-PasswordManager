@@ -11,6 +11,7 @@ namespace TestsObligatorio
     [TestClass]
     public class TestClave
     {
+        private ControladoraAdministrador controladoraAdministrador;
         private ControladoraClave controladora;
         private Clave clave1;
         private Clave clave2;
@@ -24,12 +25,9 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.BorrarTodo();
             acceso = new DataAccessClave();
-            List<Clave> clavesABorrar = (List<Clave>)acceso.GetTodos();
-            foreach (Clave actual in clavesABorrar) {
-                acceso.Borrar(actual);
-            }
-            clavesABorrar = (List<Clave>)acceso.GetTodos();
             controladora = new ControladoraClave();
 
             
@@ -167,7 +165,8 @@ namespace TestsObligatorio
         {
             string notaMayorA250 = "";
             for (int i = 0; i < 251; i++) notaMayorA250 += "C";
-            Assert.ThrowsException<LargoIncorrectoException>(() => clave1.Nota = notaMayorA250);
+            clave1.Nota = notaMayorA250;
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarNota(clave1));
         }
 
         [TestMethod]
@@ -303,7 +302,7 @@ namespace TestsObligatorio
             Clave aModificar = acceso.Get(aAgregar.Id);
 
             aModificar.FechaModificacion = new DateTime(2000, 1, 1);
-            aModificar.Codigo = "ClaveNueva";
+            aModificar.Codigo = "NuevoCodigo";
             aModificar.Nota = "Hola";
 
             ClaveAModificar claveAModificar = new ClaveAModificar()
@@ -315,6 +314,8 @@ namespace TestsObligatorio
             };
 
             controladoraUsuario.ModificarClave(claveAModificar,usuario);
+
+
 
             Assert.AreEqual(tiempoActual, aModificar.FechaModificacion);
         }
