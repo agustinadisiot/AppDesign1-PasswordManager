@@ -1,4 +1,5 @@
 ﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -8,10 +9,14 @@ namespace Interfaz
 {
     public partial class GraficaSeguridad : UserControl
     {
-        private ControladoraUsuario _actual;
-        public GraficaSeguridad(ControladoraUsuario usuario)
+        private Usuario _actual;
+        private ControladoraCategoria _controladoraCategoria;
+        private ControladoraUsuario _controladoraUsuario;
+        public GraficaSeguridad(Usuario usuario)
         {
             this._actual = usuario;
+            this._controladoraCategoria = new ControladoraCategoria();
+            this._controladoraUsuario = new ControladoraUsuario();
             InitializeComponent();
         }
 
@@ -35,14 +40,14 @@ namespace Interfaz
             grafica.Series.Add(color.VerdeOscuro);
             grafica.Series[color.VerdeOscuro].Color = Color.DarkGreen;
 
-            List<ControladoraCategoria> listaCategorias = this._actual.GetListaCategorias();
+            List<Categoria> listaCategorias = this._controladoraUsuario.GetListaCategorias(this._actual);
 
-            foreach (ControladoraCategoria categoria in listaCategorias) {
-                int cantidadRojo = categoria.GetListaClavesColor(color.Rojo).Count;
-                int cantidadNaranja = categoria.GetListaClavesColor(color.Naranja).Count;
-                int cantidadAmarillo = categoria.GetListaClavesColor(color.Amarillo).Count;
-                int cantidadVerdeClaro = categoria.GetListaClavesColor(color.VerdeClaro).Count;
-                int cantidadVerdeOscuro = categoria.GetListaClavesColor(color.VerdeOscuro).Count;
+            foreach (Categoria categoria in listaCategorias) {
+                int cantidadRojo = this._controladoraCategoria.GetListaClavesColor(color.Rojo, categoria).Count;
+                int cantidadNaranja = this._controladoraCategoria.GetListaClavesColor(color.Naranja, categoria).Count;
+                int cantidadAmarillo = this._controladoraCategoria.GetListaClavesColor(color.Amarillo, categoria).Count;
+                int cantidadVerdeClaro = this._controladoraCategoria.GetListaClavesColor(color.VerdeClaro, categoria).Count;
+                int cantidadVerdeOscuro = this._controladoraCategoria.GetListaClavesColor(color.VerdeOscuro, categoria).Count;
 
                 grafica.Series[color.Rojo].Points.AddXY(categoria.Nombre, cantidadRojo);
                 grafica.Series[color.Naranja].Points.AddXY(categoria.Nombre, cantidadNaranja);
