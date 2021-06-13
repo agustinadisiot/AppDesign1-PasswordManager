@@ -46,21 +46,24 @@ namespace LogicaDeNegocio
             acceso.Modificar(categoriaIngresada);
         }
 
-        public void BorrarClave(Clave claveABorrar, Categoria categoriaIngresada)
+        public void BorrarClave(Clave ingreso, Categoria contenedora)
         {
-            if (this.EsListaClavesVacia(categoriaIngresada)) {
+            if (this.EsListaClavesVacia(contenedora)) {
                 throw new ObjetoInexistenteException();
             }
-            if (!this.YaExisteClave(claveABorrar, categoriaIngresada)) {
+            if (!this.YaExisteClave(ingreso, contenedora)) {
                 throw new ObjetoInexistenteException();
             }
-            categoriaIngresada.Claves.Remove(claveABorrar);
+
+            Clave aBorrar = this.GetClave(ingreso, contenedora);
+
+            contenedora.Claves.Remove(aBorrar);
 
             ControladoraClave controladoraClave = new ControladoraClave();
-            controladoraClave.Borrar(claveABorrar);
+            controladoraClave.Borrar(aBorrar);
 
             DataAccessCategoria acceso = new DataAccessCategoria();
-            acceso.Modificar(categoriaIngresada);
+            acceso.Modificar(contenedora);
         }
 
         public Clave GetClave(Clave aBuscar, Categoria categoriaIngresada)
@@ -156,12 +159,15 @@ namespace LogicaDeNegocio
             return (aVerificar.Tarjetas.Contains(aBuscar));
         }
 
-        public void BorrarTarjeta(Tarjeta aBorrar, Categoria contenedora)
+        public void BorrarTarjeta(Tarjeta ingreso, Categoria contenedora)
         {
-            if (this.EsListaTarjetasVacia(contenedora) || !this.YaExisteTarjeta(aBorrar,contenedora))
+            if (this.EsListaTarjetasVacia(contenedora) || !this.YaExisteTarjeta(ingreso,contenedora))
             {
                 throw new ObjetoInexistenteException();
             }
+
+            Tarjeta aBorrar = this.GetTarjeta(ingreso, contenedora);
+
             contenedora.Tarjetas.Remove(aBorrar);
 
             ControladoraTarjeta controladoraTarjeta = new ControladoraTarjeta();
@@ -179,8 +185,17 @@ namespace LogicaDeNegocio
             if (!this.YaExisteTarjeta(tarjetaVieja, contenedora)) throw new ObjetoInexistenteException();
             if (!igualNumero && this.YaExisteTarjeta(tarjetaNueva, contenedora)) throw new ObjetoYaExistenteException();
 
+            Tarjeta aModificar = this.GetTarjeta(tarjetaVieja, contenedora);
+
+            aModificar.Nombre = tarjetaNueva.Nombre;
+            aModificar.Numero = tarjetaNueva.Numero;
+            aModificar.Tipo = tarjetaNueva.Tipo;
+            aModificar.Codigo = tarjetaNueva.Codigo;
+            aModificar.Nota = tarjetaNueva.Nota;
+            aModificar.Vencimiento = tarjetaNueva.Vencimiento;
+
             ControladoraTarjeta controladoraTarjeta = new ControladoraTarjeta();
-            controladoraTarjeta.Modificar(tarjetaNueva);
+            controladoraTarjeta.Modificar(aModificar);
 
             DataAccessCategoria acceso = new DataAccessCategoria();
             acceso.Modificar(contenedora);
