@@ -1,4 +1,5 @@
 ﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -7,13 +8,15 @@ namespace Interfaz.InterfacesClaves
 {
     public partial class ModificarClave : UserControl
     {
-        private ControladoraUsuario _actual;
-        private ControladoraClave _vieja;
+        private Usuario _actual;
+        private Clave _vieja;
+        private ControladoraUsuario _controladoraUsuario;
 
-        public ModificarClave(ControladoraUsuario usuario, ControladoraClave clave)
+        public ModificarClave(Usuario usuario, Clave clave)
         {
             this._actual = usuario;
             this._vieja = clave;
+            this._controladoraUsuario = new ControladoraUsuario();
             InitializeComponent();
         }
 
@@ -26,24 +29,23 @@ namespace Interfaz.InterfacesClaves
 
         private void CargarInputsConClave() {
             this.inputContra.Text = this._vieja.Codigo;
-            this.inputNota.Text = this._vieja.VerificarNota;
-            this.inputSitio.Text = this._vieja.VerificarSitio;
-            this.inputUsuario.Text = this._vieja.verificarUsuarioClave;
+            this.inputNota.Text = this._vieja.Nota;
+            this.inputSitio.Text = this._vieja.Sitio;
+            this.inputUsuario.Text = this._vieja.UsuarioClave;
         }
 
         private void CargarComboBox()
         {
             this.comboBoxCategorias.Items.Clear();
-            List<ControladoraCategoria> lista = this._actual.GetListaCategorias();
+            List<Categoria> lista = this._controladoraUsuario.GetListaCategorias(this._actual);
 
-            foreach (ControladoraCategoria actual in lista)
+            foreach (Categoria actual in lista)
             {
                 string nombre = actual.Nombre;
                 this.comboBoxCategorias.Items.Add(nombre);
-
             }
 
-            ControladoraCategoria pertence = this._actual.GetCategoriaClave(this._vieja);
+            Categoria pertence = this._controladoraUsuario.GetCategoriaClave(this._vieja, this._actual);
 
             this.comboBoxCategorias.SelectedItem = pertence.Nombre;
 
@@ -59,7 +61,7 @@ namespace Interfaz.InterfacesClaves
 
         private void botonModificar_Click(object sender, EventArgs e)
         {
-            ControladoraCategoria categoria = new ControladoraCategoria()
+            Categoria categoria = new Categoria()
             {
                 Nombre = this.LeerComboBox()
             };
@@ -69,12 +71,12 @@ namespace Interfaz.InterfacesClaves
             {
                 DateTime modificacion = (this._vieja.Codigo == this.inputContra.Text) ? this._vieja.FechaModificacion : System.DateTime.Now.Date;
 
-                ControladoraClave nueva = new ControladoraClave()
+                Clave nueva = new Clave()
                 {
-                    verificarUsuarioClave = this.inputUsuario.Text,
-                    VerificarSitio = this.inputSitio.Text,
+                    UsuarioClave = this.inputUsuario.Text,
+                    Sitio = this.inputSitio.Text,
                     Codigo = this.inputContra.Text,
-                    VerificarNota = this.inputNota.Text,
+                    Nota = this.inputNota.Text,
                     FechaModificacion = modificacion
                 };
                 try
@@ -83,10 +85,10 @@ namespace Interfaz.InterfacesClaves
                     {
                         ClaveVieja = this._vieja,
                         ClaveNueva = nueva,
-                        CategoriaVieja = this._actual.GetCategoriaClave(this._vieja),
+                        CategoriaVieja = this._controladoraUsuario.GetCategoriaClave(this._vieja, this._actual),
                         CategoriaNueva = categoria
                     };
-                    this._actual.ModificarClave(aModificar);
+                    this._controladoraUsuario.ModificarClave(aModificar, this._actual);
                     this.CerrarModificarClave();
                 }
                 catch (ObjetoYaExistenteException)

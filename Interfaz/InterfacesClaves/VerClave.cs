@@ -1,4 +1,5 @@
 ﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Windows.Forms;
 
@@ -6,12 +7,14 @@ namespace Interfaz
 {
     public partial class VerClave : UserControl
     {
-        private ControladoraClave _claveAMostrar;
-        private ControladoraUsuario _usuarioActual;
+        private Clave _claveAMostrar;
+        private Usuario _usuarioActual;
+        private ControladoraUsuario _controladoraUsuario;
 
-        public VerClave(ControladoraClave claveAMostrar, ControladoraUsuario usuarioActual)
+        public VerClave(Clave claveAMostrar, Usuario usuarioActual)
         {
             InitializeComponent();
+            _controladoraUsuario = new ControladoraUsuario();
             _claveAMostrar = claveAMostrar;
             _usuarioActual = usuarioActual;
             this.CargarDatos();
@@ -19,12 +22,12 @@ namespace Interfaz
 
         private void CargarDatos()
         {
-            ControladoraCategoria categoriaAMostrar = _usuarioActual.GetCategoriaClave(_claveAMostrar);
+            Categoria categoriaAMostrar = this._controladoraUsuario.GetCategoriaClave(this._claveAMostrar, this._usuarioActual);
             string nombreCateogiraAMostrar = categoriaAMostrar.Nombre;
-            string sitioAMostrar = _claveAMostrar.VerificarSitio;
-            string usuarioAMostrar = _claveAMostrar.verificarUsuarioClave;
+            string sitioAMostrar = _claveAMostrar.Sitio;
+            string usuarioAMostrar = _claveAMostrar.UsuarioClave;
             string codigoAMostrar = _claveAMostrar.Codigo;
-            string notaAMostrar = _claveAMostrar.VerificarNota;
+            string notaAMostrar = _claveAMostrar.Nota;
 
             this.labelCategoriaAMostrar.Text = nombreCateogiraAMostrar;
             this.labelSitioAMostrar.Text = sitioAMostrar;

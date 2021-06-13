@@ -1,4 +1,5 @@
 ﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -7,11 +8,13 @@ namespace Interfaz
 {
     public partial class CrearClave : UserControl
     {
-        private ControladoraUsuario _usuarioActual;
+        private Usuario _usuarioActual;
+        private ControladoraUsuario _controladoraUsuario;
 
-        public CrearClave(ControladoraUsuario usuarioAgregar)
+        public CrearClave(Usuario usuarioAgregar)
         {
             InitializeComponent();
+            this._controladoraUsuario = new ControladoraUsuario();
             this._usuarioActual = usuarioAgregar;
         }
 
@@ -24,9 +27,10 @@ namespace Interfaz
         private void CargarComboBox()
         {
             this.comboBoxCategorias.Items.Clear();
-            List<ControladoraCategoria> lista = this._usuarioActual.GetListaCategorias();
+            
+            List<Categoria> lista = this._controladoraUsuario.GetListaCategorias(this._usuarioActual);
 
-            foreach (ControladoraCategoria actual in lista)
+            foreach (Categoria actual in lista)
             {
                 string nombre = actual.Nombre;
                 this.comboBoxCategorias.Items.Add(nombre);
@@ -53,7 +57,7 @@ namespace Interfaz
             string categoriaElegida = this.LeerComboBox();
             if (categoriaElegida != null)
             {
-                ControladoraCategoria categoria = new ControladoraCategoria()
+                Categoria categoria = new Categoria()
                 {
                     Nombre = this.LeerComboBox()
                 };
@@ -62,18 +66,18 @@ namespace Interfaz
 
                 try
                 {
-                    ControladoraClave nueva = new ControladoraClave()
+                    Clave nueva = new Clave()
                     {
-                        verificarUsuarioClave = this.inputUsuario.Text,
+                        UsuarioClave = this.inputUsuario.Text,
                         Codigo = this.inputContra.Text,
-                        VerificarNota = this.inputNota.Text,
-                        VerificarSitio = this.inputSitio.Text,
+                        Nota = this.inputNota.Text,
+                        Sitio = this.inputSitio.Text,
                         FechaModificacion = System.DateTime.Now.Date
                     };
 
                     try
                     {
-                        this._usuarioActual.AgregarClave(nueva, categoria);
+                        this._controladoraUsuario.AgregarClave(nueva, categoria, _usuarioActual);
                         this.VolverAListaClaves();
                     }
                     catch (ObjetoYaExistenteException)

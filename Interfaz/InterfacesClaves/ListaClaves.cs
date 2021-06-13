@@ -1,4 +1,5 @@
 ﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -7,11 +8,13 @@ namespace Interfaz
 {
     public partial class ListaClaves : UserControl
     {
-        private ControladoraUsuario _usuarioActual;
+        private Usuario _usuarioActual;
+        private ControladoraUsuario _controladoraUsuario;
 
-        public ListaClaves(ControladoraUsuario usuarioAgregar)
+        public ListaClaves(Usuario usuarioAgregar)
         {
             InitializeComponent();
+            this._controladoraUsuario = new ControladoraUsuario();
             this._usuarioActual = usuarioAgregar;
         }
 
@@ -24,13 +27,13 @@ namespace Interfaz
         {
             string formatoFecha = "dd'/'MM'/'yyyy";
             this.tablaClaves.Rows.Clear();
-            List<ControladoraClave> listaClaves = this._usuarioActual.GetListaClaves();
+            List<Clave> listaClaves = this._controladoraUsuario.GetListaClaves(this._usuarioActual);
 
-            foreach (ControladoraClave claveActual in listaClaves)
+            foreach (Clave claveActual in listaClaves)
             {
-                string nombreCategoria = this._usuarioActual.GetCategoriaClave(claveActual).Nombre;
-                string sitio = claveActual.VerificarSitio;
-                string usuario = claveActual.verificarUsuarioClave;
+                string nombreCategoria = this._controladoraUsuario.GetCategoriaClave(claveActual, this._usuarioActual).Nombre;
+                string sitio = claveActual.Sitio;
+                string usuario = claveActual.UsuarioClave;
                 string ultimaModificacion = claveActual.FechaModificacion.ToString(formatoFecha);
                 this.tablaClaves.Rows.Add(nombreCategoria, sitio, usuario, ultimaModificacion);
             }
@@ -47,12 +50,13 @@ namespace Interfaz
                 string usuarioClaveBorrar = Convert.ToString(selectedRow.Cells["Usuario"].Value);
                 string sitioClaveBorrar = Convert.ToString(selectedRow.Cells["Sitio"].Value);
 
-                ControladoraClave buscadora = new ControladoraClave()
+                Clave buscadora = new Clave()
                 {
-                    verificarUsuarioClave = usuarioClaveBorrar,
-                    VerificarSitio = sitioClaveBorrar
+                    UsuarioClave = usuarioClaveBorrar,
+                    Sitio = sitioClaveBorrar
                 };
-                this._usuarioActual.BorrarClave(buscadora);
+
+                this._controladoraUsuario.BorrarClave(buscadora, this._usuarioActual);
                 this.CargarTabla();
             }
         }
@@ -72,13 +76,13 @@ namespace Interfaz
                 string sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 string usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                ControladoraClave claveACompartir = new ControladoraClave()
+                Clave claveACompartir = new Clave()
                 {
-                    VerificarSitio = sitioClave,
-                    verificarUsuarioClave = usuarioClave
+                    Sitio = sitioClave,
+                    UsuarioClave = usuarioClave
                 };
 
-                ControladoraUsuario compartidor = this._usuarioActual;
+                Usuario compartidor = this._usuarioActual;
 
                 ClaveCompartida aCompartir = new ClaveCompartida()
                 {
@@ -114,10 +118,10 @@ namespace Interfaz
                 sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                ControladoraClave aModificar = new ControladoraClave()
+                Clave aModificar = new Clave()
                 {
-                    VerificarSitio = sitioClave,
-                    verificarUsuarioClave = usuarioClave
+                    Sitio = sitioClave,
+                    UsuarioClave = usuarioClave
                 };
 
                 IrAModificarClave(aModificar);
@@ -136,19 +140,19 @@ namespace Interfaz
                 string sitioClaveAMostrar = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 string usuarioClaveAMostrar = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                ControladoraClave buscadora = new ControladoraClave
+                Clave buscadora = new Clave
                 {
-                    VerificarSitio = sitioClaveAMostrar,
-                    verificarUsuarioClave = usuarioClaveAMostrar
+                    Sitio = sitioClaveAMostrar,
+                    UsuarioClave = usuarioClaveAMostrar
                 };
 
                 AbrirVerClave(buscadora, _usuarioActual);
             }
         }
 
-        public delegate void AbrirModificarClave_Delegate(ControladoraClave claveAModificar);
+        public delegate void AbrirModificarClave_Delegate(Clave claveAModificar);
         public event AbrirModificarClave_Delegate AbrirModificarClave_Event;
-        public void IrAModificarClave(ControladoraClave claveAModificar)
+        public void IrAModificarClave(Clave claveAModificar)
         {
             if (this.AbrirModificarClave_Event != null)
                 this.AbrirModificarClave_Event(claveAModificar);
@@ -171,9 +175,9 @@ namespace Interfaz
         }
 
 
-        public delegate void AbrirVerClave_Delegate(ControladoraClave buscadora, ControladoraUsuario usuarioActual);
+        public delegate void AbrirVerClave_Delegate(Clave buscadora, Usuario usuarioActual);
         public event AbrirVerClave_Delegate AbrirVerClave_Event;
-        private void AbrirVerClave(ControladoraClave buscadora, ControladoraUsuario usuarioActual)
+        private void AbrirVerClave(Clave buscadora, Usuario usuarioActual)
         {
             if (this.AbrirVerClave_Event != null)
                 this.AbrirVerClave_Event(buscadora, usuarioActual);
