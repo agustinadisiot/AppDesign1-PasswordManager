@@ -1,4 +1,5 @@
 ﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Windows.Forms;
 
@@ -8,10 +9,10 @@ namespace Interfaz
     {
         private ControladoraAdministrador _administrador;
 
-        public CrearUsuario(ControladoraAdministrador administradorActual)
+        public CrearUsuario()
         {
             InitializeComponent();
-            this._administrador = administradorActual;
+            this._administrador = new ControladoraAdministrador();
         }
 
         private void CrearUsuario_Load(object sender, EventArgs e)
@@ -24,7 +25,7 @@ namespace Interfaz
 
             try
             {
-                ControladoraUsuario agregar = new ControladoraUsuario()
+                Usuario agregar = new Usuario()
                 {
                     Nombre = this.inputUsuario.Text,
                     ClaveMaestra = this.inputContra.Text
