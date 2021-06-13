@@ -1,4 +1,5 @@
 ﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -7,12 +8,12 @@ namespace Interfaz
 {
     public partial class ModificarTarjeta : UserControl
     {
-        private ControladoraUsuario _actual;
-        private ControladoraTarjeta _vieja;
+        private Usuario _usuarioActual;
+        private Tarjeta _vieja;
 
-        public ModificarTarjeta(ControladoraUsuario usuario, ControladoraTarjeta tarjeta )
+        public ModificarTarjeta(Usuario usuario, Tarjeta tarjeta )
         {
-            this._actual = usuario;
+            this._usuarioActual = usuario;
             this._vieja = tarjeta;
             InitializeComponent();
         }
@@ -37,18 +38,18 @@ namespace Interfaz
 
         private void CargarComboBox()
         {
-
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
             this.comboBoxCategorias.Items.Clear();
-            List<ControladoraCategoria> lista = this._actual.GetListaCategorias();
+            List<Categoria> lista = controladoraUsuario.GetListaCategorias(this._usuarioActual);
 
-            foreach (ControladoraCategoria actual in lista)
+            foreach (Categoria actual in lista)
             {
 
                 string nombre = actual.Nombre;
                 this.comboBoxCategorias.Items.Add(nombre);
             }
 
-            ControladoraCategoria pertence = this._actual.GetCategoriaTarjeta(this._vieja);
+            Categoria pertence = controladoraUsuario.GetCategoriaTarjeta(this._vieja, this._usuarioActual);
 
             this.comboBoxCategorias.SelectedItem = pertence.Nombre;
         }
@@ -60,14 +61,15 @@ namespace Interfaz
 
         private void botonModificar_Click(object sender, EventArgs e)
         {
-            ControladoraCategoria categoria = new ControladoraCategoria()
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+            Categoria categoria = new Categoria()
             {
                 Nombre = this.LeerComboBox()
             };
 
             try
             {
-                ControladoraTarjeta nueva = new ControladoraTarjeta()
+                Tarjeta nueva = new Tarjeta()
                 {
                     Nombre = this.inputNombre.Text,
                     Tipo = this.inputTipo.Text,
@@ -82,10 +84,10 @@ namespace Interfaz
                     {
                         TarjetaVieja = this._vieja,
                         TarjetaNueva = nueva,
-                        CategoriaVieja = this._actual.GetCategoriaTarjeta(this._vieja),
+                        CategoriaVieja = controladoraUsuario.GetCategoriaTarjeta(this._vieja, this._usuarioActual),
                         CategoriaNueva = categoria
                     };
-                    this._actual.ModificarTarjeta(aModificar);
+                    controladoraUsuario.ModificarTarjeta(aModificar, this._usuarioActual);
                     this.VolverAListaTarjetas();
                 }
                 catch (ObjetoYaExistenteException)
