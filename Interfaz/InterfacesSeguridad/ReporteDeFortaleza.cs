@@ -1,4 +1,5 @@
 ﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -7,12 +8,14 @@ namespace Interfaz.InterfacesSeguridad
 {
     public partial class ReporteDeFortaleza : UserControl
     {
-        private ControladoraUsuario _usuarioActual;
+        private Usuario _usuarioActual;
+        private ControladoraUsuario _controladoraUsuario;
 
-        public ReporteDeFortaleza(ControladoraUsuario actual)
+        public ReporteDeFortaleza(Usuario actual)
         {
             InitializeComponent();
             _usuarioActual = actual;
+            _controladoraUsuario = new ControladoraUsuario();
         }
 
         private void ReporteDeFortaleza_Load(object sender, EventArgs e)
@@ -41,13 +44,13 @@ namespace Interfaz.InterfacesSeguridad
                 DataGridViewRow selectedRow = TablaReporte.Rows[selectedrowindex];
                 string color = Convert.ToString(selectedRow.Cells["Color"].Value);
 
-                List<ControladoraClave> listaClaves = this._usuarioActual.GetListaClavesColor(color);
+                List<Clave> listaClaves =this._controladoraUsuario.GetListaClavesColor(color, this._usuarioActual);
 
-                foreach (ControladoraClave claveActual in listaClaves)
+                foreach (Clave claveActual in listaClaves)
                 {
-                    string nombreCategoria = this._usuarioActual.GetCategoriaClave(claveActual).Nombre;
-                    string sitio = claveActual.VerificarSitio;
-                    string usuario = claveActual.verificarUsuarioClave;
+                    string nombreCategoria = this._controladoraUsuario.GetCategoriaClave(claveActual, this._usuarioActual).Nombre;
+                    string sitio = claveActual.Sitio;
+                    string usuario = claveActual.UsuarioClave;
                     string ultimaModificacion = claveActual.FechaModificacion.ToString(formatoFecha);
                     this.tablaClaves.Rows.Add(nombreCategoria, sitio, usuario, ultimaModificacion);
                 }
@@ -58,11 +61,11 @@ namespace Interfaz.InterfacesSeguridad
         {
             ColorNivelSeguridad color = new ColorNivelSeguridad();
 
-            int cantidadRojos = _usuarioActual.GetCantidadColor(color.Rojo);
-            int cantidadNaranja = _usuarioActual.GetCantidadColor(color.Naranja);
-            int cantidadAmarillo = _usuarioActual.GetCantidadColor(color.Amarillo);
-            int cantidadVerdeClaro = _usuarioActual.GetCantidadColor(color.VerdeClaro);
-            int cantidadVerdeOscuro = _usuarioActual.GetCantidadColor(color.VerdeOscuro);
+            int cantidadRojos = this._controladoraUsuario.GetCantidadColor(color.Rojo, this._usuarioActual);
+            int cantidadNaranja = this._controladoraUsuario.GetCantidadColor(color.Naranja, this._usuarioActual);
+            int cantidadAmarillo = this._controladoraUsuario.GetCantidadColor(color.Amarillo, this._usuarioActual);
+            int cantidadVerdeClaro = this._controladoraUsuario.GetCantidadColor(color.VerdeClaro, this._usuarioActual);
+            int cantidadVerdeOscuro = this._controladoraUsuario.GetCantidadColor(color.VerdeOscuro, this._usuarioActual);
 
             this.TablaReporte.Rows.Add(color.Rojo, cantidadRojos);
             this.TablaReporte.Rows.Add(color.Naranja, cantidadNaranja);
@@ -96,19 +99,19 @@ namespace Interfaz.InterfacesSeguridad
                 string sitioClaveAMostrar = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 string usuarioClaveAMostrar = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                ControladoraClave buscadora = new ControladoraClave
+                Clave buscadora = new Clave
                 {
-                    VerificarSitio = sitioClaveAMostrar,
-                    verificarUsuarioClave = usuarioClaveAMostrar
+                    Sitio = sitioClaveAMostrar,
+                    UsuarioClave = usuarioClaveAMostrar
                 };
 
                 AbrirVerClave(buscadora, _usuarioActual);
             }
         }
 
-        public delegate void AbrirVerClave_Delegate(ControladoraClave buscadora, ControladoraUsuario usuarioActual);
+        public delegate void AbrirVerClave_Delegate(Clave buscadora, Usuario usuarioActual);
         public event AbrirVerClave_Delegate AbrirVerClave_Event;
-        private void AbrirVerClave(ControladoraClave buscadora, ControladoraUsuario usuarioActual)
+        private void AbrirVerClave(Clave buscadora, Usuario usuarioActual)
         {
             if (this.AbrirVerClave_Event != null)
                 this.AbrirVerClave_Event(buscadora, usuarioActual);
@@ -126,19 +129,19 @@ namespace Interfaz.InterfacesSeguridad
                 sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                ControladoraClave aModificar = new ControladoraClave()
+                Clave aModificar = new Clave()
                 {
-                    VerificarSitio = sitioClave,
-                    verificarUsuarioClave = usuarioClave
+                    Sitio = sitioClave,
+                    UsuarioClave = usuarioClave
                 };
 
                 IrAModificarClave(aModificar);
             }
         }
 
-        public delegate void AbrirModificarClave_Delegate(ControladoraClave claveAModificar);
+        public delegate void AbrirModificarClave_Delegate(Clave claveAModificar);
         public event AbrirModificarClave_Delegate AbrirModificarClave_Event;
-        public void IrAModificarClave(ControladoraClave claveAModificar)
+        public void IrAModificarClave(Clave claveAModificar)
         {
             if (this.AbrirModificarClave_Event != null)
                 this.AbrirModificarClave_Event(claveAModificar);
