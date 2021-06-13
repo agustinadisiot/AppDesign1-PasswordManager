@@ -1,4 +1,5 @@
 ﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Windows.Forms;
 
@@ -6,13 +7,13 @@ namespace Interfaz.InterfacesTarjetas
 {
     public partial class VerTarjeta : UserControl
     {
-        private ControladoraTarjeta _mostrar;
-        private ControladoraUsuario _usuario;
+        private Tarjeta _mostrar;
+        private Usuario _usuarioActual;
 
-        public VerTarjeta(ControladoraTarjeta ingreso, ControladoraUsuario actual)
+        public VerTarjeta(Tarjeta ingreso, Usuario actual)
         {
             this._mostrar = ingreso;
-            this._usuario = actual;
+            this._usuarioActual = actual;
             InitializeComponent();
         }
 
@@ -23,8 +24,10 @@ namespace Interfaz.InterfacesTarjetas
         }
 
         private void CargarDatos() {
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+
             string formatoFecha = "MM '/' yyyy";
-            ControladoraCategoria categoria = this._usuario.GetCategoriaTarjeta(this._mostrar);
+            Categoria categoria = controladoraUsuario.GetCategoriaTarjeta(this._mostrar, this._usuarioActual);
 
             this.labelMostrarCategoria.Text = categoria.Nombre;
             this.labelMostrarCodigo.Text = this._mostrar.Codigo;

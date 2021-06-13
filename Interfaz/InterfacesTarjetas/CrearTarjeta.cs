@@ -1,4 +1,5 @@
 ﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -7,13 +8,13 @@ namespace Interfaz
 {
     public partial class CrearTarjeta : UserControl
     {
-        private ControladoraUsuario _actual;
+        private Usuario _usuarioActual;
 
-        public CrearTarjeta(ControladoraUsuario aAgregar)
+        public CrearTarjeta(Usuario aAgregar)
         {
             InitializeComponent();
 
-            this._actual = aAgregar;
+            this._usuarioActual = aAgregar;
         }
 
         private void CrearTarjeta_Load(object sender, EventArgs e)
@@ -26,9 +27,10 @@ namespace Interfaz
 
         private void CargarComboBox() {
             this.comboBoxCategorias.Items.Clear();
-            List<ControladoraCategoria> lista = this._actual.GetListaCategorias();
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+            List<Categoria> lista = controladoraUsuario.GetListaCategorias(this._usuarioActual);
 
-            foreach (ControladoraCategoria actual in lista) {
+            foreach (Categoria actual in lista) {
 
                 string nombre = actual.Nombre;
                 this.comboBoxCategorias.Items.Add(nombre);
@@ -37,11 +39,13 @@ namespace Interfaz
 
         private void botonCrear_Click(object sender, EventArgs e)
         {
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+
             string valorComboBox = this.LeerComboBox();
 
             if (valorComboBox != null)
             {
-                ControladoraCategoria categoria = new ControladoraCategoria()
+                Categoria categoria = new Categoria()
                 {
                     Nombre = valorComboBox
                 };
@@ -53,11 +57,11 @@ namespace Interfaz
                 DateTime vencimiento = this.datePickerVencimiento.Value;
                 string nota = this.inputNota.Text;
 
-                ControladoraTarjeta nueva = null;
+                Tarjeta nueva = null;
 
                 try
                 {
-                    nueva = new ControladoraTarjeta()
+                    nueva = new Tarjeta()
                     {
                         Nombre = nombre,
                         Tipo = tipo,
@@ -69,7 +73,7 @@ namespace Interfaz
 
                     try
                     {
-                        this._actual.AgregarTarjeta(nueva, categoria);
+                        controladoraUsuario.AgregarTarjeta(nueva, categoria, this._usuarioActual);
                         this.VolverAListaTarjetas();
                     }
                     catch (Exception)

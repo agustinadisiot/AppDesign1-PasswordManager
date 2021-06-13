@@ -1,4 +1,5 @@
 ﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -7,9 +8,9 @@ namespace Interfaz
 {
     public partial class ListaTarjetas : UserControl
     {
-        private ControladoraUsuario _usuarioActual;
+        private Usuario _usuarioActual;
 
-        public ListaTarjetas(ControladoraUsuario usuarioAgregar)
+        public ListaTarjetas(Usuario usuarioAgregar)
         {
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;
@@ -17,14 +18,14 @@ namespace Interfaz
         }
 
         private void CargarTabla() {
-
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
             string formatoTarjeta = "MM'/'yyyy";
             this.tablaTarjetas.Rows.Clear();
 
-            List<ControladoraTarjeta> listaTarjeta = this._usuarioActual.GetListaTarjetas();
+            List<Tarjeta> listaTarjeta = controladoraUsuario.GetListaTarjetas(this._usuarioActual);
 
-            foreach (ControladoraTarjeta tarjetaActual in listaTarjeta) {
-                string categoriaActual = this._usuarioActual.GetCategoriaTarjeta(tarjetaActual).Nombre;
+            foreach (Tarjeta tarjetaActual in listaTarjeta) {
+                string categoriaActual = controladoraUsuario.GetCategoriaTarjeta(tarjetaActual, this._usuarioActual).Nombre;
                 string nombre = tarjetaActual.Nombre;
                 string tipo = tarjetaActual.Tipo;
                 string numeroCompleto = tarjetaActual.Numero;
@@ -35,7 +36,7 @@ namespace Interfaz
             }
         }
 
-        private string OcultarTarjeta(ControladoraTarjeta actual)
+        private string OcultarTarjeta(Tarjeta actual)
         {
 
             string numero = actual.Numero;
@@ -53,7 +54,7 @@ namespace Interfaz
 
         private void buttonAgregar_Click(object sender, EventArgs e)
         {
-            this.AbrirCrearTarjeta(e);
+            this.AbrirCrearTarjeta();
         }
 
         private void buttonVer_Click(object sender, EventArgs e)
@@ -66,7 +67,7 @@ namespace Interfaz
                 string numero = Convert.ToString(selectedRow.Cells["TarjetaCompleta"].Value);
 
 
-                ControladoraTarjeta buscadora = new ControladoraTarjeta()
+                Tarjeta buscadora = new Tarjeta()
                 {
                     Numero = numero
                 };
@@ -84,7 +85,7 @@ namespace Interfaz
                 string numero = Convert.ToString(selectedRow.Cells["TarjetaCompleta"].Value);
                 
                 
-                ControladoraTarjeta buscadora = new ControladoraTarjeta()
+                Tarjeta buscadora = new Tarjeta()
                 {
                     Numero = numero
                 };
@@ -106,6 +107,7 @@ namespace Interfaz
 
         private void CerrarConfirmacion_Handler(bool acepto)
         {
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
             bool haySeleccionada = this.tablaTarjetas.SelectedCells.Count > 0;
             if (haySeleccionada && acepto)
             {
@@ -114,11 +116,11 @@ namespace Interfaz
 
                 string numeroTarjetaBorrar = Convert.ToString(selectedRow.Cells["TarjetaCompleta"].Value);
 
-                ControladoraTarjeta buscadora = new ControladoraTarjeta()
+                Tarjeta buscadora = new Tarjeta()
                 {
                     Numero = numeroTarjetaBorrar
                 };
-                this._usuarioActual.BorrarTarjeta(buscadora);
+                controladoraUsuario.BorrarTarjeta(buscadora, this._usuarioActual);
                 this.CargarTabla();
             }
         }
@@ -126,23 +128,23 @@ namespace Interfaz
 
         public delegate void AbrirCrearTarjeta_Delegate();
         public event AbrirCrearTarjeta_Delegate AbrirCrearTarjeta_Event;
-        private void AbrirCrearTarjeta(EventArgs e)
+        private void AbrirCrearTarjeta()
         {
             if (this.AbrirCrearTarjeta_Event != null)
                 this.AbrirCrearTarjeta_Event();
         }
 
-        public delegate void AbrirModificarTarjeta_Delegate(ControladoraTarjeta modificar);
+        public delegate void AbrirModificarTarjeta_Delegate(Tarjeta modificar);
         public event AbrirModificarTarjeta_Delegate AbrirModificarTarjeta_Event;
-        private void AbrirModificarTarjeta(ControladoraTarjeta modificar)
+        private void AbrirModificarTarjeta(Tarjeta modificar)
         {
             if (this.AbrirModificarTarjeta_Event != null)
                 this.AbrirModificarTarjeta_Event(modificar);
         }
 
-        public delegate void AbrirVerTarjeta_Delegate(ControladoraTarjeta modificar);
+        public delegate void AbrirVerTarjeta_Delegate(Tarjeta modificar);
         public event AbrirVerTarjeta_Delegate AbrirVerTarjeta_Event;
-        private void AbrirVerTarjeta(ControladoraTarjeta ver)
+        private void AbrirVerTarjeta(Tarjeta ver)
         {
             if (this.AbrirVerTarjeta_Event != null)
                 this.AbrirVerTarjeta_Event(ver);
