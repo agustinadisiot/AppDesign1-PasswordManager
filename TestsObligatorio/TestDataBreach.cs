@@ -1,5 +1,6 @@
 ﻿using LogicaDeNegocio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +11,19 @@ using System.Threading.Tasks;
 namespace TestsObligatorio
 {
     [TestClass]
-    public class TestDataBreach {
+    public class TestDataBreach
+    {
+        private ControladoraFiltrada controladoraFiltrada;
+
+        [TestCleanup]
+        public void TearDown() { }
+
+        [TestInitialize]
+        public void Setup()
+        {
+            controladoraFiltrada = new ControladoraFiltrada();
+        }
+
         [TestMethod]
         public void DataBreachValoresNull() {
             DataBreach nuevo = new DataBreach();
@@ -37,8 +50,7 @@ namespace TestsObligatorio
 
             List<Filtrada> datos = datosString.Select(s => new Filtrada(s)).ToList();
 
-            ControladoraDataBreach logicaDataBreach = new ControladoraDataBreach();
-            Assert.IsTrue(datos.SequenceEqual(logicaDataBreach.SepararPorLineas(linea)));
+            Assert.IsTrue(datos.SequenceEqual(controladoraFiltrada.SepararPorLineas(linea)));
         }
 
         [TestMethod]
@@ -46,8 +58,7 @@ namespace TestsObligatorio
         {
             string direccion = "direccionNoExistente.txt"; 
 
-            ControladoraDataBreach logicaDataBreach = new ControladoraDataBreach();
-            Assert.ThrowsException<ArchivoNoExistenteException>(() => logicaDataBreach.LeerArchivo(direccion));
+            Assert.ThrowsException<ArchivoNoExistenteException>(() => controladoraFiltrada.LeerArchivo(direccion));
         }
 
         [TestMethod]
@@ -73,7 +84,7 @@ namespace TestsObligatorio
 
             ControladoraDataBreach logicaDataBreach = new ControladoraDataBreach();
 
-            List<Filtrada> archivoLeido = logicaDataBreach.LeerArchivo(nombreArchivo);
+            List<Filtrada> archivoLeido = controladoraFiltrada.LeerArchivo(nombreArchivo);
 
             Assert.IsTrue(datos.SequenceEqual(archivoLeido));
         }
@@ -83,14 +94,19 @@ namespace TestsObligatorio
     [TestClass]
     public class TestUsuarioDataBreaches
     {
-        private ControladoraUsuario usuario;
-        private ControladoraClave clave1;
-        private ControladoraClave clave2;
-        private ControladoraClave clave3;
-        private ControladoraClave clave4;
-        private ControladoraTarjeta tarjeta1;
-        private ControladoraTarjeta tarjeta2;
-        private ControladoraTarjeta tarjeta3;
+        private ControladoraDataBreach controladoraDataBreach;
+        private ControladoraUsuario controladoraUsuario;
+        private ControladoraCategoria controladoraCategoria;
+        private Usuario usuario;
+        private Clave clave1;
+        private Clave clave2;
+        private Clave clave3;
+        private Clave clave4;
+        private Categoria categoria1;
+        private Categoria categoria2;
+        private Tarjeta tarjeta1;
+        private Tarjeta tarjeta2;
+        private Tarjeta tarjeta3;
         private DateTime tiempoActual;
 
         [TestCleanup]
@@ -102,58 +118,67 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
+            controladoraDataBreach = new ControladoraDataBreach();
+            controladoraUsuario = new ControladoraUsuario();
+            controladoraCategoria = new ControladoraCategoria();
+
             tiempoActual = DateTime.Now;
 
-            usuario = new ControladoraUsuario()
+            usuario = new Usuario()
             {
                 Nombre = "Usuario1"
             };
 
-            ControladoraCategoria categoria1 = new ControladoraCategoria()
+            categoria1 = new Categoria()
             {
                 Nombre = "Personal"
             };
 
-            usuario.AgregarCategoria(categoria1);
+            controladoraUsuario.AgregarCategoria(categoria1,usuario);
 
-            ControladoraCategoria categoria2 = new ControladoraCategoria()
+            categoria2 = new Categoria()
             {
                 Nombre = "Estudio"
             };
 
-            usuario.AgregarCategoria(categoria2);
+            controladoraUsuario.AgregarCategoria(categoria2, usuario);
 
-            clave1 = new ControladoraClave()
+            clave1 = new Clave()
             {
-                VerificarSitio = "web.whatsapp.com",
+                Sitio = "web.whatsapp.com",
                 Codigo = "EstaEsUnaClave1",
-                verificarUsuarioClave = "Roberto"
+                UsuarioClave = "Roberto"
             };
-            categoria1.AgregarClave(clave1);
-            clave2 = new ControladoraClave()
-            {
-                VerificarSitio = "web.whatsapp.com",
-                Codigo = "EstaEsUnaClave2",
-                verificarUsuarioClave = "Luis88"
-            };
-            categoria1.AgregarClave(clave2);
 
-            clave3 = new ControladoraClave()
+            controladoraCategoria.AgregarClave(clave1, categoria1);
+
+            clave2 = new Clave()
             {
-                VerificarSitio = "web.whatsapp.com",
+                Sitio = "web.whatsapp.com",
+                Codigo = "EstaEsUnaClave2",
+                UsuarioClave = "Luis88"
+            };
+
+            controladoraCategoria.AgregarClave(clave2, categoria1);
+
+            clave3 = new Clave()
+            {
+                Sitio = "web.whatsapp.com",
                 Codigo = "EstaEsUnaClave3",
-                verificarUsuarioClave = "Hernesto"
+                UsuarioClave = "Hernesto"
             };
-            categoria2.AgregarClave(clave3);
-            clave4 = new ControladoraClave()
+
+            controladoraCategoria.AgregarClave(clave3, categoria2);
+
+            clave4 = new Clave()
             {
-                VerificarSitio = "web.whatsapp.com",
+                Sitio = "web.whatsapp.com",
                 Codigo = "EstaEsUnaClave4",
-                verificarUsuarioClave = "Peepo"
+                UsuarioClave = "Peepo"
             };
-            categoria2.AgregarClave(clave4);
+            controladoraCategoria.AgregarClave(clave4, categoria2);
             
-            tarjeta1 = new ControladoraTarjeta()
+            tarjeta1 = new Tarjeta()
             {
                 Numero = "1111111111111111",
                 Nombre = "Prex",
@@ -163,9 +188,9 @@ namespace TestsObligatorio
                 Vencimiento = new DateTime(2025, 7, 1)
 
             };
-            usuario.AgregarTarjeta(tarjeta1, categoria1);
+            controladoraUsuario.AgregarTarjeta(tarjeta1, categoria1, usuario);
 
-            tarjeta2 = new ControladoraTarjeta()
+            tarjeta2 = new Tarjeta()
             {
                 Numero = "2222222222222222",
                 Nombre = "Visa Gold",
@@ -175,9 +200,9 @@ namespace TestsObligatorio
                 Vencimiento = new DateTime(2025, 7, 1)
 
             };
-            usuario.AgregarTarjeta(tarjeta2, categoria2);
+            controladoraUsuario.AgregarTarjeta(tarjeta2, categoria2, usuario);
 
-            tarjeta3 = new ControladoraTarjeta()
+            tarjeta3 = new Tarjeta()
             {
                 Numero = "3333333333333333",
                 Nombre = "Visa Gold",
@@ -187,10 +212,9 @@ namespace TestsObligatorio
                 Vencimiento = new DateTime(2025, 7, 1)
 
             };
-            usuario.AgregarTarjeta(tarjeta3, categoria1);
+            controladoraUsuario.AgregarTarjeta(tarjeta3, categoria1, usuario);
 
         }
-
 
 
         [TestMethod]
@@ -198,9 +222,9 @@ namespace TestsObligatorio
         {
             List<Filtrada> filtradas = new List<Filtrada>();
 
-            usuario.agregarDataBreach(filtradas, tiempoActual);
+            controladoraDataBreach.AgregarDataBreach(filtradas, tiempoActual, usuario);
 
-            DataBreach ultimo = usuario.GetUltimoDataBreach();
+            DataBreach ultimo = controladoraUsuario.GetUltimoDataBreach(usuario);
 
             Assert.IsTrue(ultimo.Claves.Count == 0 && ultimo.Tarjetas.Count == 0);
         }
@@ -214,16 +238,16 @@ namespace TestsObligatorio
                 "EstaEsUnaClave4"
             };
 
-            List<ControladoraClave> esperadas = new List<ControladoraClave>() {
+            List<Clave> esperadas = new List<Clave>() {
                 clave1,
                 clave4
             };
 
             List<Filtrada> filtradas = filtradasString.Select(s => new Filtrada(s)).ToList();
 
-            usuario.agregarDataBreach(filtradas, tiempoActual);
+            controladoraDataBreach.AgregarDataBreach(filtradas, tiempoActual, usuario);
 
-            DataBreach resultadoBreach = usuario.GetUltimoDataBreach();
+            DataBreach resultadoBreach = controladoraUsuario.GetUltimoDataBreach(usuario);
 
             bool esperadasContieneRetorno = resultadoBreach.Claves.All(esperadas.Contains);
             bool retornoContieneEsperadas = esperadas.All(resultadoBreach.Claves.Contains);
@@ -242,13 +266,13 @@ namespace TestsObligatorio
 
             List<Filtrada> filtradas = filtradasString.Select(s => new Filtrada(s)).ToList();
 
-            List<ControladoraClave> esperadas = new List<ControladoraClave>() {
+            List<Clave> esperadas = new List<Clave>() {
                 clave3
             };
 
-            usuario.agregarDataBreach(filtradas, tiempoActual);
+            controladoraDataBreach.AgregarDataBreach(filtradas, tiempoActual, usuario);
 
-            DataBreach resultado = usuario.GetUltimoDataBreach();
+            DataBreach resultado = controladoraUsuario.GetUltimoDataBreach(usuario);
 
             bool esperadasContieneRetorno = resultado.Claves.All(esperadas.Contains);
             bool retornoContieneEsperadas = esperadas.All(resultado.Claves.Contains);
@@ -262,9 +286,9 @@ namespace TestsObligatorio
             List<string> filtradasString = new List<string>();
             List<Filtrada> filtradas = filtradasString.Select(s => new Filtrada(s)).ToList();
 
-            usuario.agregarDataBreach(filtradas, tiempoActual);
+            controladoraDataBreach.AgregarDataBreach(filtradas, tiempoActual, usuario);
 
-            DataBreach resultado = usuario.GetUltimoDataBreach();
+            DataBreach resultado = controladoraUsuario.GetUltimoDataBreach(usuario);
 
 
             Assert.IsTrue(resultado.Tarjetas.Count == 0);
@@ -283,14 +307,14 @@ namespace TestsObligatorio
 
             List<Filtrada> filtradas = filtradasString.Select(s => new Filtrada(s)).ToList();
 
-            List<ControladoraTarjeta> esperadas = new List<ControladoraTarjeta>() {
+            List<Tarjeta> esperadas = new List<Tarjeta>() {
                 tarjeta1,
                 tarjeta3
             };
 
-            usuario.agregarDataBreach(filtradas, tiempoActual);
+            controladoraDataBreach.AgregarDataBreach(filtradas, tiempoActual, usuario);
 
-            DataBreach resultado = usuario.GetUltimoDataBreach();
+            DataBreach resultado = controladoraUsuario.GetUltimoDataBreach(usuario);
 
             bool esperadasContieneRetorno = resultado.Tarjetas.All(esperadas.Contains);
             bool retornoContieneEsperadas = esperadas.All(resultado.Tarjetas.Contains);
@@ -314,8 +338,8 @@ namespace TestsObligatorio
                 claveFiltrada2
             };
 
-            usuario.agregarDataBreach(primerasFiltradas, tiempoActual);
-            DataBreach resultado = usuario.GetUltimoDataBreach();
+            controladoraDataBreach.AgregarDataBreach(primerasFiltradas, tiempoActual, usuario);
+            DataBreach resultado = controladoraUsuario.GetUltimoDataBreach(usuario);
             bool mismoTiempo = (resultado.Fecha == tiempoActual);
 
             Assert.IsTrue(mismoTiempo);
@@ -362,16 +386,16 @@ namespace TestsObligatorio
                 tarjetaFiltrada4
             };
 
-            List<ControladoraTarjeta> esperadas = new List<ControladoraTarjeta>() {
+            List<Tarjeta> esperadas = new List<Tarjeta>() {
                 tarjeta2
             };
 
             DateTime tiempoViejo = new DateTime(2000, 1, 1, 1, 0, 0);
             DateTime tiempoNuevo = new DateTime(2000, 1, 1, 2, 0, 0);
-            usuario.agregarDataBreach(primerasFiltradas, tiempoViejo);
-            usuario.agregarDataBreach(segundasFiltradas, tiempoNuevo);
+            controladoraDataBreach.AgregarDataBreach(primerasFiltradas, tiempoViejo, usuario);
+            controladoraDataBreach.AgregarDataBreach(segundasFiltradas, tiempoNuevo, usuario);
 
-            DataBreach resultado = usuario.GetDataBreach(tiempoViejo);
+            DataBreach resultado = controladoraUsuario.GetDataBreach(tiempoViejo, usuario);
 
             bool esperadasContieneRetorno = resultado.Tarjetas.All(esperadas.Contains);
             bool retornoContieneEsperadas = esperadas.All(resultado.Tarjetas.Contains);
@@ -406,8 +430,8 @@ namespace TestsObligatorio
                 claveFiltrada3
             };
 
-            usuario.agregarDataBreach(filtradas, tiempoActual);
-            DataBreach resultado = usuario.GetUltimoDataBreach();
+            controladoraDataBreach.AgregarDataBreach(filtradas, tiempoActual, usuario);
+            DataBreach resultado = controladoraUsuario.GetUltimoDataBreach(usuario);
 
             bool esperadasContieneRetorno = resultado.Filtradas.All(esperadas.Contains);
             bool retornoContieneEsperadas = esperadas.All(resultado.Filtradas.Contains);
