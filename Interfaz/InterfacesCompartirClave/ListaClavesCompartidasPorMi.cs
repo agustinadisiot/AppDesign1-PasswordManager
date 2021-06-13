@@ -1,4 +1,5 @@
 ﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -7,14 +8,16 @@ namespace Interfaz.InterfacesCompartirClave
 {
     public partial class ListaClavesCompartidasPorMi : UserControl
     {
-        private ControladoraAdministrador _administrador;
-        private ControladoraUsuario _usuarioActual;
+        private Usuario _usuarioActual;
+        private ControladoraUsuario _controladoraUsuario;
+        private ControladoraAdministrador _controladoraAdministrador;
 
-        public ListaClavesCompartidasPorMi(ControladoraUsuario usuarioAgregar, ControladoraAdministrador administradorAgregar)
+        public ListaClavesCompartidasPorMi(Usuario usuarioAgregar)
         {
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;
-            this._administrador = administradorAgregar;
+            this._controladoraUsuario = new ControladoraUsuario();
+            this._controladoraAdministrador = new ControladoraAdministrador();
             this.CargarTabla();
         }
 
@@ -26,12 +29,12 @@ namespace Interfaz.InterfacesCompartirClave
 
             foreach (ClaveCompartida claveCompartidaActual in listaClavesCompartidasPorMi)
             {
-                ControladoraClave claveQueSeComparte = claveCompartidaActual.Clave;
-                ControladoraUsuario usuarioQueComparte = claveCompartidaActual.Destino;
+                Clave claveQueSeComparte = claveCompartidaActual.Clave;
+                Usuario usuarioQueComparte = claveCompartidaActual.Destino;
 
                 string nombreUsuarioAQuienSeComparte = usuarioQueComparte.Nombre;
-                string sitioClaveQueSeComparte = claveQueSeComparte.VerificarSitio;
-                string usuarioClaveQueSeComparte = claveQueSeComparte.verificarUsuarioClave;
+                string sitioClaveQueSeComparte = claveQueSeComparte.Sitio;
+                string usuarioClaveQueSeComparte = claveQueSeComparte.UsuarioClave;
 
                 this.tablaClavesCompartidas.Rows.Add(nombreUsuarioAQuienSeComparte, sitioClaveQueSeComparte, usuarioClaveQueSeComparte);
             }
@@ -61,13 +64,13 @@ namespace Interfaz.InterfacesCompartirClave
                 string sitioClaveDejarDeCompartir = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 string usuarioClaveDejarDeCompartir = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                ControladoraClave claveBuscadora = new ControladoraClave
+                Clave claveBuscadora = new Clave
                 {
-                    VerificarSitio = sitioClaveDejarDeCompartir,
-                    verificarUsuarioClave = usuarioClaveDejarDeCompartir
+                    Sitio = sitioClaveDejarDeCompartir,
+                    UsuarioClave = usuarioClaveDejarDeCompartir
                 };
 
-                ControladoraUsuario usuarioBuscador = new ControladoraUsuario
+                Usuario usuarioBuscador = new Usuario
                 {
                     Nombre = nombreUsuarioDejarDeCompartir
                 };
@@ -79,9 +82,9 @@ namespace Interfaz.InterfacesCompartirClave
                     Destino = usuarioBuscador
                 };
 
-                ClaveCompartida aEliminar = this._usuarioActual.GetClaveCompartidaPorMi(buscadora);
+                ClaveCompartida aEliminar = this._controladoraUsuario.GetClaveCompartidaPorMi(buscadora, this._usuarioActual);
 
-                this._usuarioActual.DejarDeCompartir(aEliminar);
+                this._controladoraAdministrador.DejarDeCompartir(aEliminar);
                 this.CargarTabla();
             }
         }
@@ -97,19 +100,19 @@ namespace Interfaz.InterfacesCompartirClave
                 string sitioClaveAMostrar = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 string usuarioClaveAMostrar = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                ControladoraClave buscadora = new ControladoraClave
+                Clave buscadora = new Clave
                 {
-                    VerificarSitio = sitioClaveAMostrar,
-                    verificarUsuarioClave = usuarioClaveAMostrar
+                    Sitio = sitioClaveAMostrar,
+                    UsuarioClave = usuarioClaveAMostrar
                 };
 
                 AbrirVerClave(buscadora, _usuarioActual);
             }
         }
 
-        public delegate void AbrirVerClave_Delegate(ControladoraClave buscadora, ControladoraUsuario usuarioActual);
+        public delegate void AbrirVerClave_Delegate(Clave buscadora, Usuario usuarioActual);
         public event AbrirVerClave_Delegate AbrirVerClave_Event;
-        private void AbrirVerClave(ControladoraClave buscadora, ControladoraUsuario usuarioActual)
+        private void AbrirVerClave(Clave buscadora, Usuario usuarioActual)
         {
             if (this.AbrirVerClave_Event != null)
                 this.AbrirVerClave_Event(buscadora, usuarioActual);
