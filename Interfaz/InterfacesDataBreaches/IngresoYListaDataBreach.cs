@@ -33,7 +33,7 @@ namespace Interfaz.InterfacesClaves
         {
             if (this._dataBreach != null) {
                 this.CargarInputDataBreach();
-                this.mostrarDataBreach();
+                this.procesarDataBreach();
             }
         }
 
@@ -100,14 +100,15 @@ namespace Interfaz.InterfacesClaves
 
         private void botonVerificar_Click(object sender, EventArgs e)
         {
-            this.mostrarDataBreach();
+            this.procesarDataBreach();
         }
 
-        private void mostrarDataBreach() {
-            ControladoraDataBreach logicaDataBreach = new ControladoraDataBreach();
-            this._dataBreach = logicaDataBreach.SepararPorLineas(this.inputDatos.Text);
-            this._claves = logicaDataBreach.FiltrarClaves(this._dataBreach, this._usuarioActual.GetListaClaves());
-            this._tarjetas = logicaDataBreach.FiltrarTarjetas(this._dataBreach, this._usuarioActual.GetListaTarjetas());
+        private void procesarDataBreach() {
+            ControladoraFiltrada controladoraFiltrada = new ControladoraFiltrada();
+            this._dataBreach = new DataBreach();
+            List<Filtrada> filtradas = controladoraFiltrada.SepararPorLineas(this.inputDatos.Text);
+            this._controladoraDataBreach.AgregarDataBreach(filtradas, DateTime.Now, this._usuarioActual);
+            this._dataBreach = this._controladoraUsuario.GetUltimoDataBreach(this._usuarioActual);
             this.CargarTablaClaves();
             this.CargarTablaTarjetas();
         }
@@ -123,25 +124,22 @@ namespace Interfaz.InterfacesClaves
                 sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                ControladoraClave aModificar = new ControladoraClave()
+                Clave aModificar = new Clave()
                 {
-                    VerificarSitio = sitioClave,
-                    verificarUsuarioClave = usuarioClave
+                    Sitio = sitioClave,
+                    UsuarioClave = usuarioClave
                 };
 
                 IrAModificarClave(aModificar);
             }
         }
 
-        public delegate void ModificarClaveDataBreach_Delegate(ControladoraClave claveAModificar, List<Filtrada> dataBreach);
+        public delegate void ModificarClaveDataBreach_Delegate(Clave claveAModificar);
         public event ModificarClaveDataBreach_Delegate ModificarClaveDataBreach_Event;
-        public void IrAModificarClave(ControladoraClave claveAModificar)
+        public void IrAModificarClave(Clave claveAModificar)
         {
-            ControladoraDataBreach logicaDataBreach = new ControladoraDataBreach();
-            List<Filtrada> filtradas = logicaDataBreach.SepararPorLineas(this.inputDatos.Text);
-
             if (this.ModificarClaveDataBreach_Event != null)
-                this.ModificarClaveDataBreach_Event(claveAModificar, filtradas);
+                this.ModificarClaveDataBreach_Event(claveAModificar);
         }
 
         private void botonCargar_Click(object sender, EventArgs e)
@@ -152,10 +150,10 @@ namespace Interfaz.InterfacesClaves
                 if (buscadorArchivo.ShowDialog() == DialogResult.OK)
                 {
                     string direccion = buscadorArchivo.FileName;
-                    ControladoraDataBreach logicaDataBreach = new ControladoraDataBreach();
+                    ControladoraFiltrada controladoraFiltrada = new ControladoraFiltrada();
                     try
                     {
-                        this._dataBreach = logicaDataBreach.LeerArchivo(direccion);
+                        this._dataBreach.Filtradas = controladoraFiltrada.LeerArchivo(direccion);
                         this.CargarInputDataBreach();
                     }
                     catch (Exception)
