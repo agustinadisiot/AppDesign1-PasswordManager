@@ -1,4 +1,5 @@
 ﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Windows.Forms;
 
@@ -8,9 +9,9 @@ namespace Interfaz
     {
         private ControladoraAdministrador _administrador;
 
-        public IniciarSesion(ControladoraAdministrador administrador)
+        public IniciarSesion()
         {
-            this._administrador = administrador;
+            this._administrador = new ControladoraAdministrador();
             InitializeComponent();
         }
 
@@ -23,7 +24,7 @@ namespace Interfaz
         {
             try
             {
-                ControladoraUsuario iniciar = new ControladoraUsuario()
+                Usuario iniciar = new Usuario()
                 {
                     Nombre = this.inputUsuario.Text,
                     ClaveMaestra = this.inputContra.Text
@@ -31,7 +32,7 @@ namespace Interfaz
 
                 try {
                     
-                    ControladoraUsuario verdadero = this._administrador.GetUsuario(iniciar);
+                    Usuario verdadero = this._administrador.GetUsuario(iniciar);
                     if (verdadero.ClaveMaestra == iniciar.ClaveMaestra)
                     {
                        
@@ -58,9 +59,9 @@ namespace Interfaz
         }
 
 
-        public delegate void IniciarSesion_Delegate(ControladoraUsuario actual);
+        public delegate void IniciarSesion_Delegate(Usuario actual);
         public event IniciarSesion_Delegate IniciarSesion_Event;
-        private void EnviarIniciarSesion(ControladoraUsuario aIniciar) {
+        private void EnviarIniciarSesion(Usuario aIniciar) {
             if (this.IniciarSesion_Event != null)
                 this.IniciarSesion_Event(aIniciar);
         }
