@@ -12,11 +12,11 @@ namespace TestsObligatorio
     [TestClass]
     public class TestTarjeta
     {
-        private ControladoraTarjeta controladora;
         private Tarjeta tarjeta1;
         private Tarjeta tarjeta2;
         private DateTime fecha1;
-        private DataAccessTarjeta acceso
+        private DataAccessTarjeta acceso;
+        private ControladoraTarjeta controladora;
 
         [TestCleanup]
         public void TearDown()
