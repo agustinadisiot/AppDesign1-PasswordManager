@@ -86,8 +86,22 @@ namespace LogicaDeNegocio
             if (!this.YaExisteClave(claveVieja, contenedora)) throw new ObjetoInexistenteException();
             if (!igualSitioyUsuario && this.YaExisteClave(claveNueva, contenedora)) throw new ObjetoYaExistenteException();
 
+            Clave aModificar = this.GetClave(claveVieja, contenedora);
+
+
+            aModificar.UsuarioClave = claveNueva.UsuarioClave;
+            aModificar.Sitio = claveNueva.Sitio;
+            aModificar.Nota = claveNueva.Nota;
+            if (aModificar.Codigo != claveNueva.Codigo)
+            {
+                aModificar.Codigo = claveNueva.Codigo;
+                aModificar.FechaModificacion = DateTime.Now.Date;
+            };
+
             ControladoraClave controladoraClave = new ControladoraClave();
-            controladoraClave.Modificar(claveNueva);
+            controladoraClave.Modificar(aModificar);
+
+            
 
             DataAccessCategoria acceso = new DataAccessCategoria();
             acceso.Modificar(contenedora);

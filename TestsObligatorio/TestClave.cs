@@ -271,6 +271,15 @@ namespace TestsObligatorio
         [TestMethod]
         public void ClaveGetFechaModificacionClaveVieja()
         {
+            clave1 = new Clave()
+            {
+                Sitio = "web.whatsapp.com",
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto",
+                Nota = "",
+                FechaModificacion = DateTime.Now
+            };
+
             Usuario usuario = new Usuario()
             {
                 Nombre = "usuario",
@@ -288,32 +297,28 @@ namespace TestsObligatorio
             ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
             controladoraUsuario.AgregarCategoria(categoria, usuario);
 
-            Clave aAgregar = new Clave()
+
+            controladoraUsuario.AgregarClave(clave1, categoria, usuario);
+
+            Clave aModificar = new Clave()
             {
-                Codigo = "ClaveNueva",
+                Codigo = "CodigoModificado",
                 Nota = "",
                 UsuarioClave = "usuario",
                 Sitio = "Sitio",
-                FechaModificacion = new DateTime(2000, 1, 1)
+                FechaModificacion = new DateTime(2000, 1, 1),
+                Id = clave1.Id
             };
 
-            controladoraUsuario.AgregarClave(aAgregar,categoria,usuario);
-
-            Clave aModificar = acceso.Get(aAgregar.Id);
-
-            aModificar.FechaModificacion = new DateTime(2000, 1, 1);
-            aModificar.Codigo = "NuevoCodigo";
-            aModificar.Nota = "Hola";
-
-            ClaveAModificar claveAModificar = new ClaveAModificar()
+            /*ClaveAModificar claveAModificar = new ClaveAModificar()
             {
                 CategoriaNueva = categoria,
                 CategoriaVieja = categoria,
                 ClaveVieja = aAgregar,
                 ClaveNueva = aModificar
-            };
+            };*/
 
-            controladoraUsuario.ModificarClave(claveAModificar,usuario);
+            controladora.Modificar(aModificar);
 
 
 

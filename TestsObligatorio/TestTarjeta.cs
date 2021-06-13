@@ -17,6 +17,7 @@ namespace TestsObligatorio
         private DateTime fecha1;
         private DataAccessTarjeta acceso;
         private ControladoraTarjeta controladora;
+        private ControladoraAdministrador controladoraAdministrador;
 
         [TestCleanup]
         public void TearDown()
@@ -27,12 +28,9 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
-            List<Tarjeta> tarjetasABorrar = (List<Tarjeta>)acceso.GetTodos();
-            foreach (Tarjeta actual in tarjetasABorrar)
-            {
-                acceso.Borrar(actual);
-            }
-
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.BorrarTodo();
+            acceso = new DataAccessTarjeta();
             controladora = new ControladoraTarjeta();
 
             fecha1 = new DateTime(2022, 5, 9);

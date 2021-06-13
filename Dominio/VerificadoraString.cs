@@ -7,7 +7,11 @@ namespace LogicaDeNegocio
 
         public static string VerificarLargoEntreMinimoYMaximo(string ingreso, int minimo, int maximo)
         {
-            if (ingreso==null || ingreso.Length < minimo || ingreso.Length > maximo)
+            if (ingreso == null) {
+                throw new ObjetoIncompletoException();
+            }
+
+            if (ingreso.Length < minimo || ingreso.Length > maximo)
             {
                 throw new LargoIncorrectoException();
             }

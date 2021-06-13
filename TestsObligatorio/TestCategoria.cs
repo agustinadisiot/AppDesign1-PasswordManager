@@ -15,6 +15,7 @@ namespace TestsObligatorio
         private Categoria categoria2;
         private DataAccessCategoria acceso;
         private ControladoraCategoria controladora;
+        private ControladoraAdministrador controladoraAdministrador;
 
         [TestCleanup]
         public void TearDown()
@@ -25,11 +26,10 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
-            List<Categoria> categoriasABorrar = (List<Categoria>)acceso.GetTodos();
-            foreach (Categoria actual in categoriasABorrar)
-            {
-                acceso.Borrar(actual);
-            }
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.BorrarTodo();
+
+            acceso = new DataAccessCategoria();
 
             controladora = new ControladoraCategoria();
 
@@ -123,6 +123,7 @@ namespace TestsObligatorio
         private DataAccessCategoria accesoCategoria;
         private DataAccessClave accesoClave;
         private ControladoraCategoria controladoraCategoria;
+        private ControladoraAdministrador controladoraAdministrador;
 
         [TestCleanup]
         public void TearDown()
@@ -133,19 +134,13 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
-            List<Categoria> categoriasABorrar = (List<Categoria>)accesoCategoria.GetTodos();
-            foreach (Categoria actual in categoriasABorrar)
-            {
-                accesoCategoria.Borrar(actual);
-            }
+            accesoCategoria = new DataAccessCategoria();
+            accesoClave = new DataAccessClave();
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.BorrarTodo();
 
             controladoraCategoria = new ControladoraCategoria();
 
-            List<Clave> clavesABorrar = (List<Clave>)accesoClave.GetTodos();
-            foreach (Clave actual in clavesABorrar)
-            {
-                accesoClave.Borrar(actual);
-            }
 
             categoria1 = new Categoria()
             {
@@ -157,7 +152,8 @@ namespace TestsObligatorio
                 Sitio = "web.whatsapp.com",
                 Codigo = "EstaEsUnaClave1",
                 UsuarioClave = "Roberto",
-                Nota = ""
+                Nota = "",
+                FechaModificacion = DateTime.Now
             };
 
             clave2 = new Clave()
@@ -165,8 +161,20 @@ namespace TestsObligatorio
                 Sitio = "Netflix.com",
                 Codigo = "EstaEsUnaClave2",
                 UsuarioClave = "Luis88",
-                Nota = "Nota de una clave"
+                Nota = "Nota de una clave",
+                FechaModificacion = DateTime.Now
             };
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "usuario",
+                ClaveMaestra = "12345ABCD"
+            };
+
+            controladoraAdministrador.AgregarUsuario(usuario);
+
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
         }
 
         [TestMethod]
@@ -230,6 +238,8 @@ namespace TestsObligatorio
         [TestMethod]
         public void CategoriaAgregarClaveYaExistente()
         {
+            
+
             controladoraCategoria.AgregarClave(clave1, categoria1);
             Assert.ThrowsException<ObjetoYaExistenteException>(() => controladoraCategoria.AgregarClave(clave1, categoria1));
         }
@@ -437,7 +447,8 @@ namespace TestsObligatorio
             };
             controladoraCategoria.ModificarClave(buscadora, clave2, categoria1);
 
-            Assert.IsFalse(controladoraCategoria.YaExisteClave(clave1, categoria1));
+
+            Assert.IsFalse(controladoraCategoria.YaExisteClave(buscadora, categoria1));
         }
 
         [TestMethod]
