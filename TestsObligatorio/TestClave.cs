@@ -2,33 +2,47 @@
 using LogicaDeNegocio;
 using System;
 using System.Linq;
+using Negocio;
+using Repositorio;
+using System.Collections.Generic;
 
 namespace TestsObligatorio
 {
     [TestClass]
     public class TestClave
     {
-        private ControladoraClave clave1;
-        private ControladoraClave clave2;
+        private ControladoraClave controladora;
+        private Clave clave1;
+        private Clave clave2;
         private string menorA5;
         private string mayorA25;
         private NivelSeguridad nivelSeguridad;
         private ColorNivelSeguridad color;
         private DateTime tiempoActual;
+        private DataAccessClave acceso;
 
         [TestInitialize]
         public void Setup()
         {
-            clave1 = new ControladoraClave()
+            List<Clave> clavesABorrar = (List<Clave>)acceso.GetTodos();
+            foreach (Clave actual in clavesABorrar) {
+                acceso.Borrar(actual);
+            }
+
+            controladora = new ControladoraClave();
+
+            
+
+            clave1 = new Clave()
             {
-                VerificarSitio = "ort.edu.uy",
-                verificarUsuarioClave = "UsuarioORT"
+                Sitio = "ort.edu.uy",
+                UsuarioClave = "UsuarioORT"
             };
 
-            clave2 = new ControladoraClave()
+            clave2 = new Clave()
             {
-                VerificarSitio = "youtube.com",
-                verificarUsuarioClave = "UsuarioYoutube"
+                Sitio = "youtube.com",
+                UsuarioClave = "UsuarioYoutube"
             };
 
             menorA5 = "a";
@@ -44,27 +58,27 @@ namespace TestsObligatorio
             color = new ColorNivelSeguridad();
 
             tiempoActual = System.DateTime.Now.Date;
-
         }
 
         [TestMethod]
         public void ClaveGetUsuarioCorrecto()
         {
-            clave1.verificarUsuarioClave = "juan@gmail.com";
-            Assert.AreEqual("juan@gmail.com", clave1.verificarUsuarioClave);
+            clave1.UsuarioClave = "juan@gmail.com";
+            Assert.AreEqual("juan@gmail.com", clave1.UsuarioClave);
         }
 
         [TestMethod]
         public void ClaveGetUsuarioCambiado()
         {
-            clave1.verificarUsuarioClave = "pedro@gmail.com";
-            Assert.AreEqual("pedro@gmail.com", clave1.verificarUsuarioClave);
+            clave1.UsuarioClave = "pedro@gmail.com";
+            Assert.AreEqual("pedro@gmail.com", clave1.UsuarioClave);
         }
 
         [TestMethod]
         public void ClaveLargoUsuarioMenorA5()
         {
-            Assert.ThrowsException<LargoIncorrectoException>(() => clave1.verificarUsuarioClave = menorA5);
+            clave1.UsuarioClave = menorA5;
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarUsuarioClave(clave1));
         }
 
         [TestMethod]

@@ -65,6 +65,14 @@
       <Project>{A2333956-836C-42AB-AD9B-DBBA96727E27}</Project>
       <Name>LogicaDeNegocio</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Negocio\Negocio.csproj">
+      <Project>{6F38306E-3FD3-401F-AF5D-0622B9596C0F}</Project>
+      <Name>Negocio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repositorio\Repositorio.csproj">
+      <Project>{AE07C9ED-3FEF-430A-992F-3EA6CAAE216E}</Project>
+      <Name>Repositorio</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
