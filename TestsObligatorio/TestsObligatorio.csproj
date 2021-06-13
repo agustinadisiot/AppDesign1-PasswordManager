@@ -54,8 +54,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestClave.cs" />
     <Compile Include="TestDataBreach.cs" />
+    <Compile Include="TestSeguridadClave.cs" />
     <Compile Include="TestTarjeta.cs" />
     <Compile Include="TestUsuario.cs" />
+    <Compile Include="TestUsuarioClave.cs" />
+    <Compile Include="TestUsuarioTarjeta.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
