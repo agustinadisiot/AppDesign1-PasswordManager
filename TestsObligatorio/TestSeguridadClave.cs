@@ -153,79 +153,78 @@ namespace TestsObligatorio
             string aVerificar = "ClaveNoRepetida";
 
 
-            Assert.AreEqual(false, usuario.EsClaveRepetida(aVerificar));
+            Assert.AreEqual(false, nivelSeguridad.EsClaveRepetida(aVerificar, usuario));
         }
 
         [TestMethod]
         public void UsuarioEsClaveRepetidaSiRepetida()
         {
-            usuario.AgregarCategoria(categoria1);
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
             string aVerificar = clave1.Codigo;
 
-            usuario.AgregarClave(clave1, categoria1);
-
-            Assert.AreEqual(true, usuario.EsClaveRepetida(aVerificar));
+            Assert.AreEqual(true, nivelSeguridad.EsClaveRepetida(aVerificar, usuario));
         }
 
         [TestMethod]
         public void UsuarioEsClaveRepetidaVariasClavesDiferentesCategoriasSiRepetida()
         {
-            usuario.AgregarCategoria(categoria1);
-            usuario.AgregarCategoria(categoria2);
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarCategoria(categoria2, usuario);
 
             string aVerificar = clave2.Codigo;
 
-            usuario.AgregarClave(clave1, categoria1);
-            usuario.AgregarClave(clave2, categoria2);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave2, categoria2, usuario);
 
-            Assert.AreEqual(true, usuario.EsClaveRepetida(aVerificar));
+            Assert.AreEqual(true, nivelSeguridad.EsClaveRepetida(aVerificar, usuario));
         }
 
         [TestMethod]
-        public void UsuarioEsClaveSeguraSeguraVerdeClaro()
+        public void UsuarioEsClaveNivelSeguroSeguraVerdeClaro()
         {
             string aVerificar = "ClaveVerdeClaro";
 
-            Assert.AreEqual(true, usuario.EsClaveSegura(aVerificar));
+            Assert.AreEqual(true, nivelSeguridad.EsClaveNivelSeguro(aVerificar));
         }
 
         [TestMethod]
-        public void UsuarioEsClaveSeguraNoSegura()
+        public void UsuarioEsClaveNivelSeguroNoSegura()
         {
             string aVerificar = "clavenosegura";
 
-            Assert.AreEqual(false, usuario.EsClaveSegura(aVerificar));
+            Assert.AreEqual(false, nivelSeguridad.EsClaveNivelSeguro(aVerificar));
         }
 
         [TestMethod]
-        public void UsuarioEsClaveSeguraSeguraVerdeOscuro()
+        public void UsuarioEsClaveNivelSeguroSeguraVerdeOscuro()
         {
             string aVerificar = "claveVerdeOscuroN14@";
 
-            Assert.AreEqual(true, usuario.EsClaveSegura(aVerificar));
+            Assert.AreEqual(true, nivelSeguridad.EsClaveNivelSeguro(aVerificar));
         }
 
         [TestMethod]
         public void UsuarioClaveCumpleRequerimientosNoCumplePorClaveDuplicada()
         {
-            usuario.AgregarCategoria(categoria1);
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
 
             string aVerificar = "EstaEsUnaClave1";
 
-            usuario.AgregarClave(clave1, categoria1);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
 
-            Assert.ThrowsException<ClaveDuplicadaException>(() => usuario.ClaveCumpleRequerimientos(aVerificar));
+            Assert.ThrowsException<ClaveDuplicadaException>(() => nivelSeguridad.ClaveCumpleRequerimientos(aVerificar, usuario));
         }
         [TestMethod]
         public void UsuarioClaveCumpleRequerimientosNoCumplePorNivelSeguridad()
         {
-            usuario.AgregarCategoria(categoria1);
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
 
             string aVerificar = "clavenosegura";
 
-            usuario.AgregarClave(clave1, categoria1);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
 
-            Assert.ThrowsException<ClaveNoSeguraException>(() => usuario.ClaveCumpleRequerimientos(aVerificar));
+            Assert.ThrowsException<ClaveNoSeguraException>(() => nivelSeguridad.ClaveCumpleRequerimientos(aVerificar, usuario));
         }
     }
 }
