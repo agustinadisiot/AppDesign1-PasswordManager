@@ -24,11 +24,12 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
+            acceso = new DataAccessClave();
             List<Clave> clavesABorrar = (List<Clave>)acceso.GetTodos();
             foreach (Clave actual in clavesABorrar) {
                 acceso.Borrar(actual);
             }
-
+            clavesABorrar = (List<Clave>)acceso.GetTodos();
             controladora = new ControladoraClave();
 
             
@@ -271,11 +272,51 @@ namespace TestsObligatorio
         [TestMethod]
         public void ClaveGetFechaModificacionClaveVieja()
         {
-            clave1.FechaModificacion = new DateTime(2000, 1, 1);
-            clave1.Codigo = "ClaveNueva";
-            controladora.Modificar(clave1);
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "usuario",
+                ClaveMaestra = "12345ABCD"
+            };
 
-            Assert.AreEqual(tiempoActual, clave1.FechaModificacion);
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            ControladoraAdministrador controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.AgregarUsuario(usuario);
+
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+            controladoraUsuario.AgregarCategoria(categoria, usuario);
+
+            Clave aAgregar = new Clave()
+            {
+                Codigo = "ClaveNueva",
+                Nota = "",
+                UsuarioClave = "usuario",
+                Sitio = "Sitio",
+                FechaModificacion = new DateTime(2000, 1, 1)
+            };
+
+            controladoraUsuario.AgregarClave(aAgregar,categoria,usuario);
+
+            Clave aModificar = acceso.Get(aAgregar.Id);
+
+            aModificar.FechaModificacion = new DateTime(2000, 1, 1);
+            aModificar.Codigo = "ClaveNueva";
+            aModificar.Nota = "Hola";
+
+            ClaveAModificar claveAModificar = new ClaveAModificar()
+            {
+                CategoriaNueva = categoria,
+                CategoriaVieja = categoria,
+                ClaveVieja = aAgregar,
+                ClaveNueva = aModificar
+            };
+
+            controladoraUsuario.ModificarClave(claveAModificar,usuario);
+
+            Assert.AreEqual(tiempoActual, aModificar.FechaModificacion);
         }
 
 

@@ -41,7 +41,13 @@ namespace Repositorio
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                return contexto.Claves.ToList();
+                try
+                {
+                    return contexto.Claves.ToList();
+                }
+                catch (Exception) {
+                    return new List<Clave>();
+                }
             }
         }
 

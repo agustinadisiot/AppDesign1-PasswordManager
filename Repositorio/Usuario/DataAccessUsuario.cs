@@ -82,11 +82,19 @@ namespace Repositorio
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                return contexto.Usuarios
-                    .Include("Categorias")
-                    .Include("DataBreaches")
-                    .Include("CompartidasConmigo")
-                    .Include("CompartidasPorMi");
+                IEnumerable<Usuario> retorno;
+                try
+                {
+                    retorno =  contexto.Usuarios
+                        .Include("Categorias")
+                        .Include("DataBreaches")
+                        .Include("CompartidasConmigo")
+                        .Include("CompartidasPorMi").ToList();
+                }
+                catch (Exception) {
+                    retorno =  new List<Usuario>();
+                }
+                return retorno;
             }
         }
 

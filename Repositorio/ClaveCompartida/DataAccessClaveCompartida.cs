@@ -32,7 +32,7 @@ namespace Repositorio
 
                 if (claveCompartida != null)
                 {
-                    contexto.Usuarios.Attach(original);
+                    contexto.Claves.Attach(claveCompartida);
                     entity.Clave = claveCompartida;
                 }
 
