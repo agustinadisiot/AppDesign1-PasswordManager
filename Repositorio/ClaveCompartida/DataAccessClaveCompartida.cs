@@ -14,8 +14,18 @@ namespace Repositorio
             using (var contexto = new AdministradorClavesDBContext())
             {
                 
-                Usuario original = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Original.Id);
-                Usuario destino = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Destino.Id);
+                Usuario original = contexto.Usuarios
+                    .Include("Categorias")
+                    .Include("DataBreaches")
+                    .Include("CompartidasConmigo")
+                    .Include("CompartidasPorMi")
+                    .FirstOrDefault(buscador => buscador.Id == entity.Original.Id);
+                Usuario destino = contexto.Usuarios
+                    .Include("Categorias")
+                    .Include("DataBreaches")
+                    .Include("CompartidasConmigo")
+                    .Include("CompartidasPorMi")
+                    .FirstOrDefault(buscador => buscador.Id == entity.Destino.Id);
                 Clave claveCompartida = contexto.Claves.FirstOrDefault(buscador => buscador.Id == entity.Clave.Id);
 
                 if (original != null )
@@ -34,6 +44,7 @@ namespace Repositorio
                 {
                     contexto.Claves.Attach(claveCompartida);
                     entity.Clave = claveCompartida;
+                    entity.Clave.EsCompartida = true;
                 }
 
                 contexto.ClavesCompartidas.Add(entity);
@@ -79,8 +90,18 @@ namespace Repositorio
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                Usuario original = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Original.Id);
-                Usuario destino = contexto.Usuarios.FirstOrDefault(buscador => buscador.Id == entity.Destino.Id);
+                Usuario original = contexto.Usuarios
+                    .Include("Categorias")
+                    .Include("DataBreaches")
+                    .Include("CompartidasConmigo")
+                    .Include("CompartidasPorMi")
+                    .FirstOrDefault(buscador => buscador.Id == entity.Original.Id);
+                Usuario destino = contexto.Usuarios
+                    .Include("Categorias")
+                    .Include("DataBreaches")
+                    .Include("CompartidasConmigo")
+                    .Include("CompartidasPorMi")
+                    .FirstOrDefault(buscador => buscador.Id == entity.Destino.Id);
                 Clave claveCompartida = contexto.Claves.FirstOrDefault(buscador => buscador.Id == entity.Clave.Id);
 
                 if (original != null)

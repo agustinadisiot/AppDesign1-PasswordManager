@@ -109,8 +109,8 @@ namespace LogicaDeNegocio
             DataAccessUsuario acceso = new DataAccessUsuario();
             ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
 
-            Usuario usuarioOriginal = this.GetUsuario(aCompartir.Original);
-            Usuario usuarioDestino = this.GetUsuario(aCompartir.Destino);
+            Usuario usuarioOriginal = aCompartir.Original;
+            Usuario usuarioDestino = aCompartir.Destino;
             Clave claveACompartir = controladoraUsuario.GetClave(aCompartir.Clave, usuarioOriginal);
 
             if (usuarioOriginal == null || usuarioDestino == null) {
@@ -125,6 +125,8 @@ namespace LogicaDeNegocio
 
 
             claveACompartir.EsCompartida = true;
+            ControladoraClave controladoraClave = new ControladoraClave();
+            controladoraClave.Modificar(claveACompartir);
 
             ClaveCompartida guardar = new ClaveCompartida()
             {
@@ -133,8 +135,15 @@ namespace LogicaDeNegocio
                 Clave = claveACompartir
             };
 
+            DataAccessClaveCompartida accesoCompartidas = new DataAccessClaveCompartida();
+            accesoCompartidas.Agregar(guardar);
+
             usuarioOriginal.CompartidasPorMi.Add(guardar);
             acceso.Modificar(usuarioOriginal);
+
+            usuarioOriginal = this.GetUsuario(usuarioOriginal);
+
+            guardar = controladoraUsuario.GetClaveCompartidaPorMi(guardar, usuarioOriginal);
 
             usuarioDestino.CompartidasConmigo.Add(guardar);
             acceso.Modificar(usuarioDestino);
@@ -146,26 +155,26 @@ namespace LogicaDeNegocio
             ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
             ControladoraClave controladoraClave = new ControladoraClave();
 
-            Usuario usuarioOriginal = acceso.Get(aDejarCompartir.Original.Id);
-            Usuario usuarioDestino = acceso.Get(aDejarCompartir.Destino.Id);
-            Clave claveADejarDeCompartir = controladoraUsuario.GetClave(aDejarCompartir.Clave, usuarioOriginal);
+            Usuario usuarioOriginal = aDejarCompartir.Original;
+            Usuario usuarioDestino = aDejarCompartir.Destino;
+            Clave claveADejarDeCompartir = aDejarCompartir.Clave;
 
             if (!claveADejarDeCompartir.EsCompartida) throw new ObjetoInexistenteException();
 
-            ClaveCompartida aEliminar = new ClaveCompartida()
-            {
-                Original = usuarioOriginal,
-                Destino = usuarioDestino,
-                Clave = claveADejarDeCompartir
-            };
+            ClaveCompartida aEliminar = controladoraUsuario.GetClaveCompartidaPorMi(aDejarCompartir, usuarioOriginal);
 
             if (!usuarioDestino.CompartidasConmigo.Contains(aEliminar)) throw new ObjetoInexistenteException();
+
+            DataAccessClaveCompartida accesoCompartidas = new DataAccessClaveCompartida();
+            accesoCompartidas.Borrar(aEliminar);
 
             usuarioOriginal.CompartidasPorMi.Remove(aEliminar);
             acceso.Modificar(usuarioOriginal);
             usuarioDestino.CompartidasConmigo.Remove(aEliminar);
             acceso.Modificar(usuarioDestino);
-       
+
+            
+
             bool sigueCompartida = usuarioOriginal.CompartidasPorMi.Any(buscadora => buscadora.Clave.Equals(claveADejarDeCompartir));
             if (!sigueCompartida) {
                 claveADejarDeCompartir.EsCompartida = false;

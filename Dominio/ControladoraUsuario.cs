@@ -142,21 +142,24 @@ namespace LogicaDeNegocio
             acceso.Modificar(contenedor);
         }
 
-        public void BorrarClave(Clave aBorrar, Usuario contenedor)
+        public void BorrarClave(Clave ingreso, Usuario contenedor)
         {
             if (this.EsListaCategoriasVacia(contenedor)) {
                 throw new CategoriaInexistenteException();
             }
-            if (!this.YaExisteClave(aBorrar, contenedor))
+            if (!this.YaExisteClave(ingreso, contenedor))
             {
                 throw new ObjetoInexistenteException();
             }
+
+            Clave aBorrar = this.GetClave(ingreso, contenedor);
 
             List<ClaveCompartida> clavesCompartidas = contenedor.CompartidasPorMi.FindAll(buscadora => aBorrar.Equals(buscadora.Clave));
 
             foreach(ClaveCompartida aDejarDeCompartir in clavesCompartidas)
             {
-                //this.DejarDeCompartir(aDejarDeCompartir, contenedor);
+                ControladoraAdministrador controladoraAdministrador = new ControladoraAdministrador();
+                controladoraAdministrador.DejarDeCompartir(aDejarDeCompartir);
             }
 
             ControladoraCategoria controladoraCategoria = new ControladoraCategoria();
