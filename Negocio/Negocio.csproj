@@ -52,6 +52,7 @@
     <Compile Include="Exceptions\CaracterInesperadoException.cs" />
     <Compile Include="Exceptions\CategoriaInexistenteException.cs" />
     <Compile Include="Exceptions\ClaveDuplicadaException.cs" />
+    <Compile Include="Exceptions\ClaveEstaEnDataBreachException.cs" />
     <Compile Include="Exceptions\ClaveGeneradaVaciaException.cs" />
     <Compile Include="Exceptions\ClaveNoSeguraException.cs" />
     <Compile Include="Exceptions\LargoIncorrectoException.cs" />
