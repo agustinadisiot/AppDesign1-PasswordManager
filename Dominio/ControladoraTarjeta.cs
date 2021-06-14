@@ -32,6 +32,12 @@ namespace LogicaDeNegocio
             this.VerificarNumero(aVerificar);
             this.VerificarCodigo(aVerificar);
             this.VerificarNota(aVerificar);
+            this.VerificarVencimiento(aVerificar);
+        }
+
+        private void VerificarVencimiento(Tarjeta aVerificar)
+        {
+            if (aVerificar.Vencimiento.Equals(DateTime.MinValue)) throw new ObjetoIncompletoException();
         }
 
         public void VerificarNombre(Tarjeta aVerificar)

@@ -11,6 +11,7 @@ namespace TestsObligatorio
     [TestClass]
     public class TestClave
     {
+        private ControladoraAdministrador controladoraAdministrador;
         private ControladoraClave controladora;
         private Clave clave1;
         private Clave clave2;
@@ -19,16 +20,12 @@ namespace TestsObligatorio
         private NivelSeguridad nivelSeguridad;
         private ColorNivelSeguridad color;
         private DateTime tiempoActual;
-        private DataAccessClave acceso;
 
         [TestInitialize]
         public void Setup()
         {
-            List<Clave> clavesABorrar = (List<Clave>)acceso.GetTodos();
-            foreach (Clave actual in clavesABorrar) {
-                acceso.Borrar(actual);
-            }
-
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.BorrarTodo();
             controladora = new ControladoraClave();
 
             
@@ -166,7 +163,8 @@ namespace TestsObligatorio
         {
             string notaMayorA250 = "";
             for (int i = 0; i < 251; i++) notaMayorA250 += "C";
-            Assert.ThrowsException<LargoIncorrectoException>(() => clave1.Nota = notaMayorA250);
+            clave1.Nota = notaMayorA250;
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarNota(clave1));
         }
 
         [TestMethod]
@@ -271,11 +269,58 @@ namespace TestsObligatorio
         [TestMethod]
         public void ClaveGetFechaModificacionClaveVieja()
         {
-            clave1.FechaModificacion = new DateTime(2000, 1, 1);
-            clave1.Codigo = "ClaveNueva";
-            controladora.Modificar(clave1);
+            clave1 = new Clave()
+            {
+                Sitio = "web.whatsapp.com",
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto",
+                Nota = "",
+                FechaModificacion = DateTime.Now
+            };
 
-            Assert.AreEqual(tiempoActual, clave1.FechaModificacion);
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "usuario",
+                ClaveMaestra = "12345ABCD"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            ControladoraAdministrador controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.AgregarUsuario(usuario);
+
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+            controladoraUsuario.AgregarCategoria(categoria, usuario);
+
+
+            controladoraUsuario.AgregarClave(clave1, categoria, usuario);
+
+            Clave aModificar = new Clave()
+            {
+                Codigo = "CodigoModificado",
+                Nota = "",
+                UsuarioClave = "usuario",
+                Sitio = "Sitio",
+                FechaModificacion = new DateTime(2000, 1, 1),
+                Id = clave1.Id
+            };
+
+            /*ClaveAModificar claveAModificar = new ClaveAModificar()
+            {
+                CategoriaNueva = categoria,
+                CategoriaVieja = categoria,
+                ClaveVieja = aAgregar,
+                ClaveNueva = aModificar
+            };*/
+
+            controladora.Modificar(aModificar);
+
+
+
+            Assert.AreEqual(tiempoActual, aModificar.FechaModificacion);
         }
 
 

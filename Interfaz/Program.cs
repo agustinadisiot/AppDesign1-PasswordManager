@@ -1,4 +1,5 @@
 ﻿using LogicaDeNegocio;
+using Negocio;
 using Repositorio;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,79 @@ namespace Interfaz
         static void Main()
         {
 
+            AdministradorClavesDBContext administrador = new AdministradorClavesDBContext();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new VentanaPrincipal());
 
-/*
-            Categoria categoria1 = new Categoria()
+
+            /*Usuario usuario = new Usuario()
+            {
+                Nombre = "usuario",
+                ClaveMaestra = "12345ABCD"
+            };
+
+            Categoria categoria2 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            ControladoraAdministrador controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.AgregarUsuario(usuario);
+
+            Usuario usuario1 = new Usuario()
+            {
+                Nombre = "usuario1",
+                ClaveMaestra = "12345ABCD"
+            };
+
+            Usuario usuario2 = new Usuario()
+            {
+                Nombre = "usuario2",
+                ClaveMaestra = "12345ABCD"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.AgregarUsuario(usuario1);
+
+
+            *//*ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+            controladoraUsuario.AgregarCategoria(categoria, usuario);*//*
+
+            DataAccessCategoria dataAccessCategoria = new DataAccessCategoria();
+            dataAccessCategoria.Agregar(categoria);
+
+            Clave aAgregar = new Clave()
+            {
+                Codigo = "ClaveNueva",
+                Nota = "",
+                UsuarioClave = "usuario",
+                Sitio = "Sitio",
+                FechaModificacion = new DateTime(2000, 1, 1)
+            };
+
+            ControladoraCategoria controladoraCategoria = new ControladoraCategoria();
+            controladoraCategoria.AgregarClave(aAgregar, categoria);
+
+
+            ClaveCompartida aCompartir = new ClaveCompartida() {
+                Original = usuario1,
+                Destino = usuario2,
+                Clave = aAgregar
+            };
+
+            DataAccessClaveCompartida dataAccessClaveCompartida = new DataAccessClaveCompartida();
+            dataAccessClaveCompartida.Agregar(aCompartir);*/
+
+
+
+            /*Categoria categoria1 = new Categoria()
             {
                 Nombre = "Personal"
             };
@@ -35,7 +102,7 @@ namespace Interfaz
             //Tarjetas
             Tarjeta tarjeta1 = new Tarjeta()
             {
-                Id=100,
+                Id = 100,
                 Numero = "1111111111111111",
                 Nombre = "Prex",
                 Tipo = "Mastercard",
@@ -54,7 +121,7 @@ namespace Interfaz
                 Vencimiento = new DateTime(2025, 7, 1)
             };
 
-            
+
 
 
             DataAccessTarjeta daTarjeta = new DataAccessTarjeta();
@@ -191,7 +258,7 @@ namespace Interfaz
             dataBreach2.Filtradas.Add(noAgregada);
 
             dataBreach2.Tarjetas = tarjetasModificar;
-            dataBreach2.Fecha = new DateTime(2000,1,1);
+            dataBreach2.Fecha = new DateTime(2000, 1, 1);
 
             dataBreaches = (List<DataBreach>)daDataBreach.GetTodos();
             claves = (List<Clave>)daClave.GetTodos();
@@ -262,8 +329,8 @@ namespace Interfaz
             filtradas = (List<Filtrada>)daFiltrada.GetTodos();
             categorias = (List<Categoria>)daCategoria.GetTodos();
 
-            Console.ReadLine();
-*/
+            Console.ReadLine();*/
+
         }
     }
 }

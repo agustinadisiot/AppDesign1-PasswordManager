@@ -30,5 +30,14 @@ namespace Negocio
         public string Nota { get; set; }
 
         public DateTime FechaModificacion { get; set; }
+        public override bool Equals(object objeto)
+        {
+            if (objeto == null) throw new ObjetoIncompletoException();
+            if (this.GetType() != objeto.GetType()) throw new ObjetoIncorrectoException();
+            Clave aIgualar = (Clave)objeto;
+            bool mismoSitio = aIgualar.Sitio.ToUpper() == this.Sitio.ToUpper();
+            bool mismoUsuario = aIgualar.UsuarioClave.ToUpper() == this.UsuarioClave.ToUpper();
+            return (mismoSitio && mismoUsuario);
+        }
     }
 }

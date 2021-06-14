@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class CreadoDataAccessClaveCompartida : DbMigration
+    public partial class UsuariosConTypeConfig : DbMigration
     {
         public override void Up()
         {
@@ -144,9 +144,9 @@
         
         public override void Down()
         {
+            DropForeignKey("dbo.DataBreaches", "Usuario_Id", "dbo.Usuarios");
             DropForeignKey("dbo.ClaveCompartidas", "OriginalId", "dbo.Usuarios");
             DropForeignKey("dbo.ClaveCompartidas", "DestinoId", "dbo.Usuarios");
-            DropForeignKey("dbo.DataBreaches", "Usuario_Id", "dbo.Usuarios");
             DropForeignKey("dbo.Categorias", "Usuario_Id", "dbo.Usuarios");
             DropForeignKey("dbo.ClaveCompartidas", "Clave_Id", "dbo.Claves");
             DropForeignKey("dbo.Tarjetas", "Categoria_Id", "dbo.Categorias");

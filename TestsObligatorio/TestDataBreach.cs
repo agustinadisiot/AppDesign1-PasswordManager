@@ -94,6 +94,7 @@ namespace TestsObligatorio
     [TestClass]
     public class TestUsuarioDataBreaches
     {
+        private ControladoraAdministrador controladoraAdministrador;
         private ControladoraDataBreach controladoraDataBreach;
         private ControladoraUsuario controladoraUsuario;
         private ControladoraCategoria controladoraCategoria;
@@ -118,22 +119,26 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
+            controladoraAdministrador = new ControladoraAdministrador();
             controladoraDataBreach = new ControladoraDataBreach();
             controladoraUsuario = new ControladoraUsuario();
             controladoraCategoria = new ControladoraCategoria();
 
+            controladoraAdministrador.BorrarTodo();
+            
             tiempoActual = DateTime.Now;
 
             usuario = new Usuario()
             {
-                Nombre = "Usuario1"
+                Nombre = "Usuario1",
+                ClaveMaestra = "ClaveMaestra"
             };
 
             categoria1 = new Categoria()
             {
                 Nombre = "Personal"
             };
-
+            controladoraAdministrador.AgregarUsuario(usuario);
             controladoraUsuario.AgregarCategoria(categoria1,usuario);
 
             categoria2 = new Categoria()
@@ -147,7 +152,8 @@ namespace TestsObligatorio
             {
                 Sitio = "web.whatsapp.com",
                 Codigo = "EstaEsUnaClave1",
-                UsuarioClave = "Roberto"
+                UsuarioClave = "Roberto",
+                Nota = ""
             };
 
             controladoraCategoria.AgregarClave(clave1, categoria1);
@@ -156,7 +162,8 @@ namespace TestsObligatorio
             {
                 Sitio = "web.whatsapp.com",
                 Codigo = "EstaEsUnaClave2",
-                UsuarioClave = "Luis88"
+                UsuarioClave = "Luis88",
+                Nota = ""
             };
 
             controladoraCategoria.AgregarClave(clave2, categoria1);
@@ -165,7 +172,8 @@ namespace TestsObligatorio
             {
                 Sitio = "web.whatsapp.com",
                 Codigo = "EstaEsUnaClave3",
-                UsuarioClave = "Hernesto"
+                UsuarioClave = "Hernesto",
+                Nota = ""
             };
 
             controladoraCategoria.AgregarClave(clave3, categoria2);
@@ -174,7 +182,8 @@ namespace TestsObligatorio
             {
                 Sitio = "web.whatsapp.com",
                 Codigo = "EstaEsUnaClave4",
-                UsuarioClave = "Peepo"
+                UsuarioClave = "Peepo",
+                Nota = ""
             };
             controladoraCategoria.AgregarClave(clave4, categoria2);
             

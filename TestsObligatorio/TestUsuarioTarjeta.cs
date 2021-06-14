@@ -14,6 +14,7 @@ namespace TestsObligatorio
         private ControladoraTarjeta controladoraTarjeta;
         private ControladoraUsuario controladoraUsuario;
         private ControladoraCategoria controladoraCategoria;
+        private ControladoraAdministrador controladoraAdministrador;
         private Usuario usuario;
         private Categoria categoria1;
         private Categoria categoria2;
@@ -32,6 +33,9 @@ namespace TestsObligatorio
             controladoraTarjeta = new ControladoraTarjeta();
             controladoraUsuario = new ControladoraUsuario();
             controladoraCategoria = new ControladoraCategoria();
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.BorrarTodo();
+
 
             usuario = new Usuario()
             {
@@ -71,6 +75,8 @@ namespace TestsObligatorio
 
             };
 
+
+            controladoraAdministrador.AgregarUsuario(usuario);
         }
 
         [TestMethod]

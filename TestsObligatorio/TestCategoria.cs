@@ -13,8 +13,8 @@ namespace TestsObligatorio
     {
         private Categoria categoria1;
         private Categoria categoria2;
-        private DataAccessCategoria acceso;
         private ControladoraCategoria controladora;
+        private ControladoraAdministrador controladoraAdministrador;
 
         [TestCleanup]
         public void TearDown()
@@ -25,11 +25,8 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
-            List<Categoria> categoriasABorrar = (List<Categoria>)acceso.GetTodos();
-            foreach (Categoria actual in categoriasABorrar)
-            {
-                acceso.Borrar(actual);
-            }
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.BorrarTodo();
 
             controladora = new ControladoraCategoria();
 
@@ -120,9 +117,8 @@ namespace TestsObligatorio
         private Categoria categoria1;
         private Clave clave1;
         private Clave clave2;
-        private DataAccessCategoria accesoCategoria;
-        private DataAccessClave accesoClave;
         private ControladoraCategoria controladoraCategoria;
+        private ControladoraAdministrador controladoraAdministrador;
 
         [TestCleanup]
         public void TearDown()
@@ -133,19 +129,11 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
-            List<Categoria> categoriasABorrar = (List<Categoria>)accesoCategoria.GetTodos();
-            foreach (Categoria actual in categoriasABorrar)
-            {
-                accesoCategoria.Borrar(actual);
-            }
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.BorrarTodo();
 
             controladoraCategoria = new ControladoraCategoria();
 
-            List<Clave> clavesABorrar = (List<Clave>)accesoClave.GetTodos();
-            foreach (Clave actual in clavesABorrar)
-            {
-                accesoClave.Borrar(actual);
-            }
 
             categoria1 = new Categoria()
             {
@@ -157,7 +145,8 @@ namespace TestsObligatorio
                 Sitio = "web.whatsapp.com",
                 Codigo = "EstaEsUnaClave1",
                 UsuarioClave = "Roberto",
-                Nota = ""
+                Nota = "",
+                FechaModificacion = DateTime.Now
             };
 
             clave2 = new Clave()
@@ -165,8 +154,20 @@ namespace TestsObligatorio
                 Sitio = "Netflix.com",
                 Codigo = "EstaEsUnaClave2",
                 UsuarioClave = "Luis88",
-                Nota = "Nota de una clave"
+                Nota = "Nota de una clave",
+                FechaModificacion = DateTime.Now
             };
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "usuario",
+                ClaveMaestra = "12345ABCD"
+            };
+
+            controladoraAdministrador.AgregarUsuario(usuario);
+
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
         }
 
         [TestMethod]
@@ -230,6 +231,8 @@ namespace TestsObligatorio
         [TestMethod]
         public void CategoriaAgregarClaveYaExistente()
         {
+            
+
             controladoraCategoria.AgregarClave(clave1, categoria1);
             Assert.ThrowsException<ObjetoYaExistenteException>(() => controladoraCategoria.AgregarClave(clave1, categoria1));
         }
@@ -437,7 +440,8 @@ namespace TestsObligatorio
             };
             controladoraCategoria.ModificarClave(buscadora, clave2, categoria1);
 
-            Assert.IsFalse(controladoraCategoria.YaExisteClave(clave1, categoria1));
+
+            Assert.IsFalse(controladoraCategoria.YaExisteClave(buscadora, categoria1));
         }
 
         [TestMethod]
@@ -600,9 +604,8 @@ namespace TestsObligatorio
         private Categoria categoria1;
         private Tarjeta tarjeta1;
         private Tarjeta tarjeta2;
-        private DataAccessCategoria accesoCategoria;
-        private DataAccessTarjeta accesoTarjeta;
         private ControladoraCategoria controladoraCategoria;
+        private ControladoraAdministrador controladoraAdministrador;
 
         [TestCleanup]
         public void TearDown()
@@ -613,19 +616,9 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
-            List<Categoria> categoriasABorrar = (List<Categoria>)accesoCategoria.GetTodos();
-            foreach (Categoria actual in categoriasABorrar)
-            {
-                accesoCategoria.Borrar(actual);
-            }
-
             controladoraCategoria = new ControladoraCategoria();
-
-            List<Tarjeta> clavesABorrar = (List<Tarjeta>)accesoTarjeta.GetTodos();
-            foreach (Tarjeta actual in clavesABorrar)
-            {
-                accesoTarjeta.Borrar(actual);
-            }
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.BorrarTodo();
 
             categoria1 = new Categoria()
             {
@@ -653,6 +646,17 @@ namespace TestsObligatorio
                 Vencimiento = new DateTime(2025, 7, 1)
 
             };
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "usuario",
+                ClaveMaestra = "12345ABCD"
+            };
+
+            controladoraAdministrador.AgregarUsuario(usuario);
+
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
 
         }
 
@@ -787,7 +791,8 @@ namespace TestsObligatorio
                 Numero = tarjeta2.Numero
             };
 
-            Assert.AreEqual(tarjeta1, controladoraCategoria.GetTarjeta(buscadora, categoria1));
+
+            Assert.AreEqual(tarjeta2, controladoraCategoria.GetTarjeta(buscadora, categoria1));
         }
 
         [TestMethod]
@@ -908,12 +913,6 @@ namespace TestsObligatorio
         public void CategoriaBorrarTarjetaCategoriaConUnaTarjeta()
         {
             controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
-
-            Tarjeta aBorrar = new Tarjeta()
-            {
-                Numero = tarjeta1.Numero
-            };
-
             controladoraCategoria.BorrarTarjeta(tarjeta1, categoria1);
 
             Assert.IsFalse(controladoraCategoria.YaExisteTarjeta(tarjeta1, categoria1));
@@ -1034,9 +1033,7 @@ namespace TestsObligatorio
                 Numero = numeroTarjetaInexistente
             };
 
-            Tarjeta aBuscar = controladoraCategoria.GetTarjeta(buscadora, categoria1);
-
-            Assert.ThrowsException<ObjetoInexistenteException>(() => controladoraCategoria.ModificarTarjeta(aBuscar, tarjeta1, categoria1));
+            Assert.ThrowsException<ObjetoInexistenteException>(() => controladoraCategoria.ModificarTarjeta(buscadora, tarjeta1, categoria1));
         }
 
         [TestMethod]
@@ -1085,18 +1082,28 @@ namespace TestsObligatorio
                 Numero = this.tarjeta1.Numero
             };
 
-            controladoraCategoria.ModificarTarjeta(tarjeta1, tarjeta2, categoria1);
+            Tarjeta nueva = new Tarjeta()
+            {
+                Numero = tarjeta1.Numero,
+                Nombre = tarjeta2.Nombre,
+                Codigo = tarjeta2.Codigo,
+                Nota = tarjeta2.Nota,
+                Vencimiento = tarjeta2.Vencimiento,
+                Tipo = tarjeta2.Tipo
+            };
 
-            tarjeta1 = controladoraCategoria.GetTarjeta(buscadora, categoria1);
+            controladoraCategoria.ModificarTarjeta(tarjeta1, nueva, categoria1);
 
-            bool igualNumero = tarjeta1.Numero == tarjeta2.Numero;
-            bool igualNombre = tarjeta1.Nombre == tarjeta2.Nombre;
-            bool igualTipo = tarjeta1.Tipo == tarjeta2.Tipo;
-            bool igualNota = tarjeta1.Nota == tarjeta2.Nota;
-            bool igualCodigo = tarjeta1.Codigo == tarjeta2.Codigo;
-            bool igualVencimiento = tarjeta1.Vencimiento == tarjeta2.Vencimiento;
+            Tarjeta resultante = controladoraCategoria.GetTarjeta(buscadora, categoria1);
 
-            bool modificoCorrecto = igualNumero && igualNombre && igualTipo && igualNota && igualCodigo && igualVencimiento;
+            bool igualNumero = resultante.Numero == tarjeta2.Numero;
+            bool igualNombre = resultante.Nombre == tarjeta2.Nombre;
+            bool igualTipo = resultante.Tipo == tarjeta2.Tipo;
+            bool igualNota = resultante.Nota == tarjeta2.Nota;
+            bool igualCodigo = resultante.Codigo == tarjeta2.Codigo;
+            bool igualVencimiento = resultante.Vencimiento == tarjeta2.Vencimiento;
+
+            bool modificoCorrecto = !igualNumero && igualNombre && igualTipo && igualNota && igualCodigo && igualVencimiento;
 
             Assert.IsTrue(modificoCorrecto);
         }

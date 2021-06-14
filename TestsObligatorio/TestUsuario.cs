@@ -12,8 +12,8 @@ namespace TestsObligatorio
     [TestClass]
     public class TestUsuario
     {
-        private ControladoraUsuario controladora = new ControladoraUsuario();
-        private DataAccessUsuario acceso;
+        private ControladoraUsuario controladoraUsuario;
+        private ControladoraAdministrador controladoraAdministrador;
 
         private Usuario usuario;
 
@@ -26,11 +26,9 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
-            acceso = new DataAccessUsuario();
-            List<Usuario> aBorrar = (List<Usuario>)acceso.GetTodos();
-            foreach (Usuario actual in aBorrar) {
-                acceso.Borrar(actual);
-            }
+            controladoraUsuario = new ControladoraUsuario();
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.BorrarTodo();
 
             usuario = new Usuario()
             {
@@ -57,14 +55,14 @@ namespace TestsObligatorio
         {
             usuario.Nombre = "A";
 
-            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarNombre(usuario));
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladoraUsuario.VerificarNombre(usuario));
         }
 
         [TestMethod]
         public void UsuarioLargoNombreMayorA25()
         {
             usuario.Nombre = "12345678901234567890123456";
-            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarNombre(usuario));
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladoraUsuario.VerificarNombre(usuario));
         }
 
         [TestMethod]
@@ -73,7 +71,7 @@ namespace TestsObligatorio
             Usuario igualClave = new Usuario() {
                 ClaveMaestra = usuario.ClaveMaestra
             };
-            Assert.AreEqual(true, controladora.EsIgualClaveMaestra(usuario, igualClave));
+            Assert.AreEqual(true, controladoraUsuario.EsIgualClaveMaestra(usuario, igualClave));
         }
 
         [TestMethod]
@@ -83,7 +81,7 @@ namespace TestsObligatorio
             {
                 ClaveMaestra = "Diferente"
             };
-            Assert.AreEqual(true, controladora.EsIgualClaveMaestra(usuario, diferenteClave));
+            Assert.AreEqual(false, controladoraUsuario.EsIgualClaveMaestra(usuario, diferenteClave));
         }
 
         [TestMethod]
@@ -94,21 +92,21 @@ namespace TestsObligatorio
                 ClaveMaestra = usuario.ClaveMaestra
             };
             usuario.ClaveMaestra = "Chau109876";
-            Assert.AreEqual(true, controladora.EsIgualClaveMaestra(usuario, igualClave));
+            Assert.AreEqual(false, controladoraUsuario.EsIgualClaveMaestra(usuario, igualClave));
         }
 
         [TestMethod]
         public void UsuarioLargoClaveMaestraMenorA5()
         {
             usuario.ClaveMaestra = "A";
-            Assert.ThrowsException<LargoIncorrectoException>(() =>controladora.VerificarClaveMaestra(usuario));
+            Assert.ThrowsException<LargoIncorrectoException>(() =>controladoraUsuario.VerificarClaveMaestra(usuario));
         }
 
         [TestMethod]
         public void UsuarioLargoClaveMaestraMayorA25()
         {
             usuario.ClaveMaestra = "12345678901234567890123456";
-            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarClaveMaestra(usuario));
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladoraUsuario.VerificarClaveMaestra(usuario));
         }
 
         [TestMethod]
@@ -160,9 +158,8 @@ namespace TestsObligatorio
     [TestClass]
     public class TestUsuarioCategoria
     {
-        private ControladoraUsuario controladora = new ControladoraUsuario();
-        private DataAccessUsuario acceso;
-        private DataAccessCategoria accesoCategoria;
+        private ControladoraUsuario controladoraUsuario;
+        private ControladoraAdministrador controladoraAdministrador;
 
         private Usuario usuario;
         private Categoria categoria1;
@@ -177,19 +174,9 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
-            acceso = new DataAccessUsuario();
-            List<Usuario> usuariosABorrar = (List<Usuario>)acceso.GetTodos();
-            foreach (Usuario actual in usuariosABorrar)
-            {
-                acceso.Borrar(actual);
-            }
-
-            accesoCategoria = new DataAccessCategoria();
-            List<Categoria> categoriasABorrar = (List<Categoria>)accesoCategoria.GetTodos();
-            foreach (Categoria actual in categoriasABorrar)
-            {
-                accesoCategoria.Borrar(actual);
-            }
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraUsuario = new ControladoraUsuario();
+            controladoraAdministrador.BorrarTodo();
 
             usuario = new Usuario()
             {
@@ -206,139 +193,141 @@ namespace TestsObligatorio
             {
                 Nombre = "Trabajo"
             };
+
+            controladoraAdministrador.AgregarUsuario(usuario);
         }
 
         [TestMethod]
         public void UsuarioEsListaCategoriasVaciaSinCategorias()
         {
 
-            Assert.AreEqual(true, controladora.EsListaCategoriasVacia(usuario));
+            Assert.AreEqual(true, controladoraUsuario.EsListaCategoriasVacia(usuario));
         }
 
         [TestMethod]
         public void UsuarioEsListaConCategoriasVaciaConUnaCategoria()
         {
-            controladora.AgregarCategoria(categoria1,usuario);
-            Assert.AreEqual(false, controladora.EsListaCategoriasVacia(usuario));
+            controladoraUsuario.AgregarCategoria(categoria1,usuario);
+            Assert.AreEqual(false, controladoraUsuario.EsListaCategoriasVacia(usuario));
         }
 
         [TestMethod]
         public void UsuarioEsListaCategoriasVaciaConDosCategorias()
         {
-            controladora.AgregarCategoria(categoria1, usuario);
-            controladora.AgregarCategoria(categoria2, usuario);
-            Assert.AreEqual(false, controladora.EsListaCategoriasVacia(usuario));
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarCategoria(categoria2, usuario);
+            Assert.AreEqual(false, controladoraUsuario.EsListaCategoriasVacia(usuario));
         }
 
         [TestMethod]
         public void UsuarioAgregarCategoriaVacia()
         {
             Categoria vacia = new Categoria();
-            Assert.ThrowsException<ObjetoIncompletoException>(() => controladora.AgregarCategoria(vacia, usuario));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => controladoraUsuario.AgregarCategoria(vacia, usuario));
         }
 
         [TestMethod]
         public void UsuarioGetCategoriaCorrecta()
         {
-            controladora.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
 
             Categoria buscadora = new Categoria()
             {
                 Nombre = categoria1.Nombre
             };
-            Assert.AreEqual(categoria1, controladora.GetCategoria(buscadora,usuario));
+            Assert.AreEqual(categoria1, controladoraUsuario.GetCategoria(buscadora,usuario));
         }
 
         [TestMethod]
         public void UsuarioGetCategoriaPrimeraConDos()
         {
-            controladora.AgregarCategoria(categoria1, usuario);
-            controladora.AgregarCategoria(categoria2, usuario);
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarCategoria(categoria2, usuario);
 
             Categoria buscadora = new Categoria()
             {
                 Nombre = categoria1.Nombre
             };
 
-            Assert.AreEqual(categoria1, controladora.GetCategoria(buscadora, usuario));
+            Assert.AreEqual(categoria1, controladoraUsuario.GetCategoria(buscadora, usuario));
         }
 
         [TestMethod]
         public void UsuarioGetCategoriaSegundaConDos()
         {
-            controladora.AgregarCategoria(categoria1, usuario);
-            controladora.AgregarCategoria(categoria2, usuario);
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarCategoria(categoria2, usuario);
 
             Categoria buscadora = new Categoria()
             {
                 Nombre = categoria2.Nombre
             };
 
-            Assert.AreEqual(categoria2, controladora.GetCategoria(buscadora, usuario));
+            Assert.AreEqual(categoria2, controladoraUsuario.GetCategoria(buscadora, usuario));
         }
 
         [TestMethod]
         public void UsuarioAgregarCategoriaYaExistente()
         {
-            controladora.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
             Categoria categoria2 = new Categoria()
             {
                 Nombre = categoria1.Nombre
             };
             
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => controladora.AgregarCategoria(categoria2, usuario));
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => controladoraUsuario.AgregarCategoria(categoria2, usuario));
         }
 
         [TestMethod]
         public void UsuarioYaExisteCategoriaSiExistente()
         {
-            controladora.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
             Categoria categoria2 = new Categoria()
             {
                 Nombre = categoria1.Nombre
             };
-            Assert.AreEqual(true, controladora.YaExisteCategoria(categoria2, usuario));
+            Assert.AreEqual(true, controladoraUsuario.YaExisteCategoria(categoria2, usuario));
         }
 
         [TestMethod]
         public void UsuarioYaExisteCategoriaNoExistente()
         {
-            controladora.AgregarCategoria(categoria1, usuario);
-            Assert.AreEqual(false, controladora.YaExisteCategoria(categoria2, usuario));
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            Assert.AreEqual(false, controladoraUsuario.YaExisteCategoria(categoria2, usuario));
         }
 
         [TestMethod]
         public void UsuarioModificarNombreCategoriaAgregada()
         {
-            controladora.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
 
             Categoria copia = new Categoria()
             {
                 Nombre = categoria1.Nombre
             };
             categoria2.Nombre = "Trabajo";
-            controladora.ModificarNombreCategoria(copia, categoria2, usuario);
-            Categoria resultado = controladora.GetCategoria(categoria2, usuario);
-            Assert.AreEqual("Trabajo", resultado);
+            controladoraUsuario.ModificarNombreCategoria(copia, categoria2, usuario);
+            Categoria resultado = controladoraUsuario.GetCategoria(categoria2, usuario);
+            Assert.AreEqual("Trabajo", resultado.Nombre);
         }
 
         [TestMethod]
         public void UsuarioModificarNombreCategoriaNoExistente()
         {
-            controladora.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
             Categoria categoriaNoAgregada = new Categoria()
             {
                 Nombre = "Facultad"
             };
 
-            Assert.ThrowsException<CategoriaInexistenteException>(() => controladora.ModificarNombreCategoria(categoriaNoAgregada, categoria2, usuario));
+            Assert.ThrowsException<CategoriaInexistenteException>(() => controladoraUsuario.ModificarNombreCategoria(categoriaNoAgregada, categoria2, usuario));
         }
 
         [TestMethod]
         public void UsuarioModificarNombreCategoriaANombreExistente()
         {
-            controladora.AgregarCategoria(categoria1, usuario);
-            controladora.AgregarCategoria(categoria2, usuario);
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarCategoria(categoria2, usuario);
 
             Categoria modificarVieja = new Categoria()
             {
@@ -349,13 +338,13 @@ namespace TestsObligatorio
                 Nombre = categoria2.Nombre
             };
 
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => controladora.ModificarNombreCategoria(modificarVieja, modificarNueva, usuario));
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => controladoraUsuario.ModificarNombreCategoria(modificarVieja, modificarNueva, usuario));
         }
 
         [TestMethod]
         public void UsuarioGetListaCategoriasVacia()
         {
-            int cantCategorias = controladora.GetListaCategorias(usuario).Count();
+            int cantCategorias = controladoraUsuario.GetListaCategorias(usuario).Count();
 
             Assert.IsTrue(cantCategorias == 0);
         }
@@ -363,23 +352,23 @@ namespace TestsObligatorio
         [TestMethod]
         public void UsuarioGetListaCategoriasNoVacia()
         {
-            controladora.AgregarCategoria(categoria1, usuario);
-            Assert.IsNotNull(controladora.GetListaCategorias(usuario));
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            Assert.IsNotNull(controladoraUsuario.GetListaCategorias(usuario));
         }
 
         [TestMethod]
         public void UsuarioGetListaCategoriasNoVaciaCantidad()
         {
-            controladora.AgregarCategoria(categoria1, usuario);
-            int cantCategorias = controladora.GetListaCategorias(usuario).Count();
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            int cantCategorias = controladoraUsuario.GetListaCategorias(usuario).Count();
             Assert.IsTrue(cantCategorias>0);
         }
 
         [TestMethod]
         public void UsuarioGetListaCategoriasEsIgual()
         {
-            controladora.AgregarCategoria(categoria1, usuario);
-            controladora.AgregarCategoria(categoria2, usuario);
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarCategoria(categoria2, usuario);
 
             List<Categoria> categorias = new List<Categoria>
             {
@@ -387,7 +376,7 @@ namespace TestsObligatorio
                 categoria2
             };
 
-            List<Categoria> resultado = controladora.GetListaCategorias(usuario);
+            List<Categoria> resultado = controladoraUsuario.GetListaCategorias(usuario);
 
             Assert.AreEqual(true, categorias.All(resultado.Contains)); ;
         }
