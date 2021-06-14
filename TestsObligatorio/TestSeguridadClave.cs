@@ -190,7 +190,6 @@ namespace TestsObligatorio
         {
             controladoraUsuario.AgregarCategoria(categoria1, usuario);
             controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
-
             controladoraDataBreach.AgregarDataBreach(datos1, DateTime.Now, usuario);
             string aVerificar = clave1.Codigo;
 
@@ -202,12 +201,25 @@ namespace TestsObligatorio
         {
             controladoraUsuario.AgregarCategoria(categoria1, usuario);
             controladoraUsuario.AgregarClave(clave2, categoria1, usuario);
-
             controladoraDataBreach.AgregarDataBreach(datos1, DateTime.Now, usuario);
             controladoraDataBreach.AgregarDataBreach(datos2, DateTime.Now, usuario);
+
             string aVerificar = clave2.Codigo;
 
             Assert.AreEqual(true, nivelSeguridad.EstaClaveContenidaEnDataBrech(aVerificar, usuario));
+        }
+
+        [TestMethod]
+        public void UsuarioClaveCumpleRequerimientosNoCumplePorEstarEnDataBreach()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
+            controladoraDataBreach.AgregarDataBreach(datos1, DateTime.Now, usuario);
+            controladoraDataBreach.AgregarDataBreach(datos2, DateTime.Now, usuario);
+
+            string aVerificar = clave2.Codigo;
+
+            Assert.ThrowsException<ClaveEstaEnDataBreachException>(() => nivelSeguridad.ClaveCumpleRequerimientos(aVerificar, usuario));
         }
     }
 }

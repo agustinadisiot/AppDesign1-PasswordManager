@@ -64,6 +64,7 @@ namespace LogicaDeNegocio
         {
             if (this.EsClaveRepetida(aVerificar, contenedor)) throw new ClaveDuplicadaException();
             if (!this.EsClaveNivelSeguro(aVerificar)) throw new ClaveNoSeguraException();
+            if (this.EstaClaveContenidaEnDataBrech(aVerificar, contenedor)) throw new ClaveEstaEnDataBreachException();
         }
 
         public bool EstaClaveContenidaEnDataBrech(string aVerificar, Usuario usuario)
