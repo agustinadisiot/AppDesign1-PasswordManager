@@ -170,9 +170,9 @@ namespace LogicaDeNegocio
             accesoCompartidas.Borrar(aEliminar);
 
             usuarioOriginal.CompartidasPorMi.Remove(aEliminar);
-            acceso.Modificar(usuarioOriginal);
+            /*acceso.Modificar(usuarioOriginal);*/
             usuarioDestino.CompartidasConmigo.Remove(aEliminar);
-            acceso.Modificar(usuarioDestino);
+            /*acceso.Modificar(usuarioDestino);*/
 
 
 

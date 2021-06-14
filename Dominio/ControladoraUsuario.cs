@@ -158,8 +158,10 @@ namespace LogicaDeNegocio
 
             foreach(ClaveCompartida aDejarDeCompartir in clavesCompartidas)
             {
+                aDejarDeCompartir.Original = contenedor;
                 ControladoraAdministrador controladoraAdministrador = new ControladoraAdministrador();
                 controladoraAdministrador.DejarDeCompartir(aDejarDeCompartir);
+                contenedor.CompartidasPorMi.Remove(aDejarDeCompartir);
             }
 
             ControladoraCategoria controladoraCategoria = new ControladoraCategoria();

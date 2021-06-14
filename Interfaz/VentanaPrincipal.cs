@@ -216,7 +216,7 @@ namespace Interfaz
             }
 
             Usuario usuarioAMostrar = this._controladoraAdministrador.GetUsuario(usuarioABuscar);
-            Clave claveAMostrar = this._controladoraUsuario.GetClave(buscadora, this._usuarioActual);
+            Clave claveAMostrar = this._controladoraUsuario.GetClave(buscadora, usuarioAMostrar);
             VerClave verClaveSeleccionada = new VerClave(claveAMostrar, usuarioAMostrar);
             verClaveSeleccionada.SalirDeVerClave_Event += this.SalirDeVerClave_Handler;
             this.panelPrincipal.Controls.Clear();
