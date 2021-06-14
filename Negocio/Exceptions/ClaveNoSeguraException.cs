@@ -13,7 +13,7 @@ namespace Negocio
 
         public ClaveNoSeguraException()
         {
-            this.message = "La contraseña no es segura.";
+            this.message = "Contraseña no Segura: La contraseña es demasiado debil.";
         }
     }
 }

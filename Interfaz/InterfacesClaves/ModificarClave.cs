@@ -88,6 +88,8 @@ namespace Interfaz.InterfacesClaves
                         CategoriaVieja = this._controladoraUsuario.GetCategoriaClave(this._vieja, this._actual),
                         CategoriaNueva = categoria
                     };
+                    NivelSeguridad nivelSeguridad = new NivelSeguridad();
+                    nivelSeguridad.ClaveCumpleRequerimientos(nueva.Codigo, _actual);
                     this._controladoraUsuario.ModificarClave(aModificar, this._actual);
                     this.CerrarModificarClave();
                 }
@@ -102,6 +104,10 @@ namespace Interfaz.InterfacesClaves
                 catch (ObjetoInexistenteException)
                 {
                     this.labelErrores.Text = "Error: No existe la contraseña original.";
+                }
+                catch (Exception x)
+                {
+                    this.labelErrores.Text = x.Message;
                 }
             }
             catch (Exception)
