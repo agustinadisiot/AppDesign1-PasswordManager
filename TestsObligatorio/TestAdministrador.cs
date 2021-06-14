@@ -488,6 +488,8 @@ namespace TestsObligatorio
             controladoraAdministrador.CompartirClave(claveCompartida);
 
             controladoraAdministrador.DejarDeCompartir(claveCompartida);
+            usuario = controladoraAdministrador.GetUsuario(usuario);
+            clave1 = controladoraUsuario.GetClave(clave1,usuario);
             Assert.IsFalse(clave1.EsCompartida);
         }
 

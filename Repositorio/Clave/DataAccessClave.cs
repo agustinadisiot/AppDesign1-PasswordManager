@@ -59,6 +59,7 @@ namespace Repositorio
                 aModificar.UsuarioClave = entity.UsuarioClave;
                 aModificar.Sitio = entity.Sitio;
                 aModificar.Nota = entity.Nota;
+                aModificar.EsCompartida = entity.EsCompartida;
                 if (aModificar.Codigo != entity.Codigo)
                 {
                     aModificar.Codigo = entity.Codigo;
