@@ -151,6 +151,7 @@ namespace LogicaDeNegocio
 
         public void DejarDeCompartir(ClaveCompartida aDejarCompartir)
         {
+            List<Usuario> usuarios = this.GetListaUsuarios();
             DataAccessUsuario acceso = new DataAccessUsuario();
             ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
             ControladoraClave controladoraClave = new ControladoraClave();
@@ -168,11 +169,11 @@ namespace LogicaDeNegocio
             DataAccessClaveCompartida accesoCompartidas = new DataAccessClaveCompartida();
             accesoCompartidas.Borrar(aEliminar);
 
-            usuarioOriginal.CompartidasPorMi.Remove(aEliminar);
+            /*usuarioOriginal.CompartidasPorMi.Remove(aEliminar);
             acceso.Modificar(usuarioOriginal);
             usuarioDestino.CompartidasConmigo.Remove(aEliminar);
             acceso.Modificar(usuarioDestino);
-
+*/
             
 
             bool sigueCompartida = usuarioOriginal.CompartidasPorMi.Any(buscadora => buscadora.Clave.Equals(claveADejarDeCompartir));

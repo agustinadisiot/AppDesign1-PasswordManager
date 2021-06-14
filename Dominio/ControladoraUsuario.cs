@@ -347,7 +347,22 @@ namespace LogicaDeNegocio
 
         public ClaveCompartida GetClaveCompartidaPorMi(ClaveCompartida buscadora, Usuario contenedor)
         {
-            if (!contenedor.CompartidasPorMi.Contains(buscadora)) throw new ObjetoInexistenteException();
+            bool encontro = false;
+            foreach (ClaveCompartida porMi in contenedor.CompartidasPorMi) {
+                try
+                {
+                    if (porMi.Destino != null) {
+                        if (buscadora.Equals(porMi)) {
+                            return porMi;
+                        }
+                    }
+                }
+                catch (Exception e) { };
+            }
+
+            if (!encontro) {
+                throw new ObjetoInexistenteException();
+            }
             return contenedor.CompartidasPorMi.First(aBuscar => aBuscar.Equals(buscadora));
         }
 

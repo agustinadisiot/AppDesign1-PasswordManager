@@ -7,13 +7,13 @@ namespace Repositorio.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class DesdeUsuario : IMigrationMetadata
+    public sealed partial class UsuariosConTypeConfig : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(DesdeUsuario));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UsuariosConTypeConfig));
         
         string IMigrationMetadata.Id
         {
-            get { return "202106132215221_DesdeUsuario"; }
+            get { return "202106140244147_UsuariosConTypeConfig"; }
         }
         
         string IMigrationMetadata.Source

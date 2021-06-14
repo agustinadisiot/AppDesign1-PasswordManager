@@ -60,9 +60,9 @@
     <Compile Include="ClaveCompartida\DataAccessClaveCompartida.cs" />
     <Compile Include="DataBreach\DataAccessDataBreach.cs" />
     <Compile Include="Filtrada\DataAccessFiltrada.cs" />
-    <Compile Include="Migrations\202106132215221_DesdeUsuario.cs" />
-    <Compile Include="Migrations\202106132215221_DesdeUsuario.designer.cs">
-      <DependentUpon>202106132215221_DesdeUsuario.cs</DependentUpon>
+    <Compile Include="Migrations\202106140244147_UsuariosConTypeConfig.cs" />
+    <Compile Include="Migrations\202106140244147_UsuariosConTypeConfig.designer.cs">
+      <DependentUpon>202106140244147_UsuariosConTypeConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="Tarjeta\DataAccessTarjeta.cs" />
     <Compile Include="Usuario\DataAccessUsuario.cs" />
@@ -85,8 +85,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202106132215221_DesdeUsuario.resx">
-      <DependentUpon>202106132215221_DesdeUsuario.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106140244147_UsuariosConTypeConfig.resx">
+      <DependentUpon>202106140244147_UsuariosConTypeConfig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
