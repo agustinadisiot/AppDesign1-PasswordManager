@@ -65,5 +65,22 @@ namespace LogicaDeNegocio
             if (this.EsClaveRepetida(aVerificar, contenedor)) throw new ClaveDuplicadaException();
             if (!this.EsClaveNivelSeguro(aVerificar)) throw new ClaveNoSeguraException();
         }
+
+        public bool EstaClaveContenidaEnDataBrech(string aVerificar, Usuario usuario)
+        {
+            ControladoraClave controladoraClave = new ControladoraClave();
+            Clave claveAVerificar = new Clave()
+            {
+                Codigo = aVerificar
+            };
+            foreach(DataBreach dataBreach in usuario.DataBreaches)
+            {
+                if (controladoraClave.FueFiltrado(claveAVerificar, dataBreach.Filtradas))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

@@ -1,29 +1,26 @@
 ﻿using LogicaDeNegocio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Negocio;
-using Repositorio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TestsObligatorio
 {
     [TestClass]
-    class TestSeguridadClave
+    public class TestSeguridadClave
     {
         private ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
-        private DataAccessUsuario accesoUsuario;
-        private DataAccessCategoria accesoCategoria;
-        private DataAccessClave accesoClave;
         private NivelSeguridad nivelSeguridad = new NivelSeguridad();
-
         private Usuario usuario;
         private Categoria categoria1;
         private Categoria categoria2;
         private Clave clave1;
         private Clave clave2;
+        private ControladoraDataBreach controladoraDataBreach;
+        private List<Filtrada> datos1;
+        private List<Filtrada> datos2;
+        private ControladoraAdministrador controladoraAdministrador;
 
         [TestCleanup]
         public void TearDown()
@@ -35,27 +32,8 @@ namespace TestsObligatorio
         public void Setup()
         {
 
-            accesoUsuario = new DataAccessUsuario();
-            List<Usuario> usuariosABorrar = (List<Usuario>)accesoUsuario.GetTodos();
-            foreach (Usuario actual in usuariosABorrar)
-            {
-                accesoUsuario.Borrar(actual);
-            }
-
-            accesoCategoria = new DataAccessCategoria();
-            List<Categoria> categoriasABorrar = (List<Categoria>)accesoCategoria.GetTodos();
-            foreach (Categoria actual in categoriasABorrar)
-            {
-                accesoCategoria.Borrar(actual);
-            }
-
-
-            accesoClave = new DataAccessClave();
-            List<Clave> clavesABorrar = (List<Clave>)accesoClave.GetTodos();
-            foreach (Clave actual in clavesABorrar)
-            {
-                accesoClave.Borrar(actual);
-            }
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.BorrarTodo();
 
             usuario = new Usuario()
             {
@@ -87,6 +65,28 @@ namespace TestsObligatorio
                 UsuarioClave = "Luis88",
                 Nota = "Nota de una clave"
             };
+
+            List<string> datosString1 = new List<string>
+            {
+                "EstaEsUnaClave1",
+                "1234567890987634",
+                "claveDeNetflix"
+            };
+
+            datos1 = datosString1.Select(s => new Filtrada(s)).ToList();
+
+            List<string> datosString2 = new List<string>
+            {
+                "1234567890987634",
+                "EstaEsUnaClave2"
+            };
+
+            datos2 = datosString2.Select(s => new Filtrada(s)).ToList();
+
+            controladoraDataBreach = new ControladoraDataBreach();
+
+            controladoraAdministrador.AgregarUsuario(usuario);
+
         }
 
         [TestMethod]
@@ -160,6 +160,7 @@ namespace TestsObligatorio
 
             Assert.ThrowsException<ClaveDuplicadaException>(() => nivelSeguridad.ClaveCumpleRequerimientos(aVerificar, usuario));
         }
+
         [TestMethod]
         public void UsuarioClaveCumpleRequerimientosNoCumplePorNivelSeguridad()
         {
@@ -170,6 +171,43 @@ namespace TestsObligatorio
             controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
 
             Assert.ThrowsException<ClaveNoSeguraException>(() => nivelSeguridad.ClaveCumpleRequerimientos(aVerificar, usuario));
+        }
+
+        [TestMethod]
+        public void UsuarioEstaClaveContenidaEnDataBrechNoContenida()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave2, categoria1, usuario);
+
+            controladoraDataBreach.AgregarDataBreach(datos1, DateTime.Now, usuario);
+            string aVerificar = "ClaveNoContenida";
+
+            Assert.AreEqual(false, nivelSeguridad.EstaClaveContenidaEnDataBrech(aVerificar, usuario));
+        }
+
+        [TestMethod]
+        public void UsuarioEstaClaveContenidaEnDataBrechSiContenida()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
+
+            controladoraDataBreach.AgregarDataBreach(datos1, DateTime.Now, usuario);
+            string aVerificar = clave1.Codigo;
+
+            Assert.AreEqual(true, nivelSeguridad.EstaClaveContenidaEnDataBrech(aVerificar, usuario));
+        }
+
+        [TestMethod]
+        public void UsuarioEstaClaveContenidaEnDataBrechSiContenidaConMasDeUnaDataBreach()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave2, categoria1, usuario);
+
+            controladoraDataBreach.AgregarDataBreach(datos1, DateTime.Now, usuario);
+            controladoraDataBreach.AgregarDataBreach(datos2, DateTime.Now, usuario);
+            string aVerificar = clave2.Codigo;
+
+            Assert.AreEqual(true, nivelSeguridad.EstaClaveContenidaEnDataBrech(aVerificar, usuario));
         }
     }
 }
