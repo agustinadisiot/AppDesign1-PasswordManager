@@ -1,4 +1,5 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Windows.Forms;
 
@@ -8,10 +9,12 @@ namespace Interfaz
     {
         private Clave _claveAMostrar;
         private Usuario _usuarioActual;
+        private ControladoraUsuario _controladoraUsuario;
 
         public VerClave(Clave claveAMostrar, Usuario usuarioActual)
         {
             InitializeComponent();
+            _controladoraUsuario = new ControladoraUsuario();
             _claveAMostrar = claveAMostrar;
             _usuarioActual = usuarioActual;
             this.CargarDatos();
@@ -19,7 +22,7 @@ namespace Interfaz
 
         private void CargarDatos()
         {
-            Categoria categoriaAMostrar = _usuarioActual.GetCategoriaClave(_claveAMostrar);
+            Categoria categoriaAMostrar = this._controladoraUsuario.GetCategoriaClave(this._claveAMostrar, this._usuarioActual);
             string nombreCateogiraAMostrar = categoriaAMostrar.Nombre;
             string sitioAMostrar = _claveAMostrar.Sitio;
             string usuarioAMostrar = _claveAMostrar.UsuarioClave;

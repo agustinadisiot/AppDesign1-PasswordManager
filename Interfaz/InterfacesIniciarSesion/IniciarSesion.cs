@@ -1,4 +1,5 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Windows.Forms;
 
@@ -6,11 +7,11 @@ namespace Interfaz
 {
     public partial class IniciarSesion : UserControl
     {
-        private Administrador _administrador;
+        private ControladoraAdministrador _administrador;
 
-        public IniciarSesion(Administrador administrador)
+        public IniciarSesion()
         {
-            this._administrador = administrador;
+            this._administrador = new ControladoraAdministrador();
             InitializeComponent();
         }
 

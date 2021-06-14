@@ -1,13 +1,18 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Dominio;
+using LogicaDeNegocio;
 using System;
 using System.Linq;
+using Negocio;
+using Repositorio;
+using System.Collections.Generic;
 
 namespace TestsObligatorio
 {
     [TestClass]
     public class TestClave
     {
+        private ControladoraAdministrador controladoraAdministrador;
+        private ControladoraClave controladora;
         private Clave clave1;
         private Clave clave2;
         private string menorA5;
@@ -19,6 +24,12 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.BorrarTodo();
+            controladora = new ControladoraClave();
+
+            
+
             clave1 = new Clave()
             {
                 Sitio = "ort.edu.uy",
@@ -44,7 +55,6 @@ namespace TestsObligatorio
             color = new ColorNivelSeguridad();
 
             tiempoActual = System.DateTime.Now.Date;
-
         }
 
         [TestMethod]
@@ -64,13 +74,15 @@ namespace TestsObligatorio
         [TestMethod]
         public void ClaveLargoUsuarioMenorA5()
         {
-            Assert.ThrowsException<LargoIncorrectoException>(() => clave1.UsuarioClave = menorA5);
+            clave1.UsuarioClave = menorA5;
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarUsuarioClave(clave1));
         }
 
         [TestMethod]
         public void ClaveLargoUsuarioMayorA25()
         {
-            Assert.ThrowsException<LargoIncorrectoException>(() => clave1.UsuarioClave = mayorA25);
+            clave1.UsuarioClave = mayorA25;
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarUsuarioClave(clave1));
         }
 
         [TestMethod]
@@ -91,13 +103,15 @@ namespace TestsObligatorio
         [TestMethod]
         public void ClaveLargoClaveMenorA5()
         {
-            Assert.ThrowsException<LargoIncorrectoException>(() => clave1.Codigo = menorA5);
+            clave1.Codigo = menorA5;
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarCodigo(clave1));
         }
 
         [TestMethod]
         public void ClaveLargoClaveMayorA25()
         {
-            Assert.ThrowsException<LargoIncorrectoException>(() => clave1.Codigo = mayorA25);
+            clave1.Codigo = mayorA25;
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarCodigo(clave1));
         }
 
         [TestMethod]
@@ -118,13 +132,15 @@ namespace TestsObligatorio
         [TestMethod]
         public void ClaveLargoSitioMenorA3()
         {
-            Assert.ThrowsException<LargoIncorrectoException>(() => clave1.Sitio = "a");
+            clave1.Sitio = "a";
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarSitio(clave1));
         }
 
         [TestMethod]
         public void ClaveLargoSitioMayorA25()
         {
-            Assert.ThrowsException<LargoIncorrectoException>(() => clave1.Sitio = mayorA25);
+            clave1.Sitio = mayorA25;
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarSitio(clave1));
         }
 
         [TestMethod]
@@ -147,7 +163,8 @@ namespace TestsObligatorio
         {
             string notaMayorA250 = "";
             for (int i = 0; i < 251; i++) notaMayorA250 += "C";
-            Assert.ThrowsException<LargoIncorrectoException>(() => clave1.Nota = notaMayorA250);
+            clave1.Nota = notaMayorA250;
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarNota(clave1));
         }
 
         [TestMethod]
@@ -239,7 +256,6 @@ namespace TestsObligatorio
         [TestMethod]
         public void ClaveEqualsConMayYMin()
         {
-
             clave2.Sitio = clave1.Sitio.ToUpper();
             clave2.UsuarioClave = clave1.UsuarioClave.ToUpper();
             Assert.AreEqual(clave1, clave2);
@@ -253,9 +269,58 @@ namespace TestsObligatorio
         [TestMethod]
         public void ClaveGetFechaModificacionClaveVieja()
         {
-            clave1.FechaModificacion = new DateTime(2000, 1, 1);
-            clave1.Codigo = "ClaveNueva";
-            Assert.AreEqual(tiempoActual, clave1.FechaModificacion);
+            clave1 = new Clave()
+            {
+                Sitio = "web.whatsapp.com",
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto",
+                Nota = "",
+                FechaModificacion = DateTime.Now
+            };
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "usuario",
+                ClaveMaestra = "12345ABCD"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            ControladoraAdministrador controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.AgregarUsuario(usuario);
+
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+            controladoraUsuario.AgregarCategoria(categoria, usuario);
+
+
+            controladoraUsuario.AgregarClave(clave1, categoria, usuario);
+
+            Clave aModificar = new Clave()
+            {
+                Codigo = "CodigoModificado",
+                Nota = "",
+                UsuarioClave = "usuario",
+                Sitio = "Sitio",
+                FechaModificacion = new DateTime(2000, 1, 1),
+                Id = clave1.Id
+            };
+
+            /*ClaveAModificar claveAModificar = new ClaveAModificar()
+            {
+                CategoriaNueva = categoria,
+                CategoriaVieja = categoria,
+                ClaveVieja = aAgregar,
+                ClaveNueva = aModificar
+            };*/
+
+            controladora.Modificar(aModificar);
+
+
+
+            Assert.AreEqual(tiempoActual, aModificar.FechaModificacion);
         }
 
 

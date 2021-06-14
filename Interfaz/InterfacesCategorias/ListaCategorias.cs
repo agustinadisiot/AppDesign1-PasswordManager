@@ -1,4 +1,5 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -8,17 +9,18 @@ namespace Interfaz
     public partial class ListaCategorias : UserControl
     {
         private Usuario _usuarioActual;
+        private ControladoraUsuario _controladoraUsuario;
 
         public ListaCategorias(Usuario usuarioAgregar)
         {
             InitializeComponent();
+            this._controladoraUsuario = new ControladoraUsuario();
             this._usuarioActual = usuarioAgregar;
         }
 
         private void CargarTabla()
         {
-
-            List<Categoria> listaCategorias = this._usuarioActual.GetListaCategorias();
+            List<Categoria> listaCategorias = this._controladoraUsuario.GetListaCategorias(_usuarioActual);
 
             foreach (Categoria categoriaActual in listaCategorias)
             {

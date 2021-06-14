@@ -1,4 +1,5 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -9,11 +10,13 @@ namespace Interfaz.InterfacesClaves
     {
         private Usuario _actual;
         private Clave _vieja;
+        private ControladoraUsuario _controladoraUsuario;
 
         public ModificarClave(Usuario usuario, Clave clave)
         {
             this._actual = usuario;
             this._vieja = clave;
+            this._controladoraUsuario = new ControladoraUsuario();
             InitializeComponent();
         }
 
@@ -34,16 +37,15 @@ namespace Interfaz.InterfacesClaves
         private void CargarComboBox()
         {
             this.comboBoxCategorias.Items.Clear();
-            List<Categoria> lista = this._actual.GetListaCategorias();
+            List<Categoria> lista = this._controladoraUsuario.GetListaCategorias(this._actual);
 
             foreach (Categoria actual in lista)
             {
                 string nombre = actual.Nombre;
                 this.comboBoxCategorias.Items.Add(nombre);
-
             }
 
-            Categoria pertence = this._actual.GetCategoriaClave(this._vieja);
+            Categoria pertence = this._controladoraUsuario.GetCategoriaClave(this._vieja, this._actual);
 
             this.comboBoxCategorias.SelectedItem = pertence.Nombre;
 
@@ -83,10 +85,10 @@ namespace Interfaz.InterfacesClaves
                     {
                         ClaveVieja = this._vieja,
                         ClaveNueva = nueva,
-                        CategoriaVieja = this._actual.GetCategoriaClave(this._vieja),
+                        CategoriaVieja = this._controladoraUsuario.GetCategoriaClave(this._vieja, this._actual),
                         CategoriaNueva = categoria
                     };
-                    this._actual.ModificarClave(aModificar);
+                    this._controladoraUsuario.ModificarClave(aModificar, this._actual);
                     this.CerrarModificarClave();
                 }
                 catch (ObjetoYaExistenteException)

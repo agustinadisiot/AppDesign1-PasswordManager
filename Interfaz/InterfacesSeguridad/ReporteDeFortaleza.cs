@@ -1,4 +1,5 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -8,11 +9,13 @@ namespace Interfaz.InterfacesSeguridad
     public partial class ReporteDeFortaleza : UserControl
     {
         private Usuario _usuarioActual;
+        private ControladoraUsuario _controladoraUsuario;
 
         public ReporteDeFortaleza(Usuario actual)
         {
             InitializeComponent();
             _usuarioActual = actual;
+            _controladoraUsuario = new ControladoraUsuario();
         }
 
         private void ReporteDeFortaleza_Load(object sender, EventArgs e)
@@ -41,11 +44,11 @@ namespace Interfaz.InterfacesSeguridad
                 DataGridViewRow selectedRow = TablaReporte.Rows[selectedrowindex];
                 string color = Convert.ToString(selectedRow.Cells["Color"].Value);
 
-                List<Clave> listaClaves = this._usuarioActual.GetListaClavesColor(color);
+                List<Clave> listaClaves =this._controladoraUsuario.GetListaClavesColor(color, this._usuarioActual);
 
                 foreach (Clave claveActual in listaClaves)
                 {
-                    string nombreCategoria = this._usuarioActual.GetCategoriaClave(claveActual).Nombre;
+                    string nombreCategoria = this._controladoraUsuario.GetCategoriaClave(claveActual, this._usuarioActual).Nombre;
                     string sitio = claveActual.Sitio;
                     string usuario = claveActual.UsuarioClave;
                     string ultimaModificacion = claveActual.FechaModificacion.ToString(formatoFecha);
@@ -58,11 +61,11 @@ namespace Interfaz.InterfacesSeguridad
         {
             ColorNivelSeguridad color = new ColorNivelSeguridad();
 
-            int cantidadRojos = _usuarioActual.GetCantidadColor(color.Rojo);
-            int cantidadNaranja = _usuarioActual.GetCantidadColor(color.Naranja);
-            int cantidadAmarillo = _usuarioActual.GetCantidadColor(color.Amarillo);
-            int cantidadVerdeClaro = _usuarioActual.GetCantidadColor(color.VerdeClaro);
-            int cantidadVerdeOscuro = _usuarioActual.GetCantidadColor(color.VerdeOscuro);
+            int cantidadRojos = this._controladoraUsuario.GetCantidadColor(color.Rojo, this._usuarioActual);
+            int cantidadNaranja = this._controladoraUsuario.GetCantidadColor(color.Naranja, this._usuarioActual);
+            int cantidadAmarillo = this._controladoraUsuario.GetCantidadColor(color.Amarillo, this._usuarioActual);
+            int cantidadVerdeClaro = this._controladoraUsuario.GetCantidadColor(color.VerdeClaro, this._usuarioActual);
+            int cantidadVerdeOscuro = this._controladoraUsuario.GetCantidadColor(color.VerdeOscuro, this._usuarioActual);
 
             this.TablaReporte.Rows.Add(color.Rojo, cantidadRojos);
             this.TablaReporte.Rows.Add(color.Naranja, cantidadNaranja);

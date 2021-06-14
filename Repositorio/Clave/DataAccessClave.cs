@@ -1,4 +1,4 @@
-﻿using Dominio;
+﻿using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +41,13 @@ namespace Repositorio
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                return contexto.Claves.ToList();
+                try
+                {
+                    return contexto.Claves.ToList();
+                }
+                catch (Exception) {
+                    return new List<Clave>();
+                }
             }
         }
 
@@ -53,6 +59,7 @@ namespace Repositorio
                 aModificar.UsuarioClave = entity.UsuarioClave;
                 aModificar.Sitio = entity.Sitio;
                 aModificar.Nota = entity.Nota;
+                aModificar.EsCompartida = entity.EsCompartida;
                 if (aModificar.Codigo != entity.Codigo)
                 {
                     aModificar.Codigo = entity.Codigo;

@@ -60,15 +60,15 @@
     <Compile Include="ClaveCompartida\DataAccessClaveCompartida.cs" />
     <Compile Include="DataBreach\DataAccessDataBreach.cs" />
     <Compile Include="Filtrada\DataAccessFiltrada.cs" />
+    <Compile Include="Migrations\202106140244147_UsuariosConTypeConfig.cs" />
+    <Compile Include="Migrations\202106140244147_UsuariosConTypeConfig.designer.cs">
+      <DependentUpon>202106140244147_UsuariosConTypeConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tarjeta\DataAccessTarjeta.cs" />
     <Compile Include="Usuario\DataAccessUsuario.cs" />
     <Compile Include="DataBreach\DataBreachTypeConfiguration.cs" />
     <Compile Include="Filtrada\FiltradaTypeConfiguration.cs" />
     <Compile Include="IDataAccess.cs" />
-    <Compile Include="Migrations\202106121514219_CreadoDataAccessClaveCompartida.cs" />
-    <Compile Include="Migrations\202106121514219_CreadoDataAccessClaveCompartida.designer.cs">
-      <DependentUpon>202106121514219_CreadoDataAccessClaveCompartida.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tarjeta\TarjetaTypeConfiguration.cs" />
@@ -79,14 +79,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Dominio\Dominio.csproj">
-      <Project>{a2333956-836c-42ab-ad9b-dbba96727e27}</Project>
-      <Name>Dominio</Name>
+    <ProjectReference Include="..\Negocio\Negocio.csproj">
+      <Project>{6F38306E-3FD3-401F-AF5D-0622B9596C0F}</Project>
+      <Name>Negocio</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202106121514219_CreadoDataAccessClaveCompartida.resx">
-      <DependentUpon>202106121514219_CreadoDataAccessClaveCompartida.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106140244147_UsuariosConTypeConfig.resx">
+      <DependentUpon>202106140244147_UsuariosConTypeConfig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

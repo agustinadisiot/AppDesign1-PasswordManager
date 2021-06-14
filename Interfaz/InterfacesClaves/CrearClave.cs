@@ -1,4 +1,5 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -8,10 +9,12 @@ namespace Interfaz
     public partial class CrearClave : UserControl
     {
         private Usuario _usuarioActual;
+        private ControladoraUsuario _controladoraUsuario;
 
         public CrearClave(Usuario usuarioAgregar)
         {
             InitializeComponent();
+            this._controladoraUsuario = new ControladoraUsuario();
             this._usuarioActual = usuarioAgregar;
         }
 
@@ -24,7 +27,8 @@ namespace Interfaz
         private void CargarComboBox()
         {
             this.comboBoxCategorias.Items.Clear();
-            List<Categoria> lista = this._usuarioActual.GetListaCategorias();
+            
+            List<Categoria> lista = this._controladoraUsuario.GetListaCategorias(this._usuarioActual);
 
             foreach (Categoria actual in lista)
             {
@@ -73,7 +77,7 @@ namespace Interfaz
 
                     try
                     {
-                        this._usuarioActual.AgregarClave(nueva, categoria);
+                        this._controladoraUsuario.AgregarClave(nueva, categoria, _usuarioActual);
                         this.VolverAListaClaves();
                     }
                     catch (ObjetoYaExistenteException)

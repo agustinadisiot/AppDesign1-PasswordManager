@@ -1,4 +1,5 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Windows.Forms;
 
@@ -7,12 +8,12 @@ namespace Interfaz.InterfacesTarjetas
     public partial class VerTarjeta : UserControl
     {
         private Tarjeta _mostrar;
-        private Usuario _usuario;
+        private Usuario _usuarioActual;
 
         public VerTarjeta(Tarjeta ingreso, Usuario actual)
         {
             this._mostrar = ingreso;
-            this._usuario = actual;
+            this._usuarioActual = actual;
             InitializeComponent();
         }
 
@@ -23,8 +24,10 @@ namespace Interfaz.InterfacesTarjetas
         }
 
         private void CargarDatos() {
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+
             string formatoFecha = "MM '/' yyyy";
-            Categoria categoria = this._usuario.GetCategoriaTarjeta(this._mostrar);
+            Categoria categoria = controladoraUsuario.GetCategoriaTarjeta(this._mostrar, this._usuarioActual);
 
             this.labelMostrarCategoria.Text = categoria.Nombre;
             this.labelMostrarCodigo.Text = this._mostrar.Codigo;

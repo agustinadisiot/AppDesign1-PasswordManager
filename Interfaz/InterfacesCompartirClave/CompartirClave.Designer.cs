@@ -76,7 +76,6 @@ namespace Interfaz
             this.labelUsuario.Size = new System.Drawing.Size(74, 24);
             this.labelUsuario.TabIndex = 23;
             this.labelUsuario.Text = "Usuario";
-            this.labelUsuario.Click += new System.EventHandler(this.labelUsuario_Click);
             // 
             // labelSitio
             // 

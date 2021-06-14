@@ -1,4 +1,5 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Windows.Forms;
 
@@ -8,12 +9,14 @@ namespace Interfaz
     {
         private Categoria _categoriaActual;
         private Usuario _usuarioActual;
+        private ControladoraUsuario _controladoraUsuario;
 
         public ModificarCategoria(Categoria categoriaAModificar, Usuario usuarioActual)
         {
             InitializeComponent();
-            _usuarioActual = usuarioActual;
-            _categoriaActual = categoriaAModificar;
+            this._usuarioActual = usuarioActual;
+            this._categoriaActual = categoriaAModificar;
+            this._controladoraUsuario = new ControladoraUsuario();
             this.textNombreCategoria.Text = _categoriaActual.Nombre;
             this.labelErrores.Text = ""; 
         }
@@ -34,7 +37,7 @@ namespace Interfaz
 
                 try
                 {
-                    _usuarioActual.ModificarNombreCategoria(_categoriaActual, categoriaModificada);
+                    this._controladoraUsuario.ModificarNombreCategoria(this._categoriaActual, categoriaModificada, this._usuarioActual);
 
                     VolverAListaCategorias();
                 }

@@ -1,4 +1,5 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Windows.Forms;
 
@@ -7,10 +8,12 @@ namespace Interfaz
     public partial class AgregarCategoria : UserControl
     {
         private Usuario _usuarioActual;
+        private ControladoraUsuario _controladoraUsuario;
 
         public AgregarCategoria(Usuario usuarioAgregar)
         {
             InitializeComponent();
+            this._controladoraUsuario = new ControladoraUsuario();
             this._usuarioActual = usuarioAgregar;
             this.labelErrores.Text = "";
         }
@@ -28,7 +31,7 @@ namespace Interfaz
                 this.textNombreCategoria.Clear();
                 try
                 {
-                    _usuarioActual.AgregarCategoria(nuevaCategoria);
+                    this._controladoraUsuario.AgregarCategoria(nuevaCategoria, _usuarioActual);
 
                     VolverAListaCategorias();
                 }

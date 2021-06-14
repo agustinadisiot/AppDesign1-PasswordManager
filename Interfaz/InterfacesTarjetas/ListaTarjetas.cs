@@ -1,4 +1,5 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -17,14 +18,14 @@ namespace Interfaz
         }
 
         private void CargarTabla() {
-
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
             string formatoTarjeta = "MM'/'yyyy";
             this.tablaTarjetas.Rows.Clear();
 
-            List<Tarjeta> listaTarjeta = this._usuarioActual.GetListaTarjetas();
+            List<Tarjeta> listaTarjeta = controladoraUsuario.GetListaTarjetas(this._usuarioActual);
 
             foreach (Tarjeta tarjetaActual in listaTarjeta) {
-                string categoriaActual = this._usuarioActual.GetCategoriaTarjeta(tarjetaActual).Nombre;
+                string categoriaActual = controladoraUsuario.GetCategoriaTarjeta(tarjetaActual, this._usuarioActual).Nombre;
                 string nombre = tarjetaActual.Nombre;
                 string tipo = tarjetaActual.Tipo;
                 string numeroCompleto = tarjetaActual.Numero;
@@ -53,7 +54,7 @@ namespace Interfaz
 
         private void buttonAgregar_Click(object sender, EventArgs e)
         {
-            this.AbrirCrearTarjeta(e);
+            this.AbrirCrearTarjeta();
         }
 
         private void buttonVer_Click(object sender, EventArgs e)
@@ -106,6 +107,7 @@ namespace Interfaz
 
         private void CerrarConfirmacion_Handler(bool acepto)
         {
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
             bool haySeleccionada = this.tablaTarjetas.SelectedCells.Count > 0;
             if (haySeleccionada && acepto)
             {
@@ -118,7 +120,7 @@ namespace Interfaz
                 {
                     Numero = numeroTarjetaBorrar
                 };
-                this._usuarioActual.BorrarTarjeta(buscadora);
+                controladoraUsuario.BorrarTarjeta(buscadora, this._usuarioActual);
                 this.CargarTabla();
             }
         }
@@ -126,7 +128,7 @@ namespace Interfaz
 
         public delegate void AbrirCrearTarjeta_Delegate();
         public event AbrirCrearTarjeta_Delegate AbrirCrearTarjeta_Event;
-        private void AbrirCrearTarjeta(EventArgs e)
+        private void AbrirCrearTarjeta()
         {
             if (this.AbrirCrearTarjeta_Event != null)
                 this.AbrirCrearTarjeta_Event();

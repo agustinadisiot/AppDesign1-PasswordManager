@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Negocio;
+using System;
 using System.Collections.Generic;
 
-namespace Dominio
+namespace LogicaDeNegocio
 {
     public class GeneradoraClaves
     {

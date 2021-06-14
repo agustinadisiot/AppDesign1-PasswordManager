@@ -1,7 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Dominio;
+using LogicaDeNegocio;
 using System;
 using System.Globalization;
+using Repositorio;
+using Negocio;
+using System.Collections.Generic;
 
 namespace TestsObligatorio
 {
@@ -12,6 +15,8 @@ namespace TestsObligatorio
         private Tarjeta tarjeta1;
         private Tarjeta tarjeta2;
         private DateTime fecha1;
+        private ControladoraTarjeta controladora;
+        private ControladoraAdministrador controladoraAdministrador;
 
         [TestCleanup]
         public void TearDown()
@@ -22,6 +27,10 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.BorrarTodo();
+            controladora = new ControladoraTarjeta();
+
             fecha1 = new DateTime(2022, 5, 9);
 
             tarjeta1 = new Tarjeta()
@@ -64,13 +73,15 @@ namespace TestsObligatorio
         [TestMethod]
         public void TarjetaLargoNombreMenorA3()
         {
-            Assert.ThrowsException<LargoIncorrectoException>(() => tarjeta1.Nombre = "A");
+            tarjeta1.Nombre = "A";
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarNombre(tarjeta1));
         }
 
         [TestMethod]
         public void TarjetaLargoNombreMayorA25()
         {
-            Assert.ThrowsException<LargoIncorrectoException>(() => tarjeta1.Nombre = "NombreDeTarjetaDemasiadoLargo");
+            tarjeta1.Nombre = "NombreDeTarjetaDemasiadoLargo";
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarNombre(tarjeta1));
         }
 
         [TestMethod]
@@ -89,13 +100,15 @@ namespace TestsObligatorio
         [TestMethod]
         public void TarjetaLargoTipoMenorA3()
         {
-            Assert.ThrowsException<LargoIncorrectoException>(() => tarjeta1.Tipo = "A");
+            tarjeta1.Tipo = "A";
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarTipo(tarjeta1));
         }
 
         [TestMethod]
         public void TarjetaLargoTipoMayorA25()
         {
-            Assert.ThrowsException<LargoIncorrectoException>(() => tarjeta1.Tipo = "TipoDemasiadoLargoNoPermitido");
+            tarjeta1.Tipo = "TipoDemasiadoLargoNoPermitido";
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarTipo(tarjeta1));
         }
 
         [TestMethod]
@@ -114,25 +127,29 @@ namespace TestsObligatorio
         [TestMethod]
         public void TarjetaLargoNumeroMenorA16()
         {
-            Assert.ThrowsException<LargoIncorrectoException>(() => tarjeta1.Numero = "1215412");
+            tarjeta1.Numero = "1215412";
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarNumero(tarjeta1));
         }
 
         [TestMethod]
         public void TarjetaLargoNumeroMayorA16()
         {
-            Assert.ThrowsException<LargoIncorrectoException>(() => tarjeta1.Numero = "123456781223456781234");
+            tarjeta1.Numero = "123456781223456781234";
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarNumero(tarjeta1));
         }
 
         [TestMethod]
         public void TarjetaLargoNumeroConLetras()
         {
-            Assert.ThrowsException<CaracterInesperadoException>(() => tarjeta1.Numero = "12345BCdA2345678");
+            tarjeta1.Numero = "12345BCdA2345678";
+            Assert.ThrowsException<CaracterInesperadoException>(() => controladora.VerificarNumero(tarjeta1));
         }
 
         [TestMethod]
         public void TarjetaLargoNumeroConSimbolos()
         {
-            Assert.ThrowsException<CaracterInesperadoException>(() => tarjeta1.Numero = "12345#$%@2345678");
+            tarjeta1.Numero = "12345#$%@2345678";
+            Assert.ThrowsException<CaracterInesperadoException>(() => controladora.VerificarNumero(tarjeta1));
         }
 
         [TestMethod]
@@ -151,25 +168,29 @@ namespace TestsObligatorio
         [TestMethod]
         public void TarjetaLargoCodigoMenorA3()
         {
-            Assert.ThrowsException<LargoIncorrectoException>(() => tarjeta1.Codigo = "12");
+            tarjeta1.Codigo = "12";
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarCodigo(tarjeta1));
         }
 
         [TestMethod]
         public void TarjetaLargoCodigoMayorA4()
         {
-            Assert.ThrowsException<LargoIncorrectoException>(() => tarjeta1.Codigo = "12345");
+            tarjeta1.Codigo = "12345";
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarCodigo(tarjeta1));
         }
 
         [TestMethod]
         public void TarjetaLargoCodigoConLetras()
         {
-            Assert.ThrowsException<CaracterInesperadoException>(() => tarjeta1.Codigo = "12B");
+            tarjeta1.Codigo = "12B";
+            Assert.ThrowsException<CaracterInesperadoException>(() => controladora.VerificarCodigo(tarjeta1));
         }
 
         [TestMethod]
         public void TarjetaLargoCodigoConSimbolos()
         {
-            Assert.ThrowsException<CaracterInesperadoException>(() => tarjeta1.Codigo = "12**");
+            tarjeta1.Codigo = "12**";
+            Assert.ThrowsException<CaracterInesperadoException>(() => controladora.VerificarCodigo(tarjeta1));
         }
 
         [TestMethod]
@@ -204,7 +225,8 @@ namespace TestsObligatorio
         {
             string notaDemasiadoLarga = "";
             for (int i = 0; i < 251; i++) notaDemasiadoLarga += "T";
-            Assert.ThrowsException<LargoIncorrectoException>(() => tarjeta1.Nota = notaDemasiadoLarga);
+            tarjeta1.Nota = notaDemasiadoLarga;
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarNota(tarjeta1));
         }
 
         [TestMethod]
@@ -241,39 +263,5 @@ namespace TestsObligatorio
             Assert.ThrowsException<ObjetoIncorrectoException>(() => tarjeta1.Equals(noEsTarjeta));
         }
 
-    }
-
-    [TestClass]
-    public class TestUsuarioEnTarjeta
-    {
-        private Tarjeta tarjeta1;
-        private Usuario usuario1;
-        private Categoria categoria1;
-
-        [TestInitialize]
-        public void Setup()
-        {
-            tarjeta1 = new Tarjeta()
-            {
-                Numero = "1111111111111111",
-                Nombre = "Prex",
-                Tipo = "Mastercard",
-                Codigo = "321",
-                Nota = "",
-                Vencimiento = new DateTime(2025, 7, 1)
-
-            };
-
-            usuario1 = new Usuario()
-            {
-                Nombre = "Roberto",
-                ClaveMaestra = "12345ABCD"
-            };
-
-            categoria1 = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-        }
     }
 }

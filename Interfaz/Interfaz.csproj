@@ -275,9 +275,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Dominio\Dominio.csproj">
+    <ProjectReference Include="..\Dominio\LogicaDeNegocio.csproj">
       <Project>{A2333956-836C-42AB-AD9B-DBBA96727E27}</Project>
-      <Name>Dominio</Name>
+      <Name>LogicaDeNegocio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Negocio\Negocio.csproj">
+      <Project>{6f38306e-3fd3-401f-af5d-0622b9596c0f}</Project>
+      <Name>Negocio</Name>
     </ProjectReference>
     <ProjectReference Include="..\Repositorio\Repositorio.csproj">
       <Project>{AE07C9ED-3FEF-430A-992F-3EA6CAAE216E}</Project>

@@ -1,4 +1,5 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -9,15 +10,14 @@ namespace Interfaz
     {
         private Usuario _usuarioActual;
         private Clave _claveACompartir;
-        private Administrador _administrador;
+        private ControladoraAdministrador _controladoraAdministrador;
 
-        public CompartirClave(ClaveCompartida aCompartir, Administrador administrador)
+        public CompartirClave(ClaveCompartida aCompartir)
         {
             InitializeComponent();
             this._usuarioActual = aCompartir.Original;
             this._claveACompartir = aCompartir.Clave;
-            this._administrador = administrador;
-            
+            this._controladoraAdministrador = new ControladoraAdministrador();
         }
 
         private void CompartirClave_Load(object sender, EventArgs e)
@@ -30,7 +30,7 @@ namespace Interfaz
         private void CargarComboBox()
         {
             this.comboCompartir.Items.Clear();
-            List<Usuario> lista = this._administrador.GetListaUsuarios();
+            List<Usuario> lista = this._controladoraAdministrador.GetListaUsuarios();
 
             foreach (Usuario actual in lista)
             {
@@ -79,7 +79,7 @@ namespace Interfaz
                         Nombre = nombreUsuarioACompartir
                     };
 
-                    Usuario usuarioACompartir = this._administrador.GetUsuario(buscador);
+                    Usuario usuarioACompartir = this._controladoraAdministrador.GetUsuario(buscador);
 
                     ClaveCompartida claveACompartir = new ClaveCompartida()
                     {
@@ -88,7 +88,7 @@ namespace Interfaz
                         Clave = _claveACompartir
                     };
 
-                    this._usuarioActual.CompartirClave(claveACompartir);
+                    this._controladoraAdministrador.CompartirClave(claveACompartir);
 
                     this.VolverAListaClaves();
                 }
@@ -100,11 +100,6 @@ namespace Interfaz
             else {
                 this.labelErrores.Text = "Error: Debe elegir un usuario al cual compartir.";
             }
-        }
-
-        private void labelUsuario_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

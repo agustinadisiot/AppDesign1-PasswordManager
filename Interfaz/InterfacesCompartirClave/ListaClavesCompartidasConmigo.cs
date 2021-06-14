@@ -1,4 +1,5 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -7,14 +8,12 @@ namespace Interfaz
 {
     public partial class ListaClavesCompartidasConmigo : UserControl
     {
-        private Administrador _administrador;
         private Usuario _usuarioActual;
 
-        public ListaClavesCompartidasConmigo(Usuario usuarioAgregar, Administrador administradorAgregar)
+        public ListaClavesCompartidasConmigo(Usuario usuarioAgregar)
         {
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;
-            this._administrador = administradorAgregar;
             this.CargarTabla();
         }
 

@@ -1,4 +1,5 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -7,14 +8,16 @@ namespace Interfaz.InterfacesCompartirClave
 {
     public partial class ListaClavesCompartidasPorMi : UserControl
     {
-        private Administrador _administrador;
         private Usuario _usuarioActual;
+        private ControladoraUsuario _controladoraUsuario;
+        private ControladoraAdministrador _controladoraAdministrador;
 
-        public ListaClavesCompartidasPorMi(Usuario usuarioAgregar, Administrador administradorAgregar)
+        public ListaClavesCompartidasPorMi(Usuario usuarioAgregar)
         {
             InitializeComponent();
             this._usuarioActual = usuarioAgregar;
-            this._administrador = administradorAgregar;
+            this._controladoraUsuario = new ControladoraUsuario();
+            this._controladoraAdministrador = new ControladoraAdministrador();
             this.CargarTabla();
         }
 
@@ -79,9 +82,9 @@ namespace Interfaz.InterfacesCompartirClave
                     Destino = usuarioBuscador
                 };
 
-                ClaveCompartida aEliminar = this._usuarioActual.GetClaveCompartidaPorMi(buscadora);
+                ClaveCompartida aEliminar = this._controladoraUsuario.GetClaveCompartidaPorMi(buscadora, this._usuarioActual);
 
-                this._usuarioActual.DejarDeCompartir(aEliminar);
+                this._controladoraAdministrador.DejarDeCompartir(aEliminar);
                 this.CargarTabla();
             }
         }
