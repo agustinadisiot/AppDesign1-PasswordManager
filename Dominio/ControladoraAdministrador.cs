@@ -37,7 +37,6 @@ namespace LogicaDeNegocio
                 daFiltrada.Borrar(filtrada);
             }
 
-
             DataAccessDataBreach daDataBreach = new DataAccessDataBreach();
             List<DataBreach> dataBreaches = (List<DataBreach>)daDataBreach.GetTodos();
             foreach (DataBreach db in dataBreaches)
@@ -113,9 +112,6 @@ namespace LogicaDeNegocio
             Usuario usuarioDestino = aCompartir.Destino;
             Clave claveACompartir = controladoraUsuario.GetClave(aCompartir.Clave, usuarioOriginal);
 
-            if (usuarioOriginal == null || usuarioDestino == null) {
-                throw new UsuarioInexistenteException();
-            }
 
             if (claveACompartir == null) {
                 throw new ObjetoInexistenteException();
@@ -170,11 +166,7 @@ namespace LogicaDeNegocio
             accesoCompartidas.Borrar(aEliminar);
 
             usuarioOriginal.CompartidasPorMi.Remove(aEliminar);
-            /*acceso.Modificar(usuarioOriginal);*/
             usuarioDestino.CompartidasConmigo.Remove(aEliminar);
-            /*acceso.Modificar(usuarioDestino);*/
-
-
 
             bool sigueCompartida = usuarioOriginal.CompartidasPorMi.Any(buscadora => buscadora.Clave.Equals(claveADejarDeCompartir));
             if (!sigueCompartida) {
