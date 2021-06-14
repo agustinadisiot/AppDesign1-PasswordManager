@@ -201,22 +201,15 @@ namespace TestsObligatorio
 
     [TestClass]
     public class TestClavesCompartidas {
-        private ControladoraAdministrador controladoraAdministrador = new ControladoraAdministrador();
-        private ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
-        private ControladoraCategoria controladoraCategoria = new ControladoraCategoria();
-        private DataAccessUsuario accesoUsuario;
-        private DataAccessCategoria accesoCategoria;
-        private DataAccessClave accesoClave;
+        private ControladoraAdministrador controladoraAdministrador;
+        private ControladoraUsuario controladoraUsuario;
 
         private Usuario usuario;
         private Usuario usuario2;
         private Usuario usuario3;
         private Categoria categoria1;
-        private Categoria categoria2;
         private Clave clave1;
         private Clave clave2;
-        private Clave clave3;
-        private Clave clave4;
         private ClaveCompartida claveCompartida;
         private ClaveCompartida claveCompartida2;
         private ClaveCompartida claveCompartida3;
@@ -230,28 +223,11 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraUsuario = new ControladoraUsuario();
 
-            accesoUsuario = new DataAccessUsuario();
-            List<Usuario> usuariosABorrar = (List<Usuario>)accesoUsuario.GetTodos();
-            foreach (Usuario actual in usuariosABorrar)
-            {
-                accesoUsuario.Borrar(actual);
-            }
-
-            accesoCategoria = new DataAccessCategoria();
-            List<Categoria> categoriasABorrar = (List<Categoria>)accesoCategoria.GetTodos();
-            foreach (Categoria actual in categoriasABorrar)
-            {
-                accesoCategoria.Borrar(actual);
-            }
-
-
-            accesoClave = new DataAccessClave();
-            List<Clave> clavesABorrar = (List<Clave>)accesoClave.GetTodos();
-            foreach (Clave actual in clavesABorrar)
-            {
-                accesoClave.Borrar(actual);
-            }
+            controladoraAdministrador.BorrarTodo();
+            
 
             usuario = new Usuario()
             {
@@ -267,17 +243,13 @@ namespace TestsObligatorio
 
             usuario3 = new Usuario()
             {
-                Nombre = "Usuario3"
+                Nombre = "Usuario3",
+                ClaveMaestra = "ClaveMaestra"
             };
 
             categoria1 = new Categoria()
             {
                 Nombre = "Personal"
-            };
-
-            categoria2 = new Categoria()
-            {
-                Nombre = "Trabajo"
             };
 
             clave1 = new Clave()
@@ -294,20 +266,6 @@ namespace TestsObligatorio
                 Codigo = "EstaEsUnaClave2",
                 UsuarioClave = "Luis88",
                 Nota = "Nota de una clave"
-            };
-
-            clave3 = new Clave()
-            {
-                Sitio = "youtube.com",
-                Codigo = "codrojo",
-                UsuarioClave = "Hernesto"
-            };
-
-            clave4 = new Clave()
-            {
-                Sitio = "www.hbo.com",
-                Codigo = "EstaEsUnaClave4",
-                UsuarioClave = "Peepo"
             };
 
             claveCompartida = new ClaveCompartida()
@@ -330,6 +288,12 @@ namespace TestsObligatorio
                 Destino = usuario3,
                 Clave = clave1
             };
+
+            controladoraAdministrador.AgregarUsuario(usuario);
+            controladoraAdministrador.AgregarUsuario(usuario2);
+            controladoraAdministrador.AgregarUsuario(usuario3);
+
+
         }
 
         [TestMethod]

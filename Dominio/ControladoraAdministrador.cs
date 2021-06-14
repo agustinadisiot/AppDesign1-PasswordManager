@@ -109,8 +109,8 @@ namespace LogicaDeNegocio
             DataAccessUsuario acceso = new DataAccessUsuario();
             ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
 
-            Usuario usuarioOriginal = acceso.Get(aCompartir.Original.Id);
-            Usuario usuarioDestino = acceso.Get(aCompartir.Destino.Id);
+            Usuario usuarioOriginal = this.GetUsuario(aCompartir.Original);
+            Usuario usuarioDestino = this.GetUsuario(aCompartir.Destino);
             Clave claveACompartir = controladoraUsuario.GetClave(aCompartir.Clave, usuarioOriginal);
 
             if (usuarioOriginal == null || usuarioDestino == null) {

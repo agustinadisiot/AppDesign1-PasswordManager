@@ -71,6 +71,9 @@ namespace Repositorio
             {
                 return contexto.Usuarios
                     .Include("Categorias")
+                    .Include("Claves")
+                    .Include("Tarjetas")
+                    .Include("Filtradas")
                     .Include("DataBreaches")
                     .Include("CompartidasConmigo")
                     .Include("CompartidasPorMi")
