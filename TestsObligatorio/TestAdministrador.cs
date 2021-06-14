@@ -611,7 +611,7 @@ namespace TestsObligatorio
 
             controladoraAdministrador.CompartirClave(claveCompartida);
 
-            Assert.AreEqual(buscadora, controladoraUsuario.GetClaveCompartidaPorMi(buscadora, usuario2));
+            Assert.AreEqual(buscadora, controladoraUsuario.GetClaveCompartidaConmigo(buscadora, usuario2));
         }
 
         [TestMethod]
@@ -663,7 +663,7 @@ namespace TestsObligatorio
                 Clave = claveBuscadora
             };
 
-            Assert.AreEqual(buscadora, controladoraUsuario.GetClaveCompartidaPorMi(buscadora, usuario2));
+            Assert.AreEqual(buscadora, controladoraUsuario.GetClaveCompartidaPorMi(buscadora, usuario));
         }
     }
 }
