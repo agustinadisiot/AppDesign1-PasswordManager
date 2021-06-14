@@ -16,9 +16,6 @@ namespace TestsObligatorio
         private ControladoraUsuario controladoraUsuario;
         private ControladoraCategoria controladoraCategoria;
         private ControladoraAdministrador controladoraAdministrador;
-        private DataAccessUsuario accesoUsuario;
-        private DataAccessCategoria accesoCategoria;
-        private DataAccessClave accesoClave;
 
         private Usuario usuario;
         private Usuario usuario2;
@@ -29,9 +26,6 @@ namespace TestsObligatorio
         private Clave clave2;
         private Clave clave3;
         private Clave clave4;
-        private ClaveCompartida claveCompartida;
-        private ClaveCompartida claveCompartida2;
-        private ClaveCompartida claveCompartida3;
 
         [TestCleanup]
         public void TearDown()
@@ -46,9 +40,6 @@ namespace TestsObligatorio
             controladoraCategoria = new ControladoraCategoria();
             controladoraAdministrador = new ControladoraAdministrador();
             controladoraAdministrador.BorrarTodo();
-            accesoUsuario = new DataAccessUsuario();
-            accesoCategoria = new DataAccessCategoria();
-            accesoClave = new DataAccessClave();
 
             usuario = new Usuario()
             {
@@ -107,27 +98,6 @@ namespace TestsObligatorio
                 Codigo = "EstaEsUnaClave4",
                 UsuarioClave = "Peepo",
                 Nota = ""
-            };
-
-            claveCompartida = new ClaveCompartida()
-            {
-                Original = usuario,
-                Destino = usuario2,
-                Clave = clave1
-            };
-
-            claveCompartida2 = new ClaveCompartida()
-            {
-                Original = usuario,
-                Destino = usuario2,
-                Clave = clave2
-            };
-
-            claveCompartida3 = new ClaveCompartida()
-            {
-                Original = usuario,
-                Destino = usuario3,
-                Clave = clave1
             };
 
             controladoraAdministrador.AgregarUsuario(usuario);

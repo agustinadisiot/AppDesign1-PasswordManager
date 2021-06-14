@@ -80,7 +80,14 @@ namespace LogicaDeNegocio
         {
             DataAccessUsuario acceso = new DataAccessUsuario();
             List<Usuario> usuarios = (List<Usuario>)acceso.GetTodos();
-            return usuarios.First(aBuscar.Equals);
+            Usuario retorno = usuarios.FirstOrDefault(aBuscar.Equals);
+            if (retorno != null)
+            {
+                return retorno;
+            }
+            else {
+                throw new ObjetoInexistenteException();
+            }
         }
 
         public bool YaExisteUsuario(Usuario buscador)

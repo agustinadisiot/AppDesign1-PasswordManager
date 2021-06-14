@@ -24,18 +24,22 @@ namespace TestsObligatorio
         public void Setup()
         {
             controladoraAdministrador = new ControladoraAdministrador();
-
+            controladoraAdministrador.BorrarTodo();
             usuario1 = new Usuario
             {
-                Nombre = "Roberto"
+                Nombre = "Roberto",
+                ClaveMaestra = "ClaveMaestra"
             };
 
             usuario2 = new Usuario
             {
-                Nombre = "Pedro"
+                Nombre = "Pedro",
+                ClaveMaestra = "OtraClaveMaestra"
             };
 
             usuario3 = new Usuario();
+
+
         }
 
         [TestMethod]
@@ -170,7 +174,7 @@ namespace TestsObligatorio
         [TestMethod]
         public void AdministradorGetListaUsuariosVacia()
         {
-            Assert.IsNull(controladoraAdministrador.GetListaUsuarios());
+            Assert.AreEqual(0,controladoraAdministrador.GetListaUsuarios().Count());
         }
 
         [TestMethod]

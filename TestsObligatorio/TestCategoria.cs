@@ -13,7 +13,6 @@ namespace TestsObligatorio
     {
         private Categoria categoria1;
         private Categoria categoria2;
-        private DataAccessCategoria acceso;
         private ControladoraCategoria controladora;
         private ControladoraAdministrador controladoraAdministrador;
 
@@ -28,8 +27,6 @@ namespace TestsObligatorio
         {
             controladoraAdministrador = new ControladoraAdministrador();
             controladoraAdministrador.BorrarTodo();
-
-            acceso = new DataAccessCategoria();
 
             controladora = new ControladoraCategoria();
 
@@ -120,8 +117,6 @@ namespace TestsObligatorio
         private Categoria categoria1;
         private Clave clave1;
         private Clave clave2;
-        private DataAccessCategoria accesoCategoria;
-        private DataAccessClave accesoClave;
         private ControladoraCategoria controladoraCategoria;
         private ControladoraAdministrador controladoraAdministrador;
 
@@ -134,8 +129,6 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
-            accesoCategoria = new DataAccessCategoria();
-            accesoClave = new DataAccessClave();
             controladoraAdministrador = new ControladoraAdministrador();
             controladoraAdministrador.BorrarTodo();
 
@@ -611,8 +604,6 @@ namespace TestsObligatorio
         private Categoria categoria1;
         private Tarjeta tarjeta1;
         private Tarjeta tarjeta2;
-        private DataAccessCategoria accesoCategoria;
-        private DataAccessTarjeta accesoTarjeta;
         private ControladoraCategoria controladoraCategoria;
         private ControladoraAdministrador controladoraAdministrador;
 
@@ -625,8 +616,6 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
-            accesoCategoria = new DataAccessCategoria();
-            accesoTarjeta = new DataAccessTarjeta();
             controladoraCategoria = new ControladoraCategoria();
             controladoraAdministrador = new ControladoraAdministrador();
             controladoraAdministrador.BorrarTodo();

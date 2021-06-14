@@ -20,14 +20,12 @@ namespace TestsObligatorio
         private NivelSeguridad nivelSeguridad;
         private ColorNivelSeguridad color;
         private DateTime tiempoActual;
-        private DataAccessClave acceso;
 
         [TestInitialize]
         public void Setup()
         {
             controladoraAdministrador = new ControladoraAdministrador();
             controladoraAdministrador.BorrarTodo();
-            acceso = new DataAccessClave();
             controladora = new ControladoraClave();
 
             

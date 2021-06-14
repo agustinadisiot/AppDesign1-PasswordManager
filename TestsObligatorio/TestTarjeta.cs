@@ -15,7 +15,6 @@ namespace TestsObligatorio
         private Tarjeta tarjeta1;
         private Tarjeta tarjeta2;
         private DateTime fecha1;
-        private DataAccessTarjeta acceso;
         private ControladoraTarjeta controladora;
         private ControladoraAdministrador controladoraAdministrador;
 
@@ -30,7 +29,6 @@ namespace TestsObligatorio
         {
             controladoraAdministrador = new ControladoraAdministrador();
             controladoraAdministrador.BorrarTodo();
-            acceso = new DataAccessTarjeta();
             controladora = new ControladoraTarjeta();
 
             fecha1 = new DateTime(2022, 5, 9);
