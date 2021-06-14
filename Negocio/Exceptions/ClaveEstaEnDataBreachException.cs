@@ -13,7 +13,7 @@ namespace Negocio
 
         public ClaveEstaEnDataBreachException()
         {
-            this.message = "Esta contraseña se ya a sido filtrada.";
+            this.message = "Contraseña no Segura: Esta contraseña se ya a sido filtrada.";
         }
     }
 }

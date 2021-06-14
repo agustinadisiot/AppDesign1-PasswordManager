@@ -13,7 +13,7 @@ namespace Negocio
 
         public ClaveDuplicadaException()
         {
-            this.message = "Ya has usado esta contraseña.";
+            this.message = "Contraseña no Segura: Ya has usado esta contraseña para otro sitio o app.";
         }
     }
 }

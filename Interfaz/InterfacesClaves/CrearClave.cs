@@ -62,8 +62,6 @@ namespace Interfaz
                     Nombre = this.LeerComboBox()
                 };
 
-
-
                 try
                 {
                     Clave nueva = new Clave()
@@ -77,14 +75,14 @@ namespace Interfaz
 
                     try
                     {
+                        NivelSeguridad nivelSeguridad = new NivelSeguridad();
+                        nivelSeguridad.ClaveCumpleRequerimientos(nueva.Codigo, _usuarioActual);
                         this._controladoraUsuario.AgregarClave(nueva, categoria, _usuarioActual);
                         this.VolverAListaClaves();
                     }
-                    catch (ObjetoYaExistenteException)
+                    catch (Exception x)
                     {
-
-                        this.labelErrores.Text = "Error: Ya existe la contraseña que se intentó agregar.";
-
+                        this.labelErrores.Text = x.Message;
                     }
                 }
                 catch (Exception)

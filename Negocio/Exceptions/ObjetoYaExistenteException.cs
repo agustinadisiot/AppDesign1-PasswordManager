@@ -13,7 +13,7 @@ namespace Negocio
 
         public ObjetoYaExistenteException()
         {
-            this.message = "El objeto que se intento agregar ya existe en la lista.";
+            this.message = "El objeto que se intento agregar ya existe.";
         }
     }
 }
