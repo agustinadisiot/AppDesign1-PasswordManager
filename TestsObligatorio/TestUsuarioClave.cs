@@ -13,8 +13,9 @@ namespace TestsObligatorio
     [TestClass]
     public class TestUsuarioClave
     {
-        private ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
-        private ControladoraCategoria controladoraCategoria = new ControladoraCategoria();
+        private ControladoraUsuario controladoraUsuario;
+        private ControladoraCategoria controladoraCategoria;
+        private ControladoraAdministrador controladoraAdministrador;
         private DataAccessUsuario accesoUsuario;
         private DataAccessCategoria accesoCategoria;
         private DataAccessClave accesoClave;
@@ -41,28 +42,13 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
-
+            controladoraUsuario = new ControladoraUsuario();
+            controladoraCategoria = new ControladoraCategoria();
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.BorrarTodo();
             accesoUsuario = new DataAccessUsuario();
-            List<Usuario> usuariosABorrar = (List<Usuario>)accesoUsuario.GetTodos();
-            foreach (Usuario actual in usuariosABorrar)
-            {
-                accesoUsuario.Borrar(actual);
-            }
-
             accesoCategoria = new DataAccessCategoria();
-            List<Categoria> categoriasABorrar = (List<Categoria>)accesoCategoria.GetTodos();
-            foreach (Categoria actual in categoriasABorrar)
-            {
-                accesoCategoria.Borrar(actual);
-            }
-
-
             accesoClave = new DataAccessClave();
-            List<Clave> clavesABorrar = (List<Clave>)accesoClave.GetTodos();
-            foreach (Clave actual in clavesABorrar)
-            {
-                accesoClave.Borrar(actual);
-            }
 
             usuario = new Usuario()
             {
@@ -111,14 +97,16 @@ namespace TestsObligatorio
             {
                 Sitio = "youtube.com",
                 Codigo = "codrojo",
-                UsuarioClave = "Hernesto"
+                UsuarioClave = "Hernesto",
+                Nota = ""
             };
 
             clave4 = new Clave()
             {
                 Sitio = "www.hbo.com",
                 Codigo = "EstaEsUnaClave4",
-                UsuarioClave = "Peepo"
+                UsuarioClave = "Peepo",
+                Nota = ""
             };
 
             claveCompartida = new ClaveCompartida()
@@ -141,6 +129,9 @@ namespace TestsObligatorio
                 Destino = usuario3,
                 Clave = clave1
             };
+
+            controladoraAdministrador.AgregarUsuario(usuario);
+
         }
 
         [TestMethod]
@@ -205,13 +196,14 @@ namespace TestsObligatorio
             controladoraUsuario.AgregarCategoria(categoria1, usuario);
             controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
             controladoraUsuario.AgregarCategoria(categoria2, usuario);
-            controladoraUsuario.AgregarClave(clave1, categoria2, usuario);
+            controladoraUsuario.AgregarClave(clave2, categoria2, usuario);
 
             Clave claveIgual = new Clave()
             {
                 Sitio = clave2.Sitio,
                 UsuarioClave = clave2.UsuarioClave,
-                Codigo = clave2.Codigo
+                Codigo = clave2.Codigo,
+                Nota = ""
             };
             Assert.AreEqual(true, controladoraUsuario.YaExisteClave(claveIgual, usuario));
         }
@@ -422,7 +414,7 @@ namespace TestsObligatorio
                 UsuarioClave = clave1.UsuarioClave
             };
 
-            Assert.AreEqual(clave1.Codigo, controladoraUsuario.GetClave(claveBuscadora, usuario));
+            Assert.AreEqual(clave1.Codigo, controladoraUsuario.GetClave(claveBuscadora, usuario).Codigo);
         }
 
         [TestMethod]
@@ -673,19 +665,21 @@ namespace TestsObligatorio
             controladoraUsuario.AgregarCategoria(categoria1, usuario);
             controladoraUsuario.AgregarCategoria(categoria2, usuario);
 
-            Clave clave1 = new Clave()
+            clave1 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
                 Codigo = "estaesunaclave",
-                UsuarioClave = "Roberto"
+                UsuarioClave = "Roberto",
+                Nota = ""
             };
             controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
 
-            Clave clave2 = new Clave()
+            clave2 = new Clave()
             {
                 Sitio = "web.whatsapp.com",
                 Codigo = "ESTAESUNACLAVE",
-                UsuarioClave = "Luis88"
+                UsuarioClave = "Luis88",
+                Nota = ""
             };
             controladoraUsuario.AgregarClave(clave2, categoria2, usuario);
 

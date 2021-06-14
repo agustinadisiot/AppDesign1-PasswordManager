@@ -83,7 +83,7 @@ namespace TestsObligatorio
             {
                 ClaveMaestra = "Diferente"
             };
-            Assert.AreEqual(true, controladora.EsIgualClaveMaestra(usuario, diferenteClave));
+            Assert.AreEqual(false, controladora.EsIgualClaveMaestra(usuario, diferenteClave));
         }
 
         [TestMethod]
@@ -94,7 +94,7 @@ namespace TestsObligatorio
                 ClaveMaestra = usuario.ClaveMaestra
             };
             usuario.ClaveMaestra = "Chau109876";
-            Assert.AreEqual(true, controladora.EsIgualClaveMaestra(usuario, igualClave));
+            Assert.AreEqual(false, controladora.EsIgualClaveMaestra(usuario, igualClave));
         }
 
         [TestMethod]

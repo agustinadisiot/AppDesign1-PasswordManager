@@ -106,10 +106,12 @@ namespace LogicaDeNegocio
             if (this.YaExisteClave(clave,contenedor)) throw new ObjetoYaExistenteException();
             if (!this.YaExisteCategoria(categoria, contenedor)) throw new CategoriaInexistenteException();
 
-            ControladoraCategoria controladoraCategoria = new ControladoraCategoria();
-            controladoraCategoria.Verificar(categoria);
+            Categoria dondeAgregar = this.GetCategoria(categoria,contenedor);
 
-            controladoraCategoria.AgregarClave(clave, categoria);
+            ControladoraCategoria controladoraCategoria = new ControladoraCategoria();
+            controladoraCategoria.Verificar(dondeAgregar);
+
+            controladoraCategoria.AgregarClave(clave, dondeAgregar);
 
             DataAccessUsuario acceso = new DataAccessUsuario();
             acceso.Modificar(contenedor);
