@@ -13,7 +13,8 @@ namespace TestsObligatorio
     [TestClass]
     public class TestDataBreach
     {
-        private ControladoraFiltrada controladoraFiltrada;
+        private IngresoDataBreachTxt ingresoDataBreachTxt;
+        private IngresoDataBreachUI ingresoDataBreachUI;
 
         [TestCleanup]
         public void TearDown() { }
@@ -21,7 +22,8 @@ namespace TestsObligatorio
         [TestInitialize]
         public void Setup()
         {
-            controladoraFiltrada = new ControladoraFiltrada();
+            ingresoDataBreachTxt = new IngresoDataBreachTxt();
+            ingresoDataBreachUI = new IngresoDataBreachUI();
         }
 
         [TestMethod]
@@ -39,7 +41,8 @@ namespace TestsObligatorio
         [TestMethod]
         public void LogicaDataBreachSepararPorLineas()
         {
-            string linea = "clave1\tEstoEsUnaClave\t1234567890987634\tclaveDeNetflix";
+            string separador = Environment.NewLine;
+            string linea = "clave1" + separador + "EstoEsUnaClave" + separador + "1234567890987634" + separador + "claveDeNetflix";
             List<string> datosString = new List<string>
             {
                 "clave1",
@@ -49,8 +52,9 @@ namespace TestsObligatorio
             };
 
             List<Filtrada> datos = datosString.Select(s => new Filtrada(s)).ToList();
-
-            Assert.IsTrue(datos.SequenceEqual(controladoraFiltrada.SepararPorLineas(linea)));
+            List<Filtrada> resultado = ingresoDataBreachUI.DevolverFiltradas(linea);
+            bool secuencia = datos.SequenceEqual(resultado);
+            Assert.IsTrue(secuencia);
         }
 
         [TestMethod]
@@ -58,7 +62,7 @@ namespace TestsObligatorio
         {
             string direccion = "direccionNoExistente.txt"; 
 
-            Assert.ThrowsException<ArchivoNoExistenteException>(() => controladoraFiltrada.LeerArchivo(direccion));
+            Assert.ThrowsException<ArchivoNoExistenteException>(() => ingresoDataBreachTxt.DevolverFiltradas(direccion));
         }
 
         [TestMethod]
@@ -82,9 +86,7 @@ namespace TestsObligatorio
 
             List<Filtrada> datos = datosString.Select(s => new Filtrada(s)).ToList();
 
-            ControladoraDataBreach logicaDataBreach = new ControladoraDataBreach();
-
-            List<Filtrada> archivoLeido = controladoraFiltrada.LeerArchivo(nombreArchivo);
+            List<Filtrada> archivoLeido = ingresoDataBreachTxt.DevolverFiltradas(nombreArchivo);
 
             Assert.IsTrue(datos.SequenceEqual(archivoLeido));
         }

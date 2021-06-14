@@ -104,9 +104,9 @@ namespace Interfaz.InterfacesClaves
         }
 
         private void procesarDataBreach() {
-            ControladoraFiltrada controladoraFiltrada = new ControladoraFiltrada();
+            IngresoDataBreachUI ingresoDataBreachUI = new IngresoDataBreachUI();
             this._dataBreach = new DataBreach();
-            List<Filtrada> filtradas = controladoraFiltrada.SepararPorLineas(this.inputDatos.Text);
+            List<Filtrada> filtradas = ingresoDataBreachUI.DevolverFiltradas(this.inputDatos.Text);
             this._controladoraDataBreach.AgregarDataBreach(filtradas, DateTime.Now, this._usuarioActual);
             this._dataBreach = this._controladoraUsuario.GetUltimoDataBreach(this._usuarioActual);
             this.CargarTablaClaves();
@@ -150,10 +150,10 @@ namespace Interfaz.InterfacesClaves
                 if (buscadorArchivo.ShowDialog() == DialogResult.OK)
                 {
                     string direccion = buscadorArchivo.FileName;
-                    ControladoraFiltrada controladoraFiltrada = new ControladoraFiltrada();
+                    IngresoDataBreachTxt ingresoDataBreachTxt = new IngresoDataBreachTxt();
                     try
                     {
-                        this._dataBreach.Filtradas = controladoraFiltrada.LeerArchivo(direccion);
+                        this._dataBreach.Filtradas = ingresoDataBreachTxt.DevolverFiltradas(direccion);
                         this.CargarInputDataBreach();
                     }
                     catch (Exception)

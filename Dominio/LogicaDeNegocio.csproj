@@ -50,6 +50,9 @@
     <Compile Include="ControladoraDataBreach.cs" />
     <Compile Include="ControladoraFiltrada.cs" />
     <Compile Include="IControladora.cs" />
+    <Compile Include="IMetodoIngresoDataBreach.cs" />
+    <Compile Include="IngresoDataBreachTxt.cs" />
+    <Compile Include="IngresoDataBreachUI.cs" />
     <Compile Include="NivelSeguridad.cs" />
     <Compile Include="ControladoraClave.cs" />
     <Compile Include="GeneradoraClaves.cs" />
