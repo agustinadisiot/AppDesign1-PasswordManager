@@ -193,6 +193,8 @@ namespace TestsObligatorio
             {
                 Nombre = "Trabajo"
             };
+
+            controladoraAdministrador.AgregarUsuario(usuario);
         }
 
         [TestMethod]
@@ -306,7 +308,7 @@ namespace TestsObligatorio
             categoria2.Nombre = "Trabajo";
             controladoraUsuario.ModificarNombreCategoria(copia, categoria2, usuario);
             Categoria resultado = controladoraUsuario.GetCategoria(categoria2, usuario);
-            Assert.AreEqual("Trabajo", resultado);
+            Assert.AreEqual("Trabajo", resultado.Nombre);
         }
 
         [TestMethod]
