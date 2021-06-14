@@ -83,7 +83,7 @@ namespace LogicaDeNegocio
             Usuario retorno = usuarios.FirstOrDefault(aBuscar.Equals);
             if (retorno != null)
             {
-                return retorno;
+                return acceso.Get(retorno.Id);
             }
             else {
                 throw new ObjetoInexistenteException();

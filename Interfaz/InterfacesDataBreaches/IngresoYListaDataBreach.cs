@@ -18,6 +18,7 @@ namespace Interfaz.InterfacesClaves
         {
             InitializeComponent();
             this._controladoraUsuario = new ControladoraUsuario();
+            this._controladoraDataBreach = new ControladoraDataBreach();
             this._usuarioActual = actual;
             if (cargarUltimoDataBreach)
             {
@@ -32,16 +33,16 @@ namespace Interfaz.InterfacesClaves
         private void IngresoYListaDataBreach_Load(object sender, EventArgs e)
         {
             if (this._dataBreach != null) {
-                this.CargarInputDataBreach();
+                this.CargarInputDataBreach(this._dataBreach.Filtradas);
                 this.procesarDataBreach();
             }
         }
 
 
-        private void CargarInputDataBreach() {
+        private void CargarInputDataBreach(List<Filtrada> filtradas) {
             string mostrar = "";
 
-            foreach (Filtrada linea in this._dataBreach.Filtradas) {
+            foreach (Filtrada linea in filtradas) {
                 mostrar += linea.Texto + Environment.NewLine;
             }
             this.inputDatos.Text = mostrar;
@@ -152,9 +153,9 @@ namespace Interfaz.InterfacesClaves
                     string direccion = buscadorArchivo.FileName;
                     IngresoDataBreachTxt ingresoDataBreachTxt = new IngresoDataBreachTxt();
                     try
-                    {
-                        this._dataBreach.Filtradas = ingresoDataBreachTxt.DevolverFiltradas(direccion);
-                        this.CargarInputDataBreach();
+                    {   
+                        List<Filtrada> aMostrar = ingresoDataBreachTxt.DevolverFiltradas(direccion);
+                        this.CargarInputDataBreach(aMostrar);
                     }
                     catch (Exception)
                     {

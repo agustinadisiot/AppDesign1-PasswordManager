@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
 using Negocio;
+using Interfaz.InterfacesDataBreaches;
 
 namespace Interfaz
 {
@@ -50,6 +51,7 @@ namespace Interfaz
             this.botonListaTarjetas.BackColor = Color.FromArgb(51, 51, 51);
             this.botonReporteFortaleza.BackColor = Color.FromArgb(51, 51, 51);
             this.botonDataBreaches.BackColor = Color.FromArgb(51, 51, 51);
+            this.botonHistoricoDataBreaches.BackColor = Color.FromArgb(51, 51, 51);
         }
 
         private void botonListaCategorias_Click(object sender, EventArgs e)
@@ -385,6 +387,14 @@ namespace Interfaz
 
             this.panelPrincipal.Controls.Add(reporteFortaleza);
 
+        }
+
+        private void botonHistoricoDataBreaches_Click(object sender, EventArgs e)
+        {
+            Usuario aPasar = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
+            UIHistoricoDataBreach historico = new UIHistoricoDataBreach(aPasar);
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(historico);
         }
     }
 }

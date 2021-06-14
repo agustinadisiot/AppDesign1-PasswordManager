@@ -252,7 +252,20 @@ namespace LogicaDeNegocio
 
         public DataBreach GetDataBreach(DateTime tiempoViejo, Usuario contenedor)
         {
-            return contenedor.DataBreaches.First(d=> d.Fecha == tiempoViejo);
+
+            string formatoFecha = "yyyy'/'MMM'/'dd' 'HH':'mm':'ss";
+            foreach (DataBreach actual in contenedor.DataBreaches) {
+                DateTime fecha = actual.Fecha;
+
+                string fechaActual = fecha.ToString(formatoFecha);
+                string fechaTiempoViejo = tiempoViejo.ToString(formatoFecha);
+
+                if (fechaActual == fechaTiempoViejo) {
+                    return actual;
+                }
+
+            }
+            throw new ObjetoInexistenteException();
         }
 
         public void ModificarTarjeta(TarjetaAModificar modificar, Usuario contenedor)
