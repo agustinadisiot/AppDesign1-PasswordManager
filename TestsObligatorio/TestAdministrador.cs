@@ -25,6 +25,7 @@ namespace TestsObligatorio
         {
             controladoraAdministrador = new ControladoraAdministrador();
             controladoraAdministrador.BorrarTodo();
+            List<Usuario> usuarios = controladoraAdministrador.GetListaUsuarios();
             usuario1 = new Usuario
             {
                 Nombre = "Roberto",

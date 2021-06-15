@@ -66,6 +66,24 @@
     <Compile Include="InterfacesDataBreaches\IngresoYListaDataBreach.Designer.cs">
       <DependentUpon>IngresoYListaDataBreach.cs</DependentUpon>
     </Compile>
+    <Compile Include="InterfacesDataBreaches\UIHistoricoDataBreach.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InterfacesDataBreaches\UIHistoricoDataBreach.Designer.cs">
+      <DependentUpon>UIHistoricoDataBreach.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InterfacesDataBreaches\VentanaFiltradas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InterfacesDataBreaches\VentanaFiltradas.Designer.cs">
+      <DependentUpon>VentanaFiltradas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InterfacesClaves\VentanaModificarClave.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InterfacesClaves\VentanaModificarClave.Designer.cs">
+      <DependentUpon>VentanaModificarClave.cs</DependentUpon>
+    </Compile>
     <Compile Include="InterfacesSeguridad\GraficaSeguridad.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -206,6 +224,15 @@
     <EmbeddedResource Include="InterfacesCompartirClave\ListaClavesCompartidasPorMi.resx">
       <DependentUpon>ListaClavesCompartidasPorMi.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesDataBreaches\UIHistoricoDataBreach.resx">
+      <DependentUpon>UIHistoricoDataBreach.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesDataBreaches\VentanaFiltradas.resx">
+      <DependentUpon>VentanaFiltradas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesClaves\VentanaModificarClave.resx">
+      <DependentUpon>VentanaModificarClave.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InterfacesSeguridad\GraficaSeguridad.resx">
       <DependentUpon>GraficaSeguridad.cs</DependentUpon>
     </EmbeddedResource>
@@ -261,6 +288,9 @@
       <DependentUpon>VerClave.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Negocio.Clave.datasource" />
+    <None Include="Properties\DataSources\Negocio.DataBreach.datasource" />
+    <None Include="Properties\DataSources\Negocio.Filtrada.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

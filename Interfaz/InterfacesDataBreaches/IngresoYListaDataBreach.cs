@@ -1,4 +1,5 @@
-﻿using LogicaDeNegocio;
+﻿using Interfaz.InterfacesDataBreaches;
+using LogicaDeNegocio;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ namespace Interfaz.InterfacesClaves
 {
     public partial class IngresoYListaDataBreach : UserControl
     {
+        private ControladoraAdministrador _controladoraAdministrador;
         private ControladoraUsuario _controladoraUsuario;
         private ControladoraDataBreach _controladoraDataBreach;
         private Usuario _usuarioActual;
@@ -17,7 +19,9 @@ namespace Interfaz.InterfacesClaves
         public IngresoYListaDataBreach(Usuario actual, bool cargarUltimoDataBreach)
         {
             InitializeComponent();
+            this._controladoraAdministrador = new ControladoraAdministrador();
             this._controladoraUsuario = new ControladoraUsuario();
+            this._controladoraDataBreach = new ControladoraDataBreach();
             this._usuarioActual = actual;
             if (cargarUltimoDataBreach)
             {
@@ -32,16 +36,16 @@ namespace Interfaz.InterfacesClaves
         private void IngresoYListaDataBreach_Load(object sender, EventArgs e)
         {
             if (this._dataBreach != null) {
-                this.CargarInputDataBreach();
+                this.CargarInputDataBreach(this._dataBreach.Filtradas);
                 this.procesarDataBreach();
             }
         }
 
 
-        private void CargarInputDataBreach() {
+        private void CargarInputDataBreach(List<Filtrada> filtradas) {
             string mostrar = "";
 
-            foreach (Filtrada linea in this._dataBreach.Filtradas) {
+            foreach (Filtrada linea in filtradas) {
                 mostrar += linea.Texto + Environment.NewLine;
             }
             this.inputDatos.Text = mostrar;
@@ -54,12 +58,16 @@ namespace Interfaz.InterfacesClaves
 
             foreach (Clave claveActual in this._dataBreach.Claves)
             {
-                Categoria categoriaActual = this._controladoraUsuario.GetCategoriaClave(claveActual, this._usuarioActual);
-                string nombreCategoria = categoriaActual.Nombre;
-                string sitio = claveActual.Sitio;
-                string usuario = claveActual.UsuarioClave;
-                string ultimaModificacion = claveActual.FechaModificacion.ToString(formatoFecha);
-                this.tablaClaves.Rows.Add(nombreCategoria, sitio, usuario, ultimaModificacion);
+                Clave enCategoria = this._controladoraUsuario.GetClave(claveActual, _usuarioActual);
+                if (enCategoria.FechaModificacion < this._dataBreach.Fecha)
+                {
+                    Categoria categoriaActual = this._controladoraUsuario.GetCategoriaClave(enCategoria, this._usuarioActual);
+                    string nombreCategoria = categoriaActual.Nombre;
+                    string sitio = enCategoria.Sitio;
+                    string usuario = enCategoria.UsuarioClave;
+                    string ultimaModificacion = enCategoria.FechaModificacion.ToString(formatoFecha);
+                    this.tablaClaves.Rows.Add(nombreCategoria, sitio, usuario, ultimaModificacion);
+                }
             }
         }
 
@@ -124,22 +132,24 @@ namespace Interfaz.InterfacesClaves
                 sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
                 usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
-                Clave aModificar = new Clave()
+                Clave buscadora = new Clave()
                 {
                     Sitio = sitioClave,
                     UsuarioClave = usuarioClave
                 };
-
-                IrAModificarClave(aModificar);
+                Clave aModificar = this._controladoraUsuario.GetClave(buscadora, this._usuarioActual);
+                VentanaModificarClave ventanaModificar = new VentanaModificarClave(this._usuarioActual, aModificar);
+                if (ventanaModificar.ShowDialog() == DialogResult.OK) 
+                {
+                    this.labelErrores.Text = "Modifico una clave";
+                    this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
+                    this.CargarTablaClaves();
+                }
+                else
+                {
+                    this.labelErrores.Text = "Cancelo la modificacion";
+                }
             }
-        }
-
-        public delegate void ModificarClaveDataBreach_Delegate(Clave claveAModificar);
-        public event ModificarClaveDataBreach_Delegate ModificarClaveDataBreach_Event;
-        public void IrAModificarClave(Clave claveAModificar)
-        {
-            if (this.ModificarClaveDataBreach_Event != null)
-                this.ModificarClaveDataBreach_Event(claveAModificar);
         }
 
         private void botonCargar_Click(object sender, EventArgs e)
@@ -152,9 +162,9 @@ namespace Interfaz.InterfacesClaves
                     string direccion = buscadorArchivo.FileName;
                     IngresoDataBreachTxt ingresoDataBreachTxt = new IngresoDataBreachTxt();
                     try
-                    {
-                        this._dataBreach.Filtradas = ingresoDataBreachTxt.DevolverFiltradas(direccion);
-                        this.CargarInputDataBreach();
+                    {   
+                        List<Filtrada> aMostrar = ingresoDataBreachTxt.DevolverFiltradas(direccion);
+                        this.CargarInputDataBreach(aMostrar);
                     }
                     catch (Exception)
                     {
