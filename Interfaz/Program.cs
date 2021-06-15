@@ -18,7 +18,7 @@ namespace Interfaz
         {
             
 
-            ControladoraAdministrador controladoraAdministrador = new ControladoraAdministrador();
+            /*ControladoraAdministrador controladoraAdministrador = new ControladoraAdministrador();
             ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
             controladoraAdministrador.BorrarTodo();
 
@@ -296,7 +296,7 @@ namespace Interfaz
 
                     
                 }
-            }
+            }*/
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new VentanaPrincipal());
