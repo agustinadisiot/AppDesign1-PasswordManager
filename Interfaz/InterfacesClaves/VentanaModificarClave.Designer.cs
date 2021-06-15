@@ -1,7 +1,7 @@
 ﻿
 namespace Interfaz.InterfacesDataBreaches
 {
-    partial class VentanaHistoricoDataBreachModificar
+    partial class VentanaModificarClave
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace Interfaz.InterfacesDataBreaches
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentanaHistoricoDataBreachModificar));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentanaModificarClave));
             this.panel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
@@ -40,7 +40,7 @@ namespace Interfaz.InterfacesDataBreaches
             this.panel.Size = new System.Drawing.Size(1006, 694);
             this.panel.TabIndex = 0;
             // 
-            // VentanaHistoricoDataBreachModificar
+            // VentanaModificarClave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -49,8 +49,9 @@ namespace Interfaz.InterfacesDataBreaches
             this.Controls.Add(this.panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "VentanaHistoricoDataBreachModificar";
-            this.Text = "VentanaHistoricoDataBreachModificar";
+            this.Name = "VentanaModificarClave";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Modificar Clave";
             this.Load += new System.EventHandler(this.VentanaHistoricoDataBreachModificar_Load);
             this.ResumeLayout(false);
 

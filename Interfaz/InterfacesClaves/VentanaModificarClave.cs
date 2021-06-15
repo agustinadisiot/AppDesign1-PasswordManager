@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace Interfaz.InterfacesDataBreaches
 {
-    public partial class VentanaHistoricoDataBreachModificar : Form
+    public partial class VentanaModificarClave : Form
     {
         private Usuario _usuarioAModificar;
         private Clave _claveAModificar;
-        public VentanaHistoricoDataBreachModificar(Usuario usuario, Clave clave)
+        public VentanaModificarClave(Usuario usuario, Clave clave)
         {
             InitializeComponent();
             this._usuarioAModificar = usuario;

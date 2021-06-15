@@ -82,6 +82,7 @@ namespace Repositorio
                     .Include("DataBreaches")
                     .Include(u => u.DataBreaches.Select(db => db.Claves))
                     .Include(u => u.DataBreaches.Select(db => db.Tarjetas))
+                    .Include(u => u.DataBreaches.Select(db => db.Filtradas))
                     .Include("CompartidasConmigo")
                     .Include(u => u.CompartidasConmigo.Select(cc => cc.Clave))
                     .Include(u => u.CompartidasConmigo.Select(cc => cc.Original))

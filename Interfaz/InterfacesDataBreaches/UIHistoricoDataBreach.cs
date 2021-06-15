@@ -34,7 +34,7 @@ namespace Interfaz.InterfacesDataBreaches
         private void UIHistoricoDataBreach_Load(object sender, EventArgs e)
         {
             this.CargarTablaDataBreaches();
-            this.labelErrores.Text = "";
+            this.labelMensajes.Text = "";
         }
 
         private void CargarTablaDataBreaches() {
@@ -107,7 +107,7 @@ namespace Interfaz.InterfacesDataBreaches
                 DataGridViewRow selectedRow = tablaClaves.Rows[selectedrowindex];
                 bool fueModificado = Convert.ToString(selectedRow.Cells["FueModificado"].Value) == "Si";
                 if (fueModificado) {
-                    this.labelErrores.Text = "Esta clave ya fue modificada.";
+                    this.labelMensajes.Text = "Esta clave ya fue modificada.";
                 }
                 else {
                     Clave buscadora = new Clave() {
@@ -115,15 +115,15 @@ namespace Interfaz.InterfacesDataBreaches
                         UsuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value)
                     };
                     Clave aModificar = this._controladoraUsuario.GetClave(buscadora, this._usuarioActual);
-                    VentanaHistoricoDataBreachModificar ventanaModificar = new VentanaHistoricoDataBreachModificar(this._usuarioActual, aModificar );
+                    VentanaModificarClave ventanaModificar = new VentanaModificarClave(this._usuarioActual, aModificar );
                     if (ventanaModificar.ShowDialog() == DialogResult.OK)
                     {
-                        this.labelErrores.Text = "Modifico";
+                        this.labelMensajes.Text = "Modifico";
                         this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
                     }
                     else
                     {
-                        this.labelErrores.Text = "Cancelo";
+                        this.labelMensajes.Text = "Cancelo";
                     }
                 }
             }
@@ -140,6 +140,52 @@ namespace Interfaz.InterfacesDataBreaches
                 this._dataBreach = this._controladoraUsuario.GetDataBreach(fecha, this._usuarioActual);
                 this.CargarTablaClaves();
                 this.CargarTablaTarjetas();
+            }
+        }
+
+        private void botonVerFiltradas_Click(object sender, EventArgs e)
+        {
+            if (this._dataBreach != null) {
+                List<Filtrada> filtradas = this._dataBreach.Filtradas;
+                VentanaFiltradas ventana = new VentanaFiltradas(filtradas);
+                ventana.ShowDialog();
+            }
+        }
+
+        private void botonModificarClave_Click(object sender, EventArgs e)
+        {
+            string sitioClave = "";
+            string usuarioClave = "";
+            if (this.tablaClaves.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = tablaClaves.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = tablaClaves.Rows[selectedrowindex];
+                sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
+                usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
+                bool fueModificado = Convert.ToString(selectedRow.Cells["FueModificado"].Value) == "Si";
+                if (fueModificado)
+                {
+                    this.labelMensajes.Text = "Esta clave ya fue modificada.";
+                }
+                else {
+                    Clave buscadora = new Clave()
+                    {
+                        Sitio = sitioClave,
+                        UsuarioClave = usuarioClave
+                    };
+                    Clave aModificar = this._controladoraUsuario.GetClave(buscadora, this._usuarioActual);
+                    VentanaModificarClave ventanaModificar = new VentanaModificarClave(this._usuarioActual, aModificar);
+                    if (ventanaModificar.ShowDialog() == DialogResult.OK)
+                    {
+                        this.labelMensajes.Text = "Modifico";
+                        this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
+                        this.CargarTablaClaves();
+                    }
+                    else
+                    {
+                        this.labelMensajes.Text = "Cancelo";
+                    }
+                }
             }
         }
     }

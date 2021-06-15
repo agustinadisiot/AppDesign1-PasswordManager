@@ -371,7 +371,6 @@ namespace Interfaz
         {
             this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             IngresoYListaDataBreach panelDataBreach = new IngresoYListaDataBreach(this._usuarioActual, cargarUltimo);
-            panelDataBreach.ModificarClaveDataBreach_Event += this.ModificarClaveDataBreach_Event;
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(panelDataBreach);
         }
@@ -401,6 +400,8 @@ namespace Interfaz
 
         private void botonHistoricoDataBreaches_Click(object sender, EventArgs e)
         {
+            this.ResetearColoresBotonesDrawer();
+            this.botonHistoricoDataBreaches.BackColor = Color.FromArgb(138, 138, 138);
             this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             Usuario aPasar = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             UIHistoricoDataBreach historico = new UIHistoricoDataBreach(aPasar);
