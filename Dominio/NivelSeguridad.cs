@@ -25,7 +25,7 @@ namespace LogicaDeNegocio
 
             foreach (char caracter in clave)
             {
-                if (!tieneMay || !tieneMin || !tieneMin || !tieneSim)
+                if (!tieneMay || !tieneMin || !tieneNum || !tieneSim)
                 {
                     tieneMin = tieneMin || VerificadoraString.EsMinuscula(caracter);
                     tieneMay = tieneMay || VerificadoraString.EsMayuscula(caracter);
