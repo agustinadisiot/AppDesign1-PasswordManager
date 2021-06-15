@@ -29,22 +29,26 @@ namespace Interfaz.InterfacesDataBreaches
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentanaHistoricoDataBreachModificar));
             this.panel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // panel
             // 
-            this.panel.Location = new System.Drawing.Point(12, 12);
+            this.panel.Location = new System.Drawing.Point(1, -1);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(962, 618);
+            this.panel.Size = new System.Drawing.Size(1006, 694);
             this.panel.TabIndex = 0;
             // 
             // VentanaHistoricoDataBreachModificar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(986, 642);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1006, 693);
             this.Controls.Add(this.panel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "VentanaHistoricoDataBreachModificar";
             this.Text = "VentanaHistoricoDataBreachModificar";
             this.Load += new System.EventHandler(this.VentanaHistoricoDataBreachModificar_Load);

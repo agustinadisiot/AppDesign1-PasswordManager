@@ -31,6 +31,7 @@ namespace Interfaz
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentanaPrincipal));
             this.panelDrawer = new System.Windows.Forms.Panel();
+            this.botonHistoricoDataBreaches = new System.Windows.Forms.Button();
             this.labelUsuarioActual = new System.Windows.Forms.Label();
             this.botonCerrarSesion = new System.Windows.Forms.Button();
             this.botonDataBreaches = new System.Windows.Forms.Button();
@@ -41,7 +42,6 @@ namespace Interfaz
             this.botonListaClaves = new System.Windows.Forms.Button();
             this.botonListaCategorias = new System.Windows.Forms.Button();
             this.panelPrincipal = new System.Windows.Forms.Panel();
-            this.botonHistoricoDataBreaches = new System.Windows.Forms.Button();
             this.panelDrawer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,10 +60,27 @@ namespace Interfaz
             this.panelDrawer.Controls.Add(this.botonListaCategorias);
             this.panelDrawer.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelDrawer.Location = new System.Drawing.Point(0, 0);
-            this.panelDrawer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelDrawer.Margin = new System.Windows.Forms.Padding(2);
             this.panelDrawer.Name = "panelDrawer";
             this.panelDrawer.Size = new System.Drawing.Size(201, 681);
             this.panelDrawer.TabIndex = 0;
+            // 
+            // botonHistoricoDataBreaches
+            // 
+            this.botonHistoricoDataBreaches.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.botonHistoricoDataBreaches.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.botonHistoricoDataBreaches.FlatAppearance.BorderSize = 0;
+            this.botonHistoricoDataBreaches.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.botonHistoricoDataBreaches.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.botonHistoricoDataBreaches.ForeColor = System.Drawing.Color.White;
+            this.botonHistoricoDataBreaches.Location = new System.Drawing.Point(0, 552);
+            this.botonHistoricoDataBreaches.Name = "botonHistoricoDataBreaches";
+            this.botonHistoricoDataBreaches.Size = new System.Drawing.Size(201, 47);
+            this.botonHistoricoDataBreaches.TabIndex = 9;
+            this.botonHistoricoDataBreaches.TabStop = false;
+            this.botonHistoricoDataBreaches.Text = "Historico Data Breaches";
+            this.botonHistoricoDataBreaches.UseVisualStyleBackColor = false;
+            this.botonHistoricoDataBreaches.Click += new System.EventHandler(this.botonHistoricoDataBreaches_Click);
             // 
             // labelUsuarioActual
             // 
@@ -83,7 +100,7 @@ namespace Interfaz
             // botonCerrarSesion
             // 
             this.botonCerrarSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.botonCerrarSesion.Location = new System.Drawing.Point(0, 578);
+            this.botonCerrarSesion.Location = new System.Drawing.Point(0, 614);
             this.botonCerrarSesion.Name = "botonCerrarSesion";
             this.botonCerrarSesion.Size = new System.Drawing.Size(201, 63);
             this.botonCerrarSesion.TabIndex = 7;
@@ -100,7 +117,7 @@ namespace Interfaz
             this.botonDataBreaches.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.botonDataBreaches.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.botonDataBreaches.ForeColor = System.Drawing.Color.White;
-            this.botonDataBreaches.Location = new System.Drawing.Point(0, 474);
+            this.botonDataBreaches.Location = new System.Drawing.Point(0, 490);
             this.botonDataBreaches.Name = "botonDataBreaches";
             this.botonDataBreaches.Size = new System.Drawing.Size(201, 47);
             this.botonDataBreaches.TabIndex = 6;
@@ -117,7 +134,7 @@ namespace Interfaz
             this.botonReporteFortaleza.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.botonReporteFortaleza.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.botonReporteFortaleza.ForeColor = System.Drawing.Color.White;
-            this.botonReporteFortaleza.Location = new System.Drawing.Point(0, 410);
+            this.botonReporteFortaleza.Location = new System.Drawing.Point(0, 428);
             this.botonReporteFortaleza.Name = "botonReporteFortaleza";
             this.botonReporteFortaleza.Size = new System.Drawing.Size(201, 47);
             this.botonReporteFortaleza.TabIndex = 5;
@@ -134,7 +151,7 @@ namespace Interfaz
             this.botonListaTarjetas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.botonListaTarjetas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.botonListaTarjetas.ForeColor = System.Drawing.Color.White;
-            this.botonListaTarjetas.Location = new System.Drawing.Point(0, 347);
+            this.botonListaTarjetas.Location = new System.Drawing.Point(0, 366);
             this.botonListaTarjetas.Name = "botonListaTarjetas";
             this.botonListaTarjetas.Size = new System.Drawing.Size(201, 47);
             this.botonListaTarjetas.TabIndex = 4;
@@ -151,7 +168,7 @@ namespace Interfaz
             this.botonClavesQueMeComparten.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.botonClavesQueMeComparten.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.botonClavesQueMeComparten.ForeColor = System.Drawing.Color.White;
-            this.botonClavesQueMeComparten.Location = new System.Drawing.Point(0, 284);
+            this.botonClavesQueMeComparten.Location = new System.Drawing.Point(0, 303);
             this.botonClavesQueMeComparten.Name = "botonClavesQueMeComparten";
             this.botonClavesQueMeComparten.Size = new System.Drawing.Size(201, 48);
             this.botonClavesQueMeComparten.TabIndex = 3;
@@ -168,7 +185,7 @@ namespace Interfaz
             this.botonClavesQueComparto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.botonClavesQueComparto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.botonClavesQueComparto.ForeColor = System.Drawing.Color.White;
-            this.botonClavesQueComparto.Location = new System.Drawing.Point(0, 218);
+            this.botonClavesQueComparto.Location = new System.Drawing.Point(0, 239);
             this.botonClavesQueComparto.Name = "botonClavesQueComparto";
             this.botonClavesQueComparto.Size = new System.Drawing.Size(201, 49);
             this.botonClavesQueComparto.TabIndex = 2;
@@ -185,7 +202,7 @@ namespace Interfaz
             this.botonListaClaves.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.botonListaClaves.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.botonListaClaves.ForeColor = System.Drawing.Color.White;
-            this.botonListaClaves.Location = new System.Drawing.Point(0, 149);
+            this.botonListaClaves.Location = new System.Drawing.Point(0, 175);
             this.botonListaClaves.Name = "botonListaClaves";
             this.botonListaClaves.Size = new System.Drawing.Size(201, 49);
             this.botonListaClaves.TabIndex = 1;
@@ -202,7 +219,7 @@ namespace Interfaz
             this.botonListaCategorias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.botonListaCategorias.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.botonListaCategorias.ForeColor = System.Drawing.Color.White;
-            this.botonListaCategorias.Location = new System.Drawing.Point(0, 82);
+            this.botonListaCategorias.Location = new System.Drawing.Point(0, 111);
             this.botonListaCategorias.Name = "botonListaCategorias";
             this.botonListaCategorias.Size = new System.Drawing.Size(201, 49);
             this.botonListaCategorias.TabIndex = 0;
@@ -216,27 +233,10 @@ namespace Interfaz
             this.panelPrincipal.BackColor = System.Drawing.Color.White;
             this.panelPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelPrincipal.Location = new System.Drawing.Point(201, 0);
-            this.panelPrincipal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelPrincipal.Margin = new System.Windows.Forms.Padding(2);
             this.panelPrincipal.Name = "panelPrincipal";
             this.panelPrincipal.Size = new System.Drawing.Size(1002, 681);
             this.panelPrincipal.TabIndex = 1;
-            // 
-            // botonHistoricoDataBreaches
-            // 
-            this.botonHistoricoDataBreaches.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.botonHistoricoDataBreaches.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.botonHistoricoDataBreaches.FlatAppearance.BorderSize = 0;
-            this.botonHistoricoDataBreaches.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.botonHistoricoDataBreaches.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.botonHistoricoDataBreaches.ForeColor = System.Drawing.Color.White;
-            this.botonHistoricoDataBreaches.Location = new System.Drawing.Point(0, 527);
-            this.botonHistoricoDataBreaches.Name = "botonHistoricoDataBreaches";
-            this.botonHistoricoDataBreaches.Size = new System.Drawing.Size(201, 47);
-            this.botonHistoricoDataBreaches.TabIndex = 9;
-            this.botonHistoricoDataBreaches.TabStop = false;
-            this.botonHistoricoDataBreaches.Text = "Historico Data Breaches";
-            this.botonHistoricoDataBreaches.UseVisualStyleBackColor = false;
-            this.botonHistoricoDataBreaches.Click += new System.EventHandler(this.botonHistoricoDataBreaches_Click);
             // 
             // VentanaPrincipal
             // 
@@ -248,7 +248,7 @@ namespace Interfaz
             this.Controls.Add(this.panelDrawer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "VentanaPrincipal";

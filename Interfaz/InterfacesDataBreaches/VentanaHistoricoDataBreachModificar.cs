@@ -26,7 +26,21 @@ namespace Interfaz.InterfacesDataBreaches
         private void VentanaHistoricoDataBreachModificar_Load(object sender, EventArgs e)
         {
             ModificarClave modificarClave = new ModificarClave(this._usuarioAModificar, this._claveAModificar);
+            modificarClave.CerrarModificarClave_Event += CerrarModificarClave_Event;
             this.panel.Controls.Add(modificarClave);
+        }
+
+        protected void CerrarModificarClave_Event(bool modifico)
+        {
+            if (modifico)
+            {
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                this.DialogResult = DialogResult.Cancel;
+            }
+            this.Close();
         }
     }
 }

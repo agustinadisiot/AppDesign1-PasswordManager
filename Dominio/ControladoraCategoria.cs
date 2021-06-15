@@ -98,7 +98,7 @@ namespace LogicaDeNegocio
             if (aModificar.Codigo != claveNueva.Codigo)
             {
                 aModificar.Codigo = claveNueva.Codigo;
-                aModificar.FechaModificacion = DateTime.Now.Date;
+                aModificar.FechaModificacion = DateTime.Now;
             };
 
             ControladoraClave controladoraClave = new ControladoraClave();

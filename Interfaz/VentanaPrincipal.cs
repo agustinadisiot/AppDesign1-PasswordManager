@@ -168,7 +168,7 @@ namespace Interfaz
 
         protected void AbrirListaCategorias_Handler()
         {
-
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual);
             listaCategorias.AbrirAgregarCategorias_Event += AbrirAgregarCategorias_Handler;
             listaCategorias.AbrirModificarCategorias_Event += AbrirModificarCategorias_Handler;
@@ -180,7 +180,7 @@ namespace Interfaz
 
         protected void AbrirAgregarCategorias_Handler()
         {
-
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             AgregarCategoria agregarCategoria = new AgregarCategoria(this._usuarioActual);
             agregarCategoria.AbrirListaCategorias_Event += AbrirListaCategorias_Handler;
 
@@ -191,7 +191,7 @@ namespace Interfaz
 
         protected void AbrirModificarCategorias_Handler(Categoria aModificar)
         {
-
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             ModificarCategoria modificarCategoria = new ModificarCategoria(aModificar, this._usuarioActual);
             modificarCategoria.AbrirListaCategorias_Event += AbrirListaCategorias_Handler;
 
@@ -202,7 +202,7 @@ namespace Interfaz
         protected void AbrirListaTarjetas_Handler()
         {
             this.panelPrincipal.Controls.Clear();
-
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             ListaTarjetas listaTarjetas = new ListaTarjetas(this._usuarioActual);
             listaTarjetas.AbrirCrearTarjeta_Event += this.AbrirCrearTarjeta_Handler;
             listaTarjetas.AbrirModificarTarjeta_Event += this.AbrirModificarTarjeta_Handler;
@@ -237,6 +237,7 @@ namespace Interfaz
             {
                 this._panelAVolverModificarClave = p.GetType();
             }
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             Clave modificar = this._controladoraUsuario.GetClave(buscadora, this._usuarioActual);
             ModificarClave modificarClave = new ModificarClave(this._usuarioActual, modificar);
             modificarClave.CerrarModificarClave_Event += CerrarModificarClave_Event;
@@ -245,7 +246,7 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(modificarClave);
         }
 
-        protected void CerrarModificarClave_Event() {
+        protected void CerrarModificarClave_Event(bool modifico) {
             switch (this._panelAVolverModificarClave.Name)
             {
                 case "IngresoYListaDataBreach":
@@ -262,6 +263,7 @@ namespace Interfaz
 
         protected void AbrirCrearClave_Handler()
         {
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             CrearClave crearClave = new CrearClave(this._usuarioActual);
             crearClave.AbrirListaClaves_Event += this.AbrirListaClaves_Handler;
 
@@ -304,6 +306,7 @@ namespace Interfaz
 
         protected void AbrirListaClaves_Handler()
         {
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             ListaClaves listaClaves = new ListaClaves(this._usuarioActual);
             listaClaves.AbrirCrearClave_Event += this.AbrirCrearClave_Handler;
             listaClaves.AbrirModificarClave_Event += this.AbrirModificarClave_Event;
@@ -315,7 +318,7 @@ namespace Interfaz
 
         protected void AbrirListaClavesCompartidasConmigo_Handler()
         {
-
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             ListaClavesCompartidasConmigo listaClavesCompartidasConmigo = new ListaClavesCompartidasConmigo(this._usuarioActual);
             listaClavesCompartidasConmigo.AbrirVerClave_Event += this.AbrirVerClave_Handler;
 
@@ -326,7 +329,7 @@ namespace Interfaz
 
         protected void AbrirListaClavesCompartidasPorMi_Handler()
         {
-
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             ListaClavesCompartidasPorMi listaClavesCompartidasPorMi = new ListaClavesCompartidasPorMi(this._usuarioActual);
             listaClavesCompartidasPorMi.AbrirVerClave_Event += this.AbrirVerClave_Handler;
 
@@ -338,6 +341,7 @@ namespace Interfaz
         protected void AbrirCrearTarjeta_Handler()
         {
             this.panelPrincipal.Controls.Clear();
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             CrearTarjeta crearTarjetas = new CrearTarjeta(this._usuarioActual);
             crearTarjetas.AbrirListaTarjetas_Event += this.AbrirListaTarjetas_Handler;
             this.panelPrincipal.Controls.Add(crearTarjetas);
@@ -345,6 +349,7 @@ namespace Interfaz
 
         protected void AbrirModificarTarjeta_Handler(Tarjeta buscadora)
         {
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             Tarjeta modificar = this._controladoraUsuario.GetTarjeta(buscadora, this._usuarioActual);
             ModificarTarjeta modificarTarjeta = new ModificarTarjeta(this._usuarioActual, modificar);
             modificarTarjeta.AbrirListaTarjetas_Event += this.AbrirListaTarjetas_Handler;
@@ -354,6 +359,7 @@ namespace Interfaz
 
         private void AbrirVerTarjeta_Handler(Tarjeta buscadora)
         {
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             Tarjeta ver = this._controladoraUsuario.GetTarjeta(buscadora, this._usuarioActual);
             VerTarjeta verTarjeta = new VerTarjeta(ver, this._usuarioActual);
             verTarjeta.AbrirListaTarjetas_Event += this.AbrirListaTarjetas_Handler;
@@ -361,7 +367,9 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(verTarjeta);
         }
 
-        private void AbrirDataBreaches_Handler(bool cargarUltimo) {
+        private void AbrirDataBreaches_Handler(bool cargarUltimo) 
+        {
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             IngresoYListaDataBreach panelDataBreach = new IngresoYListaDataBreach(this._usuarioActual, cargarUltimo);
             panelDataBreach.ModificarClaveDataBreach_Event += this.ModificarClaveDataBreach_Event;
             this.panelPrincipal.Controls.Clear();
@@ -370,6 +378,7 @@ namespace Interfaz
 
         private void AbrirGrafica_Handler()
         {
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             GraficaSeguridad grafica = new GraficaSeguridad(this._usuarioActual);
             grafica.AbrirReporteFortaleza_Event += AbrirReporteFortaleza_Handler;
             this.panelPrincipal.Controls.Clear();
@@ -378,6 +387,7 @@ namespace Interfaz
 
         private void AbrirReporteFortaleza_Handler()
         {
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             ReporteDeFortaleza reporteFortaleza = new ReporteDeFortaleza(this._usuarioActual);
             reporteFortaleza.AbrirGrafica_Event += AbrirGrafica_Handler;
             reporteFortaleza.AbrirVerClave_Event += AbrirVerClave_Handler;
@@ -391,6 +401,7 @@ namespace Interfaz
 
         private void botonHistoricoDataBreaches_Click(object sender, EventArgs e)
         {
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             Usuario aPasar = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             UIHistoricoDataBreach historico = new UIHistoricoDataBreach(aPasar);
             this.panelPrincipal.Controls.Clear();

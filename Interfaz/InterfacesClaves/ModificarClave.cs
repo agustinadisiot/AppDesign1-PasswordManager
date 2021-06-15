@@ -69,7 +69,7 @@ namespace Interfaz.InterfacesClaves
 
             try
             {
-                DateTime modificacion = (this._vieja.Codigo == this.inputContra.Text) ? this._vieja.FechaModificacion : System.DateTime.Now.Date;
+                DateTime modificacion = (this._vieja.Codigo == this.inputContra.Text) ? this._vieja.FechaModificacion : System.DateTime.Now;
 
                 Clave nueva = new Clave()
                 {
@@ -89,7 +89,7 @@ namespace Interfaz.InterfacesClaves
                         CategoriaNueva = categoria
                     };
                     this._controladoraUsuario.ModificarClave(aModificar, this._actual);
-                    this.CerrarModificarClave();
+                    this.CerrarModificarClave(true);
                 }
                 catch (ObjetoYaExistenteException)
                 {
@@ -137,16 +137,16 @@ namespace Interfaz.InterfacesClaves
 
         private void botonCancelar_Click(object sender, EventArgs e)
         {
-            this.CerrarModificarClave();
+            this.CerrarModificarClave(false);
         }
         
 
-        public delegate void CerrarModificarClave_Delegate();
+        public delegate void CerrarModificarClave_Delegate(bool modifico);
         public event CerrarModificarClave_Delegate CerrarModificarClave_Event;
-        private void CerrarModificarClave()
+        private void CerrarModificarClave(bool modifico)
         {
             if (this.CerrarModificarClave_Event != null)
-                this.CerrarModificarClave_Event();
+                this.CerrarModificarClave_Event(modifico);
         }
 
         

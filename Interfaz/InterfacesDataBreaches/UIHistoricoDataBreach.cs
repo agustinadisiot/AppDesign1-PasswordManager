@@ -15,13 +15,17 @@ namespace Interfaz.InterfacesDataBreaches
 {
     public partial class UIHistoricoDataBreach : UserControl
     {
+        private ControladoraAdministrador _controladoraAdministrador;
         private ControladoraUsuario _controladoraUsuario;
+        private ControladoraCategoria _controladoraCategoria;
         private Usuario _usuarioActual;
         private DataBreach _dataBreach;
 
         public UIHistoricoDataBreach(Usuario usuario)
         {
+            this._controladoraAdministrador = new ControladoraAdministrador();
             this._controladoraUsuario = new ControladoraUsuario();
+            this._controladoraCategoria = new ControladoraCategoria();
             InitializeComponent();
             this._usuarioActual = usuario;
             this._dataBreach = null;
@@ -49,11 +53,12 @@ namespace Interfaz.InterfacesDataBreaches
             foreach (Clave claveActual in this._dataBreach.Claves)
             {
                 Categoria categoriaActual = this._controladoraUsuario.GetCategoriaClave(claveActual, this._usuarioActual);
+                Clave enCategoria = this._controladoraCategoria.GetClave(claveActual, categoriaActual);
                 string nombreCategoria = categoriaActual.Nombre;
-                string sitio = claveActual.Sitio;
-                string usuario = claveActual.UsuarioClave;
+                string sitio = enCategoria.Sitio;
+                string usuario = enCategoria.UsuarioClave;
                 string fueModificado = "No";
-                if (claveActual.FechaModificacion > this._dataBreach.Fecha) {
+                if (enCategoria.FechaModificacion > this._dataBreach.Fecha) {
                     fueModificado = "Si";
                 }
                 this.tablaClaves.Rows.Add(nombreCategoria, sitio, usuario, fueModificado);
@@ -111,7 +116,15 @@ namespace Interfaz.InterfacesDataBreaches
                     };
                     Clave aModificar = this._controladoraUsuario.GetClave(buscadora, this._usuarioActual);
                     VentanaHistoricoDataBreachModificar ventanaModificar = new VentanaHistoricoDataBreachModificar(this._usuarioActual, aModificar );
-                    ventanaModificar.ShowDialog();
+                    if (ventanaModificar.ShowDialog() == DialogResult.OK)
+                    {
+                        this.labelErrores.Text = "Modifico";
+                        this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
+                    }
+                    else
+                    {
+                        this.labelErrores.Text = "Cancelo";
+                    }
                 }
             }
         }

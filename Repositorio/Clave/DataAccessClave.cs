@@ -63,7 +63,7 @@ namespace Repositorio
                 if (aModificar.Codigo != entity.Codigo)
                 {
                     aModificar.Codigo = entity.Codigo;
-                    aModificar.FechaModificacion = DateTime.Now.Date;
+                    aModificar.FechaModificacion = DateTime.Now;
                 }
                 contexto.SaveChanges();
             }
