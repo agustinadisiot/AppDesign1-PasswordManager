@@ -78,6 +78,7 @@ namespace Interfaz
                     NivelSeguridad nivelSeguridad = new NivelSeguridad();
                     nivelSeguridad.ClaveCumpleRequerimientos(nueva.Codigo, _usuarioActual);
 
+                    nueva = this._controladoraEncriptador.Encriptar(nueva);
 
                     this._controladoraUsuario.AgregarClave(nueva, categoria, _usuarioActual);
                     this.VolverAListaClaves();

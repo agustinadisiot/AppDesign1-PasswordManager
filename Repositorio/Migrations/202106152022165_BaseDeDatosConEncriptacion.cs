@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class IndependizadoEncriptador : DbMigration
+    public partial class BaseDeDatosConEncriptacion : DbMigration
     {
         public override void Up()
         {
@@ -25,7 +25,7 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         UsuarioClave = c.String(nullable: false, maxLength: 25),
-                        Codigo = c.String(nullable: false, maxLength: 25),
+                        Codigo = c.String(nullable: false),
                         EsCompartida = c.Boolean(nullable: false),
                         Sitio = c.String(nullable: false, maxLength: 25),
                         Nota = c.String(maxLength: 250),

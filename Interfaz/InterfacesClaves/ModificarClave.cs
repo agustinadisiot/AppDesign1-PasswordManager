@@ -83,7 +83,6 @@ namespace Interfaz.InterfacesClaves
                     FechaModificacion = modificacion
                 };
 
-                nueva = this._controladoraEncriptador.Encriptar(nueva);
                 try
                 {
                     
