@@ -49,6 +49,7 @@
     <Compile Include="ControladoraCategoria.cs" />
     <Compile Include="ControladoraDataBreach.cs" />
     <Compile Include="ControladoraFiltrada.cs" />
+    <Compile Include="ControladoraEncriptador.cs" />
     <Compile Include="IControladora.cs" />
     <Compile Include="IMetodoIngresoDataBreach.cs" />
     <Compile Include="IngresoDataBreachTxt.cs" />

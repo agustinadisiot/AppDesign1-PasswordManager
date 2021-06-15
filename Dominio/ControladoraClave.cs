@@ -18,8 +18,30 @@ namespace LogicaDeNegocio
             this.Verificar(nueva);
 
             DataAccessClave acceso = new DataAccessClave();
+            ControladoraEncriptador controladoraEncriptador = new ControladoraEncriptador();
             Clave vieja = acceso.Get(nueva.Id);
-            if (vieja.Codigo != nueva.Codigo)
+
+            Clave copia = nueva;
+            try
+            {
+                
+                copia = controladoraEncriptador.Desencriptar(copia);
+
+            }
+            catch (Exception)
+            {
+                if (vieja.Codigo != nueva.Codigo)
+                {
+                    nueva.FechaModificacion = DateTime.Now.Date;
+                }
+
+                copia = controladoraEncriptador.Encriptar(copia);
+                acceso.Modificar(copia);
+                nueva.Id = copia.Id;
+                return;
+            }
+
+            if (copia.Codigo != nueva.Codigo)
             {
                 nueva.FechaModificacion = DateTime.Now.Date;
             }
@@ -42,7 +64,24 @@ namespace LogicaDeNegocio
 
         public void VerificarCodigo(Clave aVerificar)
         {
-            VerificadoraString.VerificarLargoEntreMinimoYMaximo(aVerificar.Codigo, _largoUsuarioYClaveMinimo, _largoUsuarioYClaveMaximo);
+            Clave copia = aVerificar;
+            try
+            {
+                ControladoraEncriptador controladoraEncriptador = new ControladoraEncriptador();
+                copia = controladoraEncriptador.Desencriptar(aVerificar);
+                
+            }
+            catch (Exception){
+                try
+                {
+                    VerificadoraString.VerificarLargoEntreMinimoYMaximo(aVerificar.Codigo, _largoUsuarioYClaveMinimo, _largoUsuarioYClaveMaximo);
+                    return;
+                }
+                catch(Exception y) {
+                    throw y;
+                }
+            }
+            VerificadoraString.VerificarLargoEntreMinimoYMaximo(copia.Codigo, _largoUsuarioYClaveMinimo, _largoUsuarioYClaveMaximo);
         }
 
         public void VerificarSitio(Clave aVerificar)

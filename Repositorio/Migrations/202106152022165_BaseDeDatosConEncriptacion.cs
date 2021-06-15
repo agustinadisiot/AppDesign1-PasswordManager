@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class UsuariosConTypeConfig : DbMigration
+    public partial class BaseDeDatosConEncriptacion : DbMigration
     {
         public override void Up()
         {
@@ -25,7 +25,7 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         UsuarioClave = c.String(nullable: false, maxLength: 25),
-                        Codigo = c.String(nullable: false, maxLength: 25),
+                        Codigo = c.String(nullable: false),
                         EsCompartida = c.Boolean(nullable: false),
                         Sitio = c.String(nullable: false, maxLength: 25),
                         Nota = c.String(maxLength: 250),
@@ -102,6 +102,16 @@
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.Encriptadors",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Key = c.String(),
+                        IV = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.DataBreachClaves",
                 c => new
                     {
@@ -173,6 +183,7 @@
             DropTable("dbo.DataBreachTarjetas");
             DropTable("dbo.DataBreachFiltradas");
             DropTable("dbo.DataBreachClaves");
+            DropTable("dbo.Encriptadors");
             DropTable("dbo.Usuarios");
             DropTable("dbo.ClaveCompartidas");
             DropTable("dbo.Tarjetas");

@@ -175,5 +175,21 @@ namespace LogicaDeNegocio
             }
 
         }
+
+        public Encriptador GetEncriptadorClave() {
+            DataAccessEncriptador accesoEncriptador = new DataAccessEncriptador();
+            IEnumerable<Encriptador> encriptadores = accesoEncriptador.GetTodos();
+            Encriptador retorno = encriptadores.FirstOrDefault();
+            if (retorno != null)
+            {
+                return retorno;
+            }
+            else
+            {
+                retorno = new Encriptador();
+                accesoEncriptador.Agregar(retorno);
+                return retorno;
+            }
+        }
     }
 }

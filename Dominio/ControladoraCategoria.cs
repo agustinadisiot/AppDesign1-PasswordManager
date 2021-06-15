@@ -95,11 +95,7 @@ namespace LogicaDeNegocio
             aModificar.UsuarioClave = claveNueva.UsuarioClave;
             aModificar.Sitio = claveNueva.Sitio;
             aModificar.Nota = claveNueva.Nota;
-            if (aModificar.Codigo != claveNueva.Codigo)
-            {
-                aModificar.Codigo = claveNueva.Codigo;
-                aModificar.FechaModificacion = DateTime.Now;
-            };
+            aModificar.Codigo = claveNueva.Codigo;
 
             ControladoraClave controladoraClave = new ControladoraClave();
             controladoraClave.Modificar(aModificar);
