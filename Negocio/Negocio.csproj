@@ -47,6 +47,7 @@
     <Compile Include="ClaveCompartida.cs" />
     <Compile Include="ColorNivelSeguridad.cs" />
     <Compile Include="DataBreach.cs" />
+    <Compile Include="Encriptador.cs" />
     <Compile Include="Exceptions\ArchivoNoExistenteException.cs" />
     <Compile Include="Exceptions\CaracterInesperadoException.cs" />
     <Compile Include="Exceptions\CategoriaInexistenteException.cs" />

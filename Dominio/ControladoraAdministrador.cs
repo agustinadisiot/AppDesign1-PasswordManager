@@ -175,5 +175,19 @@ namespace LogicaDeNegocio
             }
 
         }
+
+        public Encriptador GetEncriptadorClave(Clave buscadora) {
+            DataAccessEncriptador accesoEncriptador = new DataAccessEncriptador();
+            IEnumerable<Encriptador> encriptadores = accesoEncriptador.GetTodos();
+            Encriptador retorno = encriptadores.FirstOrDefault(e => buscadora.Equals(e.Clave));
+            if (retorno != null)
+            {
+                return accesoEncriptador.Get(retorno.Id);
+            }
+            else
+            {
+                throw new ObjetoInexistenteException();
+            }
+        }
     }
 }

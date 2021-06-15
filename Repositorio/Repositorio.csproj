@@ -59,10 +59,12 @@
     <Compile Include="Clave\DataAccessClave.cs" />
     <Compile Include="ClaveCompartida\DataAccessClaveCompartida.cs" />
     <Compile Include="DataBreach\DataAccessDataBreach.cs" />
+    <Compile Include="Encriptador\DataAccessEncriptador.cs" />
+    <Compile Include="Encriptador\EncriptadorTypeConfiguration.cs" />
     <Compile Include="Filtrada\DataAccessFiltrada.cs" />
-    <Compile Include="Migrations\202106140244147_UsuariosConTypeConfig.cs" />
-    <Compile Include="Migrations\202106140244147_UsuariosConTypeConfig.designer.cs">
-      <DependentUpon>202106140244147_UsuariosConTypeConfig.cs</DependentUpon>
+    <Compile Include="Migrations\202106151534461_EncriptadorAgregado.cs" />
+    <Compile Include="Migrations\202106151534461_EncriptadorAgregado.designer.cs">
+      <DependentUpon>202106151534461_EncriptadorAgregado.cs</DependentUpon>
     </Compile>
     <Compile Include="Tarjeta\DataAccessTarjeta.cs" />
     <Compile Include="Usuario\DataAccessUsuario.cs" />
@@ -85,8 +87,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202106140244147_UsuariosConTypeConfig.resx">
-      <DependentUpon>202106140244147_UsuariosConTypeConfig.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106151534461_EncriptadorAgregado.resx">
+      <DependentUpon>202106151534461_EncriptadorAgregado.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
