@@ -15,7 +15,6 @@ namespace Repositorio
             this.HasKey(x => x.Id);
             this.Property(x => x.Key).IsRequired();
             this.Property(x => x.IV).IsRequired();
-            this.HasRequired<Clave>(db => db.Clave);
         }
     }
 }

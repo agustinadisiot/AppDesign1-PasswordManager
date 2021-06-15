@@ -10,10 +10,12 @@ namespace Interfaz
     {
         private Usuario _usuarioActual;
         private ControladoraUsuario _controladoraUsuario;
+        private ControladoraEncriptador _controladoraEncriptador;
 
         public CrearClave(Usuario usuarioAgregar)
         {
             InitializeComponent();
+            this._controladoraEncriptador = new ControladoraEncriptador();
             this._controladoraUsuario = new ControladoraUsuario();
             this._usuarioActual = usuarioAgregar;
         }
@@ -73,21 +75,16 @@ namespace Interfaz
                         FechaModificacion = System.DateTime.Now.Date
                     };
 
-                    try
-                    {
-                        NivelSeguridad nivelSeguridad = new NivelSeguridad();
-                        nivelSeguridad.ClaveCumpleRequerimientos(nueva.Codigo, _usuarioActual);
-                        this._controladoraUsuario.AgregarClave(nueva, categoria, _usuarioActual);
-                        this.VolverAListaClaves();
-                    }
-                    catch (Exception x)
-                    {
-                        this.labelErrores.Text = x.Message;
-                    }
+                    NivelSeguridad nivelSeguridad = new NivelSeguridad();
+                    nivelSeguridad.ClaveCumpleRequerimientos(nueva.Codigo, _usuarioActual);
+
+
+                    this._controladoraUsuario.AgregarClave(nueva, categoria, _usuarioActual);
+                    this.VolverAListaClaves();
                 }
-                catch (Exception)
+                catch (Exception x)
                 {
-                    this.labelErrores.Text = "Error: Datos ingresados incorrectos.";
+                    this.labelErrores.Text = x.Message;
                 }
             }
             else {

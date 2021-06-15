@@ -10,12 +10,14 @@ namespace Interfaz
         private Clave _claveAMostrar;
         private Usuario _usuarioActual;
         private ControladoraUsuario _controladoraUsuario;
+        private ControladoraEncriptador _controladoraEncriptador;
 
         public VerClave(Clave claveAMostrar, Usuario usuarioActual)
         {
             InitializeComponent();
             _controladoraUsuario = new ControladoraUsuario();
-            _claveAMostrar = claveAMostrar;
+            _controladoraEncriptador = new ControladoraEncriptador();
+            _claveAMostrar = this._controladoraEncriptador.Desencriptar(claveAMostrar);
             _usuarioActual = usuarioActual;
             this.CargarDatos();
         }

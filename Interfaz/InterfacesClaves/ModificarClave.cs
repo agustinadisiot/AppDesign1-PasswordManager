@@ -11,9 +11,11 @@ namespace Interfaz.InterfacesClaves
         private Usuario _actual;
         private Clave _vieja;
         private ControladoraUsuario _controladoraUsuario;
+        private ControladoraEncriptador _controladoraEncriptador;
 
         public ModificarClave(Usuario usuario, Clave clave)
         {
+            _controladoraEncriptador = new ControladoraEncriptador();
             this._actual = usuario;
             this._vieja = clave;
             this._controladoraUsuario = new ControladoraUsuario();
@@ -28,7 +30,8 @@ namespace Interfaz.InterfacesClaves
         }
 
         private void CargarInputsConClave() {
-            this.inputContra.Text = this._vieja.Codigo;
+            Clave desencriptada = _controladoraEncriptador.Desencriptar(this._vieja);
+            this.inputContra.Text = desencriptada.Codigo;
             this.inputNota.Text = this._vieja.Nota;
             this.inputSitio.Text = this._vieja.Sitio;
             this.inputUsuario.Text = this._vieja.UsuarioClave;
@@ -79,8 +82,15 @@ namespace Interfaz.InterfacesClaves
                     Nota = this.inputNota.Text,
                     FechaModificacion = modificacion
                 };
+
+                nueva = this._controladoraEncriptador.Encriptar(nueva);
                 try
                 {
+                    
+                    NivelSeguridad nivelSeguridad = new NivelSeguridad();
+                    nivelSeguridad.ClaveCumpleRequerimientos(nueva.Codigo, _actual);
+
+                    nueva = this._controladoraEncriptador.Encriptar(nueva);
                     ClaveAModificar aModificar = new ClaveAModificar()
                     {
                         ClaveVieja = this._vieja,
@@ -88,8 +98,6 @@ namespace Interfaz.InterfacesClaves
                         CategoriaVieja = this._controladoraUsuario.GetCategoriaClave(this._vieja, this._actual),
                         CategoriaNueva = categoria
                     };
-                    NivelSeguridad nivelSeguridad = new NivelSeguridad();
-                    nivelSeguridad.ClaveCumpleRequerimientos(nueva.Codigo, _actual);
                     this._controladoraUsuario.ModificarClave(aModificar, this._actual);
                     this.CerrarModificarClave(true);
                 }

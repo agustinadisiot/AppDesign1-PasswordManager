@@ -12,24 +12,48 @@ namespace LogicaDeNegocio
     public class ControladoraEncriptador
     {
 
-        public void Encriptar(Clave aEncriptar) {
+        public Clave Encriptar(Clave aEncriptar) {
             using (Aes miAes = Aes.Create()) {
                 ControladoraAdministrador controladoraAdministrador = new ControladoraAdministrador();
-                Encriptador encriptador = controladoraAdministrador.GetEncriptadorClave(aEncriptar);
+                Encriptador encriptador = controladoraAdministrador.GetEncriptadorClave();
                 miAes.Key = Convert.FromBase64String(encriptador.Key);
                 miAes.IV = Convert.FromBase64String(encriptador.IV);
-                aEncriptar.Codigo = Convert.ToBase64String(EncryptStringToBytes_Aes(aEncriptar.Codigo, miAes.Key, miAes.IV));
+                Clave copia = new Clave()
+                {
+                    Id = aEncriptar.Id,
+                    Nota = aEncriptar.Nota,
+                    Sitio = aEncriptar.Sitio,
+                    DataBreaches = aEncriptar.DataBreaches,
+                    UsuarioClave = aEncriptar.UsuarioClave,
+                    EsCompartida = aEncriptar.EsCompartida,
+                    FechaModificacion = aEncriptar.FechaModificacion,
+                    Codigo = Convert.ToBase64String(EncryptStringToBytes_Aes(aEncriptar.Codigo, miAes.Key, miAes.IV))
+                };
+
+                return copia;
             }
         }
 
-        public void Desencriptar(Clave aDesencriptar) {
+        public Clave Desencriptar(Clave aDesencriptar) {
             using (Aes miAes = Aes.Create())
             {
                 ControladoraAdministrador controladoraAdministrador = new ControladoraAdministrador();
-                Encriptador encriptador = controladoraAdministrador.GetEncriptadorClave(aDesencriptar);
+                Encriptador encriptador = controladoraAdministrador.GetEncriptadorClave();
                 miAes.Key = Convert.FromBase64String(encriptador.Key);
                 miAes.IV = Convert.FromBase64String(encriptador.IV);
-                aDesencriptar.Codigo = DecryptStringFromBytes_Aes(Convert.FromBase64String(aDesencriptar.Codigo), miAes.Key, miAes.IV);
+                
+                Clave copia = new Clave()
+                {
+                    Id = aDesencriptar.Id,
+                    Nota = aDesencriptar.Nota,
+                    Sitio = aDesencriptar.Sitio,
+                    DataBreaches = aDesencriptar.DataBreaches,
+                    UsuarioClave = aDesencriptar.UsuarioClave,
+                    EsCompartida = aDesencriptar.EsCompartida,
+                    FechaModificacion = aDesencriptar.FechaModificacion,
+                    Codigo = DecryptStringFromBytes_Aes(Convert.FromBase64String(aDesencriptar.Codigo), miAes.Key, miAes.IV)
+            };
+                return copia;
             }
         }
 

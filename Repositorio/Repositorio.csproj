@@ -62,9 +62,9 @@
     <Compile Include="Encriptador\DataAccessEncriptador.cs" />
     <Compile Include="Encriptador\EncriptadorTypeConfiguration.cs" />
     <Compile Include="Filtrada\DataAccessFiltrada.cs" />
-    <Compile Include="Migrations\202106151534461_EncriptadorAgregado.cs" />
-    <Compile Include="Migrations\202106151534461_EncriptadorAgregado.designer.cs">
-      <DependentUpon>202106151534461_EncriptadorAgregado.cs</DependentUpon>
+    <Compile Include="Migrations\202106151952426_IndependizadoEncriptador.cs" />
+    <Compile Include="Migrations\202106151952426_IndependizadoEncriptador.designer.cs">
+      <DependentUpon>202106151952426_IndependizadoEncriptador.cs</DependentUpon>
     </Compile>
     <Compile Include="Tarjeta\DataAccessTarjeta.cs" />
     <Compile Include="Usuario\DataAccessUsuario.cs" />
@@ -87,8 +87,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202106151534461_EncriptadorAgregado.resx">
-      <DependentUpon>202106151534461_EncriptadorAgregado.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106151952426_IndependizadoEncriptador.resx">
+      <DependentUpon>202106151952426_IndependizadoEncriptador.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

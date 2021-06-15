@@ -13,18 +13,6 @@ namespace Repositorio
         {
             using (var contexto = new AdministradorClavesDBContext())
             {
-                Clave clave = entity.Clave;
-
-                Clave agregada = contexto.Claves.FirstOrDefault(tNueva => tNueva.Id == clave.Id);
-
-                if (agregada != null)
-                {
-                    clave = agregada;
-                    contexto.Claves.Attach(clave);
-                }
-
-                entity.Clave = clave;
-
                 contexto.Encriptadores.Add(entity);
 
                 contexto.SaveChanges();
@@ -46,7 +34,6 @@ namespace Repositorio
             using (var contexto = new AdministradorClavesDBContext())
             {
                 return contexto.Encriptadores
-                    .Include("Clave")
                     .FirstOrDefault(buscadora => buscadora.Id == id);
             }
         }
@@ -56,7 +43,6 @@ namespace Repositorio
             using (var contexto = new AdministradorClavesDBContext())
             {
                 return contexto.Encriptadores
-                    .Include("Clave")
                     .ToList();
             }
         }

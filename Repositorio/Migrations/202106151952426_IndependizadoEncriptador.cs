@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class EncriptadorAgregado : DbMigration
+    public partial class IndependizadoEncriptador : DbMigration
     {
         public override void Up()
         {
@@ -108,11 +108,8 @@
                         Id = c.Int(nullable: false, identity: true),
                         Key = c.String(),
                         IV = c.String(),
-                        Clave_Id = c.Int(),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Claves", t => t.Clave_Id)
-                .Index(t => t.Clave_Id);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.DataBreachClaves",
@@ -157,7 +154,6 @@
         
         public override void Down()
         {
-            DropForeignKey("dbo.Encriptadors", "Clave_Id", "dbo.Claves");
             DropForeignKey("dbo.DataBreaches", "Usuario_Id", "dbo.Usuarios");
             DropForeignKey("dbo.ClaveCompartidas", "OriginalId", "dbo.Usuarios");
             DropForeignKey("dbo.ClaveCompartidas", "DestinoId", "dbo.Usuarios");
@@ -177,7 +173,6 @@
             DropIndex("dbo.DataBreachFiltradas", new[] { "DataBreachesRefId" });
             DropIndex("dbo.DataBreachClaves", new[] { "ClavesRefId" });
             DropIndex("dbo.DataBreachClaves", new[] { "DataBreachesRefId" });
-            DropIndex("dbo.Encriptadors", new[] { "Clave_Id" });
             DropIndex("dbo.ClaveCompartidas", new[] { "Clave_Id" });
             DropIndex("dbo.ClaveCompartidas", new[] { "DestinoId" });
             DropIndex("dbo.ClaveCompartidas", new[] { "OriginalId" });

@@ -7,13 +7,13 @@ namespace Repositorio.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class EncriptadorAgregado : IMigrationMetadata
+    public sealed partial class IndependizadoEncriptador : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(EncriptadorAgregado));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(IndependizadoEncriptador));
         
         string IMigrationMetadata.Id
         {
-            get { return "202106151534461_EncriptadorAgregado"; }
+            get { return "202106151952426_IndependizadoEncriptador"; }
         }
         
         string IMigrationMetadata.Source

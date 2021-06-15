@@ -23,14 +23,10 @@ namespace LogicaDeNegocio
 
             Clave vieja = acceso.Get(nueva.Id);
 
-            controladoraEncriptador.Desencriptar(nueva);
-            controladoraEncriptador.Desencriptar(vieja);
             if (vieja.Codigo != nueva.Codigo)
             {
                 nueva.FechaModificacion = DateTime.Now.Date;
             }
-            controladoraEncriptador.Encriptar(vieja);
-            controladoraEncriptador.Encriptar(nueva);
             acceso.Modificar(nueva);
         }
 
