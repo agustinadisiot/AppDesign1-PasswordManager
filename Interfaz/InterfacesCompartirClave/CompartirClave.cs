@@ -89,7 +89,9 @@ namespace Interfaz
                     };
 
                     this._controladoraAdministrador.CompartirClave(claveACompartir);
-
+                    var confirmResult = MessageBox.Show("Contraseñá compartida correctamente.",
+                                     "Contraseña Compartida.",
+                                     MessageBoxButtons.OK);
                     this.VolverAListaClaves();
                 }
                 catch (Exception)

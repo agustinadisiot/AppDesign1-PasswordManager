@@ -81,6 +81,9 @@ namespace Interfaz
                     nueva = this._controladoraEncriptador.Encriptar(nueva);
 
                     this._controladoraUsuario.AgregarClave(nueva, categoria, _usuarioActual);
+                    var confirmResult = MessageBox.Show("Contraseña creada correctamente.",
+                                     "Contraseña Agregado.",
+                                     MessageBoxButtons.OK);
                     this.VolverAListaClaves();
                 }
                 catch (Exception x)

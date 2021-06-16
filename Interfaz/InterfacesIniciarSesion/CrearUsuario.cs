@@ -33,6 +33,9 @@ namespace Interfaz
 
                 try {
                     this._administrador.AgregarUsuario(agregar);
+                    var confirmResult = MessageBox.Show("Usuario creado correctamente.",
+                                     "Usuario Agregado.",
+                                     MessageBoxButtons.OK);
                     this.EnviarSalirCrearUsuario();
                 }
                 catch (Exception) {
