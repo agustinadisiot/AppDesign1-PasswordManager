@@ -38,7 +38,9 @@ namespace Interfaz
                 try
                 {
                     this._controladoraUsuario.ModificarNombreCategoria(this._categoriaActual, categoriaModificada, this._usuarioActual);
-
+                    var confirmResult = MessageBox.Show("Categoria modificada correctamente.",
+                                     "Categoria Modificada.",
+                                     MessageBoxButtons.OK);
                     VolverAListaCategorias();
                 }
                 catch

@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class BaseDeDatosConEncriptacion : DbMigration
+    public partial class RepositorioCompleto : DbMigration
     {
         public override void Up()
         {

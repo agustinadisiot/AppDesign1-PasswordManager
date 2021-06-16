@@ -32,7 +32,9 @@ namespace Interfaz
                 try
                 {
                     this._controladoraUsuario.AgregarCategoria(nuevaCategoria, _usuarioActual);
-
+                    var confirmResult = MessageBox.Show("Categoria creada correctamente.",
+                                     "Categoria Agregado.",
+                                     MessageBoxButtons.OK);
                     VolverAListaCategorias();
                 }
                 catch

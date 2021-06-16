@@ -88,6 +88,9 @@ namespace Interfaz
                         CategoriaNueva = categoria
                     };
                     controladoraUsuario.ModificarTarjeta(aModificar, this._usuarioActual);
+                    var confirmResult = MessageBox.Show("Tarjeta modificada correctamente.",
+                                     "Tarjeta Modificada.",
+                                     MessageBoxButtons.OK);
                     this.VolverAListaTarjetas();
                 }
                 catch (ObjetoYaExistenteException)

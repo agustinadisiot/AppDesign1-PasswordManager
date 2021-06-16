@@ -74,6 +74,9 @@ namespace Interfaz
                     try
                     {
                         controladoraUsuario.AgregarTarjeta(nueva, categoria, this._usuarioActual);
+                        var confirmResult = MessageBox.Show("Tarjeta creada correctamente.",
+                                     "Tarjeta Agregada.",
+                                     MessageBoxButtons.OK);
                         this.VolverAListaTarjetas();
                     }
                     catch (Exception)
