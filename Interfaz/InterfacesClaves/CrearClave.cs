@@ -38,8 +38,6 @@ namespace Interfaz
                 this.comboBoxCategorias.Items.Add(nombre);
                 
             }
-
-
         }
 
         private string LeerComboBox()

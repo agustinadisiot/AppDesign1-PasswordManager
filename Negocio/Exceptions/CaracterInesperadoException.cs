@@ -1,6 +1,5 @@
 ﻿using System;
 namespace Negocio
-
 {
     [Serializable]
     public class CaracterInesperadoException : Exception

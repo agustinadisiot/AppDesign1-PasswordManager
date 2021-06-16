@@ -104,7 +104,7 @@ namespace LogicaDeNegocio
                 bool resultado = filtradas.Exists(f => copia.Codigo.Equals(f.Texto));
                 return resultado;
             }
-            catch (Exception x)
+            catch (Exception)
             {
                 bool resultado = filtradas.Exists(f => aVerificar.Codigo.Equals(f.Texto));
                 return resultado;

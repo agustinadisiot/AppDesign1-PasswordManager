@@ -118,7 +118,7 @@ namespace LogicaDeNegocio
                 IEnumerable<Clave> desencriptadas = todasLasClaves.Select(buscadora => controladoraEncriptador.Desencriptar(buscadora));
                 return desencriptadas.ToList().FindAll(buscadora => nivelSeguridad.GetNivelSeguridad(buscadora.Codigo) == color);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return todasLasClaves.FindAll(buscadora => nivelSeguridad.GetNivelSeguridad(buscadora.Codigo) == color);
             }
