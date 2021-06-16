@@ -49,10 +49,9 @@ namespace LogicaDeNegocio
 
         public bool EsClaveNivelSeguro(string aVerificar)
         {
-            NivelSeguridad nivelSeguridad = new NivelSeguridad();
             ColorNivelSeguridad color = new ColorNivelSeguridad();
 
-            string colorAVerificar = nivelSeguridad.GetNivelSeguridad(aVerificar);
+            string colorAVerificar = this.GetNivelSeguridad(aVerificar);
             if (colorAVerificar.Equals(color.VerdeClaro) || colorAVerificar.Equals(color.VerdeOscuro))
             {
                 return true;
