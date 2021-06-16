@@ -1,12 +1,8 @@
 ﻿using LogicaDeNegocio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Negocio;
-using Repositorio;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TestsObligatorio
 {
