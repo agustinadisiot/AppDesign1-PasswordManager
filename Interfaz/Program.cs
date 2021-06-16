@@ -16,10 +16,11 @@ namespace Interfaz
         [STAThread]
         static void Main()
         {
-            
+
 
             /*ControladoraAdministrador controladoraAdministrador = new ControladoraAdministrador();
             ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+            ControladoraEncriptador controladoraEncriptador = new ControladoraEncriptador();
             controladoraAdministrador.BorrarTodo();
 
             List<string> nombresUsuarios = new List<String>()
@@ -101,7 +102,8 @@ namespace Interfaz
                 "Otros"
             };
 
-            GeneradoraClaves generadoraClavesRoja = new GeneradoraClaves() {
+            GeneradoraClaves generadoraClavesRoja = new GeneradoraClaves()
+            {
                 IncluirMayusculas = false,
                 IncluirMinusculas = true,
                 IncluirNumeros = false,
@@ -148,7 +150,7 @@ namespace Interfaz
                 generadoraClavesVerdeOscuro
             };
 
-            
+
             List<int> largosMinimosClaves = new List<int>()
             {
                 5,
@@ -185,10 +187,12 @@ namespace Interfaz
             };
             int agregadas = 0;
             string categoriaActual;
-            foreach (Usuario usuarioActual in usuarios) {
+            foreach (Usuario usuarioActual in usuarios)
+            {
                 controladoraAdministrador.AgregarUsuario(usuarioActual);
                 List<string> copiaCategorias = new List<String>(nombresCategorias);
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < 5; i++)
+                {
                     int pos = random.Next(copiaCategorias.Count);
                     categoriaActual = copiaCategorias.ElementAt(pos);
                     copiaCategorias.Remove(categoriaActual);
@@ -202,17 +206,20 @@ namespace Interfaz
                     List<string> copiaSitios = new List<string>(sitios);
                     List<string> usuarioSitios = new List<string>();
                     usuarioSitios.Add(usuarioActual.Nombre);
-                    generadoraClavesVerdeOscuro.Largo = random.Next(5,25);
-                    for (int k = 0; k < 5; k++) {
+                    generadoraClavesVerdeOscuro.Largo = random.Next(5, 25);
+                    for (int k = 0; k < 5; k++)
+                    {
                         generadoraClavesVerdeOscuro.Largo = random.Next(5, 25);
                         usuarioSitios.Add(generadoraClavesVerdeOscuro.Generar());
                     };
 
-                    generadoraClavesVerdeOscuro.Largo = random.Next(5,25);
+                    generadoraClavesVerdeOscuro.Largo = random.Next(5, 25);
 
-                    if (i < 4) {
+                    if (i < 4)
+                    {
                         bool agrego = false;
-                        while (!agrego) {
+                        while (!agrego)
+                        {
                             try
                             {
                                 agregadas = agregadas % 10;
@@ -232,10 +239,12 @@ namespace Interfaz
 
                                 int cantCodigo = random.Next(0, 2);
 
-                                if (cantCodigo == 0) {
+                                if (cantCodigo == 0)
+                                {
                                     aAgregar.Codigo = "" + random.Next(100, 999);
                                 }
-                                else {
+                                else
+                                {
                                     aAgregar.Codigo = "" + random.Next(1000, 9999);
                                 }
 
@@ -245,7 +254,7 @@ namespace Interfaz
 
                             }
                             catch (Exception) { };
-                            
+
                         }
                     }
 
@@ -255,12 +264,13 @@ namespace Interfaz
                     for (int j = 0; j < 5; j++)
                     {
                         bool paso = false;
-                        while (!paso) {
+                        while (!paso)
+                        {
                             try
                             {
                                 int posSitio = random.Next(copiaSitios.Count);
                                 sitioActual = copiaSitios.ElementAt(posSitio);
-                                
+
 
                                 int posUsuario = random.Next(usuarioSitios.Count);
                                 usuarioSitio = usuarioSitios.ElementAt(posUsuario);
@@ -282,19 +292,22 @@ namespace Interfaz
                                     Nota = generadoraActual.Generar()
                                 };
 
+                                aAgregar =controladoraEncriptador.Encriptar(aAgregar);
+
                                 controladoraUsuario.AgregarClave(aAgregar, nuevaCategoria, usuarioActual);
                                 usuarioSitios.Remove(usuarioSitio);
                                 copiaSitios.Remove(sitioActual);
                                 paso = true;
                             }
-                            catch (Exception) {
+                            catch (Exception)
+                            {
                                 string hola = "hola";
                             }
                         }
-                        
+
                     }
 
-                    
+
                 }
             }*/
             Application.EnableVisualStyles();
