@@ -3,8 +3,6 @@ using LogicaDeNegocio;
 using System;
 using System.Linq;
 using Negocio;
-using Repositorio;
-using System.Collections.Generic;
 
 namespace TestsObligatorio
 {

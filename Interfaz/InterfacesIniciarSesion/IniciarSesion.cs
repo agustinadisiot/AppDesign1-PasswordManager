@@ -33,6 +33,15 @@ namespace Interfaz
                 try {
                     
                     Usuario verdadero = this._administrador.GetUsuario(iniciar);
+
+                    Clave claveAEncriptar = new Clave()
+                    {
+                        Codigo = iniciar.ClaveMaestra
+                    };
+                    ControladoraEncriptador controladoraEncriptador = new ControladoraEncriptador();
+                    claveAEncriptar = controladoraEncriptador.Encriptar(claveAEncriptar);
+                    iniciar.ClaveMaestra = claveAEncriptar.Codigo;
+
                     if (verdadero.ClaveMaestra == iniciar.ClaveMaestra)
                     {
                        

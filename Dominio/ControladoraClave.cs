@@ -96,7 +96,19 @@ namespace LogicaDeNegocio
 
         public bool FueFiltrado(Clave aVerificar, List<Filtrada> filtradas)
         {
-            return filtradas.Exists(f => aVerificar.Codigo.Equals(f.Texto));
+            Clave copia = aVerificar;
+            try
+            {
+                ControladoraEncriptador controladoraEncriptador = new ControladoraEncriptador();
+                copia = controladoraEncriptador.Desencriptar(aVerificar);
+                bool resultado = filtradas.Exists(f => copia.Codigo.Equals(f.Texto));
+                return resultado;
+            }
+            catch (Exception)
+            {
+                bool resultado = filtradas.Exists(f => aVerificar.Codigo.Equals(f.Texto));
+                return resultado;
+            }
         }
 
         public void Borrar(Clave aBorrar) {

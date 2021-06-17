@@ -4,7 +4,6 @@ using Interfaz.InterfacesSeguridad;
 using Interfaz.InterfacesTarjetas;
 using LogicaDeNegocio;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
 using Negocio;
@@ -224,10 +223,6 @@ namespace Interfaz
             this.panelPrincipal.Controls.Clear();
 
             this.panelPrincipal.Controls.Add(verClaveSeleccionada);
-        }
-
-        private void ModificarClaveDataBreach_Event(Clave buscadora) {
-            this.AbrirModificarClave_Event(buscadora);
         }
 
         private void AbrirModificarClave_Event(Clave buscadora)

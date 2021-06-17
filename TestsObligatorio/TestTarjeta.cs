@@ -2,9 +2,7 @@
 using LogicaDeNegocio;
 using System;
 using System.Globalization;
-using Repositorio;
 using Negocio;
-using System.Collections.Generic;
 
 namespace TestsObligatorio
 {

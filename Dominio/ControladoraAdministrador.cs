@@ -1,6 +1,5 @@
 ﻿using Negocio;
 using Repositorio;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -69,6 +68,13 @@ namespace LogicaDeNegocio
         {
             ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
             controladoraUsuario.Verificar(usuario);
+            Clave claveAEncriptar = new Clave()
+            {
+                Codigo = usuario.ClaveMaestra
+            };
+            ControladoraEncriptador controladoraEncriptador = new ControladoraEncriptador();
+            claveAEncriptar = controladoraEncriptador.Encriptar(claveAEncriptar);
+            usuario.ClaveMaestra = claveAEncriptar.Codigo;
 
             if (this.YaExisteUsuario(usuario)) throw new ObjetoYaExistenteException();
             DataAccessUsuario acceso = new DataAccessUsuario();
@@ -77,7 +83,8 @@ namespace LogicaDeNegocio
 
         public Usuario GetUsuario(Usuario aBuscar)
         {
-            DataAccessUsuario acceso = new DataAccessUsuario();
+            DataAccessUsuario acceso = new DataAccessUsuario(); 
+
             List<Usuario> usuarios = (List<Usuario>)acceso.GetTodos();
             Usuario retorno = usuarios.FirstOrDefault(aBuscar.Equals);
             if (retorno != null)

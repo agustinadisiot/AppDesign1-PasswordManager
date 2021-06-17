@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LogicaDeNegocio
 {
@@ -44,15 +42,22 @@ namespace LogicaDeNegocio
             ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
             List<Clave> clavesUsuario = controladoraUsuario.GetListaClaves(contenedor);
 
-            return clavesUsuario.Any(actual => actual.Codigo.Equals(aVerificar));
+            Clave copia = new Clave()
+            {
+                Codigo = aVerificar,
+            };
+            ControladoraEncriptador controladoraEncriptador = new ControladoraEncriptador();
+            copia = controladoraEncriptador.Encriptar(copia);
+
+            return clavesUsuario.Any(actual => actual.Codigo.Equals(copia.Codigo)) || clavesUsuario.Any(actual => actual.Codigo.Equals(aVerificar));
+                     
         }
 
         public bool EsClaveNivelSeguro(string aVerificar)
         {
-            NivelSeguridad nivelSeguridad = new NivelSeguridad();
             ColorNivelSeguridad color = new ColorNivelSeguridad();
 
-            string colorAVerificar = nivelSeguridad.GetNivelSeguridad(aVerificar);
+            string colorAVerificar = this.GetNivelSeguridad(aVerificar);
             if (colorAVerificar.Equals(color.VerdeClaro) || colorAVerificar.Equals(color.VerdeOscuro))
             {
                 return true;

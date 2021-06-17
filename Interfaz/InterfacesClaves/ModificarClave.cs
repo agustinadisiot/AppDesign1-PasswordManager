@@ -98,6 +98,9 @@ namespace Interfaz.InterfacesClaves
                         CategoriaNueva = categoria
                     };
                     this._controladoraUsuario.ModificarClave(aModificar, this._actual);
+                    var confirmResult = MessageBox.Show("Contraseña modificada correctamente.",
+                                     "Contraseña Modificada.",
+                                     MessageBoxButtons.OK);
                     this.CerrarModificarClave(true);
                 }
                 catch (ObjetoYaExistenteException)

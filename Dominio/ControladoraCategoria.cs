@@ -2,6 +2,7 @@
 using Repositorio;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LogicaDeNegocio
 {
@@ -110,7 +111,17 @@ namespace LogicaDeNegocio
         {
             List<Clave> todasLasClaves = this.GetListaClaves(contenedora);
             NivelSeguridad nivelSeguridad = new NivelSeguridad();
-            return todasLasClaves.FindAll(buscadora => nivelSeguridad.GetNivelSeguridad(buscadora.Codigo) == color);
+            ControladoraEncriptador controladoraEncriptador = new ControladoraEncriptador();
+
+            try
+            {
+                IEnumerable<Clave> desencriptadas = todasLasClaves.Select(buscadora => controladoraEncriptador.Desencriptar(buscadora));
+                return desencriptadas.ToList().FindAll(buscadora => nivelSeguridad.GetNivelSeguridad(buscadora.Codigo) == color);
+            }
+            catch (Exception)
+            {
+                return todasLasClaves.FindAll(buscadora => nivelSeguridad.GetNivelSeguridad(buscadora.Codigo) == color);
+            }
         }
 
         public List<Clave> GetListaClaves(Categoria categoria)

@@ -31,18 +31,21 @@ namespace Interfaz
                     ClaveMaestra = this.inputContra.Text
                 };
 
-                try {
                     this._administrador.AgregarUsuario(agregar);
+                    var confirmResult = MessageBox.Show("Usuario creado correctamente.",
+                                     "Usuario Agregado.",
+                                     MessageBoxButtons.OK);
                     this.EnviarSalirCrearUsuario();
-                }
-                catch (Exception) {
-                    this.labelErrores.Text = "Error: Ya existe el Usuario";
-                }
 
+            }
+            catch (ObjetoYaExistenteException)
+            {
+                this.labelErrores.Text = "Error: Ya existe el Usuario";
             }
             catch (Exception) {
                 this.labelErrores.Text = "Error: Datos ingresados incorrectos.";
             }
+
 
         }
 

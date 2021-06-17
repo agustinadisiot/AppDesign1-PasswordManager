@@ -3,7 +3,6 @@ using LogicaDeNegocio;
 using Negocio;
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Interfaz.InterfacesClaves
@@ -123,14 +122,12 @@ namespace Interfaz.InterfacesClaves
 
         private void botonModificar_Click(object sender, EventArgs e)
         {
-            string sitioClave = "";
-            string usuarioClave = "";
             if (this.tablaClaves.SelectedCells.Count > 0)
             {
                 int selectedrowindex = tablaClaves.SelectedCells[0].RowIndex;
                 DataGridViewRow selectedRow = tablaClaves.Rows[selectedrowindex];
-                sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
-                usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
+                string sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
+                string usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
 
                 Clave buscadora = new Clave()
                 {

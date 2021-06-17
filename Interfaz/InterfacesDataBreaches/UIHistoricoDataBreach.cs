@@ -2,14 +2,7 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Interfaz.InterfacesDataBreaches
 {
@@ -132,7 +125,6 @@ namespace Interfaz.InterfacesDataBreaches
         private void tablaDataBreaches_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (this.tablaDataBreaches.SelectedCells.Count > 0) {
-                string formatoFecha = "yyyy'/'MMM'/'dd' 'HH':'mm':'ss";
                 int selectedrowindex = tablaDataBreaches.SelectedCells[0].RowIndex;
                 DataGridViewRow selectedRow = tablaDataBreaches.Rows[selectedrowindex];
                 DateTime fecha = DateTime.Parse(selectedRow.Cells["Fecha"].Value.ToString());
@@ -154,14 +146,12 @@ namespace Interfaz.InterfacesDataBreaches
 
         private void botonModificarClave_Click(object sender, EventArgs e)
         {
-            string sitioClave = "";
-            string usuarioClave = "";
             if (this.tablaClaves.SelectedCells.Count > 0)
             {
                 int selectedrowindex = tablaClaves.SelectedCells[0].RowIndex;
                 DataGridViewRow selectedRow = tablaClaves.Rows[selectedrowindex];
-                sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
-                usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
+                string sitioClave = Convert.ToString(selectedRow.Cells["Sitio"].Value);
+                string usuarioClave = Convert.ToString(selectedRow.Cells["Usuario"].Value);
                 bool fueModificado = Convert.ToString(selectedRow.Cells["FueModificado"].Value) == "Si";
                 if (fueModificado)
                 {

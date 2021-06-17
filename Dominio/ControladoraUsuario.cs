@@ -328,7 +328,17 @@ namespace LogicaDeNegocio
         {
             List<Clave> todasLasClaves = this.GetListaClaves(contenedor);
             NivelSeguridad nivelSeguridad = new NivelSeguridad();
-            return todasLasClaves.FindAll(buscadora => nivelSeguridad.GetNivelSeguridad(buscadora.Codigo)==color);
+            ControladoraEncriptador controladoraEncriptador = new ControladoraEncriptador();
+            
+            try
+            {
+                IEnumerable<Clave> desencriptadas = todasLasClaves.Select(buscadora => controladoraEncriptador.Desencriptar(buscadora));
+                return desencriptadas.ToList().FindAll(buscadora => nivelSeguridad.GetNivelSeguridad(buscadora.Codigo) == color);
+            }
+            catch (Exception)
+            {
+                return todasLasClaves.FindAll(buscadora => nivelSeguridad.GetNivelSeguridad(buscadora.Codigo) == color);
+            }
         }
 
         public Categoria GetCategoriaTarjeta(Tarjeta buscadora, Usuario contenedor)
@@ -372,7 +382,7 @@ namespace LogicaDeNegocio
                         }
                     }
                 }
-                catch (Exception e) { };
+                catch (Exception) { };
             }
 
             if (!encontro) {

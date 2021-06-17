@@ -1,6 +1,4 @@
-﻿using Negocio;
-
-namespace Negocio
+﻿namespace Negocio
 {
     public class ClaveAModificar
     {

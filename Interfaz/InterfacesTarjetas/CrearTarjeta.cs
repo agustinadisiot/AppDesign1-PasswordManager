@@ -71,17 +71,15 @@ namespace Interfaz
                         Nota = nota
                     };
 
-                    try
-                    {
                         controladoraUsuario.AgregarTarjeta(nueva, categoria, this._usuarioActual);
+                        var confirmResult = MessageBox.Show("Tarjeta creada correctamente.",
+                                     "Tarjeta Agregada.",
+                                     MessageBoxButtons.OK);
                         this.VolverAListaTarjetas();
-                    }
-                    catch (Exception)
-                    {
-
-                        this.labelErrores.Text = "Error: Ya existe la Tarjeta que se intento agregar.";
-
-                    }
+                 }
+                catch (ObjetoYaExistenteException)
+                 {
+                    this.labelErrores.Text = "Error: Ya existe la Tarjeta que se intento agregar.";
                 }
                 catch (Exception)
                 {
