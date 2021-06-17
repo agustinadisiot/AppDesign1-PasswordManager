@@ -12,3 +12,7 @@
 
 ### Obligatorio 1: 
 Se encuentra en el pdf [Documentacion_OBL1.pdf](./Documentacion/Documentacion_OBL1.pdf) dentro de la carpeta Documentación en la raíz del repositorio.
+
+### Obligatorio 2:
+Se encuentra en el pdf [Documentacion_Obl2.pdf](./Documentacion/Documentacion_OBL2.pdf) dentro de la carpeta Documentación en la raíz del repositorio.
+Ademas en la carpeta de [DiagramasOBL2](./Documentacion/DiagramasOBL2/) se encuentran tres pdfs de diagramas de secuencia. Uno de agregar un usuario, otro de modificar una tarjeta, y el ultimo de filtrar claves de un usuario.
