@@ -42,7 +42,15 @@ namespace LogicaDeNegocio
             ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
             List<Clave> clavesUsuario = controladoraUsuario.GetListaClaves(contenedor);
 
-            return clavesUsuario.Any(actual => actual.Codigo.Equals(aVerificar));
+            Clave copia = new Clave()
+            {
+                Codigo = aVerificar,
+            };
+            ControladoraEncriptador controladoraEncriptador = new ControladoraEncriptador();
+            copia = controladoraEncriptador.Encriptar(copia);
+
+            return clavesUsuario.Any(actual => actual.Codigo.Equals(copia.Codigo)) || clavesUsuario.Any(actual => actual.Codigo.Equals(aVerificar));
+                     
         }
 
         public bool EsClaveNivelSeguro(string aVerificar)
