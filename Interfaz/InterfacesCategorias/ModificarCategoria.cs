@@ -28,29 +28,24 @@ namespace Interfaz
 
         protected void botonAceptar_Click(object sender, EventArgs e)
         {
-            try 
+            try
             {
                 Categoria categoriaModificada = new Categoria()
                 {
                     Nombre = this.textNombreCategoria.Text
                 };
 
-                try
-                {
-                    this._controladoraUsuario.ModificarNombreCategoria(this._categoriaActual, categoriaModificada, this._usuarioActual);
-                    var confirmResult = MessageBox.Show("Categoria modificada correctamente.",
-                                     "Categoria Modificada.",
-                                     MessageBoxButtons.OK);
-                    VolverAListaCategorias();
-                }
-                catch
-                {
-                    this.labelErrores.Text = "Error: Ya existe una categoría con el mismo nombre.";
-                }
-                
-
+                this._controladoraUsuario.ModificarNombreCategoria(this._categoriaActual, categoriaModificada, this._usuarioActual);
+                var confirmResult = MessageBox.Show("Categoria modificada correctamente.",
+                                 "Categoria Modificada.",
+                                 MessageBoxButtons.OK);
+                VolverAListaCategorias();
             }
-            catch (Exception)
+            catch (ObjetoYaExistenteException)
+            {
+                this.labelErrores.Text = "Error: Ya existe una categoría con el mismo nombre.";
+            }
+            catch (LargoIncorrectoException)
             {
                 this.labelErrores.Text = "Error: El largo del nombre de la categoría no puede ser menor a 3 ni mayor a 15.";
             }
