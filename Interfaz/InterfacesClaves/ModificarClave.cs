@@ -1,4 +1,5 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -9,11 +10,15 @@ namespace Interfaz.InterfacesClaves
     {
         private Usuario _actual;
         private Clave _vieja;
+        private ControladoraUsuario _controladoraUsuario;
+        private ControladoraEncriptador _controladoraEncriptador;
 
         public ModificarClave(Usuario usuario, Clave clave)
         {
+            _controladoraEncriptador = new ControladoraEncriptador();
             this._actual = usuario;
             this._vieja = clave;
+            this._controladoraUsuario = new ControladoraUsuario();
             InitializeComponent();
         }
 
@@ -25,7 +30,8 @@ namespace Interfaz.InterfacesClaves
         }
 
         private void CargarInputsConClave() {
-            this.inputContra.Text = this._vieja.Codigo;
+            Clave desencriptada = _controladoraEncriptador.Desencriptar(this._vieja);
+            this.inputContra.Text = desencriptada.Codigo;
             this.inputNota.Text = this._vieja.Nota;
             this.inputSitio.Text = this._vieja.Sitio;
             this.inputUsuario.Text = this._vieja.UsuarioClave;
@@ -34,16 +40,15 @@ namespace Interfaz.InterfacesClaves
         private void CargarComboBox()
         {
             this.comboBoxCategorias.Items.Clear();
-            List<Categoria> lista = this._actual.GetListaCategorias();
+            List<Categoria> lista = this._controladoraUsuario.GetListaCategorias(this._actual);
 
             foreach (Categoria actual in lista)
             {
                 string nombre = actual.Nombre;
                 this.comboBoxCategorias.Items.Add(nombre);
-
             }
 
-            Categoria pertence = this._actual.GetCategoriaClave(this._vieja);
+            Categoria pertence = this._controladoraUsuario.GetCategoriaClave(this._vieja, this._actual);
 
             this.comboBoxCategorias.SelectedItem = pertence.Nombre;
 
@@ -67,7 +72,7 @@ namespace Interfaz.InterfacesClaves
 
             try
             {
-                DateTime modificacion = (this._vieja.Codigo == this.inputContra.Text) ? this._vieja.FechaModificacion : System.DateTime.Now.Date;
+                DateTime modificacion = (this._vieja.Codigo == this.inputContra.Text) ? this._vieja.FechaModificacion : System.DateTime.Now;
 
                 Clave nueva = new Clave()
                 {
@@ -77,17 +82,26 @@ namespace Interfaz.InterfacesClaves
                     Nota = this.inputNota.Text,
                     FechaModificacion = modificacion
                 };
+
                 try
                 {
+                    
+                    NivelSeguridad nivelSeguridad = new NivelSeguridad();
+                    nivelSeguridad.ClaveCumpleRequerimientos(nueva.Codigo, _actual);
+
+                    nueva = this._controladoraEncriptador.Encriptar(nueva);
                     ClaveAModificar aModificar = new ClaveAModificar()
                     {
                         ClaveVieja = this._vieja,
                         ClaveNueva = nueva,
-                        CategoriaVieja = this._actual.GetCategoriaClave(this._vieja),
+                        CategoriaVieja = this._controladoraUsuario.GetCategoriaClave(this._vieja, this._actual),
                         CategoriaNueva = categoria
                     };
-                    this._actual.ModificarClave(aModificar);
-                    this.CerrarModificarClave();
+                    this._controladoraUsuario.ModificarClave(aModificar, this._actual);
+                    var confirmResult = MessageBox.Show("Contraseña modificada correctamente.",
+                                     "Contraseña Modificada.",
+                                     MessageBoxButtons.OK);
+                    this.CerrarModificarClave(true);
                 }
                 catch (ObjetoYaExistenteException)
                 {
@@ -100,6 +114,10 @@ namespace Interfaz.InterfacesClaves
                 catch (ObjetoInexistenteException)
                 {
                     this.labelErrores.Text = "Error: No existe la contraseña original.";
+                }
+                catch (Exception x)
+                {
+                    this.labelErrores.Text = x.Message;
                 }
             }
             catch (Exception)
@@ -135,16 +153,16 @@ namespace Interfaz.InterfacesClaves
 
         private void botonCancelar_Click(object sender, EventArgs e)
         {
-            this.CerrarModificarClave();
+            this.CerrarModificarClave(false);
         }
         
 
-        public delegate void CerrarModificarClave_Delegate();
+        public delegate void CerrarModificarClave_Delegate(bool modifico);
         public event CerrarModificarClave_Delegate CerrarModificarClave_Event;
-        private void CerrarModificarClave()
+        private void CerrarModificarClave(bool modifico)
         {
             if (this.CerrarModificarClave_Event != null)
-                this.CerrarModificarClave_Event();
+                this.CerrarModificarClave_Event(modifico);
         }
 
         

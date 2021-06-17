@@ -1,4 +1,5 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Windows.Forms;
 
@@ -6,12 +7,12 @@ namespace Interfaz
 {
     public partial class CrearUsuario : UserControl
     {
-        private Administrador _administrador;
+        private ControladoraAdministrador _administrador;
 
-        public CrearUsuario(Administrador administradorActual)
+        public CrearUsuario()
         {
             InitializeComponent();
-            this._administrador = administradorActual;
+            this._administrador = new ControladoraAdministrador();
         }
 
         private void CrearUsuario_Load(object sender, EventArgs e)
@@ -30,18 +31,21 @@ namespace Interfaz
                     ClaveMaestra = this.inputContra.Text
                 };
 
-                try {
                     this._administrador.AgregarUsuario(agregar);
+                    var confirmResult = MessageBox.Show("Usuario creado correctamente.",
+                                     "Usuario Agregado.",
+                                     MessageBoxButtons.OK);
                     this.EnviarSalirCrearUsuario();
-                }
-                catch (Exception) {
-                    this.labelErrores.Text = "Error: Ya existe el Usuario";
-                }
 
+            }
+            catch (ObjetoYaExistenteException)
+            {
+                this.labelErrores.Text = "Error: Ya existe el Usuario";
             }
             catch (Exception) {
                 this.labelErrores.Text = "Error: Datos ingresados incorrectos.";
             }
+
 
         }
 

@@ -1,361 +1,345 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Dominio;
+using LogicaDeNegocio;
 using System;
 using System.Linq;
+using Negocio;
 
 namespace TestsObligatorio
 {
     [TestClass]
     public class TestClave
     {
+        private ControladoraAdministrador controladoraAdministrador;
+        private ControladoraClave controladora;
+        private Clave clave1;
+        private Clave clave2;
+        private string menorA5;
+        private string mayorA25;
+        private NivelSeguridad nivelSeguridad;
+        private ColorNivelSeguridad color;
+        private DateTime tiempoActual;
+
+        [TestInitialize]
+        public void Setup()
+        {
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.BorrarTodo();
+            controladora = new ControladoraClave();
+
+            
+
+            clave1 = new Clave()
+            {
+                Sitio = "ort.edu.uy",
+                UsuarioClave = "UsuarioORT"
+            };
+
+            clave2 = new Clave()
+            {
+                Sitio = "youtube.com",
+                UsuarioClave = "UsuarioYoutube"
+            };
+
+            menorA5 = "a";
+
+            mayorA25 = "";
+
+            for (int i = 0; i <= 25; i++)
+            {
+                mayorA25 = mayorA25 + "a";
+            }
+
+            nivelSeguridad = new NivelSeguridad();
+            color = new ColorNivelSeguridad();
+
+            tiempoActual = System.DateTime.Now.Date;
+        }
+
         [TestMethod]
         public void ClaveGetUsuarioCorrecto()
         {
-            Clave clave = new Clave()
-            {
-                UsuarioClave = "juan@gmail.com"
-            };
-            Assert.AreEqual("juan@gmail.com", clave.UsuarioClave);
+            clave1.UsuarioClave = "juan@gmail.com";
+            Assert.AreEqual("juan@gmail.com", clave1.UsuarioClave);
         }
 
         [TestMethod]
         public void ClaveGetUsuarioCambiado()
         {
-            Clave clave = new Clave()
-            {
-                UsuarioClave = "juan@gmail.com"
-            };
-            clave.UsuarioClave = "pedro@gmail.com";
-            Assert.AreEqual("pedro@gmail.com", clave.UsuarioClave);
+            clave1.UsuarioClave = "pedro@gmail.com";
+            Assert.AreEqual("pedro@gmail.com", clave1.UsuarioClave);
         }
 
         [TestMethod]
         public void ClaveLargoUsuarioMenorA5()
         {
-            Clave clave = new Clave();
-            Assert.ThrowsException<LargoIncorrectoException>(() => clave.UsuarioClave = "A");
+            clave1.UsuarioClave = menorA5;
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarUsuarioClave(clave1));
         }
 
         [TestMethod]
         public void ClaveLargoUsuarioMayorA25()
         {
-            Clave clave = new Clave();
-            Assert.ThrowsException<LargoIncorrectoException>(() => clave.UsuarioClave = "12345678901234567890123456");
+            clave1.UsuarioClave = mayorA25;
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarUsuarioClave(clave1));
         }
 
         [TestMethod]
         public void ClaveGetClaveCorrecta()
         {
-            Clave clave = new Clave()
-            {
-                Codigo = "123456"
-            };
-            Assert.AreEqual("123456", clave.Codigo);
+            clave1.Codigo = "123456";
+            Assert.AreEqual("123456", clave1.Codigo);
         }
 
         [TestMethod]
         public void ClaveGetClaveCambiada()
         {
-            Clave clave = new Clave()
-            {
-                Codigo = "123456"
-            };
-            clave.Codigo = "claveNueva";
-            Assert.AreEqual("claveNueva", clave.Codigo);
+            clave1.Codigo = "123456";
+            clave1.Codigo = "claveNueva";
+            Assert.AreEqual("claveNueva", clave1.Codigo);
         }
 
         [TestMethod]
         public void ClaveLargoClaveMenorA5()
         {
-            Clave clave = new Clave();
-            Assert.ThrowsException<LargoIncorrectoException>(() => clave.Codigo = "A");
+            clave1.Codigo = menorA5;
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarCodigo(clave1));
         }
 
         [TestMethod]
         public void ClaveLargoClaveMayorA25()
         {
-            Clave clave = new Clave();
-            Assert.ThrowsException<LargoIncorrectoException>(() => clave.Codigo = "12345678901234567890123456");
+            clave1.Codigo = mayorA25;
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarCodigo(clave1));
         }
 
         [TestMethod]
         public void ClaveGetSitioCorrecto()
         {
-            Clave clave = new Clave()
-            {
-                Sitio = "Netflix.com"
-            };
-            Assert.AreEqual("Netflix.com", clave.Sitio);
+            clave1.Sitio = "Netflix.com";
+            Assert.AreEqual("Netflix.com", clave1.Sitio);
         }
 
         [TestMethod]
         public void ClaveGetSitioCambiado()
         {
-            Clave clave = new Clave()
-            {
-                Sitio = "Netflix.com"
-            };
-            clave.Sitio = "youtube.com";
-            Assert.AreEqual("youtube.com", clave.Sitio);
+            clave1.Sitio = "Netflix.com";
+            clave1.Sitio = "youtube.com";
+            Assert.AreEqual("youtube.com", clave1.Sitio);
         }
 
         [TestMethod]
         public void ClaveLargoSitioMenorA3()
         {
-            Clave clave = new Clave();
-            Assert.ThrowsException<LargoIncorrectoException>(() => clave.Sitio = "A");
+            clave1.Sitio = "a";
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarSitio(clave1));
         }
 
         [TestMethod]
         public void ClaveLargoSitioMayorA25()
         {
-            Clave clave = new Clave();
-            Assert.ThrowsException<LargoIncorrectoException>(() => clave.Sitio = "sitioconmasde25caracteres.com");
+            clave1.Sitio = mayorA25;
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarSitio(clave1));
         }
 
         [TestMethod]
         public void ClaveGetNotaCorrecta()
         {
-            Clave clave = new Clave()
-            {
-                Nota = "Hola"
-            };
-            Assert.AreEqual("Hola", clave.Nota);
+            clave1.Nota = "Hola";
+            Assert.AreEqual("Hola", clave1.Nota);
         }
 
         [TestMethod]
         public void ClaveGetNotaCambiada()
         {
-            Clave clave = new Clave()
-            {
-                Nota = "Hola"
-            };
-            clave.Nota = "notaNueva";
-            Assert.AreEqual("notaNueva", clave.Nota);
+            clave1.Nota = "Hola";
+            clave1.Nota = "notaNueva";
+            Assert.AreEqual("notaNueva", clave1.Nota);
         }
 
         [TestMethod]
         public void ClaveLargoNotaMayorA250()
         {
-            Clave clave = new Clave();
-            string notaDemasiadoLarga = "";
-            for (int i = 0; i < 251; i++) notaDemasiadoLarga += "C";
-            Assert.ThrowsException<LargoIncorrectoException>(() => clave.Nota = notaDemasiadoLarga);
+            string notaMayorA250 = "";
+            for (int i = 0; i < 251; i++) notaMayorA250 += "C";
+            clave1.Nota = notaMayorA250;
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarNota(clave1));
         }
 
         [TestMethod]
         public void ClaveNivelSeguridadMenorOchoChars()
         {
-            Clave clave = new Clave
-            {
-                Codigo = "clave1"
-            };
-
-            ColorNivelSeguridad color = new ColorNivelSeguridad();
-            Assert.AreEqual(color.Rojo, clave.GetNivelSeguridad());
+            clave1.Codigo = "clave1";
+            Assert.AreEqual(color.Rojo, nivelSeguridad.GetNivelSeguridad(clave1.Codigo));
         }
 
         [TestMethod]
         public void ClaveNivelSeguridadEntreOchoYCatorceChars()
         {
-            Clave clave = new Clave
-            {
-                Codigo = "clave212345"
-            };
-            ColorNivelSeguridad color = new ColorNivelSeguridad();
-            Assert.AreEqual(color.Naranja, clave.GetNivelSeguridad());
+            clave1.Codigo = "clave212345";
+            Assert.AreEqual(color.Naranja, nivelSeguridad.GetNivelSeguridad(clave1.Codigo));
         }
 
         [TestMethod]
         public void ClaveNivelSeguridadMayorACatorceSoloMay()
         {
-            Clave clave = new Clave
-            {
-                Codigo = "CLAVESOLOMAYUSCULAS"
-            };
-            ColorNivelSeguridad color = new ColorNivelSeguridad();
-            Assert.AreEqual(color.Amarillo, clave.GetNivelSeguridad());
+            clave1.Codigo = "CLAVESOLOMAYUSCULAS";
+            Assert.AreEqual(color.Amarillo, nivelSeguridad.GetNivelSeguridad(clave1.Codigo));
         }
 
         [TestMethod]
         public void ClaveNivelSeguridadMayorACatorceSoloMin()
         {
-            Clave clave = new Clave
-            {
-                Codigo = "clavesolominusculas"
-            };
-            ColorNivelSeguridad color = new ColorNivelSeguridad();
-            Assert.AreEqual(color.Amarillo, clave.GetNivelSeguridad());
+            clave1.Codigo = "clavesolominusculas";
+            Assert.AreEqual(color.Amarillo, nivelSeguridad.GetNivelSeguridad(clave1.Codigo));
         }
 
         [TestMethod]
         public void ClaveNivelSeguridadMayorACatorceConMayYMin()
         {
-            Clave clave = new Clave
-            {
-                Codigo = "ClaveConMayYMin"
-            };
-            ColorNivelSeguridad color = new ColorNivelSeguridad();
-            Assert.AreEqual(color.VerdeClaro, clave.GetNivelSeguridad());
+            clave1.Codigo = "ClaveConMayYMin";
+            Assert.AreEqual(color.VerdeClaro, nivelSeguridad.GetNivelSeguridad(clave1.Codigo));
         }
 
         [TestMethod]
         public void ClaveNivelSeguridadMayorACatorceConMayMinNumYSim()
         {
-            Clave clave = new Clave
-            {
-                Codigo = "ClaveConMayYMin14@#"
-            };
-            ColorNivelSeguridad color = new ColorNivelSeguridad();
-            Assert.AreEqual(color.VerdeOscuro, clave.GetNivelSeguridad());
+            clave1.Codigo = "ClaveConMayYMin14@#";
+            Assert.AreEqual(color.VerdeOscuro, nivelSeguridad.GetNivelSeguridad(clave1.Codigo));
         }
 
         [TestMethod]
         public void ClaveNivelSeguridadMayorACatorceConMayMinNumYSimEnUltimoChar()
         {
-            Clave clave = new Clave
-            {
-                Codigo = "claveconmayymiN14@"
-            };
-            ColorNivelSeguridad color = new ColorNivelSeguridad();
-            Assert.AreEqual(color.VerdeOscuro, clave.GetNivelSeguridad());
+            clave1.Codigo = "claveconmayymiN14@";
+            Assert.AreEqual(color.VerdeOscuro, nivelSeguridad.GetNivelSeguridad(clave1.Codigo)
+);
         }
 
         [TestMethod]
         public void ClaveEqualsMismoSitioYUsuario()
         {
-            Clave clave1 = new Clave()
-            {
-                Sitio = "ort.edu.uy",
-                UsuarioClave = "UsuarioORT"
-            };
-            Clave clave2 = new Clave()
-            {
-                Sitio = "ort.edu.uy",
-                UsuarioClave = "UsuarioORT"
-            };
+            clave2.Sitio = clave1.Sitio;
+            clave2.UsuarioClave = clave1.UsuarioClave;
             Assert.AreEqual(clave1, clave2);
         }
 
         [TestMethod]
         public void ClaveEqualsDiferenteSitioYMismoUsuario()
         {
-            Clave clave1 = new Clave()
-            {
-                Sitio = "ort.edu.uy",
-                UsuarioClave = "UsuarioORT"
-            };
-            Clave clave2 = new Clave()
-            {
-                Sitio = "aulas.edu.uy",
-                UsuarioClave = "UsuarioORT"
-            };
+            clave2.UsuarioClave = clave1.UsuarioClave;
             Assert.AreNotEqual(clave1, clave2);
         }
 
         [TestMethod]
         public void ClaveEqualsMismoSitioYDiferenteUsuario()
         {
-            Clave clave1 = new Clave()
-            {
-                Sitio = "ort.edu.uy",
-                UsuarioClave = "Usuario123"
-            };
-            Clave clave2 = new Clave()
-            {
-                Sitio = "ort.edu.uy",
-                UsuarioClave = "Usuario789" 
-            };
+            clave2.Sitio = clave1.Sitio;
             Assert.AreNotEqual(clave1, clave2);
         }
 
         [TestMethod]
         public void ClaveEqualsConNull()
         {
-            Clave clave1 = new Clave()
-            {
-                Sitio = "ort.edu.uy",
-                UsuarioClave = "Usuario123"
-            };
-            Clave clave2 = null;
+            clave2 = null;
             Assert.ThrowsException<ObjetoIncompletoException>(() => clave1.Equals(clave2)) ;
         }
 
         [TestMethod]
         public void ClaveEqualsConString()
         {
-            Clave clave = new Clave()
-            {
-                Sitio = "ort.edu.uy",
-                UsuarioClave = "Usuario123"
-            };
             String falsaClave = "falsaClave"; 
-            Assert.ThrowsException<ObjetoIncorrectoException>(() => clave.Equals(falsaClave));
+            Assert.ThrowsException<ObjetoIncorrectoException>(() => clave1.Equals(falsaClave));
         }
 
         [TestMethod]
         public void ClaveEqualsConMayYMin()
         {
-            Clave clave1 = new Clave()
-            {
-                Sitio = "Ort.Edu.Uy",
-                UsuarioClave = "UsuarioORT"
-            };
-            Clave clave2 = new Clave()
-            {
-                Sitio = "oRt.eDu.uY",
-                UsuarioClave = "UsuarioORT"
-            };
+            clave2.Sitio = clave1.Sitio.ToUpper();
+            clave2.UsuarioClave = clave1.UsuarioClave.ToUpper();
             Assert.AreEqual(clave1, clave2);
         }
 
         [TestMethod]
         public void ClaveGetFechaModificacionNuevaClave() {
-
-            Clave evaluar = new Clave();
-
-            DateTime actual = new System.DateTime().Date;
-            Assert.AreEqual(actual, evaluar.FechaModificacion);
+            Assert.AreEqual(tiempoActual, clave1.FechaModificacion);
         }
 
         [TestMethod]
         public void ClaveGetFechaModificacionClaveVieja()
         {
-
-            Clave evaluar = new Clave() {
-                Codigo = "12345ABCD"
+            clave1 = new Clave()
+            {
+                Sitio = "web.whatsapp.com",
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto",
+                Nota = "",
+                FechaModificacion = DateTime.Now
             };
-            evaluar.FechaModificacion = new DateTime(2000, 1, 1);
 
-            evaluar.Codigo = "ClaveNueva";
-            DateTime actual = System.DateTime.Now.Date;
-            Assert.AreEqual(actual, evaluar.FechaModificacion);
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "usuario",
+                ClaveMaestra = "12345ABCD"
+            };
+
+            Categoria categoria = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            ControladoraAdministrador controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.AgregarUsuario(usuario);
+
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+            controladoraUsuario.AgregarCategoria(categoria, usuario);
+
+
+            controladoraUsuario.AgregarClave(clave1, categoria, usuario);
+
+            Clave aModificar = new Clave()
+            {
+                Codigo = "CodigoModificado",
+                Nota = "",
+                UsuarioClave = "usuario",
+                Sitio = "Sitio",
+                FechaModificacion = new DateTime(2000, 1, 1),
+                Id = clave1.Id
+            };
+
+            /*ClaveAModificar claveAModificar = new ClaveAModificar()
+            {
+                CategoriaNueva = categoria,
+                CategoriaVieja = categoria,
+                ClaveVieja = aAgregar,
+                ClaveNueva = aModificar
+            };*/
+
+            controladora.Modificar(aModificar);
+
+
+
+            Assert.AreEqual(tiempoActual, aModificar.FechaModificacion);
         }
 
 
         [TestMethod]
-        public void ClaveUsuarioInsensitive() {
-            Clave mayusculas = new Clave()
-            {
-                UsuarioClave = "AAAAA",
-                Sitio = "ORT.EDU.UY"
-            };
-            Clave minusculas = new Clave()
-            {
-                UsuarioClave = "aaaaa",
-                Sitio = "ort.edu.uy"
-            };
-            Assert.AreEqual(minusculas, mayusculas);
+        public void ClaveUsuarioClaveInsensitive() {
+            clave2.UsuarioClave = clave1.UsuarioClave.ToUpper();
+            clave2.Sitio = clave1.Sitio;
+            clave1.UsuarioClave = clave1.UsuarioClave.ToLower();
+            Assert.AreEqual(clave1, clave2);
         }
     }
 
     [TestClass]
     public class TestClaveGenerada
     {
-        [TestMethod]
-        public void ClaveGeneradaVacia()
+        private GeneradoraClaves generadora;
+
+        [TestInitialize]
+        public void Setup()
         {
-            GeneradoraClaves generadora = new GeneradoraClaves() 
+            generadora = new GeneradoraClaves()
             {
                 IncluirMayusculas = false,
                 IncluirMinusculas = false,
@@ -363,27 +347,21 @@ namespace TestsObligatorio
                 IncluirSimbolos = false,
                 Largo = 10
             };
+        }
 
+        [TestMethod]
+        public void ClaveGeneradaVacia()
+        {
             Assert.ThrowsException<ClaveGeneradaVaciaException>(() => generadora.Generar());
         }
 
         [TestMethod]
         public void ClaveGeneradaSoloMayusculas()
         {
-            GeneradoraClaves generadora = new GeneradoraClaves()
-            {
-                Largo = 5,
-                IncluirMayusculas = true,
-                IncluirMinusculas = false,
-                IncluirNumeros = false,
-                IncluirSimbolos = false
-            };
+            generadora.Largo = 5;
+            generadora.IncluirMayusculas = true;
 
-            Clave random = new Clave()
-            {
-                Codigo = generadora.Generar()
-            };
-            string resultado = random.Codigo;
+            string resultado = generadora.Generar();
             bool esSoloMayuscula = resultado.All(caracter => VerificadoraString.EsMayuscula(caracter));
             Assert.IsTrue(esSoloMayuscula);
         }
@@ -391,39 +369,22 @@ namespace TestsObligatorio
         [TestMethod]
         public void ClaveGeneradaLargoCorrecto()
         {
-            GeneradoraClaves generadora = new GeneradoraClaves()
-            {
-                Largo = 10,
-                IncluirMayusculas = true,
-                IncluirMinusculas = false,
-                IncluirNumeros = false,
-                IncluirSimbolos = false
-            };
+            generadora.IncluirMayusculas = true;
 
-            Clave random = new Clave() {
-                Codigo = generadora.Generar()
-            };
-            string resultado = random.Codigo;
+            string resultado = generadora.Generar();
             Assert.AreEqual(10, resultado.Length);
         }
 
         [TestMethod]
         public void ClaveGeneradaIncluyendoTodo()
         {
-            GeneradoraClaves generadora = new GeneradoraClaves()
-            {
-                Largo = 10,
-                IncluirMayusculas = true,
-                IncluirMinusculas = true,
-                IncluirNumeros = true,
-                IncluirSimbolos = true
-            };
+            generadora.IncluirMayusculas = true;
+            generadora.IncluirMinusculas = true;
+            generadora.IncluirNumeros = true;
+            generadora.IncluirSimbolos = true;
 
-            Clave random = new Clave()
-            {
-                Codigo = generadora.Generar()
-            };
-            string resultado = random.Codigo;
+
+            string resultado = generadora.Generar();
             bool contieneMayusculas = resultado.Any(caracter => VerificadoraString.EsMayuscula(caracter));
             bool contieneMinusculas = resultado.Any(caracter => VerificadoraString.EsMinuscula(caracter));
             bool contieneNumeros = resultado.Any(caracter => VerificadoraString.EsNumero(caracter));
@@ -435,20 +396,11 @@ namespace TestsObligatorio
         [TestMethod]
         public void ClaveGeneradaIncluyendoSimbolosMinusculas()
         {
-            GeneradoraClaves generadora = new GeneradoraClaves()
-            {
-                Largo = 15,
-                IncluirMayusculas = false,
-                IncluirMinusculas = true,
-                IncluirNumeros = false,
-                IncluirSimbolos = true
-            };
+            generadora.Largo = 15;
+            generadora.IncluirMinusculas = true;
+            generadora.IncluirSimbolos = true;
 
-            Clave random = new Clave()
-            {
-                Codigo = generadora.Generar()
-            };
-            string resultado = random.Codigo;
+            string resultado = generadora.Generar();
             bool contieneMayusculas = resultado.Any(caracter => VerificadoraString.EsMayuscula(caracter));
             bool contieneMinusculas = resultado.Any(caracter => VerificadoraString.EsMinuscula(caracter));
             bool contieneNumeros = resultado.Any(caracter => VerificadoraString.EsNumero(caracter));

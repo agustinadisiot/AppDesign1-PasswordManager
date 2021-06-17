@@ -1,4 +1,5 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -7,13 +8,13 @@ namespace Interfaz
 {
     public partial class CrearTarjeta : UserControl
     {
-        private Usuario _actual;
+        private Usuario _usuarioActual;
 
         public CrearTarjeta(Usuario aAgregar)
         {
             InitializeComponent();
 
-            this._actual = aAgregar;
+            this._usuarioActual = aAgregar;
         }
 
         private void CrearTarjeta_Load(object sender, EventArgs e)
@@ -26,7 +27,8 @@ namespace Interfaz
 
         private void CargarComboBox() {
             this.comboBoxCategorias.Items.Clear();
-            List<Categoria> lista = this._actual.GetListaCategorias();
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+            List<Categoria> lista = controladoraUsuario.GetListaCategorias(this._usuarioActual);
 
             foreach (Categoria actual in lista) {
 
@@ -37,6 +39,8 @@ namespace Interfaz
 
         private void botonCrear_Click(object sender, EventArgs e)
         {
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+
             string valorComboBox = this.LeerComboBox();
 
             if (valorComboBox != null)
@@ -67,17 +71,15 @@ namespace Interfaz
                         Nota = nota
                     };
 
-                    try
-                    {
-                        this._actual.AgregarTarjeta(nueva, categoria);
+                        controladoraUsuario.AgregarTarjeta(nueva, categoria, this._usuarioActual);
+                        var confirmResult = MessageBox.Show("Tarjeta creada correctamente.",
+                                     "Tarjeta Agregada.",
+                                     MessageBoxButtons.OK);
                         this.VolverAListaTarjetas();
-                    }
-                    catch (Exception)
-                    {
-
-                        this.labelErrores.Text = "Error: Ya existe la Tarjeta que se intento agregar.";
-
-                    }
+                 }
+                catch (ObjetoYaExistenteException)
+                 {
+                    this.labelErrores.Text = "Error: Ya existe la Tarjeta que se intento agregar.";
                 }
                 catch (Exception)
                 {

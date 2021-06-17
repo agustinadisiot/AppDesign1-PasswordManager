@@ -2,34 +2,35 @@
 using Interfaz.InterfacesCompartirClave;
 using Interfaz.InterfacesSeguridad;
 using Interfaz.InterfacesTarjetas;
-using Dominio;
+using LogicaDeNegocio;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
+using Negocio;
+using Interfaz.InterfacesDataBreaches;
 
 namespace Interfaz
 {
     public partial class VentanaPrincipal : Form
     {
 
-        private Administrador _administrador;
+        private ControladoraAdministrador _controladoraAdministrador;
+        private ControladoraUsuario _controladoraUsuario;
         private Usuario _usuarioActual;
         private Type _panelAVolverVerClave;
         private Type _panelAVolverModificarClave;
-        private List<string> _ultimoDataBreach;
 
         public VentanaPrincipal()
         {
-            this._administrador = new Administrador();
-
+            this._controladoraAdministrador = new ControladoraAdministrador();
+            this._controladoraUsuario = new ControladoraUsuario();
             InitializeComponent();
 
         }
 
         private void VentanaPrincipal_Load(object sender, EventArgs e)
         {
-            IniciarSesion iniciarSesion = new IniciarSesion(this._administrador);
+            IniciarSesion iniciarSesion = new IniciarSesion();
 
             this.panelDrawer.Visible = false;
 
@@ -49,6 +50,7 @@ namespace Interfaz
             this.botonListaTarjetas.BackColor = Color.FromArgb(51, 51, 51);
             this.botonReporteFortaleza.BackColor = Color.FromArgb(51, 51, 51);
             this.botonDataBreaches.BackColor = Color.FromArgb(51, 51, 51);
+            this.botonHistoricoDataBreaches.BackColor = Color.FromArgb(51, 51, 51);
         }
 
         private void botonListaCategorias_Click(object sender, EventArgs e)
@@ -108,7 +110,7 @@ namespace Interfaz
         {
             this.ResetearColoresBotonesDrawer();
             this.botonDataBreaches.BackColor = Color.FromArgb(138, 138, 138);
-            this.AbrirDataBreaches_Handler(null);
+            this.AbrirDataBreaches_Handler(false);
         }
 
 
@@ -117,7 +119,7 @@ namespace Interfaz
             if (acepto)
             {
                 this.ResetearColoresBotonesDrawer();
-                IniciarSesion iniciarSesion = new IniciarSesion(this._administrador);
+                IniciarSesion iniciarSesion = new IniciarSesion();
                 iniciarSesion.IniciarSesion_Event += IniciarSesion_Handler;
                 iniciarSesion.AbrirCrearUsuario_Event += this.AbrirCrearUsuario_Handler;
                 this.panelDrawer.Visible = false;
@@ -146,7 +148,7 @@ namespace Interfaz
 
         private void AbrirCrearUsuario_Handler()
         {
-            CrearUsuario crearUsuario = new CrearUsuario(this._administrador);
+            CrearUsuario crearUsuario = new CrearUsuario();
             crearUsuario.AbrirIniciarSesion_Event += AbrirIniciarSesion_Handler;
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(crearUsuario);
@@ -154,7 +156,7 @@ namespace Interfaz
 
         private void AbrirIniciarSesion_Handler()
         {
-            IniciarSesion iniciarSesion = new IniciarSesion(this._administrador);
+            IniciarSesion iniciarSesion = new IniciarSesion();
 
             iniciarSesion.IniciarSesion_Event += IniciarSesion_Handler;
             iniciarSesion.AbrirCrearUsuario_Event += AbrirCrearUsuario_Handler;
@@ -165,7 +167,7 @@ namespace Interfaz
 
         protected void AbrirListaCategorias_Handler()
         {
-
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             ListaCategorias listaCategorias = new ListaCategorias(this._usuarioActual);
             listaCategorias.AbrirAgregarCategorias_Event += AbrirAgregarCategorias_Handler;
             listaCategorias.AbrirModificarCategorias_Event += AbrirModificarCategorias_Handler;
@@ -177,7 +179,7 @@ namespace Interfaz
 
         protected void AbrirAgregarCategorias_Handler()
         {
-
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             AgregarCategoria agregarCategoria = new AgregarCategoria(this._usuarioActual);
             agregarCategoria.AbrirListaCategorias_Event += AbrirListaCategorias_Handler;
 
@@ -188,7 +190,7 @@ namespace Interfaz
 
         protected void AbrirModificarCategorias_Handler(Categoria aModificar)
         {
-
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             ModificarCategoria modificarCategoria = new ModificarCategoria(aModificar, this._usuarioActual);
             modificarCategoria.AbrirListaCategorias_Event += AbrirListaCategorias_Handler;
 
@@ -199,7 +201,7 @@ namespace Interfaz
         protected void AbrirListaTarjetas_Handler()
         {
             this.panelPrincipal.Controls.Clear();
-
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             ListaTarjetas listaTarjetas = new ListaTarjetas(this._usuarioActual);
             listaTarjetas.AbrirCrearTarjeta_Event += this.AbrirCrearTarjeta_Handler;
             listaTarjetas.AbrirModificarTarjeta_Event += this.AbrirModificarTarjeta_Handler;
@@ -214,18 +216,13 @@ namespace Interfaz
                 this._panelAVolverVerClave = p.GetType();
             }
 
-            Usuario usuarioAMostrar = this._administrador.GetUsuario(usuarioABuscar);
-            Clave claveAMostrar = usuarioAMostrar.GetClave(buscadora);
+            Usuario usuarioAMostrar = this._controladoraAdministrador.GetUsuario(usuarioABuscar);
+            Clave claveAMostrar = this._controladoraUsuario.GetClave(buscadora, usuarioAMostrar);
             VerClave verClaveSeleccionada = new VerClave(claveAMostrar, usuarioAMostrar);
             verClaveSeleccionada.SalirDeVerClave_Event += this.SalirDeVerClave_Handler;
             this.panelPrincipal.Controls.Clear();
 
             this.panelPrincipal.Controls.Add(verClaveSeleccionada);
-        }
-
-        private void ModificarClaveDataBreach_Event(Clave buscadora, List<string> dataBreach) {
-            this._ultimoDataBreach = dataBreach;
-            this.AbrirModificarClave_Event(buscadora);
         }
 
         private void AbrirModificarClave_Event(Clave buscadora)
@@ -235,8 +232,8 @@ namespace Interfaz
             {
                 this._panelAVolverModificarClave = p.GetType();
             }
-
-            Clave modificar = this._usuarioActual.GetClave(buscadora);
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
+            Clave modificar = this._controladoraUsuario.GetClave(buscadora, this._usuarioActual);
             ModificarClave modificarClave = new ModificarClave(this._usuarioActual, modificar);
             modificarClave.CerrarModificarClave_Event += CerrarModificarClave_Event;
 
@@ -244,11 +241,11 @@ namespace Interfaz
             this.panelPrincipal.Controls.Add(modificarClave);
         }
 
-        protected void CerrarModificarClave_Event() {
+        protected void CerrarModificarClave_Event(bool modifico) {
             switch (this._panelAVolverModificarClave.Name)
             {
                 case "IngresoYListaDataBreach":
-                    this.AbrirDataBreaches_Handler(this._ultimoDataBreach);
+                    this.AbrirDataBreaches_Handler(true);
                     break;
                 case "ReporteDeFortaleza":
                     this.AbrirReporteFortaleza_Handler();
@@ -261,6 +258,7 @@ namespace Interfaz
 
         protected void AbrirCrearClave_Handler()
         {
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             CrearClave crearClave = new CrearClave(this._usuarioActual);
             crearClave.AbrirListaClaves_Event += this.AbrirListaClaves_Handler;
 
@@ -270,7 +268,7 @@ namespace Interfaz
 
         protected void AbrirCompartirClave_Handler(ClaveCompartida aCompartir)
         {
-            CompartirClave compartirClave = new CompartirClave(aCompartir, this._administrador);
+            CompartirClave compartirClave = new CompartirClave(aCompartir);
             compartirClave.AbrirListaClaves_Event += this.AbrirListaClaves_Handler;
 
             this.panelPrincipal.Controls.Clear();
@@ -303,6 +301,7 @@ namespace Interfaz
 
         protected void AbrirListaClaves_Handler()
         {
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             ListaClaves listaClaves = new ListaClaves(this._usuarioActual);
             listaClaves.AbrirCrearClave_Event += this.AbrirCrearClave_Handler;
             listaClaves.AbrirModificarClave_Event += this.AbrirModificarClave_Event;
@@ -314,8 +313,8 @@ namespace Interfaz
 
         protected void AbrirListaClavesCompartidasConmigo_Handler()
         {
-
-            ListaClavesCompartidasConmigo listaClavesCompartidasConmigo = new ListaClavesCompartidasConmigo(this._usuarioActual, this._administrador);
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
+            ListaClavesCompartidasConmigo listaClavesCompartidasConmigo = new ListaClavesCompartidasConmigo(this._usuarioActual);
             listaClavesCompartidasConmigo.AbrirVerClave_Event += this.AbrirVerClave_Handler;
 
             this.panelPrincipal.Controls.Clear();
@@ -325,8 +324,8 @@ namespace Interfaz
 
         protected void AbrirListaClavesCompartidasPorMi_Handler()
         {
-
-            ListaClavesCompartidasPorMi listaClavesCompartidasPorMi = new ListaClavesCompartidasPorMi(this._usuarioActual, this._administrador);
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
+            ListaClavesCompartidasPorMi listaClavesCompartidasPorMi = new ListaClavesCompartidasPorMi(this._usuarioActual);
             listaClavesCompartidasPorMi.AbrirVerClave_Event += this.AbrirVerClave_Handler;
 
             this.panelPrincipal.Controls.Clear();
@@ -337,6 +336,7 @@ namespace Interfaz
         protected void AbrirCrearTarjeta_Handler()
         {
             this.panelPrincipal.Controls.Clear();
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             CrearTarjeta crearTarjetas = new CrearTarjeta(this._usuarioActual);
             crearTarjetas.AbrirListaTarjetas_Event += this.AbrirListaTarjetas_Handler;
             this.panelPrincipal.Controls.Add(crearTarjetas);
@@ -344,7 +344,8 @@ namespace Interfaz
 
         protected void AbrirModificarTarjeta_Handler(Tarjeta buscadora)
         {
-            Tarjeta modificar = this._usuarioActual.GetTarjeta(buscadora);
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
+            Tarjeta modificar = this._controladoraUsuario.GetTarjeta(buscadora, this._usuarioActual);
             ModificarTarjeta modificarTarjeta = new ModificarTarjeta(this._usuarioActual, modificar);
             modificarTarjeta.AbrirListaTarjetas_Event += this.AbrirListaTarjetas_Handler;
             this.panelPrincipal.Controls.Clear();
@@ -353,22 +354,25 @@ namespace Interfaz
 
         private void AbrirVerTarjeta_Handler(Tarjeta buscadora)
         {
-            Tarjeta ver = this._usuarioActual.GetTarjeta(buscadora);
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
+            Tarjeta ver = this._controladoraUsuario.GetTarjeta(buscadora, this._usuarioActual);
             VerTarjeta verTarjeta = new VerTarjeta(ver, this._usuarioActual);
             verTarjeta.AbrirListaTarjetas_Event += this.AbrirListaTarjetas_Handler;
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(verTarjeta);
         }
 
-        private void AbrirDataBreaches_Handler(List<string> dataBreach) {
-            IngresoYListaDataBreach panelDataBreach = new IngresoYListaDataBreach(this._usuarioActual, dataBreach);
-            panelDataBreach.ModificarClaveDataBreach_Event += this.ModificarClaveDataBreach_Event;
+        private void AbrirDataBreaches_Handler(bool cargarUltimo) 
+        {
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
+            IngresoYListaDataBreach panelDataBreach = new IngresoYListaDataBreach(this._usuarioActual, cargarUltimo);
             this.panelPrincipal.Controls.Clear();
             this.panelPrincipal.Controls.Add(panelDataBreach);
         }
 
         private void AbrirGrafica_Handler()
         {
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             GraficaSeguridad grafica = new GraficaSeguridad(this._usuarioActual);
             grafica.AbrirReporteFortaleza_Event += AbrirReporteFortaleza_Handler;
             this.panelPrincipal.Controls.Clear();
@@ -377,6 +381,7 @@ namespace Interfaz
 
         private void AbrirReporteFortaleza_Handler()
         {
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
             ReporteDeFortaleza reporteFortaleza = new ReporteDeFortaleza(this._usuarioActual);
             reporteFortaleza.AbrirGrafica_Event += AbrirGrafica_Handler;
             reporteFortaleza.AbrirVerClave_Event += AbrirVerClave_Handler;
@@ -386,6 +391,17 @@ namespace Interfaz
 
             this.panelPrincipal.Controls.Add(reporteFortaleza);
 
+        }
+
+        private void botonHistoricoDataBreaches_Click(object sender, EventArgs e)
+        {
+            this.ResetearColoresBotonesDrawer();
+            this.botonHistoricoDataBreaches.BackColor = Color.FromArgb(138, 138, 138);
+            this._usuarioActual = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
+            Usuario aPasar = this._controladoraAdministrador.GetUsuario(this._usuarioActual);
+            UIHistoricoDataBreach historico = new UIHistoricoDataBreach(aPasar);
+            this.panelPrincipal.Controls.Clear();
+            this.panelPrincipal.Controls.Add(historico);
         }
     }
 }

@@ -1,246 +1,289 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Dominio;
+using LogicaDeNegocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Negocio;
 
 namespace TestsObligatorio
 {
     [TestClass]
     public class TestCategoria
     {
+        private Categoria categoria1;
+        private Categoria categoria2;
+        private ControladoraCategoria controladora;
+        private ControladoraAdministrador controladoraAdministrador;
+
+        [TestCleanup]
+        public void TearDown()
+        {
+
+        }
+
+        [TestInitialize]
+        public void Setup()
+        {
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.BorrarTodo();
+
+            controladora = new ControladoraCategoria();
+
+            categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            categoria2 = new Categoria()
+            {
+                Nombre = "Trabajo"
+            };
+
+        }
 
         [TestMethod]
         public void CategoriaGetNombreCorrecto()
         {
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Trabajo"
-            };
-            Assert.AreEqual("Trabajo", categoria.Nombre);
+            Assert.AreEqual("Personal", categoria1.Nombre);
         }
 
         [TestMethod]
         public void CategoriaGetNombreCambiado()
         {
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Trabajo"
-            };
-            categoria.Nombre = "Facultad";
-            Assert.AreEqual("Facultad", categoria.Nombre);
+            categoria1.Nombre = "Facultad";
+            Assert.AreEqual("Facultad", categoria1.Nombre);
         }
 
         [TestMethod]
         public void CategoriaLargoNombreMenorA3()
         {
-            Categoria categoria = new Categoria();
-            Assert.ThrowsException<LargoIncorrectoException>(() => categoria.Nombre = "A");
+            categoria1.Nombre = "A";
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarNombre(categoria1));
         }
 
         [TestMethod]
         public void CategoriaLargoNombreMayorA15()
         {
-            Categoria categoria = new Categoria();
-            Assert.ThrowsException<LargoIncorrectoException>(() => categoria.Nombre = "1234567890123456");
+            categoria1.Nombre = "1234567890123456";
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarNombre(categoria1));
         }
+
+        [TestMethod]
+        public void CategoriaEqualsMismoNombre()
+        {
+            Categoria categoriaIgualNombre = new Categoria()
+            {
+                Nombre = categoria1.Nombre
+            };
+            Assert.AreEqual(categoria1, categoriaIgualNombre);
+        }
+
+        [TestMethod]
+        public void CategoriaEqualsDiferenteNombre()
+        {
+            Assert.AreNotEqual(categoria1, categoria2);
+        }
+
+        [TestMethod]
+        public void CategoriaEqualsMismoNombreConMayYMin()
+        {
+            Categoria categoriaIgualNombreConMayYMin = new Categoria()
+            {
+                Nombre = "personal"
+            };
+            Assert.AreEqual(categoria1, categoriaIgualNombreConMayYMin);
+        }
+
+        [TestMethod]
+        public void CategoriaEqualsConNull()
+        {
+            ControladoraCategoria categoriaNull = null;
+            Assert.ThrowsException<ObjetoIncompletoException>(() => categoria1.Equals(categoriaNull));
+        }
+
+        [TestMethod]
+        public void CategoriaEqualsConString()
+        {
+            String falsaCategoria = "Personal";
+            Assert.ThrowsException<ObjetoIncorrectoException>(() => categoria1.Equals(falsaCategoria));
+        }
+
     }
 
     [TestClass]
     public class TestCategoriaClaves
     {
+        private Categoria categoria1;
+        private Clave clave1;
+        private Clave clave2;
+        private ControladoraCategoria controladoraCategoria;
+        private ControladoraAdministrador controladoraAdministrador;
+
+        [TestCleanup]
+        public void TearDown()
+        {
+
+        }
+
+        [TestInitialize]
+        public void Setup()
+        {
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.BorrarTodo();
+
+            controladoraCategoria = new ControladoraCategoria();
+
+
+            categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            clave1 = new Clave()
+            {
+                Sitio = "web.whatsapp.com",
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto",
+                Nota = "",
+                FechaModificacion = DateTime.Now
+            };
+
+            clave2 = new Clave()
+            {
+                Sitio = "Netflix.com",
+                Codigo = "EstaEsUnaClave2",
+                UsuarioClave = "Luis88",
+                Nota = "Nota de una clave",
+                FechaModificacion = DateTime.Now
+            };
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "usuario",
+                ClaveMaestra = "12345ABCD"
+            };
+
+            controladoraAdministrador.AgregarUsuario(usuario);
+
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+        }
+
         [TestMethod]
         public void CategoriaEsListaClavesVaciaSinClaves()
         {
-            Categoria categoria = new Categoria();
-            Assert.AreEqual(true, categoria.EsListaClavesVacia());
+            Assert.AreEqual(true, controladoraCategoria.EsListaClavesVacia(categoria1));
         }
 
         [TestMethod]
         public void CategoriaEsListaClavesConClaves()
         {
-            Categoria categoria = new Categoria();
-            Clave clave = new Clave()
-            {
-                Sitio = "youtube.com",
-                Codigo = "EstaEsUnaClave1",
-                UsuarioClave = "Roberto"
-            };
-            categoria.AgregarClave(clave);
-            Assert.AreEqual(false, categoria.EsListaClavesVacia());
+            controladoraCategoria.AgregarClave(clave1, categoria1);
+            Assert.AreEqual(false, controladoraCategoria.EsListaClavesVacia(categoria1));
         }
 
         [TestMethod]
         public void CategoriaEsListaClavesVaciaConDosClaves()
         {
-            Categoria categoria = new Categoria();
-            Clave clave1 = new Clave()
-            {
-                Sitio = "youtube.com",
-                Codigo = "EstaEsUnaClave1",
-                UsuarioClave = "Juan Perez"
-
-            };
-            categoria.AgregarClave(clave1);
-            Assert.AreEqual(false, categoria.EsListaClavesVacia());
-            Clave clave2 = new Clave()
-            {
-                Sitio = "web.whatsapp.com",
-                Codigo = "EstaEsUnaClave1",
-                UsuarioClave = "Roberto"
-            };
-            categoria.AgregarClave(clave2);
-            Assert.AreEqual(false, categoria.EsListaClavesVacia());
+            controladoraCategoria.AgregarClave(clave1, categoria1);
+            Assert.AreEqual(false, controladoraCategoria.EsListaClavesVacia(categoria1));
+            controladoraCategoria.AgregarClave(clave2, categoria1);
+            Assert.AreEqual(false, controladoraCategoria.EsListaClavesVacia(categoria1));
         }
 
         [TestMethod]
         public void CategoriaAgregarClaveSinSitioOAplicacion()
         {
-            Categoria categoria = new Categoria();
-            Clave clave1 = new Clave()
+            Clave claveSinSitio = new Clave()
             {
-                Codigo = "EstaEsUnaClave1",
-                UsuarioClave = "Roberto"
+                Codigo = clave1.Codigo,
+                UsuarioClave = clave1.UsuarioClave,
+                Nota = clave1.Nota
             };
-            Assert.ThrowsException<ObjetoIncompletoException>(() => categoria.AgregarClave(clave1));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => controladoraCategoria.AgregarClave(claveSinSitio, categoria1));
         }
 
         [TestMethod]
-        public void CategoriaAgregarClaveSinClave()
+        public void CategoriaAgregarClaveSinCodigo()
         {
-            Categoria categoria = new Categoria();
-            Clave clave1 = new Clave()
+            Clave claveSinCodigo = new Clave()
             {
-                Sitio = "youtube.com",
-                UsuarioClave = "Roberto"
+                Sitio = clave1.Sitio,
+                UsuarioClave = clave1.UsuarioClave,
+                Nota = clave1.Nota
             };
-            Assert.ThrowsException<ObjetoIncompletoException>(() => categoria.AgregarClave(clave1));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => controladoraCategoria.AgregarClave(claveSinCodigo, categoria1));
         }
 
         [TestMethod]
         public void CategoriaAgregarClaveSinUsuario()
         {
-            Categoria categoria = new Categoria();
-            Clave clave1 = new Clave()
+            Clave claveSinUsuario = new Clave()
             {
-                Sitio = "youtube.com",
-                Codigo = "EstaEsUnaClave1"
+                Sitio = clave1.Sitio,
+                Codigo = clave1.Codigo,
+                Nota = clave1.Nota
             };
-            Assert.ThrowsException<ObjetoIncompletoException>(() => categoria.AgregarClave(clave1));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => controladoraCategoria.AgregarClave(claveSinUsuario, categoria1));
         }
 
         [TestMethod]
         public void CategoriaAgregarClaveYaExistente()
         {
-            Categoria categoria = new Categoria();
-            Clave clave1 = new Clave()
-            {
-                Sitio = "youtube.com",
-                UsuarioClave = "Roberto",
-                Codigo = "EstaEsUnaClave1"
-            };
-            categoria.AgregarClave(clave1);
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => categoria.AgregarClave(clave1));
+            
+
+            controladoraCategoria.AgregarClave(clave1, categoria1);
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => controladoraCategoria.AgregarClave(clave1, categoria1));
         }
 
         [TestMethod]
         public void CategoriaGetClaveCorrecta()
         {
-            Categoria categoria1 = new Categoria();
-            Clave claveAGuardar = new Clave()
-            {
-                Sitio = "web.whatsapp.com",
-                Codigo = "EstaEsUnaClave1",
-                UsuarioClave = "Roberto"
-            };
-            categoria1.AgregarClave(claveAGuardar);
-
+            controladoraCategoria.AgregarClave(clave1, categoria1);
             Clave claveBuscadora = new Clave()
             {
-                Sitio = "web.whatsapp.com",
-                UsuarioClave = "Roberto"
+                Sitio = clave1.Sitio,
+                UsuarioClave = clave1.UsuarioClave
             };
 
-            Assert.AreEqual(claveAGuardar, categoria1.GetClave(claveBuscadora));
+            Assert.AreEqual(clave1, controladoraCategoria.GetClave(claveBuscadora, categoria1));
         }
 
         [TestMethod]
         public void CategoriaGetClavePrimeraConDos()
         {
-            Categoria categoria1 = new Categoria();
-            Clave clave1 = new Clave()
-            {
-                Sitio = "web.whatsapp.com",
-                Codigo = "EstaEsUnaClave1",
-                UsuarioClave = "Roberto"
-            };
-            categoria1.AgregarClave(clave1);
-
-            Clave clave2 = new Clave()
-            {
-                Sitio = "web.whatsapp.com",
-                Codigo = "EstaEsUnaClave1",
-                UsuarioClave = "Luis88"
-            };
-            categoria1.AgregarClave(clave2);
+            controladoraCategoria.AgregarClave(clave1, categoria1);
+            controladoraCategoria.AgregarClave(clave2, categoria1);
 
             Clave claveBuscadora = new Clave()
             {
-                Sitio = "web.whatsapp.com",
-                UsuarioClave = "Roberto"
+                Sitio = clave1.Sitio,
+                UsuarioClave = clave1.UsuarioClave
             };
 
-            Assert.AreEqual(clave1, categoria1.GetClave(claveBuscadora)); ;
+            Assert.AreEqual(clave1, controladoraCategoria.GetClave(claveBuscadora, categoria1)); ;
         }
 
         [TestMethod]
         public void CategoriaGetClaveSegundaConDos()
         {
-            Categoria categoria1 = new Categoria();
-            Clave clave1 = new Clave()
-            {
-                Sitio = "web.whatsapp.com",
-                Codigo = "EstaEsUnaClave1",
-                UsuarioClave = "Roberto"
-            };
-            categoria1.AgregarClave(clave1);
-
-            Clave clave2 = new Clave()
-            {
-                Sitio = "web.whatsapp.com",
-                Codigo = "EstaEsUnaClave1",
-                UsuarioClave = "Luis88"
-            };
-            categoria1.AgregarClave(clave2);
+            controladoraCategoria.AgregarClave(clave1, categoria1);
+            controladoraCategoria.AgregarClave(clave2, categoria1);
 
             Clave claveBuscadora = new Clave()
             {
-                Sitio = "web.whatsapp.com",
-                UsuarioClave = "Luis88"
+                Sitio = clave2.Sitio,
+                UsuarioClave = clave2.UsuarioClave
             };
 
-
-            Assert.AreEqual(clave2, categoria1.GetClave(claveBuscadora)); ;
+            Assert.AreEqual(clave2, controladoraCategoria.GetClave(claveBuscadora, categoria1)); ;
         }
 
         [TestMethod]
         public void CategoriaGetListaClaves()
         {
-            Categoria categoria1 = new Categoria();
-            Clave clave1 = new Clave()
-            {
-                Sitio = "web.whatsapp.com",
-                Codigo = "EstaEsUnaClave1",
-                UsuarioClave = "Roberto"
-            };
-            categoria1.AgregarClave(clave1);
-            Clave clave2 = new Clave()
-            {
-                Sitio = "web.whatsapp.com",
-                Codigo = "EstaEsUnaClave1",
-                UsuarioClave = "Luis88"
-            };
-            categoria1.AgregarClave(clave2);
+            controladoraCategoria.AgregarClave(clave1, categoria1);
+            controladoraCategoria.AgregarClave(clave2, categoria1);
 
             List<Clave> claves = new List<Clave>
             {
@@ -248,359 +291,130 @@ namespace TestsObligatorio
                 clave2
             };
 
-            List<Clave> retorno = categoria1.GetListaClaves();
+            List<Clave> retorno = controladoraCategoria.GetListaClaves(categoria1);
 
-            Assert.AreEqual(true, claves.All(retorno.Contains)); ;
+            Assert.AreEqual(true, claves.All(retorno.Contains));
         }
-
-        [TestMethod]
-        public void CategoriaEqualsMismoNombre()
-        {
-            Categoria categoria1 = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-            Categoria categoria2 = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-            Assert.AreEqual(categoria1, categoria2);
-        }
-
-        [TestMethod]
-        public void CategoriaEqualsDiferenteNombre()
-        {
-            Categoria categoria1 = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-            Categoria categoria2 = new Categoria()
-            {
-                Nombre = "Trabajo"
-            };
-            Assert.AreNotEqual(categoria1, categoria2);
-        }
-
-        [TestMethod]
-        public void CategoriaEqualsMismoNombreConMayYMin()
-        {
-            Categoria categoria1 = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-            Categoria categoria2 = new Categoria()
-            {
-                Nombre = "personal"
-            };
-            Assert.AreEqual(categoria1, categoria2);
-        }
-
-        [TestMethod]
-        public void CategoriaEqualsConNull()
-        {
-            Categoria categoria1 = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-            Categoria categoria2 = null;
-            Assert.ThrowsException<ObjetoIncompletoException>(() => categoria1.Equals(categoria2));
-        }
-
-        [TestMethod]
-        public void CategoriaEqualsConString()
-        {
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-            String falsaCategoria = "Personal";
-            Assert.ThrowsException<ObjetoIncorrectoException>(() => categoria.Equals(falsaCategoria));
-        }
-
         [TestMethod]
         public void CategoriaYaExisteClaveSiExistente()
         {
-            Categoria categoria = new Categoria();
-            Clave clave = new Clave() {
-                Sitio = "www.ort.edu.uy",
-                UsuarioClave = "111111",
-                Codigo = "12345678"
-            };
-            categoria.AgregarClave(clave);
+            controladoraCategoria.AgregarClave(clave1, categoria1);
             Clave claveIgual = new Clave()
             {
-                Sitio = "www.ort.edu.uy",
-                UsuarioClave = "111111",
-                Codigo = "12345678"
+                Sitio = clave1.Sitio,
+                UsuarioClave = clave1.UsuarioClave,
+                Codigo = clave1.Codigo,
+                Nota = clave1.Nota
             };
-            Assert.AreEqual(true, categoria.YaExisteClave(claveIgual));
+            Assert.AreEqual(true, controladoraCategoria.YaExisteClave(claveIgual, categoria1));
         }
 
         [TestMethod]
         public void CategoriaYaExisteClaveMismoUsuarioDiferenteSitio()
         {
-            Categoria categoria = new Categoria();
-            Clave clave = new Clave()
-            {
-                Sitio = "www.ort.edu.uy",
-                UsuarioClave = "111111",
-                Codigo = "12345678"
-            };
-            categoria.AgregarClave(clave);
+            controladoraCategoria.AgregarClave(clave1, categoria1);
             Clave claveDiferenteSitio = new Clave()
             {
                 Sitio = "www.youtube.com",
-                UsuarioClave = "111111",
-                Codigo = "12345678"
+                UsuarioClave = clave1.UsuarioClave,
+                Codigo = clave1.Codigo,
+                Nota = clave1.Nota
             };
-            Assert.AreEqual(false, categoria.YaExisteClave(claveDiferenteSitio));
+            Assert.AreEqual(false, controladoraCategoria.YaExisteClave(claveDiferenteSitio, categoria1));
         }
 
         [TestMethod]
         public void CategoriaYaExisteClaveMismoSitioDiferenteUsuario()
         {
-            Categoria categoria = new Categoria();
-            Clave clave = new Clave()
-            {
-                Sitio = "www.ort.edu.uy",
-                UsuarioClave = "111111",
-                Codigo = "12345678"
-            };
-            categoria.AgregarClave(clave);
+            controladoraCategoria.AgregarClave(clave1, categoria1);
             Clave claveDiferenteUsuario = new Clave()
             {
-                Sitio = "www.ort.edu.uy",
+                Sitio = clave1.Sitio,
                 UsuarioClave = "222222",
-                Codigo = "12345678"
+                Codigo = clave1.Codigo,
+                Nota = clave1.Nota
             };
-            Assert.AreEqual(false, categoria.YaExisteClave(claveDiferenteUsuario));
+            Assert.AreEqual(false, controladoraCategoria.YaExisteClave(claveDiferenteUsuario, categoria1));
         }
 
         [TestMethod]
-        public void CategoriaYaExisteClaveDiferentesClaves()
+        public void CategoriaYaExisteClaveDiferentesCodigo()
         {
-            Categoria categoria = new Categoria();
-            Clave clave = new Clave()
+            controladoraCategoria.AgregarClave(clave1, categoria1);
+            Clave claveDiferenteCodigo = new Clave()
             {
-                Sitio = "www.ort.edu.uy",
-                UsuarioClave = "111111",
-                Codigo = "12345678"
+                Sitio = clave1.Sitio,
+                UsuarioClave = clave1.UsuarioClave,
+                Codigo = "87654321",
+                Nota = clave1.Nota
             };
-            categoria.AgregarClave(clave);
-            Clave claveDiferenteClave = new Clave()
-            {
-                Sitio = "www.ort.edu.uy",
-                UsuarioClave = "111111",
-                Codigo = "87654321"
-            };
-            Assert.AreEqual(true, categoria.YaExisteClave(claveDiferenteClave));
+            Assert.AreEqual(true, controladoraCategoria.YaExisteClave(claveDiferenteCodigo, categoria1));
         }
 
         [TestMethod]
         public void CategoriaBorrarClaveCategoriaVacia()
         {
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            String usuarioClave = "222222";
-            String paginaClave = "www.ort.edu.uy";
-
-            Clave aBorrar = new Clave()
-            {
-                Sitio = paginaClave,
-                UsuarioClave = usuarioClave
-
-            };
-
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.BorrarClave(aBorrar));
+            Assert.ThrowsException<ObjetoInexistenteException>(() => controladoraCategoria.BorrarClave(clave1, categoria1));
         }
 
         [TestMethod]
         public void CategoriaBorrarClaveExistenteCategoria()
         {
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
+            controladoraCategoria.AgregarClave(clave1, categoria1);
+            controladoraCategoria.BorrarClave(clave1, categoria1);
 
-            String usuarioClave = "222222";
-            String paginaClave = "www.ort.edu.uy";
-            Clave clave = new Clave()
-            {
-                UsuarioClave = usuarioClave,
-                Sitio = paginaClave,
-                Codigo = "1234AbC$"
-            };
-
-            categoria.AgregarClave(clave);
-
-            categoria.BorrarClave(clave);
-            Assert.IsFalse(categoria.YaExisteClave(clave));
+            Assert.IsFalse(controladoraCategoria.YaExisteClave(clave1, categoria1));
         }
 
         [TestMethod]
         public void CategoriaEsListaClavesVaciaDespuesDeBorrar()
         {
+            controladoraCategoria.AgregarClave(clave1, categoria1);
+            controladoraCategoria.BorrarClave(clave1, categoria1);
 
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            String usuarioClave = "222222";
-            String paginaClave = "www.ort.edu.uy";
-            Clave clave = new Clave()
-            {
-                UsuarioClave = usuarioClave,
-                Sitio = paginaClave,
-                Codigo = "1234AbC$"
-            };
-
-            categoria.AgregarClave(clave);
-            categoria.BorrarClave(clave);
-            Assert.IsTrue(categoria.EsListaClavesVacia());
+            Assert.IsTrue(controladoraCategoria.EsListaClavesVacia(categoria1));
         }
 
         [TestMethod]
         public void CategoriaEsListaClavesVaciaDespuesDeBorrarAgregar()
         {
+            controladoraCategoria.AgregarClave(clave1, categoria1);
+            controladoraCategoria.BorrarClave(clave1, categoria1);
+            controladoraCategoria.AgregarClave(clave1, categoria1);
 
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            String usuarioClave = "222222";
-            String paginaClave = "www.ort.edu.uy";
-            Clave clave = new Clave()
-            {
-                UsuarioClave = usuarioClave,
-                Sitio = paginaClave,
-                Codigo = "1234AbC$"
-            };
-
-            categoria.AgregarClave(clave);
-            categoria.BorrarClave(clave);
-            categoria.AgregarClave(clave);
-            Assert.IsFalse(categoria.EsListaClavesVacia());
+            Assert.IsFalse(controladoraCategoria.EsListaClavesVacia(categoria1));
         }
 
         [TestMethod]
         public void CategoriaGetClaveBorrada()
         {
+            controladoraCategoria.AgregarClave(clave1, categoria1);
+            controladoraCategoria.BorrarClave(clave1, categoria1);
 
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            String usuarioClaveBorrar = "222222";
-            String paginaClaveBorrar = "www.ort.edu.uy";
-
-            Clave claveBorrar = new Clave()
-            {
-                UsuarioClave = usuarioClaveBorrar,
-                Sitio = paginaClaveBorrar,
-                Codigo = "1234AbC$"
-            };
-
-            Clave claveBuscadora = new Clave()
-            {
-                UsuarioClave = usuarioClaveBorrar,
-                Sitio = paginaClaveBorrar
-            };
-
-            categoria.AgregarClave(claveBorrar);
-            categoria.BorrarClave(claveBorrar);
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.GetClave(claveBuscadora));
+            Assert.ThrowsException<ObjetoInexistenteException>(() => controladoraCategoria.GetClave(clave1, categoria1));
         }
 
         [TestMethod]
         public void CategoriaDosClavesGetClaveBorrada()
         {
-
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            String usuarioClaveBorrar = "222222";
-            String paginaClaveBorrar = "www.ort.edu.uy";
-
-            Clave claveBorrar = new Clave()
-            {
-                UsuarioClave = usuarioClaveBorrar,
-                Sitio = paginaClaveBorrar,
-                Codigo = "1234AbC$"
-            };
-
-            Clave claveOtra = new Clave()
-            {
-                UsuarioClave = "OtraClave",
-                Sitio = "otroSitio.com",
-                Codigo = "1234AbC$"
-            };
+            controladoraCategoria.AgregarClave(clave1, categoria1);
+            controladoraCategoria.AgregarClave(clave2, categoria1);
+            controladoraCategoria.BorrarClave(clave1, categoria1);
 
 
-            categoria.AgregarClave(claveBorrar);
-            categoria.AgregarClave(claveOtra);
-            categoria.BorrarClave(claveBorrar);
-
-
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.GetClave(claveBorrar));
+            Assert.ThrowsException<ObjetoInexistenteException>(() => controladoraCategoria.GetClave(clave1, categoria1));
         }
 
         [TestMethod]
         public void CategoriaBorrarClaveNoExistenteNoVacio()
         {
-
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            String usuarioClaveBorrar = "222222";
-            String paginaClaveBorrar = "www.ort.edu.uy";
-
-            Clave claveBorrar = new Clave()
-            {
-                UsuarioClave = usuarioClaveBorrar,
-                Sitio = paginaClaveBorrar
-            };
-
-            Clave claveOtra = new Clave()
-            {
-                UsuarioClave = "OtraClave",
-                Sitio = "otroSitio.com",
-                Codigo = "1234AbC$"
-            };
-
-            categoria.AgregarClave(claveOtra);
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.BorrarClave(claveBorrar));
+            controladoraCategoria.AgregarClave(clave2, categoria1);
+            Assert.ThrowsException<ObjetoInexistenteException>(() => controladoraCategoria.BorrarClave(clave1, categoria1));
         }
 
         [TestMethod]
         public void CategoriaModificarClaveNoExistente()
         {
-
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            string usuarioClaveModificar = "Usuario23";
-            string paginaClaveModificar = "www.ort.edu.uy";
-            string claveClaveModificar = "1234AbC$";
-
-            Clave nuevaClave = new Clave()
-            {
-                UsuarioClave = usuarioClaveModificar,
-                Sitio = paginaClaveModificar, 
-                Codigo = claveClaveModificar
-            };
-
             string usuarioClaveInexistente = "12345@";
             string paginaClaveInexistente = "www.ort.edu.uy";
 
@@ -610,96 +424,39 @@ namespace TestsObligatorio
                 Sitio = paginaClaveInexistente
             };
 
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.ModificarClave(buscadora, nuevaClave));
+            Assert.ThrowsException<ObjetoInexistenteException>(() => controladoraCategoria.ModificarClave(buscadora, clave1, categoria1));
         }
 
         [TestMethod]
         public void CategoriaAlModificarClaveAgregadaLaClaveViejaDejaDeExistir()
         {
-
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            string usuarioClaveModificar = "Usuario23";
-            string paginaClaveModificar = "www.ort.edu.uy";
-            string claveClaveModificar = "1234AbC$";
-
-            Clave claveVieja = new Clave()
-            {
-                UsuarioClave = usuarioClaveModificar,
-                Sitio = paginaClaveModificar,
-                Codigo = claveClaveModificar,
-                Nota = ""
-            };
-            categoria.AgregarClave(claveVieja);
-
-            string usuarioClaveNueva = "user543";
-            string paginaClaveNueva = "aulas.edu.uy";
-            string claveClaveNueva = "1234A@C$";
-
-            Clave claveNueva = new Clave()
-            {
-                UsuarioClave = usuarioClaveNueva,
-                Sitio = paginaClaveNueva,
-                Codigo = claveClaveNueva,
-                Nota = ""
-            };
+            controladoraCategoria.AgregarClave(clave1, categoria1);
 
             Clave buscadora = new Clave()
             {
-                UsuarioClave = usuarioClaveModificar,
-                Sitio = paginaClaveModificar
+                UsuarioClave = clave1.UsuarioClave,
+                Sitio = clave1.Sitio
             };
+            controladoraCategoria.ModificarClave(buscadora, clave2, categoria1);
 
-            categoria.ModificarClave(claveVieja, claveNueva);
-            Assert.IsFalse(categoria.YaExisteClave(buscadora));
+
+            Assert.IsFalse(controladoraCategoria.YaExisteClave(buscadora, categoria1));
         }
 
         [TestMethod]
         public void CategoriaModificarClaveYaExistente()
         {
-
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            string usuarioClave1 = "Usuario23";
-            string paginaClave1 = "www.ort.edu.uy";
-            string claveClave1 = "1234AbC$";
-
-            Clave clave1 = new Clave()
-            {
-                UsuarioClave = usuarioClave1,
-                Sitio = paginaClave1,
-                Codigo = claveClave1
-            };
-
-            categoria.AgregarClave(clave1);
-
-            string usuarioClave2 = "user23";
-            string paginaClave2 = "aulas.edu.uy";
-            string claveClave2 = "1234AbC$";
-
-            Clave clave2 = new Clave()
-            {
-                UsuarioClave = usuarioClave2,
-                Sitio = paginaClave2,
-                Codigo = claveClave2
-            };
-
-            categoria.AgregarClave(clave2);
+            controladoraCategoria.AgregarClave(clave1, categoria1);
+            controladoraCategoria.AgregarClave(clave2, categoria1);
 
             Clave duplicada = new Clave()
             {
-                UsuarioClave = usuarioClave2,
-                Sitio = paginaClave2,
-                Codigo = claveClave2
+                UsuarioClave = clave2.UsuarioClave,
+                Sitio = clave2.Sitio,
+                Codigo = clave2.Codigo
             };
 
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => categoria.ModificarClave(clave1, duplicada));
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => controladoraCategoria.ModificarClave(clave1, duplicada, categoria1));
         }
 
         [TestMethod]
@@ -715,7 +472,7 @@ namespace TestsObligatorio
             string paginaClaveVieja = "www.ort.edu.uy";
             string claveClaveVieja = "1234AbC$";
 
-            Clave claveVieja = new Clave()
+            Clave clave1 = new Clave()
             {
                 UsuarioClave = usuarioClaveVieja,
                 Sitio = paginaClaveVieja,
@@ -723,7 +480,7 @@ namespace TestsObligatorio
                 Nota = ""
             };
 
-            categoria.AgregarClave(claveVieja);
+            controladoraCategoria.AgregarClave(clave1, categoria1);
 
             string usuarioClaveNueva = "user23";
             string paginaClaveNueva = "aulas.edu.uy";
@@ -743,143 +500,87 @@ namespace TestsObligatorio
                 Sitio = paginaClaveNueva
             };
 
-            categoria.ModificarClave(claveVieja, claveNueva);
-            Assert.AreEqual(claveVieja, buscadora);
+            controladoraCategoria.ModificarClave(clave1, claveNueva, categoria1);
+
+            Assert.AreEqual(controladoraCategoria.GetClave(clave1, categoria1), buscadora);
         }
 
         [TestMethod]
         public void CategoriaModificarClaveCambiarNotaYClave()
         {
-
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            string usuarioClaveVieja = "Usuario23";
-            string paginaClaveVieja = "www.ort.edu.uy";
-            string claveClaveVieja = "1234AbC$";
-
-            Clave claveVieja = new Clave()
-            {
-                UsuarioClave = usuarioClaveVieja,
-                Sitio = paginaClaveVieja,
-                Codigo = claveClaveVieja,
-                Nota = "Vieja"
-            };
-
-            categoria.AgregarClave(claveVieja);
-
-            string claveClaveNueva = "Nueva";
+            controladoraCategoria.AgregarClave(clave1, categoria1);
 
             Clave claveNueva = new Clave()
             {
-                UsuarioClave = usuarioClaveVieja,
-                Sitio = paginaClaveVieja,
-                Codigo = claveClaveNueva,
-                Nota = "Nueva"
+                UsuarioClave = clave1.UsuarioClave,
+                Sitio = clave1.Sitio,
+                Codigo = "CodigoNuevo",
+                Nota = "NotaNueva"
             };
 
             Clave buscadora = new Clave()
             {
-                UsuarioClave = usuarioClaveVieja,
-                Sitio = paginaClaveVieja
+                UsuarioClave = clave1.UsuarioClave,
+                Sitio = clave1.Sitio
             };
 
-            categoria.ModificarClave(buscadora, claveNueva);
+            controladoraCategoria.ModificarClave(buscadora, claveNueva, categoria1);
 
-            bool igualSitioYUsuario = claveVieja.Equals(claveNueva);
-            bool igualNota = claveVieja.Nota == claveNueva.Nota;
-            bool igualClave = claveVieja.Codigo == claveNueva.Codigo;  
+            clave1 = controladoraCategoria.GetClave(clave1, categoria1);
 
-            Assert.IsTrue(igualSitioYUsuario && igualNota && igualClave);
+            bool igualSitioYUsuario = clave1.Equals(claveNueva);
+            bool igualNota = clave1.Nota == claveNueva.Nota;
+            bool igualCodigo = clave1.Codigo == claveNueva.Codigo;  
+
+            Assert.IsTrue(igualSitioYUsuario && igualNota && igualCodigo);
         }
 
         [TestMethod]
         public void CategoriaModificarClaveCambiaFechaModificacion()
         {
+            clave1.FechaModificacion = new DateTime(2000, 1, 1);
 
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            string usuarioClaveVieja = "Usuario23";
-            string paginaClaveVieja = "www.ort.edu.uy";
-            string claveClaveVieja = "1234AbC$";
-
-            Clave claveVieja = new Clave()
-            {
-                UsuarioClave = usuarioClaveVieja,
-                Sitio = paginaClaveVieja,
-                Codigo = claveClaveVieja,
-                Nota = "Vieja"
-            };
-
-            claveVieja.FechaModificacion = new DateTime(2000, 1, 1);
-
-            categoria.AgregarClave(claveVieja);
-
-            string claveClaveNueva = "Cambiada";
+            controladoraCategoria.AgregarClave(clave1, categoria1);
 
             Clave claveNueva = new Clave()
             {
-                UsuarioClave = usuarioClaveVieja,
-                Sitio = paginaClaveVieja,
-                Codigo = claveClaveNueva,
-                Nota = "Nueva"
+                UsuarioClave = clave1.UsuarioClave,
+                Sitio = clave1.Sitio,
+                Codigo = "CodigoNuevo",
+                Nota = "NotaNueva"
             };
 
             Clave buscadora = new Clave()
             {
-                UsuarioClave = usuarioClaveVieja,
-                Sitio = paginaClaveVieja
+                UsuarioClave = clave1.UsuarioClave,
+                Sitio = clave1.Sitio
             };
 
-            categoria.ModificarClave(buscadora, claveNueva);
+            controladoraCategoria.ModificarClave(buscadora, claveNueva, categoria1);
 
-            bool igualSitioYUsuario = claveVieja.Equals(claveNueva);
-            bool igualNota = claveVieja.Nota == claveNueva.Nota;
-            bool igualClave = claveVieja.Codigo == claveNueva.Codigo;
-            bool distintaFecha = claveVieja.FechaModificacion == System.DateTime.Now.Date;
+            clave1 = controladoraCategoria.GetClave(buscadora, categoria1);
+
+            bool igualSitioYUsuario = clave1.Equals(claveNueva);
+            bool igualNota = clave1.Nota == claveNueva.Nota;
+            bool igualClave = clave1.Codigo == claveNueva.Codigo;
+            bool distintaFecha = clave1.FechaModificacion == System.DateTime.Now.Date;
             Assert.IsTrue(igualSitioYUsuario && igualNota && igualClave && distintaFecha);
         }
 
         [TestMethod]
         public void CategoriaGetClavesColorEsVacia()
         {
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
             ColorNivelSeguridad color = new ColorNivelSeguridad();
             int cantidadRojas = 0;
-            Assert.AreEqual(cantidadRojas, categoria.GetListaClavesColor(color.Rojo).Count);
+            Assert.AreEqual(cantidadRojas, controladoraCategoria.GetListaClavesColor(color.Rojo, categoria1).Count);
         }
 
         [TestMethod]
         public void CategoriaGetListaClavesColorNoVacia()
         {
-            Categoria categoria1 = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-            Clave clave1 = new Clave()
-            {
-                Sitio = "web.whatsapp.com",
-                Codigo = "EstaEsUnaClave12@",
-                UsuarioClave = "Roberto"
-            };
-            categoria1.AgregarClave(clave1);
-
-            Clave clave2 = new Clave()
-            {
-                Sitio = "web.whatsapp.com",
-                Codigo = "clave",
-                UsuarioClave = "Luis88"
-            };
-            categoria1.AgregarClave(clave2);
+            clave1.Codigo = "ClaveVerdeOscuro12@";
+            controladoraCategoria.AgregarClave(clave1, categoria1);
+            controladoraCategoria.AgregarClave(clave2, categoria1);
 
             List<Clave> clavesVerdes = new List<Clave>
             {
@@ -887,7 +588,7 @@ namespace TestsObligatorio
             };
 
             ColorNivelSeguridad color = new ColorNivelSeguridad();
-            List<Clave> getListaClavesVerdes = categoria1.GetListaClavesColor(color.VerdeOscuro);
+            List<Clave> getListaClavesVerdes = controladoraCategoria.GetListaClavesColor(color.VerdeOscuro, categoria1);
 
             bool getListaClavesContieneLasClavesVerdes = getListaClavesVerdes.All(clavesVerdes.Contains);
             bool clavesVerdesContieneListaClavesVerdes = clavesVerdes.All(getListaClavesVerdes.Contains);
@@ -899,245 +600,205 @@ namespace TestsObligatorio
     [TestClass]
     public class TestCategoriaTarjeta
     {
+        private Categoria categoria1;
+        private Tarjeta tarjeta1;
+        private Tarjeta tarjeta2;
+        private ControladoraCategoria controladoraCategoria;
+        private ControladoraAdministrador controladoraAdministrador;
+
+        [TestCleanup]
+        public void TearDown()
+        {
+
+        }
+
+        [TestInitialize]
+        public void Setup()
+        {
+            controladoraCategoria = new ControladoraCategoria();
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.BorrarTodo();
+
+            categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            tarjeta1 = new Tarjeta()
+            {
+                Numero = "1111111111111111",
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Codigo = "321",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+
+            tarjeta2 = new Tarjeta()
+            {
+                Numero = "2222222222222222",
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Codigo = "345",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+
+            Usuario usuario = new Usuario()
+            {
+                Nombre = "usuario",
+                ClaveMaestra = "12345ABCD"
+            };
+
+            controladoraAdministrador.AgregarUsuario(usuario);
+
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+
+        }
+
         [TestMethod]
         public void CategoriaEsListaTarjetasVaciaSinTarjetas()
         {
-            Categoria categoria = new Categoria();
-            Assert.AreEqual(true, categoria.EsListaTarjetasVacia());
+            Assert.AreEqual(true, controladoraCategoria.EsListaTarjetasVacia(categoria1));
         }
 
         [TestMethod]
         public void CategoriaEsListaTarjetasVaciaConTarjetas()
         {
-            Categoria categoria = new Categoria();
-            Tarjeta tarjeta1 = new Tarjeta()
-            {
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Numero = "1234567890876543",
-                Codigo = "567",
-                Nota = "",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria.AgregarTarjeta(tarjeta1);
-            Assert.AreEqual(false, categoria.EsListaTarjetasVacia());
+            controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
+            Assert.AreEqual(false, controladoraCategoria.EsListaTarjetasVacia(categoria1));
         }
 
         [TestMethod]
         public void CategoriaEsListaTarjetasVaciaConDosTarjetas()
         {
-            Categoria categoria = new Categoria();
-            Tarjeta tarjeta1 = new Tarjeta()
-            {
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Numero = "1234567890876543",
-                Codigo = "567",
-                Nota = "",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria.AgregarTarjeta(tarjeta1);
-            Tarjeta tarjeta2= new Tarjeta()
-            {
-                Nombre = "Prex",
-                Tipo = "Mastercard",
-                Numero = "3456567890876543",
-                Codigo = "321",
-                Nota = "",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria.AgregarTarjeta(tarjeta2);
-            Assert.AreEqual(false, categoria.EsListaTarjetasVacia());
+            controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
+            controladoraCategoria.AgregarTarjeta(tarjeta2, categoria1);
+
+            Assert.AreEqual(false, controladoraCategoria.EsListaTarjetasVacia(categoria1));
         }
 
         [TestMethod]
         public void CategoriaAgregarTarjetaSinNombre()
         {
-            Categoria categoria = new Categoria();
-            Tarjeta tarjeta1 = new Tarjeta()
+            Tarjeta tarjetaSinNombre = new Tarjeta()
             {
-                Tipo = "Mastercard",
-                Numero = "3456567890876543",
-                Codigo = "321",
-                Nota = "",
-                Vencimiento = new DateTime(2025, 7, 1)
+                Tipo = tarjeta1.Tipo,
+                Numero = tarjeta1.Numero,
+                Codigo = tarjeta1.Codigo,
+                Nota = tarjeta1.Nota,
+                Vencimiento = tarjeta1.Vencimiento
             };
-            Assert.ThrowsException<ObjetoIncompletoException>(() => categoria.AgregarTarjeta(tarjeta1));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => controladoraCategoria.AgregarTarjeta(tarjetaSinNombre, categoria1));
         }
 
         [TestMethod]
         public void CategoriaAgregarTarjetaSinTipo()
         {
-            Categoria categoria = new Categoria();
-            Tarjeta tarjeta1 = new Tarjeta()
+            Tarjeta tarjetaSinTipo = new Tarjeta()
             {
-                Nombre = "Visa Gold",
-                Numero = "3456567890876543",
-                Codigo = "321",
-                Nota = "",
-                Vencimiento = new DateTime(2025, 7, 1)
+                Nombre = tarjeta1.Nombre,
+                Numero = tarjeta1.Numero,
+                Codigo = tarjeta1.Codigo,
+                Nota = tarjeta1.Nota,
+                Vencimiento = tarjeta1.Vencimiento
             };
-            Assert.ThrowsException<ObjetoIncompletoException>(() => categoria.AgregarTarjeta(tarjeta1));
+
+            Assert.ThrowsException<ObjetoIncompletoException>(() => controladoraCategoria.AgregarTarjeta(tarjetaSinTipo, categoria1));
         }
 
         [TestMethod]
         public void CategoriaAgregarTarjetaSinNumero()
         {
-            Categoria categoria = new Categoria();
-            Tarjeta tarjeta1 = new Tarjeta()
+            Tarjeta tarjetaSinNumero = new Tarjeta()
             {
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Codigo = "321",
-                Nota = "",
-                Vencimiento = new DateTime(2025, 7, 1)
+                Nombre = tarjeta1.Nombre,
+                Tipo = tarjeta1.Tipo,
+                Codigo = tarjeta1.Codigo,
+                Nota = tarjeta1.Nota,
+                Vencimiento = tarjeta1.Vencimiento
             };
-            Assert.ThrowsException<ObjetoIncompletoException>(() => categoria.AgregarTarjeta(tarjeta1));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => controladoraCategoria.AgregarTarjeta(tarjetaSinNumero, categoria1));
         }
 
         [TestMethod]
         public void CategoriaAgregarTarjetaSinCodigo()
         {
-            Categoria categoria = new Categoria();
-            Tarjeta tarjeta1 = new Tarjeta()
+            Tarjeta tarjetaSinCodigo = new Tarjeta()
             {
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Numero = "1234567890876543",
-                Nota = "",
-                Vencimiento = new DateTime(2025, 7, 1)
+                Nombre = tarjeta1.Nombre,
+                Tipo = tarjeta1.Tipo,
+                Numero = tarjeta1.Numero,
+                Nota = tarjeta1.Nota,
+                Vencimiento = tarjeta1.Vencimiento
             };
-            Assert.ThrowsException<ObjetoIncompletoException>(() => categoria.AgregarTarjeta(tarjeta1));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => controladoraCategoria.AgregarTarjeta(tarjetaSinCodigo, categoria1));
         }
 
         [TestMethod]
         public void CategoriaAgregarTarjetaSinVencimiento()
         {
-            Categoria categoria = new Categoria();
-            Tarjeta tarjeta1 = new Tarjeta()
+            Tarjeta tarjetaSinVencimiento = new Tarjeta()
             {
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Numero = "1234567890876543",
-                Codigo = "567",
-                Nota = ""
+                Nombre = tarjeta1.Nombre,
+                Tipo = tarjeta1.Tipo,
+                Numero = tarjeta1.Numero,
+                Codigo = tarjeta1.Codigo,
+                Nota = tarjeta1.Nota
             };
-            Assert.ThrowsException<ObjetoIncompletoException>(() => categoria.AgregarTarjeta(tarjeta1));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => controladoraCategoria.AgregarTarjeta(tarjetaSinVencimiento, categoria1));
         }
 
         [TestMethod]
         public void CategoriaGetTarjetaCorrecta()
         {
-            Categoria categoria1 = new Categoria();
-            string numeroTarjeta = "3456567890876543";
-
-            Tarjeta tarjeta1 = new Tarjeta()
-            {
-                Nombre = "Prex",
-                Tipo = "Mastercard",
-                Numero = numeroTarjeta,
-                Codigo = "321",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria1.AgregarTarjeta(tarjeta1);
+            controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
 
             Tarjeta buscadora = new Tarjeta() 
             { 
-                Numero = numeroTarjeta
+                Numero = tarjeta1.Numero
             };
 
-            Assert.AreEqual(tarjeta1, categoria1.GetTarjeta(buscadora)); 
+            Assert.AreEqual(tarjeta1, controladoraCategoria.GetTarjeta(buscadora, categoria1)); 
         }
 
         [TestMethod]
         public void CategoriaGetTarjetaPrimeraConDos()
         {
-            Categoria categoria1 = new Categoria();
-
-            string numeroTarjetaPrimera = "3456567890876543";
-            Tarjeta tarjeta1 = new Tarjeta()
-            {
-                Nombre = "Prex",
-                Tipo = "Mastercard",
-                Numero = numeroTarjetaPrimera,
-                Codigo = "321",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria1.AgregarTarjeta(tarjeta1);
-            Tarjeta tarjeta2 = new Tarjeta()
-            {
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Numero = "1234567890876553",
-                Codigo = "789",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria1.AgregarTarjeta(tarjeta2);
+            controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
+            controladoraCategoria.AgregarTarjeta(tarjeta2, categoria1);
 
             Tarjeta buscadora = new Tarjeta()
             {
-                Numero = numeroTarjetaPrimera
+                Numero = tarjeta1.Numero
             };
 
-            Assert.AreEqual(tarjeta1, categoria1.GetTarjeta(buscadora)); 
+            Assert.AreEqual(tarjeta1, controladoraCategoria.GetTarjeta(buscadora, categoria1)); 
         }
 
         [TestMethod]
         public void CategoriaGetTarjetaSegundaConDos()
         {
-            Categoria categoria1 = new Categoria();
-            Tarjeta tarjeta1 = new Tarjeta()
-            {
-                Nombre = "Prex",
-                Tipo = "Mastercard",
-                Numero = "3456567890876543",
-                Codigo = "321",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria1.AgregarTarjeta(tarjeta1);
-
-            string numeroSegundaTarjeta = "1234567890876553";
-
-            Tarjeta tarjeta2 = new Tarjeta()
-            {
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Numero = numeroSegundaTarjeta,
-                Codigo = "789",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria1.AgregarTarjeta(tarjeta2);
+            controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
+            controladoraCategoria.AgregarTarjeta(tarjeta2, categoria1);
 
             Tarjeta buscadora = new Tarjeta()
             {
-                Numero = numeroSegundaTarjeta
+                Numero = tarjeta2.Numero
             };
 
-            Assert.AreEqual(tarjeta2, categoria1.GetTarjeta(buscadora));
+
+            Assert.AreEqual(tarjeta2, controladoraCategoria.GetTarjeta(buscadora, categoria1));
         }
 
         [TestMethod]
         public void CategoriaGetListaTarjetas()
         {
-            Categoria categoria1 = new Categoria();
-            Tarjeta tarjeta1 = new Tarjeta()
-            {
-                Nombre = "Prex",
-                Tipo = "Mastercard",
-                Numero = "3456567890876543",
-                Codigo = "321",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria1.AgregarTarjeta(tarjeta1);
-            Tarjeta tarjeta2 = new Tarjeta()
-            {
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Numero = "1234567890876553",
-                Codigo = "789",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria1.AgregarTarjeta(tarjeta2);
+            controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
+            controladoraCategoria.AgregarTarjeta(tarjeta2, categoria1);
 
             List<Tarjeta> tarjetas = new List<Tarjeta>
             {
@@ -1145,319 +806,177 @@ namespace TestsObligatorio
                 tarjeta2
             };
 
-            Assert.AreEqual(true, tarjetas.SequenceEqual(categoria1.GetListaTarjetas()));
+            Assert.AreEqual(true, tarjetas.SequenceEqual(controladoraCategoria.GetListaTarjetas(categoria1)));
         }
 
         [TestMethod]
         public void CategoriaYaExisteTarjetaSiExistente()
         {
-            Categoria categoria = new Categoria();
-            Tarjeta tarjeta = new Tarjeta()
-            {
-                Nombre = "Prex",
-                Tipo = "Mastercard",
-                Numero = "3456567890876543",
-                Codigo = "321",
-                Vencimiento = new DateTime(2025, 7, 1)
-        };
-            categoria.AgregarTarjeta(tarjeta);
+            controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
             Tarjeta tarjetaIgual = new Tarjeta()
             {
-                Nombre = "Prex",
-                Tipo = "Mastercard",
-                Numero = "3456567890876543",
-                Codigo = "321",
-                Vencimiento = new DateTime(2025, 7, 1)
+                Nombre = tarjeta1.Nombre,
+                Tipo = tarjeta1.Tipo,
+                Numero = tarjeta1.Numero,
+                Codigo = tarjeta1.Codigo,
+                Nota = tarjeta1.Nota,
+                Vencimiento = tarjeta1.Vencimiento
             };
-            Assert.AreEqual(true, categoria.YaExisteTarjeta(tarjetaIgual));
+
+            Assert.AreEqual(true, controladoraCategoria.YaExisteTarjeta(tarjetaIgual, categoria1));
         }
 
         [TestMethod]
         public void CategoriaYaExisteTarjetaDiferenteNumero()
         {
-
-            Categoria categoria = new Categoria();
-            Tarjeta tarjeta = new Tarjeta()
-            {
-                Nombre = "Prex",
-                Tipo = "Mastercard",
-                Numero = "3456567890876543",
-                Codigo = "321",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria.AgregarTarjeta(tarjeta);
+            controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
             Tarjeta tarjetaDistintoNumero = new Tarjeta()
             {
-                Nombre = "Prex",
-                Tipo = "Mastercard",
-                Numero = "1234567812345678",
-                Codigo = "321",
-                Vencimiento = new DateTime(2025, 7, 1)
+                Nombre = tarjeta1.Nombre,
+                Tipo = tarjeta1.Tipo,
+                Numero = tarjeta2.Numero,
+                Codigo = tarjeta1.Codigo,
+                Nota = tarjeta1.Nota,
+                Vencimiento = tarjeta1.Vencimiento
             };
-            Assert.AreEqual(false, categoria.YaExisteTarjeta(tarjetaDistintoNumero));
+
+            Assert.AreEqual(false, controladoraCategoria.YaExisteTarjeta(tarjetaDistintoNumero, categoria1));
         }
 
         [TestMethod]
         public void CategoriaYaExisteTarjetaDiferenteNombre()
         {
-
-            Categoria categoria = new Categoria();
-            Tarjeta tarjeta = new Tarjeta()
-            {
-                Nombre = "Prex",
-                Tipo = "Mastercard",
-                Numero = "3456567890876543",
-                Codigo = "321",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria.AgregarTarjeta(tarjeta);
+            controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
             Tarjeta tarjetaDistintoNombre = new Tarjeta()
             {
-                Nombre = "Visa",
-                Tipo = "Mastercard",
-                Numero = "3456567890876543",
-                Codigo = "321",
-                Vencimiento = new DateTime(2025, 7, 1)
+                Nombre = tarjeta2.Nombre,
+                Tipo = tarjeta1.Tipo,
+                Numero = tarjeta1.Numero,
+                Codigo = tarjeta1.Codigo,
+                Nota = tarjeta1.Nota,
+                Vencimiento = tarjeta1.Vencimiento
             };
-            Assert.AreEqual(true, categoria.YaExisteTarjeta(tarjetaDistintoNombre));
+
+            Assert.AreEqual(true, controladoraCategoria.YaExisteTarjeta(tarjetaDistintoNombre, categoria1));
         }
 
         [TestMethod]
         public void CategoriaYaExisteTarjetaDiferenteTipo()
         {
-
-            Categoria categoria = new Categoria();
-            Tarjeta tarjeta = new Tarjeta()
-            {
-                Nombre = "Prex",
-                Tipo = "Mastercard",
-                Numero = "3456567890876543",
-                Codigo = "321",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria.AgregarTarjeta(tarjeta);
+            controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
             Tarjeta tarjetaDistintoTipo = new Tarjeta()
             {
-                Nombre = "Prex",
-                Tipo = "Mastercard Gold",
-                Numero = "3456567890876543",
-                Codigo = "321",
-                Vencimiento = new DateTime(2025, 7, 1)
+                Nombre = tarjeta1.Nombre,
+                Tipo = tarjeta2.Tipo,
+                Numero = tarjeta1.Numero,
+                Codigo = tarjeta1.Codigo,
+                Nota = tarjeta1.Nota,
+                Vencimiento = tarjeta1.Vencimiento
             };
-            Assert.AreEqual(true, categoria.YaExisteTarjeta(tarjetaDistintoTipo));
+
+            Assert.AreEqual(true, controladoraCategoria.YaExisteTarjeta(tarjetaDistintoTipo, categoria1));
         }
 
         [TestMethod]
         public void CategoriaYaExisteTarjetaDiferenteCodigo()
         {
+            controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
+            Tarjeta tarjetaDistintoCodigo = new Tarjeta()
+            {
+                Nombre = tarjeta1.Nombre,
+                Tipo = tarjeta1.Tipo,
+                Numero = tarjeta1.Numero,
+                Codigo = tarjeta2.Codigo,
+                Nota = tarjeta1.Nota,
+                Vencimiento = tarjeta1.Vencimiento
+            };
 
-            Categoria categoria = new Categoria();
-            Tarjeta tarjeta = new Tarjeta()
-            {
-                Nombre = "Prex",
-                Tipo = "Mastercard",
-                Numero = "3456567890876543",
-                Codigo = "321",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria.AgregarTarjeta(tarjeta);
-            Tarjeta tarjetaDistintoTipo = new Tarjeta()
-            {
-                Nombre = "Prex",
-                Tipo = "Mastercard",
-                Numero = "3456567890876543",
-                Codigo = "123",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            Assert.AreEqual(true, categoria.YaExisteTarjeta(tarjetaDistintoTipo));
+            Assert.AreEqual(true, controladoraCategoria.YaExisteTarjeta(tarjetaDistintoCodigo, categoria1));
         }
 
         [TestMethod]
         public void CategoriaAgregarTarjetaYaExistente()
         {
-            Categoria categoria = new Categoria();
-            Tarjeta tarjeta = new Tarjeta()
-            {
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Numero = "1234567890876543",
-                Codigo = "345",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria.AgregarTarjeta(tarjeta);
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => categoria.AgregarTarjeta(tarjeta));
+            controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
+
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1));
         }
 
         [TestMethod]
         public void CategoriaBorrarTarjetaCategoriaVacia()
         {
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-            string numeroTarjeta = "1234567890876543";
-
-            Tarjeta aBorrar = new Tarjeta()
-            {
-                Numero = numeroTarjeta
-            };
-
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.BorrarTarjeta(aBorrar));
+            Assert.ThrowsException<ObjetoInexistenteException>(() => controladoraCategoria.BorrarTarjeta(tarjeta1, categoria1));
         }
 
         [TestMethod]
         public void CategoriaBorrarTarjetaCategoriaConUnaTarjeta()
         {
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-            string numeroTarjeta = "1234567890876543";
-            Tarjeta tarjeta = new Tarjeta()
-            {
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Numero = numeroTarjeta,
-                Codigo = "123",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria.AgregarTarjeta(tarjeta);
+            controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
+            controladoraCategoria.BorrarTarjeta(tarjeta1, categoria1);
 
-            Tarjeta aBorrar = new Tarjeta()
-            {
-                Numero = numeroTarjeta
-            };
-
-            categoria.BorrarTarjeta(aBorrar);
-            Assert.IsFalse(categoria.YaExisteTarjeta(tarjeta));
+            Assert.IsFalse(controladoraCategoria.YaExisteTarjeta(tarjeta1, categoria1));
         }
 
         [TestMethod]
         public void CategoriaEsListaTarjetasVaciaDespuesDeBorrar()
         {
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-            string numeroTarjeta = "1234567890876543";
-            Tarjeta tarjeta = new Tarjeta()
-            {
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Numero = numeroTarjeta,
-                Codigo = "123",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria.AgregarTarjeta(tarjeta);
+            controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
 
             Tarjeta aBorrar = new Tarjeta()
             {
-                Numero = numeroTarjeta
+                Numero = tarjeta1.Numero
             };
 
-            categoria.BorrarTarjeta(aBorrar);
-            Assert.IsTrue(categoria.EsListaTarjetasVacia());
+            controladoraCategoria.BorrarTarjeta(tarjeta1, categoria1);
+
+            Assert.IsTrue(controladoraCategoria.EsListaTarjetasVacia(categoria1));
         }
 
         [TestMethod]
         public void CategoriaGetTarjetaBorrada()
         {
-
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            string numeroTarjeta = "1234567890876543";
-
-            Tarjeta tarjeta = new Tarjeta()
-            {
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Numero = numeroTarjeta,
-                Codigo = "123",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
+            controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
 
             Tarjeta aBorrar = new Tarjeta()
             {
-                Numero = numeroTarjeta
+                Numero = tarjeta1.Numero
             };
 
-            categoria.AgregarTarjeta(tarjeta);
-            categoria.BorrarTarjeta(aBorrar);
+            controladoraCategoria.BorrarTarjeta(aBorrar, categoria1);
 
             Tarjeta buscadora = new Tarjeta()
             {
-                Numero = numeroTarjeta
+                Numero = tarjeta1.Numero
             };
 
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.GetTarjeta(buscadora));
+            Assert.ThrowsException<ObjetoInexistenteException>(() =>controladoraCategoria.GetTarjeta(buscadora, categoria1));
         }
 
         [TestMethod]
         public void CategoriaDosTarjetasGetTarjetaBorrada()
         {
-
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            string numeroTarjeta = "1234567890876543";
-
-            Tarjeta tarjeta1 = new Tarjeta()
-            {
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Numero = numeroTarjeta,
-                Codigo = "123",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-
-            Tarjeta tarjeta2 = new Tarjeta()
-            {
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Numero = "4254567490876549",
-                Codigo = "123",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-
             Tarjeta buscadora = new Tarjeta()
             {
-                Numero = numeroTarjeta
+                Numero = tarjeta1.Numero
             };
 
             Tarjeta aBorrar = new Tarjeta()
             {
-                Numero = numeroTarjeta
+                Numero = tarjeta1.Numero
             };
 
-            categoria.AgregarTarjeta(tarjeta1);
-            categoria.AgregarTarjeta(tarjeta2);
-            categoria.BorrarTarjeta(aBorrar);
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.GetTarjeta(buscadora));
+            controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
+            controladoraCategoria.AgregarTarjeta(tarjeta2, categoria1);
+            controladoraCategoria.BorrarTarjeta(aBorrar, categoria1);
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => controladoraCategoria.GetTarjeta(buscadora, categoria1));
         }
 
         [TestMethod]
         public void CategoriaBorrarTarjetaQueNoExiste()
         {
+            controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
 
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            Tarjeta tarjeta = new Tarjeta()
-            {
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Numero = "4254567490876549",
-                Codigo = "123",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria.AgregarTarjeta(tarjeta);
             string numeroTarjeta = "1234567890876543";
 
             Tarjeta aBorrar = new Tarjeta()
@@ -1465,94 +984,46 @@ namespace TestsObligatorio
                 Numero = numeroTarjeta
             };
 
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.BorrarTarjeta(aBorrar));
+            Assert.ThrowsException<ObjetoInexistenteException>(() => controladoraCategoria.BorrarTarjeta(aBorrar, categoria1));
         }
 
         [TestMethod]
         public void CategoriaYaExisteTarjetaDiferenteVencimiento()
         {
+            controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
 
-            Categoria categoria = new Categoria();
-            Tarjeta tarjeta = new Tarjeta()
-            {
-                Nombre = "Prex",
-                Tipo = "Mastercard",
-                Numero = "3456567890876543",
-                Codigo = "321",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria.AgregarTarjeta(tarjeta);
             Tarjeta tarjetaDistintoTipo = new Tarjeta()
             {
-                Nombre = "Prex",
-                Tipo = "Mastercard",
-                Numero = "3456567890876543",
-                Codigo = "123",
-                Vencimiento = new DateTime(2026, 9, 2)
+                Nombre = tarjeta1.Nombre,
+                Tipo = tarjeta2.Tipo,
+                Numero = tarjeta1.Numero,
+                Codigo = tarjeta1.Codigo,
+                Nota = tarjeta1.Nota,
+                Vencimiento = tarjeta1.Vencimiento
             };
-            Assert.AreEqual(true, categoria.YaExisteTarjeta(tarjetaDistintoTipo));
+
+            Assert.AreEqual(true, controladoraCategoria.YaExisteTarjeta(tarjetaDistintoTipo, categoria1));
         }
 
         [TestMethod]
         public void CategoriaAlModificarTarjetaAgregadaLaTarjetaViejaDejaDeExistir()
         {
-
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            string numeroTarjetaVieja = "4254567490876549";
-            Tarjeta tarjetaVieja = new Tarjeta()
-            {
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Numero = numeroTarjetaVieja,
-                Codigo = "123",
-                Nota = "",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria.AgregarTarjeta(tarjetaVieja);
-
-            string numeroTarjetaNueva = "1234567890876543";
-            Tarjeta tarjetaNueva = new Tarjeta()
-            {
-                Nombre = "Prex",
-                Tipo = "Mastercard",
-                Numero = numeroTarjetaNueva,
-                Codigo = "123",
-                Nota = "",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
+            controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
 
             Tarjeta buscadora = new Tarjeta()
             {
-                Numero = numeroTarjetaVieja
+                Numero = tarjeta1.Numero
             };
-            categoria.ModificarTarjeta(tarjetaVieja, tarjetaNueva);
-            Assert.IsFalse(categoria.YaExisteTarjeta(buscadora));
+
+            controladoraCategoria.ModificarTarjeta(tarjeta1, tarjeta2, categoria1);
+
+            Assert.IsFalse(controladoraCategoria.YaExisteTarjeta(buscadora, categoria1));
         }
 
         [TestMethod]
         public void CategoriaModificarTarjetaNoExistente()
         {
-
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            string numeroTarjeta = "4254567490876549";
-            Tarjeta tarjeta = new Tarjeta()
-            {
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Numero = numeroTarjeta,
-                Codigo = "123",
-                Nota = "",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria.AgregarTarjeta(tarjeta);
+            controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
 
             string numeroTarjetaInexistente = "1234567890876543";
 
@@ -1561,142 +1032,77 @@ namespace TestsObligatorio
                 Numero = numeroTarjetaInexistente
             };
 
-            Assert.ThrowsException<ObjetoInexistenteException>(() => categoria.ModificarTarjeta(categoria.GetTarjeta(buscadora), tarjeta));
+            Assert.ThrowsException<ObjetoInexistenteException>(() => controladoraCategoria.ModificarTarjeta(buscadora, tarjeta1, categoria1));
         }
 
         [TestMethod]
         public void CategoriaModificarTarjetaYaExistente()
         {
-
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            string numeroTarjeta = "4254567490876549";
-            Tarjeta tarjeta1 = new Tarjeta()
-            {
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Numero = numeroTarjeta,
-                Codigo = "123",
-                Nota = "",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria.AgregarTarjeta(tarjeta1);
-
-            string numeroTarjeta2 = "1234567890876543";
-            Tarjeta tarjeta2 = new Tarjeta()
-            {
-                Nombre = "Master",
-                Tipo = "Mastercard",
-                Numero = numeroTarjeta2,
-                Codigo = "123",
-                Nota = "",
-                Vencimiento = new DateTime(2025, 4, 1)
-            };
-            categoria.AgregarTarjeta(tarjeta2);
+            controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
+            controladoraCategoria.AgregarTarjeta(tarjeta2, categoria1);
 
             Tarjeta duplicada = new Tarjeta()
             {
-                Nombre = "Master",
-                Tipo = "Mastercard",
-                Numero = numeroTarjeta2,
-                Codigo = "123",
-                Nota = "",
-                Vencimiento = new DateTime(2025, 4, 1)
+                Nombre = tarjeta2.Nombre,
+                Tipo = tarjeta2.Tipo,
+                Numero = tarjeta2.Numero,
+                Codigo = tarjeta2.Codigo,
+                Nota = tarjeta2.Nota,
+                Vencimiento = tarjeta2.Vencimiento
             };
 
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => categoria.ModificarTarjeta(tarjeta1, duplicada));
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => controladoraCategoria.ModificarTarjeta(tarjeta1, duplicada, categoria1));
         }
 
         [TestMethod]
         public void CategoriaModificarTarjetaAgregada()
         {
-
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            string numeroTarjetaVieja = "4254567490876549";
-            Tarjeta tarjetaVieja = new Tarjeta()
-            {
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Numero = numeroTarjetaVieja,
-                Codigo = "123",
-                Nota = "",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria.AgregarTarjeta(tarjetaVieja);
-
-            string numeroTarjetaNueva = "1234567890876543";
-            Tarjeta tarjetaNueva = new Tarjeta()
-            {
-                Nombre = "Prex",
-                Tipo = "Mastercard",
-                Numero = numeroTarjetaNueva,
-                Nota = "",
-                Codigo = "123",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
+            controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
 
             Tarjeta buscadora = new Tarjeta()
             {
-                Numero = numeroTarjetaNueva
+                Numero = tarjeta2.Numero
             };
 
-            categoria.ModificarTarjeta(tarjetaVieja, tarjetaNueva);
-            Assert.AreEqual(tarjetaNueva, buscadora);
+            controladoraCategoria.ModificarTarjeta(tarjeta1, tarjeta2, categoria1);
+
+            tarjeta1 = controladoraCategoria.GetTarjeta(buscadora, categoria1);
+
+            Assert.AreEqual(tarjeta1, buscadora);
         }
 
         [TestMethod]
         public void CategoriaModificarTarjetaCambiarTodoMenosNumero()
         {
-
-            Categoria categoria = new Categoria()
-            {
-                Nombre = "Personal"
-            };
-
-            string numeroTarjetaVieja = "1111111111111111";
-            Tarjeta tarjetaVieja = new Tarjeta()
-            {
-                Nombre = "Visa Gold",
-                Tipo = "Visa",
-                Numero = numeroTarjetaVieja,
-                Codigo = "111",
-                Nota = "",
-                Vencimiento = new DateTime(2025, 7, 1)
-            };
-            categoria.AgregarTarjeta(tarjetaVieja);
-
-            Tarjeta tarjetaNueva = new Tarjeta()
-            {
-                Nombre = "Prex",
-                Tipo = "Mastercard",
-                Numero = numeroTarjetaVieja,
-                Nota = "Nota Agregada",
-                Codigo = "222",
-                Vencimiento = new DateTime(2099, 8, 8)
-            };
+            controladoraCategoria.AgregarTarjeta(tarjeta1, categoria1);
 
             Tarjeta buscadora = new Tarjeta()
             {
-                Numero = numeroTarjetaVieja
+                Numero = this.tarjeta1.Numero
             };
 
-            categoria.ModificarTarjeta(tarjetaVieja, tarjetaNueva);
+            Tarjeta nueva = new Tarjeta()
+            {
+                Numero = tarjeta1.Numero,
+                Nombre = tarjeta2.Nombre,
+                Codigo = tarjeta2.Codigo,
+                Nota = tarjeta2.Nota,
+                Vencimiento = tarjeta2.Vencimiento,
+                Tipo = tarjeta2.Tipo
+            };
 
-            bool igualNumero = tarjetaVieja.Numero == tarjetaNueva.Numero;
-            bool igualNombre = tarjetaVieja.Nombre == tarjetaNueva.Nombre;
-            bool igualTipo = tarjetaVieja.Tipo == tarjetaNueva.Tipo;
-            bool igualNota = tarjetaVieja.Nota == tarjetaNueva.Nota;
-            bool igualCodigo = tarjetaVieja.Codigo == tarjetaNueva.Codigo;
-            bool igualVencimiento = tarjetaVieja.Vencimiento == tarjetaNueva.Vencimiento;
+            controladoraCategoria.ModificarTarjeta(tarjeta1, nueva, categoria1);
 
-            bool modificoCorrecto = igualNumero && igualNombre && igualTipo && igualNota && igualCodigo && igualVencimiento;
+            Tarjeta resultante = controladoraCategoria.GetTarjeta(buscadora, categoria1);
+
+            bool igualNumero = resultante.Numero == tarjeta2.Numero;
+            bool igualNombre = resultante.Nombre == tarjeta2.Nombre;
+            bool igualTipo = resultante.Tipo == tarjeta2.Tipo;
+            bool igualNota = resultante.Nota == tarjeta2.Nota;
+            bool igualCodigo = resultante.Codigo == tarjeta2.Codigo;
+            bool igualVencimiento = resultante.Vencimiento == tarjeta2.Vencimiento;
+
+            bool modificoCorrecto = !igualNumero && igualNombre && igualTipo && igualNota && igualCodigo && igualVencimiento;
 
             Assert.IsTrue(modificoCorrecto);
         }

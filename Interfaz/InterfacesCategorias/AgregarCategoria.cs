@@ -1,4 +1,5 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Windows.Forms;
 
@@ -7,10 +8,12 @@ namespace Interfaz
     public partial class AgregarCategoria : UserControl
     {
         private Usuario _usuarioActual;
+        private ControladoraUsuario _controladoraUsuario;
 
         public AgregarCategoria(Usuario usuarioAgregar)
         {
             InitializeComponent();
+            this._controladoraUsuario = new ControladoraUsuario();
             this._usuarioActual = usuarioAgregar;
             this.labelErrores.Text = "";
         }
@@ -26,19 +29,17 @@ namespace Interfaz
                 };
 
                 this.textNombreCategoria.Clear();
-                try
-                {
-                    _usuarioActual.AgregarCategoria(nuevaCategoria);
-
-                    VolverAListaCategorias();
-                }
-                catch
-                {
-                    this.labelErrores.Text = "Error: Ya existe una categoría con el mismo nombre.";
-                }
-
+                this._controladoraUsuario.AgregarCategoria(nuevaCategoria, _usuarioActual);
+                var confirmResult = MessageBox.Show("Categoria creada correctamente.",
+                                 "Categoria Agregado.",
+                                 MessageBoxButtons.OK);
+                VolverAListaCategorias();
             }
-            catch
+            catch(ObjetoYaExistenteException)
+            {
+                this.labelErrores.Text = "Error: Ya existe una categoría con el mismo nombre.";
+            }
+            catch(LargoIncorrectoException)
             {
                 this.labelErrores.Text = "Error: El largo del nombre de la categoría no puede ser menor a 3 ni mayor a 15.";
             }

@@ -1,4 +1,5 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -7,12 +8,12 @@ namespace Interfaz
 {
     public partial class ModificarTarjeta : UserControl
     {
-        private Usuario _actual;
+        private Usuario _usuarioActual;
         private Tarjeta _vieja;
 
         public ModificarTarjeta(Usuario usuario, Tarjeta tarjeta )
         {
-            this._actual = usuario;
+            this._usuarioActual = usuario;
             this._vieja = tarjeta;
             InitializeComponent();
         }
@@ -37,9 +38,9 @@ namespace Interfaz
 
         private void CargarComboBox()
         {
-
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
             this.comboBoxCategorias.Items.Clear();
-            List<Categoria> lista = this._actual.GetListaCategorias();
+            List<Categoria> lista = controladoraUsuario.GetListaCategorias(this._usuarioActual);
 
             foreach (Categoria actual in lista)
             {
@@ -48,7 +49,7 @@ namespace Interfaz
                 this.comboBoxCategorias.Items.Add(nombre);
             }
 
-            Categoria pertence = this._actual.GetCategoriaTarjeta(this._vieja);
+            Categoria pertence = controladoraUsuario.GetCategoriaTarjeta(this._vieja, this._usuarioActual);
 
             this.comboBoxCategorias.SelectedItem = pertence.Nombre;
         }
@@ -60,6 +61,7 @@ namespace Interfaz
 
         private void botonModificar_Click(object sender, EventArgs e)
         {
+            ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
             Categoria categoria = new Categoria()
             {
                 Nombre = this.LeerComboBox()
@@ -82,10 +84,13 @@ namespace Interfaz
                     {
                         TarjetaVieja = this._vieja,
                         TarjetaNueva = nueva,
-                        CategoriaVieja = this._actual.GetCategoriaTarjeta(this._vieja),
+                        CategoriaVieja = controladoraUsuario.GetCategoriaTarjeta(this._vieja, this._usuarioActual),
                         CategoriaNueva = categoria
                     };
-                    this._actual.ModificarTarjeta(aModificar);
+                    controladoraUsuario.ModificarTarjeta(aModificar, this._usuarioActual);
+                    var confirmResult = MessageBox.Show("Tarjeta modificada correctamente.",
+                                     "Tarjeta Modificada.",
+                                     MessageBoxButtons.OK);
                     this.VolverAListaTarjetas();
                 }
                 catch (ObjetoYaExistenteException)

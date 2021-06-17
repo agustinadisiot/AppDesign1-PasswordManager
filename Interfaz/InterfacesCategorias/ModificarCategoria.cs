@@ -1,4 +1,5 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Windows.Forms;
 
@@ -8,12 +9,14 @@ namespace Interfaz
     {
         private Categoria _categoriaActual;
         private Usuario _usuarioActual;
+        private ControladoraUsuario _controladoraUsuario;
 
         public ModificarCategoria(Categoria categoriaAModificar, Usuario usuarioActual)
         {
             InitializeComponent();
-            _usuarioActual = usuarioActual;
-            _categoriaActual = categoriaAModificar;
+            this._usuarioActual = usuarioActual;
+            this._categoriaActual = categoriaAModificar;
+            this._controladoraUsuario = new ControladoraUsuario();
             this.textNombreCategoria.Text = _categoriaActual.Nombre;
             this.labelErrores.Text = ""; 
         }
@@ -25,27 +28,24 @@ namespace Interfaz
 
         protected void botonAceptar_Click(object sender, EventArgs e)
         {
-            try 
+            try
             {
                 Categoria categoriaModificada = new Categoria()
                 {
                     Nombre = this.textNombreCategoria.Text
                 };
 
-                try
-                {
-                    _usuarioActual.ModificarNombreCategoria(_categoriaActual, categoriaModificada);
-
-                    VolverAListaCategorias();
-                }
-                catch
-                {
-                    this.labelErrores.Text = "Error: Ya existe una categoría con el mismo nombre.";
-                }
-                
-
+                this._controladoraUsuario.ModificarNombreCategoria(this._categoriaActual, categoriaModificada, this._usuarioActual);
+                var confirmResult = MessageBox.Show("Categoria modificada correctamente.",
+                                 "Categoria Modificada.",
+                                 MessageBoxButtons.OK);
+                VolverAListaCategorias();
             }
-            catch (Exception)
+            catch (ObjetoYaExistenteException)
+            {
+                this.labelErrores.Text = "Error: Ya existe una categoría con el mismo nombre.";
+            }
+            catch (LargoIncorrectoException)
             {
                 this.labelErrores.Text = "Error: El largo del nombre de la categoría no puede ser menor a 3 ni mayor a 15.";
             }

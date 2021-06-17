@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Negocio;
+using System;
 using System.Collections.Generic;
 
-namespace Dominio
+namespace LogicaDeNegocio
 {
     public class GeneradoraClaves
     {
@@ -111,7 +112,6 @@ namespace Dominio
                             break;
                         default:
                             throw new CaracterInesperadoException();
-                            break;
                     }
                 }
             }
@@ -183,7 +183,6 @@ namespace Dominio
                     break;
                 default:
                     throw new CaracterInesperadoException();
-                    break;
             }
             return resultado;
         }

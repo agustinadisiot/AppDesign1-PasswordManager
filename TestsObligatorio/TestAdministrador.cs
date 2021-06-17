@@ -1,8 +1,8 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Negocio;
 using System.Collections.Generic;
 using System.Linq;
-
 
 namespace TestsObligatorio
 {
@@ -10,262 +10,659 @@ namespace TestsObligatorio
     [TestClass]
     public class TestAdministrador
     {
+        private ControladoraAdministrador controladoraAdministrador;
+        private Usuario usuario1;
+        private Usuario usuario2;
+        private Usuario usuario3;
+
+        [TestCleanup]
+        public void TearDown() { }
+
+        [TestInitialize]
+        public void Setup()
+        {
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.BorrarTodo();
+            List<Usuario> usuarios = controladoraAdministrador.GetListaUsuarios();
+            usuario1 = new Usuario
+            {
+                Nombre = "Roberto",
+                ClaveMaestra = "ClaveMaestra"
+            };
+
+            usuario2 = new Usuario
+            {
+                Nombre = "Pedro",
+                ClaveMaestra = "OtraClaveMaestra"
+            };
+
+            usuario3 = new Usuario();
+
+
+        }
 
         [TestMethod]
         public void AdministradorEsListaUsuariosVaciaAlPrincipio()
         {
-            Administrador administrador = new Administrador();
-            Assert.IsTrue(administrador.EsListaUsuariosVacia());
+            Assert.IsTrue(controladoraAdministrador.EsListaUsuariosVacia());
         }
 
         [TestMethod]
         public void AdministradorEsListaUsuariosVaciaConUsuarios()
         {
-            Administrador administrador = new Administrador();
-            Usuario usuario = new Usuario
-            {
-                Nombre = "Roberto"
-            };
-            administrador.AgregarUsuario(usuario);
-            Assert.IsFalse(administrador.EsListaUsuariosVacia());
+            controladoraAdministrador.AgregarUsuario(usuario1);
+            Assert.IsFalse(controladoraAdministrador.EsListaUsuariosVacia());
         }
 
         [TestMethod]
         public void AdministradorAgregarUsuarioSinNombre()
         {
-            Administrador administrador = new Administrador();
-            Usuario usuario = new Usuario();
-            Assert.ThrowsException<ObjetoIncompletoException>(() => administrador.AgregarUsuario(usuario));
+            Assert.ThrowsException<ObjetoIncompletoException>(() => controladoraAdministrador.AgregarUsuario(usuario3));
         }
 
         [TestMethod]
         public void AdministradorAgregarUsuarioYaExistente()
         {
-            Administrador administrador = new Administrador();
-            Usuario usuario = new Usuario()
-            {
-                Nombre = "Roberto"
-            };
-            administrador.AgregarUsuario(usuario);
+            controladoraAdministrador.AgregarUsuario(usuario1);
 
-            Assert.ThrowsException<ObjetoYaExistenteException>(() => administrador.AgregarUsuario(usuario));
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => controladoraAdministrador.AgregarUsuario(usuario1));
         }
 
         [TestMethod]
         public void AdministradorEsListaUsuariosVaciaConDosUsuarios()
         {
-            Administrador administrador = new Administrador();
-            Usuario usuario = new Usuario
-            {
-                Nombre = "Roberto"
-            };
-            administrador.AgregarUsuario(usuario);
-            Usuario usuario2 = new Usuario
-            {
-                Nombre = "Pedro"
-            };
-            administrador.AgregarUsuario(usuario2);
-            Assert.IsFalse(administrador.EsListaUsuariosVacia());
+            controladoraAdministrador.AgregarUsuario(usuario1);
+            controladoraAdministrador.AgregarUsuario(usuario2);
+            Assert.IsFalse(controladoraAdministrador.EsListaUsuariosVacia());
         }
 
         [TestMethod]
         public void AdministradorPedirNombreUsuarioCorrecto()
         {
-            Administrador administrador = new Administrador();
-            Usuario usuario = new Usuario
-            {
-                Nombre = "Roberto"
-            };
-            administrador.AgregarUsuario(usuario);
+            controladoraAdministrador.AgregarUsuario(usuario1);
 
             Usuario aBuscar = new Usuario
             {
                 Nombre = "Roberto"
             };
-            Assert.AreEqual(usuario, administrador.GetUsuario(aBuscar));
+            Assert.AreEqual(usuario1, controladoraAdministrador.GetUsuario(aBuscar));
         }
 
         [TestMethod]
         public void AdministradorPedirUsuarioPrimeroConDosAgregados()
         {
-            Administrador administrador = new Administrador();
-            Usuario usuario = new Usuario
-            {
-                Nombre = "Roberto"
-            };
-            administrador.AgregarUsuario(usuario);
-            Usuario usuario2 = new Usuario
-            {
-                Nombre = "Pedro"
-            };
-            administrador.AgregarUsuario(usuario2);
+            controladoraAdministrador.AgregarUsuario(usuario1);
+            controladoraAdministrador.AgregarUsuario(usuario2);
 
             Usuario aBuscar = new Usuario
             {
                 Nombre = "Roberto"
             };
 
-            Assert.AreEqual(usuario, administrador.GetUsuario(aBuscar));
+            Assert.AreEqual(usuario1, controladoraAdministrador.GetUsuario(aBuscar));
         }
 
         [TestMethod]
         public void AdministradorPedirUsuarioSegundoConDosAgregados()
         {
-            Administrador administrador = new Administrador();
-            Usuario usuario = new Usuario
-            {
-                Nombre = "Roberto"
-            };
-            administrador.AgregarUsuario(usuario);
-            Usuario usuario2 = new Usuario
-            {
-                Nombre = "Pedro"
-            };
-            administrador.AgregarUsuario(usuario2);
+            controladoraAdministrador.AgregarUsuario(usuario1);
+            controladoraAdministrador.AgregarUsuario(usuario2);
 
             Usuario aBuscar = new Usuario
             {
                 Nombre = "Pedro"
             };
-            Assert.AreEqual(usuario2, administrador.GetUsuario(aBuscar));
+            Assert.AreEqual(usuario2, controladoraAdministrador.GetUsuario(aBuscar));
         }
 
         [TestMethod]
         public void AdministradorPedirUsuarioSinMayuscula()
         {
-            Administrador administrador = new Administrador();
-            Usuario usuario = new Usuario
-            {
-                Nombre = "Roberto"
-            };
-            administrador.AgregarUsuario(usuario);
+            controladoraAdministrador.AgregarUsuario(usuario1);
 
             Usuario aBuscar = new Usuario
             {
                 Nombre = "roberto"
             };
-            Assert.AreEqual(usuario, administrador.GetUsuario(aBuscar));
+            Assert.AreEqual(usuario1, controladoraAdministrador.GetUsuario(aBuscar));
         }
 
         [TestMethod]
         public void AdministradorPedirUsuarioInexistente()
         {
-            Administrador administrador = new Administrador();
-            Usuario usuario = new Usuario
-            {
-                Nombre = "Roberto"
-            };
-            administrador.AgregarUsuario(usuario);
-            Usuario usuario2 = new Usuario
-            {
-                Nombre = "Pedro"
-            };
-            administrador.AgregarUsuario(usuario2);
+            controladoraAdministrador.AgregarUsuario(usuario1);
+            controladoraAdministrador.AgregarUsuario(usuario2);
 
             Usuario inexistente = new Usuario
             {
                 Nombre = "Ernesto"
             };
-            Assert.ThrowsException<ObjetoInexistenteException>(() => administrador.GetUsuario(inexistente));
+            Assert.ThrowsException<ObjetoInexistenteException>(() => controladoraAdministrador.GetUsuario(inexistente));
         }
 
         [TestMethod]
         public void AdministradorVacioYaExisteUsuario()
         {
-            Administrador administrador = new Administrador();
-            Usuario buscador = new Usuario
-            {
-                Nombre = "Roberto"
-            };
-
-            Assert.IsFalse(administrador.YaExisteUsuario(buscador));
+            Assert.IsFalse(controladoraAdministrador.YaExisteUsuario(usuario1));
         }
 
         [TestMethod]
         public void AdministradorYaExisteUsuarioExistente()
         {
-            Administrador administrador = new Administrador();
-
-            Usuario agregar = new Usuario()
-            {
-                Nombre = "Roberto"
-            };
-            
+            controladoraAdministrador.AgregarUsuario(usuario1);
             Usuario buscador = new Usuario
             {
                 Nombre = "Roberto"
             };
 
-            administrador.AgregarUsuario(agregar);
-
-            Assert.IsTrue(administrador.YaExisteUsuario(buscador));
+            Assert.IsTrue(controladoraAdministrador.YaExisteUsuario(buscador));
         }
 
         [TestMethod]
         public void AdministradorNoVacioYaExisteUsuarioNoExistente()
         {
-            Administrador administrador = new Administrador();
-
-            Usuario agregar = new Usuario()
-            {
-                Nombre = "Agregar"
-            };
-
+            controladoraAdministrador.AgregarUsuario(usuario1);
             Usuario buscador = new Usuario
             {
                 Nombre = "Buscador"
             };
 
-            administrador.AgregarUsuario(agregar);
-
-            Assert.IsFalse(administrador.YaExisteUsuario(buscador));
+            Assert.IsFalse(controladoraAdministrador.YaExisteUsuario(buscador));
         }
 
         [TestMethod]
         public void AdministradorGetListaUsuariosVacia()
         {
-            Administrador administrador = new Administrador();
-
-            Assert.IsNull(administrador.GetListaUsuarios());
+            Assert.AreEqual(0,controladoraAdministrador.GetListaUsuarios().Count());
         }
 
         [TestMethod]
         public void AdministradorGetListaUsuariosNoVacia()
         {
-            Administrador administrador = new Administrador();
-            Usuario usuario = new Usuario()
-            {
-                Nombre = "Usuario"
-            };
-            administrador.AgregarUsuario(usuario);
-
-            Assert.IsNotNull(administrador.GetListaUsuarios());
+            controladoraAdministrador.AgregarUsuario(usuario1);
+            Assert.IsNotNull(controladoraAdministrador.GetListaUsuarios());
         }
 
         [TestMethod]
         public void AdministradorGetListaUsuariosEsIgual()
         {
-            Administrador administrador = new Administrador();
-            Usuario usuario1 = new Usuario()
-            {
-                Nombre = "Usuario1"
-            };
-
-            Usuario usuario2 = new Usuario()
-            {
-                Nombre = "Usuario2"
-            };
-
-            administrador.AgregarUsuario(usuario1);
-            administrador.AgregarUsuario(usuario2);
+            controladoraAdministrador.AgregarUsuario(usuario1);
+            controladoraAdministrador.AgregarUsuario(usuario2);
 
             List<Usuario> usuariosComparar = new List<Usuario>
             {
                 usuario1,
                 usuario2
             };
-            Assert.AreEqual(true, usuariosComparar.SequenceEqual(administrador.GetListaUsuarios())); ;
+            Assert.AreEqual(true, usuariosComparar.SequenceEqual(controladoraAdministrador.GetListaUsuarios())); 
         }
     }
 
+    [TestClass]
+    public class TestClavesCompartidas {
+        private ControladoraAdministrador controladoraAdministrador;
+        private ControladoraUsuario controladoraUsuario;
+
+        private Usuario usuario;
+        private Usuario usuario2;
+        private Usuario usuario3;
+        private Categoria categoria1;
+        private Clave clave1;
+        private Clave clave2;
+        private ClaveCompartida claveCompartida;
+        private ClaveCompartida claveCompartida2;
+        private ClaveCompartida claveCompartida3;
+
+        [TestCleanup]
+        public void TearDown()
+        {
+
+        }
+
+        [TestInitialize]
+        public void Setup()
+        {
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraUsuario = new ControladoraUsuario();
+
+            controladoraAdministrador.BorrarTodo();
+            
+
+            usuario = new Usuario()
+            {
+                Nombre = "Usuario1",
+                ClaveMaestra = "Hola12345"
+            };
+
+            usuario2 = new Usuario()
+            {
+                Nombre = "Usuario2",
+                ClaveMaestra = "Chau12345"
+            };
+
+            usuario3 = new Usuario()
+            {
+                Nombre = "Usuario3",
+                ClaveMaestra = "ClaveMaestra"
+            };
+
+            categoria1 = new Categoria()
+            {
+                Nombre = "Personal"
+            };
+
+            clave1 = new Clave()
+            {
+                Sitio = "web.whatsapp.com",
+                Codigo = "EstaEsUnaClave1",
+                UsuarioClave = "Roberto",
+                Nota = ""
+            };
+
+            clave2 = new Clave()
+            {
+                Sitio = "Netflix.com",
+                Codigo = "EstaEsUnaClave2",
+                UsuarioClave = "Luis88",
+                Nota = "Nota de una clave"
+            };
+
+            claveCompartida = new ClaveCompartida()
+            {
+                Original = usuario,
+                Destino = usuario2,
+                Clave = clave1
+            };
+
+            claveCompartida2 = new ClaveCompartida()
+            {
+                Original = usuario,
+                Destino = usuario2,
+                Clave = clave2
+            };
+
+            claveCompartida3 = new ClaveCompartida()
+            {
+                Original = usuario,
+                Destino = usuario3,
+                Clave = clave1
+            };
+
+            controladoraAdministrador.AgregarUsuario(usuario);
+            controladoraAdministrador.AgregarUsuario(usuario2);
+            controladoraAdministrador.AgregarUsuario(usuario3);
+
+
+        }
+
+        [TestMethod]
+        public void UsuarioCompartirUnaClave_ConfirmarClavesIguales()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
+            controladoraAdministrador.CompartirClave(claveCompartida);
+
+            Assert.AreEqual(usuario2.CompartidasConmigo[0].Clave, clave1);
+        }
+
+        [TestMethod]
+        public void UsuarioCompartirUnaClaveYaCompartida()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
+
+            controladoraAdministrador.CompartirClave(claveCompartida);
+
+            Assert.ThrowsException<ObjetoYaExistenteException>(() => controladoraAdministrador.CompartirClave(claveCompartida));
+        }
+
+        [TestMethod]
+        public void UsuarioCompartirUnaClave_ConfirmarUsuariosIguales()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
+
+            controladoraAdministrador.CompartirClave(claveCompartida);
+
+            Assert.AreEqual(usuario2.CompartidasConmigo[0].Original, usuario);
+        }
+
+        [TestMethod]
+        public void UsuarioCompartirDosClaves()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            Categoria igual = new Categoria()
+            {
+                Nombre = categoria1.Nombre
+            };
+            controladoraUsuario.AgregarCategoria(igual, usuario2);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave2, categoria1, usuario);
+
+            controladoraAdministrador.CompartirClave(claveCompartida);
+            controladoraAdministrador.CompartirClave(claveCompartida2);
+
+            ClaveCompartida claveCompartidaAUsuario2_1 = new ClaveCompartida()
+            {
+                Original = usuario,
+                Destino = usuario2,
+                Clave = clave1
+            };
+
+            ClaveCompartida claveCompartidaAUsuario2_2 = new ClaveCompartida()
+            {
+                Original = usuario,
+                Destino = usuario2,
+                Clave = clave2
+            };
+
+            Assert.IsTrue(usuario2.CompartidasConmigo.Contains(claveCompartidaAUsuario2_1) && usuario2.CompartidasConmigo.Contains(claveCompartidaAUsuario2_2));
+        }
+
+        [TestMethod]
+        public void UsuarioCompartirClaveInexistente()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            Categoria igual = new Categoria()
+            {
+                Nombre = categoria1.Nombre
+            };
+            controladoraUsuario.AgregarCategoria(igual, usuario2);
+            Assert.ThrowsException<ObjetoInexistenteException>(() => controladoraAdministrador.CompartirClave(claveCompartida));
+        }
+
+        [TestMethod]
+        public void UsuarioCompartirClaveEsCompartida()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            Categoria igual = new Categoria()
+            {
+                Nombre = categoria1.Nombre
+            };
+            controladoraUsuario.AgregarCategoria(igual, usuario2);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
+
+            Assert.IsFalse(clave1.EsCompartida);
+        }
+
+        [TestMethod]
+        public void UsuarioCompartirUnaClaveEsCompartida()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
+            controladoraAdministrador.CompartirClave(claveCompartida);
+            Assert.IsTrue(clave1.EsCompartida);
+        }
+
+        [TestMethod]
+        public void UsuarioCompartirDosClaves_listaClavesQueComparto()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            Categoria igual = new Categoria()
+            {
+                Nombre = categoria1.Nombre
+            };
+            controladoraUsuario.AgregarCategoria(igual, usuario2);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave2, categoria1, usuario);
+            controladoraAdministrador.CompartirClave(claveCompartida);
+
+            controladoraAdministrador.CompartirClave(claveCompartida2);
+            usuario = controladoraAdministrador.GetUsuario(usuario);
+            Assert.IsTrue(usuario.CompartidasPorMi.Contains(claveCompartida) && usuario.CompartidasPorMi.Contains(claveCompartida2));
+        }
+
+        [TestMethod]
+        public void UsuarioDejarDeCompartirUnaClaveQueNoComparto()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            Categoria igual = new Categoria()
+            {
+                Nombre = categoria1.Nombre
+            };
+            controladoraUsuario.AgregarCategoria(igual, usuario2);
+            controladoraUsuario.AgregarClave(clave2, categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
+            controladoraAdministrador.CompartirClave(claveCompartida);
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => controladoraAdministrador.DejarDeCompartir(claveCompartida2));
+        }
+
+        [TestMethod]
+        public void UsuarioDejarDeCompartirUnaClave_EliminaDeListaQueComparto()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            Categoria igual = new Categoria()
+            {
+                Nombre = categoria1.Nombre
+            };
+            controladoraUsuario.AgregarCategoria(igual, usuario2);
+            controladoraUsuario.AgregarClave(clave2, categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
+            controladoraAdministrador.CompartirClave(claveCompartida);
+            controladoraAdministrador.DejarDeCompartir(claveCompartida);
+            usuario = controladoraAdministrador.GetUsuario(usuario);
+            Assert.IsFalse(usuario.CompartidasPorMi.Contains(claveCompartida));
+        }
+
+        [TestMethod]
+        public void UsuarioDejarDeCompartirUnaClave_EliminaDeListaDeQuienComparto()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            Categoria igual = new Categoria()
+            {
+                Nombre = categoria1.Nombre
+            };
+            controladoraUsuario.AgregarCategoria(igual, usuario2);
+            controladoraUsuario.AgregarClave(clave2, categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
+            controladoraAdministrador.CompartirClave(claveCompartida);
+
+            ClaveCompartida claveQueCompartieron = new ClaveCompartida()
+            {
+                Original = usuario,
+                Destino = usuario2,
+                Clave = clave1
+            };
+
+            controladoraAdministrador.DejarDeCompartir(claveCompartida);
+            usuario2 = controladoraAdministrador.GetUsuario(usuario2);
+            Assert.IsFalse(usuario2.CompartidasConmigo.Contains(claveQueCompartieron));
+        }
+
+        [TestMethod]
+        public void UsuarioDejarDeCompartirUnaClaveAUnUsuarioAQuienNoLeComparto()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
+            controladoraAdministrador.CompartirClave(claveCompartida);
+            Assert.ThrowsException<ObjetoInexistenteException>(() => controladoraAdministrador.DejarDeCompartir(claveCompartida3));
+        }
+
+        [TestMethod]
+        public void UsuarioDejarDeCompartirUnaClave_CambiarClaveEsCompartidaAFalse()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
+            controladoraAdministrador.CompartirClave(claveCompartida);
+
+            controladoraAdministrador.DejarDeCompartir(claveCompartida);
+            usuario = controladoraAdministrador.GetUsuario(usuario);
+            clave1 = controladoraUsuario.GetClave(clave1,usuario);
+            Assert.IsFalse(clave1.EsCompartida);
+        }
+
+        [TestMethod]
+        public void UsuarioDejarDeCompartirUnaClave_CambiarClaveEsCompartidaATrue()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
+
+            controladoraAdministrador.CompartirClave(claveCompartida);
+
+            controladoraAdministrador.CompartirClave(claveCompartida3);
+
+            controladoraAdministrador.DejarDeCompartir(claveCompartida);
+
+            Assert.IsTrue(clave1.EsCompartida);
+        }
+
+        [TestMethod]
+        public void UsuarioDejarDeCompartirUnaClaveAlBorrarLaClave()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
+
+            controladoraAdministrador.CompartirClave(claveCompartida);
+
+            controladoraAdministrador.CompartirClave(claveCompartida3);
+
+            controladoraUsuario.BorrarClave(clave1, usuario);
+            usuario2 = controladoraAdministrador.GetUsuario(usuario2);
+            usuario3 = controladoraAdministrador.GetUsuario(usuario3);
+
+            Assert.IsFalse(usuario2.CompartidasConmigo.Contains(claveCompartida) || usuario3.CompartidasConmigo.Contains(claveCompartida));
+        }
+
+
+        [TestMethod]
+        public void UsuarioGetClaveCompartidaPorMiCorrecta()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
+
+            ClaveCompartida buscadora = new ClaveCompartida()
+            {
+                Original = usuario,
+                Destino = usuario2,
+                Clave = clave1
+            };
+
+            controladoraAdministrador.CompartirClave(claveCompartida);
+
+            Assert.AreEqual(claveCompartida, controladoraUsuario.GetClaveCompartidaPorMi(buscadora, usuario));
+        }
+
+        [TestMethod]
+        public void UsuarioGetClaveCompartidaPorMiInexistente()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave2, categoria1, usuario);
+            ClaveCompartida buscadora = new ClaveCompartida()
+            {
+                Original = usuario,
+                Destino = usuario2,
+                Clave = clave2
+            };
+
+            controladoraAdministrador.CompartirClave(claveCompartida);
+
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => controladoraUsuario.GetClaveCompartidaPorMi(buscadora, usuario));
+        }
+
+        [TestMethod]
+        public void UsuarioGetClaveCompartidaPorDosCompartidasConParametrosDiferentes()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave2, categoria1, usuario);
+
+            controladoraAdministrador.CompartirClave(claveCompartida);
+            controladoraAdministrador.CompartirClave(claveCompartida2);
+
+            Usuario usuarioBuscador = new Usuario
+            {
+                Nombre = "Usuario2",
+                ClaveMaestra = "ClaveDiferente"
+            };
+
+            Clave claveBuscadora = new Clave
+            {
+                Sitio = clave2.Sitio,
+                Codigo = "EstaEsUnaDiferente",
+                UsuarioClave = clave2.UsuarioClave
+            };
+
+            ClaveCompartida buscadora = new ClaveCompartida()
+            {
+                Original = usuario,
+                Destino = usuarioBuscador,
+                Clave = claveBuscadora
+            };
+
+            Assert.AreEqual(claveCompartida2, controladoraUsuario.GetClaveCompartidaPorMi(buscadora, usuario));
+        }
+
+        [TestMethod]
+        public void UsuarioGetClaveCompartidaConmigoCorrecta()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
+
+            ClaveCompartida buscadora = new ClaveCompartida()
+            {
+                Original = usuario,
+                Destino = usuario2,
+                Clave = clave1
+            };
+
+            controladoraAdministrador.CompartirClave(claveCompartida);
+
+            Assert.AreEqual(buscadora, controladoraUsuario.GetClaveCompartidaConmigo(buscadora, usuario2));
+        }
+
+        [TestMethod]
+        public void UsuarioGetClaveCompartidaConmigoInexistente()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave2, categoria1, usuario);
+
+            ClaveCompartida buscadora = new ClaveCompartida()
+            {
+                Original = usuario,
+                Destino = usuario2,
+                Clave = clave2
+            };
+
+            controladoraAdministrador.CompartirClave(claveCompartida);
+
+            Assert.ThrowsException<ObjetoInexistenteException>(() => controladoraUsuario.GetClaveCompartidaPorMi(buscadora, usuario2));
+        }
+
+        [TestMethod]
+        public void UsuarioGetClaveCompartidaConmigoCompartidasConParametrosDiferentes()
+        {
+            controladoraUsuario.AgregarCategoria(categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave1, categoria1, usuario);
+            controladoraUsuario.AgregarClave(clave2, categoria1, usuario);
+
+            controladoraAdministrador.CompartirClave(claveCompartida);
+            controladoraAdministrador.CompartirClave(claveCompartida2);
+
+            Usuario usuarioBuscador = new Usuario
+            {
+                Nombre = usuario.Nombre,
+                ClaveMaestra = "ClaveDiferente"
+            };
+
+            Clave claveBuscadora = new Clave
+            {
+                Sitio = clave2.Sitio,
+                Codigo = "EstaEsUnaDiferente",
+                UsuarioClave = clave2.UsuarioClave
+            };
+
+            ClaveCompartida buscadora = new ClaveCompartida()
+            {
+                Destino = usuario2,
+                Original = usuarioBuscador,
+                Clave = claveBuscadora
+            };
+
+            Assert.AreEqual(buscadora, controladoraUsuario.GetClaveCompartidaPorMi(buscadora, usuario));
+        }
+    }
 }

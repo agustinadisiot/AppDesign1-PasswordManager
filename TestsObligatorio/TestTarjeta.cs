@@ -1,7 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Dominio;
+using LogicaDeNegocio;
 using System;
 using System.Globalization;
+using Negocio;
 
 namespace TestsObligatorio
 {
@@ -9,245 +10,236 @@ namespace TestsObligatorio
     [TestClass]
     public class TestTarjeta
     {
+        private Tarjeta tarjeta1;
+        private Tarjeta tarjeta2;
+        private DateTime fecha1;
+        private ControladoraTarjeta controladora;
+        private ControladoraAdministrador controladoraAdministrador;
+
+        [TestCleanup]
+        public void TearDown()
+        {
+
+        }
+
+        [TestInitialize]
+        public void Setup()
+        {
+            controladoraAdministrador = new ControladoraAdministrador();
+            controladoraAdministrador.BorrarTodo();
+            controladora = new ControladoraTarjeta();
+
+            fecha1 = new DateTime(2022, 5, 9);
+
+            tarjeta1 = new Tarjeta()
+            {
+                Numero = "1111111111111111",
+                Nombre = "Prex",
+                Tipo = "Mastercard",
+                Codigo = "321",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+
+            tarjeta2 = new Tarjeta()
+            {
+                Numero = "2222222222222222",
+                Nombre = "Visa Gold",
+                Tipo = "Visa",
+                Codigo = "345",
+                Nota = "",
+                Vencimiento = new DateTime(2025, 7, 1)
+
+            };
+
+        }
+
         [TestMethod]
         public void TarjetaGetNombreCorrecto()
         {
-            Tarjeta tarjeta = new Tarjeta()
-            {
-                Nombre = "Visa Gold"
-            };
-            Assert.AreEqual("Visa Gold", tarjeta.Nombre);
+            Assert.AreEqual("Visa Gold", tarjeta2.Nombre);
         }
 
         [TestMethod]
         public void TarjetaGetNombreCambiado()
         {
-            Tarjeta tarjeta = new Tarjeta()
-            {
-                Nombre = "Visa Gold"
-            };
-            tarjeta.Nombre = "American";
-            Assert.AreEqual("American", tarjeta.Nombre);
+            tarjeta1.Nombre = "American";
+            Assert.AreEqual("American", tarjeta1.Nombre);
         }
 
         [TestMethod]
         public void TarjetaLargoNombreMenorA3()
         {
-            Tarjeta tarjeta = new Tarjeta();
-            Assert.ThrowsException<LargoIncorrectoException>(() => tarjeta.Nombre = "A");
+            tarjeta1.Nombre = "A";
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarNombre(tarjeta1));
         }
 
         [TestMethod]
         public void TarjetaLargoNombreMayorA25()
         {
-            Tarjeta tarjeta = new Tarjeta();
-            Assert.ThrowsException<LargoIncorrectoException>(() => tarjeta.Nombre = "NombreDeTarjetaDemasiadoLargo");
+            tarjeta1.Nombre = "NombreDeTarjetaDemasiadoLargo";
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarNombre(tarjeta1));
         }
 
         [TestMethod]
         public void TarjetaGetTipoCorrecto()
         {
-            Tarjeta tarjeta = new Tarjeta()
-            {
-                Tipo = "Visa"
-            };
-            Assert.AreEqual("Visa", tarjeta.Tipo);
+            Assert.AreEqual("Visa", tarjeta2.Tipo);
         }
 
         [TestMethod]
         public void TarjetaGetTipoCambiado()
         {
-            Tarjeta tarjeta = new Tarjeta()
-            {
-                Tipo = "Visa"
-            };
-            tarjeta.Tipo = "MasterCard";
-            Assert.AreEqual("MasterCard", tarjeta.Tipo);
+            tarjeta2.Tipo = "MasterCard";
+            Assert.AreEqual("MasterCard", tarjeta2.Tipo);
         }
 
         [TestMethod]
         public void TarjetaLargoTipoMenorA3()
         {
-            Tarjeta tarjeta = new Tarjeta();
-            Assert.ThrowsException<LargoIncorrectoException>(() => tarjeta.Tipo = "A");
+            tarjeta1.Tipo = "A";
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarTipo(tarjeta1));
         }
 
         [TestMethod]
         public void TarjetaLargoTipoMayorA25()
         {
-            Tarjeta tarjeta = new Tarjeta();
-            Assert.ThrowsException<LargoIncorrectoException>(() => tarjeta.Tipo = "TipoDemasiadoLargoNoPermitido");
+            tarjeta1.Tipo = "TipoDemasiadoLargoNoPermitido";
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarTipo(tarjeta1));
         }
 
         [TestMethod]
         public void TarjetaGetNumeroCorrecto()
         {
-            Tarjeta tarjeta = new Tarjeta()
-            {
-                Numero = "1234567812345678"
-            };
-            Assert.AreEqual("1234567812345678", tarjeta.Numero);
+            Assert.AreEqual("1111111111111111", tarjeta1.Numero);
         }
 
         [TestMethod]
         public void TarjetaGetNumeroCambiado()
         {
-            Tarjeta tarjeta = new Tarjeta()
-            {
-                Numero = "1234567812345678"
-            };
-            tarjeta.Numero = "8765432187654321";
-            Assert.AreEqual("8765432187654321", tarjeta.Numero);
+            tarjeta1.Numero = "8765432187654321";
+            Assert.AreEqual("8765432187654321", tarjeta1.Numero);
         }
 
         [TestMethod]
         public void TarjetaLargoNumeroMenorA16()
         {
-            Tarjeta tarjeta = new Tarjeta();
-            Assert.ThrowsException<LargoIncorrectoException>(() => tarjeta.Numero = "1215412");
+            tarjeta1.Numero = "1215412";
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarNumero(tarjeta1));
         }
 
         [TestMethod]
         public void TarjetaLargoNumeroMayorA16()
         {
-            Tarjeta tarjeta = new Tarjeta();
-            Assert.ThrowsException<LargoIncorrectoException>(() => tarjeta.Numero = "123456781223456781234");
+            tarjeta1.Numero = "123456781223456781234";
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarNumero(tarjeta1));
         }
 
         [TestMethod]
         public void TarjetaLargoNumeroConLetras()
         {
-            Tarjeta tarjeta = new Tarjeta();
-            Assert.ThrowsException<CaracterInesperadoException>(() => tarjeta.Numero = "12345BCdA2345678");
+            tarjeta1.Numero = "12345BCdA2345678";
+            Assert.ThrowsException<CaracterInesperadoException>(() => controladora.VerificarNumero(tarjeta1));
         }
 
         [TestMethod]
         public void TarjetaLargoNumeroConSimbolos()
         {
-            Tarjeta tarjeta = new Tarjeta();
-            Assert.ThrowsException<CaracterInesperadoException>(() => tarjeta.Numero = "12345#$%@2345678");
+            tarjeta1.Numero = "12345#$%@2345678";
+            Assert.ThrowsException<CaracterInesperadoException>(() => controladora.VerificarNumero(tarjeta1));
         }
 
         [TestMethod]
         public void TarjetaGetCodigoCorrecto()
         {
-            Tarjeta tarjeta = new Tarjeta()
-            {
-                Codigo = "123"
-            };
-            Assert.AreEqual("123", tarjeta.Codigo);
+            Assert.AreEqual("321", tarjeta1.Codigo);
         }
 
         [TestMethod]
         public void TarjetaGetCodigoCambiado()
         {
-            Tarjeta tarjeta = new Tarjeta()
-            {
-                Codigo = "123"
-            };
-            tarjeta.Codigo = "3241";
-            Assert.AreEqual("3241", tarjeta.Codigo);
+            tarjeta1.Codigo = "3241";
+            Assert.AreEqual("3241", tarjeta1.Codigo);
         }
 
         [TestMethod]
         public void TarjetaLargoCodigoMenorA3()
         {
-            Tarjeta tarjeta = new Tarjeta();
-            Assert.ThrowsException<LargoIncorrectoException>(() => tarjeta.Codigo = "12");
+            tarjeta1.Codigo = "12";
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarCodigo(tarjeta1));
         }
 
         [TestMethod]
         public void TarjetaLargoCodigoMayorA4()
         {
-            Tarjeta tarjeta = new Tarjeta();
-            Assert.ThrowsException<LargoIncorrectoException>(() => tarjeta.Codigo = "12345");
+            tarjeta1.Codigo = "12345";
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarCodigo(tarjeta1));
         }
 
         [TestMethod]
         public void TarjetaLargoCodigoConLetras()
         {
-            Tarjeta tarjeta = new Tarjeta();
-            Assert.ThrowsException<CaracterInesperadoException>(() => tarjeta.Codigo = "12B");
+            tarjeta1.Codigo = "12B";
+            Assert.ThrowsException<CaracterInesperadoException>(() => controladora.VerificarCodigo(tarjeta1));
         }
 
         [TestMethod]
         public void TarjetaLargoCodigoConSimbolos()
         {
-            Tarjeta tarjeta = new Tarjeta();
-            Assert.ThrowsException<CaracterInesperadoException>(() => tarjeta.Codigo = "12**");
+            tarjeta1.Codigo = "12**";
+            Assert.ThrowsException<CaracterInesperadoException>(() => controladora.VerificarCodigo(tarjeta1));
         }
 
         [TestMethod]
         public void TarjetaGetVencimientoCorrecto()
         {
-            Tarjeta tarjeta = new Tarjeta();
-            DateTime date1 = new DateTime(2025, 7, 1);
-            tarjeta.Vencimiento = date1;
-            Assert.AreEqual("07/2025", tarjeta.Vencimiento.ToString("MM/yyyy", CultureInfo.InvariantCulture));
+            Assert.AreEqual("07/2025", tarjeta1.Vencimiento.ToString("MM/yyyy", CultureInfo.InvariantCulture));
         }
 
         [TestMethod]
         public void TarjetaGetVencimientoCambiado()
         {
-            Tarjeta tarjeta = new Tarjeta();
-            DateTime date1 = new DateTime(2025, 7, 1);
-            tarjeta.Vencimiento = date1;
-            DateTime date2 = new DateTime(2023, 8, 1);
-            tarjeta.Vencimiento = date2;
-            Assert.AreEqual("08/2023", tarjeta.Vencimiento.ToString("MM/yyyy", CultureInfo.InvariantCulture));
+            tarjeta1.Vencimiento = fecha1;
+            Assert.AreEqual("05/2022", tarjeta1.Vencimiento.ToString("MM/yyyy", CultureInfo.InvariantCulture));
         }
 
         [TestMethod]
         public void TarjetaGetNotaTarjetaCorrecta()
         {
-            Tarjeta tarjeta = new Tarjeta()
-            {
-                Nota = "Limite 400k UYU"
-            };
-            Assert.AreEqual("Limite 400k UYU", tarjeta.Nota);
+            tarjeta1.Nota = "Limite 400k UYU";
+            Assert.AreEqual("Limite 400k UYU", tarjeta1.Nota);
         }
 
         [TestMethod]
         public void TarjetaGetNotaCambiada()
         {
-            Tarjeta tarjeta = new Tarjeta()
-            {
-                Nota = "Limite 400k UYU"
-            };
-            tarjeta.Nota = "Nota nueva";
-            Assert.AreEqual("Nota nueva", tarjeta.Nota);
+            tarjeta1.Nota = "Nota nueva";
+            Assert.AreEqual("Nota nueva", tarjeta1.Nota);
         }
 
         [TestMethod]
         public void TarjetaLargoNotaMayorA250()
         {
-            Tarjeta tarjeta = new Tarjeta();
             string notaDemasiadoLarga = "";
             for (int i = 0; i < 251; i++) notaDemasiadoLarga += "T";
-            Assert.ThrowsException<LargoIncorrectoException>(() => tarjeta.Nota = notaDemasiadoLarga);
+            tarjeta1.Nota = notaDemasiadoLarga;
+            Assert.ThrowsException<LargoIncorrectoException>(() => controladora.VerificarNota(tarjeta1));
         }
 
         [TestMethod]
         public void TarjetaEqualsMismoNumero()
         {
-            Tarjeta tarjeta1 = new Tarjeta
+            Tarjeta tarjetaMismoNumero = new Tarjeta
             {
-                Numero = "1234567890123456"
+                Numero = tarjeta1.Numero
             };
-            Tarjeta tarjeta2 = new Tarjeta
-            {
-                Numero = "1234567890123456"
-            };
-            Assert.AreEqual(tarjeta1, tarjeta2);
+            Assert.AreEqual(tarjeta1, tarjetaMismoNumero);
         }
 
         [TestMethod]
         public void TarjetaNotEqualsDiferenteNumero()
         {
-            Tarjeta tarjeta1 = new Tarjeta
-            {
-                Numero = "1234567890123456"
-            };
             Tarjeta tarjeta2 = new Tarjeta
             {
                 Numero = "6543210987654321"
@@ -258,23 +250,15 @@ namespace TestsObligatorio
         [TestMethod]
         public void TarjetaEqualsNull()
         {
-            Tarjeta tarjeta1 = new Tarjeta
-            {
-                Numero = "1234567890123456"
-            };
-            Tarjeta tarjeta2 = null;
-            Assert.ThrowsException<ObjetoIncompletoException>(() => tarjeta1.Equals(tarjeta2));
+            Tarjeta tarjetaNULL = null;
+            Assert.ThrowsException<ObjetoIncompletoException>(() => tarjeta1.Equals(tarjetaNULL));
         }
 
         [TestMethod]
         public void TarjetaEqualsConString()
         {
-            Tarjeta tarjeta = new Tarjeta
-            {
-                Numero = "1234567890123456"
-            };
             String noEsTarjeta = "1234567890123456";
-            Assert.ThrowsException<ObjetoIncorrectoException>(() => tarjeta.Equals(noEsTarjeta));
+            Assert.ThrowsException<ObjetoIncorrectoException>(() => tarjeta1.Equals(noEsTarjeta));
         }
 
     }

@@ -1,4 +1,5 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -8,10 +9,12 @@ namespace Interfaz
     public partial class ListaClaves : UserControl
     {
         private Usuario _usuarioActual;
+        private ControladoraUsuario _controladoraUsuario;
 
         public ListaClaves(Usuario usuarioAgregar)
         {
             InitializeComponent();
+            this._controladoraUsuario = new ControladoraUsuario();
             this._usuarioActual = usuarioAgregar;
         }
 
@@ -24,11 +27,11 @@ namespace Interfaz
         {
             string formatoFecha = "dd'/'MM'/'yyyy";
             this.tablaClaves.Rows.Clear();
-            List<Clave> listaClaves = this._usuarioActual.GetListaClaves();
+            List<Clave> listaClaves = this._controladoraUsuario.GetListaClaves(this._usuarioActual);
 
             foreach (Clave claveActual in listaClaves)
             {
-                string nombreCategoria = this._usuarioActual.GetCategoriaClave(claveActual).Nombre;
+                string nombreCategoria = this._controladoraUsuario.GetCategoriaClave(claveActual, this._usuarioActual).Nombre;
                 string sitio = claveActual.Sitio;
                 string usuario = claveActual.UsuarioClave;
                 string ultimaModificacion = claveActual.FechaModificacion.ToString(formatoFecha);
@@ -52,7 +55,8 @@ namespace Interfaz
                     UsuarioClave = usuarioClaveBorrar,
                     Sitio = sitioClaveBorrar
                 };
-                this._usuarioActual.BorrarClave(buscadora);
+
+                this._controladoraUsuario.BorrarClave(buscadora, this._usuarioActual);
                 this.CargarTabla();
             }
         }
@@ -82,7 +86,7 @@ namespace Interfaz
 
                 ClaveCompartida aCompartir = new ClaveCompartida()
                 {
-                    Usuario = compartidor,
+                    Original= compartidor,
                     Clave = claveACompartir
                 };
 

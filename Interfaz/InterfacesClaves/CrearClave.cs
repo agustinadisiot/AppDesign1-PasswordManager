@@ -1,4 +1,5 @@
-﻿using Dominio;
+﻿using LogicaDeNegocio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -8,10 +9,14 @@ namespace Interfaz
     public partial class CrearClave : UserControl
     {
         private Usuario _usuarioActual;
+        private ControladoraUsuario _controladoraUsuario;
+        private ControladoraEncriptador _controladoraEncriptador;
 
         public CrearClave(Usuario usuarioAgregar)
         {
             InitializeComponent();
+            this._controladoraEncriptador = new ControladoraEncriptador();
+            this._controladoraUsuario = new ControladoraUsuario();
             this._usuarioActual = usuarioAgregar;
         }
 
@@ -24,7 +29,8 @@ namespace Interfaz
         private void CargarComboBox()
         {
             this.comboBoxCategorias.Items.Clear();
-            List<Categoria> lista = this._usuarioActual.GetListaCategorias();
+            
+            List<Categoria> lista = this._controladoraUsuario.GetListaCategorias(this._usuarioActual);
 
             foreach (Categoria actual in lista)
             {
@@ -32,8 +38,6 @@ namespace Interfaz
                 this.comboBoxCategorias.Items.Add(nombre);
                 
             }
-
-
         }
 
         private string LeerComboBox()
@@ -58,8 +62,6 @@ namespace Interfaz
                     Nombre = this.LeerComboBox()
                 };
 
-
-
                 try
                 {
                     Clave nueva = new Clave()
@@ -71,21 +73,20 @@ namespace Interfaz
                         FechaModificacion = System.DateTime.Now.Date
                     };
 
-                    try
-                    {
-                        this._usuarioActual.AgregarClave(nueva, categoria);
-                        this.VolverAListaClaves();
-                    }
-                    catch (ObjetoYaExistenteException)
-                    {
+                    NivelSeguridad nivelSeguridad = new NivelSeguridad();
+                    nivelSeguridad.ClaveCumpleRequerimientos(nueva.Codigo, _usuarioActual);
 
-                        this.labelErrores.Text = "Error: Ya existe la contraseña que se intentó agregar.";
+                    nueva = this._controladoraEncriptador.Encriptar(nueva);
 
-                    }
+                    this._controladoraUsuario.AgregarClave(nueva, categoria, _usuarioActual);
+                    var confirmResult = MessageBox.Show("Contraseña creada correctamente.",
+                                     "Contraseña Agregado.",
+                                     MessageBoxButtons.OK);
+                    this.VolverAListaClaves();
                 }
-                catch (Exception)
+                catch (Exception x)
                 {
-                    this.labelErrores.Text = "Error: Datos ingresados incorrectos.";
+                    this.labelErrores.Text = x.Message;
                 }
             }
             else {
