@@ -67,7 +67,7 @@ namespace LogicaDeNegocio
         public void AgregarUsuario(Usuario usuario)
         {
             ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
-            controladoraUsuario.Verificar(usuario);;
+            controladoraUsuario.Verificar(usuario);
             Clave claveAEncriptar = new Clave()
             {
                 Codigo = usuario.ClaveMaestra
