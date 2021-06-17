@@ -1,4 +1,8 @@
-﻿using System;
+﻿using LogicaDeNegocio;
+using Negocio;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Interfaz
@@ -13,7 +17,7 @@ namespace Interfaz
         {
 
 
-            /*ControladoraAdministrador controladoraAdministrador = new ControladoraAdministrador();
+            ControladoraAdministrador controladoraAdministrador = new ControladoraAdministrador();
             ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
             ControladoraEncriptador controladoraEncriptador = new ControladoraEncriptador();
             controladoraAdministrador.BorrarTodo();
@@ -287,7 +291,7 @@ namespace Interfaz
                                     Nota = generadoraActual.Generar()
                                 };
 
-                                aAgregar =controladoraEncriptador.Encriptar(aAgregar);
+                                aAgregar = controladoraEncriptador.Encriptar(aAgregar);
 
                                 controladoraUsuario.AgregarClave(aAgregar, nuevaCategoria, usuarioActual);
                                 usuarioSitios.Remove(usuarioSitio);
@@ -296,7 +300,6 @@ namespace Interfaz
                             }
                             catch (Exception)
                             {
-                                string hola = "hola";
                             }
                         }
 
@@ -304,7 +307,7 @@ namespace Interfaz
 
 
                 }
-            }*/
+            }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new VentanaPrincipal());
